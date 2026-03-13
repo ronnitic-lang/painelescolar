@@ -3,1342 +3,263 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Painel do Diretor · 12 de Outubro EEIEF</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<title>Painel de Indicadores Educacionais · SEDUC · Caucaia-CE</title>
 <style>
 :root {
-  --bg: #f1f4f8;
-  --sidebar-bg: #0d1117;
+  --bg: #f0f4f8;
   --surface: #ffffff;
-  --border: #e2e8f0;
-  --border-dark: #2a3441;
-  --text: #0f172a;
-  --muted: #64748b;
-  --muted2: #94a3b8;
-
-  --red: #ef4444;
-  --red-bg: #fef2f2;
-  --red-bdr: #fca5a5;
-  --red-dark: #dc2626;
-
-  --yellow: #f59e0b;
-  --yellow-bg: #fffbeb;
-  --yellow-bdr: #fcd34d;
-
-  --green: #10b981;
-  --green-bg: #f0fdf4;
-  --green-bdr: #6ee7b7;
-
-  --blue: #3b82f6;
-  --blue-bg: #eff6ff;
-  --blue-bdr: #93c5fd;
-
-  --purple: #8b5cf6;
-  --orange: #f97316;
+  --border: #d8e2ec;
+  --blue-dark: #1a3a5c;
+  --blue-mid: #1e5799;
+  --blue-light: #e8f0fb;
+  --teal: #0e7490;
+  --teal-light: #ecfeff;
+  --text: #0f1e2e;
+  --muted: #4a5e75;
+  --muted2: #8097b0;
+  --red: #c0392b;
+  --red-bg: #fdf0ef;
+  --yellow: #d68910;
+  --yellow-bg: #fef9ec;
+  --green: #1a7a4a;
+  --green-bg: #edfaf3;
+  --font: 'Tahoma', 'Verdana', 'Arial', sans-serif;
+  --radius: 10px;
+  --shadow: 0 2px 12px rgba(0,0,0,0.09);
+  --shadow-lg: 0 6px 28px rgba(0,0,0,0.13);
 }
-
 * { margin: 0; padding: 0; box-sizing: border-box; }
-
+html, body { height: 100%; }
 body {
+  font-family: var(--font);
   background: var(--bg);
   color: var(--text);
-  font-family: 'Nunito', sans-serif;
   min-height: 100vh;
   display: flex;
-}
-
-/* ===== SIDEBAR ===== */
-.sidebar {
-  width: 260px;
-  min-width: 260px;
-  background: var(--sidebar-bg);
-  height: 100vh;
-  position: sticky;
-  top: 0;
-  display: flex;
   flex-direction: column;
-  padding: 24px 0;
-  overflow-y: auto;
-  z-index: 100;
 }
-.sidebar-logo {
-  padding: 0 20px 24px;
-  border-bottom: 1px solid var(--border-dark);
-  margin-bottom: 16px;
-}
-.sidebar-logo .school-name {
-  font-family: 'Syne', sans-serif;
-  font-size: 0.95rem;
-  font-weight: 800;
-  color: #fff;
-  line-height: 1.2;
-}
-.sidebar-logo .school-name span { color: #f59e0b; }
-.sidebar-logo .school-sub {
-  font-size: 0.65rem;
-  color: #4a5568;
-  margin-top: 5px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-.sidebar-logo .ideb-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  background: rgba(16,185,129,0.12);
-  border: 1px solid rgba(16,185,129,0.3);
-  color: #10b981;
-  font-family: 'Syne', sans-serif;
-  font-size: 0.78rem;
-  font-weight: 800;
-  padding: 4px 10px;
-  border-radius: 6px;
-  margin-top: 10px;
-}
-.nav-section {
-  padding: 6px 20px 4px;
-  font-size: 0.62rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: #4a5568;
-  font-weight: 600;
-}
-.nav-item {
+
+/* ===== HEADER ===== */
+.header {
+  background: linear-gradient(135deg, #1a3a5c 0%, #1e5799 60%, #0e7490 100%);
+  padding: 20px 40px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 20px;
-  cursor: pointer;
-  border-left: 3px solid transparent;
-  transition: all 0.2s;
-  text-decoration: none;
+  gap: 20px;
+  box-shadow: 0 3px 15px rgba(0,0,0,0.2);
 }
-.nav-item:hover { background: rgba(255,255,255,0.05); }
-.nav-item.active {
-  background: rgba(59,130,246,0.1);
-  border-left-color: var(--blue);
-}
-.nav-item .nav-icon {
-  width: 32px; height: 32px;
-  border-radius: 8px;
+.header-logo {
+  width: 54px; height: 54px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 12px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 0.9rem;
-  flex-shrink: 0;
+  font-size: 1.8rem;
+  border: 2px solid rgba(255,255,255,0.25);
 }
-.nav-item .nav-label { font-size: 0.9rem; font-weight: 600; color: #cbd5e1; }
-.nav-item .nav-badge {
-  margin-left: auto;
-  min-width: 20px; height: 20px;
-  border-radius: 10px;
-  font-size: 0.62rem;
+.header-text h1 {
+  font-size: 1.25rem;
   font-weight: 700;
-  display: flex; align-items: center; justify-content: center;
-  padding: 0 5px;
+  color: #fff;
+  letter-spacing: 0.02em;
 }
-.nav-badge.red { background: var(--red); color: #fff; }
-.nav-badge.yellow { background: var(--yellow); color: #000; }
-.nav-badge.green { background: var(--green); color: #fff; }
-.nav-badge.gray { background: #374151; color: #9ca3af; }
-
-.sidebar-footer {
-  margin-top: auto;
-  padding: 16px 20px;
-  border-top: 1px solid var(--border-dark);
+.header-text p {
+  font-size: 0.80rem;
+  color: rgba(255,255,255,0.75);
+  margin-top: 2px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
-.sidebar-footer p { font-size: 0.65rem; color: #4a5568; line-height: 1.5; }
 
-/* ===== MAIN CONTENT ===== */
+/* ===== MAIN ===== */
 .main {
   flex: 1;
-  min-width: 0;
-  padding: 28px 32px;
-  max-width: 900px;
-}
-
-/* ===== TOP BAR ===== */
-.topbar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 28px;
-  flex-wrap: wrap;
-  gap: 12px;
+  justify-content: center;
+  padding: 40px 20px;
 }
-.topbar-title {
-  font-family: 'Syne', sans-serif;
-  font-size: 1.55rem;
-  font-weight: 800;
-  color: var(--text);
-}
-.topbar-sub { font-size: 0.88rem; color: var(--muted); margin-top: 3px; }
-.topbar-stats {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-.topbar-stat {
+.login-card {
   background: var(--surface);
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
   border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 6px 14px;
+  width: 100%;
+  max-width: 480px;
+  overflow: hidden;
+}
+.login-top {
+  background: linear-gradient(135deg, #1a3a5c, #1e5799);
+  padding: 32px 36px 28px;
   text-align: center;
 }
-.topbar-stat .val {
-  font-family: 'Syne', sans-serif;
-  font-size: 1.1rem;
-  font-weight: 800;
+.login-top .icon {
+  font-size: 2.8rem;
   display: block;
+  margin-bottom: 10px;
 }
-.topbar-stat .lbl { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
-.topbar-stat.green .val { color: var(--green); }
-.topbar-stat.blue .val { color: var(--blue); }
-.topbar-stat.gold .val { color: var(--yellow); }
-
-/* ===== SECTION HEADER ===== */
-.section {
-  margin-bottom: 32px;
-  scroll-margin-top: 24px;
-}
-.section-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 16px;
-  padding: 12px 16px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  position: relative;
-  overflow: hidden;
-}
-.section-header::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 0; bottom: 0;
-  width: 4px;
-}
-.section-header.qedu::before { background: var(--blue); }
-.section-header.saeb::before { background: var(--purple); }
-.section-header.spaece::before { background: var(--orange); }
-.section-header.avalie::before { background: var(--green); }
-.section-header.cnca::before { background: #ec4899; }
-
-.section-icon {
-  width: 40px; height: 40px;
-  border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.1rem;
-  flex-shrink: 0;
-}
-.section-header.qedu .section-icon { background: var(--blue-bg); }
-.section-header.saeb .section-icon { background: rgba(139,92,246,0.08); }
-.section-header.spaece .section-icon { background: rgba(249,115,22,0.08); }
-.section-header.avalie .section-icon { background: var(--green-bg); }
-.section-header.cnca .section-icon { background: rgba(236,72,153,0.08); }
-
-.section-info { flex: 1; min-width: 0; }
-.section-info h2 {
-  font-family: 'Syne', sans-serif;
-  font-size: 1.1rem;
-  font-weight: 800;
-  color: var(--text);
-}
-.section-info p { font-size: 0.82rem; color: var(--muted); margin-top: 2px; }
-.section-chips { display: flex; gap: 6px; flex-wrap: wrap; }
-.section-chip {
-  font-size: 0.72rem;
+.login-top h2 {
+  font-size: 1.3rem;
+  color: #fff;
   font-weight: 700;
-  padding: 4px 11px;
-  border-radius: 10px;
-  white-space: nowrap;
-}
-.chip-red    { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-bdr); }
-.chip-yellow { background: var(--yellow-bg); color: #92400e; border: 1px solid var(--yellow-bdr); }
-.chip-green  { background: var(--green-bg); color: #065f46; border: 1px solid var(--green-bdr); }
-.chip-blue   { background: var(--blue-bg); color: #1e40af; border: 1px solid var(--blue-bdr); }
-.chip-gray   { background: #f8fafc; color: var(--muted); border: 1px solid var(--border); }
-
-/* ===== NOTIFICATION CARD (post-style) ===== */
-.notif-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  margin-bottom: 12px;
-  overflow: hidden;
-  transition: box-shadow 0.2s, transform 0.15s;
-  cursor: pointer;
-}
-.notif-card:hover {
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-  transform: translateY(-1px);
-}
-.notif-card.priority-red   { border-left: 4px solid var(--red); }
-.notif-card.priority-yellow{ border-left: 4px solid var(--yellow); }
-.notif-card.priority-green { border-left: 4px solid var(--green); }
-.notif-card.priority-blue  { border-left: 4px solid var(--blue); }
-.notif-card.priority-gray  { border-left: 4px solid var(--muted2); }
-
-.notif-top {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  padding: 16px 18px;
-}
-.notif-avatar {
-  width: 42px; height: 42px;
-  border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.1rem;
-  flex-shrink: 0;
-}
-.notif-avatar.red    { background: var(--red-bg); }
-.notif-avatar.yellow { background: var(--yellow-bg); }
-.notif-avatar.green  { background: var(--green-bg); }
-.notif-avatar.blue   { background: var(--blue-bg); }
-.notif-avatar.purple { background: rgba(139,92,246,0.08); }
-
-.notif-body { flex: 1; min-width: 0; }
-.notif-header-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  margin-bottom: 3px;
-  flex-wrap: wrap;
-}
-.notif-title {
-  font-family: 'Syne', sans-serif;
-  font-size: 1rem;
-  font-weight: 800;
-  color: var(--text);
-  line-height: 1.35;
-}
-.notif-source {
-  font-size: 0.72rem;
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 3px 10px;
-  color: var(--muted);
-  white-space: nowrap;
-  font-weight: 600;
-}
-.notif-summary { font-size: 0.88rem; color: var(--muted); line-height: 1.65; margin-top: 6px; }
-
-/* Semáforo inline row */
-.notif-metrics {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-top: 10px;
-  align-items: center;
-}
-.metric-pill {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  padding: 5px 12px;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 700;
-}
-.metric-pill .dot { width: 7px; height: 7px; border-radius: 50%; }
-.metric-pill.red    { background: var(--red-bg); color: var(--red-dark); border: 1px solid var(--red-bdr); }
-.metric-pill.yellow { background: var(--yellow-bg); color: #92400e; border: 1px solid var(--yellow-bdr); }
-.metric-pill.green  { background: var(--green-bg); color: #065f46; border: 1px solid var(--green-bdr); }
-.metric-pill.blue   { background: var(--blue-bg); color: #1e40af; border: 1px solid var(--blue-bdr); }
-
-/* Progress bar inline */
-.notif-progress {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 10px;
-  padding-top: 8px;
-  border-top: 1px solid var(--border);
-}
-.progress-track {
-  flex: 1;
-  height: 6px;
-  background: var(--bg);
-  border-radius: 3px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-}
-.progress-fill { height: 100%; border-radius: 3px; transition: width 1s ease; }
-.progress-fill.red    { background: var(--red); }
-.progress-fill.yellow { background: var(--yellow); }
-.progress-fill.green  { background: var(--green); }
-.progress-label { font-size: 0.82rem; font-weight: 800; white-space: nowrap; min-width: 40px; text-align: right; }
-
-/* Expand section */
-.notif-expand {
-  display: none;
-  padding: 0 18px 16px 74px;
-  border-top: 1px solid var(--border);
-  background: var(--bg);
-}
-.notif-card.open .notif-expand { display: block; }
-.expand-action {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 12px 14px;
-  margin-top: 12px;
-}
-.expand-action .action-tag {
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-weight: 800;
-  color: var(--muted2);
   margin-bottom: 6px;
 }
-.expand-action .action-text { font-size: 0.88rem; color: var(--text); line-height: 1.7; }
-.expand-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
-.expand-tag {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  color: var(--muted);
-  font-size: 0.75rem;
-  padding: 4px 10px;
-  border-radius: 5px;
-  font-weight: 600;
-}
-
-/* Chevron toggle */
-.notif-toggle {
-  width: 28px; height: 28px;
-  border: 1px solid var(--border);
-  border-radius: 7px;
-  background: none;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.7rem;
-  cursor: pointer;
-  color: var(--muted);
-  transition: all 0.2s;
-  flex-shrink: 0;
-}
-.notif-card.open .notif-toggle { transform: rotate(180deg); background: var(--bg); }
-
-/* ===== KPI MINI GRID ===== */
-.kpi-mini-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-  margin-bottom: 14px;
-}
-.kpi-mini {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 12px 14px;
-  position: relative;
-  overflow: hidden;
-}
-.kpi-mini::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  border-radius: 10px 10px 0 0;
-}
-.kpi-mini.red::before { background: var(--red); }
-.kpi-mini.yellow::before { background: var(--yellow); }
-.kpi-mini.green::before { background: var(--green); }
-.kpi-mini.blue::before { background: var(--blue); }
-
-.kpi-mini .kv {
-  font-family: 'Syne', sans-serif;
-  font-size: 1.65rem;
-  font-weight: 800;
-  line-height: 1;
-  display: block;
-  margin-bottom: 3px;
-}
-.kpi-mini.red   .kv { color: var(--red); }
-.kpi-mini.yellow .kv { color: var(--yellow); }
-.kpi-mini.green .kv { color: var(--green); }
-.kpi-mini.blue  .kv { color: var(--blue); }
-.kpi-mini .kl { font-size: 0.78rem; color: var(--muted); line-height: 1.35; font-weight: 500; }
-
-/* ===== HABILIDADE BARS ===== */
-.hab-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 8px;
+.login-top p {
   font-size: 0.82rem;
+  color: rgba(255,255,255,0.72);
+  letter-spacing: 0.04em;
 }
-.hab-code { width: 40px; color: var(--muted2); font-size: 0.75rem; font-weight: 700; flex-shrink: 0; }
-.hab-name { flex: 1; color: var(--muted); font-size: 0.82rem; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.hab-bar { width: 100px; height: 8px; background: var(--bg); border-radius: 4px; overflow: hidden; border: 1px solid var(--border); flex-shrink: 0; }
-.hab-bar-fill { height: 100%; border-radius: 4px; }
-.hab-pct { width: 40px; text-align: right; font-weight: 800; font-size: 0.82rem; flex-shrink: 0; }
-.hab-row.red .hab-pct { color: var(--red); }
-.hab-row.yellow .hab-pct { color: var(--yellow); }
-.hab-row.green .hab-pct { color: var(--green); }
-
-/* ===== SÉRIE HISTÓRICA ===== */
-.history-row {
-  display: flex;
-  align-items: flex-end;
-  gap: 6px;
-  padding: 12px 0;
+.login-body {
+  padding: 32px 36px 36px;
 }
-.hist-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; }
-.hist-bar-outer {
+.form-group {
+  margin-bottom: 20px;
+}
+.form-label {
+  display: block;
+  font-size: 0.80rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-bottom: 7px;
+}
+.form-input {
   width: 100%;
-  height: 60px;
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 5px;
-  overflow: hidden;
-  display: flex;
-  align-items: flex-end;
+  padding: 12px 15px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-family: var(--font);
+  font-size: 0.95rem;
+  color: var(--text);
+  background: #f8fafc;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
 }
-.hist-bar-fill {
+.form-input:focus {
+  border-color: var(--teal);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(14,116,144,0.12);
+}
+.form-input::placeholder { color: #b0bec5; }
+
+.btn-login {
   width: 100%;
-  border-radius: 3px 3px 0 0;
-  transition: height 0.8s ease;
+  padding: 13px;
+  background: linear-gradient(135deg, #1a3a5c, #1e5799);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s;
+  margin-top: 8px;
 }
-.hist-year { font-size: 0.62rem; color: var(--muted); font-weight: 500; }
-.hist-val { font-size: 0.65rem; font-weight: 700; }
+.btn-login:hover { opacity: 0.9; transform: translateY(-1px); }
+.btn-login:active { transform: translateY(0); }
 
-/* ===== DIVIDER ===== */
-.divider {
-  height: 1px;
-  background: var(--border);
-  margin: 8px 0 16px;
+.error-msg {
+  display: none;
+  background: var(--red-bg);
+  border: 1px solid #f5b7b1;
+  border-radius: 7px;
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  color: var(--red);
+  margin-top: 14px;
+  text-align: center;
 }
+.error-msg.show { display: block; }
 
-/* ===== STICKY ALERT BANNER ===== */
-.alert-banner {
-  background: #fff8f0;
-  border: 1px solid #fed7aa;
-  border-radius: 10px;
-  padding: 12px 16px;
-  margin-bottom: 16px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.88rem;
-  color: #92400e;
-}
-.alert-banner strong { font-weight: 700; }
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-  body { flex-direction: column; }
-  .sidebar { width: 100%; height: auto; position: static; flex-direction: row; overflow-x: auto; padding: 12px 0; }
-  .sidebar-logo { display: none; }
-  .nav-section { display: none; }
-  .nav-item { padding: 8px 14px; flex-shrink: 0; }
-  .nav-item .nav-label { font-size: 0.7rem; }
-  .sidebar-footer { display: none; }
-  .main { padding: 16px; }
-  .kpi-mini-grid { grid-template-columns: repeat(2, 1fr); }
-  .notif-expand { padding-left: 18px; }
+.login-footer {
+  text-align: center;
+  padding: 0 36px 24px;
+  font-size: 0.78rem;
+  color: var(--muted2);
+  line-height: 1.6;
 }
 
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
+/* ===== FOOTER ===== */
+footer {
+  background: var(--blue-dark);
+  color: rgba(255,255,255,0.55);
+  text-align: center;
+  padding: 14px;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
 }
-.notif-card {
-  animation: slideUp 0.4s ease forwards;
-  opacity: 0;
-}
-.notif-card:nth-child(1) { animation-delay: 0.05s; }
-.notif-card:nth-child(2) { animation-delay: 0.10s; }
-.notif-card:nth-child(3) { animation-delay: 0.15s; }
-.notif-card:nth-child(4) { animation-delay: 0.20s; }
-.notif-card:nth-child(5) { animation-delay: 0.25s; }
-.notif-card:nth-child(6) { animation-delay: 0.30s; }
-
-@keyframes pulse { 0%,100%{opacity:1}50%{opacity:.4} }
-.live-dot { display:inline-block; width:7px; height:7px; border-radius:50%; background:var(--green); animation:pulse 2s infinite; margin-right:4px; }
 </style>
 </head>
 <body>
 
-<!-- ===== SIDEBAR ===== -->
-<aside class="sidebar">
-  <div class="sidebar-logo">
-    <div class="school-name">12 de <span>Outubro</span> EEIEF</div>
-    <div class="school-sub">Caucaia · CE · 296 alunos</div>
-    <div class="ideb-chip">⭐ IDEB 6,2</div>
+<div class="header">
+  <div class="header-logo">🏫</div>
+  <div class="header-text">
+    <h1>Painel de Indicadores Educacionais</h1>
+    <p>Secretaria Municipal de Educação · Caucaia, Ceará</p>
   </div>
+</div>
 
-  <div class="nav-section">Avaliações</div>
-  <a class="nav-item active" href="#qedu" onclick="setActive(this)">
-    <div class="nav-icon" style="background:rgba(59,130,246,0.12)">📊</div>
-    <span class="nav-label">QEdu / IDEB</span>
-    <span class="nav-badge red">3</span>
-  </a>
-  <a class="nav-item" href="#saeb" onclick="setActive(this)">
-    <div class="nav-icon" style="background:rgba(139,92,246,0.12)">🏫</div>
-    <span class="nav-label">SAEB 2023</span>
-    <span class="nav-badge red">3</span>
-  </a>
-  <a class="nav-item" href="#spaece" onclick="setActive(this)">
-    <div class="nav-icon" style="background:rgba(249,115,22,0.12)">📈</div>
-    <span class="nav-label">SPAECE 2025</span>
-    <span class="nav-badge yellow">2</span>
-  </a>
-  <a class="nav-item" href="#avalie" onclick="setActive(this)">
-    <div class="nav-icon" style="background:rgba(16,185,129,0.12)">✅</div>
-    <span class="nav-label">Avalie.CE</span>
-    <span class="nav-badge yellow">2</span>
-  </a>
-  <a class="nav-item" href="#cnca" onclick="setActive(this)">
-    <div class="nav-icon" style="background:rgba(236,72,153,0.12)">📋</div>
-    <span class="nav-label">Av. Internas</span>
-    <span class="nav-badge red">3</span>
-  </a>
-
-  <div class="nav-section" style="margin-top:8px">Resumo</div>
-  <a class="nav-item" href="#sintese" onclick="setActive(this)">
-    <div class="nav-icon" style="background:rgba(245,158,11,0.12)">⚡</div>
-    <span class="nav-label">Síntese Geral</span>
-    <span class="nav-badge red">13</span>
-  </a>
-
-  <div class="sidebar-footer">
-    <p><span class="live-dot"></span>Dados atualizados<br>INEP: 23249595 · Ref. 2023–2025</p>
-  </div>
-</aside>
-
-<!-- ===== MAIN ===== -->
-<main class="main">
-
-  <!-- TOP BAR -->
-  <div class="topbar">
-    <div>
-      <div class="topbar-title">Painel do Gestor</div>
-      <div class="topbar-sub">Todas as avaliações · <span class="live-dot"></span>12 de Outubro EEIEF · Caucaia-CE</div>
+<div class="main">
+  <div class="login-card">
+    <div class="login-top">
+      <span class="icon">🔐</span>
+      <h2>Acesso do Gestor Escolar</h2>
+      <p>Digite suas credenciais para acessar o painel da sua escola</p>
     </div>
-    <div class="topbar-stats">
-      <div class="topbar-stat green"><span class="val">0%</span><span class="lbl">Abandono</span></div>
-      <div class="topbar-stat green"><span class="val">0%</span><span class="lbl">Reprovação</span></div>
-      <div class="topbar-stat gold"><span class="val">6,2</span><span class="lbl">IDEB</span></div>
-      <div class="topbar-stat blue"><span class="val">28</span><span class="lbl">Professores</span></div>
+    <div class="login-body">
+      <div class="form-group">
+        <label class="form-label" for="login">Login</label>
+        <input class="form-input" type="text" id="login" placeholder="Ex: adrianomartins" autocomplete="username">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="senha">Senha</label>
+        <input class="form-input" type="password" id="senha" placeholder="••••••••••••" autocomplete="current-password">
+      </div>
+      <button class="btn-login" onclick="doLogin()">ENTRAR NO PAINEL &rarr;</button>
+      <div class="error-msg" id="errorMsg">⚠️ Login ou senha incorretos. Verifique suas credenciais.</div>
+    </div>
+    <div class="login-footer">
+      Em caso de dúvidas, entre em contato com a Coordenação Pedagógica.<br>
+      Este sistema é de uso exclusivo dos gestores escolares.
     </div>
   </div>
+</div>
 
-  <!-- ALERTA GLOBAL -->
-  <div class="alert-banner">
-    🚨 <div><strong>13 notificações ativas</strong> · 8 urgentes · 4 em atenção · 1 destaque positivo. LP é o maior desafio em todas as fontes de dados. MT apresenta trajetória positiva consistente.</div>
-  </div>
-
-  <!-- ======================== QEDU / IDEB ======================== -->
-  <div class="section" id="qedu">
-    <div class="section-header qedu">
-      <div class="section-icon">📊</div>
-      <div class="section-info">
-        <h2>QEdu · IDEB 2023</h2>
-        <p>Indicadores contextuais, fluxo escolar e desempenho geral · Ref. 2023</p>
-      </div>
-      <div class="section-chips">
-        <span class="section-chip chip-red">3 alertas</span>
-        <span class="section-chip chip-green">IDEB 6,2</span>
-      </div>
-    </div>
-
-    <div class="kpi-mini-grid">
-      <div class="kpi-mini green"><span class="kv">6,2</span><div class="kl">IDEB · Acima da média p/ NSE</div></div>
-      <div class="kpi-mini green"><span class="kv">0%</span><div class="kl">Abandono escolar</div></div>
-      <div class="kpi-mini red"><span class="kv">48%</span><div class="kl">Adequação LP (meta 70%)</div></div>
-      <div class="kpi-mini yellow"><span class="kv">67%</span><div class="kl">Adequação MT (meta 70%)</div></div>
-    </div>
-
-    <!-- Notif 1 -->
-    <div class="notif-card priority-red" onclick="toggle(this)">
-      <div class="notif-top">
-        <div class="notif-avatar red">📖</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">Português abaixo da meta — 22pp de diferença</div>
-            <span class="notif-source">QEdu · IDEB</span>
-          </div>
-          <div class="notif-summary">Apenas 48% dos alunos atingiram nível adequado em LP, contra meta de 70%. Padrão que se repete em SAEB, SPAECE e Avalie.CE.</div>
-          <div class="notif-metrics">
-            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>48% adequação LP</span>
-            <span class="metric-pill yellow"><span class="dot" style="background:var(--yellow)"></span>Meta: 70%</span>
-          </div>
-          <div class="notif-progress">
-            <div class="progress-track"><div class="progress-fill red" style="width:48%"></div></div>
-            <span class="progress-label" style="color:var(--red)">48%</span>
-          </div>
-        </div>
-        <button class="notif-toggle">▾</button>
-      </div>
-      <div class="notif-expand">
-        <div class="expand-action">
-          <div class="action-tag">Ação sugerida</div>
-          <div class="action-text">Implementar plano de reforço em leitura e produção textual. Formar professores em estratégias de alfabetização e letramento. Usar dados do SAEB e Avalie.CE para priorizar habilidades específicas.</div>
-        </div>
-        <div class="expand-tags">
-          <span class="expand-tag">Leitura</span><span class="expand-tag">Produção Textual</span><span class="expand-tag">Formação Docente</span><span class="expand-tag">Alta Prioridade</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Notif 2 -->
-    <div class="notif-card priority-red" onclick="toggle(this)">
-      <div class="notif-top">
-        <div class="notif-avatar red">💻</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">Zero dispositivos disponíveis para alunos</div>
-            <span class="notif-source">QEdu</span>
-          </div>
-          <div class="notif-summary">Ausência total de computadores ou tablets para uso pedagógico dos estudantes, comprometendo letramento digital e acesso a recursos educacionais.</div>
-          <div class="notif-metrics">
-            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>0 dispositivos</span>
-            <span class="metric-pill blue"><span class="dot" style="background:var(--blue)"></span>Uso pedagógico</span>
-          </div>
-        </div>
-        <button class="notif-toggle">▾</button>
-      </div>
-      <div class="notif-expand">
-        <div class="expand-action">
-          <div class="action-tag">Ação sugerida</div>
-          <div class="action-text">Buscar parcerias com SME e editais do MEC (Programa Conecta Escola). Candidatar-se a laboratórios móveis. Solicitar equipamentos junto à SEDUC-CE.</div>
-        </div>
-        <div class="expand-tags">
-          <span class="expand-tag">Tecnologia</span><span class="expand-tag">SME</span><span class="expand-tag">SEDUC</span><span class="expand-tag">Edital</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Notif 3 -->
-    <div class="notif-card priority-yellow" onclick="toggle(this)">
-      <div class="notif-top">
-        <div class="notif-avatar yellow">👨‍👩‍👧</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">Baixo engajamento familiar — 40% participam ativamente</div>
-            <span class="notif-source">QEdu</span>
-          </div>
-          <div class="notif-summary">NSE Médio-baixo (Nível 4/6). Apenas 40% das famílias conversam sobre a escola com os filhos. Fator de risco para abandono e baixo desempenho.</div>
-          <div class="notif-metrics">
-            <span class="metric-pill yellow"><span class="dot" style="background:var(--yellow)"></span>40% famílias engajadas</span>
-            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>9% leem fora da escola</span>
-          </div>
-          <div class="notif-progress">
-            <div class="progress-track"><div class="progress-fill yellow" style="width:40%"></div></div>
-            <span class="progress-label" style="color:var(--yellow)">40%</span>
-          </div>
-        </div>
-        <button class="notif-toggle">▾</button>
-      </div>
-      <div class="notif-expand">
-        <div class="expand-action">
-          <div class="action-tag">Ação sugerida</div>
-          <div class="action-text">Criar grupos por turma (WhatsApp/Telegram), reuniões temáticas mensais e visitas domiciliares para casos prioritários. Clube de leitura e sistema de empréstimo de livros para engajar famílias.</div>
-        </div>
-        <div class="expand-tags">
-          <span class="expand-tag">Família</span><span class="expand-tag">Comunidade</span><span class="expand-tag">NSE Nível 4</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ======================== SAEB ======================== -->
-  <div class="section" id="saeb">
-    <div class="section-header saeb">
-      <div class="section-icon">🏫</div>
-      <div class="section-info">
-        <h2>SAEB 2023 · 5º Ano EF</h2>
-        <p>Proficiência média · Distribuição por nível · 47 alunos · 100% de participação</p>
-      </div>
-      <div class="section-chips">
-        <span class="section-chip chip-red">LP crítico</span>
-        <span class="section-chip chip-green">MT histórico</span>
-      </div>
-    </div>
-
-    <div class="kpi-mini-grid">
-      <div class="kpi-mini red"><span class="kv">196,4</span><div class="kl">LP · abaixo similares (202)</div></div>
-      <div class="kpi-mini green"><span class="kv">244,7</span><div class="kl">MT · melhor histórico da escola</div></div>
-      <div class="kpi-mini red"><span class="kv">30%</span><div class="kl">Nos níveis críticos LP (0–2)</div></div>
-      <div class="kpi-mini green"><span class="kv">100%</span><div class="kl">Participação SAEB</div></div>
-    </div>
-
-    <!-- Notif 1 - LP queda -->
-    <div class="notif-card priority-red" onclick="toggle(this)">
-      <div class="notif-top">
-        <div class="notif-avatar red">📖</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">LP abaixo das escolas similares + queda desde 2021</div>
-            <span class="notif-source">SAEB 2023</span>
-          </div>
-          <div class="notif-summary">196,4 pts em LP — 5,6 pts abaixo das similares (202,0). Após crescimento até 2021 (208 pts), houve queda de 11,6 pontos. 30,4% dos alunos nos níveis críticos 0, 1 e 2.</div>
-          <div class="notif-metrics">
-            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>196,4 pts (−5,6 similares)</span>
-            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>30% nível crítico</span>
-          </div>
-          <!-- Histórico LP mini -->
-          <div class="history-row" style="padding:10px 0 0">
-            <div class="hist-col">
-              <div class="hist-bar-outer"><div class="hist-bar-fill" style="height:62%;background:#93c5fd"></div></div>
-              <div class="hist-year">2011</div>
-              <div class="hist-val" style="color:var(--muted)">152</div>
-            </div>
-            <div class="hist-col">
-              <div class="hist-bar-outer"><div class="hist-bar-fill" style="height:69%;background:#60a5fa"></div></div>
-              <div class="hist-year">2013</div>
-              <div class="hist-val" style="color:var(--muted)">169</div>
-            </div>
-            <div class="hist-col">
-              <div class="hist-bar-outer"><div class="hist-bar-fill" style="height:82%;background:#3b82f6"></div></div>
-              <div class="hist-year">2015</div>
-              <div class="hist-val" style="color:var(--blue)">201</div>
-            </div>
-            <div class="hist-col">
-              <div class="hist-bar-outer"><div class="hist-bar-fill" style="height:83%;background:#3b82f6"></div></div>
-              <div class="hist-year">2017</div>
-              <div class="hist-val" style="color:var(--blue)">203</div>
-            </div>
-            <div class="hist-col">
-              <div class="hist-bar-outer"><div class="hist-bar-fill" style="height:84%;background:#3b82f6"></div></div>
-              <div class="hist-year">2019</div>
-              <div class="hist-val" style="color:var(--blue)">206</div>
-            </div>
-            <div class="hist-col">
-              <div class="hist-bar-outer"><div class="hist-bar-fill" style="height:85%;background:#2563eb"></div></div>
-              <div class="hist-year">2021</div>
-              <div class="hist-val" style="color:var(--blue)">208</div>
-            </div>
-            <div class="hist-col">
-              <div class="hist-bar-outer"><div class="hist-bar-fill" style="height:80%;background:#ef4444"></div></div>
-              <div class="hist-year">2023</div>
-              <div class="hist-val" style="color:var(--red)">196 ▼</div>
-            </div>
-          </div>
-        </div>
-        <button class="notif-toggle">▾</button>
-      </div>
-      <div class="notif-expand">
-        <div class="expand-action">
-          <div class="action-tag">Ação sugerida</div>
-          <div class="action-text">Investigar causas da queda (mudança de docentes, pós-pandemia, práticas de leitura). Organizar grupos de nivelamento com foco nos níveis 0-2. Usar matrizes do SAEB para alinhar planejamento. Meta: LP ≥ 210 no SAEB 2025.</div>
-        </div>
-        <div class="expand-tags">
-          <span class="expand-tag">LP Níveis 0–2</span><span class="expand-tag">Nivelamento</span><span class="expand-tag">Meta SAEB 2025</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Notif 2 - distribuição LP -->
-    <div class="notif-card priority-red" onclick="toggle(this)">
-      <div class="notif-top">
-        <div class="notif-avatar red">📊</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">45,8% dos alunos LP nos níveis 3 e 4 — zona de risco</div>
-            <span class="notif-source">SAEB 2023 · LP</span>
-          </div>
-          <div class="notif-summary">Além dos 30% em níveis críticos, quase metade está nos níveis 3 e 4 (dificuldade em habilidades complexas: inferência, sentido, relações de causa/consequência).</div>
-          <div class="notif-metrics">
-            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>N0+N1+N2: 30,4%</span>
-            <span class="metric-pill yellow"><span class="dot" style="background:var(--yellow)"></span>N3+N4: 45,8%</span>
-            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>N5+: apenas 23,9%</span>
-          </div>
-          <!-- Habilidades LP -->
-          <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border)">
-            <div style="font-size:0.65rem;color:var(--muted2);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:7px">Distribuição por nível</div>
-            <div class="hab-row red"><span class="hab-code">N0–N2</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill red" style="width:30.4%"></div></div><span class="hab-pct">30%</span></div>
-            <div class="hab-row yellow"><span class="hab-code">N3–N4</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill yellow" style="width:45.8%"></div></div><span class="hab-pct">46%</span></div>
-            <div class="hab-row green"><span class="hab-code">N5–N9</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill green" style="width:23.9%"></div></div><span class="hab-pct">24%</span></div>
-          </div>
-        </div>
-        <button class="notif-toggle">▾</button>
-      </div>
-      <div class="notif-expand">
-        <div class="expand-action">
-          <div class="action-tag">Ação sugerida</div>
-          <div class="action-text">Planejar atividades sistemáticas de leitura inferencial com gêneros diversificados. Reunião pedagógica apresentando os resultados por nível e construindo plano coletivo com foco em habilidades dos níveis 3 e 4.</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Notif 3 - MT positivo -->
-    <div class="notif-card priority-green" onclick="toggle(this)">
-      <div class="notif-top">
-        <div class="notif-avatar green">🔢</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">MT: melhor resultado histórico — supera similares em 41,7 pts</div>
-            <span class="notif-source">SAEB 2023 · MT</span>
-          </div>
-          <div class="notif-summary">244,7 pts em Matemática é o melhor resultado histórico da escola. Supera escolas similares em 41,7 pts. 67,2% nos níveis 5 a 9. Práticas de MT devem ser documentadas e replicadas.</div>
-          <div class="notif-metrics">
-            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>244,7 pts MT</span>
-            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span">+41,7 vs similares</span>
-            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>67% nos níveis 5–9</span>
-          </div>
-        </div>
-        <button class="notif-toggle">▾</button>
-      </div>
-      <div class="notif-expand">
-        <div class="expand-action">
-          <div class="action-tag">Ação sugerida</div>
-          <div class="action-text">Documentar as práticas pedagógicas dos professores de MT. Criar desafios para alunos nos níveis 5–9, visando alcançar níveis 8–10. Usar a metodologia bem-sucedida de MT como referência para reestruturar o ensino de LP.</div>
-        </div>
-        <div class="expand-tags">
-          <span class="expand-tag">Boas Práticas MT</span><span class="expand-tag">Documentação</span><span class="expand-tag">Replicar p/ LP</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ======================== SPAECE ======================== -->
-  <div class="section" id="spaece">
-    <div class="section-header spaece">
-      <div class="section-icon">📈</div>
-      <div class="section-info">
-        <h2>SPAECE 2025 · Pactuação de Metas</h2>
-        <p>2º e 5º Ano EF · Série histórica 2019–2024 · Prêmio Destaque Gestão</p>
-      </div>
-      <div class="section-chips">
-        <span class="section-chip chip-red">5ºAno LP crítico</span>
-        <span class="section-chip chip-green">2ºAno LP salto</span>
-        <span class="section-chip chip-yellow">9ºAno s/dados</span>
-      </div>
-    </div>
-
-    <div class="kpi-mini-grid">
-      <div class="kpi-mini green"><span class="kv">645,9</span><div class="kl">2º Ano LP 2024 · Meta 660,9</div></div>
-      <div class="kpi-mini blue"><span class="kv">532,1</span><div class="kl">2º Ano MT 2024 · Meta 547,1</div></div>
-      <div class="kpi-mini red"><span class="kv">225,4</span><div class="kl">5º Ano LP 2024 · Meta 238,4</div></div>
-      <div class="kpi-mini green"><span class="kv">250,7</span><div class="kl">5º Ano MT 2024 · Meta 263,7</div></div>
-    </div>
-
-    <!-- Spaece 1 - 5º LP -->
-    <div class="notif-card priority-red" onclick="toggle(this)">
-      <div class="notif-top">
-        <div class="notif-avatar red">📖</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">5º Ano LP ainda no nível Crítico — −13 pts para a meta</div>
-            <span class="notif-source">SPAECE 2025</span>
-          </div>
-          <div class="notif-summary">225,43 pts em LP no 5º Ano — padrão Crítico (escala tradicional). Meta 2025 exige 238,43 (Intermediário). Apesar da recuperação de 2023 (204,6→225,4), ainda faltam 13 pontos.</div>
-          <div class="notif-metrics">
-            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>225,43 pts · Crítico</span>
-            <span class="metric-pill yellow"><span class="dot" style="background:var(--yellow)"></span">Meta: 238,43 · Interm.</span>
-          </div>
-          <div class="notif-progress">
-            <div class="progress-track"><div class="progress-fill red" style="width:94.5%"></div></div>
-            <span class="progress-label" style="color:var(--red)">94,5%</span>
-          </div>
-        </div>
-        <button class="notif-toggle">▾</button>
-      </div>
-      <div class="notif-expand">
-        <div class="expand-action">
-          <div class="action-tag">Ação sugerida</div>
-          <div class="action-text">Priorizar leitura com compreensão profunda, interpretação de gêneros textuais variados e produção escrita com revisão sistemática. Usar perfil de leitura das turmas 5A/B/C como insumo direto de intervenção.</div>
-        </div>
-        <div class="expand-tags">
-          <span class="expand-tag">5º Ano LP</span><span class="expand-tag">Leitura</span><span class="expand-tag">Produção Textual</span><span class="expand-tag">GAP: −13pts</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Spaece 2 - 2º LP salto -->
-    <div class="notif-card priority-green" onclick="toggle(this)">
-      <div class="notif-top">
-        <div class="notif-avatar green">⭐</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">2º Ano LP: salto histórico 217→645,9 (nova escala) · 97,7% da meta</div>
-            <span class="notif-source">SPAECE 2025</span>
-          </div>
-          <div class="notif-summary">Resultado extraordinário na nova escala — nível Avançado. 2º Ano MT também forte: 532,1 pts (Proficiente). Ambos muito próximos das metas 2025. Documentar o que gerou esse resultado.</div>
-          <div class="notif-metrics">
-            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>2ºLP: 645,9 · 97,7% meta</span>
-            <span class="metric-pill blue"><span class="dot" style="background:var(--blue)"></span>2ºMT: 532,1 · 97,3% meta</span>
-          </div>
-          <div class="notif-progress">
-            <div class="progress-track"><div class="progress-fill green" style="width:97.7%"></div></div>
-            <span class="progress-label" style="color:var(--green)">97,7%</span>
-          </div>
-        </div>
-        <button class="notif-toggle">▾</button>
-      </div>
-      <div class="notif-expand">
-        <div class="expand-action">
-          <div class="action-tag">Ação sugerida</div>
-          <div class="action-text">Identificar e documentar as estratégias que geraram o salto no 2º Ano. Garantir continuidade das práticas. Compartilhar com professores de outras turmas e anos. Esse resultado é referência para toda a rede.</div>
-        </div>
-        <div class="expand-tags">
-          <span class="expand-tag">2º Ano LP/MT</span><span class="expand-tag">Boas Práticas</span><span class="expand-tag">Documentar</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Spaece 3 - 9º sem dados -->
-    <div class="notif-card priority-yellow" onclick="toggle(this)">
-      <div class="notif-top">
-        <div class="notif-avatar yellow">📋</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">9º Ano — Ausência total de dados históricos (2019–2024)</div>
-            <span class="notif-source">SPAECE 2025</span>
-          </div>
-          <div class="notif-summary">Sem nenhum registro de participação do 9º Ano nas avaliações SPAECE. Isso impede a pactuação de metas e pode excluir a escola do Prêmio Destaque Gestão Escolar.</div>
-          <div class="notif-metrics">
-            <span class="metric-pill yellow"><span class="dot" style="background:var(--yellow)"></span>0 registros históricos</span>
-            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>Sem meta pactuada</span>
-          </div>
-        </div>
-        <button class="notif-toggle">▾</button>
-      </div>
-      <div class="notif-expand">
-        <div class="expand-action">
-          <div class="action-tag">Ação sugerida</div>
-          <div class="action-text">Verificar junto à SME/SEDUC se o 9º Ano é ofertado. Se sim, investigar ausência nas avaliações e garantir participação no próximo ciclo. Alinhar com a SME para construção de histórico.</div>
-        </div>
-        <div class="expand-tags">
-          <span class="expand-tag">9º Ano</span><span class="expand-tag">SME</span><span class="expand-tag">SEDUC</span><span class="expand-tag">Prêmio Destaque</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ======================== AVALIE.CE ======================== -->
-  <div class="section" id="avalie">
-    <div class="section-header avalie">
-      <div class="section-icon">✅</div>
-      <div class="section-info">
-        <h2>Avalie.CE 2025.1 · 2º Ano EF</h2>
-        <p>Desempenho por habilidade · LP (56,1%) e MT (74,8%) · Acerto geral</p>
-      </div>
-      <div class="section-chips">
-        <span class="section-chip chip-red">4 habs LP críticas</span>
-        <span class="section-chip chip-green">MT forte 74,8%</span>
-      </div>
-    </div>
-
-    <div class="kpi-mini-grid">
-      <div class="kpi-mini red"><span class="kv">56,1%</span><div class="kl">Média acerto LP</div></div>
-      <div class="kpi-mini green"><span class="kv">74,8%</span><div class="kl">Média acerto MT</div></div>
-      <div class="kpi-mini red"><span class="kv">4</span><div class="kl">Habilidades LP ≤45%</div></div>
-      <div class="kpi-mini yellow"><span class="kv">1</span><div class="kl">Habilidade MT ≤40%</div></div>
-    </div>
-
-    <!-- Avalie 1 - LP habilidades -->
-    <div class="notif-card priority-red" onclick="toggle(this)">
-      <div class="notif-top">
-        <div class="notif-avatar red">📖</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">4 habilidades de LP em alerta (≤45%) — 2º Ano</div>
-            <span class="notif-source">Avalie.CE 2025.1</span>
-          </div>
-          <div class="notif-summary">Média LP de 56,1%. Habilidades mais críticas revelam lacunas de alfabetização: desde identificar letras até interpretar efeitos de sentido em textos.</div>
-          <div style="margin-top:10px">
-            <div class="hab-row red"><span class="hab-code">H09</span><span class="hab-name">Efeito de sentido e recursos gráficos</span><div class="hab-bar"><div class="hab-bar-fill" style="width:38%;background:var(--red)"></div></div><span class="hab-pct">38%</span></div>
-            <div class="hab-row red"><span class="hab-code">H05</span><span class="hab-name">Identificar rimas</span><div class="hab-bar"><div class="hab-bar-fill" style="width:43%;background:var(--red)"></div></div><span class="hab-pct">43%</span></div>
-            <div class="hab-row red"><span class="hab-code">H12</span><span class="hab-name">Localizar informação explícita</span><div class="hab-bar"><div class="hab-bar-fill" style="width:44%;background:var(--red)"></div></div><span class="hab-pct">44%</span></div>
-            <div class="hab-row yellow"><span class="hab-code">H01</span><span class="hab-name">Identificar letras entre símbolos</span><div class="hab-bar"><div class="hab-bar-fill" style="width:45%;background:var(--yellow)"></div></div><span class="hab-pct">45%</span></div>
-          </div>
-        </div>
-        <button class="notif-toggle">▾</button>
-      </div>
-      <div class="notif-expand">
-        <div class="expand-action">
-          <div class="action-tag">Ações por habilidade</div>
-          <div class="action-text">
-            <strong>H09 (38%):</strong> Textos multimodais — tirinhas, poemas, anúncios explorando negrito/itálico e escolhas lexicais.<br><br>
-            <strong>H05 (43%):</strong> Jogos de rimas, parlendas e músicas infantis na rotina diária.<br><br>
-            <strong>H12 (44%):</strong> Leitura compartilhada com perguntas diretas; sublinhar passagens-chave como estratégia sistemática.<br><br>
-            <strong>H01 (45%):</strong> Jogos de categorização e classificação de símbolos (letras, números, imagens).
-          </div>
-        </div>
-        <div class="expand-tags">
-          <span class="expand-tag">Alfabetização</span><span class="expand-tag">2º Ano LP</span><span class="expand-tag">Habilidades Básicas</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Avalie 2 - MT forte + alerta medição -->
-    <div class="notif-card priority-yellow" onclick="toggle(this)">
-      <div class="notif-top">
-        <div class="notif-avatar yellow">🔢</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">MT forte (74,8%) — mas H10 Medição com 34% crítico</div>
-            <span class="notif-source">Avalie.CE 2025.1</span>
-          </div>
-          <div class="notif-summary">MT é o ponto forte com 8 de 12 habilidades acima de 60%. Destaques: H05 (97%), H07 (91%), H09 (88%). Porém H10 Medição de Grandezas tem apenas 34% — única habilidade crítica.</div>
-          <div style="margin-top:10px">
-            <div class="hab-row red"><span class="hab-code">H10</span><span class="hab-name">Medição de grandezas</span><div class="hab-bar"><div class="hab-bar-fill" style="width:34%;background:var(--red)"></div></div><span class="hab-pct">34%</span></div>
-            <div class="hab-row green"><span class="hab-code">H05</span><span class="hab-name">Figuras bidimensionais</span><div class="hab-bar"><div class="hab-bar-fill" style="width:97%;background:var(--green)"></div></div><span class="hab-pct">97%</span></div>
-            <div class="hab-row green"><span class="hab-code">H07</span><span class="hab-name">Sistema monetário</span><div class="hab-bar"><div class="hab-bar-fill" style="width:91%;background:var(--green)"></div></div><span class="hab-pct">91%</span></div>
-          </div>
-        </div>
-        <button class="notif-toggle">▾</button>
-      </div>
-      <div class="notif-expand">
-        <div class="expand-action">
-          <div class="action-tag">Ação sugerida</div>
-          <div class="action-text">H10 (34%): Atividades práticas de medição de objetos da sala e do corpo usando régua, fita métrica e unidades não convencionais (palmos, passos). Conectar ao cotidiano. Para os destaques positivos, usar as estratégias de MT como referência para redesenhar a abordagem de LP.</div>
-        </div>
-        <div class="expand-tags">
-          <span class="expand-tag">H10 Medição</span><span class="expand-tag">Atividades Práticas</span><span class="expand-tag">Boas Práticas MT</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ======================== AVALIAÇÕES INTERNAS (CNCA) ======================== -->
-  <div class="section" id="cnca">
-    <div class="section-header cnca">
-      <div class="section-icon">📋</div>
-      <div class="section-info">
-        <h2>Avaliações Internas · Av1 & Av2</h2>
-        <p>10 turmas · 1º ao 5º Ano · Defasagem, aprendizado e perfil de leitura</p>
-      </div>
-      <div class="section-chips">
-        <span class="section-chip chip-red">3 alertas urgentes</span>
-        <span class="section-chip chip-yellow">2 atenção</span>
-        <span class="section-chip chip-green">5ºC destaque</span>
-      </div>
-    </div>
-
-    <div class="kpi-mini-grid">
-      <div class="kpi-mini red"><span class="kv">6/10</span><div class="kl">Turmas c/ defasagem >40% Av2</div></div>
-      <div class="kpi-mini red"><span class="kv">62</span><div class="kl">Pré-leitores (2º/3º/5º ano)</div></div>
-      <div class="kpi-mini green"><span class="kv">4/10</span><div class="kl">Turmas com melhora Av1→Av2</div></div>
-      <div class="kpi-mini yellow"><span class="kv">28%</span><div class="kl">Média adequado (Av1)</div></div>
-    </div>
-
-    <!-- CNCA 1 - 2º ano pré-leitores -->
-    <div class="notif-card priority-red" onclick="toggle(this)">
-      <div class="notif-top">
-        <div class="notif-avatar red">📚</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">2º Ano: 15 pré-leitores por turma — 45 alunos sem alfabetização</div>
-            <span class="notif-source">Av. Internas</span>
-          </div>
-          <div class="notif-summary">As três turmas do 2º Ano (A, B, C) apresentam 15 pré-leitores cada, totalizando 45 alunos. Prevalência de Nível 1 (sem decodificação) — especialmente no 2ºB com 8 alunos em N1.</div>
-          <div class="notif-metrics">
-            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>2ºA: 15 pré-leitores (N1:7)</span>
-            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>2ºB: 15 pré-leitores (N1:8)</span>
-            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>2ºC: 15 pré-leitores (N1:4)</span>
-          </div>
-        </div>
-        <button class="notif-toggle">▾</button>
-      </div>
-      <div class="notif-expand">
-        <div class="expand-action">
-          <div class="action-tag">Ação sugerida</div>
-          <div class="action-text">Formar grupos de intervenção focados em: consciência fonológica, princípio alfabético e fluência de leitura. Prioridade para alunos N1 (sem decodificação). Avaliar necessidade de apoio especializado (psicopedagogia).</div>
-        </div>
-        <div class="expand-tags">
-          <span class="expand-tag">2º A · B · C</span><span class="expand-tag">Alfabetização</span><span class="expand-tag">N1 Pré-leitor</span><span class="expand-tag">Urgente</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- CNCA 2 - 3º ano defasagem crescente -->
-    <div class="notif-card priority-red" onclick="toggle(this)">
-      <div class="notif-top">
-        <div class="notif-avatar red">⚠️</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">3º Ano: defasagem cresce de Av1 para Av2 nas 3 turmas</div>
-            <span class="notif-source">Av. Internas</span>
-          </div>
-          <div class="notif-summary">3ºA: 36%→58% · 3ºB: 15%→54% · 3ºC: 33%→60%. O 3ºB também tem 67% de participação na leitura — frequência e engajamento preocupantes. Necessária investigação pedagógica imediata.</div>
-          <div style="margin-top:8px">
-            <div class="hab-row red"><span class="hab-code">3ºA</span><span class="hab-name">Defasagem Av1→Av2</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill red" style="width:58%"></div></div><span class="hab-pct">58%</span></div>
-            <div class="hab-row red"><span class="hab-code">3ºB</span><span class="hab-name">Defasagem Av2 + 67% part.</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill red" style="width:54%"></div></div><span class="hab-pct">54%</span></div>
-            <div class="hab-row red"><span class="hab-code">3ºC</span><span class="hab-name">Defasagem Av2 — pior do 3º</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill red" style="width:60%"></div></div><span class="hab-pct">60%</span></div>
-          </div>
-        </div>
-        <button class="notif-toggle">▾</button>
-      </div>
-      <div class="notif-expand">
-        <div class="expand-action">
-          <div class="action-tag">Ação sugerida</div>
-          <div class="action-text">Revisão curricular urgente, análise de itens para identificar habilidades não consolidadas. Para 3ºB: verificar frequência, criar estratégias de engajamento e garantir participação nas próximas avaliações. Replanejamento com foco nas habilidades identificadas como lacuna.</div>
-        </div>
-        <div class="expand-tags">
-          <span class="expand-tag">3º A · B · C</span><span class="expand-tag">Replanejamento</span><span class="expand-tag">3ºB frequência</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- CNCA 3 - 1º ano melhora -->
-    <div class="notif-card priority-yellow" onclick="toggle(this)">
-      <div class="notif-top">
-        <div class="notif-avatar yellow">📈</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">1º Ano: melhora em todas as turmas de Av1→Av2 — consolidar</div>
-            <span class="notif-source">Av. Internas</span>
-          </div>
-          <div class="notif-summary">1ºA: 71%→18% defasagem (▼53pp) · 1ºC: 75%→18% (▼57pp) · 1ºD: 39%→6%. Trajetória positiva — risco de perder momentum no final do ano letivo ou na transição para o 2º ano.</div>
-          <div class="notif-metrics">
-            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span">1ºA: ▼53pp defasagem</span>
-            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span">1ºC: ▼57pp defasagem</span>
-          </div>
-        </div>
-        <button class="notif-toggle">▾</button>
-      </div>
-      <div class="notif-expand">
-        <div class="expand-action">
-          <div class="action-tag">Ação sugerida</div>
-          <div class="action-text">Documentar estratégias que geraram melhora. Planejar transição segura para o 2º Ano. Evitar descontinuidade no final do ano letivo. Compartilhar práticas do 1º Ano com professores do 2º Ano para reduzir o contraste (2º Ano ainda tem 45 pré-leitores).</div>
-        </div>
-        <div class="expand-tags">
-          <span class="expand-tag">1º A · B · C · D</span><span class="expand-tag">Continuidade</span><span class="expand-tag">Transição 2º Ano</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- CNCA 4 - 5ºC destaque -->
-    <div class="notif-card priority-green" onclick="toggle(this)">
-      <div class="notif-top">
-        <div class="notif-avatar green">⭐</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">5º Ano C — Referência da escola: 55% adequado, 0 pré-leitores, 9 fluentes</div>
-            <span class="notif-source">Av. Internas</span>
-          </div>
-          <div class="notif-summary">5ºC tem 55% de aprendizado adequado na Av1, zero pré-leitores, 9 leitores fluentes e 2 iniciantes. Melhor desempenho de leitura da escola. Práticas devem ser mapeadas e compartilhadas.</div>
-          <div class="notif-metrics">
-            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span">55% adequado Av1</span>
-            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span">0 pré-leitores</span>
-            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span">9 leitores fluentes</span>
-          </div>
-        </div>
-        <button class="notif-toggle">▾</button>
-      </div>
-      <div class="notif-expand">
-        <div class="expand-action">
-          <div class="action-tag">Ação sugerida</div>
-          <div class="action-text">Mapear e documentar as práticas do professor do 5ºC. Promover troca de experiências com turmas de maior dificuldade. Usar como referência para formação continuada interna. O 5ºB (queda de 38%→58% defasagem na Av2) pode se beneficiar diretamente dessas práticas.</div>
-        </div>
-        <div class="expand-tags">
-          <span class="expand-tag">5ºC Referência</span><span class="expand-tag">Boas Práticas</span><span class="expand-tag">Formação Interna</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ======================== SÍNTESE GERAL ======================== -->
-  <div class="section" id="sintese">
-    <div class="section-header" style="background:var(--sidebar-bg);border-color:#2a3441">
-      <div class="section-icon" style="background:rgba(245,158,11,0.15)">⚡</div>
-      <div class="section-info">
-        <h2 style="color:#fff">Síntese Geral — Prioridades Cruzadas</h2>
-        <p style="color:#64748b">Convergência de todas as fontes de avaliação</p>
-      </div>
-    </div>
-
-    <!-- Síntese 1 - LP cruzado -->
-    <div class="notif-card priority-red" onclick="toggle(this)" style="background:#fff7f7">
-      <div class="notif-top">
-        <div class="notif-avatar red">🚨</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">LP é prioridade crítica em TODAS as fontes de dados</div>
-            <span class="notif-source">QEdu + SAEB + SPAECE + Avalie.CE</span>
-          </div>
-          <div class="notif-summary">QEdu: 48% adequação LP. SAEB: 196,4 pts (abaixo similares, queda desde 2021). SPAECE 5ºAno: nível Crítico. Avalie.CE: 56,1% média, 4 habilidades críticas. Avaliações internas: 62 pré-leitores. <strong>Ação estruturada de LP é a prioridade número 1 da escola.</strong></div>
-          <div class="notif-metrics">
-            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>QEdu: 48%</span>
-            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>SAEB: 196,4 pts</span>
-            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>SPAECE: Crítico</span>
-            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span">Avalie: 56,1%</span>
-          </div>
-        </div>
-        <button class="notif-toggle">▾</button>
-      </div>
-      <div class="notif-expand">
-        <div class="expand-action">
-          <div class="action-tag">Plano de ação integrado LP</div>
-          <div class="action-text">1. Mapear alunos por nível de leitura (usar dados de Av. Internas + Avalie.CE). 2. Formar grupos de nivelamento do 1º ao 5º Ano. 3. Alinhar planejamento com matrizes SAEB/SPAECE. 4. Monitoramento mensal via Avalie.CE. 5. Formação continuada dos professores com foco em leitura inferencial e produção textual. 6. Usar práticas do 5ºC e do 1º Ano como referência interna.</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Síntese 2 - MT fortaleza -->
-    <div class="notif-card priority-green" onclick="toggle(this)" style="background:#f7fff9">
-      <div class="notif-top">
-        <div class="notif-avatar green">💪</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">MT é fortaleza consistente — transferir metodologia para LP</div>
-            <span class="notif-source">SAEB + SPAECE + Avalie.CE</span>
-          </div>
-          <div class="notif-summary">SAEB: 244,7 pts (melhor histórico, +41,7 vs similares). SPAECE 5ºAno MT: Adequado (250,67). Avalie.CE: 74,8% de acerto. O que está funcionando em MT deve ser compreendido e replicado para LP.</div>
-          <div class="notif-metrics">
-            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>SAEB: 244,7 pts ★</span>
-            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span">Avalie: 74,8%</span>
-            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span">SPAECE: Adequado</span>
-          </div>
-        </div>
-        <button class="notif-toggle">▾</button>
-      </div>
-      <div class="notif-expand">
-        <div class="expand-action">
-          <div class="action-tag">Ação sugerida</div>
-          <div class="action-text">Realizar entrevista/observação com professores de Matemática para mapear práticas de sucesso. Identificar se há metodologias transferíveis para LP (diagnóstico contínuo, resolução de problemas, contextualização). Promover troca entre professores de MT e LP.</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <div style="text-align:center;padding:20px;font-size:0.72rem;color:var(--muted2);border-top:1px solid var(--border);margin-top:8px">
-    12 de Outubro EEIEF · INEP 23249595 · Caucaia-CE · Dados: QEdu 2023, SAEB 2023, SPAECE 2025, Avalie.CE 2025.1, Avaliações Internas Av1/Av2 · Clique em cada cartão para ver ações
-  </div>
-</main>
+<footer>
+  © 2025 · Secretaria Municipal de Educação · Caucaia-CE · Painel de Indicadores Educacionais
+</footer>
 
 <script>
-function toggle(card) {
-  card.classList.toggle('open');
+const USERS = {
+  '7desetembro':     { senha: '7desetembro',     dir: '7desetembro/painel.html' },
+  '12deOutubro':     { senha: '12deOutubro',      dir: '12deoutubro/painel.html' },
+  'abatapeba':       { senha: 'abatapeba',        dir: 'abatapeba/painel.html' },
+  'adeliacrisostomo':{ senha: 'adeliacrisostomo', dir: 'adeliacrisostomo/painel.html' },
+  'adrianomartins':  { senha: 'adrianomartins',   dir: 'adriano_martins/painel.html' },
+};
+
+function doLogin() {
+  const login = document.getElementById('login').value.trim();
+  const senha = document.getElementById('senha').value;
+  const err = document.getElementById('errorMsg');
+
+  if (USERS[login] && USERS[login].senha === senha) {
+    err.classList.remove('show');
+    window.location.href = USERS[login].dir;
+  } else {
+    err.classList.add('show');
+    document.getElementById('senha').value = '';
+    document.getElementById('senha').focus();
+  }
 }
-function setActive(el) {
-  document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-  el.classList.add('active');
-}
-// Animate progress bars
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    document.querySelectorAll('.progress-fill, .hab-bar-fill, .hist-bar-fill').forEach(el => {
-      const w = el.style.width || el.style.height;
-      if (el.classList.contains('hist-bar-fill')) {
-        const h = el.style.height;
-        el.style.height = '0';
-        requestAnimationFrame(() => { el.style.height = h; });
-      } else {
-        el.style.width = '0';
-        requestAnimationFrame(() => { el.style.width = w; });
-      }
-    });
-  }, 300);
+
+// Allow Enter key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') doLogin();
 });
-// Highlight active section on scroll
-const sections = document.querySelectorAll('.section');
-const navItems = document.querySelectorAll('.nav-item');
-window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(s => {
-    if (window.scrollY >= s.offsetTop - 100) current = s.id;
-  });
-  navItems.forEach(item => {
-    item.classList.remove('active');
-    if (item.getAttribute('href') === '#' + current) item.classList.add('active');
-  });
-}, { passive: true });
 </script>
 </body>
 </html>

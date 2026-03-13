@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel do Diretor · EEF Aba Tapeba</title>
+<style>
+:root {
+  --bg: #f0f4f8;
+  --surface: #ffffff;
+  --border: #d8e2ec;
+  --sidebar-bg: #1a2535;
+  --sidebar-hover: #243145;
+  --teal: #0e7490;
+  --text: #0f1e2e;
+  --muted: #4a5e75;
+  --muted2: #8097b0;
+  --primary: #1a3a5c;
+  --primary2: #1e5799;
+  --badge: #1a56a0;
+  --font: 'Tahoma', 'Verdana', 'Arial', sans-serif;
+  --radius: 10px;
+  --shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  font-size: 0.94rem;
+  line-height: 1.6;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 264px; min-width: 264px;
+  background: var(--sidebar-bg);
+  height: 100vh;
+  position: sticky; top: 0;
+  display: flex; flex-direction: column;
+  overflow-y: auto; z-index: 100;
+}
+.sidebar::-webkit-scrollbar { width: 4px; }
+.sidebar::-webkit-scrollbar-thumb { background: #2e3d52; border-radius: 3px; }
+.sidebar-logo {
+  padding: 20px 20px 18px;
+  border-bottom: 1px solid #2e3d52;
+  background: #111c2a;
+}
+.school-badge {
+  display: inline-block;
+  background: var(--badge);
+  color: #fff;
+  font-size: 0.70rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 4px; margin-bottom: 9px;
+}
+.school-name { font-size: 1.08rem; font-weight: 700; color: #fff; line-height: 1.25; margin-bottom: 3px; }
+.school-sub { font-size: 0.70rem; color: #7a90a8; margin-top: 3px; letter-spacing: 0.05em; }
+.nav-section {
+  padding: 12px 20px 5px;
+  font-size: 0.68rem; text-transform: uppercase;
+  letter-spacing: 0.13em; color: #5a7090; font-weight: 700;
+}
+.nav-item {
+  display: flex; align-items: center; gap: 11px;
+  padding: 11px 20px;
+  cursor: pointer; border-left: 4px solid transparent;
+  transition: all 0.2s; text-decoration: none; color: inherit;
+}
+.nav-item:hover { background: var(--sidebar-hover); }
+.nav-item.active { background: rgba(14,116,144,.18); border-left-color: #22d3ee; }
+.nav-icon {
+  width: 32px; height: 32px; border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; flex-shrink: 0;
+}
+.nav-label { font-size: 0.85rem; font-weight: 600; color: #b8cce0; line-height: 1.25; }
+.nav-item.active .nav-label { color: #fff; }
+.sidebar-footer {
+  margin-top: auto; padding: 14px 20px;
+  border-top: 1px solid #2e3d52;
+  font-size: 0.70rem; color: #5a7090; line-height: 1.7;
+}
+.logout-btn {
+  display: block; text-align: center;
+  margin-top: 10px; padding: 8px;
+  background: rgba(192,57,43,0.18);
+  color: #f5a9a4; border-radius: 6px;
+  text-decoration: none; font-size: 0.78rem; font-weight: 700;
+  letter-spacing: 0.05em;
+  transition: background 0.2s;
+}
+.logout-btn:hover { background: rgba(192,57,43,0.35); }
+
+/* MAIN */
+.main { flex: 1; min-width: 0; padding: 28px 32px 52px; }
+.page-header {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px 32px;
+  margin-bottom: 28px;
+  border-left: 5px solid var(--primary);
+}
+.page-header h2 { font-size: 1.35rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.page-header p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+.empty-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px; margin-bottom: 32px;
+}
+.empty-card {
+  background: var(--surface);
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 30px 24px;
+  text-align: center;
+  opacity: 0.7;
+}
+.empty-card .ec-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
+.empty-card h3 { font-size: 0.95rem; font-weight: 700; color: var(--muted); margin-bottom: 6px; }
+.empty-card p { font-size: 0.78rem; color: var(--muted2); line-height: 1.5; }
+
+.notice-box {
+  background: #fff8e1;
+  border: 1px solid #ffe082;
+  border-radius: var(--radius);
+  padding: 18px 22px;
+  margin-bottom: 28px;
+  display: flex; align-items: flex-start; gap: 14px;
+}
+.notice-icon { font-size: 1.5rem; flex-shrink: 0; }
+.notice-text h4 { font-size: 0.90rem; font-weight: 700; color: #7b5e00; margin-bottom: 4px; }
+.notice-text p { font-size: 0.82rem; color: #a07800; line-height: 1.5; }
+
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .main { padding: 18px 16px 40px; }
+  .empty-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="school-badge">Painel do Diretor</div>
+    <div class="school-name">Aba Tapeba</div>
+    <div class="school-sub">Caucaia · CE</div>
+  </div>
+  <div class="nav-section">Indicadores</div>
+  <a class="nav-item active" href="painel.html">
+    <div class="nav-icon" style="background:#ecfeff">🏠</div>
+    <span class="nav-label">Visão Geral</span>
+  </a>
+  <a class="nav-item" href="adesc.html">
+    <div class="nav-icon" style="background:#edfaf3">📖</div>
+    <span class="nav-label">ADESC</span>
+  </a>
+  <a class="nav-item" href="avalie_ce.html">
+    <div class="nav-icon" style="background:#fef9ec">📊</div>
+    <span class="nav-label">Avalie.CE</span>
+  </a>
+  <a class="nav-item" href="bimestrais.html">
+    <div class="nav-icon" style="background:#eaf2fc">📝</div>
+    <span class="nav-label">Bimestrais</span>
+  </a>
+  <a class="nav-item" href="cnca.html">
+    <div class="nav-icon" style="background:#fef5e7">📚</div>
+    <span class="nav-label">CNCA</span>
+  </a>
+  <a class="nav-item" href="qedu.html">
+    <div class="nav-icon" style="background:#eaf2fc">🎓</div>
+    <span class="nav-label">QEdu / Censo</span>
+  </a>
+  <a class="nav-item" href="saeb.html">
+    <div class="nav-icon" style="background:#fdf0ef">📋</div>
+    <span class="nav-label">SAEB</span>
+  </a>
+  <a class="nav-item" href="spaece.html">
+    <div class="nav-icon" style="background:#fef9ec">📈</div>
+    <span class="nav-label">SPAECE</span>
+  </a>
+  <div class="nav-section" style="margin-top:10px">Sistema</div>
+  <a class="nav-item" href="../index.html">
+    <div class="nav-icon" style="background:#fdf0ef">🏫</div>
+    <span class="nav-label">Trocar Escola</span>
+  </a>
+  <div class="sidebar-footer">
+    <div>EEF Aba Tapeba<br>Caucaia · CE</div>
+    <div style="margin-top:6px; color:#8097b0">Fonte: SEDUC-CE · 2025</div>
+    <a class="logout-btn" href="../index.html">⬅ Sair do Painel</a>
+  </div>
+</aside>
+
+<main class="main">
+  <div class="page-header">
+    <h2>🏫 Painel do Diretor — EEF Aba Tapeba</h2>
+    <p>Caucaia · CE · Painel de Indicadores Educacionais 2024–2025</p>
+  </div>
+
+  <div class="notice-box">
+    <div class="notice-icon">🔔</div>
+    <div class="notice-text">
+      <h4>Painel em Construção</h4>
+      <p>
+        Os dados desta escola ainda estão sendo inseridos. Os painéis de cada indicador
+        serão disponibilizados em breve pela Coordenação Pedagógica.
+        Acesse os links no menu lateral para ver o status de cada indicador.
+      </p>
+    </div>
+  </div>
+
+  <div class="empty-grid">
+    <div class="empty-card"><span class="ec-icon">📖</span><h3>ADESC</h3><p>Avaliação Diagnóstica de Leitura — dados a serem inseridos.</p></div>
+    <div class="empty-card"><span class="ec-icon">📊</span><h3>Avalie.CE</h3><p>Resultados do Avalie.CE 2025.1 — dados a serem inseridos.</p></div>
+    <div class="empty-card"><span class="ec-icon">📝</span><h3>Bimestrais</h3><p>Provas Bimestrais LP e Matemática — dados a serem inseridos.</p></div>
+    <div class="empty-card"><span class="ec-icon">📚</span><h3>CNCA</h3><p>Avaliações Internas Av1 e Av2 — dados a serem inseridos.</p></div>
+    <div class="empty-card"><span class="ec-icon">🎓</span><h3>QEdu / Censo</h3><p>Indicadores do QEdu e Censo Escolar — dados a serem inseridos.</p></div>
+    <div class="empty-card"><span class="ec-icon">📋</span><h3>SAEB</h3><p>Boletim SAEB 2023 — dados a serem inseridos.</p></div>
+    <div class="empty-card"><span class="ec-icon">📈</span><h3>SPAECE</h3><p>Resultados SPAECE 2024 — dados a serem inseridos.</p></div>
+  </div>
+
+  <div style="text-align:center; font-size:0.75rem; color:var(--muted2); margin-top:10px; padding-top:18px; border-top:1px solid var(--border);">
+    Painel de Indicadores Educacionais · EEF Aba Tapeba · Caucaia-CE · Dados: SEDUC-CE / INEP · 2025
+  </div>
+</main>
+
+</body>
+</html>

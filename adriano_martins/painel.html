@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel do Diretor · Adriano Martins EEIEF</title>
+<style>
+:root {
+  --bg: #f0f4f8;
+  --surface: #ffffff;
+  --border: #d8e2ec;
+  --sidebar-bg: #1a2535;
+  --sidebar-hover: #243145;
+  --sidebar-active: rgba(14,116,144,.18);
+  --blue-dark: #1a3a5c;
+  --blue-mid: #1e5799;
+  --teal: #0e7490;
+  --teal-light: #ecfeff;
+  --text: #0f1e2e;
+  --muted: #4a5e75;
+  --muted2: #8097b0;
+  --red: #c0392b;
+  --red-bg: #fdf0ef;
+  --red-bdr: #f5b7b1;
+  --orange: #ca6f1e;
+  --orange-bg: #fef5e7;
+  --orange-bdr: #f8c471;
+  --yellow: #d68910;
+  --yellow-bg: #fef9ec;
+  --yellow-bdr: #f9d98a;
+  --green: #1a7a4a;
+  --green-bg: #edfaf3;
+  --green-bdr: #82e0aa;
+  --blue: #1a56a0;
+  --blue-bg: #eaf2fc;
+  --blue-bdr: #90bce8;
+  --font: 'Tahoma', 'Verdana', 'Arial', sans-serif;
+  --radius: 10px;
+  --shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  font-size: 0.94rem;
+  line-height: 1.6;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+  width: 264px; min-width: 264px;
+  background: var(--sidebar-bg);
+  height: 100vh;
+  position: sticky; top: 0;
+  display: flex; flex-direction: column;
+  overflow-y: auto; z-index: 100;
+}
+.sidebar::-webkit-scrollbar { width: 4px; }
+.sidebar::-webkit-scrollbar-thumb { background: #2e3d52; border-radius: 3px; }
+
+.sidebar-logo {
+  padding: 20px 20px 18px;
+  border-bottom: 1px solid #2e3d52;
+  background: #111c2a;
+}
+.school-badge {
+  display: inline-block;
+  background: var(--teal);
+  color: #fff;
+  font-size: 0.70rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 4px; margin-bottom: 9px;
+}
+.school-name { font-size: 1.08rem; font-weight: 700; color: #fff; line-height: 1.25; margin-bottom: 3px; }
+.school-name span { color: #f0b429; }
+.school-sub { font-size: 0.70rem; color: #7a90a8; margin-top: 3px; letter-spacing: 0.05em; }
+
+.nav-section {
+  padding: 12px 20px 5px;
+  font-size: 0.68rem; text-transform: uppercase;
+  letter-spacing: 0.13em; color: #5a7090; font-weight: 700;
+}
+.nav-item {
+  display: flex; align-items: center; gap: 11px;
+  padding: 11px 20px;
+  cursor: pointer; border-left: 4px solid transparent;
+  transition: all 0.2s; text-decoration: none;
+  color: inherit;
+}
+.nav-item:hover { background: var(--sidebar-hover); }
+.nav-item.active { background: var(--sidebar-active); border-left-color: #22d3ee; }
+.nav-icon {
+  width: 32px; height: 32px; border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; flex-shrink: 0;
+}
+.nav-label { font-size: 0.85rem; font-weight: 600; color: #b8cce0; line-height: 1.25; }
+.nav-item.active .nav-label { color: #fff; }
+.nav-badge {
+  margin-left: auto; min-width: 22px; height: 22px;
+  border-radius: 11px; font-size: 0.70rem; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0 5px; flex-shrink: 0;
+}
+.nb-red { background: var(--red); color: #fff; }
+.nb-yellow { background: var(--yellow); color: #fff; }
+.nb-green { background: var(--green); color: #fff; }
+.nb-blue { background: var(--blue); color: #fff; }
+
+.sidebar-footer {
+  margin-top: auto; padding: 14px 20px;
+  border-top: 1px solid #2e3d52;
+  font-size: 0.70rem; color: #5a7090; line-height: 1.7;
+}
+.logout-btn {
+  display: block; text-align: center;
+  margin-top: 10px; padding: 8px;
+  background: rgba(192,57,43,0.18);
+  color: #f5a9a4; border-radius: 6px;
+  text-decoration: none; font-size: 0.78rem; font-weight: 700;
+  letter-spacing: 0.05em;
+  transition: background 0.2s;
+}
+.logout-btn:hover { background: rgba(192,57,43,0.35); }
+
+/* ===== MAIN ===== */
+.main { flex: 1; min-width: 0; padding: 28px 32px 52px; }
+
+/* ===== TOPBAR ===== */
+.topbar {
+  display: flex; align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 26px; flex-wrap: wrap; gap: 14px;
+}
+.topbar-title h2 { font-size: 1.35rem; font-weight: 700; color: var(--text); }
+.topbar-title p { font-size: 0.80rem; color: var(--muted); margin-top: 3px; }
+.topbar-stats { display: flex; gap: 10px; flex-wrap: wrap; }
+.topbar-stat {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 8px; padding: 9px 16px; text-align: center;
+  box-shadow: var(--shadow);
+}
+.topbar-stat .ts-val {
+  font-size: 1.1rem; font-weight: 700; display: block;
+}
+.topbar-stat .ts-lab {
+  font-size: 0.68rem; color: var(--muted2);
+  text-transform: uppercase; letter-spacing: 0.07em;
+}
+.ts-red { color: var(--red); }
+.ts-yellow { color: var(--yellow); }
+.ts-green { color: var(--green); }
+.ts-teal { color: var(--teal); }
+
+/* ===== SECTION TITLE ===== */
+.section-title {
+  font-size: 1.05rem; font-weight: 700;
+  color: var(--blue-dark);
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: 18px; margin-top: 32px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-title:first-of-type { margin-top: 0; }
+
+/* ===== INDICATOR CARDS GRID ===== */
+.indicators-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 18px;
+  margin-bottom: 36px;
+}
+.ind-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+.ind-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,0.12); }
+
+.ind-card-head {
+  padding: 16px 18px 13px;
+  display: flex; align-items: center; gap: 13px;
+  border-bottom: 1px solid var(--border);
+}
+.ind-icon {
+  width: 44px; height: 44px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; flex-shrink: 0;
+}
+.ind-icon.teal { background: var(--teal-light); }
+.ind-icon.blue { background: var(--blue-bg); }
+.ind-icon.yellow { background: var(--yellow-bg); }
+.ind-icon.green { background: var(--green-bg); }
+.ind-icon.orange { background: var(--orange-bg); }
+.ind-icon.red { background: var(--red-bg); }
+
+.ind-head-text h3 { font-size: 1rem; font-weight: 700; color: var(--text); }
+.ind-head-text p { font-size: 0.75rem; color: var(--muted2); margin-top: 2px; }
+
+.ind-card-body { padding: 15px 18px; }
+
+/* Alert points */
+.alert-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+.alert-item {
+  display: flex; align-items: flex-start; gap: 9px;
+  font-size: 0.82rem; line-height: 1.45; color: var(--text);
+}
+.alert-dot {
+  min-width: 8px; height: 8px; border-radius: 50%;
+  margin-top: 5px; flex-shrink: 0;
+}
+.ad-red { background: var(--red); }
+.ad-orange { background: var(--orange); }
+.ad-yellow { background: var(--yellow); }
+.ad-green { background: var(--green); }
+.ad-blue { background: var(--blue); }
+
+.alert-tag {
+  display: inline-block; padding: 2px 8px; border-radius: 4px;
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em;
+  margin-bottom: 8px;
+}
+.tag-crit { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-bdr); }
+.tag-attn { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-bdr); }
+.tag-ok { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-bdr); }
+.tag-info { background: var(--blue-bg); color: var(--blue); border: 1px solid var(--blue-bdr); }
+
+.ind-link {
+  display: block; text-align: center;
+  padding: 10px; margin-top: 4px;
+  background: linear-gradient(135deg, #1a3a5c, #1e5799);
+  color: #fff !important; text-decoration: none;
+  border-radius: 7px; font-size: 0.80rem; font-weight: 700;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  transition: opacity 0.2s;
+}
+.ind-link:hover { opacity: 0.88; }
+
+/* ===== SUMMARY TABLE ===== */
+.summary-table {
+  width: 100%; border-collapse: collapse;
+  background: var(--surface);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  margin-bottom: 32px;
+  font-size: 0.85rem;
+}
+.summary-table thead tr {
+  background: linear-gradient(135deg, #1a3a5c, #1e5799);
+  color: #fff;
+}
+.summary-table th {
+  padding: 12px 16px; text-align: left;
+  font-size: 0.75rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em;
+}
+.summary-table td { padding: 11px 16px; border-bottom: 1px solid var(--border); }
+.summary-table tbody tr:last-child td { border-bottom: none; }
+.summary-table tbody tr:hover { background: #f8fafc; }
+.status-pill {
+  display: inline-block; padding: 3px 10px;
+  border-radius: 20px; font-size: 0.70rem; font-weight: 700;
+  letter-spacing: 0.05em;
+}
+.sp-crit { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-bdr); }
+.sp-attn { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-bdr); }
+.sp-ok { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-bdr); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .main { padding: 18px 16px 40px; }
+  .indicators-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="school-badge">Painel do Diretor</div>
+    <div class="school-name">Adriano <span>Martins</span></div>
+    <div class="school-sub">EEIEF · Caucaia · CE · INEP 23061944</div>
+  </div>
+
+  <div class="nav-section">Indicadores</div>
+
+  <a class="nav-item active" href="painel.html">
+    <div class="nav-icon teal" style="background:#ecfeff">🏠</div>
+    <span class="nav-label">Visão Geral</span>
+  </a>
+  <a class="nav-item" href="adesc.html">
+    <div class="nav-icon" style="background:#edfaf3">📖</div>
+    <span class="nav-label">ADESC 2025</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+  <a class="nav-item" href="avalie_ce.html">
+    <div class="nav-icon" style="background:#fef9ec">📊</div>
+    <span class="nav-label">Avalie.CE</span>
+    <span class="nav-badge nb-red">6</span>
+  </a>
+  <a class="nav-item" href="bimestrais.html">
+    <div class="nav-icon" style="background:#eaf2fc">📝</div>
+    <span class="nav-label">Bimestrais 2025</span>
+    <span class="nav-badge nb-yellow">3</span>
+  </a>
+  <a class="nav-item" href="cnca.html">
+    <div class="nav-icon" style="background:#fef5e7">📚</div>
+    <span class="nav-label">CNCA</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+  <a class="nav-item" href="qedu.html">
+    <div class="nav-icon" style="background:#eaf2fc">🎓</div>
+    <span class="nav-label">QEdu / Censo</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+  <a class="nav-item" href="saeb.html">
+    <div class="nav-icon" style="background:#fdf0ef">📋</div>
+    <span class="nav-label">SAEB 2023</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+  <a class="nav-item" href="spaece.html">
+    <div class="nav-icon" style="background:#fef9ec">📈</div>
+    <span class="nav-label">SPAECE 2024</span>
+    <span class="nav-badge nb-red">!!</span>
+  </a>
+
+  <div class="nav-section" style="margin-top:10px">Sistema</div>
+  <a class="nav-item" href="../index.html">
+    <div class="nav-icon" style="background:#fdf0ef">🏫</div>
+    <span class="nav-label">Trocar Escola</span>
+  </a>
+
+  <div class="sidebar-footer">
+    <div>Adriano Martins EEIEF<br>Caucaia · CE · Região Praia</div>
+    <div style="margin-top:6px; color:#8097b0">Fonte: SEDUC-CE · 2025</div>
+    <a class="logout-btn" href="../index.html">⬅ Sair do Painel</a>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="topbar-title">
+      <h2>🏫 Painel do Diretor — Adriano Martins EEIEF</h2>
+      <p>Caucaia · CE · INEP 23061944 · Indicadores Educacionais 2024–2025</p>
+    </div>
+    <div class="topbar-stats">
+      <div class="topbar-stat">
+        <span class="ts-val ts-red">6</span>
+        <span class="ts-lab">Alertas Críticos</span>
+      </div>
+      <div class="topbar-stat">
+        <span class="ts-val ts-yellow">7</span>
+        <span class="ts-lab">Indicadores</span>
+      </div>
+      <div class="topbar-stat">
+        <span class="ts-val ts-teal">176</span>
+        <span class="ts-lab">Alunos</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Summary table -->
+  <div class="section-title">📊 Resumo Geral dos Indicadores</div>
+  <table class="summary-table">
+    <thead>
+      <tr>
+        <th>Indicador</th>
+        <th>Foco</th>
+        <th>Principal Resultado</th>
+        <th>Status</th>
+        <th>Acesso</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>ADESC 2025</strong></td>
+        <td>Leitura 1º–5º Ano</td>
+        <td>25% dos alunos ainda como não-leitores no 4º Período</td>
+        <td><span class="status-pill sp-crit">🔴 Crítico</span></td>
+        <td><a href="adesc.html" style="color:var(--teal);font-weight:700;text-decoration:none;">Ver →</a></td>
+      </tr>
+      <tr>
+        <td><strong>Avalie.CE</strong></td>
+        <td>2º, 4º e 5º Anos</td>
+        <td>100% das turmas de 5º Ano em situação crítica em LP e MT</td>
+        <td><span class="status-pill sp-crit">🔴 Crítico</span></td>
+        <td><a href="avalie_ce.html" style="color:var(--teal);font-weight:700;text-decoration:none;">Ver →</a></td>
+      </tr>
+      <tr>
+        <td><strong>Bimestrais 2025</strong></td>
+        <td>LP + Matemática</td>
+        <td>Apenas 27% dos alunos no nível Adequado no 4º Período</td>
+        <td><span class="status-pill sp-attn">🟡 Atenção</span></td>
+        <td><a href="bimestrais.html" style="color:var(--teal);font-weight:700;text-decoration:none;">Ver →</a></td>
+      </tr>
+      <tr>
+        <td><strong>CNCA</strong></td>
+        <td>Avaliações Internas Av1/Av2</td>
+        <td>Apenas 8% de adequação na Av1; 10 alunos pré-leitores identificados</td>
+        <td><span class="status-pill sp-crit">🔴 Crítico</span></td>
+        <td><a href="cnca.html" style="color:var(--teal);font-weight:700;text-decoration:none;">Ver →</a></td>
+      </tr>
+      <tr>
+        <td><strong>QEdu / Censo</strong></td>
+        <td>Aprendizado / Ideb</td>
+        <td>38% de adequação em LP e MT no 5º Ano — abaixo da média estadual</td>
+        <td><span class="status-pill sp-crit">🔴 Crítico</span></td>
+        <td><a href="qedu.html" style="color:var(--teal);font-weight:700;text-decoration:none;">Ver →</a></td>
+      </tr>
+      <tr>
+        <td><strong>SAEB 2023</strong></td>
+        <td>5º Ano do EF</td>
+        <td>38% de aprendizado adequado; queda de 18 pts em LP vs escolas similares</td>
+        <td><span class="status-pill sp-crit">🔴 Crítico</span></td>
+        <td><a href="saeb.html" style="color:var(--teal);font-weight:700;text-decoration:none;">Ver →</a></td>
+      </tr>
+      <tr>
+        <td><strong>SPAECE 2024</strong></td>
+        <td>2º e 5º Anos</td>
+        <td>2º Ano: apenas 4,5% no nível Proficiente; média 187,9 pts (meta: Proficiente)</td>
+        <td><span class="status-pill sp-crit">🔴 Crítico</span></td>
+        <td><a href="spaece.html" style="color:var(--teal);font-weight:700;text-decoration:none;">Ver →</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Indicator cards -->
+  <div class="section-title">📌 Pontos Críticos por Indicador</div>
+  <div class="indicators-grid">
+
+    <!-- ADESC -->
+    <div class="ind-card">
+      <div class="ind-card-head">
+        <div class="ind-icon green">📖</div>
+        <div class="ind-head-text">
+          <h3>ADESC 2025</h3>
+          <p>Avaliação Diagnóstica de Leitura · 1º–5º Ano</p>
+        </div>
+      </div>
+      <div class="ind-card-body">
+        <span class="alert-tag tag-crit">🔴 Atenção Urgente</span>
+        <ul class="alert-list">
+          <li class="alert-item"><span class="alert-dot ad-red"></span><span><strong>42 alunos (25,1%)</strong> ainda classificados como Iniciantes no 4º Período — sem evolução significativa desde o início do ano.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-red"></span><span><strong>43 alunos (24,9%)</strong> são não-leitores — número alto para o período letivo.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-orange"></span><span>Leitores de Sílabas e Palavras ainda representam parcela expressiva dos alunos de 3º a 5º Ano.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-green"></span><span>Houve evolução positiva nos Leitores de Texto com Fluência entre períodos — progresso real a ser reconhecido.</span></li>
+        </ul>
+        <a class="ind-link" href="adesc.html">📖 Acessar Painel ADESC Completo</a>
+      </div>
+    </div>
+
+    <!-- AVALIE CE -->
+    <div class="ind-card">
+      <div class="ind-card-head">
+        <div class="ind-icon yellow">📊</div>
+        <div class="ind-head-text">
+          <h3>Avalie.CE 2025.1</h3>
+          <p>2º, 4º e 5º Anos · LP e Matemática</p>
+        </div>
+      </div>
+      <div class="ind-card-body">
+        <span class="alert-tag tag-crit">🔴 Situação Crítica</span>
+        <ul class="alert-list">
+          <li class="alert-item"><span class="alert-dot ad-red"></span><span><strong>100% das turmas de 5º Ano</strong> classificadas em nível CRÍTICO em Língua Portuguesa e Matemática.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-red"></span><span><strong>6 turmas</strong> com defasagem superior a 50% — exigem intervenção pedagógica imediata.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-orange"></span><span>Turmas de 2º Ano em nível Intermediário — atenção para evitar que regrida para crítico.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-yellow"></span><span>Participação acima de 85% nas turmas avaliadas — ponto positivo para confiabilidade dos dados.</span></li>
+        </ul>
+        <a class="ind-link" href="avalie_ce.html">📊 Acessar Painel Avalie.CE Completo</a>
+      </div>
+    </div>
+
+    <!-- BIMESTRAIS -->
+    <div class="ind-card">
+      <div class="ind-card-head">
+        <div class="ind-icon blue">📝</div>
+        <div class="ind-head-text">
+          <h3>Provas Bimestrais 2025</h3>
+          <p>LP + Matemática · 2º ao 4º Período</p>
+        </div>
+      </div>
+      <div class="ind-card-body">
+        <span class="alert-tag tag-attn">🟡 Atenção</span>
+        <ul class="alert-list">
+          <li class="alert-item"><span class="alert-dot ad-red"></span><span>Matemática com <strong>3 turmas em situação crítica</strong> no 4º Período — desempenho abaixo de 5,0.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-orange"></span><span>Maior grupo (Intermediário) representa risco: alunos próximos de migrar para crítico.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-yellow"></span><span>Apenas <strong>21 alunos (27%)</strong> no nível Adequado (LP + Mat.) no 4º Período.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-green"></span><span>100% de participação nas provas — excelente dado de adesão da escola.</span></li>
+        </ul>
+        <a class="ind-link" href="bimestrais.html">📝 Acessar Painel Bimestrais Completo</a>
+      </div>
+    </div>
+
+    <!-- CNCA -->
+    <div class="ind-card">
+      <div class="ind-card-head">
+        <div class="ind-icon orange">📚</div>
+        <div class="ind-head-text">
+          <h3>CNCA</h3>
+          <p>Avaliações Internas Av1 e Av2 · 1º–5º Ano</p>
+        </div>
+      </div>
+      <div class="ind-card-body">
+        <span class="alert-tag tag-crit">🔴 Atenção Urgente</span>
+        <ul class="alert-list">
+          <li class="alert-item"><span class="alert-dot ad-red"></span><span>Apenas <strong>8% de adequação na Av1</strong> — índice alarmante; grande maioria em defasagem.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-red"></span><span><strong>10 alunos identificados como pré-leitores</strong> — necessitam de atendimento especializado urgente.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-orange"></span><span>Turmas de 4º e 5º Ano com altas taxas de defasagem na Av2 — regressão em relação à Av1.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-yellow"></span><span>Diagnóstico interno permite ação rápida e direta nos alunos mais vulneráveis.</span></li>
+        </ul>
+        <a class="ind-link" href="cnca.html">📚 Acessar Painel CNCA Completo</a>
+      </div>
+    </div>
+
+    <!-- QEDU -->
+    <div class="ind-card">
+      <div class="ind-card-head">
+        <div class="ind-icon blue">🎓</div>
+        <div class="ind-head-text">
+          <h3>QEdu / Censo Escolar</h3>
+          <p>Ideb · Aprendizado · Taxas · Infraestrutura</p>
+        </div>
+      </div>
+      <div class="ind-card-body">
+        <span class="alert-tag tag-crit">🔴 Abaixo da Média</span>
+        <ul class="alert-list">
+          <li class="alert-item"><span class="alert-dot ad-red"></span><span><strong>38% de adequação em LP e MT</strong> no 5º Ano — muito abaixo da média estadual.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-red"></span><span>Distorção Idade-Série elevada — alunos fora do ciclo esperado para sua faixa etária.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-orange"></span><span>Reprovações acima do esperado para uma escola de Tempo Integral.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-yellow"></span><span>NSE Médio-baixo (INSE 4) contextualiza os resultados, mas não dispensa ação pedagógica.</span></li>
+        </ul>
+        <a class="ind-link" href="qedu.html">🎓 Acessar Painel QEdu Completo</a>
+      </div>
+    </div>
+
+    <!-- SAEB -->
+    <div class="ind-card">
+      <div class="ind-card-head">
+        <div class="ind-icon red">📋</div>
+        <div class="ind-head-text">
+          <h3>SAEB 2023</h3>
+          <p>5º Ano do EF · LP e Matemática</p>
+        </div>
+      </div>
+      <div class="ind-card-body">
+        <span class="alert-tag tag-crit">🔴 Crítico</span>
+        <ul class="alert-list">
+          <li class="alert-item"><span class="alert-dot ad-red"></span><span>Apenas <strong>38% de aprendizado adequado</strong> — metade dos alunos abaixo do nível esperado.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-red"></span><span><strong>Queda de 18 pontos em LP</strong> e 16 pontos em MT comparado a escolas similares.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-orange"></span><span>37 estudantes presentes de 41 matriculados (90,2%) — participação aceitável, mas 4 ausências impactam a proficiência coletiva.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-blue"></span><span>NSE Grupo 4 e Formação Docente de 93,1% — corpo docente qualificado, contexto desafiador.</span></li>
+        </ul>
+        <a class="ind-link" href="saeb.html">📋 Acessar Painel SAEB Completo</a>
+      </div>
+    </div>
+
+    <!-- SPAECE -->
+    <div class="ind-card">
+      <div class="ind-card-head">
+        <div class="ind-icon yellow">📈</div>
+        <div class="ind-head-text">
+          <h3>SPAECE 2024</h3>
+          <p>2º e 5º Anos · Série Histórica 2012–2024</p>
+        </div>
+      </div>
+      <div class="ind-card-body">
+        <span class="alert-tag tag-crit">🔴 Meta Não Atingida</span>
+        <ul class="alert-list">
+          <li class="alert-item"><span class="alert-dot ad-red"></span><span><strong>Apenas 4,5%</strong> dos alunos do 2º Ano no nível Proficiente em 2024 — meta é atingir Proficiente.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-red"></span><span>Média de <strong>187,90 pontos</strong> no 2º Ano — abaixo do patamar de Proficiência da nova escala SPAECE.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-orange"></span><span>Série histórica 2019–2024 mostra estagnação nos resultados do 5º Ano em LP.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-yellow"></span><span>Metas 2025 pactuadas com a SME — escola possui compromissos formalizados para este ciclo.</span></li>
+        </ul>
+        <a class="ind-link" href="spaece.html">📈 Acessar Painel SPAECE Completo</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer info -->
+  <div style="text-align:center; font-size:0.75rem; color:var(--muted2); margin-top:10px; padding-top:18px; border-top:1px solid var(--border);">
+    Painel de Indicadores Educacionais · Adriano Martins EEIEF · Caucaia-CE · Dados: SEDUC-CE / INEP · Atualizado: março 2025
+  </div>
+</main>
+
+</body>
+</html>

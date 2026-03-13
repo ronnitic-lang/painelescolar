@@ -1,0 +1,1603 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel de Notificações · Diretor · Spaece · Adriano Martins EEIEF</title>
+<style>
+/* ===== VARIÁVEIS ===== */
+:root {
+  --bg: #eef2f7;
+  --sidebar-bg: #1a2535;
+  --sidebar-hover: #243145;
+  --surface: #ffffff;
+  --border: #d0d9e8;
+  --border-dark: #2e3d52;
+  --text: #0f1e2e;
+  --muted: #4a5e75;
+  --muted2: #8097b0;
+
+  --red: #c0392b;
+  --red-bg: #fdf0ef;
+  --red-bdr: #f5b7b1;
+  --red-dark: #a93226;
+
+  --yellow: #d68910;
+  --yellow-bg: #fef9ec;
+  --yellow-bdr: #f9d98a;
+
+  --green: #1a7a4a;
+  --green-bg: #edfaf3;
+  --green-bdr: #82e0aa;
+
+  --blue: #1a56a0;
+  --blue-bg: #eaf2fc;
+  --blue-bdr: #90bce8;
+
+  --orange: #ca6f1e;
+  --orange-bg: #fef5e7;
+  --orange-bdr: #f8c471;
+
+  /* FONTE BASE GRANDE para diretores */
+  --font-main: 'Arial', 'Tahoma', sans-serif;
+  --fs-xs: 0.80rem;
+  --fs-sm: 0.88rem;
+  --fs-base: 1.00rem;
+  --fs-md: 1.08rem;
+  --fs-lg: 1.20rem;
+  --fs-xl: 1.40rem;
+  --fs-xxl: 1.65rem;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-main);
+  font-size: var(--fs-base);
+  min-height: 100vh;
+  display: flex;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+  width: 270px;
+  min-width: 270px;
+  background: var(--sidebar-bg);
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow-y: auto;
+  z-index: 100;
+}
+
+.sidebar-logo {
+  padding: 22px 22px 20px;
+  border-bottom: 1px solid var(--border-dark);
+  background: #111c2a;
+}
+
+.school-badge {
+  display: inline-block;
+  background: #d68910;
+  color: #fff;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.school-name {
+  font-family: var(--font-main);
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.25;
+  margin-bottom: 4px;
+}
+
+.school-name span { color: #f0b429; }
+.school-sub {
+  font-size: var(--fs-xs);
+  color: #7a90a8;
+  margin-top: 4px;
+  letter-spacing: 0.06em;
+}
+
+.nav-section {
+  padding: 14px 22px 6px;
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: #5a7090;
+  font-weight: 700;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 22px;
+  cursor: pointer;
+  border-left: 4px solid transparent;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+
+.nav-item:hover { background: var(--sidebar-hover); }
+.nav-item.active {
+  background: rgba(26, 86, 160, 0.18);
+  border-left-color: #4a9fd4;
+}
+
+.nav-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.nav-label {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: #b8cce0;
+  line-height: 1.25;
+}
+
+.nav-item.active .nav-label { color: #ffffff; }
+
+.nav-badge {
+  margin-left: auto;
+  min-width: 24px;
+  height: 24px;
+  border-radius: 12px;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+  flex-shrink: 0;
+}
+.nav-badge.red { background: var(--red); color: #fff; }
+.nav-badge.yellow { background: var(--yellow); color: #fff; }
+.nav-badge.green { background: var(--green); color: #fff; }
+
+/* SEMAFORO LEGEND */
+.semaforo-block {
+  padding: 12px 20px 6px;
+}
+.sem-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+  font-size: var(--fs-sm);
+  color: #8daabf;
+  border-bottom: 1px solid #243145;
+}
+.sem-item:last-child { border-bottom: none; }
+.sem-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  padding: 16px 22px;
+  border-top: 1px solid var(--border-dark);
+  font-size: var(--fs-xs);
+  color: #5a7090;
+  line-height: 1.7;
+}
+
+/* ===== MAIN ===== */
+.main {
+  flex: 1;
+  min-width: 0;
+  padding: 32px 36px 48px;
+  max-width: 960px;
+}
+
+/* ===== TOPBAR ===== */
+.topbar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+  gap: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px 26px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.topbar-title {
+  font-size: var(--fs-xxl);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+}
+.topbar-sub {
+  font-size: var(--fs-sm);
+  color: var(--muted);
+  margin-top: 5px;
+  line-height: 1.5;
+}
+.topbar-date {
+  font-size: var(--fs-xs);
+  color: var(--muted2);
+  margin-top: 4px;
+}
+
+.topbar-stats {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+.topbar-stat {
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 16px;
+  text-align: center;
+  min-width: 90px;
+}
+.topbar-stat .val {
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  display: block;
+  line-height: 1.2;
+}
+.topbar-stat .lbl {
+  font-size: var(--fs-xs);
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  font-weight: 600;
+  display: block;
+  margin-top: 2px;
+}
+.topbar-stat.green .val { color: var(--green); }
+.topbar-stat.yellow .val { color: var(--yellow); }
+.topbar-stat.red .val { color: var(--red); }
+
+/* ===== SECTION ===== */
+.section { margin-bottom: 36px; }
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 22px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px 12px 0 0;
+  border-bottom: 3px solid var(--border);
+}
+
+.section-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.section-info h2 {
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.3;
+}
+.section-info p {
+  font-size: var(--fs-sm);
+  color: var(--muted);
+  margin-top: 3px;
+  line-height: 1.5;
+}
+
+/* ===== TURMAS GRID ===== */
+.turmas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+  padding: 18px 22px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+}
+
+.turma-card {
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  background: #fafbfd;
+  transition: box-shadow 0.2s;
+}
+.turma-card:hover { box-shadow: 0 3px 12px rgba(0,0,0,0.08); }
+
+.turma-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  gap: 8px;
+}
+
+.turma-nome {
+  font-size: var(--fs-md);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--text);
+}
+
+.turma-badge {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.turma-badge.red { background: var(--red-bg); color: var(--red-dark); border: 1px solid var(--red-bdr); }
+.turma-badge.yellow { background: var(--yellow-bg); color: #7d5a10; border: 1px solid var(--yellow-bdr); }
+.turma-badge.green { background: var(--green-bg); color: #155234; border: 1px solid var(--green-bdr); }
+.turma-badge.orange { background: var(--orange-bg); color: #7e4a10; border: 1px solid var(--orange-bdr); }
+
+.turma-profic {
+  font-size: 2.0rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 3px;
+}
+.turma-profic.green { color: var(--green); }
+.turma-profic.yellow { color: var(--yellow); }
+.turma-profic.red { color: var(--red); }
+
+.profic-label {
+  font-size: var(--fs-xs);
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.turma-stats { display: flex; flex-direction: column; gap: 6px; margin-top: 10px; }
+.turma-stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--fs-sm);
+  padding: 2px 0;
+}
+.turma-stat-row .label { color: var(--muted); }
+.turma-stat-row .value { font-weight: 700; }
+.value.red { color: var(--red); }
+.value.green { color: var(--green); }
+.value.yellow { color: var(--yellow); }
+.value.orange { color: var(--orange); }
+
+.bar-stack {
+  display: flex;
+  height: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 12px;
+  gap: 1px;
+}
+.bs { height: 100%; transition: width 0.7s ease; }
+.bs.mc { background: #c0392b; }
+.bs.cr { background: #ca6f1e; }
+.bs.in { background: #d68910; }
+.bs.ad { background: #1a7a4a; }
+
+.bar-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 7px;
+}
+.bl {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--fs-xs);
+  color: var(--muted);
+}
+.bld { width: 8px; height: 8px; border-radius: 50%; }
+
+/* ===== NOTIF CARDS ===== */
+.notif-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: none;
+  cursor: pointer;
+  transition: background 0.15s;
+  overflow: hidden;
+}
+.notif-card:last-child { border-radius: 0 0 12px 12px; }
+.notif-card:hover { background: #f5f8ff; }
+
+.notif-card.priority-red { border-left: 5px solid var(--red); }
+.notif-card.priority-yellow { border-left: 5px solid var(--yellow); }
+.notif-card.priority-green { border-left: 5px solid var(--green); }
+.notif-card.priority-blue { border-left: 5px solid var(--blue); }
+
+.notif-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 18px 22px;
+}
+
+.notif-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+.notif-avatar.red { background: var(--red-bg); }
+.notif-avatar.yellow { background: var(--yellow-bg); }
+.notif-avatar.green { background: var(--green-bg); }
+.notif-avatar.blue { background: var(--blue-bg); }
+
+.notif-body { flex: 1; min-width: 0; }
+.notif-header-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.notif-title {
+  font-weight: 700;
+  font-size: var(--fs-md);
+  line-height: 1.4;
+  flex: 1;
+  color: var(--text);
+}
+
+.notif-source {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: #e8eef6;
+  color: var(--muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+
+.notif-summary {
+  font-size: var(--fs-sm);
+  color: var(--muted);
+  line-height: 1.65;
+  margin-bottom: 10px;
+}
+
+.notif-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.metric-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+}
+.metric-pill.red { background: var(--red-bg); color: var(--red-dark); border: 1px solid var(--red-bdr); }
+.metric-pill.yellow { background: var(--yellow-bg); color: #7d5a10; border: 1px solid var(--yellow-bdr); }
+.metric-pill.green { background: var(--green-bg); color: #155234; border: 1px solid var(--green-bdr); }
+.metric-pill.orange { background: var(--orange-bg); color: #7e4a10; border: 1px solid var(--orange-bdr); }
+
+.dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+
+.notif-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.3rem;
+  color: var(--muted2);
+  flex-shrink: 0;
+  padding: 4px 6px;
+  transition: transform 0.2s;
+  align-self: center;
+}
+.notif-card.open .notif-toggle { transform: rotate(180deg); }
+
+/* EXPAND */
+.notif-expand {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+  background: #f4f8ff;
+  padding: 0 22px;
+}
+.notif-card.open .notif-expand {
+  max-height: 600px;
+  border-top: 1px solid var(--border);
+  padding: 18px 22px;
+}
+
+.expand-action { margin-bottom: 12px; }
+.action-tag {
+  display: inline-block;
+  background: #1a2535;
+  color: #f0b429;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+.action-text {
+  font-size: var(--fs-sm);
+  color: #2c3e50;
+  line-height: 1.8;
+}
+
+.expand-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 10px;
+}
+.expand-tag {
+  background: #dde4ef;
+  color: #3d5270;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+/* HAB ROWS */
+.hab-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 0;
+  font-size: var(--fs-sm);
+}
+.hab-code {
+  font-weight: 700;
+  font-size: var(--fs-xs);
+  min-width: 58px;
+  text-align: center;
+  padding: 3px 7px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+.hab-row.red .hab-code { background: var(--red-bg); color: var(--red-dark); }
+.hab-row.yellow .hab-code { background: var(--yellow-bg); color: #7d5a10; }
+.hab-row.green .hab-code { background: var(--green-bg); color: #155234; }
+
+.hab-name {
+  color: var(--muted);
+  font-size: var(--fs-sm);
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.hab-pct {
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  min-width: 70px;
+  text-align: right;
+}
+.hab-row.red .hab-pct { color: var(--red); }
+.hab-row.yellow .hab-pct { color: var(--yellow); }
+.hab-row.green .hab-pct { color: var(--green); }
+
+.progress-track { background: #dde4ef; border-radius: 4px; overflow: hidden; flex: 1; }
+.progress-fill { height: 100%; border-radius: 4px; transition: width 0.6s ease; }
+.progress-fill.red { background: var(--red); }
+.progress-fill.yellow { background: var(--yellow); }
+.progress-fill.green { background: var(--green); }
+.progress-fill.orange { background: var(--orange); }
+
+/* HIST TABLE */
+.hist-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  overflow-x: auto;
+  padding: 0 22px 22px;
+}
+.hist-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-sm);
+  margin-top: 4px;
+}
+.hist-table th {
+  background: #eef2f7;
+  color: var(--muted);
+  font-weight: 700;
+  padding: 10px 12px;
+  text-align: left;
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  border-bottom: 2px solid var(--border);
+}
+.hist-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  font-size: var(--fs-sm);
+}
+.hist-table tr:last-child td { border-bottom: none; }
+.hist-table tr:hover td { background: #f4f8ff; }
+.hist-table .year { font-weight: 700; font-size: var(--fs-base); }
+
+.bh {
+  display: inline-block;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 10px;
+}
+.bh.av, .bh.pr { background: var(--green-bg); color: #155234; border: 1px solid var(--green-bdr); }
+.bh.in { background: var(--yellow-bg); color: #7d5a10; border: 1px solid var(--yellow-bdr); }
+.bh.cr { background: var(--orange-bg); color: #7e4a10; border: 1px solid var(--orange-bdr); }
+.bh.mc { background: var(--red-bg); color: var(--red-dark); border: 1px solid var(--red-bdr); }
+
+/* META 2025 highlight */
+.meta-box {
+  background: #fff8e7;
+  border: 1.5px solid #f0c04a;
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+}
+.meta-box h3 {
+  font-size: var(--fs-md);
+  font-weight: 700;
+  color: #7d5a10;
+  margin-bottom: 10px;
+}
+.meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+}
+.meta-item {
+  background: #fff;
+  border: 1px solid #f0c04a;
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+.meta-item .meta-etapa { font-size: var(--fs-xs); color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+.meta-item .meta-val { font-size: var(--fs-xl); font-weight: 700; color: #7d5a10; line-height: 1.2; }
+.meta-item .meta-ref { font-size: var(--fs-xs); color: var(--muted2); }
+
+/* FOOTER */
+.footer-note {
+  text-align: center;
+  padding: 22px;
+  font-size: var(--fs-xs);
+  color: var(--muted2);
+  border-top: 1px solid var(--border);
+  margin-top: 10px;
+  line-height: 1.8;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .sidebar { display: none; }
+  .main { padding: 20px 18px; }
+  .topbar { flex-direction: column; }
+}
+
+/* Scrollbar customizada */
+.sidebar::-webkit-scrollbar { width: 5px; }
+.sidebar::-webkit-scrollbar-track { background: #111c2a; }
+.sidebar::-webkit-scrollbar-thumb { background: #2e3d52; border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<!-- ===== SIDEBAR ===== -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="school-badge">📊 SPAECE 2024</div>
+    <div class="school-name"><span>Adriano Martins</span> EEIEF</div>
+    <div class="school-sub">Caucaia · CE · INEP 23061944 · Municipal</div>
+  </div>
+
+  <div class="nav-section">Navegação</div>
+  <a class="nav-item active" href="#metas">
+    <div class="nav-icon" style="background:rgba(240,180,40,.15)">🎯</div>
+    <span class="nav-label">Metas 2025</span>
+  </a>
+  <a class="nav-item" href="#visao">
+    <div class="nav-icon" style="background:rgba(74,159,212,.15)">📊</div>
+    <span class="nav-label">Visão Geral</span>
+  </a>
+  <a class="nav-item" href="#segundo">
+    <div class="nav-icon" style="background:rgba(26,122,74,.12)">✅</div>
+    <span class="nav-label">2º Ano</span>
+    <span class="nav-badge green">✓</span>
+  </a>
+  <a class="nav-item" href="#quinto">
+    <div class="nav-icon" style="background:rgba(214,137,16,.12)">⚠️</div>
+    <span class="nav-label">5º Ano</span>
+    <span class="nav-badge yellow">!</span>
+  </a>
+  <a class="nav-item" href="#nono">
+    <div class="nav-icon" style="background:rgba(192,57,43,.12)">🚨</div>
+    <span class="nav-label">9º Ano</span>
+    <span class="nav-badge red">!!</span>
+  </a>
+  <a class="nav-item" href="#historico">
+    <div class="nav-icon" style="background:rgba(108,76,180,.12)">📅</div>
+    <span class="nav-label">Histórico</span>
+  </a>
+  <a class="nav-item" href="#alertas">
+    <div class="nav-icon" style="background:rgba(202,111,30,.12)">🔔</div>
+    <span class="nav-label">Alertas Cruzados</span>
+    <span class="nav-badge red">3</span>
+  </a>
+  <a class="nav-item" href="#acoes">
+    <div class="nav-icon" style="background:rgba(26,86,160,.12)">⚡</div>
+    <span class="nav-label">Plano de Ação</span>
+  </a>
+
+  <div class="nav-section" style="margin-top:14px">Semáforo de Desempenho</div>
+  <div class="semaforo-block">
+    <div class="sem-item"><div class="sem-dot" style="background:#1a7a4a"></div>Avançado / Proficiente / Adequado</div>
+    <div class="sem-item"><div class="sem-dot" style="background:#d68910"></div>Intermediário / Básico</div>
+    <div class="sem-item"><div class="sem-dot" style="background:#ca6f1e"></div>Crítico</div>
+    <div class="sem-item"><div class="sem-dot" style="background:#c0392b"></div>Muito Crítico / Ab. Básico</div>
+  </div>
+
+  <div class="sidebar-footer">
+    Adriano Martins EEIEF<br>
+    Caucaia · CE · Cód. INEP 23061944<br>
+    Fonte: Spaece / SEDUC-CE<br>
+    Edições 2012–2024<br>
+    <strong style="color:#7a90a8">Clique nos cartões para ver as ações sugeridas</strong>
+  </div>
+</aside>
+
+<!-- ===== MAIN ===== -->
+<main class="main">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div>
+      <div class="topbar-title">🏫 Painel do Diretor — Spaece</div>
+      <div class="topbar-sub">Sistema Permanente de Avaliação da Educação Básica do Ceará · Edições 2012–2024<br>
+        <strong>Adriano Martins EEIEF · Caucaia-CE · Região: Praia · Modalidade: Regular</strong>
+      </div>
+      <div class="topbar-date">Dados consolidados em março/2025 · Pactuação de Metas 2025</div>
+    </div>
+    <div class="topbar-stats">
+      <div class="topbar-stat green"><span class="val">Profic.</span><span class="lbl">2º Ano Leit.</span></div>
+      <div class="topbar-stat green"><span class="val">Profic.</span><span class="lbl">2º Ano MT</span></div>
+      <div class="topbar-stat yellow"><span class="val">Interm.</span><span class="lbl">5º Ano MT</span></div>
+      <div class="topbar-stat red"><span class="val">M.Crít.</span><span class="lbl">9º Ano MT hist.</span></div>
+    </div>
+  </div>
+
+  <!-- ===== METAS 2025 ===== -->
+  <div class="section" id="metas">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(240,180,40,.15)">🎯</div>
+      <div class="section-info">
+        <h2>Metas Pactuadas — SPAECE 2025</h2>
+        <p>Referência: Prêmio Destaque Gestão Escolar · Séries históricas 2019–2024 · Metas negociadas com a SME</p>
+      </div>
+    </div>
+
+    <div style="padding:18px 22px; background:var(--surface); border:1px solid var(--border); border-top:none; border-radius:0 0 12px 12px;">
+      
+      <!-- 2º ANO METAS -->
+      <div class="meta-box">
+        <h3>📚 2º Ano do Ensino Fundamental — Metas 2025 (Nova Escala)</h3>
+        <div class="meta-grid">
+          <div class="meta-item">
+            <div class="meta-etapa">LP · Leitura e Escrita</div>
+            <div class="meta-val">657,82</div>
+            <div class="meta-ref">2024: 642,82 · Meta: atingir Proficiente</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-etapa">Matemática</div>
+            <div class="meta-val">581,96</div>
+            <div class="meta-ref">2024: 566,96 · Meta: manter Proficiente</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5º ANO METAS -->
+      <div class="meta-box">
+        <h3>📚 5º Ano do Ensino Fundamental — Metas 2025</h3>
+        <div class="meta-grid">
+          <div class="meta-item">
+            <div class="meta-etapa">LP · Língua Portuguesa</div>
+            <div class="meta-val">212,42</div>
+            <div class="meta-ref">2024: 199,42 · Histórico: 186,59 (2019)</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-etapa">Matemática</div>
+            <div class="meta-val">200,90</div>
+            <div class="meta-ref">2024: 187,90 · Histórico: 189,05 (2019)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9º ANO METAS -->
+      <div class="meta-box">
+        <h3>📚 9º Ano do Ensino Fundamental — Metas 2025</h3>
+        <p style="font-size:var(--fs-sm);color:var(--muted);margin-bottom:12px">Escola não oferta mais o 9º Ano — dados históricos para referência</p>
+        <div class="meta-grid">
+          <div class="meta-item">
+            <div class="meta-etapa">LP · Língua Portuguesa</div>
+            <div class="meta-val" style="color:var(--muted2)">—</div>
+            <div class="meta-ref">Histórico: 241,91 (2019) · 226,00 (2022)</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-etapa">Matemática</div>
+            <div class="meta-val" style="color:var(--muted2)">—</div>
+            <div class="meta-ref">Histórico: 232,73 (2019) · 212,00 (2022)</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== VISÃO GERAL ===== -->
+  <div class="section" id="visao">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(74,159,212,.12)">📊</div>
+      <div class="section-info">
+        <h2>Visão Geral das Etapas Avaliadas</h2>
+        <p>Padrão de desempenho por etapa e componente · Spaece · Semáforo de aprendizagem</p>
+      </div>
+    </div>
+    <div class="turmas-grid">
+
+      <!-- 2º Leitura -->
+      <div class="turma-card" style="border-left:5px solid var(--green)">
+        <div class="turma-header">
+          <span class="turma-nome">2º Ano<br>Leitura e Escrita</span>
+          <span class="turma-badge green">✅ PROFICIENTE</span>
+        </div>
+        <div class="turma-profic green">686</div>
+        <div class="profic-label">Profic. Média · Spaece 2023</div>
+        <div class="turma-stats">
+          <div class="turma-stat-row"><span class="label">Participação</span><span class="value">97,8% (44/45)</span></div>
+          <div class="turma-stat-row"><span class="label">Ab. do Básico</span><span class="value red">4,5%</span></div>
+          <div class="turma-stat-row"><span class="label">Básico</span><span class="value yellow">13,6%</span></div>
+          <div class="turma-stat-row"><span class="label">Proficiente</span><span class="value yellow">34,1%</span></div>
+          <div class="turma-stat-row"><span class="label">Avançado</span><span class="value green">47,7%</span></div>
+          <div class="turma-stat-row"><span class="label">IDE Alfa</span><span class="value">8,0 / 10</span></div>
+        </div>
+        <div class="bar-stack">
+          <div class="bs mc" style="width:4.5%"></div>
+          <div class="bs cr" style="width:13.6%"></div>
+          <div class="bs in" style="width:34.1%"></div>
+          <div class="bs ad" style="width:47.7%"></div>
+        </div>
+        <div class="bar-legend">
+          <div class="bl"><div class="bld" style="background:#c0392b"></div>Ab.Básico</div>
+          <div class="bl"><div class="bld" style="background:#ca6f1e"></div>Básico</div>
+          <div class="bl"><div class="bld" style="background:#d68910"></div>Profic.</div>
+          <div class="bl"><div class="bld" style="background:#1a7a4a"></div>Avançado</div>
+        </div>
+      </div>
+
+      <!-- 2º MT -->
+      <div class="turma-card" style="border-left:5px solid var(--green)">
+        <div class="turma-header">
+          <span class="turma-nome">2º Ano<br>Matemática</span>
+          <span class="turma-badge green">✅ PROFICIENTE</span>
+        </div>
+        <div class="turma-profic green">567</div>
+        <div class="profic-label">Profic. Média · Spaece 2024</div>
+        <div class="turma-stats">
+          <div class="turma-stat-row"><span class="label">Participação</span><span class="value green">100% (30/30)</span></div>
+          <div class="turma-stat-row"><span class="label">Ab. do Básico</span><span class="value green">0%</span></div>
+          <div class="turma-stat-row"><span class="label">Básico</span><span class="value yellow">13,3%</span></div>
+          <div class="turma-stat-row"><span class="label">Proficiente</span><span class="value yellow">66,7%</span></div>
+          <div class="turma-stat-row"><span class="label">Avançado</span><span class="value green">20,0%</span></div>
+          <div class="turma-stat-row"><span class="label">IDE EF MT</span><span class="value green">5,12</span></div>
+        </div>
+        <div class="bar-stack">
+          <div class="bs mc" style="width:0%"></div>
+          <div class="bs cr" style="width:13.3%"></div>
+          <div class="bs in" style="width:66.7%"></div>
+          <div class="bs ad" style="width:20%"></div>
+        </div>
+        <div class="bar-legend">
+          <div class="bl"><div class="bld" style="background:#c0392b"></div>Ab.Básico</div>
+          <div class="bl"><div class="bld" style="background:#ca6f1e"></div>Básico</div>
+          <div class="bl"><div class="bld" style="background:#d68910"></div>Profic.</div>
+          <div class="bl"><div class="bld" style="background:#1a7a4a"></div>Avançado</div>
+        </div>
+      </div>
+
+      <!-- 5º LP -->
+      <div class="turma-card" style="border-left:5px solid var(--yellow)">
+        <div class="turma-header">
+          <span class="turma-nome">5º Ano<br>Língua Portuguesa</span>
+          <span class="turma-badge yellow">⚠️ INTERMEDIÁRIO</span>
+        </div>
+        <div class="turma-profic yellow">199</div>
+        <div class="profic-label">Profic. Média · Spaece 2024 · Meta 2025: 212</div>
+        <div class="turma-stats">
+          <div class="turma-stat-row"><span class="label">2019</span><span class="value">186,59</span></div>
+          <div class="turma-stat-row"><span class="label">2022</span><span class="value">183,00</span></div>
+          <div class="turma-stat-row"><span class="label">2023</span><span class="value yellow">207,00</span></div>
+          <div class="turma-stat-row"><span class="label">2024</span><span class="value yellow">199,42</span></div>
+          <div class="turma-stat-row"><span class="label">Meta 2025</span><span class="value green">212,42</span></div>
+        </div>
+        <div class="bar-stack">
+          <div class="bs mc" style="width:10%"></div>
+          <div class="bs cr" style="width:35%"></div>
+          <div class="bs in" style="width:42%"></div>
+          <div class="bs ad" style="width:13%"></div>
+        </div>
+      </div>
+
+      <!-- 5º MT -->
+      <div class="turma-card" style="border-left:5px solid var(--yellow)">
+        <div class="turma-header">
+          <span class="turma-nome">5º Ano<br>Matemática</span>
+          <span class="turma-badge yellow">⚠️ INTERMEDIÁRIO</span>
+        </div>
+        <div class="turma-profic yellow">188</div>
+        <div class="profic-label">Profic. Média · Spaece 2024 · Meta 2025: 201</div>
+        <div class="turma-stats">
+          <div class="turma-stat-row"><span class="label">2019</span><span class="value">189,05</span></div>
+          <div class="turma-stat-row"><span class="label">2022</span><span class="value">181,00</span></div>
+          <div class="turma-stat-row"><span class="label">2023</span><span class="value green">219,10</span></div>
+          <div class="turma-stat-row"><span class="label">2024</span><span class="value red">187,90</span></div>
+          <div class="turma-stat-row"><span class="label">Meta 2025</span><span class="value green">200,90</span></div>
+        </div>
+        <div class="bar-stack">
+          <div class="bs mc" style="width:15%"></div>
+          <div class="bs cr" style="width:38%"></div>
+          <div class="bs in" style="width:40%"></div>
+          <div class="bs ad" style="width:7%"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== 2º ANO ===== -->
+  <div class="section" id="segundo">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(26,122,74,.12)">✅</div>
+      <div class="section-info">
+        <h2>2º Ano — Leitura &amp; Escrita e Matemática · Referência da Escola</h2>
+        <p>Proficiente nos dois componentes · IDE Alfa 8,0/10 · 0% Abaixo do Básico em MT</p>
+      </div>
+    </div>
+
+    <div class="notif-card priority-green" onclick="toggle(this)">
+      <div class="notif-top">
+        <div class="notif-avatar green">📗</div>
+        <div class="notif-body">
+          <div class="notif-header-row">
+            <div class="notif-title">2º Ano Leitura e Escrita 2023 — 686 pts · Proficiente · IDE Alfa 8,0/10</div>
+            <span class="notif-source">Spaece 2023</span>
+          </div>
+          <div class="notif-summary">Com proficiência de 686 pontos e IDE Alfa de 8,0/10, o 2º Ano consolidou-se como a principal referência da escola. 47,7% dos alunos atingiram o nível Avançado e 34,1% o Proficiente — juntos 81,8% nos padrões positivos. Apenas 4,5% ficaram Abaixo do Básico. Participação de 97,8%.</div>
+          <div class="notif-metrics">
+            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>686 pts — Proficiente</span>
+            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>IDE Alfa 8,0/10</span>
+            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>47,7% Avançado</span>
+            <span class="metric-pill yellow"><span class="dot" style="background:var(--yellow)"></span>4,5% Ab. do Básico</span>
+          </div>
+        </div>
+        <button class="notif-toggle">▾</button>
+      </div>
+      <div class="notif-expand">
+        <div class="expand-action">
+          <div class="action-tag">🎯 Ação Sugerida — 2º Ano · Leitura</div>
+          <div class="action-text">
+            1. <strong>Manter o padrão:</strong> garantir que as práticas de alfabetização que geraram esses resultados continuem em 2025.<br>
+            2. <strong>Eliminar os 4,5% Abaixo do Básico:</strong> cerca de 2 alunos precisam de atendimento especializado em leitura e escrita — intervenção individual ou em grupo reduzido.<br>
+            3. <strong>Meta 2025:</strong> chegar a 657,82 — acima da marca atual, o que é plenamente alcançável com a manutenção das práticas.
+          </div>
+        </div>
+        <div class="expand-tags">
+          <span class="expand-tag">2º Ano</span><span class="expand-tag">Leitura e Escrita</span><span class="expand-tag">IDE Alfa</span><span class="expand-tag">Referência Interna</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="notif-card priority-green" onclick="toggle(this)">
+      <div class="notif-top">
+        <div class="notif-avatar green">💪</div>
+        <div class="notif-body">
+          <div class="notif-header-row">
+            <div class="notif-title">2º Ano MT 2024 — 100% de participação e 0% Abaixo do Básico. Resultado excepcional em MT</div>
+            <span class="notif-source">Spaece 2024</span>
+          </div>
+          <div class="notif-summary">Nenhum aluno abaixo do básico em Matemática. 86,7% nos padrões Proficiente (66,7%) ou Avançado (20%). Participação de 100% — o maior índice de todas as etapas. O 2º Ano consolida-se como a referência da escola nos dois componentes avaliados.</div>
+          <div class="notif-metrics">
+            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>100% participação</span>
+            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>0% Ab. Básico</span>
+            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>66,7% Proficiente</span>
+            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>20% Avançado</span>
+          </div>
+        </div>
+        <button class="notif-toggle">▾</button>
+      </div>
+      <div class="notif-expand">
+        <div class="expand-action">
+          <div class="action-tag">🎯 Ação Sugerida — 2º Ano · Matemática</div>
+          <div class="action-text">
+            1. <strong>Transferir o modelo para os anos seguintes:</strong> entender o que o professor do 2º Ano faz de diferente em MT — abordagem concreta, contextualização, rotinas — e discutir com os professores do 4º e 5º Anos.<br>
+            2. <strong>Elevar os 13,3% em Básico:</strong> cerca de 4 alunos precisam de reforço em operações elementares e resolução de problemas simples. Atendimento em pequeno grupo.<br>
+            3. <strong>Monitorar a transição:</strong> acompanhar os alunos do 2º Ano ao avançar para o 3º Ano — garantir que o padrão Proficiente não se perca na transição de ciclo.
+          </div>
+        </div>
+        <div class="expand-tags">
+          <span class="expand-tag">2º Ano</span><span class="expand-tag">Matemática</span><span class="expand-tag">100% Participação</span><span class="expand-tag">Referência Interna</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 5º ANO ===== -->
+  <div class="section" id="quinto">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(214,137,16,.12)">⚠️</div>
+      <div class="section-info">
+        <h2>5º Ano — Matemática · Histórico 2012–2024</h2>
+        <p>Padrão oscilou entre Crítico e Intermediário · Nunca atingiu Proficiente · Regressão em 2024 (219→188)</p>
+      </div>
+    </div>
+
+    <div class="notif-card priority-yellow" onclick="toggle(this)">
+      <div class="notif-top">
+        <div class="notif-avatar yellow">📊</div>
+        <div class="notif-body">
+          <div class="notif-header-row">
+            <div class="notif-title">5º Ano MT — Intermediário em 4 dos 5 anos avaliados (2012–2016). Nunca atingiu o padrão Proficiente</div>
+            <span class="notif-source">Spaece 2012–2016</span>
+          </div>
+          <div class="notif-summary">Entre 2012 e 2016, o 5º Ano oscilou entre Intermediário e Crítico em Matemática. O percentual de Adequado caiu de 24% (2012) para apenas 3,2% (2016). O Saeb 2023 (38% de adequado em MT) e os dados de 2024 (187,90 — queda em relação a 219,10 em 2023) confirmam que o gargalo persiste.</div>
+          <div class="notif-metrics">
+            <span class="metric-pill yellow"><span class="dot" style="background:var(--yellow)"></span>2023: 219 pts — melhor recente</span>
+            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>2024: 188 pts — regressão!</span>
+            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>Meta 2025: 200,90 a alcançar</span>
+          </div>
+          <div style="margin-top:12px">
+            <div class="hab-row yellow"><span class="hab-code">LP 2022</span><div class="progress-track" style="flex:1;height:9px"><div class="progress-fill yellow" style="width:55%"></div></div><span class="hab-pct">183 pts</span></div>
+            <div class="hab-row green"><span class="hab-code">LP 2023</span><div class="progress-track" style="flex:1;height:9px"><div class="progress-fill green" style="width:70%"></div></div><span class="hab-pct">207 pts</span></div>
+            <div class="hab-row yellow"><span class="hab-code">LP 2024</span><div class="progress-track" style="flex:1;height:9px"><div class="progress-fill yellow" style="width:65%"></div></div><span class="hab-pct">199 pts</span></div>
+            <div class="hab-row green"><span class="hab-code">MT 2023</span><div class="progress-track" style="flex:1;height:9px"><div class="progress-fill green" style="width:75%"></div></div><span class="hab-pct">219 pts</span></div>
+            <div class="hab-row red"><span class="hab-code">MT 2024</span><div class="progress-track" style="flex:1;height:9px"><div class="progress-fill red" style="width:55%"></div></div><span class="hab-pct">188 pts</span></div>
+          </div>
+        </div>
+        <button class="notif-toggle">▾</button>
+      </div>
+      <div class="notif-expand">
+        <div class="expand-action">
+          <div class="action-tag">🎯 Ação Sugerida — 5º Ano · Matemática</div>
+          <div class="action-text">
+            1. <strong>Investigar a regressão de 2024:</strong> queda de 219 para 188 em MT é significativa. Reunir professores para analisar as causas — mudança de turma, falta de continuidade, participação?<br>
+            2. <strong>Plano estruturado e contínuo:</strong> intervenções pontuais melhoram o resultado momentaneamente, mas sem sustentação. É preciso um plano pedagógico de médio prazo com metas, estratégias e acompanhamento bimestral.<br>
+            3. <strong>Reforço com material concreto:</strong> malha quadriculada, geoplano, relógio didático, material dourado e fichas de dinheiro para os descritores do nível Crítico/Intermediário.<br>
+            4. <strong>Meta clara para 2025:</strong> superar 200,90 pts — alcançável se o resultado de 2023 (219 pts) for referência.
+          </div>
+        </div>
+        <div class="expand-tags">
+          <span class="expand-tag">5º Ano</span><span class="expand-tag">Matemática</span><span class="expand-tag">Histórico Sistêmico</span><span class="expand-tag">Regressão 2024</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="notif-card priority-red" onclick="toggle(this)">
+      <div class="notif-top">
+        <div class="notif-avatar red">📉</div>
+        <div class="notif-body">
+          <div class="notif-header-row">
+            <div class="notif-title">ALERTA: 5º Ano MT regressão em 2024 — queda de 219,10 para 187,90 pontos em um ano</div>
+            <span class="notif-source">Spaece 2023→2024</span>
+          </div>
+          <div class="notif-summary">Após o melhor resultado recente em 2023 (219,10 pts — Intermediário avançado), o 5º Ano regrediu 31,2 pontos em Matemática em 2024. Esse padrão já ocorreu antes: em 2014 houve recuperação, mas em 2015 e 2016 o resultado voltou ao patamar anterior. A meta 2025 é 200,90 — exige esforço real.</div>
+          <div class="notif-metrics">
+            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>Queda de 31,2 pts em MT</span>
+            <span class="metric-pill yellow"><span class="dot" style="background:var(--yellow)"></span>LP: queda de 207→199 em 2024</span>
+            <span class="metric-pill yellow"><span class="dot" style="background:var(--yellow)"></span>Padrão recorrente de oscilação</span>
+          </div>
+        </div>
+        <button class="notif-toggle">▾</button>
+      </div>
+      <div class="notif-expand">
+        <div class="expand-action">
+          <div class="action-tag">📌 Lição Histórica · 5º Ano MT</div>
+          <div class="action-text">
+            A oscilação do 5º Ano revela um padrão recorrente: a escola reage a resultados muito ruins com ações emergenciais que melhoram pontualmente, mas não sustentam o avanço. Em 2024 o resultado voltou ao patamar baixo.<br><br>
+            Esse histórico deve ser compartilhado com a equipe como lição: <strong>melhorar pontualmente não é suficiente</strong>. É necessária uma mudança estrutural e contínua nas práticas de ensino de Matemática nos Anos Iniciais.
+          </div>
+        </div>
+        <div class="expand-tags">
+          <span class="expand-tag">5º Ano</span><span class="expand-tag">Regressão 2024</span><span class="expand-tag">Padrão Sistêmico</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 9º ANO ===== -->
+  <div class="section" id="nono">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(192,57,43,.12)">🚨</div>
+      <div class="section-info">
+        <h2>9º Ano — LP e Matemática · Alertas Históricos</h2>
+        <p>Padrões Crítico e Muito Crítico · 0% Adequado em MT nos 3 anos · Escola não oferta mais o 9º Ano</p>
+      </div>
+    </div>
+
+    <div class="notif-card priority-red" onclick="toggle(this)" style="background:#fef8f8">
+      <div class="notif-top">
+        <div class="notif-avatar red">🚨</div>
+        <div class="notif-body">
+          <div class="notif-header-row">
+            <div class="notif-title">9º Ano MT — 0% de Adequado em todos os três anos avaliados (2014, 2015 e 2016). Padrão Muito Crítico persistente</div>
+            <span class="notif-source">Spaece 2014–2016</span>
+          </div>
+          <div class="notif-summary">Nenhum aluno atingiu o padrão Adequado em MT no 9º Ano nos três anos disponíveis. Em 2014, 65,5% estavam no Muito Crítico. Em 2016, ainda 53,3%. Esses alunos saíram da escola sem dominar habilidades básicas de Matemática — resultado diretamente ligado ao gargalo não sanado nos Anos Iniciais.</div>
+          <div style="margin-top:12px">
+            <div class="hab-row red"><span class="hab-code">MT 2014</span><div class="progress-track" style="flex:1;height:9px"><div class="progress-fill red" style="width:65.5%"></div></div><span class="hab-pct">65,5% M.Crít.</span></div>
+            <div class="hab-row red"><span class="hab-code">MT 2015</span><div class="progress-track" style="flex:1;height:9px"><div class="progress-fill red" style="width:42.9%"></div></div><span class="hab-pct">42,9% M.Crít.</span></div>
+            <div class="hab-row red"><span class="hab-code">MT 2016</span><div class="progress-track" style="flex:1;height:9px"><div class="progress-fill red" style="width:53.3%"></div></div><span class="hab-pct">53,3% M.Crít.</span></div>
+            <div class="hab-row green" style="opacity:.6"><span class="hab-code">Adequado</span><div class="progress-track" style="flex:1;height:9px"><div class="progress-fill green" style="width:0%"></div></div><span class="hab-pct" style="color:var(--red)">0% — 3 anos</span></div>
+          </div>
+          <div class="notif-metrics">
+            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>0% Adequado nos 3 anos</span>
+            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>Muito Crítico persistente</span>
+          </div>
+        </div>
+        <button class="notif-toggle">▾</button>
+      </div>
+      <div class="notif-expand">
+        <div class="expand-action">
+          <div class="action-tag">📌 Alerta Estrutural — 9º Ano MT</div>
+          <div class="action-text">
+            Embora a escola não oferte mais o 9º Ano, os dados são um alerta estrutural: <strong>as lacunas não sanadas nos Anos Iniciais se acumulam e chegam ao 9º Ano amplificadas</strong>.<br><br>
+            1. <strong>O risco se repete:</strong> os alunos que hoje estão no 5º Ano com resultados oscilantes em MT podem reproduzir essa trajetória nas escolas de destino do 6º ao 9º Ano.<br>
+            2. <strong>Comunicar à rede:</strong> alertar a Secretaria Municipal para que as escolas de destino recebam esses alunos com diagnóstico e plano de suporte.<br>
+            3. <strong>Agir nos Anos Iniciais agora:</strong> intervenções eficazes no 3º, 4º e 5º Anos são a melhor forma de evitar a repetição desse ciclo.
+          </div>
+        </div>
+        <div class="expand-tags">
+          <span class="expand-tag">9º Ano</span><span class="expand-tag">MT Muito Crítico</span><span class="expand-tag">0% Adequado</span><span class="expand-tag">Alerta à Rede</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="notif-card priority-red" onclick="toggle(this)">
+      <div class="notif-top">
+        <div class="notif-avatar red">📕</div>
+        <div class="notif-body">
+          <div class="notif-header-row">
+            <div class="notif-title">9º Ano LP 2014 — 93,1% nos padrões Muito Crítico + Crítico. Apenas 3,4% Adequado</div>
+            <span class="notif-source">Spaece 2014</span>
+          </div>
+          <div class="notif-summary">Em LP, 44,8% no Muito Crítico e 48,3% no Crítico — apenas 3,4% atingiram o Adequado. Somado ao resultado de MT, a escola encerrou o 9º Ano com déficits gravíssimos nas duas áreas. A taxa de participação foi de 93,5% — não há problema de representatividade nos dados.</div>
+          <div class="notif-metrics">
+            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>44,8% Muito Crítico</span>
+            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>48,3% Crítico</span>
+            <span class="metric-pill yellow"><span class="dot" style="background:var(--yellow)"></span>93,5% participação</span>
+          </div>
+        </div>
+        <button class="notif-toggle">▾</button>
+      </div>
+      <div class="notif-expand">
+        <div class="expand-action">
+          <div class="action-tag">📌 Reflexão Estratégica · 9º Ano</div>
+          <div class="action-text">
+            O excelente desempenho atual do 2º Ano é uma janela de oportunidade: se as práticas de qualidade forem mantidas e fortalecidas do 2º ao 5º Ano, os alunos chegarão ao EF II com base sólida — quebrando o ciclo de deterioração progressiva observado no histórico do 9º Ano.
+          </div>
+        </div>
+        <div class="expand-tags">
+          <span class="expand-tag">9º Ano</span><span class="expand-tag">LP Crítico</span><span class="expand-tag">Percurso Longitudinal</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== HISTÓRICO ===== -->
+  <div class="section" id="historico">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(108,76,180,.12)">📅</div>
+      <div class="section-info">
+        <h2>Histórico Completo — Spaece 2019–2024</h2>
+        <p>Evolução por etapa e edição · Dados do documento de Pactuação de Metas 2025</p>
+      </div>
+    </div>
+    <div class="hist-wrap">
+      <table class="hist-table">
+        <thead>
+          <tr>
+            <th>Etapa</th>
+            <th>Componente</th>
+            <th>2019</th>
+            <th>2022</th>
+            <th>2023</th>
+            <th>2024</th>
+            <th>Meta 2025</th>
+            <th>Padrão 2024</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="year">2º Ano</td>
+            <td>Língua Portuguesa</td>
+            <td>161,50</td>
+            <td>118,00</td>
+            <td>189,00</td>
+            <td><strong>642,82</strong></td>
+            <td><strong style="color:var(--green)">657,82</strong></td>
+            <td><span class="bh pr">Proficiente</span></td>
+          </tr>
+          <tr>
+            <td class="year">2º Ano</td>
+            <td>Matemática</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+            <td><strong>566,96</strong></td>
+            <td><strong style="color:var(--green)">581,96</strong></td>
+            <td><span class="bh pr">Proficiente</span></td>
+          </tr>
+          <tr>
+            <td class="year">5º Ano</td>
+            <td>Língua Portuguesa</td>
+            <td>186,59</td>
+            <td>183,00</td>
+            <td>207,00</td>
+            <td><strong>199,42</strong></td>
+            <td><strong style="color:var(--yellow)">212,42</strong></td>
+            <td><span class="bh in">Intermediário</span></td>
+          </tr>
+          <tr>
+            <td class="year">5º Ano</td>
+            <td>Matemática</td>
+            <td>189,05</td>
+            <td>181,00</td>
+            <td>219,10</td>
+            <td><strong style="color:var(--red)">187,90</strong></td>
+            <td><strong style="color:var(--yellow)">200,90</strong></td>
+            <td><span class="bh cr">Crítico</span></td>
+          </tr>
+          <tr>
+            <td class="year">9º Ano</td>
+            <td>Língua Portuguesa</td>
+            <td>241,91</td>
+            <td>226,00</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="bh in">Intermediário</span></td>
+          </tr>
+          <tr>
+            <td class="year">9º Ano</td>
+            <td>Matemática</td>
+            <td>232,73</td>
+            <td>212,00</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="bh cr">Crítico</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===== ALERTAS CRUZADOS ===== -->
+  <div class="section" id="alertas">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(202,111,30,.12)">🔔</div>
+      <div class="section-info">
+        <h2>Alertas Cruzados — Padrões que se Repetem</h2>
+        <p>Análise longitudinal: 3 alertas ativos com impacto direto na gestão pedagógica</p>
+      </div>
+    </div>
+
+    <div class="notif-card priority-red" onclick="toggle(this)">
+      <div class="notif-top">
+        <div class="notif-avatar red">⚠️</div>
+        <div class="notif-body">
+          <div class="notif-header-row">
+            <div class="notif-title">ALERTA 1: MT no 5º Ano nunca atingiu o padrão Proficiente em nenhuma edição do Spaece</div>
+            <span class="notif-source">2012–2024</span>
+          </div>
+          <div class="notif-summary">Em nenhuma das edições do Spaece (2012, 2013, 2014, 2015, 2016, 2019, 2022, 2023 e 2024) o 5º Ano atingiu o padrão Proficiente em Matemática. O melhor resultado foi em 2023 com 219 pts — ainda Intermediário. Isso indica um gargalo estrutural que não é resolvido por ações pontuais.</div>
+          <div class="notif-metrics">
+            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>12 anos · 0 vezes Proficiente</span>
+            <span class="metric-pill yellow"><span class="dot" style="background:var(--yellow)"></span>Melhor: 219 pts (2023)</span>
+          </div>
+        </div>
+        <button class="notif-toggle">▾</button>
+      </div>
+      <div class="notif-expand">
+        <div class="expand-action">
+          <div class="action-tag">Análise</div>
+          <div class="action-text">
+            O problema não é falta de esforço — é falta de uma estratégia estrutural sustentada. Cada melhora pontual é seguida de regressão. A solução exige mudança nas práticas de ensino de Matemática nos Anos Iniciais, com continuidade entre os professores do 2º ao 5º Ano.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notif-card priority-yellow" onclick="toggle(this)">
+      <div class="notif-top">
+        <div class="notif-avatar yellow">📊</div>
+        <div class="notif-body">
+          <div class="notif-header-row">
+            <div class="notif-title">ALERTA 2: Ruptura entre o 2º e o 5º Ano — excelência inicial não chega ao ciclo final</div>
+            <span class="notif-source">Análise Longitudinal</span>
+          </div>
+          <div class="notif-summary">O 2º Ano está Proficiente nos dois componentes. O 5º Ano está Intermediário/Crítico. Isso indica que a qualidade do ensino dos anos iniciais não se mantém ao longo da trajetória escolar. A ruptura pode estar ocorrendo no 3º ou 4º Ano — ainda não avaliados com dados completos.</div>
+          <div class="notif-metrics">
+            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>2º Ano: Proficiente</span>
+            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>5º Ano MT: Crítico 2024</span>
+          </div>
+        </div>
+        <button class="notif-toggle">▾</button>
+      </div>
+      <div class="notif-expand">
+        <div class="expand-action">
+          <div class="action-tag">Ação Recomendada</div>
+          <div class="action-text">
+            Investigar o que acontece com os alunos do 2º Ano ao longo dos anos seguintes. Usar avaliações internas (Avalie.CE, provas bimestrais) para mapear em qual ano a qualidade cai. Esse diagnóstico é fundamental para direcionar as intervenções.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notif-card priority-green" onclick="toggle(this)">
+      <div class="notif-top">
+        <div class="notif-avatar green">💪</div>
+        <div class="notif-body">
+          <div class="notif-header-row">
+            <div class="notif-title">DESTAQUE: 2º Ano quebra o padrão histórico negativo — janela de oportunidade para mudança longitudinal</div>
+            <span class="notif-source">Spaece 2023–2024</span>
+          </div>
+          <div class="notif-summary">O excelente resultado do 2º Ano representa uma ruptura positiva com o histórico de resultados críticos da escola. Esses alunos avançaram para os anos seguintes com base sólida — se bem acompanhados, podem quebrar o ciclo de deterioração dos resultados entre os ciclos.</div>
+          <div class="notif-metrics">
+            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>Proficiente em LP e MT</span>
+            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>0% Ab. Básico em MT 2024</span>
+            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>IDE Alfa: 8,0/10</span>
+          </div>
+        </div>
+        <button class="notif-toggle">▾</button>
+      </div>
+      <div class="notif-expand">
+        <div class="expand-action">
+          <div class="action-tag">🎯 Ação — Manter e Ampliar</div>
+          <div class="action-text">
+            1. <strong>Monitorar longitudinalmente:</strong> criar sistema de acompanhamento dos alunos do 2º Ano ao longo das edições seguintes do Spaece e Avalie.CE para verificar se o padrão é mantido.<br>
+            2. <strong>Documentar as práticas:</strong> registrar formalmente as estratégias do 2º Ano (planejamento, materiais, rotinas) como referência para os professores dos anos seguintes.<br>
+            3. <strong>Usar como vitrine pedagógica:</strong> convidar as famílias a conhecer as práticas do 2º Ano — fortalece o engajamento familiar e valoriza a equipe.
+          </div>
+        </div>
+        <div class="expand-tags">
+          <span class="expand-tag">2º Ano</span><span class="expand-tag">Referência</span><span class="expand-tag">Monitoramento Longitudinal</span><span class="expand-tag">Documentar</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PLANO DE AÇÃO ===== -->
+  <div class="section" id="acoes">
+    <div class="section-header" style="background:var(--sidebar-bg);border-color:var(--border-dark)">
+      <div class="section-icon" style="background:rgba(240,180,40,.15)">⚡</div>
+      <div class="section-info">
+        <h2 style="color:#ffffff">Prioridades do Gestor — Plano de Ação Imediato</h2>
+        <p style="color:#7a90a8">Próximas ações concretas para o diretor e coordenação · Baseadas nos dados Spaece 2023/2024</p>
+      </div>
+    </div>
+
+    <div class="notif-card priority-red" onclick="toggle(this)" style="background:#fef8f8">
+      <div class="notif-top">
+        <div class="notif-avatar red">1️⃣</div>
+        <div class="notif-body">
+          <div class="notif-header-row">
+            <div class="notif-title">PRIORIDADE 1: Reunião emergencial com professores de MT do 4º e 5º Anos — apresentar dados e construir plano</div>
+            <span class="notif-source">Esta semana</span>
+          </div>
+          <div class="notif-summary">O histórico Spaece confirma que MT nos anos finais dos Anos Iniciais é o maior gargalo da escola. É urgente construir coletivamente um plano estruturado com metas, cronograma e responsáveis.</div>
+        </div>
+        <button class="notif-toggle">▾</button>
+      </div>
+      <div class="notif-expand">
+        <div class="expand-action">
+          <div class="action-tag">Passos</div>
+          <div class="action-text">
+            ✅ Convocar reunião com professores de MT do 4º e 5º Anos.<br>
+            ✅ Apresentar os dados Spaece histórico (2012–2024) de forma visual e objetiva.<br>
+            ✅ Construir coletivamente plano de intervenção com habilidades prioritárias, estratégias e metas mensuráveis.<br>
+            ✅ Definir avaliação formativa interna para monitorar a evolução bimestralmente.<br>
+            ✅ Registrar em ata com assinaturas, metas e prazos.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notif-card priority-red" onclick="toggle(this)">
+      <div class="notif-top">
+        <div class="notif-avatar red">2️⃣</div>
+        <div class="notif-body">
+          <div class="notif-header-row">
+            <div class="notif-title">PRIORIDADE 2: Investigar a ruptura pedagógica entre o 2º e o 5º Ano em Matemática</div>
+            <span class="notif-source">Próximas 2 semanas</span>
+          </div>
+          <div class="notif-summary">Com o 2º Ano Proficiente e o 5º Ano Crítico (2024), é essencial entender em qual ponto da trajetória escolar o aprendizado deteriora. Essa análise pode transformar a organização curricular da escola.</div>
+        </div>
+        <button class="notif-toggle">▾</button>
+      </div>
+      <div class="notif-expand">
+        <div class="expand-action">
+          <div class="action-tag">Passos</div>
+          <div class="action-text">
+            ✅ Levantar resultados do 3º e 4º Anos nas avaliações disponíveis (Avalie.CE 2025, CNCA 2025).<br>
+            ✅ Mapear as práticas pedagógicas de cada ano — quais conteúdos e habilidades são trabalhados e como.<br>
+            ✅ Verificar continuidade curricular entre os anos — o 3º Ano consolida o que o 2º ensinou?<br>
+            ✅ Apresentar análise em Planejamento Pedagógico Coletivo (PPC) com proposta de ajuste curricular.<br>
+            ✅ Solicitar apoio da CREDE/Secretaria para assessoria pedagógica em MT nos anos intermediários.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notif-card priority-yellow" onclick="toggle(this)">
+      <div class="notif-top">
+        <div class="notif-avatar yellow">3️⃣</div>
+        <div class="notif-body">
+          <div class="notif-header-row">
+            <div class="notif-title">PRIORIDADE 3: Documentar e replicar as práticas do 2º Ano como referência pedagógica da escola</div>
+            <span class="notif-source">Próximo mês</span>
+          </div>
+          <div class="notif-summary">O 2º Ano demonstrou resultados excepcionais nas duas avaliações. Essas práticas precisam ser mapeadas, documentadas e compartilhadas com todos os professores como referência pedagógica interna.</div>
+        </div>
+        <button class="notif-toggle">▾</button>
+      </div>
+      <div class="notif-expand">
+        <div class="expand-action">
+          <div class="action-tag">Passos</div>
+          <div class="action-text">
+            ✅ Entrevista pedagógica com o(s) professor(es) do 2º Ano — mapear estratégias, rotinas e materiais.<br>
+            ✅ Registrar as práticas em portfólio pedagógico acessível a toda a equipe.<br>
+            ✅ Organizar PPC com foco em disseminar as estratégias do 2º Ano para os outros anos.<br>
+            ✅ Criar sistema de monitoramento longitudinal dos alunos do 2º Ano para verificar se o padrão é mantido nos anos seguintes.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notif-card priority-yellow" onclick="toggle(this)">
+      <div class="notif-top">
+        <div class="notif-avatar yellow">4️⃣</div>
+        <div class="notif-body">
+          <div class="notif-header-row">
+            <div class="notif-title">PRIORIDADE 4: Garantir participação plena e preparação para o SPAECE 2025</div>
+            <span class="notif-source">Curto prazo</span>
+          </div>
+          <div class="notif-summary">As metas de 2025 foram pactuadas com a SME. Para atingi-las, é necessário garantir plena participação nas avaliações e preparação contínua dos alunos. O 5º Ano precisa chegar a 200,90 em MT e 212,42 em LP.</div>
+        </div>
+        <button class="notif-toggle">▾</button>
+      </div>
+      <div class="notif-expand">
+        <div class="expand-action">
+          <div class="action-tag">Passos</div>
+          <div class="action-text">
+            ✅ Estabelecer meta interna clara: atingir o padrão Intermediário Avançado no 5º Ano MT até 2025.<br>
+            ✅ Garantir que todos os alunos estejam presentes nos dias de avaliação.<br>
+            ✅ Incluir o monitoramento do Spaece no PPP da escola como indicador oficial de qualidade.<br>
+            ✅ Revisar as metas pactuadas com a SME e apresentar o plano de ação à equipe.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notif-card priority-green" onclick="toggle(this)">
+      <div class="notif-top">
+        <div class="notif-avatar green">5️⃣</div>
+        <div class="notif-body">
+          <div class="notif-header-row">
+            <div class="notif-title">PRIORIDADE 5: Comunicar os resultados positivos do 2º Ano às famílias e à comunidade escolar</div>
+            <span class="notif-source">Curto prazo</span>
+          </div>
+          <div class="notif-summary">Os resultados do 2º Ano são conquistas concretas que merecem ser celebradas. Comunicar às famílias fortalece o vínculo escola-família, valoriza a equipe e cria cultura de resultado na comunidade escolar.</div>
+        </div>
+        <button class="notif-toggle">▾</button>
+      </div>
+      <div class="notif-expand">
+        <div class="expand-action">
+          <div class="action-tag">Passos</div>
+          <div class="action-text">
+            ✅ Preparar comunicado visual (mural, folheto ou mensagem no grupo da escola) com os resultados do 2º Ano.<br>
+            ✅ Reconhecer publicamente os professores na reunião de equipe.<br>
+            ✅ Usar o resultado como argumento para engajamento familiar: "quando a família participa, os resultados melhoram".<br>
+            ✅ Criar momento de celebração com os alunos do 2º Ano — reconhecimento motiva a continuidade.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-note">
+    <strong>Adriano Martins EEIEF</strong> · Caucaia-CE · Código INEP: 23061944 · Região: Praia · Modalidade: Regular<br>
+    Fonte: SPAECE / SEDUC-CE · Pactuação de Metas 2025 (SME Caucaia) · Edições 2012–2024<br>
+    <strong>Clique em cada cartão para ver as ações sugeridas</strong>
+  </div>
+
+</main>
+
+<script>
+function toggle(card) { card.classList.toggle('open'); }
+
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.querySelectorAll('.progress-fill, .bs').forEach(el => {
+      const w = el.style.width;
+      el.style.width = '0';
+      requestAnimationFrame(() => { el.style.width = w; });
+    });
+  }, 300);
+});
+
+const sections = document.querySelectorAll('.section');
+const navItems = document.querySelectorAll('.nav-item');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) cur = s.id; });
+  navItems.forEach(i => {
+    i.classList.remove('active');
+    if (i.getAttribute('href') === '#' + cur) i.classList.add('active');
+  });
+}, { passive: true });
+</script>
+</body>
+</html>
