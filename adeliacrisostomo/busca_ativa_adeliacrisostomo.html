@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Busca Ativa · E.E.I.E.F. Adélia Crisóstomo</title>
+<style>
+:root {
+  --bg: #f0f4f8;
+  --surface: #ffffff;
+  --border: #d8e2ec;
+  --sidebar-bg: #1a2535;
+  --sidebar-hover: #243145;
+  --sidebar-active: rgba(14,116,144,.18);
+  --blue-dark: #1a3a5c;
+  --blue-mid: #1e5799;
+  --teal: #0e7490;
+  --teal-light: #ecfeff;
+  --text: #0f1e2e;
+  --muted: #4a5e75;
+  --muted2: #8097b0;
+  --red: #c0392b;
+  --red-bg: #fdf0ef;
+  --red-bdr: #f5b7b1;
+  --orange: #ca6f1e;
+  --orange-bg: #fef5e7;
+  --orange-bdr: #f8c471;
+  --yellow: #d68910;
+  --yellow-bg: #fef9ec;
+  --yellow-bdr: #f9d98a;
+  --green: #1a7a4a;
+  --green-bg: #edfaf3;
+  --green-bdr: #82e0aa;
+  --blue: #1a56a0;
+  --blue-bg: #eaf2fc;
+  --blue-bdr: #90bce8;
+  --font: 'Tahoma', 'Verdana', 'Arial', sans-serif;
+  --radius: 10px;
+  --shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  font-size: 0.94rem;
+  line-height: 1.6;
+}
+.sidebar {
+  width: 264px; min-width: 264px;
+  background: var(--sidebar-bg);
+  height: 100vh;
+  position: sticky; top: 0;
+  display: flex; flex-direction: column;
+  overflow-y: auto; z-index: 100;
+}
+.sidebar::-webkit-scrollbar { width: 4px; }
+.sidebar::-webkit-scrollbar-thumb { background: #2e3d52; border-radius: 3px; }
+.sidebar-logo {
+  padding: 20px 20px 18px;
+  border-bottom: 1px solid #2e3d52;
+  background: #111c2a;
+}
+.school-badge {
+  display: inline-block;
+  background: var(--teal);
+  color: #fff;
+  font-size: 0.70rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 4px; margin-bottom: 9px;
+}
+.school-name { font-size: 1.08rem; font-weight: 700; color: #fff; line-height: 1.25; margin-bottom: 3px; }
+.school-name span { color: #f0b429; }
+.school-sub { font-size: 0.70rem; color: #7a90a8; margin-top: 3px; letter-spacing: 0.05em; }
+.nav-section {
+  padding: 12px 20px 5px;
+  font-size: 0.68rem; text-transform: uppercase;
+  letter-spacing: 0.13em; color: #5a7090; font-weight: 700;
+}
+.nav-item {
+  display: flex; align-items: center; gap: 11px;
+  padding: 11px 20px;
+  cursor: pointer; border-left: 4px solid transparent;
+  transition: all 0.2s; text-decoration: none;
+  color: inherit;
+}
+.nav-item:hover { background: var(--sidebar-hover); }
+.nav-item.active { background: var(--sidebar-active); border-left-color: #22d3ee; }
+.nav-icon {
+  width: 32px; height: 32px; border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; flex-shrink: 0;
+}
+.nav-label { font-size: 0.85rem; font-weight: 600; color: #b8cce0; line-height: 1.25; }
+.nav-item.active .nav-label { color: #fff; }
+.sidebar-footer {
+  margin-top: auto; padding: 14px 20px;
+  border-top: 1px solid #2e3d52;
+  font-size: 0.70rem; color: #5a7090; line-height: 1.7;
+}
+.logout-btn {
+  display: block; text-align: center;
+  margin-top: 10px; padding: 8px;
+  background: rgba(192,57,43,0.18);
+  color: #f5a9a4; border-radius: 6px;
+  text-decoration: none; font-size: 0.78rem; font-weight: 700;
+  letter-spacing: 0.05em;
+  transition: background 0.2s;
+}
+.logout-btn:hover { background: rgba(192,57,43,0.35); }
+.main { flex: 1; min-width: 0; padding: 28px 32px 52px; }
+.topbar {
+  display: flex; align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 26px; flex-wrap: wrap; gap: 14px;
+}
+.topbar-title h2 { font-size: 1.35rem; font-weight: 700; color: var(--text); }
+.topbar-title p { font-size: 0.80rem; color: var(--muted); margin-top: 3px; }
+.section-title {
+  font-size: 1.05rem; font-weight: 700;
+  color: var(--blue-dark);
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: 18px; margin-top: 32px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-title:first-of-type { margin-top: 0; }
+/* Empty state */
+.empty-state {
+  background: var(--surface);
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 60px 32px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+.empty-icon { font-size: 3.5rem; margin-bottom: 16px; }
+.empty-state h3 { font-size: 1.1rem; font-weight: 700; color: var(--muted); margin-bottom: 8px; }
+.empty-state p { font-size: 0.85rem; color: var(--muted2); max-width: 460px; margin: 0 auto; line-height: 1.7; }
+.empty-note {
+  background: var(--yellow-bg);
+  border: 1px solid var(--yellow-bdr);
+  border-radius: 8px;
+  padding: 12px 18px;
+  font-size: 0.82rem;
+  color: #7a5600;
+  margin-top: 20px;
+  display: inline-block;
+}
+/* Table placeholder */
+.table-placeholder {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+.table-placeholder-head {
+  padding: 14px 18px 12px;
+  border-bottom: 1px solid var(--border);
+  background: #fafcff;
+}
+.table-placeholder-head h3 { font-size: 0.95rem; font-weight: 700; color: var(--blue-dark); }
+.table-placeholder-head p { font-size: 0.75rem; color: var(--muted2); margin-top: 3px; }
+.placeholder-cols {
+  display: grid;
+  grid-template-columns: 40px 110px 1fr 120px 100px 100px 140px 90px;
+  gap: 0;
+  padding: 10px 18px;
+  background: linear-gradient(135deg, #1a3a5c, #1e5799);
+}
+.placeholder-col {
+  font-size: 0.70rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.07em;
+  color: rgba(255,255,255,0.7);
+  padding: 4px 8px;
+}
+.placeholder-rows { padding: 0 18px 18px; }
+.placeholder-row {
+  display: grid;
+  grid-template-columns: 40px 110px 1fr 120px 100px 100px 140px 90px;
+  border-bottom: 1px solid var(--border);
+  padding: 10px 0;
+  gap: 0;
+  align-items: center;
+}
+.placeholder-row:last-child { border-bottom: none; }
+.ph-cell {
+  padding: 0 8px;
+  height: 14px;
+  border-radius: 4px;
+  background: #eef1f5;
+  margin: 0 4px;
+}
+.ph-cell.short { max-width: 32px; }
+.ph-cell.med { max-width: 90px; }
+.ph-cell.long { max-width: 180px; }
+.ph-cell.pill { max-width: 70px; height: 20px; border-radius: 10px; }
+
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .main { padding: 18px 16px 40px; }
+  .placeholder-cols, .placeholder-row { grid-template-columns: 40px 1fr 100px 100px; }
+  .placeholder-col:nth-child(n+5), .ph-cell:nth-child(n+5) { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="school-badge">Painel do Diretor</div>
+    <div class="school-name">Adélia <span>Crisóstomo</span></div>
+    <div class="school-sub">EEIEF · Caucaia · CE</div>
+  </div>
+
+  <div class="nav-section">Indicadores</div>
+  <a class="nav-item" href="painel.html">
+    <div class="nav-icon" style="background:#ecfeff">🏠</div>
+    <span class="nav-label">Visão Geral</span>
+  </a>
+  <a class="nav-item active" href="busca_ativa.html">
+    <div class="nav-icon" style="background:#fef5e7">🔍</div>
+    <span class="nav-label">Busca Ativa</span>
+  </a>
+
+  <div class="nav-section" style="margin-top:10px">Sistema</div>
+  <a class="nav-item" href="../index.html">
+    <div class="nav-icon" style="background:#fdf0ef">🏫</div>
+    <span class="nav-label">Trocar Escola</span>
+  </a>
+
+  <div class="sidebar-footer">
+    <div>E.E.I.E.F. Adélia Crisóstomo<br>Caucaia · CE</div>
+    <div style="margin-top:6px; color:#8097b0">Fonte: Sistema Busca Ativa · 2026</div>
+    <a class="logout-btn" href="../index.html">⬅ Sair do Painel</a>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+
+  <div class="topbar">
+    <div class="topbar-title">
+      <h2>🔍 Busca Ativa · E.E.I.E.F. Adélia Crisóstomo</h2>
+      <p>Acompanhamento de infrequência e contatos realizados · 2026</p>
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  <div class="empty-state">
+    <div class="empty-icon">📋</div>
+    <h3>Nenhum dado importado ainda</h3>
+    <p>
+      Os registros de Busca Ativa desta escola ainda não foram inseridos no sistema.
+      Quando os dados forem disponibilizados, esta página exibirá o histórico completo de
+      acionamentos, alunos infrequentes, justificativas e protocolos de contato com famílias.
+    </p>
+    <div class="empty-note">
+      ⏳ Aguardando exportação do sistema · Responsável: Coordenação Pedagógica
+    </div>
+  </div>
+
+  <!-- Table structure preview -->
+  <div class="section-title">📄 Estrutura da Tabela (Pré-visualização)</div>
+  <div class="table-placeholder">
+    <div class="table-placeholder-head">
+      <h3>Registros de Busca Ativa — a preencher</h3>
+      <p>Os dados abaixo são apenas uma prévia da estrutura que será utilizada quando os registros forem importados.</p>
+    </div>
+    <div class="placeholder-cols">
+      <div class="placeholder-col">#</div>
+      <div class="placeholder-col">Data</div>
+      <div class="placeholder-col">Aluno</div>
+      <div class="placeholder-col">Turma</div>
+      <div class="placeholder-col">Tipo</div>
+      <div class="placeholder-col">Justificativa</div>
+      <div class="placeholder-col">Observação</div>
+      <div class="placeholder-col">Nível</div>
+    </div>
+    <div class="placeholder-rows">
+      <div class="placeholder-row"><div class="ph-cell short"></div><div class="ph-cell med"></div><div class="ph-cell long"></div><div class="ph-cell med"></div><div class="ph-cell pill"></div><div class="ph-cell pill"></div><div class="ph-cell med"></div><div class="ph-cell pill"></div></div>
+      <div class="placeholder-row"><div class="ph-cell short"></div><div class="ph-cell med"></div><div class="ph-cell long" style="max-width:140px"></div><div class="ph-cell med"></div><div class="ph-cell pill"></div><div class="ph-cell pill"></div><div class="ph-cell med"></div><div class="ph-cell pill"></div></div>
+      <div class="placeholder-row"><div class="ph-cell short"></div><div class="ph-cell med"></div><div class="ph-cell long"></div><div class="ph-cell med"></div><div class="ph-cell pill"></div><div class="ph-cell pill"></div><div class="ph-cell med"></div><div class="ph-cell pill"></div></div>
+      <div class="placeholder-row"><div class="ph-cell short"></div><div class="ph-cell med"></div><div class="ph-cell long" style="max-width:160px"></div><div class="ph-cell med"></div><div class="ph-cell pill"></div><div class="ph-cell pill"></div><div class="ph-cell med"></div><div class="ph-cell pill"></div></div>
+      <div class="placeholder-row"><div class="ph-cell short"></div><div class="ph-cell med"></div><div class="ph-cell long"></div><div class="ph-cell med"></div><div class="ph-cell pill"></div><div class="ph-cell pill"></div><div class="ph-cell med"></div><div class="ph-cell pill"></div></div>
+    </div>
+  </div>
+
+  <div style="text-align:center; font-size:0.75rem; color:var(--muted2); margin-top:10px; padding-top:18px; border-top:1px solid var(--border);">
+    Busca Ativa · E.E.I.E.F. Adélia Crisóstomo · Caucaia-CE · Dados: a inserir · Painel de Indicadores Educacionais 2026
+  </div>
+
+</main>
+</body>
+</html>

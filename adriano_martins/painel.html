@@ -110,6 +110,7 @@ body {
 .nb-yellow { background: var(--yellow); color: #fff; }
 .nb-green { background: var(--green); color: #fff; }
 .nb-blue { background: var(--blue); color: #fff; }
+.nb-orange { background: var(--orange); color: #fff; }
 
 .sidebar-footer {
   margin-top: auto; padding: 14px 20px;
@@ -299,6 +300,16 @@ body {
     <div class="nav-icon teal" style="background:#ecfeff">🏠</div>
     <span class="nav-label">Visão Geral</span>
   </a>
+  <a class="nav-item" href="resumo_executivo.html">
+    <div class="nav-icon" style="background:#fdf0ef">🚨</div>
+    <span class="nav-label">Resumo Executivo</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+  <a class="nav-item" href="busca_ativa.html">
+    <div class="nav-icon" style="background:#fef5e7">🔍</div>
+    <span class="nav-label">Busca Ativa</span>
+    <span class="nav-badge nb-orange">32</span>
+  </a>
   <a class="nav-item" href="adesc.html">
     <div class="nav-icon" style="background:#edfaf3">📖</div>
     <span class="nav-label">ADESC 2025</span>
@@ -440,6 +451,27 @@ body {
   <!-- Indicator cards -->
   <div class="section-title">📌 Pontos Críticos por Indicador</div>
   <div class="indicators-grid">
+
+    <!-- RESUMO EXECUTIVO -->
+    <div class="ind-card" style="border:2px solid var(--red); grid-column: 1 / -1;">
+      <div class="ind-card-head" style="background:linear-gradient(135deg,#fdf0ef,#fff);">
+        <div class="ind-icon red">🚨</div>
+        <div class="ind-head-text">
+          <h3>Resumo Executivo — Síntese Geral</h3>
+          <p>Cruzamento de todos os indicadores · Pontos críticos + Plano de Ação</p>
+        </div>
+      </div>
+      <div class="ind-card-body">
+        <span class="alert-tag tag-crit">🔴 Leitura Obrigatória</span>
+        <ul class="alert-list">
+          <li class="alert-item"><span class="alert-dot ad-red"></span><span><strong>7 indicadores monitorados</strong> — este resumo cruza todos os dados e aponta os gargalos que mais impactam o desempenho da escola.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-red"></span><span><strong>10 ações prioritárias</strong> detalhadas, com prazos e fontes — da intervenção imediata no 2º B até a replicação do modelo do 2º Ano.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-orange"></span><span>Painel de progresso em direção às metas de 2025 com SPAECE, SAEB e ADESC.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-green"></span><span>Pontos fortes identificados: Ideb 5,8 ✅, 2º Ano Proficiente, 0 reprovações, 93% formação docente.</span></li>
+        </ul>
+        <a class="ind-link" href="resumo_executivo.html">🚨 Acessar Resumo Executivo Completo</a>
+      </div>
+    </div>
 
     <!-- ADESC -->
     <div class="ind-card">

@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Busca Ativa · Adriano Martins EEIEF</title>
+<style>
+:root {
+  --bg: #f0f4f8;
+  --surface: #ffffff;
+  --border: #d8e2ec;
+  --sidebar-bg: #1a2535;
+  --sidebar-hover: #243145;
+  --sidebar-active: rgba(14,116,144,.18);
+  --blue-dark: #1a3a5c;
+  --blue-mid: #1e5799;
+  --teal: #0e7490;
+  --teal-light: #ecfeff;
+  --text: #0f1e2e;
+  --muted: #4a5e75;
+  --muted2: #8097b0;
+  --red: #c0392b;
+  --red-bg: #fdf0ef;
+  --red-bdr: #f5b7b1;
+  --orange: #ca6f1e;
+  --orange-bg: #fef5e7;
+  --orange-bdr: #f8c471;
+  --yellow: #d68910;
+  --yellow-bg: #fef9ec;
+  --yellow-bdr: #f9d98a;
+  --green: #1a7a4a;
+  --green-bg: #edfaf3;
+  --green-bdr: #82e0aa;
+  --blue: #1a56a0;
+  --blue-bg: #eaf2fc;
+  --blue-bdr: #90bce8;
+  --font: 'Tahoma', 'Verdana', 'Arial', sans-serif;
+  --radius: 10px;
+  --shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  font-size: 0.94rem;
+  line-height: 1.6;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+  width: 264px; min-width: 264px;
+  background: var(--sidebar-bg);
+  height: 100vh;
+  position: sticky; top: 0;
+  display: flex; flex-direction: column;
+  overflow-y: auto; z-index: 100;
+}
+.sidebar::-webkit-scrollbar { width: 4px; }
+.sidebar::-webkit-scrollbar-thumb { background: #2e3d52; border-radius: 3px; }
+.sidebar-logo {
+  padding: 20px 20px 18px;
+  border-bottom: 1px solid #2e3d52;
+  background: #111c2a;
+}
+.school-badge {
+  display: inline-block;
+  background: var(--teal);
+  color: #fff;
+  font-size: 0.70rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 4px; margin-bottom: 9px;
+}
+.school-name { font-size: 1.08rem; font-weight: 700; color: #fff; line-height: 1.25; margin-bottom: 3px; }
+.school-name span { color: #f0b429; }
+.school-sub { font-size: 0.70rem; color: #7a90a8; margin-top: 3px; letter-spacing: 0.05em; }
+.nav-section {
+  padding: 12px 20px 5px;
+  font-size: 0.68rem; text-transform: uppercase;
+  letter-spacing: 0.13em; color: #5a7090; font-weight: 700;
+}
+.nav-item {
+  display: flex; align-items: center; gap: 11px;
+  padding: 11px 20px;
+  cursor: pointer; border-left: 4px solid transparent;
+  transition: all 0.2s; text-decoration: none;
+  color: inherit;
+}
+.nav-item:hover { background: var(--sidebar-hover); }
+.nav-item.active { background: var(--sidebar-active); border-left-color: #22d3ee; }
+.nav-icon {
+  width: 32px; height: 32px; border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; flex-shrink: 0;
+}
+.nav-label { font-size: 0.85rem; font-weight: 600; color: #b8cce0; line-height: 1.25; }
+.nav-item.active .nav-label { color: #fff; }
+.nav-badge {
+  margin-left: auto; min-width: 22px; height: 22px;
+  border-radius: 11px; font-size: 0.70rem; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0 5px; flex-shrink: 0;
+}
+.nb-red { background: var(--red); color: #fff; }
+.nb-yellow { background: var(--yellow); color: #fff; }
+.nb-orange { background: var(--orange); color: #fff; }
+.sidebar-footer {
+  margin-top: auto; padding: 14px 20px;
+  border-top: 1px solid #2e3d52;
+  font-size: 0.70rem; color: #5a7090; line-height: 1.7;
+}
+.logout-btn {
+  display: block; text-align: center;
+  margin-top: 10px; padding: 8px;
+  background: rgba(192,57,43,0.18);
+  color: #f5a9a4; border-radius: 6px;
+  text-decoration: none; font-size: 0.78rem; font-weight: 700;
+  letter-spacing: 0.05em;
+  transition: background 0.2s;
+}
+.logout-btn:hover { background: rgba(192,57,43,0.35); }
+
+/* ===== MAIN ===== */
+.main { flex: 1; min-width: 0; padding: 28px 32px 52px; }
+
+/* ===== TOPBAR ===== */
+.topbar {
+  display: flex; align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 26px; flex-wrap: wrap; gap: 14px;
+}
+.topbar-title h2 { font-size: 1.35rem; font-weight: 700; color: var(--text); }
+.topbar-title p { font-size: 0.80rem; color: var(--muted); margin-top: 3px; }
+.topbar-stats { display: flex; gap: 10px; flex-wrap: wrap; }
+.topbar-stat {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 8px; padding: 9px 16px; text-align: center;
+  box-shadow: var(--shadow);
+}
+.topbar-stat .ts-val { font-size: 1.1rem; font-weight: 700; display: block; }
+.topbar-stat .ts-lab { font-size: 0.68rem; color: var(--muted2); text-transform: uppercase; letter-spacing: 0.07em; }
+.ts-red { color: var(--red); }
+.ts-yellow { color: var(--yellow); }
+.ts-orange { color: var(--orange); }
+.ts-green { color: var(--green); }
+.ts-teal { color: var(--teal); }
+
+/* ===== SECTION TITLE ===== */
+.section-title {
+  font-size: 1.05rem; font-weight: 700;
+  color: var(--blue-dark);
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: 18px; margin-top: 32px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-title:first-of-type { margin-top: 0; }
+
+/* ===== KPI CARDS ===== */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+  margin-bottom: 30px;
+}
+.kpi-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  padding: 18px 16px 14px;
+  text-align: center;
+}
+.kpi-val { font-size: 2rem; font-weight: 700; line-height: 1; margin-bottom: 6px; }
+.kpi-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.07em; line-height: 1.4; }
+.kpi-sub { font-size: 0.70rem; color: var(--muted2); margin-top: 4px; }
+
+/* ===== ALERT BANNER ===== */
+.alert-banner {
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  margin-bottom: 28px;
+  border-left: 5px solid;
+  font-size: 0.88rem;
+  display: flex; align-items: flex-start; gap: 12px;
+}
+.alert-banner.warning {
+  background: var(--orange-bg);
+  border-color: var(--orange);
+  color: #7a3e05;
+}
+.alert-banner.danger {
+  background: var(--red-bg);
+  border-color: var(--red);
+  color: #7a1a0e;
+}
+.alert-banner .ab-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 1px; }
+.alert-banner strong { font-weight: 700; }
+
+/* ===== TABLE ===== */
+.data-table-wrap {
+  background: var(--surface);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+.data-table-wrap .table-header {
+  padding: 14px 18px 12px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  background: #fafcff;
+  flex-wrap: wrap; gap: 10px;
+}
+.table-header h3 { font-size: 0.95rem; font-weight: 700; color: var(--blue-dark); }
+.table-header p { font-size: 0.75rem; color: var(--muted2); }
+.table-scroll { overflow-x: auto; }
+.data-table {
+  width: 100%; border-collapse: collapse;
+  font-size: 0.82rem;
+}
+.data-table thead tr {
+  background: linear-gradient(135deg, #1a3a5c, #1e5799);
+  color: #fff;
+}
+.data-table th {
+  padding: 10px 12px; text-align: left;
+  font-size: 0.71rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+.data-table td {
+  padding: 9px 12px; border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.data-table tbody tr:last-child td { border-bottom: none; }
+.data-table tbody tr:hover { background: #f8fafc; }
+
+/* Pills */
+.pill {
+  display: inline-block; padding: 2px 9px;
+  border-radius: 20px; font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 0.04em; white-space: nowrap;
+}
+.pill-parcial { background: var(--orange-bg); color: var(--orange); border: 1px solid var(--orange-bdr); }
+.pill-baixo { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-bdr); }
+.pill-doente { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-bdr); }
+.pill-outros { background: var(--blue-bg); color: var(--blue); border: 1px solid var(--blue-bdr); }
+.pill-contato { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-bdr); }
+.pill-sem { background: #f3f4f6; color: #6b7280; border: 1px solid #e5e7eb; }
+
+/* Chart bars */
+.bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 9px; }
+.bar-label { min-width: 150px; font-size: 0.78rem; color: var(--muted); text-align: right; }
+.bar-track { flex: 1; background: #eef1f5; border-radius: 4px; height: 20px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 4px; transition: width 0.6s ease; display: flex; align-items: center; padding-left: 8px; }
+.bar-count { font-size: 0.72rem; font-weight: 700; color: #fff; }
+.bar-pct { min-width: 44px; font-size: 0.76rem; font-weight: 700; color: var(--muted); }
+
+/* Search/filter */
+.filters-row {
+  display: flex; gap: 10px; flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+.filter-input {
+  padding: 7px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 7px;
+  font-family: var(--font);
+  font-size: 0.82rem;
+  color: var(--text);
+  background: #fff;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.filter-input:focus { border-color: var(--teal); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .main { padding: 18px 16px 40px; }
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="school-badge">Painel do Diretor</div>
+    <div class="school-name">Adriano <span>Martins</span></div>
+    <div class="school-sub">EEIEF · Caucaia · CE · INEP 23061944</div>
+  </div>
+
+  <div class="nav-section">Indicadores</div>
+
+  <a class="nav-item" href="painel.html">
+    <div class="nav-icon" style="background:#ecfeff">🏠</div>
+    <span class="nav-label">Visão Geral</span>
+  </a>
+  <a class="nav-item active" href="busca_ativa.html">
+    <div class="nav-icon" style="background:#fef5e7">🔍</div>
+    <span class="nav-label">Busca Ativa</span>
+    <span class="nav-badge nb-orange">32</span>
+  </a>
+  <a class="nav-item" href="adesc.html">
+    <div class="nav-icon" style="background:#edfaf3">📖</div>
+    <span class="nav-label">ADESC 2025</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+  <a class="nav-item" href="avalie_ce.html">
+    <div class="nav-icon" style="background:#fef9ec">📊</div>
+    <span class="nav-label">Avalie.CE</span>
+    <span class="nav-badge nb-red">6</span>
+  </a>
+  <a class="nav-item" href="bimestrais.html">
+    <div class="nav-icon" style="background:#eaf2fc">📝</div>
+    <span class="nav-label">Bimestrais 2025</span>
+    <span class="nav-badge nb-yellow">3</span>
+  </a>
+  <a class="nav-item" href="cnca.html">
+    <div class="nav-icon" style="background:#fef5e7">📚</div>
+    <span class="nav-label">CNCA</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+  <a class="nav-item" href="qedu.html">
+    <div class="nav-icon" style="background:#eaf2fc">🎓</div>
+    <span class="nav-label">QEdu / Censo</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+  <a class="nav-item" href="saeb.html">
+    <div class="nav-icon" style="background:#fdf0ef">📋</div>
+    <span class="nav-label">SAEB 2023</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+  <a class="nav-item" href="spaece.html">
+    <div class="nav-icon" style="background:#fef9ec">📈</div>
+    <span class="nav-label">SPAECE 2024</span>
+    <span class="nav-badge nb-red">!!</span>
+  </a>
+
+  <div class="nav-section" style="margin-top:10px">Sistema</div>
+  <a class="nav-item" href="../index.html">
+    <div class="nav-icon" style="background:#fdf0ef">🏫</div>
+    <span class="nav-label">Trocar Escola</span>
+  </a>
+
+  <div class="sidebar-footer">
+    <div>Adriano Martins EEIEF<br>Caucaia · CE · Região Praia</div>
+    <div style="margin-top:6px; color:#8097b0">Fonte: Sistema Busca Ativa · 2026</div>
+    <a class="logout-btn" href="../index.html">⬅ Sair do Painel</a>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="topbar-title">
+      <h2>🔍 Busca Ativa · Adriano Martins EEIEF</h2>
+      <p>Acompanhamento de infrequência e contatos realizados · Fev–Mar 2026</p>
+    </div>
+    <div class="topbar-stats">
+      <div class="topbar-stat">
+        <span class="ts-val ts-orange">32</span>
+        <span class="ts-lab">Alunos Acionados</span>
+      </div>
+      <div class="topbar-stat">
+        <span class="ts-val ts-red">13</span>
+        <span class="ts-lab">Nível Baixo</span>
+      </div>
+      <div class="topbar-stat">
+        <span class="ts-val ts-yellow">11</span>
+        <span class="ts-lab">Aluno Doente</span>
+      </div>
+      <div class="topbar-stat">
+        <span class="ts-val ts-teal">4</span>
+        <span class="ts-lab">Dias de Registro</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Alert banner -->
+  <div class="alert-banner warning">
+    <span class="ab-icon">⚠️</span>
+    <div>
+      <strong>32 alunos acionados pela Busca Ativa</strong> em 4 dias de registro (26/02, 27/02, 10/03 e 11/03/2026).
+      Destes, <strong>13 alunos foram classificados no nível Baixo</strong> de infrequência, exigindo atenção pedagógica e acompanhamento familiar prioritário.
+      2 registros possuem protocolo de contato formalizado com a família.
+    </div>
+  </div>
+
+  <!-- KPI Cards -->
+  <div class="section-title">📊 Resumo de Acionamentos</div>
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-val ts-orange">36</div>
+      <div class="kpi-label">Total de Registros</div>
+      <div class="kpi-sub">incl. reingressos</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val" style="color:var(--blue-mid)">32</div>
+      <div class="kpi-label">Alunos Únicos</div>
+      <div class="kpi-sub">identificados</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val ts-red">13</div>
+      <div class="kpi-label">Nível Baixo</div>
+      <div class="kpi-sub">infrequência grave</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val ts-yellow">11</div>
+      <div class="kpi-label">Aluno Doente</div>
+      <div class="kpi-sub">justificativa registrada</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val" style="color:var(--blue)">2</div>
+      <div class="kpi-label">Outros Motivos</div>
+      <div class="kpi-sub">justificativa: outros</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-val ts-green">2</div>
+      <div class="kpi-label">Protocolo Formal</div>
+      <div class="kpi-sub">contato registrado</div>
+    </div>
+  </div>
+
+  <!-- Distribution por turma -->
+  <div class="section-title">🏫 Distribuição por Turma</div>
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px 24px;margin-bottom:30px;">
+    <div class="bar-row">
+      <div class="bar-label">1º - A - I</div>
+      <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--red)"><span class="bar-count">11</span></div></div>
+      <div class="bar-pct">30,6%</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">2º - B - I</div>
+      <div class="bar-track"><div class="bar-fill" style="width:72.7%;background:var(--orange)"><span class="bar-count">8</span></div></div>
+      <div class="bar-pct">22,2%</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">3º - A - I</div>
+      <div class="bar-track"><div class="bar-fill" style="width:45.5%;background:var(--yellow)"><span class="bar-count">5</span></div></div>
+      <div class="bar-pct">13,9%</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">5º - A - M</div>
+      <div class="bar-track"><div class="bar-fill" style="width:27.3%;background:var(--blue)"><span class="bar-count">3</span></div></div>
+      <div class="bar-pct">8,3%</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">INF II E III - A - M</div>
+      <div class="bar-track"><div class="bar-fill" style="width:27.3%;background:var(--teal)"><span class="bar-count">3</span></div></div>
+      <div class="bar-pct">8,3%</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">2º - A - I</div>
+      <div class="bar-track"><div class="bar-fill" style="width:18.2%;background:#8097b0"><span class="bar-count">2</span></div></div>
+      <div class="bar-pct">5,6%</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">5º - B - T</div>
+      <div class="bar-track"><div class="bar-fill" style="width:18.2%;background:#8097b0"><span class="bar-count">2</span></div></div>
+      <div class="bar-pct">5,6%</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">INF IV - A - T</div>
+      <div class="bar-track"><div class="bar-fill" style="width:9.1%;background:#b0c4d8"><span class="bar-count">1</span></div></div>
+      <div class="bar-pct">2,8%</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">INF V - A - T</div>
+      <div class="bar-track"><div class="bar-fill" style="width:9.1%;background:#b0c4d8"><span class="bar-count">1</span></div></div>
+      <div class="bar-pct">2,8%</div>
+    </div>
+    <p style="font-size:0.72rem;color:var(--muted2);margin-top:12px;">* Percentual sobre 36 registros totais (inclui reentradas). A turma 1º A-I concentra o maior número de acionamentos.</p>
+  </div>
+
+  <!-- Tabela completa de alunos -->
+  <div class="section-title">📋 Relação Completa de Alunos Acionados</div>
+
+  <div class="filters-row">
+    <input class="filter-input" type="text" id="searchInput" placeholder="🔎  Buscar aluno, turma ou filiação..." oninput="filterTable()" style="flex:1;min-width:220px;">
+    <select class="filter-input" id="turmaFilter" onchange="filterTable()">
+      <option value="">Todas as turmas</option>
+      <option>1º - A - I</option>
+      <option>2º - A - I</option>
+      <option>2º - B - I</option>
+      <option>3º - A - I</option>
+      <option>5º - A - M</option>
+      <option>5º - B - T</option>
+      <option>INF II E III - A - M</option>
+      <option>INF IV - A - T</option>
+      <option>INF V - A - T</option>
+    </select>
+    <select class="filter-input" id="justFilter" onchange="filterTable()">
+      <option value="">Todas as justificativas</option>
+      <option>Aluno Doente</option>
+      <option>Outros</option>
+      <option>Sem Justificativa</option>
+    </select>
+  </div>
+
+  <div class="data-table-wrap">
+    <div class="table-header">
+      <div>
+        <h3>Registros de Busca Ativa — Fev/Mar 2026</h3>
+        <p>Servidor responsável: Solange Lisboa Marinho · Escola: Adriano Martins EEIEF</p>
+      </div>
+      <span id="rowCount" style="font-size:0.78rem;color:var(--muted);font-weight:700;"></span>
+    </div>
+    <div class="table-scroll">
+      <table class="data-table" id="mainTable">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Data</th>
+            <th>Aluno</th>
+            <th>Turma</th>
+            <th>Turno</th>
+            <th>Tipo</th>
+            <th>Justificativa</th>
+            <th>Nível</th>
+            <th>Observação</th>
+            <th>Filiação 1</th>
+            <th>Protocolo / Contato</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          <tr><td>1</td><td>26/02/2026</td><td><strong>ABNER FERREIRA DOS SANTOS</strong></td><td>1º - A - I</td><td>Integral</td><td><span class="pill pill-parcial">PARCIAL</span></td><td><span class="pill pill-sem">—</span></td><td><span class="pill pill-sem">—</span></td><td>—</td><td>CHARLIANA FERREIRA DOS SANTOS</td><td>—</td></tr>
+          <tr><td>2</td><td>26/02/2026</td><td><strong>ANA LAYLA DA SILVA SOUSA</strong></td><td>1º - A - I</td><td>Integral</td><td><span class="pill pill-parcial">PARCIAL</span></td><td><span class="pill pill-sem">—</span></td><td><span class="pill pill-sem">—</span></td><td>—</td><td>ANDRESSA DA SILVA BATISTA</td><td>—</td></tr>
+          <tr><td>3</td><td>26/02/2026</td><td><strong>CAMILLY FEITOSA DE MESQUITA</strong></td><td>1º - A - I</td><td>Integral</td><td><span class="pill pill-parcial">PARCIAL</span></td><td><span class="pill pill-sem">—</span></td><td><span class="pill pill-sem">—</span></td><td>—</td><td>EDILEUDA DA SILVA FEITOSA</td><td>—</td></tr>
+          <tr><td>4</td><td>26/02/2026</td><td><strong>CARLOS HENRIQUE FERREIRA DE SOUZA</strong></td><td>1º - A - I</td><td>Integral</td><td><span class="pill pill-parcial">PARCIAL</span></td><td><span class="pill pill-sem">—</span></td><td><span class="pill pill-sem">—</span></td><td>—</td><td>VIVIANE FERREIRA TORRES</td><td>—</td></tr>
+          <tr><td>5</td><td>26/02/2026</td><td><strong>FRANCISCA RAYANE AMARO PEREIRA</strong></td><td>1º - A - I</td><td>Integral</td><td><span class="pill pill-parcial">PARCIAL</span></td><td><span class="pill pill-sem">—</span></td><td><span class="pill pill-sem">—</span></td><td>—</td><td>SABRINA DOS SANTOS AMARO</td><td>—</td></tr>
+          <tr><td>6</td><td>26/02/2026</td><td><strong>HELENA TEIXEIRA CAVALCANTE</strong></td><td>1º - A - I</td><td>Integral</td><td><span class="pill pill-parcial">PARCIAL</span></td><td><span class="pill pill-sem">—</span></td><td><span class="pill pill-sem">—</span></td><td>—</td><td>MARIA MICHELE TEIXEIRA VASCONCELOS</td><td>—</td></tr>
+          <tr><td>7</td><td>26/02/2026</td><td><strong>WESTON LUCAS DE MENEZES DE SOUSA</strong></td><td>1º - A - I</td><td>Integral</td><td><span class="pill pill-parcial">PARCIAL</span></td><td><span class="pill pill-sem">—</span></td><td><span class="pill pill-sem">—</span></td><td>—</td><td>MYLENE ELLEN CUNHA DE MENEZES</td><td>—</td></tr>
+          <tr><td>8</td><td>26/02/2026</td><td><strong>YRIS SOPHIA GOMES PINTO ALVES</strong></td><td>1º - A - I</td><td>Integral</td><td><span class="pill pill-parcial">PARCIAL</span></td><td><span class="pill pill-sem">—</span></td><td><span class="pill pill-sem">—</span></td><td>—</td><td>REBECA GOMES NASCIMENTO</td><td>—</td></tr>
+          <tr><td>9</td><td>26/02/2026</td><td><strong>JHONE WESLEY DOS SANTOS GOMES</strong></td><td>2º - A - I</td><td>Integral</td><td><span class="pill pill-parcial">PARCIAL</span></td><td><span class="pill pill-sem">—</span></td><td><span class="pill pill-sem">—</span></td><td>—</td><td>ELIANA DOS SANTOS DANTAS</td><td>—</td></tr>
+          <tr><td>10</td><td>26/02/2026</td><td><strong>ESTER AZEVEDO DA SILVA</strong></td><td>2º - B - I</td><td>Integral</td><td><span class="pill pill-parcial">PARCIAL</span></td><td><span class="pill pill-sem">—</span></td><td><span class="pill pill-sem">—</span></td><td>—</td><td>NAYRA AZEVEDO DE SOUSA</td><td>—</td></tr>
+          <tr><td>11</td><td>26/02/2026</td><td><strong>KARLOS EDUARDO MATIAS FEIJO</strong></td><td>2º - B - I</td><td>Integral</td><td><span class="pill pill-parcial">PARCIAL</span></td><td><span class="pill pill-sem">—</span></td><td><span class="pill pill-sem">—</span></td><td>—</td><td>KESIA MATIAS DA MOTA</td><td>—</td></tr>
+          <tr><td>12</td><td>26/02/2026</td><td><strong>LEVI AZEVEDO DA SILVA</strong></td><td>2º - B - I</td><td>Integral</td><td><span class="pill pill-parcial">PARCIAL</span></td><td><span class="pill pill-sem">—</span></td><td><span class="pill pill-sem">—</span></td><td>—</td><td>NAYRA AZEVEDO DE SOUSA</td><td>—</td></tr>
+          <tr><td>13</td><td>26/02/2026</td><td><strong>MARIA ESTER DA SILVA ROSA</strong></td><td>2º - B - I</td><td>Integral</td><td><span class="pill pill-parcial">PARCIAL</span></td><td><span class="pill pill-sem">—</span></td><td><span class="pill pill-sem">—</span></td><td>—</td><td>MARIA ROSIVANIA GOMES DA SILVA</td><td>—</td></tr>
+          <tr><td>14</td><td>26/02/2026</td><td><strong>DEBORA DE CASTRO DA SILVA</strong></td><td>3º - A - I</td><td>Integral</td><td><span class="pill pill-parcial">PARCIAL</span></td><td><span class="pill pill-sem">—</span></td><td><span class="pill pill-sem">—</span></td><td>—</td><td>AURINEIDE LIMA DE CASTRO</td><td>—</td></tr>
+          <tr><td>15</td><td>26/02/2026</td><td><strong>KALEBE DA SILVA BARROS</strong></td><td>3º - A - I</td><td>Integral</td><td><span class="pill pill-parcial">PARCIAL</span></td><td><span class="pill pill-sem">—</span></td><td><span class="pill pill-sem">—</span></td><td>—</td><td>ALINE DA SILVA COSME BARROS</td><td>—</td></tr>
+          <tr style="background:#fffbf0"><td>16</td><td>26/02/2026</td><td><strong>MARIA CLARA ALMEIDA DE SOUZA</strong></td><td>3º - A - I</td><td>Integral</td><td><span class="pill pill-parcial">PARCIAL</span></td><td><span class="pill pill-doente">ALUNO DOENTE</span></td><td><span class="pill pill-baixo">BAIXO</span></td><td>Atestado</td><td>SIELY CANDIDA DA SILVA ALMEIDA</td><td>—</td></tr>
+          <tr><td>17</td><td>26/02/2026</td><td><strong>SARAH MONIQUE DA SILVA SOUSA</strong></td><td>3º - A - I</td><td>Integral</td><td><span class="pill pill-parcial">PARCIAL</span></td><td><span class="pill pill-sem">—</span></td><td><span class="pill pill-sem">—</span></td><td>—</td><td>RENATA DA SILVA DE ANDRADE SOUSA</td><td>—</td></tr>
+          <tr><td>18</td><td>26/02/2026</td><td><strong>MARIA EDUARDA BERNARDO SANTOS</strong></td><td>5º - A - M</td><td>Manhã</td><td><span class="pill pill-sem">—</span></td><td><span class="pill pill-sem">—</span></td><td><span class="pill pill-sem">—</span></td><td>—</td><td>CHARMYLLE BERNARDO DA COSTA</td><td>—</td></tr>
+          <tr><td>19</td><td>26/02/2026</td><td><strong>ROBSON KALEB GOMES PARENTE</strong></td><td>5º - A - M</td><td>Manhã</td><td><span class="pill pill-sem">—</span></td><td><span class="pill pill-sem">—</span></td><td><span class="pill pill-sem">—</span></td><td>—</td><td>LUZIANE GOMES DA SILVA</td><td>—</td></tr>
+          <tr style="background:#fffbf0"><td>20</td><td>26/02/2026</td><td><strong>JOSUE GOMES PARENTE</strong></td><td>2º - A - I</td><td>Integral</td><td><span class="pill pill-parcial">PARCIAL</span></td><td><span class="pill pill-doente">ALUNO DOENTE</span></td><td><span class="pill pill-baixo">BAIXO</span></td><td>—</td><td>LUZIANE GOMES DA SILVA</td><td>—</td></tr>
+          <tr style="background:#fffbf0"><td>21</td><td>26/02/2026</td><td><strong>MELISSA SANTOS MORAIS</strong></td><td>3º - A - I</td><td>Integral</td><td><span class="pill pill-parcial">PARCIAL</span></td><td><span class="pill pill-doente">ALUNO DOENTE</span></td><td><span class="pill pill-baixo">BAIXO</span></td><td>—</td><td>GARDENIA DOS SANTOS DACOSTA</td><td>—</td></tr>
+          <tr style="background:#fffbf0"><td>22</td><td>26/02/2026</td><td><strong>MATHEUS GABRIEL LUZ ARRUDA</strong></td><td>INF V - A - T</td><td>Tarde</td><td><span class="pill pill-sem">—</span></td><td><span class="pill pill-doente">ALUNO DOENTE</span></td><td><span class="pill pill-baixo">BAIXO</span></td><td>—</td><td>SAVANNAH LUZ DE SOUZA</td><td>—</td></tr>
+          <tr style="background:#fffbf0"><td>23</td><td>26/02/2026</td><td><strong>HYAGO DA SILVA DOS SANTOS</strong></td><td>1º - A - I</td><td>Integral</td><td><span class="pill pill-parcial">PARCIAL</span></td><td><span class="pill pill-doente">ALUNO DOENTE</span></td><td><span class="pill pill-baixo">BAIXO</span></td><td>Atestado</td><td>MARIA LIDIANE FERREIRA DA SILVA</td><td>—</td></tr>
+          <tr style="background:#fffbf0"><td>24</td><td>26/02/2026</td><td><strong>SAFIRA SALES COSTA</strong></td><td>INF II E III - A - M</td><td>Manhã</td><td><span class="pill pill-sem">—</span></td><td><span class="pill pill-doente">ALUNO DOENTE</span></td><td><span class="pill pill-baixo">BAIXO</span></td><td>Mãe Avisou</td><td>PAULA ROGERIA SALES DE MARIA</td><td>—</td></tr>
+          <tr style="background:#fffbf0"><td>25</td><td>26/02/2026</td><td><strong>MARIA ANALIA ALVES DE SOUSA</strong></td><td>INF II E III - A - M</td><td>Manhã</td><td><span class="pill pill-sem">—</span></td><td><span class="pill pill-doente">ALUNO DOENTE</span></td><td><span class="pill pill-baixo">BAIXO</span></td><td>—</td><td>CLAUDECY ALVES DIAS</td><td>—</td></tr>
+          <tr style="background:#fffbf0"><td>26</td><td>26/02/2026</td><td><strong>WALLACE DA SILVA ARAUJO SANTOS</strong></td><td>INF II E III - A - M</td><td>Manhã</td><td><span class="pill pill-sem">—</span></td><td><span class="pill pill-doente">ALUNO DOENTE</span></td><td><span class="pill pill-baixo">BAIXO</span></td><td>Mãe Avisou</td><td>VICTORIA REGIA DA SILVA ARAUJO</td><td>—</td></tr>
+          <tr style="background:#fffbf0"><td>27</td><td>26/02/2026</td><td><strong>JOSE LUCIANO FELIX GOMES</strong></td><td>INF IV - A - T</td><td>Tarde</td><td><span class="pill pill-sem">—</span></td><td><span class="pill pill-doente">ALUNO DOENTE</span></td><td><span class="pill pill-baixo">BAIXO</span></td><td>Mãe Avisou</td><td>MANUELA RODRIGUES GOMES</td><td>—</td></tr>
+          <tr style="background:#fffbf0"><td>28</td><td>26/02/2026</td><td><strong>ARLIENY CARDOSO DE AMORIM</strong></td><td>5º - B - T</td><td>Tarde</td><td><span class="pill pill-sem">—</span></td><td><span class="pill pill-doente">ALUNO DOENTE</span></td><td><span class="pill pill-baixo">BAIXO</span></td><td>Mãe Entrou em Contato</td><td>ANA INGRID CARDOSO DE SOUSA</td><td>—</td></tr>
+          <tr><td>29</td><td>27/02/2026</td><td><strong>ESTER AZEVEDO DA SILVA</strong></td><td>2º - B - I</td><td>Integral</td><td><span class="pill pill-parcial">PARCIAL</span></td><td><span class="pill pill-sem">—</span></td><td><span class="pill pill-sem">—</span></td><td>—</td><td>NAYRA AZEVEDO DE SOUSA</td><td>—</td></tr>
+          <tr><td>30</td><td>27/02/2026</td><td><strong>KARLOS EDUARDO MATIAS FEIJO</strong></td><td>2º - B - I</td><td>Integral</td><td><span class="pill pill-parcial">PARCIAL</span></td><td><span class="pill pill-sem">—</span></td><td><span class="pill pill-sem">—</span></td><td>—</td><td>KESIA MATIAS DA MOTA</td><td>—</td></tr>
+          <tr><td>31</td><td>27/02/2026</td><td><strong>LEVI AZEVEDO DA SILVA</strong></td><td>2º - B - I</td><td>Integral</td><td><span class="pill pill-parcial">PARCIAL</span></td><td><span class="pill pill-sem">—</span></td><td><span class="pill pill-sem">—</span></td><td>—</td><td>NAYRA AZEVEDO DE SOUSA</td><td>—</td></tr>
+          <tr><td>32</td><td>27/02/2026</td><td><strong>MARIA ESTER DA SILVA ROSA</strong></td><td>2º - B - I</td><td>Integral</td><td><span class="pill pill-parcial">PARCIAL</span></td><td><span class="pill pill-sem">—</span></td><td><span class="pill pill-sem">—</span></td><td>—</td><td>MARIA ROSIVANIA GOMES DA SILVA</td><td>—</td></tr>
+          <tr style="background:#fffbf0"><td>33</td><td>10/03/2026</td><td><strong>JOAO ARTHUR FERREIRA SALES</strong></td><td>1º - A - I</td><td>Integral</td><td><span class="pill pill-parcial">PARCIAL</span></td><td><span class="pill pill-outros">OUTROS</span></td><td><span class="pill pill-baixo">BAIXO</span></td><td>—</td><td>CRISTALINA FERREIRA DE SOUSA</td><td>—</td></tr>
+          <tr style="background:#fffbf0"><td>34</td><td>10/03/2026</td><td><strong>KASSIA ALVES DA SILVA PEREIRA</strong></td><td>1º - A - I</td><td>Integral</td><td><span class="pill pill-parcial">PARCIAL</span></td><td><span class="pill pill-outros">OUTROS</span></td><td><span class="pill pill-baixo">BAIXO</span></td><td>—</td><td>KELIANE ALVES DA SILVA PEREIRA</td><td>—</td></tr>
+          <tr style="background:#edfaf3"><td>35</td><td>11/03/2026</td><td><strong>ANTONIO RYAN DE ANDRADE EVANGELISTA</strong></td><td>5º - A - M</td><td>Manhã</td><td><span class="pill pill-sem">—</span></td><td><span class="pill pill-sem">—</span></td><td><span class="pill pill-sem">—</span></td><td>Aguardando Retorno Familiar</td><td>DANIELE FEITOSA DE ANDRADE</td><td><span class="pill pill-contato">PROTOCOLO</span> Escola entrou em contato</td></tr>
+          <tr style="background:#edfaf3"><td>36</td><td>11/03/2026</td><td><strong>LUAN LIMA MIGUEL</strong></td><td>5º - B - T</td><td>Tarde</td><td><span class="pill pill-sem">—</span></td><td><span class="pill pill-doente">ALUNO DOENTE</span></td><td><span class="pill pill-baixo">BAIXO</span></td><td>—</td><td>NIKELE LIMA DA COSTA</td><td><span class="pill pill-contato">PROTOCOLO</span> Escola entrou em contato</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div style="text-align:center; font-size:0.75rem; color:var(--muted2); margin-top:10px; padding-top:18px; border-top:1px solid var(--border);">
+    Busca Ativa · Adriano Martins EEIEF · Caucaia-CE · Servidor: Solange Lisboa Marinho · Dados exportados em mar/2026
+  </div>
+
+</main>
+
+<script>
+function filterTable() {
+  const search = document.getElementById('searchInput').value.toLowerCase();
+  const turma = document.getElementById('turmaFilter').value;
+  const just = document.getElementById('justFilter').value;
+  const rows = document.querySelectorAll('#tableBody tr');
+  let visible = 0;
+  rows.forEach(row => {
+    const text = row.textContent.toLowerCase();
+    const turmaMatch = !turma || row.cells[3].textContent.includes(turma);
+    const justText = row.cells[6].textContent.trim();
+    let justMatch = true;
+    if (just === 'Aluno Doente') justMatch = justText.includes('ALUNO DOENTE');
+    else if (just === 'Outros') justMatch = justText.includes('OUTROS');
+    else if (just === 'Sem Justificativa') justMatch = justText.includes('—') && !justText.includes('ALUNO') && !justText.includes('OUTROS');
+    const searchMatch = !search || text.includes(search);
+    const show = turmaMatch && justMatch && searchMatch;
+    row.style.display = show ? '' : 'none';
+    if (show) visible++;
+  });
+  document.getElementById('rowCount').textContent = visible + ' registro(s) exibido(s)';
+}
+filterTable();
+</script>
+</body>
+</html>
