@@ -3,182 +3,354 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Painel do Diretor · CNCA · Adriano Martins EEIEF</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<title>CNCA · Adriano Martins EEIEF</title>
 <style>
 :root {
-  --bg: #f1f4f8;
-  --sidebar-bg: #0d1117;
+  --bg: #f0f4f8;
   --surface: #ffffff;
-  --border: #e2e8f0;
-  --border-dark: #2a3441;
-  --text: #0f172a;
-  --muted: #64748b;
-  --muted2: #94a3b8;
-  --red: #ef4444;
-  --red-bg: #fef2f2;
-  --red-bdr: #fca5a5;
-  --red-dark: #dc2626;
-  --yellow: #f59e0b;
-  --yellow-bg: #fffbeb;
-  --yellow-bdr: #fcd34d;
-  --green: #10b981;
-  --green-bg: #f0fdf4;
-  --green-bdr: #6ee7b7;
-  --blue: #3b82f6;
-  --blue-bg: #eff6ff;
-  --blue-bdr: #93c5fd;
-  --orange: #f97316;
-  --orange-bg: #fff7ed;
+  --border: #d8e2ec;
+  --sidebar-bg: #1a2535;
+  --sidebar-hover: #243145;
+  --sidebar-active: rgba(14,116,144,.18);
+  --blue-dark: #1a3a5c;
+  --blue-mid: #1e5799;
+  --teal: #0e7490;
+  --text: #0f1e2e;
+  --muted: #4a5e75;
+  --muted2: #8097b0;
+  --red: #c0392b;
+  --red-bg: #fdf0ef;
+  --red-bdr: #f5b7b1;
+  --red-dark: #a93226;
+  --orange: #ca6f1e;
+  --orange-bg: #fef5e7;
+  --orange-bdr: #f8c471;
+  --yellow: #d68910;
+  --yellow-bg: #fef9ec;
+  --yellow-bdr: #f9d98a;
+  --green: #1a7a4a;
+  --green-bg: #edfaf3;
+  --green-bdr: #82e0aa;
+  --blue: #1a56a0;
+  --blue-bg: #eaf2fc;
+  --blue-bdr: #90bce8;
+  --font: 'Tahoma', 'Verdana', 'Arial', sans-serif;
+  --radius: 10px;
+  --shadow: 0 2px 12px rgba(0,0,0,0.08);
 }
-* { margin:0; padding:0; box-sizing:border-box; }
-body { background:var(--bg); color:var(--text); font-family:'Nunito',sans-serif; min-height:100vh; display:flex; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  font-size: 0.94rem;
+  line-height: 1.6;
+}
 
-/* SIDEBAR */
-.sidebar { width:260px; min-width:260px; background:var(--sidebar-bg); height:100vh; position:sticky; top:0; display:flex; flex-direction:column; padding:24px 0; overflow-y:auto; z-index:100; }
-.sidebar-logo { padding:0 20px 24px; border-bottom:1px solid var(--border-dark); margin-bottom:16px; }
-.sidebar-logo .school-name { font-family:'Syne',sans-serif; font-size:0.95rem; font-weight:800; color:#fff; line-height:1.2; }
-.sidebar-logo .school-name span { color:#f59e0b; }
-.sidebar-logo .school-sub { font-size:0.65rem; color:#4a5568; margin-top:5px; letter-spacing:0.06em; text-transform:uppercase; }
-.chip { display:inline-flex; align-items:center; gap:5px; font-family:'Syne',sans-serif; font-size:0.74rem; font-weight:800; padding:4px 10px; border-radius:6px; margin-top:8px; }
-.chip-orange { background:rgba(249,115,22,0.12); border:1px solid rgba(249,115,22,0.3); color:#fb923c; }
-.nav-section { padding:6px 20px 4px; font-size:0.62rem; text-transform:uppercase; letter-spacing:0.12em; color:#4a5568; font-weight:600; }
-.nav-item { display:flex; align-items:center; gap:10px; padding:10px 20px; cursor:pointer; border-left:3px solid transparent; transition:all 0.2s; text-decoration:none; }
-.nav-item:hover { background:rgba(255,255,255,0.05); }
-.nav-item.active { background:rgba(59,130,246,0.1); border-left-color:var(--blue); }
-.nav-icon { width:32px; height:32px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:0.9rem; flex-shrink:0; }
-.nav-label { font-size:0.9rem; font-weight:600; color:#cbd5e1; }
-.nav-badge { margin-left:auto; min-width:20px; height:20px; border-radius:10px; font-size:0.62rem; font-weight:700; display:flex; align-items:center; justify-content:center; padding:0 5px; }
-.nav-badge.red { background:var(--red); color:#fff; }
-.nav-badge.yellow { background:var(--yellow); color:#000; }
-.nav-badge.green { background:var(--green); color:#fff; }
-.sidebar-footer { margin-top:auto; padding:16px 20px; border-top:1px solid var(--border-dark); }
-.sidebar-footer p { font-size:0.65rem; color:#4a5568; line-height:1.5; }
+/* ===== SIDEBAR ===== */
+.sidebar {
+  width: 264px; min-width: 264px;
+  background: var(--sidebar-bg);
+  height: 100vh; position: sticky; top: 0;
+  display: flex; flex-direction: column;
+  overflow-y: auto; z-index: 100;
+}
+.sidebar::-webkit-scrollbar { width: 4px; }
+.sidebar::-webkit-scrollbar-thumb { background: #2e3d52; border-radius: 3px; }
+.sidebar-logo {
+  padding: 20px 20px 18px;
+  border-bottom: 1px solid #2e3d52;
+  background: #111c2a;
+}
+.school-badge {
+  display: inline-block; background: var(--teal); color: #fff;
+  font-size: 0.70rem; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; padding: 3px 10px; border-radius: 4px; margin-bottom: 9px;
+}
+.school-name { font-size: 1.08rem; font-weight: 700; color: #fff; line-height: 1.25; margin-bottom: 3px; }
+.school-name span { color: #f0b429; }
+.school-sub { font-size: 0.70rem; color: #7a90a8; margin-top: 3px; letter-spacing: 0.05em; }
+.nav-section {
+  padding: 12px 20px 5px;
+  font-size: 0.68rem; text-transform: uppercase;
+  letter-spacing: 0.13em; color: #5a7090; font-weight: 700;
+}
+.nav-item {
+  display: flex; align-items: center; gap: 11px;
+  padding: 11px 20px; cursor: pointer;
+  border-left: 4px solid transparent;
+  transition: all 0.2s; text-decoration: none; color: inherit;
+}
+.nav-item:hover { background: var(--sidebar-hover); }
+.nav-item.active { background: var(--sidebar-active); border-left-color: #22d3ee; }
+.nav-icon {
+  width: 32px; height: 32px; border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; flex-shrink: 0;
+}
+.nav-label { font-size: 0.85rem; font-weight: 600; color: #b8cce0; line-height: 1.25; }
+.nav-item.active .nav-label { color: #fff; }
+.nav-badge {
+  margin-left: auto; min-width: 22px; height: 22px;
+  border-radius: 11px; font-size: 0.70rem; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0 5px; flex-shrink: 0;
+}
+.nb-red    { background: var(--red);    color: #fff; }
+.nb-yellow { background: var(--yellow); color: #fff; }
+.nb-green  { background: var(--green);  color: #fff; }
+.nb-orange { background: var(--orange); color: #fff; }
 
-/* LEGEND */
-.leg-item { display:flex; align-items:center; gap:8px; padding:5px 0; font-size:0.78rem; color:#9ca3af; }
-.leg-dot { width:11px; height:11px; border-radius:50%; flex-shrink:0; }
+/* Legenda sidebar */
+.legend-block { padding: 8px 20px 6px; }
+.leg-row { display: flex; align-items: center; gap: 8px; padding: 5px 0; font-size: 0.74rem; color: #8daabf; border-bottom: 1px solid #243145; }
+.leg-row:last-child { border-bottom: none; }
+.leg-dot { width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; }
 
-/* MAIN */
-.main { flex:1; min-width:0; padding:28px 32px; max-width:920px; }
-.topbar { display:flex; align-items:center; justify-content:space-between; margin-bottom:28px; flex-wrap:wrap; gap:12px; }
-.topbar-title { font-family:'Syne',sans-serif; font-size:1.55rem; font-weight:800; color:var(--text); }
-.topbar-sub { font-size:0.88rem; color:var(--muted); margin-top:3px; }
-.topbar-stats { display:flex; gap:8px; flex-wrap:wrap; }
-.topbar-stat { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:6px 14px; text-align:center; }
-.topbar-stat .val { font-family:'Syne',sans-serif; font-size:1.1rem; font-weight:800; display:block; }
-.topbar-stat .lbl { font-size:0.7rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; font-weight:600; }
-.topbar-stat.green .val { color:var(--green); }
-.topbar-stat.red .val { color:var(--red); }
-.topbar-stat.yellow .val { color:var(--yellow); }
-.topbar-stat.blue .val { color:var(--blue); }
-.topbar-stat.orange .val { color:var(--orange); }
+.sidebar-footer {
+  margin-top: auto; padding: 14px 20px;
+  border-top: 1px solid #2e3d52;
+  font-size: 0.70rem; color: #5a7090; line-height: 1.7;
+}
 
-/* SECTION */
-.section { margin-bottom:28px; }
-.section-header { display:flex; align-items:center; gap:12px; padding:14px 18px; background:var(--surface); border:1px solid var(--border); border-radius:12px 12px 0 0; border-bottom:none; }
-.section-icon { width:36px; height:36px; border-radius:9px; display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0; }
-.section-info h2 { font-family:'Syne',sans-serif; font-size:1rem; font-weight:800; }
-.section-info p { font-size:0.78rem; color:var(--muted); margin-top:2px; }
+/* ===== MAIN ===== */
+.main { flex: 1; min-width: 0; padding: 28px 32px 52px; }
 
-/* CARDS */
-.notif-card { background:var(--surface); border:1px solid var(--border); border-top:none; cursor:pointer; transition:background 0.15s; overflow:hidden; }
-.notif-card:last-child { border-radius:0 0 12px 12px; }
-.notif-card:hover { background:#f8fafc; }
-.notif-card.priority-red { border-left:4px solid var(--red); }
-.notif-card.priority-yellow { border-left:4px solid var(--yellow); }
-.notif-card.priority-green { border-left:4px solid var(--green); }
-.notif-card.priority-blue { border-left:4px solid var(--blue); }
-.notif-card.priority-orange { border-left:4px solid var(--orange); }
+/* ===== TOPBAR ===== */
+.topbar {
+  display: flex; align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 26px; flex-wrap: wrap; gap: 14px;
+}
+.topbar-title h2 { font-size: 1.35rem; font-weight: 700; color: var(--text); }
+.topbar-title p { font-size: 0.80rem; color: var(--muted); margin-top: 3px; }
+.topbar-stats { display: flex; gap: 10px; flex-wrap: wrap; }
+.topbar-stat {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 8px; padding: 9px 16px; text-align: center;
+  box-shadow: var(--shadow);
+}
+.topbar-stat .ts-val { font-size: 1.1rem; font-weight: 700; display: block; }
+.topbar-stat .ts-lab { font-size: 0.68rem; color: var(--muted2); text-transform: uppercase; letter-spacing: 0.07em; }
+.ts-red    { color: var(--red); }
+.ts-yellow { color: var(--yellow); }
+.ts-orange { color: var(--orange); }
+.ts-green  { color: var(--green); }
+.ts-blue   { color: var(--blue); }
+.ts-teal   { color: var(--teal); }
 
-.notif-top { display:flex; align-items:flex-start; gap:14px; padding:16px 18px; }
-.notif-avatar { width:38px; height:38px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
-.notif-avatar.red { background:var(--red-bg); }
-.notif-avatar.yellow { background:var(--yellow-bg); }
-.notif-avatar.green { background:var(--green-bg); }
-.notif-avatar.blue { background:var(--blue-bg); }
-.notif-avatar.orange { background:var(--orange-bg); }
-.notif-body { flex:1; min-width:0; }
-.notif-header-row { display:flex; align-items:flex-start; gap:10px; flex-wrap:wrap; margin-bottom:5px; }
-.notif-title { font-weight:800; font-size:0.92rem; line-height:1.3; flex:1; }
-.notif-source { font-size:0.68rem; font-weight:700; padding:2px 8px; border-radius:20px; background:#f1f5f9; color:var(--muted); white-space:nowrap; flex-shrink:0; }
-.notif-summary { font-size:0.82rem; color:var(--muted); line-height:1.5; margin-bottom:8px; }
-.notif-metrics { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
-.metric-pill { display:flex; align-items:center; gap:5px; padding:3px 10px; border-radius:20px; font-size:0.74rem; font-weight:700; }
-.metric-pill.red { background:var(--red-bg); color:var(--red-dark); border:1px solid var(--red-bdr); }
-.metric-pill.yellow { background:var(--yellow-bg); color:#92400e; border:1px solid var(--yellow-bdr); }
-.metric-pill.green { background:var(--green-bg); color:#065f46; border:1px solid var(--green-bdr); }
-.metric-pill.blue { background:var(--blue-bg); color:#1e40af; border:1px solid var(--blue-bdr); }
-.metric-pill.orange { background:var(--orange-bg); color:#9a3412; border:1px solid #fed7aa; }
-.dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
+/* ===== SECTION TITLE ===== */
+.section-title {
+  font-size: 1.05rem; font-weight: 700; color: var(--blue-dark);
+  padding-bottom: 8px; border-bottom: 2px solid var(--border);
+  margin-bottom: 18px; margin-top: 32px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-title:first-of-type { margin-top: 0; }
 
-.notif-toggle { background:none; border:none; cursor:pointer; font-size:1rem; color:var(--muted2); flex-shrink:0; padding:4px; transition:transform 0.2s; }
-.notif-card.open .notif-toggle { transform:rotate(180deg); }
-.notif-expand { max-height:0; overflow:hidden; transition:max-height 0.35s ease; background:#f8fafc; }
-.notif-card.open .notif-expand { max-height:600px; border-top:1px solid var(--border); padding:14px 18px; }
-.expand-action { margin-bottom:10px; }
-.action-tag { display:inline-block; background:#1e293b; color:#f59e0b; font-size:0.67rem; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; padding:2px 8px; border-radius:4px; margin-bottom:6px; }
-.action-text { font-size:0.83rem; color:#334155; line-height:1.7; }
-.expand-tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
-.expand-tag { background:#e2e8f0; color:#475569; font-size:0.7rem; font-weight:700; padding:2px 9px; border-radius:20px; }
+/* ===== TURMAS GRID ===== */
+.turmas-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 14px; margin-bottom: 10px;
+}
+.turma-card {
+  background: var(--surface); border: 1.5px solid var(--border);
+  border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 16px; transition: box-shadow 0.2s;
+}
+.turma-card:hover { box-shadow: 0 4px 18px rgba(0,0,0,0.10); }
+.turma-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.turma-nome { font-size: 0.95rem; font-weight: 700; color: var(--text); }
+.turma-badge { font-size: 0.65rem; font-weight: 700; padding: 2px 8px; border-radius: 10px; }
+.turma-badge.red    { background: var(--red-bg);    color: var(--red-dark); border: 1px solid var(--red-bdr); }
+.turma-badge.yellow { background: var(--yellow-bg); color: #7d5a10; border: 1px solid var(--yellow-bdr); }
+.turma-badge.green  { background: var(--green-bg);  color: #155234; border: 1px solid var(--green-bdr); }
+.turma-stat-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; margin-bottom: 3px; }
+.turma-stat-row .lbl { color: var(--muted); }
+.turma-stat-row .val { font-weight: 700; }
+.val.red    { color: var(--red); }
+.val.green  { color: var(--green); }
+.val.yellow { color: var(--yellow); }
+.val.orange { color: var(--orange); }
+.val.blue   { color: var(--blue); }
+.leitura-row {
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 0.74rem; margin-top: 5px; padding: 4px 0;
+  border-top: 1px dashed var(--border);
+}
+.leitura-label { color: var(--muted); }
+.leitura-val { font-weight: 700; }
+.leitura-val.red    { color: var(--red); }
+.leitura-val.green  { color: var(--green); }
+.leitura-val.orange { color: var(--orange); }
+.leitura-val.yellow { color: var(--yellow); }
 
-/* PROGRESS */
-.hab-row { display:flex; align-items:center; gap:8px; padding:4px 0; font-size:0.78rem; }
-.hab-code { font-weight:800; font-size:0.72rem; min-width:42px; text-align:center; padding:2px 6px; border-radius:4px; }
-.hab-row.red .hab-code { background:var(--red-bg); color:var(--red-dark); }
-.hab-row.yellow .hab-code { background:var(--yellow-bg); color:#92400e; }
-.hab-row.green .hab-code { background:var(--green-bg); color:#065f46; }
-.hab-name { color:var(--muted); font-size:0.75rem; flex:1; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-.hab-pct { font-weight:800; font-size:0.78rem; min-width:36px; text-align:right; }
-.hab-row.red .hab-pct { color:var(--red); }
-.hab-row.yellow .hab-pct { color:var(--yellow); }
-.hab-row.green .hab-pct { color:var(--green); }
-.progress-track { background:#e2e8f0; border-radius:4px; overflow:hidden; flex:1; }
-.progress-fill { height:100%; border-radius:4px; transition:width 0.7s ease; }
-.progress-fill.red { background:var(--red); }
-.progress-fill.yellow { background:var(--yellow); }
-.progress-fill.green { background:var(--green); }
-.progress-fill.blue { background:var(--blue); }
-.progress-fill.orange { background:var(--orange); }
+/* ===== ALERT BANNER ===== */
+.alert-banner {
+  border-radius: var(--radius); padding: 13px 17px; margin-bottom: 11px;
+  border-left: 5px solid; font-size: 0.86rem;
+  display: flex; align-items: flex-start; gap: 11px;
+}
+.alert-banner.danger  { background: var(--red-bg);    border-color: var(--red);    color: #7a1a0e; }
+.alert-banner.warning { background: var(--yellow-bg); border-color: var(--yellow); color: #7a3e05; }
+.alert-banner.success { background: var(--green-bg);  border-color: var(--green);  color: #155234; }
+.alert-banner.info    { background: var(--blue-bg);   border-color: var(--blue);   color: #12347a; }
+.alert-banner .ab-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 1px; }
+.alert-title { font-weight: 700; margin-bottom: 3px; }
+.alert-body { font-size: 0.80rem; line-height: 1.6; }
 
-/* TURMAS GRID */
-.turmas-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(215px,1fr)); gap:12px; padding:16px 18px; background:var(--surface); border:1px solid var(--border); border-top:none; border-radius:0 0 12px 12px; }
-.turma-card { border:1px solid var(--border); border-radius:10px; padding:14px; background:#fafbfc; }
-.turma-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
-.turma-nome { font-family:'Syne',sans-serif; font-size:0.92rem; font-weight:800; }
-.turma-badge { font-size:0.65rem; font-weight:700; padding:2px 7px; border-radius:10px; }
-.turma-badge.red { background:var(--red-bg); color:var(--red-dark); border:1px solid var(--red-bdr); }
-.turma-badge.yellow { background:var(--yellow-bg); color:#92400e; border:1px solid var(--yellow-bdr); }
-.turma-badge.green { background:var(--green-bg); color:#065f46; border:1px solid var(--green-bdr); }
-.turma-stat-row { display:flex; justify-content:space-between; align-items:center; font-size:0.75rem; margin-bottom:4px; }
-.turma-stat-row .label { color:var(--muted); }
-.turma-stat-row .value { font-weight:800; }
-.value.red { color:var(--red); }
-.value.green { color:var(--green); }
-.value.yellow { color:var(--yellow); }
-.value.orange { color:var(--orange); }
+/* ===== SECTION BLOCK (expandable card groups) ===== */
+.section-block { margin-bottom: 30px; }
+.section-block-header {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 18px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius) var(--radius) 0 0;
+  border-bottom: 3px solid var(--border); box-shadow: var(--shadow);
+}
+.section-block-header.dark { background: var(--sidebar-bg); border-color: #2e3d52; }
+.sb-icon {
+  width: 38px; height: 38px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; flex-shrink: 0;
+}
+.sb-info h3 { font-size: 0.98rem; font-weight: 700; color: var(--blue-dark); line-height: 1.3; }
+.sb-info p  { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+.section-block-header.dark .sb-info h3 { color: #fff; }
+.section-block-header.dark .sb-info p  { color: #7a90a8; }
 
-/* LEITURA MINI BARS */
-.leitura-row { display:flex; align-items:center; justify-content:space-between; font-size:0.73rem; margin-top:5px; padding:3px 0; border-top:1px dashed #e2e8f0; }
-.leitura-label { color:var(--muted); }
-.leitura-val { font-weight:800; }
-.leitura-val.red { color:var(--red); }
-.leitura-val.green { color:var(--green); }
-.leitura-val.orange { color:var(--orange); }
+/* ===== NOTIF CARDS ===== */
+.notif-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-top: none; cursor: pointer;
+  transition: background 0.15s; overflow: hidden;
+}
+.notif-card:last-child { border-radius: 0 0 var(--radius) var(--radius); }
+.notif-card:hover { background: #f5f8ff; }
+.notif-card.priority-red    { border-left: 5px solid var(--red); }
+.notif-card.priority-yellow { border-left: 5px solid var(--yellow); }
+.notif-card.priority-green  { border-left: 5px solid var(--green); }
+.notif-card.priority-blue   { border-left: 5px solid var(--blue); }
+.notif-card.priority-orange { border-left: 5px solid var(--orange); }
 
-/* COMPARATIVO TABLE */
-.comp-table { width:100%; border-collapse:collapse; font-size:0.82rem; }
-.comp-table th { background:#f1f5f9; color:var(--muted); font-weight:700; padding:8px 12px; text-align:left; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.05em; }
-.comp-table td { padding:8px 12px; border-bottom:1px solid var(--border); }
-.comp-table tr:last-child td { border-bottom:none; }
-.comp-table .turma-col { font-weight:800; }
-.badge-sm { display:inline-block; font-size:0.65rem; font-weight:700; padding:1px 6px; border-radius:8px; }
-.badge-sm.red { background:var(--red-bg); color:var(--red-dark); }
-.badge-sm.yellow { background:var(--yellow-bg); color:#92400e; }
-.badge-sm.green { background:var(--green-bg); color:#065f46; }
-.badge-sm.orange { background:var(--orange-bg); color:#9a3412; }
+.notif-top { display: flex; align-items: flex-start; gap: 14px; padding: 16px 18px; }
+.notif-avatar {
+  width: 38px; height: 38px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; flex-shrink: 0;
+}
+.notif-avatar.red    { background: var(--red-bg); }
+.notif-avatar.yellow { background: var(--yellow-bg); }
+.notif-avatar.green  { background: var(--green-bg); }
+.notif-avatar.blue   { background: var(--blue-bg); }
+.notif-avatar.orange { background: var(--orange-bg); }
 
-.table-wrap { padding:0 18px 18px; background:var(--surface); border:1px solid var(--border); border-top:none; border-radius:0 0 12px 12px; overflow-x:auto; }
+.notif-body { flex: 1; min-width: 0; }
+.notif-header-row { display: flex; align-items: flex-start; gap: 10px; flex-wrap: wrap; margin-bottom: 5px; }
+.notif-title { font-weight: 700; font-size: 0.88rem; line-height: 1.35; flex: 1; color: var(--text); }
+.notif-source {
+  font-size: 0.68rem; font-weight: 700; padding: 2px 9px; border-radius: 20px;
+  background: #e8eef6; color: var(--muted); white-space: nowrap; flex-shrink: 0;
+}
+.notif-summary { font-size: 0.82rem; color: var(--muted); line-height: 1.6; margin-bottom: 8px; }
+.notif-metrics { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 8px; }
+.metric-pill {
+  display: flex; align-items: center; gap: 5px;
+  padding: 3px 10px; border-radius: 20px; font-size: 0.76rem; font-weight: 700;
+}
+.metric-pill.red    { background: var(--red-bg);    color: var(--red-dark); border: 1px solid var(--red-bdr); }
+.metric-pill.yellow { background: var(--yellow-bg); color: #7d5a10; border: 1px solid var(--yellow-bdr); }
+.metric-pill.green  { background: var(--green-bg);  color: #155234; border: 1px solid var(--green-bdr); }
+.metric-pill.blue   { background: var(--blue-bg);   color: #12347a; border: 1px solid var(--blue-bdr); }
+.metric-pill.orange { background: var(--orange-bg); color: #7e4a10; border: 1px solid var(--orange-bdr); }
+.dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+
+.notif-toggle {
+  background: none; border: none; cursor: pointer;
+  font-size: 1.2rem; color: var(--muted2); flex-shrink: 0;
+  padding: 3px 5px; transition: transform 0.2s; align-self: center;
+}
+.notif-card.open .notif-toggle { transform: rotate(180deg); }
+.notif-expand {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.35s ease;
+  background: #f4f8ff; padding: 0 18px;
+}
+.notif-card.open .notif-expand {
+  max-height: 700px; border-top: 1px solid var(--border); padding: 16px 18px;
+}
+.action-tag {
+  display: inline-block; background: #1a2535; color: #f0b429;
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 3px 10px; border-radius: 4px; margin-bottom: 7px;
+}
+.action-text { font-size: 0.82rem; color: #2c3e50; line-height: 1.8; }
+.expand-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 9px; }
+.expand-tag {
+  background: #dde4ef; color: #3d5270;
+  font-size: 0.68rem; font-weight: 700; padding: 2px 9px; border-radius: 20px;
+}
+
+/* ===== HAB PROGRESS ROWS ===== */
+.hab-row { display: flex; align-items: center; gap: 8px; padding: 4px 0; font-size: 0.80rem; }
+.hab-code {
+  font-weight: 700; font-size: 0.68rem; min-width: 58px;
+  text-align: center; padding: 2px 6px; border-radius: 4px; white-space: nowrap;
+}
+.hab-row.red    .hab-code { background: var(--red-bg);    color: var(--red-dark); }
+.hab-row.yellow .hab-code { background: var(--yellow-bg); color: #7d5a10; }
+.hab-row.green  .hab-code { background: var(--green-bg);  color: #155234; }
+.hab-name { color: var(--muted); font-size: 0.76rem; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hab-pct { font-weight: 700; font-size: 0.78rem; min-width: 38px; text-align: right; }
+.hab-row.red    .hab-pct { color: var(--red); }
+.hab-row.yellow .hab-pct { color: var(--yellow); }
+.hab-row.green  .hab-pct { color: var(--green); }
+.progress-track { background: #dde4ef; border-radius: 4px; overflow: hidden; flex: 1; }
+.progress-fill { height: 100%; border-radius: 4px; transition: width 0.7s ease; }
+.progress-fill.red    { background: var(--red); }
+.progress-fill.yellow { background: var(--yellow); }
+.progress-fill.green  { background: var(--green); }
+.progress-fill.blue   { background: var(--blue); }
+.progress-fill.orange { background: var(--orange); }
+
+/* ===== COMPARATIVO TABLE ===== */
+.data-table-wrap {
+  background: var(--surface); border-radius: var(--radius);
+  border: 1px solid var(--border); box-shadow: var(--shadow);
+  overflow: hidden; margin-bottom: 14px;
+}
+.data-table-wrap .table-header {
+  padding: 12px 16px 10px; border-bottom: 1px solid var(--border); background: #fafcff;
+}
+.table-header h3 { font-size: 0.90rem; font-weight: 700; color: var(--blue-dark); }
+.table-header p  { font-size: 0.73rem; color: var(--muted2); }
+.table-scroll { overflow-x: auto; }
+.data-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+.data-table thead tr { background: linear-gradient(135deg, #1a3a5c, #1e5799); color: #fff; }
+.data-table th {
+  padding: 10px 12px; text-align: left;
+  font-size: 0.70rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em; white-space: nowrap;
+}
+.data-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.data-table tbody tr:last-child td { border-bottom: none; }
+.data-table tbody tr:hover { background: #f8fafc; }
+.data-table .turma-col { font-weight: 700; color: var(--blue-dark); }
+.badge-sm { display: inline-block; font-size: 0.66rem; font-weight: 700; padding: 2px 8px; border-radius: 8px; }
+.badge-sm.red    { background: var(--red-bg);    color: var(--red-dark); border: 1px solid var(--red-bdr); }
+.badge-sm.yellow { background: var(--yellow-bg); color: #7d5a10; border: 1px solid var(--yellow-bdr); }
+.badge-sm.green  { background: var(--green-bg);  color: #155234; border: 1px solid var(--green-bdr); }
+.badge-sm.orange { background: var(--orange-bg); color: #7e4a10; border: 1px solid var(--orange-bdr); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .main { padding: 18px 16px 40px; }
+  .turmas-grid { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
@@ -186,692 +358,743 @@ body { background:var(--bg); color:var(--text); font-family:'Nunito',sans-serif;
 <!-- SIDEBAR -->
 <aside class="sidebar">
   <div class="sidebar-logo">
-    <div class="school-name"><span>Adriano Martins</span> EEIEF</div>
-    <div class="school-sub">Caucaia · CE · Municipal</div>
-    <div class="chip chip-orange">📚 CNCA — Avaliações Internas</div>
+    <div class="school-badge">Painel do Diretor</div>
+    <div class="school-name">Adriano <span>Martins</span></div>
+    <div class="school-sub">EEIEF · Caucaia · CE · INEP 23061944</div>
   </div>
 
-  <div class="nav-section">Navegação</div>
-  <a class="nav-item active" href="#visao"><div class="nav-icon" style="background:rgba(59,130,246,0.15)">📋</div><span class="nav-label">Visão Geral</span></a>
-  <a class="nav-item" href="#av1"><div class="nav-icon" style="background:rgba(16,185,129,0.12)">📊</div><span class="nav-label">Avaliação 1</span><span class="nav-badge yellow">⚠</span></a>
-  <a class="nav-item" href="#av2"><div class="nav-icon" style="background:rgba(239,68,68,0.12)">📈</div><span class="nav-label">Avaliação 2</span><span class="nav-badge red">!</span></a>
-  <a class="nav-item" href="#leitura"><div class="nav-icon" style="background:rgba(249,115,22,0.12)">📖</div><span class="nav-label">Leitura</span><span class="nav-badge red">!</span></a>
-  <a class="nav-item" href="#comparativo"><div class="nav-icon" style="background:rgba(139,92,246,0.12)">🔄</div><span class="nav-label">Av1 × Av2</span></a>
-  <a class="nav-item" href="#acoes"><div class="nav-icon" style="background:rgba(245,158,11,0.12)">🎯</div><span class="nav-label">Plano de Ação</span></a>
+  <div class="nav-section">Indicadores</div>
+  <a class="nav-item" href="painel.html">
+    <div class="nav-icon" style="background:#ecfeff">🏠</div>
+    <span class="nav-label">Visão Geral</span>
+  </a>
+  <a class="nav-item" href="busca_ativa.html">
+    <div class="nav-icon" style="background:#fef5e7">🔍</div>
+    <span class="nav-label">Busca Ativa</span>
+    <span class="nav-badge nb-orange">32</span>
+  </a>
+  <a class="nav-item" href="adesc.html">
+    <div class="nav-icon" style="background:#edfaf3">📖</div>
+    <span class="nav-label">ADESC 2025</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+  <a class="nav-item" href="avalie_ce.html">
+    <div class="nav-icon" style="background:#fef9ec">📊</div>
+    <span class="nav-label">Avalie.CE</span>
+    <span class="nav-badge nb-red">6</span>
+  </a>
+  <a class="nav-item" href="bimestrais.html">
+    <div class="nav-icon" style="background:#eaf2fc">📝</div>
+    <span class="nav-label">Bimestrais 2025</span>
+    <span class="nav-badge nb-yellow">3</span>
+  </a>
+  <a class="nav-item active" href="cnca.html">
+    <div class="nav-icon" style="background:#fef5e7">📚</div>
+    <span class="nav-label">CNCA</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+  <a class="nav-item" href="qedu.html">
+    <div class="nav-icon" style="background:#eaf2fc">🎓</div>
+    <span class="nav-label">QEdu / Censo</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+  <a class="nav-item" href="saeb.html">
+    <div class="nav-icon" style="background:#fdf0ef">📋</div>
+    <span class="nav-label">SAEB 2023</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+  <a class="nav-item" href="spaece.html">
+    <div class="nav-icon" style="background:#fef9ec">📈</div>
+    <span class="nav-label">SPAECE 2024</span>
+    <span class="nav-badge nb-red">!!</span>
+  </a>
 
-  <div class="nav-section" style="margin-top:16px">Legenda Semáforo</div>
-  <div style="padding:8px 20px">
-    <div class="leg-item"><div class="leg-dot" style="background:#ef4444"></div>Crítico (defasagem &gt;50%)</div>
-    <div class="leg-item"><div class="leg-dot" style="background:#f59e0b"></div>Atenção (25–50%)</div>
-    <div class="leg-item"><div class="leg-dot" style="background:#10b981"></div>Satisfatório (&lt;25%)</div>
+  <div class="nav-section" style="margin-top:10px">Navegação Interna</div>
+  <a class="nav-item" href="#visao">
+    <div class="nav-icon" style="background:rgba(26,86,160,.12)">📋</div>
+    <span class="nav-label">Visão Geral</span>
+  </a>
+  <a class="nav-item" href="#av1">
+    <div class="nav-icon" style="background:rgba(26,122,74,.12)">📊</div>
+    <span class="nav-label">Avaliação 1</span>
+    <span class="nav-badge nb-yellow">⚠</span>
+  </a>
+  <a class="nav-item" href="#av2">
+    <div class="nav-icon" style="background:rgba(192,57,43,.12)">📈</div>
+    <span class="nav-label">Avaliação 2</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+  <a class="nav-item" href="#leitura">
+    <div class="nav-icon" style="background:rgba(202,111,30,.12)">📖</div>
+    <span class="nav-label">Leitura</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+  <a class="nav-item" href="#comparativo">
+    <div class="nav-icon" style="background:rgba(108,76,180,.12)">🔄</div>
+    <span class="nav-label">Av1 × Av2</span>
+  </a>
+  <a class="nav-item" href="#acoes">
+    <div class="nav-icon" style="background:rgba(14,116,144,.15)">⚡</div>
+    <span class="nav-label">Plano de Ação</span>
+  </a>
+
+  <div class="nav-section" style="margin-top:10px">Semáforo</div>
+  <div class="legend-block">
+    <div class="leg-row"><div class="leg-dot" style="background:var(--red)"></div>Crítico (defasagem &gt;50%)</div>
+    <div class="leg-row"><div class="leg-dot" style="background:var(--yellow)"></div>Atenção (25–50%)</div>
+    <div class="leg-row"><div class="leg-dot" style="background:var(--green)"></div>Satisfatório (&lt;25%)</div>
   </div>
+
+  <div class="nav-section" style="margin-top:10px">Sistema</div>
+  <a class="nav-item" href="../index.html">
+    <div class="nav-icon" style="background:#fdf0ef">🏫</div>
+    <span class="nav-label">Trocar Escola</span>
+  </a>
 
   <div class="sidebar-footer">
-    <p>Adriano Martins EEIEF<br>Caucaia · CE<br>Fonte: CNCA – Avaliações Internas<br>Av1 e Av2 · 1º ao 5º Ano<br>Clique nos cartões p/ ver ações</p>
+    <div>Adriano Martins EEIEF<br>Caucaia · CE · Região Praia</div>
+    <div style="margin-top:6px; color:#8097b0">Fonte: CNCA – Avaliações Internas<br>Av1 e Av2 · 1º ao 5º Ano</div>
+    <div style="margin-top:4px; color:#8097b0">Clique nos cartões para ver as ações</div>
   </div>
 </aside>
 
 <!-- MAIN -->
 <main class="main">
 
-  <!-- TOP BAR -->
+  <!-- Topbar -->
   <div class="topbar">
-    <div>
-      <div class="topbar-title">🏫 Painel do Diretor — CNCA</div>
-      <div class="topbar-sub">Avaliações Internas Av1 e Av2 · 1º ao 5º Ano · Adriano Martins EEIEF</div>
+    <div class="topbar-title">
+      <h2>📚 CNCA · Adriano Martins EEIEF</h2>
+      <p>Avaliações Internas Av1 e Av2 · 1º ao 5º Ano · Caucaia, CE</p>
     </div>
     <div class="topbar-stats">
-      <div class="topbar-stat blue"><span class="val">5</span><span class="lbl">Turmas</span></div>
-      <div class="topbar-stat orange"><span class="val">38</span><span class="lbl">Pré-leitores</span></div>
-      <div class="topbar-stat green"><span class="val">24</span><span class="lbl">Fluentes</span></div>
-      <div class="topbar-stat red"><span class="val">3</span><span class="lbl">Turmas Críticas</span></div>
+      <div class="topbar-stat">
+        <span class="ts-val ts-blue">5</span>
+        <span class="ts-lab">Turmas</span>
+      </div>
+      <div class="topbar-stat">
+        <span class="ts-val ts-orange">38</span>
+        <span class="ts-lab">Pré-leitores</span>
+      </div>
+      <div class="topbar-stat">
+        <span class="ts-val ts-green">24</span>
+        <span class="ts-lab">Fluentes</span>
+      </div>
+      <div class="topbar-stat">
+        <span class="ts-val ts-red">3</span>
+        <span class="ts-lab">Turmas Críticas</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Alert principal -->
+  <div class="alert-banner danger">
+    <span class="ab-icon">🚨</span>
+    <div>
+      <div class="alert-title">Regressão grave no 5º Ano e crise de alfabetização no 2º Ano exigem ação imediata</div>
+      <div class="alert-body">5ºA: defasagem foi de 0% para 44%. 5ºB: de 9% para 48%. 2ºB: 16 pré-leitores, 0 fluentes. 2ºA: 10 pré-leitores. Total de 38 pré-leitores na escola. <strong>Clique em cada cartão para ver as ações sugeridas.</strong></div>
     </div>
   </div>
 
   <!-- ===== VISÃO GERAL ===== -->
-  <div class="section" id="visao">
-    <div class="section-header">
-      <div class="section-icon" style="background:rgba(59,130,246,0.1)">📊</div>
-      <div class="section-info">
-        <h2>Visão Geral por Turma — Av1 × Av2 + Leitura</h2>
-        <p>Comparativo entre as duas avaliações internas e diagnóstico de leitura</p>
-      </div>
-    </div>
+  <div id="visao">
+    <div class="section-title">📊 Visão Geral por Turma — Av1 × Av2 + Leitura</div>
+
     <div class="turmas-grid">
 
       <!-- 1º ANO A -->
-      <div class="turma-card" style="border-left:4px solid var(--yellow)">
+      <div class="turma-card" style="border-left:5px solid var(--yellow)">
         <div class="turma-header">
           <span class="turma-nome">1º Ano A</span>
           <span class="turma-badge yellow">⚠ ATENÇÃO</span>
         </div>
-        <div class="turma-stat-row"><span class="label">Part. Av1</span><span class="value">76%</span></div>
-        <div class="turma-stat-row"><span class="label">Defasagem Av1</span><span class="value yellow">38%</span></div>
-        <div class="turma-stat-row"><span class="label">Adequado Av1</span><span class="value">23%</span></div>
-        <div class="turma-stat-row" style="margin-top:6px"><span class="label">Part. Av2</span><span class="value">71%</span></div>
-        <div class="turma-stat-row"><span class="label">Defasagem Av2</span><span class="value yellow">25%</span></div>
-        <div class="turma-stat-row"><span class="label">Adequado Av2</span><span class="value green">50%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Part. Av1</span><span class="val">76%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Defasagem Av1</span><span class="val yellow">38%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Adequado Av1</span><span class="val">23%</span></div>
+        <div class="turma-stat-row" style="margin-top:6px"><span class="lbl">Part. Av2</span><span class="val">71%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Defasagem Av2</span><span class="val yellow">25%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Adequado Av2</span><span class="val green">50%</span></div>
         <div class="leitura-row"><span class="leitura-label">Leitura</span><span class="leitura-val orange">—</span></div>
       </div>
 
       <!-- 1º ANO B -->
-      <div class="turma-card" style="border-left:4px solid var(--green)">
+      <div class="turma-card" style="border-left:5px solid var(--green)">
         <div class="turma-header">
           <span class="turma-nome">1º Ano B</span>
           <span class="turma-badge green">✅ DESTAQUE</span>
         </div>
-        <div class="turma-stat-row"><span class="label">Part. Av1</span><span class="value">90%</span></div>
-        <div class="turma-stat-row"><span class="label">Defasagem Av1</span><span class="value green">5%</span></div>
-        <div class="turma-stat-row"><span class="label">Adequado Av1</span><span class="value green">84%</span></div>
-        <div class="turma-stat-row" style="margin-top:6px"><span class="label">Part. Av2</span><span class="value">86%</span></div>
-        <div class="turma-stat-row"><span class="label">Defasagem Av2</span><span class="value green">0%</span></div>
-        <div class="turma-stat-row"><span class="label">Adequado Av2</span><span class="value green">78%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Part. Av1</span><span class="val">90%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Defasagem Av1</span><span class="val green">5%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Adequado Av1</span><span class="val green">84%</span></div>
+        <div class="turma-stat-row" style="margin-top:6px"><span class="lbl">Part. Av2</span><span class="val">86%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Defasagem Av2</span><span class="val green">0%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Adequado Av2</span><span class="val green">78%</span></div>
         <div class="leitura-row"><span class="leitura-label">Leitura</span><span class="leitura-val orange">—</span></div>
       </div>
 
       <!-- 2º ANO A -->
-      <div class="turma-card" style="border-left:4px solid var(--yellow)">
+      <div class="turma-card" style="border-left:5px solid var(--yellow)">
         <div class="turma-header">
           <span class="turma-nome">2º Ano A</span>
           <span class="turma-badge yellow">⚠ ATENÇÃO</span>
         </div>
-        <div class="turma-stat-row"><span class="label">Part. Av1</span><span class="value">90%</span></div>
-        <div class="turma-stat-row"><span class="label">Defasagem Av1</span><span class="value yellow">33%</span></div>
-        <div class="turma-stat-row"><span class="label">Adequado Av1</span><span class="value">50%</span></div>
-        <div class="turma-stat-row" style="margin-top:6px"><span class="label">Part. Av2</span><span class="value">65%</span></div>
-        <div class="turma-stat-row"><span class="label">Defasagem Av2</span><span class="value yellow">31%</span></div>
-        <div class="turma-stat-row"><span class="label">Adequado Av2</span><span class="value red">8%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Part. Av1</span><span class="val">90%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Defasagem Av1</span><span class="val yellow">33%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Adequado Av1</span><span class="val">50%</span></div>
+        <div class="turma-stat-row" style="margin-top:6px"><span class="lbl">Part. Av2</span><span class="val">65%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Defasagem Av2</span><span class="val yellow">31%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Adequado Av2</span><span class="val red">8%</span></div>
         <div class="leitura-row"><span class="leitura-label">Pré-leitores</span><span class="leitura-val red">10 alunos</span></div>
         <div class="leitura-row"><span class="leitura-label">Part. Leitura</span><span class="leitura-val yellow">70%</span></div>
       </div>
 
       <!-- 2º ANO B -->
-      <div class="turma-card" style="border-left:4px solid var(--red)">
+      <div class="turma-card" style="border-left:5px solid var(--red)">
         <div class="turma-header">
           <span class="turma-nome">2º Ano B</span>
           <span class="turma-badge red">🔴 CRÍTICO</span>
         </div>
-        <div class="turma-stat-row"><span class="label">Part. Av1</span><span class="value">95%</span></div>
-        <div class="turma-stat-row"><span class="label">Defasagem Av1</span><span class="value green">6%</span></div>
-        <div class="turma-stat-row"><span class="label">Adequado Av1</span><span class="value green">56%</span></div>
-        <div class="turma-stat-row" style="margin-top:6px"><span class="label">Part. Av2</span><span class="value red">65%¹</span></div>
-        <div class="turma-stat-row"><span class="label">Defasagem Av2</span><span class="value red">31%</span></div>
-        <div class="turma-stat-row"><span class="label">Adequado Av2</span><span class="value red">8%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Part. Av1</span><span class="val">95%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Defasagem Av1</span><span class="val green">6%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Adequado Av1</span><span class="val green">56%</span></div>
+        <div class="turma-stat-row" style="margin-top:6px"><span class="lbl">Part. Av2</span><span class="val red">65%¹</span></div>
+        <div class="turma-stat-row"><span class="lbl">Defasagem Av2</span><span class="val red">31%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Adequado Av2</span><span class="val red">8%</span></div>
         <div class="leitura-row"><span class="leitura-label">Pré-leitores</span><span class="leitura-val red">16 alunos</span></div>
         <div class="leitura-row"><span class="leitura-label">Fluentes</span><span class="leitura-val orange">0</span></div>
       </div>
 
       <!-- 3º ANO U -->
-      <div class="turma-card" style="border-left:4px solid var(--yellow)">
+      <div class="turma-card" style="border-left:5px solid var(--yellow)">
         <div class="turma-header">
           <span class="turma-nome">3º Ano U</span>
           <span class="turma-badge yellow">⚠ ATENÇÃO</span>
         </div>
-        <div class="turma-stat-row"><span class="label">Part. Av1</span><span class="value red">0%¹</span></div>
-        <div class="turma-stat-row"><span class="label">Defasagem Av1</span><span class="value orange">N/A</span></div>
-        <div class="turma-stat-row"><span class="label">Adequado Av1</span><span class="value orange">N/A</span></div>
-        <div class="turma-stat-row" style="margin-top:6px"><span class="label">Part. Av2</span><span class="value">83%</span></div>
-        <div class="turma-stat-row"><span class="label">Defasagem Av2</span><span class="value green">0%</span></div>
-        <div class="turma-stat-row"><span class="label">Adequado Av2</span><span class="value green">52%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Part. Av1</span><span class="val red">0%¹</span></div>
+        <div class="turma-stat-row"><span class="lbl">Defasagem Av1</span><span class="val orange">N/A</span></div>
+        <div class="turma-stat-row"><span class="lbl">Adequado Av1</span><span class="val orange">N/A</span></div>
+        <div class="turma-stat-row" style="margin-top:6px"><span class="lbl">Part. Av2</span><span class="val">83%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Defasagem Av2</span><span class="val green">0%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Adequado Av2</span><span class="val green">52%</span></div>
         <div class="leitura-row"><span class="leitura-label">Dados Av1</span><span class="leitura-val red">Não coletados</span></div>
       </div>
 
       <!-- 5º ANO A -->
-      <div class="turma-card" style="border-left:4px solid var(--yellow)">
+      <div class="turma-card" style="border-left:5px solid var(--yellow)">
         <div class="turma-header">
           <span class="turma-nome">5º Ano A</span>
           <span class="turma-badge yellow">⚠ ATENÇÃO</span>
         </div>
-        <div class="turma-stat-row"><span class="label">Part. Av1</span><span class="value">79%</span></div>
-        <div class="turma-stat-row"><span class="label">Defasagem Av1</span><span class="value green">0%</span></div>
-        <div class="turma-stat-row"><span class="label">Adequado Av1</span><span class="value green">67%</span></div>
-        <div class="turma-stat-row" style="margin-top:6px"><span class="label">Part. Av2</span><span class="value">95%</span></div>
-        <div class="turma-stat-row"><span class="label">Defasagem Av2</span><span class="value red">44%</span></div>
-        <div class="turma-stat-row"><span class="label">Adequado Av2</span><span class="value red">28%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Part. Av1</span><span class="val">79%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Defasagem Av1</span><span class="val green">0%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Adequado Av1</span><span class="val green">67%</span></div>
+        <div class="turma-stat-row" style="margin-top:6px"><span class="lbl">Part. Av2</span><span class="val">95%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Defasagem Av2</span><span class="val red">44%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Adequado Av2</span><span class="val red">28%</span></div>
         <div class="leitura-row"><span class="leitura-label">Pré-leitores</span><span class="leitura-val orange">4</span></div>
         <div class="leitura-row"><span class="leitura-label">Fluentes</span><span class="leitura-val green">10</span></div>
       </div>
 
       <!-- 5º ANO B -->
-      <div class="turma-card" style="border-left:4px solid var(--red)">
+      <div class="turma-card" style="border-left:5px solid var(--red)">
         <div class="turma-header">
           <span class="turma-nome">5º Ano B</span>
           <span class="turma-badge red">🔴 CRÍTICO</span>
         </div>
-        <div class="turma-stat-row"><span class="label">Part. Av1</span><span class="value">92%</span></div>
-        <div class="turma-stat-row"><span class="label">Defasagem Av1</span><span class="value green">9%</span></div>
-        <div class="turma-stat-row"><span class="label">Adequado Av1</span><span class="value green">45%</span></div>
-        <div class="turma-stat-row" style="margin-top:6px"><span class="label">Part. Av2</span><span class="value">88%</span></div>
-        <div class="turma-stat-row"><span class="label">Defasagem Av2</span><span class="value red">48%</span></div>
-        <div class="turma-stat-row"><span class="label">Adequado Av2</span><span class="value red">24%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Part. Av1</span><span class="val">92%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Defasagem Av1</span><span class="val green">9%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Adequado Av1</span><span class="val green">45%</span></div>
+        <div class="turma-stat-row" style="margin-top:6px"><span class="lbl">Part. Av2</span><span class="val">88%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Defasagem Av2</span><span class="val red">48%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Adequado Av2</span><span class="val red">24%</span></div>
         <div class="leitura-row"><span class="leitura-label">Pré-leitores</span><span class="leitura-val orange">4</span></div>
         <div class="leitura-row"><span class="leitura-label">Fluentes</span><span class="leitura-val green">14</span></div>
       </div>
 
     </div>
-    <p style="font-size:0.72rem;color:var(--muted2);padding:8px 18px;background:var(--surface);border:1px solid var(--border);border-top:none;border-radius:0 0 8px 8px">¹ Dados de Av2 do 2ºB e Av1 do 3ºU indicam ausência de coleta — requer verificação junto à equipe pedagógica.</p>
+    <p style="font-size:0.72rem;color:var(--muted2);padding:8px 14px;background:var(--surface);border:1px solid var(--border);border-radius:0 0 var(--radius) var(--radius);margin-top:-6px">¹ Dados de Av2 do 2ºB e Av1 do 3ºU indicam ausência de coleta — requer verificação junto à equipe pedagógica.</p>
   </div>
 
   <!-- ===== AVALIAÇÃO 1 ===== -->
-  <div class="section" id="av1">
-    <div class="section-header">
-      <div class="section-icon" style="background:rgba(16,185,129,0.1)">📊</div>
-      <div class="section-info">
-        <h2>Avaliação 1 — Pontos de Atenção</h2>
-        <p>Análise dos resultados da primeira avaliação interna por turma</p>
-      </div>
-    </div>
+  <div id="av1">
+    <div class="section-title">📊 Avaliação 1 — Pontos de Atenção</div>
 
-    <!-- 1A Av1 atenção -->
-    <div class="notif-card priority-yellow" onclick="toggle(this)">
-      <div class="notif-top">
-        <div class="notif-avatar yellow">⚠️</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">1º Ano A — Av1: 38% em defasagem e participação de 76%</div>
-            <span class="notif-source">CNCA · Av1</span>
-          </div>
-          <div class="notif-summary">Quase 4 em cada 10 alunos estão em defasagem na Av1. Participação de 76% é a mais baixa do 1º Ano — ausências frequentes podem agravar as lacunas de aprendizagem.</div>
-          <div class="notif-metrics">
-            <span class="metric-pill yellow"><span class="dot" style="background:var(--yellow)"></span>38% defasagem</span>
-            <span class="metric-pill yellow"><span class="dot" style="background:var(--yellow)"></span>Participação: 76%</span>
-            <span class="metric-pill blue"><span class="dot" style="background:var(--blue)"></span>Adequado: 23%</span>
-          </div>
+    <div class="section-block">
+      <div class="section-block-header">
+        <div class="sb-icon" style="background:rgba(26,122,74,.12)">📊</div>
+        <div class="sb-info">
+          <h3>Análise dos resultados da primeira avaliação interna por turma</h3>
+          <p>Clique em cada cartão para ver as ações sugeridas</p>
         </div>
-        <button class="notif-toggle">▾</button>
       </div>
-      <div class="notif-expand">
-        <div class="expand-action">
+
+      <div class="notif-card priority-yellow" onclick="toggle(this)">
+        <div class="notif-top">
+          <div class="notif-avatar yellow">⚠️</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">1º Ano A — Av1: 38% em defasagem e participação de 76%</div>
+              <span class="notif-source">CNCA · Av1</span>
+            </div>
+            <div class="notif-summary">Quase 4 em cada 10 alunos estão em defasagem na Av1. Participação de 76% é a mais baixa do 1º Ano — ausências frequentes podem agravar as lacunas de aprendizagem.</div>
+            <div class="notif-metrics">
+              <span class="metric-pill yellow"><span class="dot" style="background:var(--yellow)"></span>38% defasagem</span>
+              <span class="metric-pill yellow"><span class="dot" style="background:var(--yellow)"></span>Participação: 76%</span>
+              <span class="metric-pill blue"><span class="dot" style="background:var(--blue)"></span>Adequado: 23%</span>
+            </div>
+          </div>
+          <button class="notif-toggle">▾</button>
+        </div>
+        <div class="notif-expand">
           <div class="action-tag">🎯 Ação Sugerida — 1º Ano A · Av1</div>
           <div class="action-text">1. <strong>Investigar ausências:</strong> identificar os alunos ausentes na Av1 e verificar se há padrão de frequência irregular. Contatar famílias. 2. <strong>Diagnóstico individual:</strong> mapear os alunos em defasagem por nome e nível de aprendizagem. 3. <strong>Comparar com o 1ºB:</strong> entender o que difere entre as duas turmas — o 1ºB tem apenas 5% de defasagem na mesma avaliação.</div>
+          <div class="expand-tags"><span class="expand-tag">1º Ano A</span><span class="expand-tag">Frequência</span><span class="expand-tag">Diagnóstico</span></div>
         </div>
-        <div class="expand-tags"><span class="expand-tag">1º Ano A</span><span class="expand-tag">Frequência</span><span class="expand-tag">Diagnóstico</span></div>
       </div>
-    </div>
 
-    <!-- 1B Av1 destaque -->
-    <div class="notif-card priority-green" onclick="toggle(this)">
-      <div class="notif-top">
-        <div class="notif-avatar green">⭐</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">1º Ano B — Av1: Apenas 5% em defasagem. 84% adequado — referência da escola</div>
-            <span class="notif-source">CNCA · Av1</span>
+      <div class="notif-card priority-green" onclick="toggle(this)">
+        <div class="notif-top">
+          <div class="notif-avatar green">⭐</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">1º Ano B — Av1: Apenas 5% em defasagem. 84% adequado — referência da escola</div>
+              <span class="notif-source">CNCA · Av1</span>
+            </div>
+            <div class="notif-summary">O 1ºB apresenta o melhor desempenho na Av1: 84% de adequado e somente 5% de defasagem. É o oposto do 1ºA na mesma avaliação. Esse contraste precisa ser investigado e as boas práticas do 1ºB, documentadas.</div>
+            <div class="notif-metrics">
+              <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>84% adequado</span>
+              <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>5% defasagem</span>
+              <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>Participação: 90%</span>
+            </div>
           </div>
-          <div class="notif-summary">O 1ºB apresenta o melhor desempenho na Av1: 84% de adequado e somente 5% de defasagem. É o oposto do 1ºA na mesma avaliação. Esse contraste precisa ser investigado e as boas práticas do 1ºB, documentadas.</div>
-          <div class="notif-metrics">
-            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>84% adequado</span>
-            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span">5% defasagem</span>
-            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span">Participação: 90%</span>
-          </div>
+          <button class="notif-toggle">▾</button>
         </div>
-        <button class="notif-toggle">▾</button>
-      </div>
-      <div class="notif-expand">
-        <div class="expand-action">
+        <div class="notif-expand">
           <div class="action-tag">🎯 Ação Sugerida — 1º Ano B · Referência</div>
           <div class="action-text">1. <strong>Mapear estratégias:</strong> conversar com o professor do 1ºB e documentar as práticas pedagógicas. 2. <strong>Par pedagógico:</strong> propor que o professor do 1ºB apoie ou compartilhe planejamento com o do 1ºA. 3. <strong>Manter o momentum:</strong> garantir que a turma seja desafiada e não perca o engajamento no restante do ano letivo.</div>
+          <div class="expand-tags"><span class="expand-tag">1º Ano B</span><span class="expand-tag">Referência</span><span class="expand-tag">Boas Práticas</span></div>
         </div>
-        <div class="expand-tags"><span class="expand-tag">1º Ano B</span><span class="expand-tag">Referência</span><span class="expand-tag">Boas Práticas</span></div>
       </div>
-    </div>
 
-    <!-- 2A Av1 -->
-    <div class="notif-card priority-yellow" onclick="toggle(this)">
-      <div class="notif-top">
-        <div class="notif-avatar yellow">📉</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">2º Ano A — Av1: 33% defasagem, porém 50% adequado. Turma bimodal</div>
-            <span class="notif-source">CNCA · Av1</span>
+      <div class="notif-card priority-yellow" onclick="toggle(this)">
+        <div class="notif-top">
+          <div class="notif-avatar yellow">📉</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">2º Ano A — Av1: 33% defasagem, porém 50% adequado. Turma bimodal</div>
+              <span class="notif-source">CNCA · Av1</span>
+            </div>
+            <div class="notif-summary">A turma apresenta polarização: metade dos alunos está em nível adequado, mas um terço ainda em defasagem. Apenas 17% em nível intermediário — quase não há "meio-termo". A turma precisa de estratégias diferenciadas para atender os dois grupos.</div>
+            <div class="notif-metrics">
+              <span class="metric-pill yellow"><span class="dot" style="background:var(--yellow)"></span>33% defasagem</span>
+              <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>50% adequado</span>
+              <span class="metric-pill blue"><span class="dot" style="background:var(--blue)"></span>17% intermediário</span>
+            </div>
           </div>
-          <div class="notif-summary">A turma apresenta polarização: metade dos alunos está em nível adequado, mas um terço ainda em defasagem. Apenas 17% em nível intermediário — quase não há "meio-termo". A turma precisa de estratégias diferenciadas para atender os dois grupos.</div>
-          <div class="notif-metrics">
-            <span class="metric-pill yellow"><span class="dot" style="background:var(--yellow)"></span>33% defasagem</span>
-            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span">50% adequado</span>
-            <span class="metric-pill blue"><span class="dot" style="background:var(--blue)"></span">17% intermediário</span>
-          </div>
+          <button class="notif-toggle">▾</button>
         </div>
-        <button class="notif-toggle">▾</button>
-      </div>
-      <div class="notif-expand">
-        <div class="expand-action">
+        <div class="notif-expand">
           <div class="action-tag">🎯 Ação Sugerida — 2º Ano A · Av1</div>
           <div class="action-text">1. <strong>Agrupamento produtivo:</strong> criar grupos mistos com alunos adequados apoiando os em defasagem. 2. <strong>Atividades diferenciadas:</strong> enquanto os alunos adequados avançam em conteúdo, reforçar habilidades básicas com o grupo em defasagem. 3. <strong>Atenção ao grupo intermediário:</strong> com apenas 17%, há risco de os alunos desse grupo regredindo — monitoramento semanal.</div>
+          <div class="expand-tags"><span class="expand-tag">2º Ano A</span><span class="expand-tag">Agrupamento</span><span class="expand-tag">Diferenciação</span></div>
         </div>
-        <div class="expand-tags"><span class="expand-tag">2º Ano A</span><span class="expand-tag">Agrupamento</span><span class="expand-tag">Diferenciação</span></div>
       </div>
     </div>
-
   </div>
 
   <!-- ===== AVALIAÇÃO 2 ===== -->
-  <div class="section" id="av2">
-    <div class="section-header">
-      <div class="section-icon" style="background:rgba(239,68,68,0.1)">📈</div>
-      <div class="section-info">
-        <h2>Avaliação 2 — Alertas Críticos de Regressão</h2>
-        <p>Turmas que pioraram da Av1 para a Av2 exigem atenção imediata</p>
-      </div>
-    </div>
+  <div id="av2">
+    <div class="section-title">📈 Avaliação 2 — Alertas Críticos de Regressão</div>
 
-    <!-- 5A regressão grave -->
-    <div class="notif-card priority-red" onclick="toggle(this)" style="background:#fff7f7">
-      <div class="notif-top">
-        <div class="notif-avatar red">🚨</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">5º Ano A — REGRESSÃO GRAVE: De 0% para 44% de defasagem entre Av1 e Av2</div>
-            <span class="notif-source">CNCA · Av1→Av2</span>
-          </div>
-          <div class="notif-summary">Na Av1, a turma tinha 0% de defasagem e 67% de adequado. Na Av2, a defasagem disparou para 44% e o adequado caiu para 28%. Queda de 39 pontos percentuais no nível adequado. Investigação imediata é necessária — algo aconteceu entre as avaliações.</div>
-          <div>
-            <div class="hab-row red"><span class="hab-code">Def. Av1</span><span class="hab-name">Ponto de partida</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill green" style="width:0%"></div></div><span class="hab-pct">0%</span></div>
-            <div class="hab-row red"><span class="hab-code">Def. Av2</span><span class="hab-name">Situação atual</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill red" style="width:44%"></div></div><span class="hab-pct">44%</span></div>
-            <div class="hab-row yellow"><span class="hab-code">Adequ. Av1</span><span class="hab-name">Anterior</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill green" style="width:67%"></div></div><span class="hab-pct">67%</span></div>
-            <div class="hab-row red"><span class="hab-code">Adequ. Av2</span><span class="hab-name">Atual</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill red" style="width:28%"></div></div><span class="hab-pct">28%</span></div>
-          </div>
-          <div class="notif-metrics" style="margin-top:8px">
-            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>▲44pp defasagem</span>
-            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span">▼39pp adequado</span>
-          </div>
+    <div class="section-block">
+      <div class="section-block-header">
+        <div class="sb-icon" style="background:rgba(192,57,43,.12)">📈</div>
+        <div class="sb-info">
+          <h3>Turmas que pioraram da Av1 para a Av2 exigem atenção imediata</h3>
+          <p>Clique em cada cartão para ver as ações sugeridas</p>
         </div>
-        <button class="notif-toggle">▾</button>
       </div>
-      <div class="notif-expand">
-        <div class="expand-action">
+
+      <div class="notif-card priority-red" onclick="toggle(this)" style="background:#fef8f8">
+        <div class="notif-top">
+          <div class="notif-avatar red">🚨</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">5º Ano A — REGRESSÃO GRAVE: De 0% para 44% de defasagem entre Av1 e Av2</div>
+              <span class="notif-source">CNCA · Av1→Av2</span>
+            </div>
+            <div class="notif-summary">Na Av1, a turma tinha 0% de defasagem e 67% de adequado. Na Av2, a defasagem disparou para 44% e o adequado caiu para 28%. Queda de 39 pontos percentuais no nível adequado. Investigação imediata é necessária — algo aconteceu entre as avaliações.</div>
+            <div style="margin-top:10px">
+              <div class="hab-row red"><span class="hab-code">Def. Av1</span><span class="hab-name">Ponto de partida</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill green" style="width:0%"></div></div><span class="hab-pct">0%</span></div>
+              <div class="hab-row red"><span class="hab-code">Def. Av2</span><span class="hab-name">Situação atual</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill red" style="width:44%"></div></div><span class="hab-pct">44%</span></div>
+              <div class="hab-row yellow"><span class="hab-code">Adeq.Av1</span><span class="hab-name">Anterior</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill green" style="width:67%"></div></div><span class="hab-pct">67%</span></div>
+              <div class="hab-row red"><span class="hab-code">Adeq.Av2</span><span class="hab-name">Atual</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill red" style="width:28%"></div></div><span class="hab-pct">28%</span></div>
+            </div>
+            <div class="notif-metrics" style="margin-top:8px">
+              <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>▲44pp defasagem</span>
+              <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>▼39pp adequado</span>
+            </div>
+          </div>
+          <button class="notif-toggle">▾</button>
+        </div>
+        <div class="notif-expand">
           <div class="action-tag">🎯 Ação Urgente — 5º Ano A</div>
           <div class="action-text">1. <strong>Investigar a causa da regressão:</strong> houve mudança de professor? Conteúdo com maior dificuldade na Av2? Problemas de frequência? Responder essas perguntas é o primeiro passo. 2. <strong>Análise item a item:</strong> verificar quais habilidades avaliadas na Av2 geraram mais erros — pode ser salto brusco de complexidade curricular. 3. <strong>Retomada imediata:</strong> reunião urgente com o professor para redesenhar o planejamento e tratar os conteúdos da Av2 que apresentaram lacunas. 4. <strong>Monitoramento quinzenal:</strong> acompanhar evolução individual dos alunos que regrediram até a próxima avaliação.</div>
+          <div class="expand-tags"><span class="expand-tag">5º Ano A</span><span class="expand-tag">Regressão Urgente</span><span class="expand-tag">Análise de Causas</span></div>
         </div>
-        <div class="expand-tags"><span class="expand-tag">5º Ano A</span><span class="expand-tag">Regressão Urgente</span><span class="expand-tag">Análise de Causas</span></div>
       </div>
-    </div>
 
-    <!-- 5B regressão grave -->
-    <div class="notif-card priority-red" onclick="toggle(this)">
-      <div class="notif-top">
-        <div class="notif-avatar red">⚠️</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">5º Ano B — REGRESSÃO: De 9% para 48% de defasagem. Queda acentuada no adequado</div>
-            <span class="notif-source">CNCA · Av1→Av2</span>
+      <div class="notif-card priority-red" onclick="toggle(this)">
+        <div class="notif-top">
+          <div class="notif-avatar red">⚠️</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">5º Ano B — REGRESSÃO: De 9% para 48% de defasagem. Queda acentuada no adequado</div>
+              <span class="notif-source">CNCA · Av1→Av2</span>
+            </div>
+            <div class="notif-summary">O 5ºB seguiu o mesmo padrão do 5ºA: na Av1 tinha 9% de defasagem e 45% de adequado; na Av2 a defasagem subiu para 48% e o adequado caiu para 24%. Ambas as turmas do 5º Ano mostram regressão simultânea — sinal de um problema sistêmico no currículo ou na avaliação.</div>
+            <div style="margin-top:10px">
+              <div class="hab-row yellow"><span class="hab-code">Def. Av1</span><span class="hab-name">Ponto de partida</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill green" style="width:9%"></div></div><span class="hab-pct">9%</span></div>
+              <div class="hab-row red"><span class="hab-code">Def. Av2</span><span class="hab-name">Situação atual</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill red" style="width:48%"></div></div><span class="hab-pct">48%</span></div>
+            </div>
+            <div class="notif-metrics" style="margin-top:8px">
+              <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>▲39pp defasagem</span>
+              <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>▼21pp adequado</span>
+              <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>14 leitores fluentes</span>
+            </div>
           </div>
-          <div class="notif-summary">O 5ºB seguiu o mesmo padrão do 5ºA: na Av1 tinha 9% de defasagem e 45% de adequado; na Av2 a defasagem subiu para 48% e o adequado caiu para 24%. Ambas as turmas do 5º Ano mostram regressão simultânea — sinal de um problema sistêmico no currículo ou na avaliação.</div>
-          <div>
-            <div class="hab-row yellow"><span class="hab-code">Def. Av1</span><span class="hab-name">Ponto de partida</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill green" style="width:9%"></div></div><span class="hab-pct">9%</span></div>
-            <div class="hab-row red"><span class="hab-code">Def. Av2</span><span class="hab-name">Situação atual</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill red" style="width:48%"></div></div><span class="hab-pct">48%</span></div>
-          </div>
-          <div class="notif-metrics" style="margin-top:8px">
-            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>▲39pp defasagem</span>
-            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span">▼21pp adequado</span>
-            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span">14 leitores fluentes</span>
-          </div>
+          <button class="notif-toggle">▾</button>
         </div>
-        <button class="notif-toggle">▾</button>
-      </div>
-      <div class="notif-expand">
-        <div class="expand-action">
+        <div class="notif-expand">
           <div class="action-tag">🎯 Ação Urgente — 5º Ano B</div>
           <div class="action-text">1. <strong>Análise conjunta com o 5ºA:</strong> como ambas as turmas regrediram no mesmo período, provavelmente há um fator comum — conteúdo mais complexo na Av2, qualidade dos itens da avaliação ou falta de alinhamento entre o que foi ensinado e o que foi avaliado. 2. <strong>Reunião de professores do 5º Ano:</strong> alinhar planejamento e verificar consistência curricular entre as duas turmas. 3. <strong>Aproveitar os leitores fluentes (14):</strong> o 5ºB tem o maior número de leitores fluentes da escola — usar esses alunos como referência positiva para mobilizar o restante da turma. 4. <strong>Plano de recuperação paralela:</strong> iniciar atividades de reforço para os 48% em defasagem ainda neste período letivo.</div>
+          <div class="expand-tags"><span class="expand-tag">5º Ano B</span><span class="expand-tag">Regressão</span><span class="expand-tag">Leitores Fluentes</span><span class="expand-tag">Recuperação</span></div>
         </div>
-        <div class="expand-tags"><span class="expand-tag">5º Ano B</span><span class="expand-tag">Regressão</span><span class="expand-tag">Leitores Fluentes</span><span class="expand-tag">Recuperação</span></div>
       </div>
-    </div>
 
-    <!-- 2A Av2 queda -->
-    <div class="notif-card priority-red" onclick="toggle(this)">
-      <div class="notif-top">
-        <div class="notif-avatar red">📉</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">2º Ano A — Av2: Adequado despenca de 50% para 8%. Queda alarmante</div>
-            <span class="notif-source">CNCA · Av1→Av2</span>
+      <div class="notif-card priority-red" onclick="toggle(this)">
+        <div class="notif-top">
+          <div class="notif-avatar red">📉</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">2º Ano A — Av2: Adequado despenca de 50% para 8%. Queda alarmante</div>
+              <span class="notif-source">CNCA · Av1→Av2</span>
+            </div>
+            <div class="notif-summary">Na Av1, metade da turma estava no adequado. Na Av2, apenas 8% mantiveram esse nível. A defasagem manteve-se em torno de 31%, mas o intermediário subiu (62%) — indicando que alunos que eram adequados desceram para intermediário, e os intermediários desceram para defasagem.</div>
+            <div class="notif-metrics">
+              <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>Adequado Av1: 50%</span>
+              <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>Adequado Av2: 8%</span>
+              <span class="metric-pill orange"><span class="dot" style="background:var(--orange)"></span>10 pré-leitores</span>
+            </div>
           </div>
-          <div class="notif-summary">Na Av1, metade da turma estava no adequado. Na Av2, apenas 8% mantiveram esse nível. A defasagem manteve-se em torno de 31%, mas o intermediário subiu (62%) — indicando que alunos que eram adequados desceram para intermediário, e os intermediários desceram para defasagem.</div>
-          <div class="notif-metrics">
-            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>Adequado Av1: 50%</span>
-            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>Adequado Av2: 8%</span>
-            <span class="metric-pill orange"><span class="dot" style="background:var(--orange)"></span">10 pré-leitores</span>
-          </div>
+          <button class="notif-toggle">▾</button>
         </div>
-        <button class="notif-toggle">▾</button>
-      </div>
-      <div class="notif-expand">
-        <div class="expand-action">
+        <div class="notif-expand">
           <div class="action-tag">🎯 Ação Urgente — 2º Ano A</div>
           <div class="action-text">1. <strong>Diagnóstico urgente dos pré-leitores:</strong> dos 10 pré-leitores identificados, verificar o nível de cada um (Nível 1 a 4) e definir estratégias específicas por grupo. 2. <strong>Investigar a queda no adequado:</strong> verificar se houve mudança na complexidade das atividades ou no professor entre Av1 e Av2. 3. <strong>Reforçar leitura:</strong> a turma tem 4 leitores iniciantes e 0 fluentes — trabalho intensivo em fluência leitora é prioritário. 4. <strong>Melhorar participação:</strong> a avaliação de leitura teve apenas 70% de participação — acompanhar frequência da turma.</div>
+          <div class="expand-tags"><span class="expand-tag">2º Ano A</span><span class="expand-tag">Pré-leitores</span><span class="expand-tag">Fluência</span></div>
         </div>
-        <div class="expand-tags"><span class="expand-tag">2º Ano A</span><span class="expand-tag">Pré-leitores</span><span class="expand-tag">Fluência</span></div>
       </div>
-    </div>
 
-    <!-- 1A Av2 melhora -->
-    <div class="notif-card priority-green" onclick="toggle(this)">
-      <div class="notif-top">
-        <div class="notif-avatar green">📈</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">1º Ano A — Melhora de Av1 para Av2: adequado dobra de 23% para 50%</div>
-            <span class="notif-source">CNCA · Av1→Av2</span>
+      <div class="notif-card priority-green" onclick="toggle(this)">
+        <div class="notif-top">
+          <div class="notif-avatar green">📈</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">1º Ano A — Melhora de Av1 para Av2: adequado dobra de 23% para 50%</div>
+              <span class="notif-source">CNCA · Av1→Av2</span>
+            </div>
+            <div class="notif-summary">Apesar da dificuldade na Av1, o 1ºA mostra evolução positiva na Av2: o adequado dobrou (23%→50%) e a defasagem caiu de 38% para 25%. É um sinal de que as intervenções pedagógicas estão surtindo efeito — fundamental não perder o ritmo.</div>
+            <div class="notif-metrics">
+              <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>▲27pp adequado</span>
+              <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>▼13pp defasagem</span>
+            </div>
           </div>
-          <div class="notif-summary">Apesar da dificuldade na Av1, o 1ºA mostra evolução positiva na Av2: o adequado dobrou (23%→50%) e a defasagem caiu de 38% para 25%. É um sinal de que as intervenções pedagógicas estão surtindo efeito — fundamental não perder o ritmo.</div>
-          <div class="notif-metrics">
-            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>▲27pp adequado</span>
-            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span">▼13pp defasagem</span>
-          </div>
+          <button class="notif-toggle">▾</button>
         </div>
-        <button class="notif-toggle">▾</button>
-      </div>
-      <div class="notif-expand">
-        <div class="expand-action">
+        <div class="notif-expand">
           <div class="action-tag">🎯 Ação Sugerida — 1º Ano A</div>
           <div class="action-text">1. <strong>Identificar o que funcionou:</strong> conversar com o professor para entender quais estratégias foram aplicadas entre Av1 e Av2 que geraram essa melhora. 2. <strong>Documentar e manter:</strong> continuar o que está funcionando e garantir que o momento positivo não se perca no restante do ano. 3. <strong>Focar nos 25% restantes em defasagem:</strong> mesmo com a melhora, ainda há alunos que precisam de atenção individual.</div>
+          <div class="expand-tags"><span class="expand-tag">1º Ano A</span><span class="expand-tag">Evolução Positiva</span><span class="expand-tag">Consolidar Ganhos</span></div>
         </div>
-        <div class="expand-tags"><span class="expand-tag">1º Ano A</span><span class="expand-tag">Evolução Positiva</span><span class="expand-tag">Consolidar Ganhos</span></div>
       </div>
     </div>
-
   </div>
 
   <!-- ===== LEITURA ===== -->
-  <div class="section" id="leitura">
-    <div class="section-header">
-      <div class="section-icon" style="background:rgba(249,115,22,0.1)">📖</div>
-      <div class="section-info">
-        <h2>Diagnóstico de Leitura — Pré-leitores e Fluência</h2>
-        <p>2º e 5º Anos · Níveis de leitura por turma</p>
-      </div>
-    </div>
+  <div id="leitura">
+    <div class="section-title">📖 Diagnóstico de Leitura — Pré-leitores e Fluência</div>
 
-    <!-- 2B leitura crítico -->
-    <div class="notif-card priority-red" onclick="toggle(this)" style="background:#fff7f7">
-      <div class="notif-top">
-        <div class="notif-avatar red">🚨</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">2º Ano B — Leitura CRÍTICA: 16 pré-leitores, 0 fluentes, nenhum aluno alfabetizado plenamente</div>
-            <span class="notif-source">CNCA · Leitura</span>
-          </div>
-          <div class="notif-summary">O 2ºB tem 16 pré-leitores — o maior número da escola — e nenhum leitor fluente. Considerando que é o final do 2º Ano, o ciclo de alfabetização aponta alerta máximo. Dos pré-leitores: 7 no Nível 1 (mais crítico), 4 no Nível 2, 2 no Nível 3 e 3 no Nível 4. Os 2 leitores iniciantes indicam que apenas uma pequena parcela avançou.</div>
-          <div>
-            <div class="hab-row red"><span class="hab-code">N1 (7)</span><span class="hab-name">Pré-leitor Nível 1 — Mais crítico</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill red" style="width:44%"></div></div><span class="hab-pct">7 al.</span></div>
-            <div class="hab-row red"><span class="hab-code">N2 (4)</span><span class="hab-name">Pré-leitor Nível 2</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill red" style="width:25%"></div></div><span class="hab-pct">4 al.</span></div>
-            <div class="hab-row yellow"><span class="hab-code">N3 (2)</span><span class="hab-name">Pré-leitor Nível 3</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill yellow" style="width:12%"></div></div><span class="hab-pct">2 al.</span></div>
-            <div class="hab-row yellow"><span class="hab-code">N4 (3)</span><span class="hab-name">Pré-leitor Nível 4</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill yellow" style="width:19%"></div></div><span class="hab-pct">3 al.</span></div>
-            <div class="hab-row green"><span class="hab-code">Inic.(2)</span><span class="hab-name">Leitores Iniciantes</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill blue" style="width:12%"></div></div><span class="hab-pct">2 al.</span></div>
-          </div>
-          <div class="notif-metrics" style="margin-top:8px">
-            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>16 pré-leitores</span>
-            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span">0 leitores fluentes</span>
-            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span">Participação: 95%</span>
-          </div>
+    <div class="section-block">
+      <div class="section-block-header">
+        <div class="sb-icon" style="background:rgba(202,111,30,.12)">📖</div>
+        <div class="sb-info">
+          <h3>2º e 5º Anos · Níveis de leitura por turma</h3>
+          <p>Clique em cada cartão para ver as ações sugeridas</p>
         </div>
-        <button class="notif-toggle">▾</button>
       </div>
-      <div class="notif-expand">
-        <div class="expand-action">
+
+      <div class="notif-card priority-red" onclick="toggle(this)" style="background:#fef8f8">
+        <div class="notif-top">
+          <div class="notif-avatar red">🚨</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">2º Ano B — Leitura CRÍTICA: 16 pré-leitores, 0 fluentes, nenhum aluno alfabetizado plenamente</div>
+              <span class="notif-source">CNCA · Leitura</span>
+            </div>
+            <div class="notif-summary">O 2ºB tem 16 pré-leitores — o maior número da escola — e nenhum leitor fluente. Considerando que é o final do 2º Ano, o ciclo de alfabetização aponta alerta máximo. Dos pré-leitores: 7 no Nível 1 (mais crítico), 4 no Nível 2, 2 no Nível 3 e 3 no Nível 4. Os 2 leitores iniciantes indicam que apenas uma pequena parcela avançou.</div>
+            <div style="margin-top:10px">
+              <div class="hab-row red"><span class="hab-code">N1 (7)</span><span class="hab-name">Pré-leitor Nível 1 — Mais crítico</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill red" style="width:44%"></div></div><span class="hab-pct">7 al.</span></div>
+              <div class="hab-row red"><span class="hab-code">N2 (4)</span><span class="hab-name">Pré-leitor Nível 2</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill red" style="width:25%"></div></div><span class="hab-pct">4 al.</span></div>
+              <div class="hab-row yellow"><span class="hab-code">N3 (2)</span><span class="hab-name">Pré-leitor Nível 3</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill yellow" style="width:12%"></div></div><span class="hab-pct">2 al.</span></div>
+              <div class="hab-row yellow"><span class="hab-code">N4 (3)</span><span class="hab-name">Pré-leitor Nível 4</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill yellow" style="width:19%"></div></div><span class="hab-pct">3 al.</span></div>
+              <div class="hab-row green"><span class="hab-code">Inic.(2)</span><span class="hab-name">Leitores Iniciantes</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill blue" style="width:12%"></div></div><span class="hab-pct">2 al.</span></div>
+            </div>
+            <div class="notif-metrics" style="margin-top:8px">
+              <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>16 pré-leitores</span>
+              <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>0 leitores fluentes</span>
+              <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>Participação: 95%</span>
+            </div>
+          </div>
+          <button class="notif-toggle">▾</button>
+        </div>
+        <div class="notif-expand">
           <div class="action-tag">🎯 Plano de Alfabetização Urgente — 2º Ano B</div>
           <div class="action-text">1. <strong>Intervenção imediata nos 7 do Nível 1:</strong> esses alunos estão no estágio mais inicial de alfabetização e precisam de atendimento especializado — em grupo reduzido ou individual, com professor de apoio. 2. <strong>Comunicar às famílias:</strong> os responsáveis dos alunos pré-leitores precisam ser informados e mobilizados para reforçar em casa. 3. <strong>Reagrupamento por nível:</strong> separar os grupos por nível de leitura para atividades específicas de cada fase (consciência fonológica, correspondência grafema-fonema, leitura de sílabas etc.). 4. <strong>Encaminhar ao apoio pedagógico:</strong> verificar se há alunos com necessidade de avaliação especializada (fonoaudiólogo, psicopedagogo). 5. <strong>Meta urgente:</strong> garantir que ao menos os alunos do Nível 3 e 4 avancem para leitores iniciantes até o final do semestre.</div>
+          <div class="expand-tags"><span class="expand-tag">2º Ano B</span><span class="expand-tag">Alfabetização Urgente</span><span class="expand-tag">Nível 1 Crítico</span><span class="expand-tag">Apoio Especializado</span></div>
         </div>
-        <div class="expand-tags"><span class="expand-tag">2º Ano B</span><span class="expand-tag">Alfabetização Urgente</span><span class="expand-tag">Nível 1 Crítico</span><span class="expand-tag">Apoio Especializado</span></div>
       </div>
-    </div>
 
-    <!-- 2A leitura -->
-    <div class="notif-card priority-orange" onclick="toggle(this)">
-      <div class="notif-top">
-        <div class="notif-avatar orange">📚</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">2º Ano A — Leitura: 10 pré-leitores, 0 fluentes. Participação baixa (70%)</div>
-            <span class="notif-source">CNCA · Leitura</span>
+      <div class="notif-card priority-orange" onclick="toggle(this)">
+        <div class="notif-top">
+          <div class="notif-avatar orange">📚</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">2º Ano A — Leitura: 10 pré-leitores, 0 fluentes. Participação baixa (70%)</div>
+              <span class="notif-source">CNCA · Leitura</span>
+            </div>
+            <div class="notif-summary">10 alunos ainda estão na fase pré-leitora: 1 no Nível 1, 1 no Nível 2, 2 no Nível 3 e 6 no Nível 4. 4 leitores iniciantes. Nenhum fluente. A participação na avaliação de leitura foi apenas 70% — a mais baixa registrada — o que pode estar subestimando o problema real.</div>
+            <div style="margin-top:10px">
+              <div class="hab-row red"><span class="hab-code">N1+N2</span><span class="hab-name">Pré-leitores mais críticos (2)</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill red" style="width:20%"></div></div><span class="hab-pct">2 al.</span></div>
+              <div class="hab-row yellow"><span class="hab-code">N3+N4</span><span class="hab-name">Pré-leitores avançados (8)</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill yellow" style="width:80%"></div></div><span class="hab-pct">8 al.</span></div>
+              <div class="hab-row green"><span class="hab-code">Inic.</span><span class="hab-name">Leitores Iniciantes (4)</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill blue" style="width:40%"></div></div><span class="hab-pct">4 al.</span></div>
+            </div>
+            <div class="notif-metrics" style="margin-top:8px">
+              <span class="metric-pill orange"><span class="dot" style="background:var(--orange)"></span>10 pré-leitores</span>
+              <span class="metric-pill yellow"><span class="dot" style="background:var(--yellow)"></span>Participação: 70%</span>
+            </div>
           </div>
-          <div class="notif-summary">10 alunos ainda estão na fase pré-leitora: 1 no Nível 1, 1 no Nível 2, 2 no Nível 3 e 6 no Nível 4. 4 leitores iniciantes. Nenhum fluente. A participação na avaliação de leitura foi apenas 70% — a mais baixa registrada — o que pode estar subestimando o problema real.</div>
-          <div>
-            <div class="hab-row red"><span class="hab-code">N1+N2</span><span class="hab-name">Pré-leitores mais críticos (2)</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill red" style="width:20%"></div></div><span class="hab-pct">2 al.</span></div>
-            <div class="hab-row yellow"><span class="hab-code">N3+N4</span><span class="hab-name">Pré-leitores avançados (8)</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill yellow" style="width:80%"></div></div><span class="hab-pct">8 al.</span></div>
-            <div class="hab-row green"><span class="hab-code">Inic.</span><span class="hab-name">Leitores Iniciantes (4)</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill blue" style="width:40%"></div></div><span class="hab-pct">4 al.</span></div>
-          </div>
-          <div class="notif-metrics" style="margin-top:8px">
-            <span class="metric-pill orange"><span class="dot" style="background:var(--orange)"></span>10 pré-leitores</span>
-            <span class="metric-pill yellow"><span class="dot" style="background:var(--yellow)"></span>Participação: 70%</span>
-          </div>
+          <button class="notif-toggle">▾</button>
         </div>
-        <button class="notif-toggle">▾</button>
-      </div>
-      <div class="notif-expand">
-        <div class="expand-action">
+        <div class="notif-expand">
           <div class="action-tag">🎯 Ação Sugerida — 2º Ano A · Leitura</div>
           <div class="action-text">1. <strong>Prioridade nos Níveis 1 e 2 (2 alunos):</strong> atendimento individualizado ou em dupla. 2. <strong>Avançar N3 e N4 para leitores iniciantes:</strong> esses 8 alunos estão próximos da transição — foco em atividades de leitura de palavras e frases simples. 3. <strong>Melhorar participação:</strong> investigar por que 30% da turma não realizou a avaliação de leitura — ausências? Recusa? Problema de agendamento?</div>
+          <div class="expand-tags"><span class="expand-tag">2º Ano A</span><span class="expand-tag">Pré-leitores</span><span class="expand-tag">Frequência</span></div>
         </div>
-        <div class="expand-tags"><span class="expand-tag">2º Ano A</span><span class="expand-tag">Pré-leitores</span><span class="expand-tag">Frequência</span></div>
       </div>
-    </div>
 
-    <!-- 5 leitura positivo -->
-    <div class="notif-card priority-green" onclick="toggle(this)">
-      <div class="notif-top">
-        <div class="notif-avatar green">⭐</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">5º Ano A e B — Leitura: 24 leitores fluentes no total. Destaque positivo da escola</div>
-            <span class="notif-source">CNCA · Leitura</span>
+      <div class="notif-card priority-green" onclick="toggle(this)">
+        <div class="notif-top">
+          <div class="notif-avatar green">⭐</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">5º Ano A e B — Leitura: 24 leitores fluentes no total. Destaque positivo da escola</div>
+              <span class="notif-source">CNCA · Leitura</span>
+            </div>
+            <div class="notif-summary">O 5º Ano concentra os melhores índices de leitura: 10 fluentes no 5ºA e 14 no 5ºB — total de 24 leitores fluentes. Apesar da regressão nas avaliações, a fluência leitora é um ativo importante. Ainda há 8 pré-leitores (4 em cada turma) que demandam atenção.</div>
+            <div class="notif-metrics">
+              <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>5ºA: 10 fluentes</span>
+              <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>5ºB: 14 fluentes</span>
+              <span class="metric-pill orange"><span class="dot" style="background:var(--orange)"></span>8 pré-leitores</span>
+            </div>
           </div>
-          <div class="notif-summary">O 5º Ano concentra os melhores índices de leitura: 10 fluentes no 5ºA e 14 no 5ºB — total de 24 leitores fluentes. Apesar da regressão nas avaliações, a fluência leitora é um ativo importante. Ainda há 8 pré-leitores (4 em cada turma) que demandam atenção.</div>
-          <div class="notif-metrics">
-            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>5ºA: 10 fluentes</span>
-            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span">5ºB: 14 fluentes</span>
-            <span class="metric-pill orange"><span class="dot" style="background:var(--orange)"></span>8 pré-leitores</span>
-          </div>
+          <button class="notif-toggle">▾</button>
         </div>
-        <button class="notif-toggle">▾</button>
-      </div>
-      <div class="notif-expand">
-        <div class="expand-action">
+        <div class="notif-expand">
           <div class="action-tag">🎯 Ação Sugerida — 5º Ano A e B · Leitura</div>
           <div class="action-text">1. <strong>Pré-leitores no 5º Ano:</strong> a presença de pré-leitores no 5º Ano é preocupante — esses alunos precisam de acompanhamento especializado urgente. 2. <strong>Leitores fluentes como multiplicadores:</strong> usar os alunos fluentes em atividades de leitura compartilhada para motivar e apoiar os colegas. 3. <strong>Reconciliar leitura e desempenho:</strong> o contraste entre fluência alta e defasagem crescente na Av2 sugere que o problema pode estar em habilidades de interpretação/compreensão, não apenas decodificação.</div>
+          <div class="expand-tags"><span class="expand-tag">5º Ano A e B</span><span class="expand-tag">Leitores Fluentes</span><span class="expand-tag">Pré-leitores no 5ºAno</span></div>
         </div>
-        <div class="expand-tags"><span class="expand-tag">5º Ano A e B</span><span class="expand-tag">Leitores Fluentes</span><span class="expand-tag">Pré-leitores no 5ºAno</span></div>
       </div>
     </div>
-
   </div>
 
   <!-- ===== COMPARATIVO ===== -->
-  <div class="section" id="comparativo">
-    <div class="section-header">
-      <div class="section-icon" style="background:rgba(139,92,246,0.1)">🔄</div>
-      <div class="section-info">
-        <h2>Comparativo Av1 × Av2 por Turma</h2>
-        <p>Evolução ou regressão entre as duas avaliações internas</p>
+  <div id="comparativo">
+    <div class="section-title">🔄 Comparativo Av1 × Av2 por Turma</div>
+
+    <div class="data-table-wrap">
+      <div class="table-header">
+        <h3>Evolução ou regressão entre as duas avaliações internas</h3>
+        <p>Fonte: CNCA – Avaliações Internas · Adriano Martins EEIEF</p>
       </div>
-    </div>
-    <div class="table-wrap">
-      <table class="comp-table" style="margin-top:16px">
-        <thead>
-          <tr>
-            <th>Turma</th>
-            <th>Defasagem Av1</th>
-            <th>Defasagem Av2</th>
-            <th>Variação</th>
-            <th>Adequado Av1</th>
-            <th>Adequado Av2</th>
-            <th>Variação</th>
-            <th>Tendência</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="turma-col">1º Ano A</td>
-            <td>38%</td>
-            <td>25%</td>
-            <td style="color:var(--green);font-weight:800">▼13pp</td>
-            <td>23%</td>
-            <td>50%</td>
-            <td style="color:var(--green);font-weight:800">▲27pp</td>
-            <td><span class="badge-sm green">✅ Melhora</span></td>
-          </tr>
-          <tr>
-            <td class="turma-col">1º Ano B</td>
-            <td>5%</td>
-            <td>0%</td>
-            <td style="color:var(--green);font-weight:800">▼5pp</td>
-            <td>84%</td>
-            <td>78%</td>
-            <td style="color:var(--yellow);font-weight:800">▼6pp</td>
-            <td><span class="badge-sm green">✅ Estável/Bom</span></td>
-          </tr>
-          <tr>
-            <td class="turma-col">2º Ano A</td>
-            <td>33%</td>
-            <td>31%</td>
-            <td style="color:var(--yellow);font-weight:800">▼2pp</td>
-            <td>50%</td>
-            <td>8%</td>
-            <td style="color:var(--red);font-weight:800">▼42pp</td>
-            <td><span class="badge-sm red">🔴 Regressão</span></td>
-          </tr>
-          <tr>
-            <td class="turma-col">2º Ano B</td>
-            <td>6%</td>
-            <td>31%</td>
-            <td style="color:var(--red);font-weight:800">▲25pp</td>
-            <td>56%</td>
-            <td>8%</td>
-            <td style="color:var(--red);font-weight:800">▼48pp</td>
-            <td><span class="badge-sm red">🔴 Regressão</span></td>
-          </tr>
-          <tr>
-            <td class="turma-col">3º Ano U</td>
-            <td colspan="2" style="color:var(--muted);font-style:italic">Av1 sem dados</td>
-            <td>—</td>
-            <td>—</td>
-            <td>52%</td>
-            <td>—</td>
-            <td><span class="badge-sm orange">⚠ Av1 ausente</span></td>
-          </tr>
-          <tr>
-            <td class="turma-col">5º Ano A</td>
-            <td>0%</td>
-            <td>44%</td>
-            <td style="color:var(--red);font-weight:800">▲44pp</td>
-            <td>67%</td>
-            <td>28%</td>
-            <td style="color:var(--red);font-weight:800">▼39pp</td>
-            <td><span class="badge-sm red">🔴 Regressão Grave</span></td>
-          </tr>
-          <tr>
-            <td class="turma-col">5º Ano B</td>
-            <td>9%</td>
-            <td>48%</td>
-            <td style="color:var(--red);font-weight:800">▲39pp</td>
-            <td>45%</td>
-            <td>24%</td>
-            <td style="color:var(--red);font-weight:800">▼21pp</td>
-            <td><span class="badge-sm red">🔴 Regressão Grave</span></td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Turma</th>
+              <th>Defasagem Av1</th>
+              <th>Defasagem Av2</th>
+              <th>Variação Def.</th>
+              <th>Adequado Av1</th>
+              <th>Adequado Av2</th>
+              <th>Variação Adeq.</th>
+              <th>Tendência</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="turma-col">1º Ano A</td>
+              <td>38%</td><td>25%</td>
+              <td style="color:var(--green);font-weight:700">▼13pp</td>
+              <td>23%</td><td>50%</td>
+              <td style="color:var(--green);font-weight:700">▲27pp</td>
+              <td><span class="badge-sm green">✅ Melhora</span></td>
+            </tr>
+            <tr>
+              <td class="turma-col">1º Ano B</td>
+              <td>5%</td><td>0%</td>
+              <td style="color:var(--green);font-weight:700">▼5pp</td>
+              <td>84%</td><td>78%</td>
+              <td style="color:var(--yellow);font-weight:700">▼6pp</td>
+              <td><span class="badge-sm green">✅ Estável/Bom</span></td>
+            </tr>
+            <tr>
+              <td class="turma-col">2º Ano A</td>
+              <td>33%</td><td>31%</td>
+              <td style="color:var(--yellow);font-weight:700">▼2pp</td>
+              <td>50%</td><td>8%</td>
+              <td style="color:var(--red);font-weight:700">▼42pp</td>
+              <td><span class="badge-sm red">🔴 Regressão</span></td>
+            </tr>
+            <tr>
+              <td class="turma-col">2º Ano B</td>
+              <td>6%</td><td>31%</td>
+              <td style="color:var(--red);font-weight:700">▲25pp</td>
+              <td>56%</td><td>8%</td>
+              <td style="color:var(--red);font-weight:700">▼48pp</td>
+              <td><span class="badge-sm red">🔴 Regressão</span></td>
+            </tr>
+            <tr>
+              <td class="turma-col">3º Ano U</td>
+              <td colspan="2" style="color:var(--muted);font-style:italic">Av1 sem dados</td>
+              <td>—</td><td>—</td><td>52%</td><td>—</td>
+              <td><span class="badge-sm orange">⚠ Av1 ausente</span></td>
+            </tr>
+            <tr>
+              <td class="turma-col">5º Ano A</td>
+              <td>0%</td><td>44%</td>
+              <td style="color:var(--red);font-weight:700">▲44pp</td>
+              <td>67%</td><td>28%</td>
+              <td style="color:var(--red);font-weight:700">▼39pp</td>
+              <td><span class="badge-sm red">🔴 Regressão Grave</span></td>
+            </tr>
+            <tr>
+              <td class="turma-col">5º Ano B</td>
+              <td>9%</td><td>48%</td>
+              <td style="color:var(--red);font-weight:700">▲39pp</td>
+              <td>45%</td><td>24%</td>
+              <td style="color:var(--red);font-weight:700">▼21pp</td>
+              <td><span class="badge-sm red">🔴 Regressão Grave</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
   <!-- ===== PLANO DE AÇÃO ===== -->
-  <div class="section" id="acoes">
-    <div class="section-header" style="background:var(--sidebar-bg);border-color:#2a3441">
-      <div class="section-icon" style="background:rgba(245,158,11,0.15)">⚡</div>
-      <div class="section-info">
-        <h2 style="color:#fff">Plano de Ação — Prioridades do Gestor</h2>
-        <p style="color:#64748b">Ações concretas ordenadas por urgência</p>
-      </div>
-    </div>
+  <div id="acoes">
+    <div class="section-title">⚡ Plano de Ação — Prioridades do Gestor</div>
 
-    <div class="notif-card priority-red" onclick="toggle(this)" style="background:#fff7f7">
-      <div class="notif-top">
-        <div class="notif-avatar red">1️⃣</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">URGENTE: Reunião com professores do 5º Ano — investigar regressão simultânea em Av2</div>
-            <span class="notif-source">Esta semana</span>
-          </div>
-          <div class="notif-summary">5ºA: defasagem foi de 0% para 44%. 5ºB: de 9% para 48%. Ambas as turmas regredindo no mesmo período exige investigação imediata: houve mudança curricular? Problema nos itens da Av2? Descontinuidade pedagógica?</div>
+    <div class="section-block">
+      <div class="section-block-header dark">
+        <div class="sb-icon" style="background:rgba(240,180,40,.15)">⚡</div>
+        <div class="sb-info">
+          <h3>Ações concretas ordenadas por urgência</h3>
+          <p>Clique em cada cartão para ver os passos de implementação</p>
         </div>
-        <button class="notif-toggle">▾</button>
       </div>
-      <div class="notif-expand">
-        <div class="expand-action">
+
+      <div class="notif-card priority-red" onclick="toggle(this)" style="background:#fef8f8">
+        <div class="notif-top">
+          <div class="notif-avatar red">1️⃣</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">URGENTE: Reunião com professores do 5º Ano — investigar regressão simultânea em Av2</div>
+              <span class="notif-source">Esta semana</span>
+            </div>
+            <div class="notif-summary">5ºA: defasagem foi de 0% para 44%. 5ºB: de 9% para 48%. Ambas as turmas regredindo no mesmo período exige investigação imediata: houve mudança curricular? Problema nos itens da Av2? Descontinuidade pedagógica?</div>
+          </div>
+          <button class="notif-toggle">▾</button>
+        </div>
+        <div class="notif-expand">
           <div class="action-tag">Passos</div>
           <div class="action-text">✅ Convocar reunião com os professores do 5ºA e 5ºB.<br>✅ Analisar os itens da Av2 comparando com o que foi ensinado (alinhamento currículo-avaliação).<br>✅ Definir plano de recuperação paralela para os alunos em defasagem.<br>✅ Verificar se há pré-leitores no 5º Ano que precisam de encaminhamento especializado.</div>
+          <div class="expand-tags"><span class="expand-tag">5º Ano A e B</span><span class="expand-tag">Regressão</span><span class="expand-tag">Urgente</span></div>
         </div>
-        <div class="expand-tags"><span class="expand-tag">5º Ano A e B</span><span class="expand-tag">Regressão</span><span class="expand-tag">Urgente</span></div>
       </div>
-    </div>
 
-    <div class="notif-card priority-red" onclick="toggle(this)">
-      <div class="notif-top">
-        <div class="notif-avatar red">2️⃣</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">URGENTE: Plano de alfabetização para os 26 pré-leitores do 2º Ano (A e B)</div>
-            <span class="notif-source">Esta semana</span>
+      <div class="notif-card priority-red" onclick="toggle(this)">
+        <div class="notif-top">
+          <div class="notif-avatar red">2️⃣</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">URGENTE: Plano de alfabetização para os 26 pré-leitores do 2º Ano (A e B)</div>
+              <span class="notif-source">Esta semana</span>
+            </div>
+            <div class="notif-summary">2ºA tem 10 pré-leitores, 2ºB tem 16 — total de 26 alunos em fase pré-leitora ao final do 2º Ano. Isso representa falha no ciclo de alfabetização e exige um plano estruturado com ações individualizadas por nível.</div>
           </div>
-          <div class="notif-summary">2ºA tem 10 pré-leitores, 2ºB tem 16 — total de 26 alunos em fase pré-leitora ao final do 2º Ano. Isso representa falha no ciclo de alfabetização e exige um plano estruturado com ações individualizadas por nível.</div>
+          <button class="notif-toggle">▾</button>
         </div>
-        <button class="notif-toggle">▾</button>
-      </div>
-      <div class="notif-expand">
-        <div class="expand-action">
+        <div class="notif-expand">
           <div class="action-tag">Passos</div>
           <div class="action-text">✅ Listar os 26 alunos pré-leitores por nome e nível (1 a 4).<br>✅ Montar grupos de alfabetização por nível — atendimento diferenciado.<br>✅ Comunicar famílias e propor parceria para reforço em casa.<br>✅ Avaliar necessidade de encaminhamento especializado para os do Nível 1.<br>✅ Verificar se há professor de apoio ou reforço disponível para atendimento paralelo.</div>
+          <div class="expand-tags"><span class="expand-tag">2º Ano A e B</span><span class="expand-tag">Alfabetização</span><span class="expand-tag">26 Pré-leitores</span></div>
         </div>
-        <div class="expand-tags"><span class="expand-tag">2º Ano A e B</span><span class="expand-tag">Alfabetização</span><span class="expand-tag">26 Pré-leitores</span></div>
       </div>
-    </div>
 
-    <div class="notif-card priority-yellow" onclick="toggle(this)">
-      <div class="notif-top">
-        <div class="notif-avatar yellow">3️⃣</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">Garantir coleta de dados ausentes: Av1 do 3º Ano e regularizar participação</div>
-            <span class="notif-source">Curto prazo</span>
+      <div class="notif-card priority-yellow" onclick="toggle(this)">
+        <div class="notif-top">
+          <div class="notif-avatar yellow">3️⃣</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">Garantir coleta de dados ausentes: Av1 do 3º Ano e regularizar participação</div>
+              <span class="notif-source">Curto prazo</span>
+            </div>
+            <div class="notif-summary">O 3º Ano não tem dados da Av1 (0% de participação). O 2ºA teve apenas 70% na avaliação de leitura. Dados incompletos comprometem o monitoramento e a tomada de decisão pedagógica.</div>
           </div>
-          <div class="notif-summary">O 3º Ano não tem dados da Av1 (0% de participação). O 2ºA teve apenas 70% na avaliação de leitura. Dados incompletos comprometem o monitoramento e a tomada de decisão pedagógica.</div>
+          <button class="notif-toggle">▾</button>
         </div>
-        <button class="notif-toggle">▾</button>
-      </div>
-      <div class="notif-expand">
-        <div class="expand-action">
+        <div class="notif-expand">
           <div class="action-tag">Passos</div>
           <div class="action-text">✅ Investigar por que o 3ºU não realizou a Av1 — foi cancelada? Falta de professor? Problema de agendamento?<br>✅ Planejar aplicação retroativa ou substituta para ter linha de base do 3ºU.<br>✅ Reforçar a importância da participação em todas as turmas para as próximas avaliações.<br>✅ Identificar os alunos ausentes na avaliação de leitura do 2ºA.</div>
+          <div class="expand-tags"><span class="expand-tag">3º Ano U</span><span class="expand-tag">Dados Faltantes</span><span class="expand-tag">Participação</span></div>
         </div>
-        <div class="expand-tags"><span class="expand-tag">3º Ano U</span><span class="expand-tag">Dados Faltantes</span><span class="expand-tag">Participação</span></div>
       </div>
-    </div>
 
-    <div class="notif-card priority-green" onclick="toggle(this)">
-      <div class="notif-top">
-        <div class="notif-avatar green">4️⃣</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">Valorizar e replicar: 1ºB (referência Av1) e 1ºA (melhora expressiva Av1→Av2)</div>
-            <span class="notif-source">Curto prazo</span>
+      <div class="notif-card priority-green" onclick="toggle(this)">
+        <div class="notif-top">
+          <div class="notif-avatar green">4️⃣</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">Valorizar e replicar: 1ºB (referência Av1) e 1ºA (melhora expressiva Av1→Av2)</div>
+              <span class="notif-source">Curto prazo</span>
+            </div>
+            <div class="notif-summary">O 1ºB é a turma com melhor desempenho na Av1 (84% adequado). O 1ºA dobrou seu índice de adequado. Essas são as histórias de sucesso da escola — devem ser documentadas, reconhecidas e usadas como referência para as demais turmas.</div>
           </div>
-          <div class="notif-summary">O 1ºB é a turma com melhor desempenho na Av1 (84% adequado). O 1ºA dobrou seu índice de adequado. Essas são as histórias de sucesso da escola — devem ser documentadas, reconhecidas e usadas como referência para as demais turmas.</div>
+          <button class="notif-toggle">▾</button>
         </div>
-        <button class="notif-toggle">▾</button>
-      </div>
-      <div class="notif-expand">
-        <div class="expand-action">
+        <div class="notif-expand">
           <div class="action-tag">Passos</div>
           <div class="action-text">✅ Reconhecer os professores do 1ºA e 1ºB na reunião pedagógica.<br>✅ Documentar as práticas que geraram os resultados positivos.<br>✅ Organizar momento de troca com professores das turmas em regressão (5ºA, 5ºB, 2ºA, 2ºB).<br>✅ Usar os dados do 1ºA como evidência de que intervenção pedagógica funciona.</div>
+          <div class="expand-tags"><span class="expand-tag">1º Ano A e B</span><span class="expand-tag">Boas Práticas</span><span class="expand-tag">Replicar</span></div>
         </div>
-        <div class="expand-tags"><span class="expand-tag">1º Ano A e B</span><span class="expand-tag">Boas Práticas</span><span class="expand-tag">Replicar</span></div>
       </div>
     </div>
-
   </div>
 
-  <div style="text-align:center;padding:20px;font-size:0.72rem;color:var(--muted2);border-top:1px solid var(--border);margin-top:8px">
+  <div style="text-align:center; font-size:0.75rem; color:var(--muted2); margin-top:10px; padding-top:18px; border-top:1px solid var(--border);">
     Adriano Martins EEIEF · Caucaia · CE · Fonte: CNCA — Avaliações Internas Av1 e Av2 · 1º ao 5º Ano · Clique nos cartões para ver as ações sugeridas
   </div>
 
@@ -879,6 +1102,7 @@ body { background:var(--bg); color:var(--text); font-family:'Nunito',sans-serif;
 
 <script>
 function toggle(card) { card.classList.toggle('open'); }
+
 window.addEventListener('load', () => {
   setTimeout(() => {
     document.querySelectorAll('.progress-fill').forEach(el => {
@@ -888,8 +1112,9 @@ window.addEventListener('load', () => {
     });
   }, 300);
 });
-const sections = document.querySelectorAll('.section');
-const navItems = document.querySelectorAll('.nav-item');
+
+const sections = document.querySelectorAll('[id]');
+const navItems = document.querySelectorAll('.nav-item[href^="#"]');
 window.addEventListener('scroll', () => {
   let current = '';
   sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });

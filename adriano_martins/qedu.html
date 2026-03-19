@@ -3,347 +3,602 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Painel do Diretor · QEdu · Adriano Martins EEIEF</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>QEdu / Censo · Adriano Martins EEIEF</title>
 <style>
 :root {
-  --ink: #0c1220;
-  --ink2: #1e2d42;
-  --muted: #5a6a82;
-  --muted2: #8fa0b8;
-  --line: #dde4ef;
-  --bg: #f4f6fb;
+  --bg: #f0f4f8;
   --surface: #ffffff;
-  --red: #e63946;
-  --red-s: rgba(230,57,70,0.08);
-  --yellow: #e9a800;
-  --yellow-s: rgba(233,168,0,0.09);
-  --green: #2a9d5c;
-  --green-s: rgba(42,157,92,0.09);
-  --blue: #1a6fc4;
-  --blue-s: rgba(26,111,196,0.09);
-  --orange: #e07b2a;
-  --orange-s: rgba(224,123,42,0.09);
-  --purple: #7c4dff;
-  --purple-s: rgba(124,77,255,0.09);
+  --border: #d8e2ec;
+  --sidebar-bg: #1a2535;
+  --sidebar-hover: #243145;
+  --sidebar-active: rgba(14,116,144,.18);
+  --blue-dark: #1a3a5c;
+  --blue-mid: #1e5799;
+  --teal: #0e7490;
+  --text: #0f1e2e;
+  --muted: #4a5e75;
+  --muted2: #8097b0;
+  --red: #c0392b;
+  --red-bg: #fdf0ef;
+  --red-bdr: #f5b7b1;
+  --red-dark: #a93226;
+  --orange: #ca6f1e;
+  --orange-bg: #fef5e7;
+  --orange-bdr: #f8c471;
+  --yellow: #d68910;
+  --yellow-bg: #fef9ec;
+  --yellow-bdr: #f9d98a;
+  --green: #1a7a4a;
+  --green-bg: #edfaf3;
+  --green-bdr: #82e0aa;
+  --blue: #1a56a0;
+  --blue-bg: #eaf2fc;
+  --blue-bdr: #90bce8;
+  --purple: #6c3fc5;
+  --purple-bg: #f3f0ff;
+  --purple-bdr: #c4b5fd;
+  --font: 'Tahoma', 'Verdana', 'Arial', sans-serif;
+  --radius: 10px;
+  --shadow: 0 2px 12px rgba(0,0,0,0.08);
 }
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;min-height:100vh;display:flex}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  font-size: 0.94rem;
+  line-height: 1.6;
+}
 
-/* ── SIDEBAR ── */
-.sidebar{width:250px;min-width:250px;background:var(--ink);height:100vh;position:sticky;top:0;display:flex;flex-direction:column;overflow-y:auto;z-index:50}
-.sidebar-head{padding:22px 20px 18px;border-bottom:1px solid rgba(255,255,255,0.07)}
-.logo-label{font-size:0.6rem;text-transform:uppercase;letter-spacing:.18em;color:#3d5473;font-weight:600;margin-bottom:6px}
-.school-title{font-family:'DM Serif Display',serif;font-size:1.05rem;color:#e8edf5;line-height:1.25}
-.school-title span{color:#e9a800}
-.school-meta{font-size:0.68rem;color:#3d5473;margin-top:5px}
-.badge-nse{display:inline-flex;align-items:center;gap:4px;margin-top:8px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.09);border-radius:20px;padding:3px 9px;font-size:0.67rem;color:#7a99c0;font-weight:500}
+/* ===== SIDEBAR ===== */
+.sidebar {
+  width: 264px; min-width: 264px;
+  background: var(--sidebar-bg);
+  height: 100vh; position: sticky; top: 0;
+  display: flex; flex-direction: column;
+  overflow-y: auto; z-index: 100;
+}
+.sidebar::-webkit-scrollbar { width: 4px; }
+.sidebar::-webkit-scrollbar-thumb { background: #2e3d52; border-radius: 3px; }
+.sidebar-logo {
+  padding: 20px 20px 18px;
+  border-bottom: 1px solid #2e3d52;
+  background: #111c2a;
+}
+.school-badge {
+  display: inline-block; background: var(--teal); color: #fff;
+  font-size: 0.70rem; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; padding: 3px 10px; border-radius: 4px; margin-bottom: 9px;
+}
+.school-name { font-size: 1.08rem; font-weight: 700; color: #fff; line-height: 1.25; margin-bottom: 3px; }
+.school-name span { color: #f0b429; }
+.school-sub { font-size: 0.70rem; color: #7a90a8; margin-top: 3px; letter-spacing: 0.05em; }
+.nav-section {
+  padding: 12px 20px 5px;
+  font-size: 0.68rem; text-transform: uppercase;
+  letter-spacing: 0.13em; color: #5a7090; font-weight: 700;
+}
+.nav-item {
+  display: flex; align-items: center; gap: 11px;
+  padding: 11px 20px; cursor: pointer;
+  border-left: 4px solid transparent;
+  transition: all 0.2s; text-decoration: none; color: inherit;
+}
+.nav-item:hover { background: var(--sidebar-hover); }
+.nav-item.active { background: var(--sidebar-active); border-left-color: #22d3ee; }
+.nav-icon {
+  width: 32px; height: 32px; border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; flex-shrink: 0;
+}
+.nav-label { font-size: 0.85rem; font-weight: 600; color: #b8cce0; line-height: 1.25; }
+.nav-item.active .nav-label { color: #fff; }
+.nav-badge {
+  margin-left: auto; min-width: 22px; height: 22px;
+  border-radius: 11px; font-size: 0.70rem; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0 5px; flex-shrink: 0;
+}
+.nb-red    { background: var(--red);    color: #fff; }
+.nb-yellow { background: var(--yellow); color: #fff; }
+.nb-green  { background: var(--green);  color: #fff; }
+.nb-orange { background: var(--orange); color: #fff; }
 
-.nav-group{padding:14px 0 6px}
-.nav-group-label{padding:0 20px 5px;font-size:0.6rem;text-transform:uppercase;letter-spacing:.15em;color:#3a5068;font-weight:700}
-.nav-item{display:flex;align-items:center;gap:10px;padding:9px 20px;cursor:pointer;border-left:2px solid transparent;text-decoration:none;transition:all .18s}
-.nav-item:hover{background:rgba(255,255,255,0.04)}
-.nav-item.active{background:rgba(233,168,0,0.08);border-left-color:var(--yellow)}
-.nav-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.nav-dot.red{background:var(--red)}
-.nav-dot.yellow{background:var(--yellow)}
-.nav-dot.green{background:var(--green)}
-.nav-dot.blue{background:var(--blue)}
-.nav-dot.gray{background:#3d5473}
-.nav-text{font-size:0.82rem;font-weight:500;color:#8fa8c8}
-.nav-item.active .nav-text{color:#e8edf5}
-.nav-badge{margin-left:auto;font-size:.6rem;font-weight:700;padding:2px 6px;border-radius:10px}
-.nav-badge.red{background:rgba(230,57,70,0.25);color:#f87171}
-.nav-badge.yellow{background:rgba(233,168,0,0.2);color:#fbbf24}
-.nav-badge.green{background:rgba(42,157,92,0.2);color:#4ade80}
+/* Legenda sidebar */
+.legend-block { padding: 8px 20px 6px; }
+.leg-row { display: flex; align-items: center; gap: 8px; padding: 5px 0; font-size: 0.74rem; color: #8daabf; border-bottom: 1px solid #243145; }
+.leg-row:last-child { border-bottom: none; }
+.leg-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
 
-.sidebar-legend{margin-top:auto;padding:14px 20px;border-top:1px solid rgba(255,255,255,0.07)}
-.leg-title{font-size:0.6rem;text-transform:uppercase;letter-spacing:.12em;color:#3a5068;font-weight:700;margin-bottom:8px}
-.leg-row{display:flex;align-items:center;gap:7px;padding:3px 0;font-size:0.72rem;color:#5a7898}
-.leg-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.sidebar-footer {
+  margin-top: auto; padding: 14px 20px;
+  border-top: 1px solid #2e3d52;
+  font-size: 0.70rem; color: #5a7090; line-height: 1.7;
+}
 
-/* ── MAIN ── */
-.main{flex:1;min-width:0;padding:32px 36px}
+/* ===== MAIN ===== */
+.main { flex: 1; min-width: 0; padding: 28px 32px 52px; }
 
-/* ── HERO ── */
-.hero{background:var(--ink2);border-radius:16px;padding:28px 32px;margin-bottom:28px;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:radial-gradient(circle,rgba(233,168,0,0.12) 0%,transparent 70%);pointer-events:none}
-.hero::after{content:'';position:absolute;bottom:-30px;left:20%;width:300px;height:120px;background:radial-gradient(ellipse,rgba(26,111,196,0.08) 0%,transparent 70%);pointer-events:none}
-.hero-label{font-size:0.65rem;text-transform:uppercase;letter-spacing:.18em;color:#5a7898;font-weight:600;margin-bottom:8px}
-.hero-title{font-family:'DM Serif Display',serif;font-size:1.9rem;color:#e8edf5;line-height:1.1;margin-bottom:4px}
-.hero-title em{color:var(--yellow);font-style:italic}
-.hero-sub{font-size:0.85rem;color:#5a7898;margin-bottom:22px}
-.hero-kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px}
-.kpi{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:12px 14px}
-.kpi-val{font-family:'DM Serif Display',serif;font-size:1.6rem;line-height:1}
-.kpi-val.yellow{color:var(--yellow)}
-.kpi-val.green{color:#4ade80}
-.kpi-val.red{color:#f87171}
-.kpi-val.blue{color:#60a5fa}
-.kpi-val.orange{color:#fb923c}
-.kpi-lbl{font-size:0.67rem;color:#3d5473;text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-top:4px}
-.kpi-src{font-size:0.62rem;color:#2d4159;margin-top:2px}
+/* ===== TOPBAR ===== */
+.topbar {
+  display: flex; align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 26px; flex-wrap: wrap; gap: 14px;
+}
+.topbar-title h2 { font-size: 1.35rem; font-weight: 700; color: var(--text); }
+.topbar-title p { font-size: 0.80rem; color: var(--muted); margin-top: 3px; }
+.topbar-stats { display: flex; gap: 10px; flex-wrap: wrap; }
+.topbar-stat {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 8px; padding: 9px 16px; text-align: center;
+  box-shadow: var(--shadow);
+}
+.topbar-stat .ts-val { font-size: 1.1rem; font-weight: 700; display: block; }
+.topbar-stat .ts-lab { font-size: 0.68rem; color: var(--muted2); text-transform: uppercase; letter-spacing: 0.07em; }
+.ts-red    { color: var(--red); }
+.ts-yellow { color: var(--yellow); }
+.ts-orange { color: var(--orange); }
+.ts-green  { color: var(--green); }
+.ts-teal   { color: var(--teal); }
+.ts-blue   { color: var(--blue); }
 
-/* ── SECTION ── */
-.section{margin-bottom:28px}
-.section-head{display:flex;align-items:center;gap:14px;margin-bottom:14px}
-.section-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
-.section-info h2{font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--ink)}
-.section-info p{font-size:0.78rem;color:var(--muted);margin-top:2px}
+/* ===== SECTION TITLE ===== */
+.section-title {
+  font-size: 1.05rem; font-weight: 700; color: var(--blue-dark);
+  padding-bottom: 8px; border-bottom: 2px solid var(--border);
+  margin-bottom: 18px; margin-top: 32px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-title:first-of-type { margin-top: 0; }
 
-/* ── CARDS ── */
-.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;position:relative;overflow:hidden;cursor:pointer;transition:box-shadow .2s,transform .2s}
-.card:hover{box-shadow:0 6px 24px rgba(0,0,0,0.08);transform:translateY(-1px)}
-.card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;border-radius:12px 0 0 12px}
-.card.red::before{background:var(--red)}
-.card.yellow::before{background:var(--yellow)}
-.card.green::before{background:var(--green)}
-.card.blue::before{background:var(--blue)}
-.card.orange::before{background:var(--orange)}
-.card.purple::before{background:var(--purple)}
-.card-icon{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;margin-bottom:10px}
-.card-icon.red{background:var(--red-s)}
-.card-icon.yellow{background:var(--yellow-s)}
-.card-icon.green{background:var(--green-s)}
-.card-icon.blue{background:var(--blue-s)}
-.card-icon.orange{background:var(--orange-s)}
-.card-icon.purple{background:var(--purple-s)}
-.card-badge{position:absolute;top:14px;right:14px;font-size:0.65rem;font-weight:700;padding:2px 8px;border-radius:20px;letter-spacing:.04em}
-.card-badge.red{background:var(--red-s);color:var(--red);border:1px solid rgba(230,57,70,0.2)}
-.card-badge.yellow{background:var(--yellow-s);color:#a07000;border:1px solid rgba(233,168,0,0.25)}
-.card-badge.green{background:var(--green-s);color:var(--green);border:1px solid rgba(42,157,92,0.2)}
-.card-badge.blue{background:var(--blue-s);color:var(--blue);border:1px solid rgba(26,111,196,0.2)}
-.card-badge.orange{background:var(--orange-s);color:var(--orange);border:1px solid rgba(224,123,42,0.2)}
-.card-badge.purple{background:var(--purple-s);color:var(--purple);border:1px solid rgba(124,77,255,0.2)}
-.card-title{font-weight:700;font-size:0.9rem;line-height:1.3;margin-bottom:6px;padding-right:70px}
-.card-desc{font-size:0.8rem;color:var(--muted);line-height:1.55;margin-bottom:12px}
-.card-metrics{display:flex;flex-wrap:wrap;gap:5px}
-.metric{display:flex;align-items:center;gap:4px;font-size:0.72rem;font-weight:600;padding:3px 8px;border-radius:20px}
-.metric.red{background:var(--red-s);color:var(--red)}
-.metric.yellow{background:var(--yellow-s);color:#a07000}
-.metric.green{background:var(--green-s);color:var(--green)}
-.metric.blue{background:var(--blue-s);color:var(--blue)}
-.metric.orange{background:var(--orange-s);color:var(--orange)}
-.metric.purple{background:var(--purple-s);color:var(--purple)}
-.metric.gray{background:#f1f4f9;color:var(--muted)}
+/* ===== KPI GRID ===== */
+.kpi-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 14px; margin-bottom: 24px;
+}
+.kpi-card {
+  background: var(--surface); border-radius: var(--radius);
+  border: 1px solid var(--border); box-shadow: var(--shadow);
+  padding: 16px 14px 12px; text-align: center;
+}
+.kpi-val { font-size: 1.8rem; font-weight: 700; line-height: 1; margin-bottom: 5px; }
+.kpi-label { font-size: 0.70rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.07em; line-height: 1.4; }
+.kpi-src   { font-size: 0.68rem; color: var(--muted2); margin-top: 3px; }
 
-/* ── EXPANDABLE CARD ── */
-.exp-card{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:8px;cursor:pointer;transition:box-shadow .2s}
-.exp-card:hover{box-shadow:0 4px 16px rgba(0,0,0,0.07)}
-.exp-card.red{border-left:4px solid var(--red)}
-.exp-card.yellow{border-left:4px solid var(--yellow)}
-.exp-card.green{border-left:4px solid var(--green)}
-.exp-card.blue{border-left:4px solid var(--blue)}
-.exp-card.orange{border-left:4px solid var(--orange)}
-.exp-top{display:flex;align-items:flex-start;gap:12px;padding:16px 18px}
-.exp-icon{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.95rem;flex-shrink:0}
-.exp-icon.red{background:var(--red-s)}
-.exp-icon.yellow{background:var(--yellow-s)}
-.exp-icon.green{background:var(--green-s)}
-.exp-icon.blue{background:var(--blue-s)}
-.exp-icon.orange{background:var(--orange-s)}
-.exp-body{flex:1;min-width:0}
-.exp-head-row{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:4px}
-.exp-title{font-weight:700;font-size:0.88rem;line-height:1.3}
-.exp-src{font-size:0.65rem;font-weight:600;padding:2px 7px;border-radius:10px;background:#f1f4f9;color:var(--muted);white-space:nowrap;flex-shrink:0}
-.exp-summary{font-size:0.8rem;color:var(--muted);line-height:1.55;margin-bottom:8px}
-.exp-pills{display:flex;flex-wrap:wrap;gap:5px}
-.pill{font-size:0.7rem;font-weight:600;padding:2px 8px;border-radius:20px}
-.pill.red{background:var(--red-s);color:var(--red)}
-.pill.yellow{background:var(--yellow-s);color:#a07000}
-.pill.green{background:var(--green-s);color:var(--green)}
-.pill.blue{background:var(--blue-s);color:var(--blue)}
-.pill.orange{background:var(--orange-s);color:var(--orange)}
-.pill.gray{background:#f1f4f9;color:var(--muted)}
-.exp-toggle{background:none;border:none;cursor:pointer;color:var(--muted2);font-size:1rem;flex-shrink:0;padding:2px;transition:transform .2s}
-.exp-card.open .exp-toggle{transform:rotate(180deg)}
-.exp-body-detail{max-height:0;overflow:hidden;transition:max-height .3s ease;border-top:1px solid var(--line)}
-.exp-card.open .exp-body-detail{max-height:400px;padding:14px 18px}
-.action-label{display:inline-block;background:var(--ink);color:var(--yellow);font-size:0.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:4px;margin-bottom:7px}
-.action-text{font-size:0.82rem;color:#3a4e67;line-height:1.75}
-.action-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
-.action-tag{background:#eef2f9;color:#5a6a82;font-size:0.68rem;font-weight:600;padding:2px 8px;border-radius:20px}
+/* ===== ALERT BANNER ===== */
+.alert-banner {
+  border-radius: var(--radius); padding: 13px 17px; margin-bottom: 11px;
+  border-left: 5px solid; font-size: 0.86rem;
+  display: flex; align-items: flex-start; gap: 11px;
+}
+.alert-banner.danger  { background: var(--red-bg);    border-color: var(--red);    color: #7a1a0e; }
+.alert-banner.warning { background: var(--yellow-bg); border-color: var(--yellow); color: #7a3e05; }
+.alert-banner.success { background: var(--green-bg);  border-color: var(--green);  color: #155234; }
+.alert-banner.info    { background: var(--blue-bg);   border-color: var(--blue);   color: #12347a; }
+.alert-banner.purple  { background: var(--purple-bg); border-color: var(--purple); color: #4a1fa8; }
+.alert-banner .ab-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 1px; }
+.alert-title { font-weight: 700; margin-bottom: 3px; }
+.alert-body  { font-size: 0.80rem; line-height: 1.6; }
 
-/* ── PROGRESS ROWS ── */
-.prog-row{display:flex;align-items:center;gap:8px;padding:5px 0}
-.prog-code{min-width:52px;text-align:center;font-size:0.7rem;font-weight:700;padding:2px 5px;border-radius:4px;flex-shrink:0}
-.prog-code.red{background:var(--red-s);color:var(--red)}
-.prog-code.yellow{background:var(--yellow-s);color:#a07000}
-.prog-code.green{background:var(--green-s);color:var(--green)}
-.prog-code.blue{background:var(--blue-s);color:var(--blue)}
-.prog-label{flex:1;font-size:0.75rem;color:var(--muted)}
-.prog-track{flex:2;background:#eef2f9;border-radius:4px;height:7px;overflow:hidden}
-.prog-fill{height:100%;border-radius:4px;transition:width .7s ease}
-.prog-fill.red{background:var(--red)}
-.prog-fill.yellow{background:var(--yellow)}
-.prog-fill.green{background:var(--green)}
-.prog-fill.blue{background:var(--blue)}
-.prog-val{font-size:0.75rem;font-weight:700;min-width:36px;text-align:right}
-.prog-val.red{color:var(--red)}
-.prog-val.yellow{color:var(--yellow)}
-.prog-val.green{color:var(--green)}
-.prog-val.blue{color:var(--blue)}
+/* ===== IDEB STRIP ===== */
+.ideb-strip {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 20px 24px; display: flex; align-items: center;
+  gap: 22px; flex-wrap: wrap; margin-bottom: 14px;
+}
+.ideb-big { font-size: 3rem; font-weight: 700; line-height: 1; color: var(--yellow); }
+.ideb-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); font-weight: 700; margin-bottom: 2px; }
+.ideb-meta  { font-size: 0.80rem; color: var(--muted); margin-top: 2px; }
+.ideb-divider { width: 1px; height: 56px; background: var(--border); flex-shrink: 0; }
+.ideb-components { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; }
+.ideb-comp { text-align: center; }
+.ideb-comp-val { font-size: 1.5rem; font-weight: 700; color: var(--text); }
+.ideb-comp-label { font-size: 0.64rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 600; }
+.ideb-target {
+  background: var(--yellow-bg); border: 1px dashed var(--yellow-bdr);
+  border-radius: 8px; padding: 8px 14px; text-align: center; flex: 1; min-width: 130px;
+}
+.ideb-target-label { font-size: 0.64rem; text-transform: uppercase; letter-spacing: .08em; color: #7d5a10; font-weight: 700; }
+.ideb-target-val   { font-size: 1.3rem; font-weight: 700; color: #7d5a10; display: block; margin-top: 2px; }
+.ideb-target-note  { font-size: 0.70rem; color: var(--yellow); }
 
-/* ── TABLE ── */
-.tbl-wrap{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
-.tbl{width:100%;border-collapse:collapse;font-size:0.81rem}
-.tbl th{background:#f4f6fb;color:var(--muted);font-weight:700;padding:10px 14px;text-align:left;font-size:0.68rem;text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--line)}
-.tbl td{padding:9px 14px;border-bottom:1px solid var(--line)}
-.tbl tr:last-child td{border-bottom:none}
-.tbl tr:hover td{background:#f9fbff}
-.tbl-bold{font-weight:700}
-.chip{display:inline-block;font-size:0.65rem;font-weight:700;padding:2px 7px;border-radius:20px}
-.chip.red{background:var(--red-s);color:var(--red)}
-.chip.yellow{background:var(--yellow-s);color:#a07000}
-.chip.green{background:var(--green-s);color:var(--green)}
-.chip.blue{background:var(--blue-s);color:var(--blue)}
-.chip.orange{background:var(--orange-s);color:var(--orange)}
-.chip.gray{background:#f1f4f9;color:var(--muted)}
+/* ===== DATA TABLE ===== */
+.data-table-wrap {
+  background: var(--surface); border-radius: var(--radius);
+  border: 1px solid var(--border); box-shadow: var(--shadow);
+  overflow: hidden; margin-bottom: 12px;
+}
+.table-header {
+  padding: 12px 16px 10px; border-bottom: 1px solid var(--border); background: #fafcff;
+}
+.table-header h3 { font-size: 0.90rem; font-weight: 700; color: var(--blue-dark); }
+.table-header p  { font-size: 0.73rem; color: var(--muted2); }
+.table-scroll { overflow-x: auto; }
+.data-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+.data-table thead tr { background: linear-gradient(135deg, #1a3a5c, #1e5799); color: #fff; }
+.data-table th {
+  padding: 10px 12px; text-align: left;
+  font-size: 0.70rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em; white-space: nowrap;
+}
+.data-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.data-table tbody tr:last-child td { border-bottom: none; }
+.data-table tbody tr:hover { background: #f8fafc; }
+.fonte { font-size: 0.68rem; color: var(--muted2); margin-top: 5px; text-align: right; }
 
-/* ── INFRA GRID ── */
-.infra-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
-.infra-item{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:flex;align-items:center;gap:10px}
-.infra-check{width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:0.75rem;flex-shrink:0}
-.infra-check.ok{background:var(--green-s);color:var(--green)}
-.infra-check.no{background:var(--red-s);color:var(--red)}
-.infra-check.warn{background:var(--yellow-s);color:var(--yellow)}
-.infra-label{font-size:0.78rem;font-weight:500}
-.infra-label.ok{color:var(--ink)}
-.infra-label.no{color:var(--muted2)}
+/* Pills/Chips */
+.chip {
+  display: inline-block; font-size: 0.67rem; font-weight: 700;
+  padding: 2px 8px; border-radius: 20px;
+}
+.chip.red    { background: var(--red-bg);    color: var(--red-dark); border: 1px solid var(--red-bdr); }
+.chip.yellow { background: var(--yellow-bg); color: #7d5a10; border: 1px solid var(--yellow-bdr); }
+.chip.green  { background: var(--green-bg);  color: #155234; border: 1px solid var(--green-bdr); }
+.chip.blue   { background: var(--blue-bg);   color: #12347a; border: 1px solid var(--blue-bdr); }
+.chip.orange { background: var(--orange-bg); color: #7e4a10; border: 1px solid var(--orange-bdr); }
+.chip.gray   { background: #f3f4f6; color: #6b7280; border: 1px solid #e5e7eb; }
 
-/* ── ALERT BANNER ── */
-.alert-banner{border-radius:10px;padding:14px 18px;display:flex;align-items:flex-start;gap:12px;margin-bottom:12px}
-.alert-banner.red{background:rgba(230,57,70,0.06);border:1px solid rgba(230,57,70,0.2)}
-.alert-banner.yellow{background:rgba(233,168,0,0.06);border:1px solid rgba(233,168,0,0.2)}
-.alert-banner.green{background:rgba(42,157,92,0.06);border:1px solid rgba(42,157,92,0.2)}
-.alert-banner.blue{background:rgba(26,111,196,0.06);border:1px solid rgba(26,111,196,0.2)}
-.alert-icon{font-size:1.1rem;flex-shrink:0;margin-top:2px}
-.alert-title{font-weight:700;font-size:0.88rem;margin-bottom:3px}
-.alert-title.red{color:var(--red)}
-.alert-title.yellow{color:#a07000}
-.alert-title.green{color:var(--green)}
-.alert-title.blue{color:var(--blue)}
-.alert-text{font-size:0.8rem;color:var(--muted);line-height:1.55}
+/* ===== CARDS GRID ===== */
+.cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; margin-bottom: 16px; }
+.data-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 16px; position: relative; overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+.data-card:hover { box-shadow: 0 4px 18px rgba(0,0,0,0.10); }
+.data-card.red    { border-left: 5px solid var(--red); }
+.data-card.yellow { border-left: 5px solid var(--yellow); }
+.data-card.green  { border-left: 5px solid var(--green); }
+.data-card.blue   { border-left: 5px solid var(--blue); }
+.data-card.orange { border-left: 5px solid var(--orange); }
+.data-card.purple { border-left: 5px solid var(--purple); }
+.card-icon {
+  width: 34px; height: 34px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; margin-bottom: 10px;
+}
+.card-icon.red    { background: var(--red-bg); }
+.card-icon.yellow { background: var(--yellow-bg); }
+.card-icon.green  { background: var(--green-bg); }
+.card-icon.blue   { background: var(--blue-bg); }
+.card-icon.orange { background: var(--orange-bg); }
+.card-badge {
+  position: absolute; top: 12px; right: 12px;
+  font-size: 0.64rem; font-weight: 700; padding: 2px 7px; border-radius: 20px;
+}
+.card-badge.red    { background: var(--red-bg);    color: var(--red-dark);  border: 1px solid var(--red-bdr); }
+.card-badge.yellow { background: var(--yellow-bg); color: #7d5a10; border: 1px solid var(--yellow-bdr); }
+.card-badge.green  { background: var(--green-bg);  color: #155234; border: 1px solid var(--green-bdr); }
+.card-badge.orange { background: var(--orange-bg); color: #7e4a10; border: 1px solid var(--orange-bdr); }
+.card-title { font-weight: 700; font-size: 0.88rem; line-height: 1.3; margin-bottom: 5px; padding-right: 72px; }
+.card-desc  { font-size: 0.78rem; color: var(--muted); line-height: 1.55; margin-bottom: 10px; }
+.card-metrics { display: flex; flex-wrap: wrap; gap: 5px; }
+.metric {
+  display: flex; align-items: center; gap: 4px;
+  font-size: 0.71rem; font-weight: 700; padding: 2px 8px; border-radius: 20px;
+}
+.metric.red    { background: var(--red-bg);    color: var(--red-dark); }
+.metric.yellow { background: var(--yellow-bg); color: #7d5a10; }
+.metric.green  { background: var(--green-bg);  color: #155234; }
+.metric.blue   { background: var(--blue-bg);   color: #12347a; }
+.metric.orange { background: var(--orange-bg); color: #7e4a10; }
+.metric.gray   { background: #f3f4f6; color: var(--muted); }
 
-/* ── IDEB BAR ── */
-.ideb-strip{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px 24px;display:flex;align-items:center;gap:24px;flex-wrap:wrap}
-.ideb-big{font-family:'DM Serif Display',serif;font-size:3.2rem;line-height:1;color:var(--yellow)}
-.ideb-label{font-size:0.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:600;margin-bottom:2px}
-.ideb-meta{font-size:0.8rem;color:var(--muted);margin-top:2px}
-.ideb-divider{width:1px;height:60px;background:var(--line);flex-shrink:0}
-.ideb-components{display:flex;gap:20px;flex-wrap:wrap}
-.ideb-comp{text-align:center}
-.ideb-comp-val{font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--ink)}
-.ideb-comp-label{font-size:0.65rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}
-.ideb-target{background:#fef9ec;border:1px dashed #e9a800;border-radius:8px;padding:8px 14px;text-align:center;flex:1;min-width:140px}
-.ideb-target-label{font-size:0.65rem;text-transform:uppercase;letter-spacing:.08em;color:#a07000;font-weight:700}
-.ideb-target-val{font-family:'DM Serif Display',serif;font-size:1.4rem;color:#a07000;display:block;margin-top:2px}
-.ideb-target-note{font-size:0.7rem;color:#b08000}
+/* ===== PROG ROWS ===== */
+.prog-row { display: flex; align-items: center; gap: 8px; padding: 5px 0; }
+.prog-code { min-width: 54px; text-align: center; font-size: 0.70rem; font-weight: 700; padding: 2px 5px; border-radius: 4px; flex-shrink: 0; }
+.prog-code.yellow { background: var(--yellow-bg); color: #7d5a10; }
+.prog-code.green  { background: var(--green-bg);  color: #155234; }
+.prog-code.red    { background: var(--red-bg);    color: var(--red-dark); }
+.prog-label { flex: 1; font-size: 0.76rem; color: var(--muted); }
+.prog-track { flex: 2; background: #eef1f5; border-radius: 4px; height: 8px; overflow: hidden; }
+.prog-fill  { height: 100%; border-radius: 4px; transition: width 0.7s ease; }
+.prog-fill.yellow { background: var(--yellow); }
+.prog-fill.green  { background: var(--green); }
+.prog-fill.red    { background: var(--red); }
+.prog-fill.blue   { background: var(--blue); }
+.prog-val { font-size: 0.76rem; font-weight: 700; min-width: 36px; text-align: right; }
+.prog-val.yellow { color: var(--yellow); }
+.prog-val.green  { color: var(--green); }
+.prog-val.red    { color: var(--red); }
 
-/* ── SAEB CARD ── */
-.saeb-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.saeb-box{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px}
-.saeb-box-title{font-size:0.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:700;margin-bottom:12px}
-.saeb-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--line);font-size:0.8rem}
-.saeb-row:last-child{border-bottom:none}
-.saeb-q{color:var(--muted);flex:1;padding-right:10px;line-height:1.4}
-.saeb-v{font-weight:700;flex-shrink:0}
-.saeb-v.red{color:var(--red)}
-.saeb-v.yellow{color:var(--yellow)}
-.saeb-v.green{color:var(--green)}
+/* ===== INFRA GRID ===== */
+.infra-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 8px; }
+.infra-item {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 8px; padding: 10px 12px;
+  display: flex; align-items: center; gap: 9px;
+}
+.infra-check {
+  width: 22px; height: 22px; border-radius: 5px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.72rem; font-weight: 700; flex-shrink: 0;
+}
+.infra-check.ok   { background: var(--green-bg); color: var(--green); }
+.infra-check.no   { background: var(--red-bg);   color: var(--red-dark); }
+.infra-check.warn { background: var(--orange-bg); color: var(--orange); }
+.infra-label { font-size: 0.78rem; font-weight: 500; }
+.infra-label.ok  { color: var(--text); }
+.infra-label.no  { color: var(--muted2); }
+.infra-label.warn { color: var(--orange); }
 
-/* ── PRIORITY PLAN ── */
-.priority-list{display:flex;flex-direction:column;gap:10px}
-.priority-item{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:flex;gap:14px;cursor:pointer;transition:box-shadow .2s}
-.priority-item:hover{box-shadow:0 4px 20px rgba(0,0,0,0.07)}
-.priority-item.open .priority-detail{display:block}
-.priority-num{font-family:'DM Serif Display',serif;font-size:2rem;line-height:1;flex-shrink:0;width:36px;text-align:center}
-.priority-num.red{color:var(--red)}
-.priority-num.yellow{color:var(--yellow)}
-.priority-num.green{color:var(--green)}
-.priority-num.blue{color:var(--blue)}
-.priority-content{flex:1}
-.priority-header{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:4px}
-.priority-title{font-weight:700;font-size:0.9rem;line-height:1.3}
-.priority-badge{font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:20px;flex-shrink:0}
-.priority-badge.red{background:var(--red-s);color:var(--red)}
-.priority-badge.yellow{background:var(--yellow-s);color:#a07000}
-.priority-badge.green{background:var(--green-s);color:var(--green)}
-.priority-badge.blue{background:var(--blue-s);color:var(--blue)}
-.priority-desc{font-size:0.8rem;color:var(--muted);line-height:1.55}
-.priority-detail{display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
-.priority-steps{font-size:0.81rem;color:#3a4e67;line-height:1.85}
+/* ===== SAEB GRID ===== */
+.saeb-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 14px; }
+.saeb-box {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); box-shadow: var(--shadow); padding: 16px;
+}
+.saeb-box-title { font-size: 0.70rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); font-weight: 700; margin-bottom: 10px; }
+.saeb-row { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; border-bottom: 1px solid var(--border); font-size: 0.80rem; }
+.saeb-row:last-child { border-bottom: none; }
+.saeb-q { color: var(--muted); flex: 1; padding-right: 10px; line-height: 1.4; }
+.saeb-v { font-weight: 700; flex-shrink: 0; }
+.saeb-v.red    { color: var(--red); }
+.saeb-v.yellow { color: var(--yellow); }
+.saeb-v.green  { color: var(--green); }
 
-.fonte{font-size:0.68rem;color:var(--muted2);margin-top:6px;text-align:right}
-.sep{height:1px;background:var(--line);margin:24px 0}
+/* ===== SECTION BLOCK (expandable groups) ===== */
+.section-block { margin-bottom: 24px; }
+.section-block-header {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 18px; background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius) var(--radius) 0 0;
+  border-bottom: 3px solid var(--border); box-shadow: var(--shadow);
+}
+.section-block-header.dark { background: var(--sidebar-bg); border-color: #2e3d52; }
+.sb-icon { width: 38px; height: 38px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+.sb-info h3 { font-size: 0.98rem; font-weight: 700; color: var(--blue-dark); line-height: 1.3; }
+.sb-info p  { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+.section-block-header.dark .sb-info h3 { color: #fff; }
+.section-block-header.dark .sb-info p  { color: #7a90a8; }
+
+/* ===== PRIORITY ITEMS ===== */
+.plan-item {
+  background: var(--surface); border: 1px solid var(--border);
+  border-top: none; padding: 15px 18px;
+  display: flex; gap: 14px; cursor: pointer;
+  transition: background 0.15s;
+}
+.plan-item:last-child { border-radius: 0 0 var(--radius) var(--radius); }
+.plan-item:hover { background: #f5f8ff; }
+.plan-item.p-red    { border-left: 5px solid var(--red); }
+.plan-item.p-yellow { border-left: 5px solid var(--yellow); }
+.plan-item.p-green  { border-left: 5px solid var(--green); }
+.plan-num { font-size: 1.8rem; font-weight: 700; line-height: 1; flex-shrink: 0; width: 32px; text-align: center; }
+.plan-num.red    { color: var(--red); }
+.plan-num.yellow { color: var(--yellow); }
+.plan-num.green  { color: var(--green); }
+.plan-content { flex: 1; }
+.plan-hrow { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 4px; }
+.plan-title { font-weight: 700; font-size: 0.88rem; line-height: 1.35; }
+.plan-badge { font-size: 0.65rem; font-weight: 700; padding: 2px 8px; border-radius: 20px; flex-shrink: 0; white-space: nowrap; }
+.plan-badge.red    { background: var(--red-bg);    color: var(--red-dark); border: 1px solid var(--red-bdr); }
+.plan-badge.yellow { background: var(--yellow-bg); color: #7d5a10; border: 1px solid var(--yellow-bdr); }
+.plan-badge.green  { background: var(--green-bg);  color: #155234; border: 1px solid var(--green-bdr); }
+.plan-desc { font-size: 0.80rem; color: var(--muted); line-height: 1.55; }
+.plan-detail { display: none; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); }
+.plan-detail .action-tag-label {
+  display: inline-block; background: #1a2535; color: #f0b429;
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 3px 10px; border-radius: 4px; margin-bottom: 7px;
+}
+.plan-detail .action-text { font-size: 0.82rem; color: #2c3e50; line-height: 1.85; }
+.plan-item.open .plan-detail { display: block; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .main { padding: 18px 16px 40px; }
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .saeb-grid { grid-template-columns: 1fr; }
+  .cards-grid { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
 
 <!-- SIDEBAR -->
 <aside class="sidebar">
-  <div class="sidebar-head">
-    <div class="logo-label">Painel do Diretor · QEdu</div>
-    <div class="school-title"><span>Adriano Martins</span> EEIEF</div>
-    <div class="school-meta">Caucaia · CE · Municipal · Urbana</div>
-    <div class="badge-nse">🎓 NSE Médio-baixo · Inse 4 · 2021</div>
+  <div class="sidebar-logo">
+    <div class="school-badge">Painel do Diretor</div>
+    <div class="school-name">Adriano <span>Martins</span></div>
+    <div class="school-sub">EEIEF · Caucaia · CE · INEP 23061944</div>
   </div>
 
-  <div class="nav-group">
-    <div class="nav-group-label">Seções</div>
-    <a class="nav-item active" href="#perfil"><div class="nav-dot blue"></div><span class="nav-text">Perfil & Ideb</span></a>
-    <a class="nav-item" href="#aprendizado"><div class="nav-dot yellow"></div><span class="nav-text">Aprendizado Saeb</span><span class="nav-badge yellow">38%</span></a>
-    <a class="nav-item" href="#censo"><div class="nav-dot blue"></div><span class="nav-text">Censo Escolar</span></a>
-    <a class="nav-item" href="#rendimento"><div class="nav-dot green"></div><span class="nav-text">Taxas de Rendimento</span><span class="nav-badge green">✓</span></a>
-    <a class="nav-item" href="#distorcao"><div class="nav-dot yellow"></div><span class="nav-text">Distorção Idade-Série</span></a>
-    <a class="nav-item" href="#questionario"><div class="nav-dot blue"></div><span class="nav-text">Questionários Saeb</span></a>
-    <a class="nav-item" href="#infraestrutura"><div class="nav-dot yellow"></div><span class="nav-text">Infraestrutura</span><span class="nav-badge yellow">!</span></a>
-    <a class="nav-item" href="#acoes"><div class="nav-dot red"></div><span class="nav-text">Plano de Ação</span></a>
-  </div>
+  <div class="nav-section">Indicadores</div>
+  <a class="nav-item" href="painel.html">
+    <div class="nav-icon" style="background:#ecfeff">🏠</div>
+    <span class="nav-label">Visão Geral</span>
+  </a>
+  <a class="nav-item" href="busca_ativa.html">
+    <div class="nav-icon" style="background:#fef5e7">🔍</div>
+    <span class="nav-label">Busca Ativa</span>
+    <span class="nav-badge nb-orange">32</span>
+  </a>
+  <a class="nav-item" href="adesc.html">
+    <div class="nav-icon" style="background:#edfaf3">📖</div>
+    <span class="nav-label">ADESC 2025</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+  <a class="nav-item" href="avalie_ce.html">
+    <div class="nav-icon" style="background:#fef9ec">📊</div>
+    <span class="nav-label">Avalie.CE</span>
+    <span class="nav-badge nb-red">6</span>
+  </a>
+  <a class="nav-item" href="bimestrais.html">
+    <div class="nav-icon" style="background:#eaf2fc">📝</div>
+    <span class="nav-label">Bimestrais 2025</span>
+    <span class="nav-badge nb-yellow">3</span>
+  </a>
+  <a class="nav-item" href="cnca.html">
+    <div class="nav-icon" style="background:#fef5e7">📚</div>
+    <span class="nav-label">CNCA</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+  <a class="nav-item active" href="qedu.html">
+    <div class="nav-icon" style="background:#eaf2fc">🎓</div>
+    <span class="nav-label">QEdu / Censo</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+  <a class="nav-item" href="saeb.html">
+    <div class="nav-icon" style="background:#fdf0ef">📋</div>
+    <span class="nav-label">SAEB 2023</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+  <a class="nav-item" href="spaece.html">
+    <div class="nav-icon" style="background:#fef9ec">📈</div>
+    <span class="nav-label">SPAECE 2024</span>
+    <span class="nav-badge nb-red">!!</span>
+  </a>
 
-  <div class="sidebar-legend">
-    <div class="leg-title">Semáforo</div>
+  <div class="nav-section" style="margin-top:10px">Navegação Interna</div>
+  <a class="nav-item" href="#perfil">
+    <div class="nav-icon" style="background:rgba(26,86,160,.12)">🏆</div>
+    <span class="nav-label">Perfil &amp; Ideb</span>
+  </a>
+  <a class="nav-item" href="#aprendizado">
+    <div class="nav-icon" style="background:rgba(214,137,16,.12)">📚</div>
+    <span class="nav-label">Aprendizado Saeb</span>
+    <span class="nav-badge nb-yellow">38%</span>
+  </a>
+  <a class="nav-item" href="#censo">
+    <div class="nav-icon" style="background:rgba(26,86,160,.12)">🏫</div>
+    <span class="nav-label">Censo Escolar</span>
+  </a>
+  <a class="nav-item" href="#rendimento">
+    <div class="nav-icon" style="background:rgba(26,122,74,.12)">📈</div>
+    <span class="nav-label">Taxas de Rendimento</span>
+    <span class="nav-badge nb-green">✓</span>
+  </a>
+  <a class="nav-item" href="#distorcao">
+    <div class="nav-icon" style="background:rgba(214,137,16,.12)">⏰</div>
+    <span class="nav-label">Distorção Idade-Série</span>
+  </a>
+  <a class="nav-item" href="#questionario">
+    <div class="nav-icon" style="background:rgba(108,63,197,.12)">💬</div>
+    <span class="nav-label">Questionários Saeb</span>
+  </a>
+  <a class="nav-item" href="#infraestrutura">
+    <div class="nav-icon" style="background:rgba(202,111,30,.12)">🏗️</div>
+    <span class="nav-label">Infraestrutura</span>
+    <span class="nav-badge nb-yellow">!</span>
+  </a>
+  <a class="nav-item" href="#acoes">
+    <div class="nav-icon" style="background:rgba(192,57,43,.12)">⚡</div>
+    <span class="nav-label">Plano de Ação</span>
+  </a>
+
+  <div class="nav-section" style="margin-top:10px">Semáforo</div>
+  <div class="legend-block">
     <div class="leg-row"><div class="leg-dot" style="background:var(--red)"></div>Crítico / Urgente</div>
     <div class="leg-row"><div class="leg-dot" style="background:var(--yellow)"></div>Atenção / Abaixo da meta</div>
     <div class="leg-row"><div class="leg-dot" style="background:var(--green)"></div>Satisfatório / Destaque</div>
     <div class="leg-row"><div class="leg-dot" style="background:var(--blue)"></div>Informativo</div>
+  </div>
+
+  <div class="nav-section" style="margin-top:10px">Sistema</div>
+  <a class="nav-item" href="../index.html">
+    <div class="nav-icon" style="background:#fdf0ef">🏫</div>
+    <span class="nav-label">Trocar Escola</span>
+  </a>
+
+  <div class="sidebar-footer">
+    <div>Adriano Martins EEIEF<br>Caucaia · CE · NSE Médio-baixo</div>
+    <div style="margin-top:6px;color:#8097b0">QEdu / INEP · Saeb 2023<br>Censo Escolar 2025 · INSE 2021</div>
   </div>
 </aside>
 
 <!-- MAIN -->
 <main class="main">
 
-  <!-- HERO -->
-  <div class="hero">
-    <div class="hero-label">📊 Dados Externos · Fonte: QEdu / INEP · Censo 2025 · Saeb 2023</div>
-    <div class="hero-title">Adriano Martins <em>EEIEF</em></div>
-    <div class="hero-sub">Escola Municipal · Caucaia, Ceará · Tempo Integral · Ensino Infantil e Fundamental</div>
-    <div class="hero-kpis">
-      <div class="kpi"><div class="kpi-val yellow">5,8</div><div class="kpi-lbl">Ideb 2023</div><div class="kpi-src">Meta: 5,5</div></div>
-      <div class="kpi"><div class="kpi-val blue">191</div><div class="kpi-lbl">Matrículas EF</div><div class="kpi-src">Censo 2025</div></div>
-      <div class="kpi"><div class="kpi-val blue">316</div><div class="kpi-lbl">Total matrículas</div><div class="kpi-src">Inf + EF + EEsp</div></div>
-      <div class="kpi"><div class="kpi-val yellow">54%</div><div class="kpi-lbl">Adeq. LP 5º ano</div><div class="kpi-src">Saeb 2023</div></div>
-      <div class="kpi"><div class="kpi-val red">38%</div><div class="kpi-lbl">Adeq. MT 5º ano</div><div class="kpi-src">Saeb 2023</div></div>
-      <div class="kpi"><div class="kpi-val green">0</div><div class="kpi-lbl">Reprovações</div><div class="kpi-src">Censo 2025</div></div>
-      <div class="kpi"><div class="kpi-val green">0</div><div class="kpi-lbl">Abandonos</div><div class="kpi-src">Censo 2025</div></div>
-      <div class="kpi"><div class="kpi-val orange">10%</div><div class="kpi-lbl">Distorção I-S</div><div class="kpi-src">INEP 2021</div></div>
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="topbar-title">
+      <h2>🎓 QEdu / Censo · Adriano Martins EEIEF</h2>
+      <p>Dados Externos · QEdu / INEP · Censo 2025 · Saeb 2023 · Escola Municipal · Caucaia, CE · Tempo Integral</p>
+    </div>
+    <div class="topbar-stats">
+      <div class="topbar-stat">
+        <span class="ts-val ts-yellow">5,8</span>
+        <span class="ts-lab">Ideb 2023</span>
+      </div>
+      <div class="topbar-stat">
+        <span class="ts-val ts-blue">316</span>
+        <span class="ts-lab">Matrículas</span>
+      </div>
+      <div class="topbar-stat">
+        <span class="ts-val ts-yellow">54%</span>
+        <span class="ts-lab">Adeq. LP</span>
+      </div>
+      <div class="topbar-stat">
+        <span class="ts-val ts-red">38%</span>
+        <span class="ts-lab">Adeq. MT</span>
+      </div>
+      <div class="topbar-stat">
+        <span class="ts-val ts-green">0</span>
+        <span class="ts-lab">Reprov.</span>
+      </div>
     </div>
   </div>
 
-  <!-- ── PERFIL & IDEB ── -->
-  <div class="section" id="perfil">
-    <div class="section-head">
-      <div class="section-icon" style="background:var(--yellow-s)">🏆</div>
-      <div class="section-info"><h2>Ideb — Indicador de Qualidade (2023)</h2><p>Aprendizado × Fluxo · Anos Iniciais · Fonte: INEP</p></div>
+  <!-- ===== PERFIL & IDEB ===== -->
+  <div id="perfil">
+    <div class="section-title">🏆 Ideb — Indicador de Qualidade (2023)</div>
+
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-val ts-yellow">5,8</div>
+        <div class="kpi-label">Ideb 2023</div>
+        <div class="kpi-src">Meta: 5,5 ✅</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val ts-blue">191</div>
+        <div class="kpi-label">Matrículas EF</div>
+        <div class="kpi-src">Censo 2025</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val ts-blue">316</div>
+        <div class="kpi-label">Total Matrículas</div>
+        <div class="kpi-src">Inf + EF + EEsp</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val ts-yellow">54%</div>
+        <div class="kpi-label">Adeq. LP 5º</div>
+        <div class="kpi-src">Saeb 2023</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val ts-red">38%</div>
+        <div class="kpi-label">Adeq. MT 5º</div>
+        <div class="kpi-src">Saeb 2023</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val ts-green">0</div>
+        <div class="kpi-label">Reprovações</div>
+        <div class="kpi-src">Censo 2025</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val ts-green">0</div>
+        <div class="kpi-label">Abandonos</div>
+        <div class="kpi-src">Censo 2025</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val ts-orange">10%</div>
+        <div class="kpi-label">Distorção I-S</div>
+        <div class="kpi-src">INEP 2021</div>
+      </div>
     </div>
 
-    <div class="ideb-strip" style="margin-bottom:12px">
+    <div class="ideb-strip">
       <div>
         <div class="ideb-label">Ideb 2023 · Anos Iniciais</div>
         <div class="ideb-big">5,8</div>
-        <div class="ideb-meta" style="color:#a07000;font-weight:600">▲ Acima da meta nacional (5,5)</div>
+        <div class="ideb-meta" style="color:var(--yellow);font-weight:600">▲ Acima da meta nacional (5,5)</div>
       </div>
       <div class="ideb-divider"></div>
       <div class="ideb-components">
@@ -351,12 +606,12 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;min-
           <div class="ideb-comp-val">6,39</div>
           <div class="ideb-comp-label">Aprendizado</div>
         </div>
-        <div style="font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--muted2);align-self:center">×</div>
+        <div style="font-size:1.3rem;color:var(--muted2);align-self:center">×</div>
         <div class="ideb-comp">
           <div class="ideb-comp-val">0,93</div>
           <div class="ideb-comp-label">Fluxo (aprovação)</div>
         </div>
-        <div style="font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--muted2);align-self:center">=</div>
+        <div style="font-size:1.3rem;color:var(--muted2);align-self:center">=</div>
         <div class="ideb-comp">
           <div class="ideb-comp-val" style="color:var(--yellow)">5,8</div>
           <div class="ideb-comp-label">Ideb Final</div>
@@ -369,34 +624,29 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;min-
       </div>
     </div>
 
-    <div class="alert-banner green">
-      <div class="alert-icon">🌟</div>
+    <div class="alert-banner success">
+      <span class="ab-icon">🌟</span>
       <div>
-        <div class="alert-title green">Ideb acima da meta: ponto forte da escola</div>
-        <div class="alert-text">Com 5,8 nos Anos Iniciais, a escola superou a meta nacional de 5,5 para 2023. O fluxo de 0,93 indica que 93 em cada 100 alunos estão sendo aprovados — resultado muito positivo. O desafio agora é elevar o componente de aprendizado (6,39), especialmente em Matemática.</div>
+        <div class="alert-title">Ideb acima da meta: ponto forte da escola</div>
+        <div class="alert-body">Com 5,8 nos Anos Iniciais, a escola superou a meta nacional de 5,5 para 2023. O fluxo de 0,93 indica que 93 em cada 100 alunos estão sendo aprovados — resultado muito positivo. O desafio agora é elevar o componente de aprendizado (6,39), especialmente em Matemática.</div>
       </div>
     </div>
 
-    <div class="alert-banner yellow">
-      <div class="alert-icon">⚠️</div>
+    <div class="alert-banner warning">
+      <span class="ab-icon">⚠️</span>
       <div>
-        <div class="alert-title yellow">Aprendizado em Matemática ainda é o gargalo</div>
-        <div class="alert-text">Apenas 38% dos alunos do 5º ano têm aprendizado adequado em Matemática (Saeb 2023), contra 54% em Língua Portuguesa. Nenhuma das duas ainda atingiu o patamar de referência (70%). A diferença entre LP e MT exige estratégias específicas para cada componente.</div>
+        <div class="alert-title">Aprendizado em Matemática ainda é o gargalo</div>
+        <div class="alert-body">Apenas 38% dos alunos do 5º ano têm aprendizado adequado em Matemática (Saeb 2023), contra 54% em Língua Portuguesa. Nenhuma das duas ainda atingiu o patamar de referência (70%). A diferença entre LP e MT exige estratégias específicas para cada componente.</div>
       </div>
     </div>
   </div>
 
-  <div class="sep"></div>
-
-  <!-- ── APRENDIZADO SAEB ── -->
-  <div class="section" id="aprendizado">
-    <div class="section-head">
-      <div class="section-icon" style="background:var(--blue-s)">📚</div>
-      <div class="section-info"><h2>Aprendizado Adequado — Saeb 2023</h2><p>Percentual de alunos com nível Proficiente ou Avançado · 5º Ano EF</p></div>
-    </div>
+  <!-- ===== APRENDIZADO SAEB ===== -->
+  <div id="aprendizado">
+    <div class="section-title">📚 Aprendizado Adequado — Saeb 2023</div>
 
     <div class="cards-grid" style="margin-bottom:14px">
-      <div class="card yellow" onclick="toggle(this)">
+      <div class="data-card yellow">
         <div class="card-icon yellow">📖</div>
         <div class="card-badge yellow">⚠ ATENÇÃO</div>
         <div class="card-title">Língua Portuguesa — 54% adequado</div>
@@ -407,8 +657,7 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;min-
           <span class="metric gray">Saeb 2023</span>
         </div>
       </div>
-
-      <div class="card red" onclick="toggle(this)">
+      <div class="data-card red">
         <div class="card-icon red">🔢</div>
         <div class="card-badge red">🔴 CRÍTICO</div>
         <div class="card-title">Matemática — apenas 38% adequado</div>
@@ -421,49 +670,43 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;min-
       </div>
     </div>
 
-    <div class="tbl-wrap">
-      <table class="tbl">
-        <thead>
-          <tr>
-            <th>Componente</th>
-            <th>Adequado 2023</th>
-            <th>Meta (70%)</th>
-            <th>Distância da meta</th>
-            <th>Classificação QEdu</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="tbl-bold">Língua Portuguesa</td>
-            <td><span class="chip yellow">54%</span></td>
-            <td>70%</td>
-            <td style="color:var(--yellow);font-weight:700">−16pp</td>
-            <td><span class="chip yellow">⚠ Atenção</span></td>
-          </tr>
-          <tr>
-            <td class="tbl-bold">Matemática</td>
-            <td><span class="chip red">38%</span></td>
-            <td>70%</td>
-            <td style="color:var(--red);font-weight:700">−32pp</td>
-            <td><span class="chip red">🔴 Crítico</span></td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="data-table-wrap">
+      <div class="table-header">
+        <h3>Aprendizado Adequado por Componente</h3>
+        <p>Fonte: Saeb – INEP 2023 · Adequado = Proficiente + Avançado</p>
+      </div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr><th>Componente</th><th>Adequado 2023</th><th>Meta (70%)</th><th>Distância da meta</th><th>Classificação</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="font-weight:700">Língua Portuguesa</td>
+              <td><span class="chip yellow">54%</span></td>
+              <td>70%</td>
+              <td style="color:var(--yellow);font-weight:700">−16pp</td>
+              <td><span class="chip yellow">⚠ Atenção</span></td>
+            </tr>
+            <tr>
+              <td style="font-weight:700">Matemática</td>
+              <td><span class="chip red">38%</span></td>
+              <td>70%</td>
+              <td style="color:var(--red);font-weight:700">−32pp</td>
+              <td><span class="chip red">🔴 Crítico</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-    <div class="fonte">Fonte: Saeb – INEP 2023. Aprendizado adequado = Proficiente + Avançado.</div>
   </div>
 
-  <div class="sep"></div>
+  <!-- ===== CENSO ESCOLAR ===== -->
+  <div id="censo">
+    <div class="section-title">🏫 Censo Escolar 2025</div>
 
-  <!-- ── CENSO ESCOLAR ── -->
-  <div class="section" id="censo">
-    <div class="section-head">
-      <div class="section-icon" style="background:var(--blue-s)">🏫</div>
-      <div class="section-info"><h2>Censo Escolar 2025</h2><p>Matrículas, professores e estrutura da escola</p></div>
-    </div>
-
-    <div class="cards-grid" style="margin-bottom:14px">
-      <div class="card blue">
+    <div class="cards-grid">
+      <div class="data-card blue">
         <div class="card-icon blue">👩‍🎓</div>
         <div class="card-title">Anos Iniciais — 191 matrículas</div>
         <div class="card-desc">Distribuição por ano escolar no Ensino Fundamental Anos Iniciais em 2025.</div>
@@ -475,7 +718,7 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;min-
           <span class="metric blue">5º ano: 44</span>
         </div>
       </div>
-      <div class="card blue">
+      <div class="data-card blue">
         <div class="card-icon blue">🎒</div>
         <div class="card-title">Matrículas totais: 316 alunos</div>
         <div class="card-desc">A escola atende múltiplas etapas, incluindo Educação Infantil, EF e Educação Especial.</div>
@@ -486,7 +729,7 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;min-
           <span class="metric orange">Ed. Especial: 42</span>
         </div>
       </div>
-      <div class="card green">
+      <div class="data-card green">
         <div class="card-icon green">👩‍🏫</div>
         <div class="card-badge green">✅ Positivo</div>
         <div class="card-title">16 professores · Sem reprovações · Sem abandonos</div>
@@ -498,7 +741,7 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;min-
           <span class="metric blue">12 funcionários</span>
         </div>
       </div>
-      <div class="card orange">
+      <div class="data-card orange">
         <div class="card-icon orange">♿</div>
         <div class="card-badge orange">⚠ Atenção</div>
         <div class="card-title">42 matrículas de Ed. Especial — 13% do total</div>
@@ -511,63 +754,58 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;min-
     </div>
   </div>
 
-  <div class="sep"></div>
+  <!-- ===== TAXAS DE RENDIMENTO ===== -->
+  <div id="rendimento">
+    <div class="section-title">📈 Taxas de Rendimento</div>
 
-  <!-- ── TAXAS DE RENDIMENTO ── -->
-  <div class="section" id="rendimento">
-    <div class="section-head">
-      <div class="section-icon" style="background:var(--green-s)">📈</div>
-      <div class="section-info"><h2>Taxas de Rendimento</h2><p>Reprovação, abandono e aprovação · Fonte: INEP 2024</p></div>
-    </div>
-
-    <div class="alert-banner green">
-      <div class="alert-icon">✅</div>
+    <div class="alert-banner success">
+      <span class="ab-icon">✅</span>
       <div>
-        <div class="alert-title green">Taxa de fluxo exemplar: 0% de reprovação e 0% de abandono</div>
-        <div class="alert-text">Nos Anos Iniciais, a escola registra taxas nulas de reprovação e abandono no Censo 2025 — resultado consistente com o indicador de fluxo do Ideb (0,93). Isso posiciona a escola entre as de melhor retenção estudantil. O foco agora deve ser garantir que esse fluxo seja acompanhado de aprendizado efetivo.</div>
+        <div class="alert-title">Taxa de fluxo exemplar: 0% de reprovação e 0% de abandono</div>
+        <div class="alert-body">Nos Anos Iniciais, a escola registra taxas nulas de reprovação e abandono no Censo 2025 — resultado consistente com o indicador de fluxo do Ideb (0,93). Isso posiciona a escola entre as de melhor retenção estudantil. O foco agora deve ser garantir que esse fluxo seja acompanhado de aprendizado efetivo.</div>
       </div>
     </div>
 
-    <div class="tbl-wrap">
-      <table class="tbl">
-        <thead>
-          <tr><th>Etapa</th><th>Reprovação</th><th>Abandono</th><th>Aprovação</th><th>Avaliação</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="tbl-bold">Anos Iniciais (EF)</td>
-            <td><span class="chip green">0%</span></td>
-            <td><span class="chip green">0%</span></td>
-            <td><span class="chip green">100%</span></td>
-            <td><span class="chip green">✅ Excelente</span></td>
-          </tr>
-          <tr>
-            <td class="tbl-bold">Anos Finais (EF)</td>
-            <td colspan="4" style="color:var(--muted2);font-style:italic">Sem dados — escola não oferta Anos Finais</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="data-table-wrap">
+      <div class="table-header">
+        <h3>Reprovação, abandono e aprovação · Fonte: INEP 2024</h3>
+      </div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr><th>Etapa</th><th>Reprovação</th><th>Abandono</th><th>Aprovação</th><th>Avaliação</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="font-weight:700">Anos Iniciais (EF)</td>
+              <td><span class="chip green">0%</span></td>
+              <td><span class="chip green">0%</span></td>
+              <td><span class="chip green">100%</span></td>
+              <td><span class="chip green">✅ Excelente</span></td>
+            </tr>
+            <tr>
+              <td style="font-weight:700">Anos Finais (EF)</td>
+              <td colspan="4" style="color:var(--muted2);font-style:italic">Sem dados — escola não oferta Anos Finais</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
-    <div class="alert-banner yellow" style="margin-top:12px">
-      <div class="alert-icon">⚠️</div>
+    <div class="alert-banner warning">
+      <span class="ab-icon">⚠️</span>
       <div>
-        <div class="alert-title yellow">Progressão continuada: monitorar qualidade do aprendizado</div>
-        <div class="alert-text">A taxa de aprovação de 100% pode indicar uso de progressão continuada. É essencial garantir que a aprovação esteja acompanhada de aprendizado real — os dados do Saeb (38% MT e 54% LP) sugerem que parte dos alunos avança sem consolidar as competências esperadas. O painel CNCA interno confirma essa lacuna.</div>
+        <div class="alert-title">Progressão continuada: monitorar qualidade do aprendizado</div>
+        <div class="alert-body">A taxa de aprovação de 100% pode indicar uso de progressão continuada. É essencial garantir que a aprovação esteja acompanhada de aprendizado real — os dados do Saeb (38% MT e 54% LP) sugerem que parte dos alunos avança sem consolidar as competências esperadas. O painel CNCA interno confirma essa lacuna.</div>
       </div>
     </div>
   </div>
 
-  <div class="sep"></div>
+  <!-- ===== DISTORÇÃO IDADE-SÉRIE ===== -->
+  <div id="distorcao">
+    <div class="section-title">⏰ Distorção Idade-Série</div>
 
-  <!-- ── DISTORÇÃO IDADE-SÉRIE ── -->
-  <div class="section" id="distorcao">
-    <div class="section-head">
-      <div class="section-icon" style="background:var(--yellow-s)">⏰</div>
-      <div class="section-info"><h2>Distorção Idade-Série</h2><p>Alunos com atraso escolar de 2 anos ou mais · INEP 2021</p></div>
-    </div>
-
-    <div class="ideb-strip" style="margin-bottom:12px">
+    <div class="ideb-strip" style="margin-bottom:14px">
       <div>
         <div class="ideb-label">Distorção · Anos Iniciais · 2021</div>
         <div class="ideb-big" style="color:var(--yellow)">10%</div>
@@ -575,42 +813,35 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;min-
       </div>
       <div class="ideb-divider"></div>
       <div style="flex:1">
-        <div style="margin-bottom:10px">
-          <div class="prog-row">
-            <span class="prog-code yellow">Geral AI</span>
-            <span class="prog-label">Anos Iniciais (2021)</span>
-            <div class="prog-track"><div class="prog-fill yellow" style="width:10%"></div></div>
-            <span class="prog-val yellow">10%</span>
-          </div>
-          <div class="prog-row">
-            <span class="prog-code yellow">1º Ano</span>
-            <span class="prog-label">Distorção no 1º Ano</span>
-            <div class="prog-track"><div class="prog-fill yellow" style="width:6%"></div></div>
-            <span class="prog-val yellow">6%</span>
-          </div>
+        <div class="prog-row">
+          <span class="prog-code yellow">Geral AI</span>
+          <span class="prog-label">Anos Iniciais (2021)</span>
+          <div class="prog-track"><div class="prog-fill yellow" style="width:10%"></div></div>
+          <span class="prog-val yellow">10%</span>
+        </div>
+        <div class="prog-row">
+          <span class="prog-code yellow">1º Ano</span>
+          <span class="prog-label">Distorção no 1º Ano</span>
+          <div class="prog-track"><div class="prog-fill yellow" style="width:6%"></div></div>
+          <span class="prog-val yellow">6%</span>
         </div>
       </div>
     </div>
 
-    <div class="alert-banner yellow">
-      <div class="alert-icon">⏰</div>
+    <div class="alert-banner warning">
+      <span class="ab-icon">⏰</span>
       <div>
-        <div class="alert-title yellow">10% em distorção — atenção às entradas tardias no ciclo</div>
-        <div class="alert-text">Em 2021, 1 em cada 10 alunos dos Anos Iniciais tinha atraso escolar de 2 anos ou mais. No 1º Ano especificamente, a distorção era de 6%. Esse grupo exige atenção pedagógica diferenciada para não comprometer ainda mais o percurso e aumentar risco de abandono futuro. Dados mais recentes podem estar disponíveis no sistema da secretaria municipal.</div>
+        <div class="alert-title">10% em distorção — atenção às entradas tardias no ciclo</div>
+        <div class="alert-body">Em 2021, 1 em cada 10 alunos dos Anos Iniciais tinha atraso escolar de 2 anos ou mais. No 1º Ano especificamente, a distorção era de 6%. Esse grupo exige atenção pedagógica diferenciada para não comprometer ainda mais o percurso e aumentar risco de abandono futuro. Dados mais recentes podem estar disponíveis no sistema da secretaria municipal.</div>
       </div>
     </div>
   </div>
 
-  <div class="sep"></div>
+  <!-- ===== QUESTIONÁRIOS SAEB ===== -->
+  <div id="questionario">
+    <div class="section-title">💬 Questionários Saeb 2019 — Perfil Socioeconômico</div>
 
-  <!-- ── QUESTIONÁRIOS SAEB ── -->
-  <div class="section" id="questionario">
-    <div class="section-head">
-      <div class="section-icon" style="background:var(--purple-s)">💬</div>
-      <div class="section-info"><h2>Questionários Saeb 2019 — Perfil Socioeconômico</h2><p>Alunos do 5º ano (30 respondentes) · Microdados INEP</p></div>
-    </div>
-
-    <div class="saeb-grid" style="margin-bottom:12px">
+    <div class="saeb-grid">
       <div class="saeb-box">
         <div class="saeb-box-title">🏠 Contexto Familiar</div>
         <div class="saeb-row"><span class="saeb-q">Moram com mãe</span><span class="saeb-v green">96%</span></div>
@@ -636,13 +867,13 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;min-
         <div class="saeb-row"><span class="saeb-q">Lê livros fora da escola</span><span class="saeb-v red">17%</span></div>
         <div class="saeb-row"><span class="saeb-q">Lê notícias (jornal/internet)</span><span class="saeb-v red">15%</span></div>
         <div class="saeb-row"><span class="saeb-q">Lê HQs / mangás</span><span class="saeb-v green">56%</span></div>
-        <div class="saeb-row"><span class="saeb-q">Estuda >1h fora da escola</span><span class="saeb-v yellow">52%</span></div>
-        <div class="saeb-row"><span class="saeb-q">Lazer (TV, internet, etc.) >2h</span><span class="saeb-v">28%</span></div>
-        <div class="saeb-row"><span class="saeb-q">Trabalhos domésticos >1h</span><span class="saeb-v yellow">30%</span></div>
+        <div class="saeb-row"><span class="saeb-q">Estuda &gt;1h fora da escola</span><span class="saeb-v yellow">52%</span></div>
+        <div class="saeb-row"><span class="saeb-q">Lazer (TV, internet) &gt;2h</span><span class="saeb-v">28%</span></div>
+        <div class="saeb-row"><span class="saeb-q">Trabalhos domésticos &gt;1h</span><span class="saeb-v yellow">30%</span></div>
       </div>
       <div class="saeb-box">
         <div class="saeb-box-title">💡 Análise do Contexto</div>
-        <div style="font-size:0.8rem;color:var(--muted);line-height:1.7;padding:4px 0">
+        <div style="font-size:0.80rem;color:var(--muted);line-height:1.7;padding:4px 0">
           <p style="margin-bottom:8px">O perfil socioeconômico revela <strong>baixo capital cultural</strong>: 0% das mães com Ensino Superior, apenas 17% das crianças leem livros não escolares e 15% leem notícias.</p>
           <p style="margin-bottom:8px">Por outro lado, há <strong>engajamento familiar alto</strong>: 86% dos pais incentivam os filhos a estudar e 83% incentivam a fazer tarefas — um ativo importante para a escola explorar.</p>
           <p>O NSE Médio-baixo (classificação 4 pelo INSE 2021) confirma que os resultados da escola devem ser interpretados levando em conta as condições socioeconômicas do território.</p>
@@ -650,35 +881,30 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;min-
       </div>
     </div>
 
-    <div class="alert-banner blue">
-      <div class="alert-icon">💡</div>
+    <div class="alert-banner info">
+      <span class="ab-icon">💡</span>
       <div>
-        <div class="alert-title blue">Oportunidade: engajamento familiar existe — falta canalizar</div>
-        <div class="alert-text">Os dados mostram que os pais querem participar: incentivam o estudo (86%) e as tarefas (83%). Mas apenas 33% conversam sobre o que acontece na escola e apenas 45% vão às reuniões. Há uma janela importante para ampliar a participação das famílias com comunicação mais acessível e reuniões mais atrativas.</div>
+        <div class="alert-title">Oportunidade: engajamento familiar existe — falta canalizar</div>
+        <div class="alert-body">Os dados mostram que os pais querem participar: incentivam o estudo (86%) e as tarefas (83%). Mas apenas 33% conversam sobre o que acontece na escola e apenas 45% vão às reuniões. Há uma janela importante para ampliar a participação das famílias com comunicação mais acessível e reuniões mais atrativas.</div>
       </div>
     </div>
   </div>
 
-  <div class="sep"></div>
+  <!-- ===== INFRAESTRUTURA ===== -->
+  <div id="infraestrutura">
+    <div class="section-title">🏗️ Infraestrutura Escolar</div>
 
-  <!-- ── INFRAESTRUTURA ── -->
-  <div class="section" id="infraestrutura">
-    <div class="section-head">
-      <div class="section-icon" style="background:var(--orange-s)">🏗️</div>
-      <div class="section-info"><h2>Infraestrutura Escolar</h2><p>Censo Escolar 2025 · INEP</p></div>
-    </div>
-
-    <div class="alert-banner yellow" style="margin-bottom:14px">
-      <div class="alert-icon">⚠️</div>
+    <div class="alert-banner warning">
+      <span class="ab-icon">⚠️</span>
       <div>
-        <div class="alert-title yellow">Ausência de laboratórios e sala de leitura compromete o desenvolvimento</div>
-        <div class="alert-text">A escola não possui laboratório de informática, laboratório de ciências e sala de leitura — recursos importantes para ampliar as oportunidades de aprendizado, especialmente em um contexto de baixo capital cultural familiar. Apenas 1 computador para alunos e 1 para administração.</div>
+        <div class="alert-title">Ausência de laboratórios e sala de leitura compromete o desenvolvimento</div>
+        <div class="alert-body">A escola não possui laboratório de informática, laboratório de ciências e sala de leitura — recursos importantes para ampliar as oportunidades de aprendizado, especialmente em um contexto de baixo capital cultural familiar. Apenas 1 computador para alunos e 1 para administração.</div>
       </div>
     </div>
 
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:14px">
       <div>
-        <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:8px">✅ Disponível</div>
+        <div style="font-size:0.70rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--green);margin-bottom:8px">✅ Disponível</div>
         <div class="infra-grid">
           <div class="infra-item"><div class="infra-check ok">✓</div><span class="infra-label ok">Alimentação fornecida</span></div>
           <div class="infra-item"><div class="infra-check ok">✓</div><span class="infra-label ok">Água filtrada</span></div>
@@ -695,7 +921,7 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;min-
         </div>
       </div>
       <div>
-        <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--red);margin-bottom:8px">❌ Ausente</div>
+        <div style="font-size:0.70rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--red);margin-bottom:8px">❌ Ausente</div>
         <div class="infra-grid">
           <div class="infra-item"><div class="infra-check no">✗</div><span class="infra-label no">Laboratório de Informática</span></div>
           <div class="infra-item"><div class="infra-check no">✗</div><span class="infra-label no">Laboratório de Ciências</span></div>
@@ -703,34 +929,37 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;min-
           <div class="infra-item"><div class="infra-check no">✗</div><span class="infra-label no">Sanitário acessível</span></div>
           <div class="infra-item"><div class="infra-check no">✗</div><span class="infra-label no">Televisão</span></div>
           <div class="infra-item"><div class="infra-check no">✗</div><span class="infra-label no">DVD / Parabólica</span></div>
-          <div class="infra-item"><div class="infra-check warn">!</div><span class="infra-label no" style="color:var(--orange)">1 PC para alunos</span></div>
-          <div class="infra-item"><div class="infra-check warn">!</div><span class="infra-label no" style="color:var(--orange)">Acessibilidade incompleta</span></div>
+          <div class="infra-item"><div class="infra-check warn">!</div><span class="infra-label warn">1 PC para alunos</span></div>
+          <div class="infra-item"><div class="infra-check warn">!</div><span class="infra-label warn">Acessibilidade incompleta</span></div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="sep"></div>
+  <!-- ===== PLANO DE AÇÃO ===== -->
+  <div id="acoes">
+    <div class="section-title">⚡ Plano de Ação — Baseado nos Dados QEdu</div>
 
-  <!-- ── PLANO DE AÇÃO ── -->
-  <div class="section" id="acoes">
-    <div class="section-head">
-      <div class="section-icon" style="background:var(--red-s)">⚡</div>
-      <div class="section-info"><h2>Plano de Ação — Baseado nos Dados QEdu</h2><p>Prioridades ordenadas por urgência e impacto para o gestor</p></div>
-    </div>
+    <div class="section-block">
+      <div class="section-block-header dark">
+        <div class="sb-icon" style="background:rgba(240,180,40,.15)">⚡</div>
+        <div class="sb-info">
+          <h3>Prioridades ordenadas por urgência e impacto para o gestor</h3>
+          <p>Clique em cada prioridade para ver os passos de ação</p>
+        </div>
+      </div>
 
-    <div class="priority-list">
-
-      <div class="priority-item" onclick="this.classList.toggle('open')">
-        <div class="priority-num red">1</div>
-        <div class="priority-content">
-          <div class="priority-header">
-            <div class="priority-title">Elevar o aprendizado em Matemática: sair de 38% para 50%+ até 2025</div>
-            <span class="priority-badge red">🔴 URGENTE</span>
+      <div class="plan-item p-red open" onclick="this.classList.toggle('open')">
+        <div class="plan-num red">1</div>
+        <div class="plan-content">
+          <div class="plan-hrow">
+            <div class="plan-title">Elevar o aprendizado em Matemática: sair de 38% para 50%+ até 2025</div>
+            <span class="plan-badge red">🔴 URGENTE</span>
           </div>
-          <div class="priority-desc">O maior gargalo da escola é Matemática no 5º ano (38% adequado no Saeb 2023). Com 32pp de distância da meta, é o principal fator que pode elevar o Ideb e impactar positivamente o fluxo para os anos finais.</div>
-          <div class="priority-detail">
-            <div class="priority-steps">
+          <div class="plan-desc">O maior gargalo da escola é Matemática no 5º ano (38% adequado no Saeb 2023). Com 32pp de distância da meta, é o principal fator que pode elevar o Ideb e impactar positivamente o fluxo para os anos finais.</div>
+          <div class="plan-detail">
+            <div class="action-tag-label">Passos</div>
+            <div class="action-text">
               ✅ Mapear as habilidades com maior índice de erro na prova Saeb — usar dados do Avalie.CE 2025 como apoio.<br>
               ✅ Redesenhar o planejamento de MT para o 4º e 5º anos com foco nas habilidades avaliadas pelo Saeb.<br>
               ✅ Implementar reforço escolar específico de Matemática no contraturno.<br>
@@ -741,16 +970,17 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;min-
         </div>
       </div>
 
-      <div class="priority-item" onclick="this.classList.toggle('open')">
-        <div class="priority-num red">2</div>
-        <div class="priority-content">
-          <div class="priority-header">
-            <div class="priority-title">Garantir aprendizado real aos 100% aprovados — combater a aprovação sem aprendizagem</div>
-            <span class="priority-badge red">🔴 URGENTE</span>
+      <div class="plan-item p-red" onclick="this.classList.toggle('open')">
+        <div class="plan-num red">2</div>
+        <div class="plan-content">
+          <div class="plan-hrow">
+            <div class="plan-title">Garantir aprendizado real aos 100% aprovados — combater a aprovação sem aprendizagem</div>
+            <span class="plan-badge red">🔴 URGENTE</span>
           </div>
-          <div class="priority-desc">Zero reprovações é positivo para o fluxo, mas o Saeb mostra que 62% dos alunos do 5º ano não têm aprendizado adequado em MT e 46% em LP. A aprovação sem aprendizagem acumula lacunas que comprometem os anos seguintes.</div>
-          <div class="priority-detail">
-            <div class="priority-steps">
+          <div class="plan-desc">Zero reprovações é positivo para o fluxo, mas o Saeb mostra que 62% dos alunos do 5º ano não têm aprendizado adequado em MT e 46% em LP. A aprovação sem aprendizagem acumula lacunas que comprometem os anos seguintes.</div>
+          <div class="plan-detail">
+            <div class="action-tag-label">Passos</div>
+            <div class="action-text">
               ✅ Estabelecer critérios internos de acompanhamento de aprendizado além da aprovação formal.<br>
               ✅ Criar sistema de monitoramento contínuo por turma, com dados das avaliações internas (CNCA e Avalie.CE).<br>
               ✅ Implementar recuperação paralela durante o ano letivo, não apenas ao final.<br>
@@ -760,16 +990,17 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;min-
         </div>
       </div>
 
-      <div class="priority-item" onclick="this.classList.toggle('open')">
-        <div class="priority-num yellow">3</div>
-        <div class="priority-content">
-          <div class="priority-header">
-            <div class="priority-title">Fortalecer participação e engajamento das famílias na vida escolar</div>
-            <span class="priority-badge yellow">⚠ ATENÇÃO</span>
+      <div class="plan-item p-yellow" onclick="this.classList.toggle('open')">
+        <div class="plan-num yellow">3</div>
+        <div class="plan-content">
+          <div class="plan-hrow">
+            <div class="plan-title">Fortalecer participação e engajamento das famílias na vida escolar</div>
+            <span class="plan-badge yellow">⚠ ATENÇÃO</span>
           </div>
-          <div class="priority-desc">Os pais incentivam o estudo em casa (86%), mas apenas 33% conversam sobre o que acontece na escola e 45% participam de reuniões. A escola tem um ativo de boa vontade familiar subutilizado.</div>
-          <div class="priority-detail">
-            <div class="priority-steps">
+          <div class="plan-desc">Os pais incentivam o estudo em casa (86%), mas apenas 33% conversam sobre o que acontece na escola e 45% participam de reuniões. A escola tem um ativo de boa vontade familiar subutilizado.</div>
+          <div class="plan-detail">
+            <div class="action-tag-label">Passos</div>
+            <div class="action-text">
               ✅ Reformular as reuniões de pais: menos informativo, mais participativo — incluir resultados de aprendizagem de forma acessível.<br>
               ✅ Criar canal de comunicação acessível (WhatsApp, app) com atualizações sobre o desempenho dos filhos.<br>
               ✅ Promover oficinas ou encontros curtos sobre como ajudar na lição de casa (apenas 17% das crianças leem livros voluntariamente).<br>
@@ -779,16 +1010,17 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;min-
         </div>
       </div>
 
-      <div class="priority-item" onclick="this.classList.toggle('open')">
-        <div class="priority-num yellow">4</div>
-        <div class="priority-content">
-          <div class="priority-header">
-            <div class="priority-title">Ampliar recursos tecnológicos e criar espaços de leitura na escola</div>
-            <span class="priority-badge yellow">⚠ ATENÇÃO</span>
+      <div class="plan-item p-yellow" onclick="this.classList.toggle('open')">
+        <div class="plan-num yellow">4</div>
+        <div class="plan-content">
+          <div class="plan-hrow">
+            <div class="plan-title">Ampliar recursos tecnológicos e criar espaços de leitura na escola</div>
+            <span class="plan-badge yellow">⚠ ATENÇÃO</span>
           </div>
-          <div class="priority-desc">A escola tem apenas 1 computador para alunos e não possui laboratório de informática nem sala de leitura — lacunas críticas num contexto em que 58% das famílias não têm computador e apenas 17% das crianças leem espontaneamente.</div>
-          <div class="priority-detail">
-            <div class="priority-steps">
+          <div class="plan-desc">A escola tem apenas 1 computador para alunos e não possui laboratório de informática nem sala de leitura — lacunas críticas num contexto em que 58% das famílias não têm computador e apenas 17% das crianças leem espontaneamente.</div>
+          <div class="plan-detail">
+            <div class="action-tag-label">Passos</div>
+            <div class="action-text">
               ✅ Solicitar ao Município investimento em laboratório de informática ou chromebooks para uso pedagógico.<br>
               ✅ Transformar um espaço disponível em sala/cantinho de leitura com acervo diversificado.<br>
               ✅ Explorar programas federais e estaduais para doação de equipamentos e livros (FNDE, Programa Nacional do Livro etc.).<br>
@@ -798,16 +1030,17 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;min-
         </div>
       </div>
 
-      <div class="priority-item" onclick="this.classList.toggle('open')">
-        <div class="priority-num green">5</div>
-        <div class="priority-content">
-          <div class="priority-header">
-            <div class="priority-title">Manter e celebrar os pontos fortes: Ideb 5,8, 0 abandonos e alto incentivo familiar</div>
-            <span class="priority-badge green">✅ CONSOLIDAR</span>
+      <div class="plan-item p-green" onclick="this.classList.toggle('open')">
+        <div class="plan-num green">5</div>
+        <div class="plan-content">
+          <div class="plan-hrow">
+            <div class="plan-title">Manter e celebrar os pontos fortes: Ideb 5,8, 0 abandonos e alto incentivo familiar</div>
+            <span class="plan-badge green">✅ CONSOLIDAR</span>
           </div>
-          <div class="priority-desc">A escola superou a meta do Ideb, tem fluxo exemplar (0 reprovações e abandonos) e alto incentivo familiar ao estudo. Esses resultados precisam ser reconhecidos, documentados e sustentados.</div>
-          <div class="priority-detail">
-            <div class="priority-steps">
+          <div class="plan-desc">A escola superou a meta do Ideb, tem fluxo exemplar (0 reprovações e abandonos) e alto incentivo familiar ao estudo. Esses resultados precisam ser reconhecidos, documentados e sustentados.</div>
+          <div class="plan-detail">
+            <div class="action-tag-label">Passos</div>
+            <div class="action-text">
               ✅ Divulgar os resultados positivos para a comunidade escolar e famílias.<br>
               ✅ Documentar as práticas pedagógicas que sustentam o bom fluxo e o Ideb acima da meta.<br>
               ✅ Planejar o Ideb 2025: com 5,8 já acima da meta, definir uma meta interna ambiciosa (6,0+) para o próximo ciclo.<br>
@@ -816,37 +1049,34 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;min-
           </div>
         </div>
       </div>
-
     </div>
   </div>
 
-  <div style="text-align:center;padding:20px 0;font-size:0.7rem;color:var(--muted2);border-top:1px solid var(--line);margin-top:12px">
+  <div style="text-align:center; font-size:0.75rem; color:var(--muted2); margin-top:10px; padding-top:18px; border-top:1px solid var(--border);">
     Adriano Martins EEIEF · Caucaia, CE · Fontes: QEdu / INEP · Saeb 2023 · Censo Escolar 2025 · INSE 2021 · Ideb 2023 · Clique nas prioridades para ver os passos de ação
   </div>
 
 </main>
 
 <script>
-function toggle(el){el.classList.toggle('open')}
-// scroll-spy
-const sections=document.querySelectorAll('.section');
-const navItems=document.querySelectorAll('.nav-item');
-window.addEventListener('scroll',()=>{
-  let cur='';
-  sections.forEach(s=>{if(window.scrollY>=s.offsetTop-120)cur=s.id});
-  navItems.forEach(n=>{
+const sections = document.querySelectorAll('[id]');
+const navItems = document.querySelectorAll('.nav-item[href^="#"]');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
+  navItems.forEach(n => {
     n.classList.remove('active');
-    if(n.getAttribute('href')==='#'+cur)n.classList.add('active');
+    if (n.getAttribute('href') === '#' + cur) n.classList.add('active');
   });
-},{passive:true});
-// animate progress bars on load
-window.addEventListener('load',()=>{
-  setTimeout(()=>{
-    document.querySelectorAll('.prog-fill').forEach(el=>{
-      const w=el.style.width;el.style.width='0';
-      requestAnimationFrame(()=>{requestAnimationFrame(()=>{el.style.width=w})});
+}, { passive: true });
+
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.querySelectorAll('.prog-fill').forEach(el => {
+      const w = el.style.width; el.style.width = '0';
+      requestAnimationFrame(() => { requestAnimationFrame(() => { el.style.width = w; }); });
     });
-  },400);
+  }, 400);
 });
 </script>
 </body>
