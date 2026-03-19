@@ -1,12 +1,89 @@
-<script type="module">
-import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel Escolar - Login</title>
 
-const supabase = createClient(
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card {
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  width: 300px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background: #1e5799;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+.error {
+  color: red;
+  text-align: center;
+  display: none;
+}
+.error.show {
+  display: block;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h2>Login</h2>
+
+  <input type="email" id="login" placeholder="Email">
+  <input type="password" id="senha" placeholder="Senha">
+
+  <button onclick="doLogin()">Entrar</button>
+
+  <div id="errorMsg" class="error">Login inválido</div>
+</div>
+
+<!-- SUPABASE -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+const supabase = window.supabase.createClient(
   'https://pntdrmsypgmemgwlruws.supabase.co',
   'sb_publishable_BegZU19h4tkPRyuT1P9Dvw_IkO73MRh'
-)
+);
 
-window.doLogin = async function () {
+async function doLogin() {
   const email = document.getElementById('login').value.trim();
   const password = document.getElementById('senha').value;
   const err = document.getElementById('errorMsg');
@@ -25,8 +102,7 @@ window.doLogin = async function () {
     window.location.href = "painel.html";
   }
 }
-
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') doLogin();
-});
 </script>
+
+</body>
+</html>
