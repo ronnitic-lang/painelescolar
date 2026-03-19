@@ -1,509 +1,672 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Painel do Diretor · Adriano Martins EEIEF</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<style>
-:root {
-  --bg: #f1f4f8;
-  --sidebar-bg: #0d1117;
-  --surface: #ffffff;
-  --border: #e2e8f0;
-  --border-dark: #2a3441;
-  --text: #0f172a;
-  --muted: #64748b;
-  --muted2: #94a3b8;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel de Notificações · Diretor · Avalie.CE · Adriano Martins EEIEF</title>
+  <style>
+    /* ===== VARIÁVEIS (mesmo do spaece.html) ===== */
+    :root {
+      --bg: #eef2f7;
+      --sidebar-bg: #1a2535;
+      --sidebar-hover: #243145;
+      --surface: #ffffff;
+      --border: #d0d9e8;
+      --border-dark: #2e3d52;
+      --text: #0f1e2e;
+      --muted: #4a5e75;
+      --muted2: #8097b0;
 
-  --red: #ef4444;
-  --red-bg: #fef2f2;
-  --red-bdr: #fca5a5;
-  --red-dark: #dc2626;
+      --red: #c0392b;
+      --red-bg: #fdf0ef;
+      --red-bdr: #f5b7b1;
+      --red-dark: #a93226;
 
-  --yellow: #f59e0b;
-  --yellow-bg: #fffbeb;
-  --yellow-bdr: #fcd34d;
+      --yellow: #d68910;
+      --yellow-bg: #fef9ec;
+      --yellow-bdr: #f9d98a;
 
-  --green: #10b981;
-  --green-bg: #f0fdf4;
-  --green-bdr: #6ee7b7;
+      --green: #1a7a4a;
+      --green-bg: #edfaf3;
+      --green-bdr: #82e0aa;
 
-  --blue: #3b82f6;
-  --blue-bg: #eff6ff;
-  --blue-bdr: #93c5fd;
+      --blue: #1a56a0;
+      --blue-bg: #eaf2fc;
+      --blue-bdr: #90bce8;
 
-  --purple: #8b5cf6;
-  --orange: #f97316;
-}
+      --orange: #ca6f1e;
+      --orange-bg: #fef5e7;
+      --orange-bdr: #f8c471;
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+      --font-main: 'Arial', 'Tahoma', sans-serif;
+      --fs-xs: 0.80rem;
+      --fs-sm: 0.88rem;
+      --fs-base: 1.00rem;
+      --fs-md: 1.08rem;
+      --fs-lg: 1.20rem;
+      --fs-xl: 1.40rem;
+      --fs-xxl: 1.65rem;
+    }
 
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Nunito', sans-serif;
-  min-height: 100vh;
-  display: flex;
-}
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; font-size: 16px; }
 
-/* ===== SIDEBAR ===== */
-.sidebar {
-  width: 260px;
-  min-width: 260px;
-  background: var(--sidebar-bg);
-  height: 100vh;
-  position: sticky;
-  top: 0;
-  display: flex;
-  flex-direction: column;
-  padding: 24px 0;
-  overflow-y: auto;
-  z-index: 100;
-}
-.sidebar-logo {
-  padding: 0 20px 24px;
-  border-bottom: 1px solid var(--border-dark);
-  margin-bottom: 16px;
-}
-.sidebar-logo .school-name {
-  font-family: 'Syne', sans-serif;
-  font-size: 0.95rem;
-  font-weight: 800;
-  color: #fff;
-  line-height: 1.2;
-}
-.sidebar-logo .school-name span { color: #f59e0b; }
-.sidebar-logo .school-sub {
-  font-size: 0.65rem;
-  color: #4a5568;
-  margin-top: 5px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-.sidebar-logo .avalie-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  background: rgba(59,130,246,0.12);
-  border: 1px solid rgba(59,130,246,0.3);
-  color: #60a5fa;
-  font-family: 'Syne', sans-serif;
-  font-size: 0.75rem;
-  font-weight: 800;
-  padding: 4px 10px;
-  border-radius: 6px;
-  margin-top: 10px;
-}
-.nav-section {
-  padding: 6px 20px 4px;
-  font-size: 0.62rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: #4a5568;
-  font-weight: 600;
-}
-.nav-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 20px;
-  cursor: pointer;
-  border-left: 3px solid transparent;
-  transition: all 0.2s;
-  text-decoration: none;
-}
-.nav-item:hover { background: rgba(255,255,255,0.05); }
-.nav-item.active {
-  background: rgba(59,130,246,0.1);
-  border-left-color: var(--blue);
-}
-.nav-item .nav-icon {
-  width: 32px; height: 32px;
-  border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.9rem;
-  flex-shrink: 0;
-}
-.nav-item .nav-label { font-size: 0.9rem; font-weight: 600; color: #cbd5e1; }
-.nav-item .nav-badge {
-  margin-left: auto;
-  min-width: 20px; height: 20px;
-  border-radius: 10px;
-  font-size: 0.62rem;
-  font-weight: 700;
-  display: flex; align-items: center; justify-content: center;
-  padding: 0 5px;
-}
-.nav-badge.red { background: var(--red); color: #fff; }
-.nav-badge.yellow { background: var(--yellow); color: #000; }
-.nav-badge.green { background: var(--green); color: #fff; }
-.nav-badge.gray { background: #374151; color: #9ca3af; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-main);
+      font-size: var(--fs-base);
+      min-height: 100vh;
+      display: flex;
+      line-height: 1.6;
+      letter-spacing: 0.01em;
+    }
 
-.sidebar-footer {
-  margin-top: auto;
-  padding: 16px 20px;
-  border-top: 1px solid var(--border-dark);
-}
-.sidebar-footer p { font-size: 0.65rem; color: #4a5568; line-height: 1.5; }
+    /* ===== SIDEBAR (idêntica ao spaece) ===== */
+    .sidebar {
+      width: 270px;
+      min-width: 270px;
+      background: var(--sidebar-bg);
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+      overflow-y: auto;
+      z-index: 100;
+    }
 
-/* ===== MAIN ===== */
-.main {
-  flex: 1;
-  min-width: 0;
-  padding: 28px 32px;
-  max-width: 900px;
-}
+    .sidebar-logo {
+      padding: 22px 22px 20px;
+      border-bottom: 1px solid var(--border-dark);
+      background: #111c2a;
+    }
 
-.topbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 28px;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-.topbar-title {
-  font-family: 'Syne', sans-serif;
-  font-size: 1.55rem;
-  font-weight: 800;
-  color: var(--text);
-}
-.topbar-sub { font-size: 0.88rem; color: var(--muted); margin-top: 3px; }
-.topbar-stats { display: flex; gap: 8px; flex-wrap: wrap; }
-.topbar-stat {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 6px 14px;
-  text-align: center;
-}
-.topbar-stat .val {
-  font-family: 'Syne', sans-serif;
-  font-size: 1.1rem;
-  font-weight: 800;
-  display: block;
-}
-.topbar-stat .lbl { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
-.topbar-stat.green .val { color: var(--green); }
-.topbar-stat.blue .val { color: var(--blue); }
-.topbar-stat.red .val { color: var(--red); }
-.topbar-stat.yellow .val { color: var(--yellow); }
+    .school-badge {
+      display: inline-block;
+      background: #d68910;
+      color: #fff;
+      font-size: var(--fs-xs);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
 
-/* ===== SECTION ===== */
-.section { margin-bottom: 28px; }
-.section-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 18px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px 12px 0 0;
-  border-bottom: none;
-}
-.section-icon {
-  width: 36px; height: 36px;
-  border-radius: 9px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1rem;
-  flex-shrink: 0;
-}
-.section-info h2 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 800; }
-.section-info p { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+    .school-name {
+      font-family: var(--font-main);
+      font-size: var(--fs-lg);
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.25;
+      margin-bottom: 4px;
+    }
 
-/* ===== NOTIF CARDS ===== */
-.notif-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-top: none;
-  cursor: pointer;
-  transition: background 0.15s;
-  overflow: hidden;
-}
-.notif-card:last-child { border-radius: 0 0 12px 12px; }
-.notif-card:hover { background: #f8fafc; }
+    .school-name span { color: #f0b429; }
+    .school-sub {
+      font-size: var(--fs-xs);
+      color: #7a90a8;
+      margin-top: 4px;
+      letter-spacing: 0.06em;
+    }
 
-.notif-card.priority-red { border-left: 4px solid var(--red); }
-.notif-card.priority-yellow { border-left: 4px solid var(--yellow); }
-.notif-card.priority-green { border-left: 4px solid var(--green); }
-.notif-card.priority-blue { border-left: 4px solid var(--blue); }
+    .nav-section {
+      padding: 14px 22px 6px;
+      font-size: var(--fs-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      color: #5a7090;
+      font-weight: 700;
+    }
 
-.notif-top {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  padding: 16px 18px;
-}
-.notif-avatar {
-  width: 38px; height: 38px;
-  border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.1rem;
-  flex-shrink: 0;
-}
-.notif-avatar.red { background: var(--red-bg); }
-.notif-avatar.yellow { background: var(--yellow-bg); }
-.notif-avatar.green { background: var(--green-bg); }
-.notif-avatar.blue { background: var(--blue-bg); }
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 22px;
+      cursor: pointer;
+      border-left: 4px solid transparent;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
 
-.notif-body { flex: 1; min-width: 0; }
-.notif-header-row {
-  display: flex; align-items: flex-start;
-  gap: 10px; flex-wrap: wrap;
-  margin-bottom: 5px;
-}
-.notif-title {
-  font-weight: 800;
-  font-size: 0.92rem;
-  line-height: 1.3;
-  flex: 1;
-}
-.notif-source {
-  font-size: 0.68rem;
-  font-weight: 700;
-  padding: 2px 8px;
-  border-radius: 20px;
-  background: #f1f5f9;
-  color: var(--muted);
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.notif-summary {
-  font-size: 0.82rem;
-  color: var(--muted);
-  line-height: 1.5;
-  margin-bottom: 8px;
-}
-.notif-metrics {
-  display: flex; flex-wrap: wrap; gap: 6px;
-  margin-top: 8px;
-}
-.metric-pill {
-  display: flex; align-items: center; gap: 5px;
-  padding: 3px 10px;
-  border-radius: 20px;
-  font-size: 0.74rem;
-  font-weight: 700;
-}
-.metric-pill.red { background: var(--red-bg); color: var(--red-dark); border: 1px solid var(--red-bdr); }
-.metric-pill.yellow { background: var(--yellow-bg); color: #92400e; border: 1px solid var(--yellow-bdr); }
-.metric-pill.green { background: var(--green-bg); color: #065f46; border: 1px solid var(--green-bdr); }
-.metric-pill.blue { background: var(--blue-bg); color: #1e40af; border: 1px solid var(--blue-bdr); }
-.dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+    .nav-item:hover { background: var(--sidebar-hover); }
+    .nav-item.active {
+      background: rgba(26, 86, 160, 0.18);
+      border-left-color: #4a9fd4;
+    }
 
-.notif-toggle {
-  background: none; border: none; cursor: pointer;
-  font-size: 1rem; color: var(--muted2);
-  flex-shrink: 0; padding: 4px;
-  transition: transform 0.2s;
-}
-.notif-card.open .notif-toggle { transform: rotate(180deg); }
+    .nav-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
 
-/* ===== EXPAND ===== */
-.notif-expand {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.35s ease;
-  background: #f8fafc;
-  border-top: none;
-}
-.notif-card.open .notif-expand { max-height: 400px; border-top: 1px solid var(--border); }
-.notif-expand { padding: 0 18px; }
-.notif-card.open .notif-expand { padding: 14px 18px; }
+    .nav-label {
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      color: #b8cce0;
+      line-height: 1.25;
+    }
 
-.expand-action { margin-bottom: 10px; }
-.action-tag {
-  display: inline-block;
-  background: #1e293b;
-  color: #f59e0b;
-  font-size: 0.67rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 2px 8px;
-  border-radius: 4px;
-  margin-bottom: 6px;
-}
-.action-text {
-  font-size: 0.83rem;
-  color: #334155;
-  line-height: 1.6;
-}
-.expand-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
-.expand-tag {
-  background: #e2e8f0;
-  color: #475569;
-  font-size: 0.7rem;
-  font-weight: 700;
-  padding: 2px 9px;
-  border-radius: 20px;
-}
+    .nav-item.active .nav-label { color: #ffffff; }
 
-/* ===== PROGRESS BARS ===== */
-.hab-row {
-  display: flex; align-items: center; gap: 8px;
-  padding: 4px 0;
-  font-size: 0.78rem;
-}
-.hab-code {
-  font-weight: 800;
-  font-size: 0.72rem;
-  min-width: 36px;
-  text-align: center;
-  padding: 2px 6px;
-  border-radius: 4px;
-}
-.hab-row.red .hab-code { background: var(--red-bg); color: var(--red-dark); }
-.hab-row.yellow .hab-code { background: var(--yellow-bg); color: #92400e; }
-.hab-row.green .hab-code { background: var(--green-bg); color: #065f46; }
-.hab-name { color: var(--muted); font-size: 0.75rem; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.hab-pct { font-weight: 800; font-size: 0.78rem; min-width: 36px; text-align: right; }
-.hab-row.red .hab-pct { color: var(--red); }
-.hab-row.yellow .hab-pct { color: var(--yellow); }
-.hab-row.green .hab-pct { color: var(--green); }
+    .nav-badge {
+      margin-left: auto;
+      min-width: 24px;
+      height: 24px;
+      border-radius: 12px;
+      font-size: var(--fs-xs);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 6px;
+      flex-shrink: 0;
+    }
+    .nav-badge.red { background: var(--red); color: #fff; }
+    .nav-badge.yellow { background: var(--yellow); color: #fff; }
+    .nav-badge.green { background: var(--green); color: #fff; }
 
-.progress-track {
-  background: #e2e8f0;
-  border-radius: 4px;
-  overflow: hidden;
-  flex: 1;
-}
-.progress-fill {
-  height: 100%;
-  border-radius: 4px;
-  transition: width 0.6s ease;
-}
-.progress-fill.red { background: var(--red); }
-.progress-fill.yellow { background: var(--yellow); }
-.progress-fill.green { background: var(--green); }
-.progress-fill.blue { background: var(--blue); }
+    .semaforo-block {
+      padding: 12px 20px 6px;
+    }
+    .sem-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 0;
+      font-size: var(--fs-sm);
+      color: #8daabf;
+      border-bottom: 1px solid #243145;
+    }
+    .sem-item:last-child { border-bottom: none; }
+    .sem-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
 
-/* ===== TURMAS GRID ===== */
-.turmas-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 12px;
-  padding: 16px 18px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-top: none;
-  border-radius: 0 0 12px 12px;
-}
-.turma-card {
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 14px;
-  background: #fafbfc;
-}
-.turma-header {
-  display: flex; justify-content: space-between; align-items: center;
-  margin-bottom: 10px;
-}
-.turma-nome {
-  font-family: 'Syne', sans-serif;
-  font-size: 0.95rem;
-  font-weight: 800;
-}
-.turma-badge {
-  font-size: 0.65rem;
-  font-weight: 700;
-  padding: 2px 7px;
-  border-radius: 10px;
-}
-.turma-badge.red { background: var(--red-bg); color: var(--red-dark); border: 1px solid var(--red-bdr); }
-.turma-badge.yellow { background: var(--yellow-bg); color: #92400e; border: 1px solid var(--yellow-bdr); }
-.turma-badge.green { background: var(--green-bg); color: #065f46; border: 1px solid var(--green-bdr); }
+    .sidebar-footer {
+      margin-top: auto;
+      padding: 16px 22px;
+      border-top: 1px solid var(--border-dark);
+      font-size: var(--fs-xs);
+      color: #5a7090;
+      line-height: 1.7;
+    }
 
-.turma-stats { display: flex; flex-direction: column; gap: 5px; }
-.turma-stat-row {
-  display: flex; justify-content: space-between; align-items: center;
-  font-size: 0.75rem;
-}
-.turma-stat-row .label { color: var(--muted); }
-.turma-stat-row .value { font-weight: 800; }
-.value.red { color: var(--red); }
-.value.green { color: var(--green); }
-.value.yellow { color: var(--yellow); }
+    /* ===== MAIN ===== */
+    .main {
+      flex: 1;
+      min-width: 0;
+      padding: 32px 36px 48px;
+      max-width: 960px;
+    }
 
-/* Legend */
-.legend {
-  display: flex; gap: 16px; flex-wrap: wrap;
-  padding: 10px 18px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-top: none;
-  font-size: 0.75rem; color: var(--muted);
-}
-.legend-item { display: flex; align-items: center; gap: 5px; }
-.legend-dot { width: 10px; height: 10px; border-radius: 50%; }
-</style>
+    /* ===== TOPBAR ===== */
+    .topbar {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+      gap: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 26px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    .topbar-title {
+      font-size: var(--fs-xxl);
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.2;
+    }
+    .topbar-sub {
+      font-size: var(--fs-sm);
+      color: var(--muted);
+      margin-top: 5px;
+      line-height: 1.5;
+    }
+    .topbar-date {
+      font-size: var(--fs-xs);
+      color: var(--muted2);
+      margin-top: 4px;
+    }
+
+    .topbar-stats {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+    .topbar-stat {
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 16px;
+      text-align: center;
+      min-width: 90px;
+    }
+    .topbar-stat .val {
+      font-size: var(--fs-lg);
+      font-weight: 700;
+      display: block;
+      line-height: 1.2;
+    }
+    .topbar-stat .lbl {
+      font-size: var(--fs-xs);
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      font-weight: 600;
+      display: block;
+      margin-top: 2px;
+    }
+    .topbar-stat.green .val { color: var(--green); }
+    .topbar-stat.yellow .val { color: var(--yellow); }
+    .topbar-stat.red .val { color: var(--red); }
+    .topbar-stat.blue .val { color: var(--blue); }
+
+    /* ===== SECTION ===== */
+    .section { margin-bottom: 36px; }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 22px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px 12px 0 0;
+      border-bottom: 3px solid var(--border);
+    }
+
+    .section-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .section-info h2 {
+      font-size: var(--fs-lg);
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+    }
+    .section-info p {
+      font-size: var(--fs-sm);
+      color: var(--muted);
+      margin-top: 3px;
+      line-height: 1.5;
+    }
+
+    /* ===== TURMAS GRID (cards) ===== */
+    .turmas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 14px;
+      padding: 18px 22px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 12px 12px;
+    }
+
+    .turma-card {
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      background: #fafbfd;
+      transition: box-shadow 0.2s;
+    }
+    .turma-card:hover { box-shadow: 0 3px 12px rgba(0,0,0,0.08); }
+
+    .turma-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+      gap: 8px;
+    }
+
+    .turma-nome {
+      font-size: var(--fs-md);
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--text);
+    }
+
+    .turma-badge {
+      font-size: var(--fs-xs);
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 20px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .turma-badge.red { background: var(--red-bg); color: var(--red-dark); border: 1px solid var(--red-bdr); }
+    .turma-badge.yellow { background: var(--yellow-bg); color: #7d5a10; border: 1px solid var(--yellow-bdr); }
+    .turma-badge.green { background: var(--green-bg); color: #155234; border: 1px solid var(--green-bdr); }
+
+    .turma-stats { display: flex; flex-direction: column; gap: 6px; margin-top: 10px; }
+    .turma-stat-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: var(--fs-sm);
+      padding: 2px 0;
+    }
+    .turma-stat-row .label { color: var(--muted); }
+    .turma-stat-row .value { font-weight: 700; }
+    .value.red { color: var(--red); }
+    .value.green { color: var(--green); }
+    .value.yellow { color: var(--yellow); }
+
+    /* ===== NOTIF CARDS (exatamente iguais ao spaece) ===== */
+    .notif-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top: none;
+      cursor: pointer;
+      transition: background 0.15s;
+      overflow: hidden;
+    }
+    .notif-card:last-child { border-radius: 0 0 12px 12px; }
+    .notif-card:hover { background: #f5f8ff; }
+
+    .notif-card.priority-red { border-left: 5px solid var(--red); }
+    .notif-card.priority-yellow { border-left: 5px solid var(--yellow); }
+    .notif-card.priority-green { border-left: 5px solid var(--green); }
+    .notif-card.priority-blue { border-left: 5px solid var(--blue); }
+
+    .notif-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 18px 22px;
+    }
+
+    .notif-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+    .notif-avatar.red { background: var(--red-bg); }
+    .notif-avatar.yellow { background: var(--yellow-bg); }
+    .notif-avatar.green { background: var(--green-bg); }
+    .notif-avatar.blue { background: var(--blue-bg); }
+
+    .notif-body { flex: 1; min-width: 0; }
+    .notif-header-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .notif-title {
+      font-weight: 700;
+      font-size: var(--fs-md);
+      line-height: 1.4;
+      flex: 1;
+      color: var(--text);
+    }
+
+    .notif-source {
+      font-size: var(--fs-xs);
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: #e8eef6;
+      color: var(--muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+      align-self: flex-start;
+    }
+
+    .notif-summary {
+      font-size: var(--fs-sm);
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 10px;
+    }
+
+    .notif-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .metric-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: var(--fs-sm);
+      font-weight: 700;
+    }
+    .metric-pill.red { background: var(--red-bg); color: var(--red-dark); border: 1px solid var(--red-bdr); }
+    .metric-pill.yellow { background: var(--yellow-bg); color: #7d5a10; border: 1px solid var(--yellow-bdr); }
+    .metric-pill.green { background: var(--green-bg); color: #155234; border: 1px solid var(--green-bdr); }
+    .metric-pill.orange { background: var(--orange-bg); color: #7e4a10; border: 1px solid var(--orange-bdr); }
+
+    .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+
+    .notif-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.3rem;
+      color: var(--muted2);
+      flex-shrink: 0;
+      padding: 4px 6px;
+      transition: transform 0.2s;
+      align-self: center;
+    }
+    .notif-card.open .notif-toggle { transform: rotate(180deg); }
+
+    /* EXPAND */
+    .notif-expand {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+      background: #f4f8ff;
+      padding: 0 22px;
+    }
+    .notif-card.open .notif-expand {
+      max-height: 600px;
+      border-top: 1px solid var(--border);
+      padding: 18px 22px;
+    }
+
+    .expand-action { margin-bottom: 12px; }
+    .action-tag {
+      display: inline-block;
+      background: #1a2535;
+      color: #f0b429;
+      font-size: var(--fs-xs);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+    .action-text {
+      font-size: var(--fs-sm);
+      color: #2c3e50;
+      line-height: 1.8;
+    }
+
+    .expand-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 10px;
+    }
+    .expand-tag {
+      background: #dde4ef;
+      color: #3d5270;
+      font-size: var(--fs-xs);
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
+    /* ===== PROGRESS BARS (hab-row igual spaece) ===== */
+    .hab-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 5px 0;
+      font-size: var(--fs-sm);
+    }
+    .hab-code {
+      font-weight: 700;
+      font-size: var(--fs-xs);
+      min-width: 58px;
+      text-align: center;
+      padding: 3px 7px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+    .hab-row.red .hab-code { background: var(--red-bg); color: var(--red-dark); }
+    .hab-row.yellow .hab-code { background: var(--yellow-bg); color: #7d5a10; }
+    .hab-row.green .hab-code { background: var(--green-bg); color: #155234; }
+
+    .hab-name {
+      color: var(--muted);
+      font-size: var(--fs-sm);
+      flex: 1;
+      min-width: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .hab-pct {
+      font-weight: 700;
+      font-size: var(--fs-sm);
+      min-width: 70px;
+      text-align: right;
+    }
+    .hab-row.red .hab-pct { color: var(--red); }
+    .hab-row.yellow .hab-pct { color: var(--yellow); }
+    .hab-row.green .hab-pct { color: var(--green); }
+
+    .progress-track { background: #dde4ef; border-radius: 4px; overflow: hidden; flex: 1; }
+    .progress-fill { height: 100%; border-radius: 4px; transition: width 0.6s ease; }
+    .progress-fill.red { background: var(--red); }
+    .progress-fill.yellow { background: var(--yellow); }
+    .progress-fill.green { background: var(--green); }
+    .progress-fill.orange { background: var(--orange); }
+
+    /* footer */
+    .footer-note {
+      text-align: center;
+      padding: 22px;
+      font-size: var(--fs-xs);
+      color: var(--muted2);
+      border-top: 1px solid var(--border);
+      margin-top: 10px;
+      line-height: 1.8;
+    }
+
+    /* responsive */
+    @media (max-width: 900px) {
+      .sidebar { display: none; }
+      .main { padding: 20px 18px; }
+      .topbar { flex-direction: column; }
+    }
+    .sidebar::-webkit-scrollbar { width: 5px; }
+    .sidebar::-webkit-scrollbar-track { background: #111c2a; }
+    .sidebar::-webkit-scrollbar-thumb { background: #2e3d52; border-radius: 3px; }
+  </style>
 </head>
 <body>
 
-<!-- ===== SIDEBAR ===== -->
+<!-- ===== SIDEBAR (idêntica ao spaece, com informações do avalie) ===== -->
 <aside class="sidebar">
   <div class="sidebar-logo">
+    <div class="school-badge">📊 AVALIE.CE 2025.1</div>
     <div class="school-name"><span>Adriano Martins</span> EEIEF</div>
-    <div class="school-sub">Caucaia · CE · Municipal</div>
-    <div class="avalie-chip">📊 Avalie.CE 2025.1</div>
+    <div class="school-sub">Caucaia · CE · INEP 23061944 · Municipal</div>
   </div>
 
   <div class="nav-section">Navegação</div>
-
   <a class="nav-item active" href="#visao">
-    <div class="nav-icon" style="background:rgba(59,130,246,0.15)">📋</div>
+    <div class="nav-icon" style="background:rgba(26,86,160,.15)">📋</div>
     <span class="nav-label">Visão Geral</span>
   </a>
   <a class="nav-item" href="#mt">
-    <div class="nav-icon" style="background:rgba(16,185,129,0.12)">🔢</div>
+    <div class="nav-icon" style="background:rgba(192,57,43,.12)">🔢</div>
     <span class="nav-label">Matemática</span>
-    <span class="nav-badge yellow">⚠</span>
+    <span class="nav-badge red">⚠</span>
   </a>
   <a class="nav-item" href="#lp">
-    <div class="nav-icon" style="background:rgba(239,68,68,0.12)">📖</div>
+    <div class="nav-icon" style="background:rgba(214,137,16,.12)">📖</div>
     <span class="nav-label">Língua Portuguesa</span>
-    <span class="nav-badge red">!</span>
+    <span class="nav-badge yellow">!</span>
   </a>
   <a class="nav-item" href="#alertas">
-    <div class="nav-icon" style="background:rgba(245,158,11,0.12)">🔔</div>
+    <div class="nav-icon" style="background:rgba(202,111,30,.12)">🔔</div>
     <span class="nav-label">Alertas por Turma</span>
     <span class="nav-badge red">6</span>
   </a>
   <a class="nav-item" href="#acoes">
-    <div class="nav-icon" style="background:rgba(139,92,246,0.12)">🎯</div>
+    <div class="nav-icon" style="background:rgba(26,122,74,.12)">🎯</div>
     <span class="nav-label">Plano de Ação</span>
   </a>
 
-  <div class="nav-section" style="margin-top:16px">Legenda Semáforo</div>
-  <div style="padding:8px 20px">
-    <div style="display:flex;align-items:center;gap:8px;padding:5px 0;font-size:0.8rem;color:#9ca3af">
-      <div style="width:12px;height:12px;border-radius:50%;background:#ef4444;flex-shrink:0"></div>
-      <span>Crítico (defasagem &gt;50%)</span>
-    </div>
-    <div style="display:flex;align-items:center;gap:8px;padding:5px 0;font-size:0.8rem;color:#9ca3af">
-      <div style="width:12px;height:12px;border-radius:50%;background:#f59e0b;flex-shrink:0"></div>
-      <span>Atenção (defasagem 25–50%)</span>
-    </div>
-    <div style="display:flex;align-items:center;gap:8px;padding:5px 0;font-size:0.8rem;color:#9ca3af">
-      <div style="width:12px;height:12px;border-radius:50%;background:#10b981;flex-shrink:0"></div>
-      <span>Satisfatório (&lt;25%)</span>
-    </div>
+  <div class="nav-section" style="margin-top:14px">Semáforo de Desempenho</div>
+  <div class="semaforo-block">
+    <div class="sem-item"><div class="sem-dot" style="background:#1a7a4a"></div>Defasagem &lt;25% (bom)</div>
+    <div class="sem-item"><div class="sem-dot" style="background:#d68910"></div>Defasagem 25–50% (atenção)</div>
+    <div class="sem-item"><div class="sem-dot" style="background:#c0392b"></div>Defasagem &gt;50% (crítico)</div>
   </div>
 
   <div class="sidebar-footer">
-    <p>Adriano Martins EEIEF<br>Caucaia · CE<br>Fonte: Avalie.CE 2025.1<br>Clique nos cartões p/ ver ações</p>
+    Adriano Martins EEIEF<br>
+    Caucaia · CE · Cód. INEP 23061944<br>
+    Fonte: Avalie.CE 2025.1 (2º, 4º, 5º Anos)<br>
+    Clique nos cartões para ver ações sugeridas
   </div>
 </aside>
 
 <!-- ===== MAIN ===== -->
 <main class="main">
 
-  <!-- TOP BAR -->
+  <!-- TOPBAR com dados da escola / avaliação -->
   <div class="topbar">
     <div>
-      <div class="topbar-title">🏫 Painel do Diretor</div>
-      <div class="topbar-sub">Avalie.CE 2025.1 · 2º, 4º e 5º Anos · Adriano Martins EEIEF</div>
+      <div class="topbar-title">🏫 Painel do Diretor — Avalie.CE</div>
+      <div class="topbar-sub">Avaliação Formativa do Ceará · 2025.1 · 2º, 4º e 5º Anos<br><strong>Adriano Martins EEIEF · Caucaia-CE</strong></div>
+      <div class="topbar-date">Aplicação março/2025 · 215 alunos previstos · participação 89%</div>
     </div>
     <div class="topbar-stats">
       <div class="topbar-stat blue"><span class="val">215</span><span class="lbl">Previstos</span></div>
@@ -516,21 +679,16 @@ body {
   <!-- ===== VISÃO GERAL DAS TURMAS ===== -->
   <div class="section" id="visao">
     <div class="section-header">
-      <div class="section-icon" style="background:rgba(59,130,246,0.1)">📊</div>
+      <div class="section-icon" style="background:rgba(26,86,160,.12)">📊</div>
       <div class="section-info">
         <h2>Visão Geral das Turmas Avaliadas</h2>
         <p>Desempenho por turma · Avalie.CE 2025.1 · Semáforo de aprendizagem</p>
       </div>
     </div>
-
     <div class="turmas-grid">
-
-      <!-- 2º ANO A - MT -->
-      <div class="turma-card" style="border-left:4px solid var(--yellow)">
-        <div class="turma-header">
-          <span class="turma-nome">2º Ano A · MT</span>
-          <span class="turma-badge yellow">⚠ ATENÇÃO</span>
-        </div>
+      <!-- 2ºA MT -->
+      <div class="turma-card" style="border-left:5px solid var(--yellow)">
+        <div class="turma-header"><span class="turma-nome">2º Ano A · MT</span><span class="turma-badge yellow">⚠ ATENÇÃO</span></div>
         <div class="turma-stats">
           <div class="turma-stat-row"><span class="label">Avaliados</span><span class="value">18/21 (86%)</span></div>
           <div class="turma-stat-row"><span class="label">Defasagem</span><span class="value yellow">33%</span></div>
@@ -539,13 +697,9 @@ body {
           <div class="turma-stat-row"><span class="label">Profic. Média</span><span class="value">52 pts</span></div>
         </div>
       </div>
-
-      <!-- 2º ANO B - MT -->
-      <div class="turma-card" style="border-left:4px solid var(--red)">
-        <div class="turma-header">
-          <span class="turma-nome">2º Ano B · MT</span>
-          <span class="turma-badge red">🔴 CRÍTICO</span>
-        </div>
+      <!-- 2ºB MT -->
+      <div class="turma-card" style="border-left:5px solid var(--red)">
+        <div class="turma-header"><span class="turma-nome">2º Ano B · MT</span><span class="turma-badge red">🔴 CRÍTICO</span></div>
         <div class="turma-stats">
           <div class="turma-stat-row"><span class="label">Avaliados</span><span class="value">17/19 (89%)</span></div>
           <div class="turma-stat-row"><span class="label">Defasagem</span><span class="value red">100%</span></div>
@@ -554,13 +708,9 @@ body {
           <div class="turma-stat-row"><span class="label">Profic. Média</span><span class="value red">2 pts</span></div>
         </div>
       </div>
-
-      <!-- 2º ANO A - LP -->
-      <div class="turma-card" style="border-left:4px solid var(--yellow)">
-        <div class="turma-header">
-          <span class="turma-nome">2º Ano A · LP</span>
-          <span class="turma-badge yellow">⚠ ATENÇÃO</span>
-        </div>
+      <!-- 2ºA LP -->
+      <div class="turma-card" style="border-left:5px solid var(--yellow)">
+        <div class="turma-header"><span class="turma-nome">2º Ano A · LP</span><span class="turma-badge yellow">⚠ ATENÇÃO</span></div>
         <div class="turma-stats">
           <div class="turma-stat-row"><span class="label">Avaliados</span><span class="value">18/21 (86%)</span></div>
           <div class="turma-stat-row"><span class="label">Defasagem</span><span class="value yellow">28%</span></div>
@@ -569,13 +719,9 @@ body {
           <div class="turma-stat-row"><span class="label">Profic. Média</span><span class="value">53 pts</span></div>
         </div>
       </div>
-
-      <!-- 2º ANO B - LP -->
-      <div class="turma-card" style="border-left:4px solid var(--green)">
-        <div class="turma-header">
-          <span class="turma-nome">2º Ano B · LP</span>
-          <span class="turma-badge green">✅ BOM</span>
-        </div>
+      <!-- 2ºB LP -->
+      <div class="turma-card" style="border-left:5px solid var(--green)">
+        <div class="turma-header"><span class="turma-nome">2º Ano B · LP</span><span class="turma-badge green">✅ BOM</span></div>
         <div class="turma-stats">
           <div class="turma-stat-row"><span class="label">Avaliados</span><span class="value">17/19 (89%)</span></div>
           <div class="turma-stat-row"><span class="label">Defasagem</span><span class="value green">12%</span></div>
@@ -584,13 +730,9 @@ body {
           <div class="turma-stat-row"><span class="label">Profic. Média</span><span class="value green">61 pts</span></div>
         </div>
       </div>
-
-      <!-- 4º ANO A - MT -->
-      <div class="turma-card" style="border-left:4px solid var(--red)">
-        <div class="turma-header">
-          <span class="turma-nome">4º Ano A · MT</span>
-          <span class="turma-badge red">🔴 CRÍTICO</span>
-        </div>
+      <!-- 4ºA MT -->
+      <div class="turma-card" style="border-left:5px solid var(--red)">
+        <div class="turma-header"><span class="turma-nome">4º Ano A · MT</span><span class="turma-badge red">🔴 CRÍTICO</span></div>
         <div class="turma-stats">
           <div class="turma-stat-row"><span class="label">Avaliados</span><span class="value">20/22 (91%)</span></div>
           <div class="turma-stat-row"><span class="label">Defasagem</span><span class="value red">75%</span></div>
@@ -599,13 +741,9 @@ body {
           <div class="turma-stat-row"><span class="label">Profic. Média</span><span class="value red">21 pts</span></div>
         </div>
       </div>
-
-      <!-- 4º ANO B - MT -->
-      <div class="turma-card" style="border-left:4px solid var(--red)">
-        <div class="turma-header">
-          <span class="turma-nome">4º Ano B · MT</span>
-          <span class="turma-badge red">🔴 CRÍTICO</span>
-        </div>
+      <!-- 4ºB MT -->
+      <div class="turma-card" style="border-left:5px solid var(--red)">
+        <div class="turma-header"><span class="turma-nome">4º Ano B · MT</span><span class="turma-badge red">🔴 CRÍTICO</span></div>
         <div class="turma-stats">
           <div class="turma-stat-row"><span class="label">Avaliados</span><span class="value">19/20 (95%)</span></div>
           <div class="turma-stat-row"><span class="label">Defasagem</span><span class="value red">74%</span></div>
@@ -614,13 +752,9 @@ body {
           <div class="turma-stat-row"><span class="label">Profic. Média</span><span class="value red">30 pts</span></div>
         </div>
       </div>
-
-      <!-- 4º ANO A - LP -->
-      <div class="turma-card" style="border-left:4px solid var(--yellow)">
-        <div class="turma-header">
-          <span class="turma-nome">4º Ano A · LP</span>
-          <span class="turma-badge yellow">⚠ ATENÇÃO</span>
-        </div>
+      <!-- 4ºA LP -->
+      <div class="turma-card" style="border-left:5px solid var(--yellow)">
+        <div class="turma-header"><span class="turma-nome">4º Ano A · LP</span><span class="turma-badge yellow">⚠ ATENÇÃO</span></div>
         <div class="turma-stats">
           <div class="turma-stat-row"><span class="label">Avaliados</span><span class="value">20/22 (91%)</span></div>
           <div class="turma-stat-row"><span class="label">Defasagem</span><span class="value yellow">35%</span></div>
@@ -629,13 +763,9 @@ body {
           <div class="turma-stat-row"><span class="label">Profic. Média</span><span class="value">56 pts</span></div>
         </div>
       </div>
-
-      <!-- 4º ANO B - LP -->
-      <div class="turma-card" style="border-left:4px solid var(--yellow)">
-        <div class="turma-header">
-          <span class="turma-nome">4º Ano B · LP</span>
-          <span class="turma-badge yellow">⚠ ATENÇÃO</span>
-        </div>
+      <!-- 4ºB LP -->
+      <div class="turma-card" style="border-left:5px solid var(--yellow)">
+        <div class="turma-header"><span class="turma-nome">4º Ano B · LP</span><span class="turma-badge yellow">⚠ ATENÇÃO</span></div>
         <div class="turma-stats">
           <div class="turma-stat-row"><span class="label">Avaliados</span><span class="value">19/20 (95%)</span></div>
           <div class="turma-stat-row"><span class="label">Defasagem</span><span class="value yellow">21%</span></div>
@@ -644,13 +774,9 @@ body {
           <div class="turma-stat-row"><span class="label">Profic. Média</span><span class="value green">65 pts</span></div>
         </div>
       </div>
-
-      <!-- 5º ANO A - MT -->
-      <div class="turma-card" style="border-left:4px solid var(--yellow)">
-        <div class="turma-header">
-          <span class="turma-nome">5º Ano A · MT</span>
-          <span class="turma-badge yellow">⚠ ATENÇÃO</span>
-        </div>
+      <!-- 5ºA MT -->
+      <div class="turma-card" style="border-left:5px solid var(--yellow)">
+        <div class="turma-header"><span class="turma-nome">5º Ano A · MT</span><span class="turma-badge yellow">⚠ ATENÇÃO</span></div>
         <div class="turma-stats">
           <div class="turma-stat-row"><span class="label">Avaliados</span><span class="value">18/20 (90%)</span></div>
           <div class="turma-stat-row"><span class="label">Defasagem</span><span class="value yellow">33%</span></div>
@@ -659,13 +785,9 @@ body {
           <div class="turma-stat-row"><span class="label">Profic. Média</span><span class="value">57 pts</span></div>
         </div>
       </div>
-
-      <!-- 5º ANO B - MT -->
-      <div class="turma-card" style="border-left:4px solid var(--yellow)">
-        <div class="turma-header">
-          <span class="turma-nome">5º Ano B · MT</span>
-          <span class="turma-badge yellow">⚠ ATENÇÃO</span>
-        </div>
+      <!-- 5ºB MT -->
+      <div class="turma-card" style="border-left:5px solid var(--yellow)">
+        <div class="turma-header"><span class="turma-nome">5º Ano B · MT</span><span class="turma-badge yellow">⚠ ATENÇÃO</span></div>
         <div class="turma-stats">
           <div class="turma-stat-row"><span class="label">Avaliados</span><span class="value">20/21 (95%)</span></div>
           <div class="turma-stat-row"><span class="label">Defasagem</span><span class="value yellow">20%</span></div>
@@ -674,13 +796,9 @@ body {
           <div class="turma-stat-row"><span class="label">Profic. Média</span><span class="value">60 pts</span></div>
         </div>
       </div>
-
-      <!-- 5º ANO A - LP -->
-      <div class="turma-card" style="border-left:4px solid var(--green)">
-        <div class="turma-header">
-          <span class="turma-nome">5º Ano A · LP</span>
-          <span class="turma-badge green">✅ BOM</span>
-        </div>
+      <!-- 5ºA LP -->
+      <div class="turma-card" style="border-left:5px solid var(--green)">
+        <div class="turma-header"><span class="turma-nome">5º Ano A · LP</span><span class="turma-badge green">✅ BOM</span></div>
         <div class="turma-stats">
           <div class="turma-stat-row"><span class="label">Avaliados</span><span class="value">18/20 (90%)</span></div>
           <div class="turma-stat-row"><span class="label">Defasagem</span><span class="value green">17%</span></div>
@@ -689,13 +807,9 @@ body {
           <div class="turma-stat-row"><span class="label">Profic. Média</span><span class="value green">77 pts</span></div>
         </div>
       </div>
-
-      <!-- 5º ANO B - LP -->
-      <div class="turma-card" style="border-left:4px solid var(--green)">
-        <div class="turma-header">
-          <span class="turma-nome">5º Ano B · LP</span>
-          <span class="turma-badge green">✅ DEST.</span>
-        </div>
+      <!-- 5ºB LP -->
+      <div class="turma-card" style="border-left:5px solid var(--green)">
+        <div class="turma-header"><span class="turma-nome">5º Ano B · LP</span><span class="turma-badge green">✅ DESTAQUE</span></div>
         <div class="turma-stats">
           <div class="turma-stat-row"><span class="label">Avaliados</span><span class="value">20/21 (95%)</span></div>
           <div class="turma-stat-row"><span class="label">Defasagem</span><span class="value green">0%</span></div>
@@ -710,213 +824,139 @@ body {
   <!-- ===== MATEMÁTICA ===== -->
   <div class="section" id="mt">
     <div class="section-header">
-      <div class="section-icon" style="background:rgba(239,68,68,0.1)">🔢</div>
+      <div class="section-icon" style="background:rgba(192,57,43,.12)">🔢</div>
       <div class="section-info">
         <h2>Matemática — Alertas e Destaques</h2>
         <p>2º, 4º e 5º Anos · Habilidades críticas e ações sugeridas</p>
       </div>
     </div>
 
-    <!-- 2B MT Crítico -->
+    <!-- 2ºB MT crítico -->
     <div class="notif-card priority-red" onclick="toggle(this)">
       <div class="notif-top">
         <div class="notif-avatar red">🚨</div>
         <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">2º Ano B — MT: Situação Crítica. 100% em defasagem, proficiência = 2 pontos</div>
-            <span class="notif-source">Avalie.CE 2025.1</span>
-          </div>
-          <div class="notif-summary">A turma 2ºB registrou proficiência média de apenas 2 pontos em Matemática — o pior resultado da escola. Nenhum aluno atingiu nível adequado ou intermediário. Todas as habilidades têm desempenho abaixo de 80%.</div>
-          <div>
-            <div class="hab-row red"><span class="hab-code">H11</span><span class="hab-name">Escrita numérica (mínimo 18%)</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill red" style="width:18%"></div></div><span class="hab-pct">18%</span></div>
-            <div class="hab-row red"><span class="hab-code">H02</span><span class="hab-name">Números naturais (21%)</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill red" style="width:21%"></div></div><span class="hab-pct">21%</span></div>
-            <div class="hab-row red"><span class="hab-code">H03</span><span class="hab-name">Composição/decomp. (24%)</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill red" style="width:24%"></div></div><span class="hab-pct">24%</span></div>
-          </div>
-          <div class="notif-metrics" style="margin-top:8px">
-            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>100% em Defasagem</span>
-            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>Profic. Média: 2 pts</span>
-          </div>
+          <div class="notif-header-row"><div class="notif-title">2º Ano B — MT: Situação Crítica. 100% em defasagem, proficiência = 2 pontos</div><span class="notif-source">Avalie.CE 2025.1</span></div>
+          <div class="notif-summary">A turma 2ºB registrou proficiência média de apenas 2 pontos em Matemática — o pior resultado da escola. Nenhum aluno atingiu nível adequado ou intermediário.</div>
+          <div><div class="hab-row red"><span class="hab-code">H11</span><span class="hab-name">Escrita numérica</span><div class="progress-track"><div class="progress-fill red" style="width:18%"></div></div><span class="hab-pct">18%</span></div>
+          <div class="hab-row red"><span class="hab-code">H02</span><span class="hab-name">Números naturais</span><div class="progress-track"><div class="progress-fill red" style="width:21%"></div></div><span class="hab-pct">21%</span></div>
+          <div class="hab-row red"><span class="hab-code">H03</span><span class="hab-name">Composição/decomp.</span><div class="progress-track"><div class="progress-fill red" style="width:24%"></div></div><span class="hab-pct">24%</span></div></div>
+          <div class="notif-metrics"><span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>100% defasagem</span><span class="metric-pill red"><span class="dot"></span>Profic. 2 pts</span></div>
         </div>
         <button class="notif-toggle">▾</button>
       </div>
       <div class="notif-expand">
-        <div class="expand-action">
-          <div class="action-tag">🎯 Ação Urgente — 2º Ano B · MT</div>
-          <div class="action-text">1. <strong>Diagnóstico individual imediato:</strong> identificar se a turma tem perfil de entrada muito baixo ou houve ruptura pedagógica. 2. <strong>Reagrupamento temporário:</strong> unir alunos da 2ºA (33% adequado) e 2ºB para atividades de nivelamento em pequenos grupos. 3. <strong>Reforço de H11 e H02:</strong> trabalhar identificação e escrita de números naturais com materiais manipulativos, ábaco e jogos. 4. <strong>Acompanhamento semanal:</strong> reunião quinzenal com o professor da turma para monitorar evolução. 5. <strong>Revisão do planejamento:</strong> refazer o plano de aula com foco em habilidades básicas não consolidadas.</div>
-        </div>
-        <div class="expand-tags">
-          <span class="expand-tag">2º Ano B</span><span class="expand-tag">Nivelamento Urgente</span><span class="expand-tag">Diagnóstico Individual</span><span class="expand-tag">Reagrupamento</span>
-        </div>
+        <div class="expand-action"><span class="action-tag">🎯 Ação Urgente — 2º Ano B · MT</span><div class="action-text">1. Diagnóstico individual imediato. 2. Reagrupamento com 2ºA. 3. Reforço de H11 e H02. 4. Acompanhamento semanal.</div></div>
+        <div class="expand-tags"><span class="expand-tag">2ºB</span><span class="expand-tag">nivelamento urgente</span></div>
       </div>
     </div>
 
-    <!-- 4A e 4B MT Crítico -->
+    <!-- 4ºA e 4ºB MT -->
     <div class="notif-card priority-red" onclick="toggle(this)">
       <div class="notif-top">
         <div class="notif-avatar red">⚠️</div>
         <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">4º Ano A e B — MT: Defasagem superior a 74% em ambas as turmas</div>
-            <span class="notif-source">Avalie.CE 2025.1</span>
-          </div>
-          <div class="notif-summary">4ºA: 75% em defasagem (profic. 21 pts) · 4ºB: 74% em defasagem (profic. 30 pts). Habilidades com menor domínio: H13-Simetria (23%), H01-Localização espacial (32%), H10-Medidas de tempo (27%), H12-Sistema monetário (36%).</div>
-          <div>
-            <div class="hab-row red"><span class="hab-code">H13</span><span class="hab-name">Simetria (crítico)</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill red" style="width:23%"></div></div><span class="hab-pct">23%</span></div>
-            <div class="hab-row red"><span class="hab-code">H15</span><span class="hab-name">Racionais/Oper. (13%)</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill red" style="width:27%"></div></div><span class="hab-pct">27%</span></div>
-            <div class="hab-row red"><span class="hab-code">H12</span><span class="hab-name">Sistema monetário</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill red" style="width:36%"></div></div><span class="hab-pct">36%</span></div>
-          </div>
-          <div class="notif-metrics" style="margin-top:8px">
-            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>4ºA: 75% defasagem</span>
-            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>4ºB: 74% defasagem</span>
-          </div>
+          <div class="notif-header-row"><div class="notif-title">4º Ano A e B — MT: Defasagem superior a 74% em ambas as turmas</div><span class="notif-source">Avalie.CE 2025.1</span></div>
+          <div class="notif-summary">4ºA: 75% defasagem (21 pts) · 4ºB: 74% defasagem (30 pts). H13-Simetria (23%), H15-Racionais (27%), H12-Sistema monetário (36%).</div>
+          <div><div class="hab-row red"><span class="hab-code">H13</span><span class="hab-name">Simetria</span><div class="progress-track"><div class="progress-fill red" style="width:23%"></div></div><span class="hab-pct">23%</span></div>
+          <div class="hab-row red"><span class="hab-code">H15</span><span class="hab-name">Racionais</span><div class="progress-track"><div class="progress-fill red" style="width:27%"></div></div><span class="hab-pct">27%</span></div>
+          <div class="hab-row red"><span class="hab-code">H12</span><span class="hab-name">Sist. monetário</span><div class="progress-track"><div class="progress-fill red" style="width:36%"></div></div><span class="hab-pct">36%</span></div></div>
+          <div class="notif-metrics"><span class="metric-pill red">4ºA 75%</span><span class="metric-pill red">4ºB 74%</span></div>
         </div>
         <button class="notif-toggle">▾</button>
       </div>
       <div class="notif-expand">
-        <div class="expand-action">
-          <div class="action-tag">🎯 Ação Urgente — 4º Ano A e B · MT</div>
-          <div class="action-text">1. <strong>Priorizar habilidades críticas:</strong> H13 (simetria), H10 (tempo) e H12 (monetário) com atividades práticas e concretas. 2. <strong>Retomada de conteúdo dos anos anteriores:</strong> revisar sistema de numeração e operações básicas antes de avançar. 3. <strong>Planejamento conjunto:</strong> os professores das duas turmas devem reunir-se semanalmente para alinhar estratégias. 4. <strong>Uso de material concreto:</strong> relógios, cédulas e eixos de simetria impressos nas atividades. 5. <strong>Monitoramento quinzenal</strong> com registro de evolução individual de cada aluno em defasagem.</div>
-        </div>
-        <div class="expand-tags">
-          <span class="expand-tag">4º A e B</span><span class="expand-tag">Habilidades Críticas</span><span class="expand-tag">Planejamento Conjunto</span><span class="expand-tag">Material Concreto</span>
-        </div>
+        <div class="expand-action"><span class="action-tag">🎯 Ação Urgente — 4º Ano MT</span><div class="action-text">1. Priorizar H13, H10, H12. 2. Retomada de conteúdo. 3. Planejamento conjunto semanal. 4. Material concreto. 5. Monitoramento quinzenal.</div></div>
+        <div class="expand-tags"><span class="expand-tag">4ºA e B</span><span class="expand-tag">habilidades críticas</span></div>
       </div>
     </div>
 
-    <!-- 5A MT Atenção -->
+    <!-- 5º MT atenção -->
     <div class="notif-card priority-yellow" onclick="toggle(this)">
       <div class="notif-top">
         <div class="notif-avatar yellow">📉</div>
         <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">5º Ano A e B — MT: Habilidades de frações e geometria precisam de atenção</div>
-            <span class="notif-source">Avalie.CE 2025.1</span>
-          </div>
-          <div class="notif-summary">5ºA: 33% defasagem · 5ºB: 20% defasagem. Destaques positivos: H02 Numeração Decimal (92%) e H05 Tabelas/Gráficos (82%). Pontos críticos: H15-Racionais (13%), H08-Planificação 3D (16%), H12-Frações (18%).</div>
-          <div class="notif-metrics">
-            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>H15 Racionais: 13%</span>
-            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>H08 Geometria 3D: 16%</span>
-            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span">H02 Numeração: 92%</span>
-          </div>
+          <div class="notif-header-row"><div class="notif-title">5º Ano A e B — MT: Habilidades de frações e geometria precisam de atenção</div><span class="notif-source">Avalie.CE 2025.1</span></div>
+          <div class="notif-summary">5ºA 33% defasagem, 5ºB 20%. Pontos críticos: H15-Racionais (13%), H08-Planificação 3D (16%), H12-Frações (18%).</div>
+          <div class="notif-metrics"><span class="metric-pill red">H15 13%</span><span class="metric-pill red">H08 16%</span><span class="metric-pill green">H02 92%</span></div>
         </div>
         <button class="notif-toggle">▾</button>
       </div>
       <div class="notif-expand">
-        <div class="expand-action">
-          <div class="action-tag">🎯 Ação Sugerida — 5º Ano A e B · MT</div>
-          <div class="action-text">1. <strong>Trabalho intensivo em frações:</strong> usar materiais manipulativos como barras de fração e dobraduras. Conectar fração com situações do cotidiano. 2. <strong>Geometria espacial:</strong> usar caixas e objetos para trabalhar planificação de sólidos. 3. <strong>Alavancar os pontos fortes:</strong> o bom desempenho em tabelas/gráficos e numeração decimal indica que a turma tem capacidade de aprendizagem — reforçar a autoestima dos alunos. 4. <strong>Grupos de reforço:</strong> identificar os alunos em defasagem para atividades complementares no contraturno ou em grupos de nivelamento.</div>
-        </div>
-        <div class="expand-tags">
-          <span class="expand-tag">5º A e B</span><span class="expand-tag">Frações</span><span class="expand-tag">Geometria Espacial</span>
-        </div>
+        <div class="expand-action"><span class="action-tag">🎯 Ação Sugerida — 5º Ano MT</span><div class="action-text">1. Trabalho intensivo em frações (barras, dobraduras). 2. Geometria com caixas e objetos. 3. Reforço em grupos.</div></div>
+        <div class="expand-tags"><span class="expand-tag">5ºA e B</span><span class="expand-tag">frações</span><span class="expand-tag">geometria</span></div>
       </div>
     </div>
-
   </div>
 
   <!-- ===== LÍNGUA PORTUGUESA ===== -->
   <div class="section" id="lp">
     <div class="section-header">
-      <div class="section-icon" style="background:rgba(239,68,68,0.1)">📖</div>
+      <div class="section-icon" style="background:rgba(214,137,16,.12)">📖</div>
       <div class="section-info">
         <h2>Língua Portuguesa — Alertas e Destaques</h2>
         <p>2º, 4º e 5º Anos · Habilidades críticas e ações sugeridas</p>
       </div>
     </div>
 
-    <!-- 2A LP Atenção -->
+    <!-- 2ºA LP -->
     <div class="notif-card priority-yellow" onclick="toggle(this)">
       <div class="notif-top">
         <div class="notif-avatar yellow">⚡</div>
         <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">2º Ano A — LP: 28% em defasagem. H09 (Efeito de Sentido) e H13 (Inferência) com baixo desempenho</div>
-            <span class="notif-source">Avalie.CE 2025.1</span>
-          </div>
-          <div class="notif-summary">A turma tem bom domínio em reconhecimento de letras (H02: 78%) e formas gráficas (H03: 89%), mas apresenta dificuldades em habilidades de leitura inferencial e produção de sentido. H09 com apenas 39% de acerto.</div>
-          <div>
-            <div class="hab-row red"><span class="hab-code">H09</span><span class="hab-name">Efeito de sentido gráfico (39%)</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill red" style="width:39%"></div></div><span class="hab-pct">39%</span></div>
-            <div class="hab-row red"><span class="hab-code">H13</span><span class="hab-name">Inferir informações (39%)</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill red" style="width:39%"></div></div><span class="hab-pct">39%</span></div>
-            <div class="hab-row yellow"><span class="hab-code">H04</span><span class="hab-name">Identificar palavras em frases (50%)</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill yellow" style="width:50%"></div></div><span class="hab-pct">50%</span></div>
-          </div>
+          <div class="notif-header-row"><div class="notif-title">2º Ano A — LP: 28% defasagem. H09 (Efeito de Sentido) e H13 (Inferência) com baixo desempenho</div><span class="notif-source">Avalie.CE 2025.1</span></div>
+          <div class="notif-summary">H09 39%, H13 39%, H04 50%.</div>
+          <div><div class="hab-row red"><span class="hab-code">H09</span><span class="hab-name">Efeito de sentido</span><div class="progress-track"><div class="progress-fill red" style="width:39%"></div></div><span class="hab-pct">39%</span></div>
+          <div class="hab-row red"><span class="hab-code">H13</span><span class="hab-name">Inferir</span><div class="progress-track"><div class="progress-fill red" style="width:39%"></div></div><span class="hab-pct">39%</span></div></div>
         </div>
         <button class="notif-toggle">▾</button>
       </div>
       <div class="notif-expand">
-        <div class="expand-action">
-          <div class="action-tag">🎯 Ação Sugerida — 2º Ano A · LP</div>
-          <div class="action-text">1. <strong>Rodas de leitura compartilhada:</strong> explorar textos com imagens para trabalhar efeito de sentido (H09). 2. <strong>Perguntas de inferência:</strong> treinar a habilidade de ler nas entrelinhas com textos curtos, enigmas e adivinhas. 3. <strong>Segmentação de frases:</strong> atividades com palavras recortadas para identificar limites de palavras em frases (H04). 4. <strong>Manter o que funciona:</strong> as atividades de reconhecimento de letras e formas gráficas estão surtindo efeito — não interromper.</div>
-        </div>
-        <div class="expand-tags">
-          <span class="expand-tag">2º Ano A</span><span class="expand-tag">Leitura Inferencial</span><span class="expand-tag">Rodas de Leitura</span>
-        </div>
+        <div class="expand-action"><span class="action-tag">🎯 Ação — 2ºA LP</span><div class="action-text">Rodas de leitura, perguntas de inferência, segmentação de frases.</div></div>
+        <div class="expand-tags"><span class="expand-tag">2ºA</span><span class="expand-tag">inferência</span></div>
       </div>
     </div>
 
-    <!-- 4A LP Atenção + destaque -->
+    <!-- 4ºA/B LP -->
     <div class="notif-card priority-yellow" onclick="toggle(this)">
       <div class="notif-top">
         <div class="notif-avatar yellow">📊</div>
         <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">4º Ano A e B — LP: 35% e 21% em defasagem. Inferência e coesão são lacunas comuns</div>
-            <span class="notif-source">Avalie.CE 2025.1</span>
-          </div>
-          <div class="notif-summary">4ºA: 55% adequado · 4ºB: 53% adequado. Pontos fortes: leitura de palavras (H01: 85%, H02: 100%). Habilidades críticas comuns: H08 Inferência (45%), H11 Coesão textual (50%), H06 Info. Explícita (54%).</div>
-          <div>
-            <div class="hab-row red"><span class="hab-code">H08</span><span class="hab-name">Inferir informações (45%)</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill red" style="width:45%"></div></div><span class="hab-pct">45%</span></div>
-            <div class="hab-row yellow"><span class="hab-code">H11</span><span class="hab-name">Coesão textual (50%)</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill yellow" style="width:50%"></div></div><span class="hab-pct">50%</span></div>
-            <div class="hab-row green"><span class="hab-code">H02</span><span class="hab-name">Leitura não canônica (100%)</span><div class="progress-track" style="flex:1;height:8px"><div class="progress-fill green" style="width:100%"></div></div><span class="hab-pct">100%</span></div>
-          </div>
+          <div class="notif-header-row"><div class="notif-title">4º Ano A e B — LP: 35% e 21% defasagem. Inferência e coesão são lacunas comuns</div><span class="notif-source">Avalie.CE 2025.1</span></div>
+          <div class="notif-summary">H08 Inferência 45%, H11 Coesão 50%.</div>
+          <div><div class="hab-row red"><span class="hab-code">H08</span><span class="hab-name">Inferir</span><div class="progress-track"><div class="progress-fill red" style="width:45%"></div></div><span class="hab-pct">45%</span></div>
+          <div class="hab-row yellow"><span class="hab-code">H11</span><span class="hab-name">Coesão</span><div class="progress-track"><div class="progress-fill yellow" style="width:50%"></div></div><span class="hab-pct">50%</span></div></div>
         </div>
         <button class="notif-toggle">▾</button>
       </div>
       <div class="notif-expand">
-        <div class="expand-action">
-          <div class="action-tag">🎯 Ação Sugerida — 4º Ano A e B · LP</div>
-          <div class="action-text">1. <strong>Foco em leitura inferencial:</strong> atividades com textos narrativos e informativos que exijam leitura além do explícito. Trabalhar H08 com perguntas do tipo "O que o autor quis dizer com...?". 2. <strong>Coesão textual (H11):</strong> produção e reescrita de textos com uso consciente de conectivos. Criar cartazes temáticos com os principais conectivos. 3. <strong>Aproveitar a fluência em leitura:</strong> o desempenho de 100% em H02 indica fluência de leitura consolidada — usar isso como base para avanço. 4. <strong>Leitura diária:</strong> reservar 15 minutos no início da aula para leitura silenciosa e discussão em pares.</div>
-        </div>
-        <div class="expand-tags">
-          <span class="expand-tag">4º A e B</span><span class="expand-tag">Inferência</span><span class="expand-tag">Coesão Textual</span><span class="expand-tag">Leitura Diária</span>
-        </div>
+        <div class="expand-action"><span class="action-tag">🎯 Ação — 4ºA/B LP</span><div class="action-text">Foco em leitura inferencial, produção de textos com conectivos, leitura diária.</div></div>
+        <div class="expand-tags"><span class="expand-tag">4ºA e B</span><span class="expand-tag">inferência</span><span class="expand-tag">coesão</span></div>
       </div>
     </div>
 
-    <!-- 5 LP Destaque -->
+    <!-- 5ºB LP destaque -->
     <div class="notif-card priority-green" onclick="toggle(this)">
       <div class="notif-top">
         <div class="notif-avatar green">⭐</div>
         <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">5º Ano B — LP: Melhor resultado da escola! Zero em defasagem, 70% adequado</div>
-            <span class="notif-source">Avalie.CE 2025.1</span>
-          </div>
-          <div class="notif-summary">A turma 5ºB obteve proficiência média de 80 pts e nenhum aluno em defasagem. H02 (Gênero Textual) com 95% e H13 (Marcas Linguísticas) com 85%. É o melhor desempenho de LP da escola e deve servir como referência.</div>
-          <div class="notif-metrics">
-            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>0% defasagem</span>
-            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span">70% adequado</span>
-            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span">Profic: 80 pts</span>
-          </div>
+          <div class="notif-header-row"><div class="notif-title">5º Ano B — LP: Melhor resultado da escola! Zero defasagem, 70% adequado</div><span class="notif-source">Avalie.CE 2025.1</span></div>
+          <div class="notif-summary">Proficiência 80 pts. H02 95%, H13 85%.</div>
+          <div class="notif-metrics"><span class="metric-pill green">0% defasagem</span><span class="metric-pill green">70% adequado</span></div>
         </div>
         <button class="notif-toggle">▾</button>
       </div>
       <div class="notif-expand">
-        <div class="expand-action">
-          <div class="action-tag">🎯 Ação Sugerida — 5º Ano B · LP (Referência)</div>
-          <div class="action-text">1. <strong>Mapear e documentar as práticas:</strong> entrevistar o professor da turma para entender quais estratégias pedagógicas levaram a esse resultado. 2. <strong>Compartilhar com toda a escola:</strong> promover uma roda de conversa ou formação interna com foco nas práticas de leitura utilizadas no 5ºB. 3. <strong>Usar como par pedagógico:</strong> o professor do 5ºB pode apoiar os professores das turmas com maior defasagem (4ºA, 4ºB). 4. <strong>Atenção a H10 (Coesão: 26%) e H11 (Fato x Opinião: 39%):</strong> mesmo a turma destaque ainda tem espaço de crescimento nessas habilidades.</div>
-        </div>
-        <div class="expand-tags">
-          <span class="expand-tag">5º Ano B</span><span class="expand-tag">Referência LP</span><span class="expand-tag">Formação Interna</span>
-        </div>
+        <div class="expand-action"><span class="action-tag">🎯 Ação — Referência LP</span><div class="action-text">Documentar práticas, compartilhar com a escola, usar como par pedagógico.</div></div>
+        <div class="expand-tags"><span class="expand-tag">5ºB</span><span class="expand-tag">boas práticas</span></div>
       </div>
     </div>
-
   </div>
 
-  <!-- ===== ALERTAS POR TURMA ===== -->
+  <!-- ===== ALERTAS CRUZADOS ===== -->
   <div class="section" id="alertas">
     <div class="section-header">
-      <div class="section-icon" style="background:rgba(245,158,11,0.1)">🔔</div>
+      <div class="section-icon" style="background:rgba(202,111,30,.12)">🔔</div>
       <div class="section-info">
         <h2>Alertas Prioritários Cruzados</h2>
         <p>Situações que exigem ação imediata da gestão</p>
@@ -927,33 +967,15 @@ body {
       <div class="notif-top">
         <div class="notif-avatar red">🚨</div>
         <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">URGENTE: 2ºB MT e 4º Ano MT necessitam de intervenção imediata da gestão</div>
-            <span class="notif-source">Avalie.CE 2025.1</span>
-          </div>
-          <div class="notif-summary">Três turmas acumulam defasagem acima de 70% em Matemática: 2ºB (100%), 4ºA (75%) e 4ºB (74%). Isso representa mais de 50 alunos em situação crítica. Sem intervenção estruturada, esses alunos chegam ao 5º Ano sem a base necessária.</div>
-          <div class="notif-metrics">
-            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>2ºB MT: 100% defasagem</span>
-            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span">4ºA MT: 75% defasagem</span>
-            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span">4ºB MT: 74% defasagem</span>
-          </div>
+          <div class="notif-header-row"><div class="notif-title">URGENTE: 2ºB MT e 4º Ano MT necessitam de intervenção imediata</div><span class="notif-source">Avalie.CE 2025.1</span></div>
+          <div class="notif-summary">Três turmas acumulam defasagem >70% em Matemática: 2ºB (100%), 4ºA (75%), 4ºB (74%). Mais de 50 alunos em situação crítica.</div>
+          <div class="notif-metrics"><span class="metric-pill red">2ºB 100%</span><span class="metric-pill red">4ºA 75%</span><span class="metric-pill red">4ºB 74%</span></div>
         </div>
         <button class="notif-toggle">▾</button>
       </div>
       <div class="notif-expand">
-        <div class="expand-action">
-          <div class="action-tag">📋 Plano de Ação Integrado — MT Crítico</div>
-          <div class="action-text">
-            <strong>Semana 1:</strong> Reunião com todos os professores de MT para diagnóstico conjunto e apresentação dos dados por turma.<br><br>
-            <strong>Semana 2:</strong> Reorganização dos agrupamentos para atividades de nivelamento. Identificar os alunos mais críticos para acompanhamento individual.<br><br>
-            <strong>Mês 1:</strong> Implementar reforço escolar para turmas em defasagem crítica. Revisar o planejamento pedagógico com foco nas habilidades H13, H10, H12 e H07.<br><br>
-            <strong>Mês 2:</strong> Aplicar avaliação formativa interna para medir evolução. Ajustar estratégias conforme resultados.<br><br>
-            <strong>Contínuo:</strong> Reuniões quinzenais de monitoramento com registro de evolução de cada turma.
-          </div>
-        </div>
-        <div class="expand-tags">
-          <span class="expand-tag">MT Crítico</span><span class="expand-tag">Plano Integrado</span><span class="expand-tag">Reforço Escolar</span><span class="expand-tag">Monitoramento</span>
-        </div>
+        <div class="expand-action"><span class="action-tag">📋 Plano Integrado — MT</span><div class="action-text">Semana 1: reunião professores. Semana 2: nivelamento. Mês 1: reforço escolar. Mês 2: avaliação formativa.</div></div>
+        <div class="expand-tags"><span class="expand-tag">MT crítico</span><span class="expand-tag">plano integrado</span></div>
       </div>
     </div>
 
@@ -961,86 +983,40 @@ body {
       <div class="notif-top">
         <div class="notif-avatar yellow">🎯</div>
         <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">LP: Inferência e coesão são lacunas sistêmicas do 2º ao 5º Ano</div>
-            <span class="notif-source">Avalie.CE 2025.1</span>
-          </div>
-          <div class="notif-summary">A análise cruzada de LP mostra que as habilidades de leitura inferencial (H09, H13 no 2º; H08 no 4º; H11 no 5º) e coesão textual aparecem como lacunas em todos os anos avaliados. Isso indica necessidade de uma abordagem curricular transversal e progressiva.</div>
-          <div class="notif-metrics">
-            <span class="metric-pill yellow"><span class="dot" style="background:var(--yellow)"></span>2ºA H09: 39%</span>
-            <span class="metric-pill yellow"><span class="dot" style="background:var(--yellow)"></span">4ºA/B H08: 45%</span>
-            <span class="metric-pill yellow"><span class="dot" style="background:var(--yellow)"></span">5ºA/B H10: 26%</span>
-          </div>
+          <div class="notif-header-row"><div class="notif-title">LP: Inferência e coesão são lacunas sistêmicas do 2º ao 5º Ano</div><span class="notif-source">Análise transversal</span></div>
+          <div class="notif-summary">H09 (2º), H08 (4º), H11 (5º) apresentam baixo desempenho.</div>
+          <div class="notif-metrics"><span class="metric-pill yellow">2º H09 39%</span><span class="metric-pill yellow">4º H08 45%</span><span class="metric-pill yellow">5º H11 26%</span></div>
         </div>
         <button class="notif-toggle">▾</button>
       </div>
       <div class="notif-expand">
-        <div class="expand-action">
-          <div class="action-tag">🎯 Ação Sistêmica — LP</div>
-          <div class="action-text">1. <strong>Formação continuada:</strong> organizar momento formativo com todos os professores de LP para trabalhar estratégias de leitura inferencial em sequências didáticas progressivas do 2º ao 5º Ano. 2. <strong>Currículo integrado:</strong> garantir que a progressão de habilidades de leitura seja planejada de forma articulada entre os anos. 3. <strong>Usar o 5ºB como referência interna:</strong> este professor demonstrou resultado com zero defasagem — suas estratégias devem ser compartilhadas. 4. <strong>Biblioteca ativa:</strong> estimular o uso da biblioteca escolar com projetos de leitura por gênero textual, explorando narrativas, textos informativos e poéticos.</div>
-        </div>
-        <div class="expand-tags">
-          <span class="expand-tag">LP Sistêmico</span><span class="expand-tag">Formação Continuada</span><span class="expand-tag">Currículo Progressivo</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="notif-card priority-green" onclick="toggle(this)">
-      <div class="notif-top">
-        <div class="notif-avatar green">💪</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">5º Ano: LP em ascensão — metodologia a ser documentada e replicada</div>
-            <span class="notif-source">Avalie.CE 2025.1</span>
-          </div>
-          <div class="notif-summary">5ºA: 61% adequado (17% defasagem) · 5ºB: 70% adequado (0% defasagem). A escola demonstra forte capacidade de ensino de LP no 5º Ano — resultado que contrasta com as dificuldades do 4º Ano e indica que existe qualidade pedagógica que precisa ser conhecida e disseminada.</div>
-          <div class="notif-metrics">
-            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>5ºB: 0% defasagem</span>
-            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span">5ºA: 17% defasagem</span>
-            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span">Profic 77-80 pts</span>
-          </div>
-        </div>
-        <button class="notif-toggle">▾</button>
-      </div>
-      <div class="notif-expand">
-        <div class="expand-action">
-          <div class="action-tag">🎯 Ação — Replicar Boas Práticas LP</div>
-          <div class="action-text">1. Documentar as estratégias dos professores do 5ºA e 5ºB em LP. 2. Comparar com as práticas do 4º Ano para identificar o que difere. 3. Promover troca entre ciclos: professores do 5º Ano com os do 4º Ano, como mentoria pedagógica interna. 4. Investigar se houve mudança de professor entre 4º e 5º Ano e qual foi o impacto.</div>
-        </div>
-        <div class="expand-tags">
-          <span class="expand-tag">5ºA · 5ºB</span><span class="expand-tag">Boas Práticas LP</span><span class="expand-tag">Mentoria Interna</span>
-        </div>
+        <div class="expand-action"><span class="action-tag">🎯 Ação Sistêmica — LP</span><div class="action-text">Formação continuada, currículo progressivo, usar 5ºB como referência.</div></div>
+        <div class="expand-tags"><span class="expand-tag">LP sistêmico</span><span class="expand-tag">formação</span></div>
       </div>
     </div>
   </div>
 
   <!-- ===== PLANO DE AÇÃO ===== -->
   <div class="section" id="acoes">
-    <div class="section-header" style="background:var(--sidebar-bg);border-color:#2a3441">
-      <div class="section-icon" style="background:rgba(245,158,11,0.15)">⚡</div>
+    <div class="section-header" style="background:var(--sidebar-bg);border-color:var(--border-dark)">
+      <div class="section-icon" style="background:rgba(240,180,40,.15)">⚡</div>
       <div class="section-info">
         <h2 style="color:#fff">Prioridades do Gestor — Plano de Ação Imediato</h2>
-        <p style="color:#64748b">Próximas ações concretas para o diretor e coordenação</p>
+        <p style="color:#7a90a8">Ações concretas baseadas nos dados Avalie.CE</p>
       </div>
     </div>
 
-    <div class="notif-card priority-red" onclick="toggle(this)" style="background:#fff7f7">
+    <div class="notif-card priority-red" onclick="toggle(this)">
       <div class="notif-top">
         <div class="notif-avatar red">1️⃣</div>
         <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">PRIORIDADE 1: Convocar reunião emergencial com professores de MT (2ºB, 4ºA, 4ºB)</div>
-            <span class="notif-source">Ação Imediata</span>
-          </div>
-          <div class="notif-summary">Esta semana. Apresentar os dados do Avalie.CE 2025.1 para cada professor. Construir coletivamente um plano de intervenção com metas claras, cronograma e indicadores de acompanhamento.</div>
+          <div class="notif-header-row"><div class="notif-title">Reunião emergencial com professores de MT (2ºB, 4ºA, 4ºB)</div><span class="notif-source">esta semana</span></div>
+          <div class="notif-summary">Apresentar dados, construir plano de intervenção com metas.</div>
         </div>
         <button class="notif-toggle">▾</button>
       </div>
       <div class="notif-expand">
-        <div class="expand-action">
-          <div class="action-tag">Passos</div>
-          <div class="action-text">✅ Convocar reunião com professores de MT das turmas críticas.<br>✅ Apresentar relatório com dados individuais e por turma.<br>✅ Definir metas de redução de defasagem para a próxima avaliação.<br>✅ Registrar em ata com assinaturas e prazos.</div>
-        </div>
+        <div class="expand-action"><span class="action-tag">Passos</span><div class="action-text">Convocar, apresentar relatório, definir metas, registrar em ata.</div></div>
       </div>
     </div>
 
@@ -1048,39 +1024,13 @@ body {
       <div class="notif-top">
         <div class="notif-avatar yellow">2️⃣</div>
         <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">PRIORIDADE 2: Organizar formação pedagógica interna com foco em LP Inferencial</div>
-            <span class="notif-source">Próximas 2 semanas</span>
-          </div>
-          <div class="notif-summary">A lacuna em inferência e coesão é transversal ao 2º, 4º e 5º Anos. Organizar uma formação com o professor do 5ºB (referência da escola) como protagonista, compartilhando estratégias com toda a equipe.</div>
+          <div class="notif-header-row"><div class="notif-title">Formação pedagógica interna — LP Inferencial</div><span class="notif-source">próximas 2 semanas</span></div>
+          <div class="notif-summary">Professor do 5ºB compartilha estratégias com a equipe.</div>
         </div>
         <button class="notif-toggle">▾</button>
       </div>
       <div class="notif-expand">
-        <div class="expand-action">
-          <div class="action-tag">Passos</div>
-          <div class="action-text">✅ Identificar as estratégias do professor do 5ºB.<br>✅ Organizar horário de Planejamento Pedagógico Coletivo (PPC).<br>✅ Criar uma sequência didática-modelo para inferência que possa ser usada em todos os anos.<br>✅ Acompanhar a implementação nas turmas nas semanas seguintes.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="notif-card priority-yellow" onclick="toggle(this)">
-      <div class="notif-top">
-        <div class="notif-avatar yellow">3️⃣</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">PRIORIDADE 3: Estruturar reforço escolar para alunos em defasagem crítica</div>
-            <span class="notif-source">Próximo mês</span>
-          </div>
-          <div class="notif-summary">Criar grupos de reforço prioritariamente para 2ºB MT, 4ºA MT e 4ºB MT. Mapear individualmente os alunos com maiores lacunas e criar estratégias personalizadas de acompanhamento.</div>
-        </div>
-        <button class="notif-toggle">▾</button>
-      </div>
-      <div class="notif-expand">
-        <div class="expand-action">
-          <div class="action-tag">Passos</div>
-          <div class="action-text">✅ Listar os alunos com defasagem por nome (disponíveis nas planilhas de estudantes).<br>✅ Comunicar a família de cada aluno em situação crítica.<br>✅ Organizar cronograma de reforço (contraturno, agrupamento produtivo).<br>✅ Definir profissionais responsáveis pelo acompanhamento de cada grupo.</div>
-        </div>
+        <div class="expand-action"><span class="action-tag">Passos</span><div class="action-text">Identificar estratégias, organizar PPC, criar sequência didática-modelo.</div></div>
       </div>
     </div>
 
@@ -1088,59 +1038,44 @@ body {
       <div class="notif-top">
         <div class="notif-avatar green">4️⃣</div>
         <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">PRIORIDADE 4: Valorizar e divulgar os resultados positivos — 5ºB LP e 2ºB LP</div>
-            <span class="notif-source">Curto prazo</span>
-          </div>
-          <div class="notif-summary">O 5ºB LP (0% defasagem, 70% adequado) e o 2ºB LP (12% defasagem, 41% adequado) são referências reais da escola. Reconhecer publicamente os professores fortalece a motivação da equipe e cria cultura de resultado.</div>
+          <div class="notif-header-row"><div class="notif-title">Valorizar resultados positivos — 5ºB LP e 2ºB LP</div><span class="notif-source">curto prazo</span></div>
+          <div class="notif-summary">Reconhecer professores, divulgar à comunidade.</div>
         </div>
         <button class="notif-toggle">▾</button>
       </div>
       <div class="notif-expand">
-        <div class="expand-action">
-          <div class="action-tag">Passos</div>
-          <div class="action-text">✅ Reconhecer publicamente os professores (reunião de equipe, mural, etc.).<br>✅ Convidar o professor do 5ºB para compartilhar práticas em reunião pedagógica.<br>✅ Usar os dados positivos como comunicado às famílias — "nossa escola avança".<br>✅ Registrar e documentar as práticas para construção do projeto pedagógico da escola.</div>
-        </div>
+        <div class="expand-action"><span class="action-tag">Passos</span><div class="action-text">Reconhecimento público, compartilhar práticas, comunicado às famílias.</div></div>
       </div>
     </div>
-
   </div>
 
-  <div style="text-align:center;padding:20px;font-size:0.72rem;color:var(--muted2);border-top:1px solid var(--border);margin-top:8px">
-    Adriano Martins EEIEF · Caucaia-CE · Dados: Avalie.CE 2025.1 · 2º, 4º e 5º Anos · MT e LP · Clique em cada cartão para ver ações sugeridas
+  <div class="footer-note">
+    <strong>Adriano Martins EEIEF</strong> · Caucaia-CE · Cód. INEP 23061944 · Fonte: Avalie.CE 2025.1<br>
+    <strong>Clique em cada cartão para ver as ações sugeridas</strong>
   </div>
-
 </main>
 
 <script>
-function toggle(card) {
-  card.classList.toggle('open');
-}
-function setActive(el) {
-  document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-  el.classList.add('active');
-}
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    document.querySelectorAll('.progress-fill').forEach(el => {
-      const w = el.style.width;
-      el.style.width = '0';
-      requestAnimationFrame(() => { el.style.width = w; });
+  function toggle(card) { card.classList.toggle('open'); }
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.querySelectorAll('.progress-fill, .bs').forEach(el => {
+        const w = el.style.width;
+        el.style.width = '0';
+        requestAnimationFrame(() => { el.style.width = w; });
+      });
+    }, 300);
+  });
+  const sections = document.querySelectorAll('.section');
+  const navItems = document.querySelectorAll('.nav-item');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) cur = s.id; });
+    navItems.forEach(i => {
+      i.classList.remove('active');
+      if (i.getAttribute('href') === '#' + cur) i.classList.add('active');
     });
-  }, 300);
-});
-const sections = document.querySelectorAll('.section');
-const navItems = document.querySelectorAll('.nav-item');
-window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(s => {
-    if (window.scrollY >= s.offsetTop - 100) current = s.id;
-  });
-  navItems.forEach(item => {
-    item.classList.remove('active');
-    if (item.getAttribute('href') === '#' + current) item.classList.add('active');
-  });
-}, { passive: true });
+  }, { passive: true });
 </script>
 </body>
 </html>
