@@ -83,7 +83,8 @@ const supabase = window.supabase.createClient(
   'sb_publishable_BegZU19h4tkPRyuT1P9Dvw_IkO73MRh'
 );
 
-async function doLogin() {
+// 🔥 CORRIGIDO AQUI
+window.doLogin = async function () {
   const email = document.getElementById('login').value.trim();
   const password = document.getElementById('senha').value;
   const err = document.getElementById('errorMsg');
@@ -93,12 +94,14 @@ async function doLogin() {
     password: password
   });
 
+  console.log("Resposta:", data);
+  console.log("Erro:", error);
+
   if (error) {
-    err.innerText = error.message;
+    err.innerText = "Erro: " + error.message;
     err.classList.add('show');
   } else {
-    err.classList.remove('show');
-    localStorage.setItem('token', 'ok');
+    alert("LOGIN OK");
     window.location.href = "painel.html";
   }
 }
