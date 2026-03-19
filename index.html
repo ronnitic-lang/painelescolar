@@ -1,142 +1,27 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Painel Escolar - Login</title>
-
-<style>
-body {
-  font-family: Arial, sans-serif;
-  background: #f4f6f8;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-}
-
-.card {
-  background: #fff;
-  padding: 30px;
-  border-radius: 10px;
-  width: 300px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-}
-
-input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-button {
-  width: 100%;
-  padding: 10px;
-  background: #1e5799;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-button:hover {
-  background: #154a80;
-}
-
-button:disabled {
-  background: #ccc;
-  cursor: not-allowed;
-}
-
-.error {
-  color: red;
-  display: none;
-  margin-top: 10px;
-  font-size: 14px;
-}
-.error.show {
-  display: block;
-}
-</style>
-</head>
-
+<html>
 <body>
+  <input type="email" id="login" placeholder="Email" value="teste@teste.com">
+  <input type="password" id="senha" placeholder="Senha" value="123456">
+  <button id="btn">Entrar</button>
+  <div id="errorMsg" style="color:red"></div>
 
-<div class="card">
-  <h2>Login</h2>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const supabase = window.supabase.createClient(
+      'https://pntdrmsypgmemgwlruws.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBudGRybXN5cGdtZW1nd2xydXdzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgyMzQ1NTgsImV4cCI6MjA4MzgxMDU1OH0.BC0iq5AfiiGSkWPMNsmco5U1sJsyEBxsRSSAspgb8IU'
+    );
 
-  <input type="email" id="login" placeholder="Email">
-  <input type="password" id="senha" placeholder="Senha">
-
-  <button id="btnEntrar" onclick="doLogin()">Entrar</button>
-
-  <div id="errorMsg" class="error"></div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script>
-// ✅ CORRIGIDO - usando a ANON PUBLIC KEY correta!
-const supabaseUrl = 'https://pntdrmsypgmemgwlruws.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBudGRybXN5cGdtZW1nd2xydXdzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgyMzQ1NTgsImV4cCI6MjA4MzgxMDU1OH0.BC0iq5AfiiGSkWPMNsmco5U1sJsyEBxsRSSAspgb8IU';
-
-const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-
-window.doLogin = async function () {
-  const email = document.getElementById('login').value.trim();
-  const password = document.getElementById('senha').value;
-  const err = document.getElementById('errorMsg');
-  const btn = document.getElementById('btnEntrar');
-
-  // Validação
-  if (!email || !password) {
-    err.innerText = "Preencha email e senha";
-    err.classList.add('show');
-    return;
-  }
-
-  // Desabilitar botão durante o login
-  btn.disabled = true;
-  btn.innerText = "Entrando...";
-  err.classList.remove('show');
-
-  try {
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email: email,
-      password: password
-    });
-
-    if (error) {
-      err.innerText = "Erro: " + error.message;
-      err.classList.add('show');
-      btn.disabled = false;
-      btn.innerText = "Entrar";
-    } else {
-      console.log("Login OK", data);
-      window.location.href = "painel.html";
-    }
-  } catch (e) {
-    err.innerText = "Erro de conexão com o servidor";
-    err.classList.add('show');
-    btn.disabled = false;
-    btn.innerText = "Entrar";
-    console.error(e);
-  }
-};
-
-// Login com Enter
-document.getElementById('senha').addEventListener('keypress', function(e) {
-  if (e.key === 'Enter') doLogin();
-});
-document.getElementById('login').addEventListener('keypress', function(e) {
-  if (e.key === 'Enter') doLogin();
-});
-</script>
-
+    document.getElementById('btn').onclick = async () => {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: document.getElementById('login').value,
+        password: document.getElementById('senha').value
+      });
+      console.log(data, error);
+      if (error) document.getElementById('errorMsg').innerText = error.message;
+      else alert('Login OK!');
+    };
+  </script>
 </body>
 </html>
