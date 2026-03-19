@@ -3,200 +3,263 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Painel Escolar - Login</title>
-
+<title>Painel de Indicadores Educacionais · SEDUC · Caucaia-CE</title>
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+:root {
+  --bg: #f0f4f8;
+  --surface: #ffffff;
+  --border: #d8e2ec;
+  --blue-dark: #1a3a5c;
+  --blue-mid: #1e5799;
+  --blue-light: #e8f0fb;
+  --teal: #0e7490;
+  --teal-light: #ecfeff;
+  --text: #0f1e2e;
+  --muted: #4a5e75;
+  --muted2: #8097b0;
+  --red: #c0392b;
+  --red-bg: #fdf0ef;
+  --yellow: #d68910;
+  --yellow-bg: #fef9ec;
+  --green: #1a7a4a;
+  --green-bg: #edfaf3;
+  --font: 'Tahoma', 'Verdana', 'Arial', sans-serif;
+  --radius: 10px;
+  --shadow: 0 2px 12px rgba(0,0,0,0.09);
+  --shadow-lg: 0 6px 28px rgba(0,0,0,0.13);
 }
-
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; }
 body {
-  font-family: Arial, sans-serif;
-  background: #f4f6f8;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+}
+
+/* ===== HEADER ===== */
+.header {
+  background: linear-gradient(135deg, #1a3a5c 0%, #1e5799 60%, #0e7490 100%);
+  padding: 20px 40px;
+  display: flex;
   align-items: center;
-  height: 100vh;
-  width: 100vw;
+  gap: 20px;
+  box-shadow: 0 3px 15px rgba(0,0,0,0.2);
+}
+.header-logo {
+  width: 54px; height: 54px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem;
+  border: 2px solid rgba(255,255,255,0.25);
+}
+.header-text h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.02em;
+}
+.header-text p {
+  font-size: 0.80rem;
+  color: rgba(255,255,255,0.75);
+  margin-top: 2px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
-.card {
-  background: #fff;
-  padding: 30px;
-  border-radius: 10px;
-  width: 320px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+/* ===== MAIN ===== */
+.main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
 }
-
-h2 {
+.login-card {
+  background: var(--surface);
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border);
+  width: 100%;
+  max-width: 480px;
+  overflow: hidden;
+}
+.login-top {
+  background: linear-gradient(135deg, #1a3a5c, #1e5799);
+  padding: 32px 36px 28px;
   text-align: center;
+}
+.login-top .icon {
+  font-size: 2.8rem;
+  display: block;
+  margin-bottom: 10px;
+}
+.login-top h2 {
+  font-size: 1.3rem;
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.login-top p {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.72);
+  letter-spacing: 0.04em;
+}
+.login-body {
+  padding: 32px 36px 36px;
+}
+.form-group {
   margin-bottom: 20px;
-  color: #333;
 }
-
-input {
+.form-label {
+  display: block;
+  font-size: 0.80rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-bottom: 7px;
+}
+.form-input {
   width: 100%;
-  padding: 12px;
-  margin-bottom: 15px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 14px;
-}
-
-input:focus {
+  padding: 12px 15px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-family: var(--font);
+  font-size: 0.95rem;
+  color: var(--text);
+  background: #f8fafc;
+  transition: border-color 0.2s, box-shadow 0.2s;
   outline: none;
-  border-color: #1e5799;
 }
+.form-input:focus {
+  border-color: var(--teal);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(14,116,144,0.12);
+}
+.form-input::placeholder { color: #b0bec5; }
 
-button {
+.btn-login {
   width: 100%;
-  padding: 12px;
-  background: #1e5799;
+  padding: 13px;
+  background: linear-gradient(135deg, #1a3a5c, #1e5799);
   color: #fff;
   border: none;
-  border-radius: 5px;
-  font-size: 16px;
+  border-radius: 8px;
+  font-family: var(--font);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: opacity 0.2s, transform 0.1s;
+  margin-top: 8px;
 }
+.btn-login:hover { opacity: 0.9; transform: translateY(-1px); }
+.btn-login:active { transform: translateY(0); }
 
-button:hover {
-  background: #154a80;
-}
-
-button:disabled {
-  background: #ccc;
-  cursor: not-allowed;
-}
-
-.error {
-  color: #d32f2f;
+.error-msg {
   display: none;
-  margin-top: 10px;
-  font-size: 14px;
+  background: var(--red-bg);
+  border: 1px solid #f5b7b1;
+  border-radius: 7px;
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  color: var(--red);
+  margin-top: 14px;
   text-align: center;
-  padding: 8px;
-  background: #ffebee;
-  border-radius: 4px;
+}
+.error-msg.show { display: block; }
+
+.login-footer {
+  text-align: center;
+  padding: 0 36px 24px;
+  font-size: 0.78rem;
+  color: var(--muted2);
+  line-height: 1.6;
 }
 
-.error.show {
-  display: block;
+/* ===== FOOTER ===== */
+footer {
+  background: var(--blue-dark);
+  color: rgba(255,255,255,0.55);
+  text-align: center;
+  padding: 14px;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
 }
 </style>
 </head>
-
 <body>
 
-<div class="card">
-  <h2>🔐 Login</h2>
-
-  <input type="email" id="login" placeholder="Digite seu email" autocomplete="email">
-  <input type="password" id="senha" placeholder="Digite sua senha" autocomplete="current-password">
-
-  <button id="btnEntrar">Entrar</button>
-
-  <div id="errorMsg" class="error"></div>
+<div class="header">
+  <div class="header-logo">🏫</div>
+  <div class="header-text">
+    <h1>Painel de Indicadores Educacionais</h1>
+    <p>Secretaria Municipal de Educação · Caucaia, Ceará</p>
+  </div>
 </div>
 
+<div class="main">
+  <div class="login-card">
+    <div class="login-top">
+      <span class="icon">🔐</span>
+      <h2>Acesso do Gestor Escolar</h2>
+      <p>Digite suas credenciais para acessar o painel da sua escola</p>
+    </div>
+    <div class="login-body">
+      <div class="form-group">
+        <label class="form-label" for="login">Login</label>
+        <input class="form-input" type="text" id="login" placeholder="Ex: adrianomartins" autocomplete="username">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="senha">Senha</label>
+        <input class="form-input" type="password" id="senha" placeholder="••••••••••••" autocomplete="current-password">
+      </div>
+      <button class="btn-login" onclick="doLogin()">ENTRAR NO PAINEL &rarr;</button>
+      <div class="error-msg" id="errorMsg">⚠️ Login ou senha incorretos. Verifique suas credenciais.</div>
+    </div>
+    <div class="login-footer">
+      Em caso de dúvidas, entre em contato com a Coordenação Pedagógica.<br>
+      Este sistema é de uso exclusivo dos gestores escolares.
+    </div>
+  </div>
+</div>
+
+<footer>
+  © 2025 · Secretaria Municipal de Educação · Caucaia-CE · Painel de Indicadores Educacionais
+</footer>
+
 <script>
-// URL da sua Edge Function
-const EDGE_FUNCTION_URL = 'https://pntdrmsypgmemgwlruws.supabase.co/functions/v1/login';
+const USERS = {
+  '7desetembro':     { senha: '7desetembro',     dir: '7desetembro/painel.html' },
+  '12deOutubro':     { senha: '12deOutubro',      dir: '12deoutubro/painel.html' },
+  'abatapeba':       { senha: 'abatapeba',        dir: 'abatapeba/painel.html' },
+  'adeliacrisostomo':{ senha: 'adeliacrisostomo', dir: 'adeliacrisostomo/painel.html' },
+  'adrianomartins':  { senha: 'adrianomartins',   dir: 'adriano_martins/painel.html' },
+};
 
-// Função de login
-async function fazerLogin() {
-  console.log('Tentando login...');
-  
-  const email = document.getElementById('login').value.trim();
-  const password = document.getElementById('senha').value;
-  const errorDiv = document.getElementById('errorMsg');
-  const btn = document.getElementById('btnEntrar');
+function doLogin() {
+  const login = document.getElementById('login').value.trim();
+  const senha = document.getElementById('senha').value;
+  const err = document.getElementById('errorMsg');
 
-  // Limpar erro anterior
-  errorDiv.classList.remove('show');
-  errorDiv.innerText = '';
-
-  // Validação
-  if (!email) {
-    errorDiv.innerText = 'Por favor, digite seu email';
-    errorDiv.classList.add('show');
-    return;
-  }
-
-  if (!password) {
-    errorDiv.innerText = 'Por favor, digite sua senha';
-    errorDiv.classList.add('show');
-    return;
-  }
-
-  // Desabilitar botão
-  btn.disabled = true;
-  btn.innerText = 'Entrando...';
-
-  try {
-    console.log('Chamando Edge Function...');
-    
-    const response = await fetch(EDGE_FUNCTION_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: email,
-        password: password
-      })
-    });
-
-    const data = await response.json();
-    console.log('Resposta:', data);
-
-    if (!response.ok || data.error) {
-      console.error('Erro:', data.error);
-      errorDiv.innerText = data.error || 'Email ou senha incorretos';
-      errorDiv.classList.add('show');
-      btn.disabled = false;
-      btn.innerText = 'Entrar';
-    } else {
-      console.log('Login bem-sucedido:', data);
-      
-      // Salvar sessão no localStorage
-      if (data.session) {
-        localStorage.setItem('supabase_session', JSON.stringify(data.session));
-      }
-      
-      // Redirecionar
-      window.location.href = 'painel.html';
-    }
-  } catch (err) {
-    console.error('Erro inesperado:', err);
-    errorDiv.innerText = 'Erro de conexão. Tente novamente.';
-    errorDiv.classList.add('show');
-    btn.disabled = false;
-    btn.innerText = 'Entrar';
+  if (USERS[login] && USERS[login].senha === senha) {
+    err.classList.remove('show');
+    window.location.href = USERS[login].dir;
+  } else {
+    err.classList.add('show');
+    document.getElementById('senha').value = '';
+    document.getElementById('senha').focus();
   }
 }
 
-// Event Listeners
-document.addEventListener('DOMContentLoaded', function() {
-  console.log('DOM carregado');
-  
-  const btn = document.getElementById('btnEntrar');
-  const loginInput = document.getElementById('login');
-  const senhaInput = document.getElementById('senha');
-
-  btn.addEventListener('click', fazerLogin);
-
-  senhaInput.addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') fazerLogin();
-  });
-
-  loginInput.addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') fazerLogin();
-  });
+// Allow Enter key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') doLogin();
 });
 </script>
-
 </body>
 </html>
