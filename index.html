@@ -85,16 +85,6 @@ button:disabled {
 .error.show {
   display: block;
 }
-
-.success {
-  color: #388e3c;
-  margin-top: 10px;
-  font-size: 14px;
-  text-align: center;
-  padding: 8px;
-  background: #e8f5e9;
-  border-radius: 4px;
-}
 </style>
 </head>
 
@@ -111,34 +101,18 @@ button:disabled {
   <div id="errorMsg" class="error"></div>
 </div>
 
-<!-- Supabase CDN -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.0/dist/umd/supabase.min.js"></script>
-
 <script>
-// Configuração do Supabase - usando var para evitar redeclaração
-var SUPABASE_URL = 'https://pntdrmsypgmemgwlruws.supabase.co';
-var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBudGRybXN5cGdtZW1nd2xydXdzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgyMzQ1NTgsImV4cCI6MjA4MzgxMDU1OH0.BC0iq5AfiiGSkWPMNsmco5U1sJsyEBxsRSSAspgb8IU';
-
-// Criar cliente Supabase
-var supabaseClient;
-
-try {
-  supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-  console.log('Supabase inicializado com sucesso');
-} catch (e) {
-  console.error('Erro ao inicializar Supabase:', e);
-  document.getElementById('errorMsg').innerText = 'Erro ao conectar com o servidor';
-  document.getElementById('errorMsg').classList.add('show');
-}
+// URL da sua Edge Function
+const EDGE_FUNCTION_URL = 'https://pntdrmsypgmemgwlruws.supabase.co/functions/v1/login';
 
 // Função de login
 async function fazerLogin() {
   console.log('Tentando login...');
   
-  var email = document.getElementById('login').value.trim();
-  var password = document.getElementById('senha').value;
-  var errorDiv = document.getElementById('errorMsg');
-  var btn = document.getElementById('btnEntrar');
+  const email = document.getElementById('login').value.trim();
+  const password = document.getElementById('senha').value;
+  const errorDiv = document.getElementById('errorMsg');
+  const btn = document.getElementById('btnEntrar');
 
   // Limpar erro anterior
   errorDiv.classList.remove('show');
@@ -162,25 +136,32 @@ async function fazerLogin() {
   btn.innerText = 'Entrando...';
 
   try {
-    console.log('Chamando signInWithPassword...');
+    console.log('Chamando Edge Function...');
     
-    var { data, error } = await supabaseClient.auth.signInWithPassword({
-      email: email,
-      password: password
+    const response = await fetch(EDGE_FUNCTION_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password
+      })
     });
 
-    console.log('Resposta:', data, error);
+    const data = await response.json();
+    console.log('Resposta:', data);
 
-    if (error) {
-      console.error('Erro do Supabase:', error);
-      errorDiv.innerText = 'Email ou senha incorretos';
+    if (!response.ok || data.error) {
+      console.error('Erro:', data.error);
+      errorDiv.innerText = data.error || 'Email ou senha incorretos';
       errorDiv.classList.add('show');
       btn.disabled = false;
       btn.innerText = 'Entrar';
     } else {
       console.log('Login bem-sucedido:', data);
       
-      // Salvar sessão no localStorage se quiser
+      // Salvar sessão no localStorage
       if (data.session) {
         localStorage.setItem('supabase_session', JSON.stringify(data.session));
       }
@@ -197,29 +178,22 @@ async function fazerLogin() {
   }
 }
 
-// Event Listeners (aguardar DOM carregar)
+// Event Listeners
 document.addEventListener('DOMContentLoaded', function() {
   console.log('DOM carregado');
   
-  var btn = document.getElementById('btnEntrar');
-  var loginInput = document.getElementById('login');
-  var senhaInput = document.getElementById('senha');
+  const btn = document.getElementById('btnEntrar');
+  const loginInput = document.getElementById('login');
+  const senhaInput = document.getElementById('senha');
 
-  // Clique no botão
   btn.addEventListener('click', fazerLogin);
 
-  // Enter no campo de senha
   senhaInput.addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') {
-      fazerLogin();
-    }
+    if (e.key === 'Enter') fazerLogin();
   });
 
-  // Enter no campo de email
   loginInput.addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') {
-      fazerLogin();
-    }
+    if (e.key === 'Enter') fazerLogin();
   });
 });
 </script>
