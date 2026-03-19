@@ -13,7 +13,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  margin: 0; /* Adicionado para evitar scroll */
+  margin: 0;
 }
 
 .card {
@@ -28,9 +28,9 @@ input {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
-  border: 1px solid #ddd; /* Adicionado para melhor UX */
+  border: 1px solid #ddd;
   border-radius: 4px;
-  box-sizing: border-box; /* Importante para width 100% */
+  box-sizing: border-box;
 }
 
 button {
@@ -40,18 +40,23 @@ button {
   color: #fff;
   border: none;
   border-radius: 4px;
-  cursor: pointer; /* Adicionado */
-  transition: background 0.3s; /* Adicionado */
+  cursor: pointer;
+  transition: background 0.3s;
 }
 
 button:hover {
-  background: #154a80; /* Adicionado */
+  background: #154a80;
+}
+
+button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
 }
 
 .error {
   color: red;
   display: none;
-  margin-top: 10px; /* Adicionado */
+  margin-top: 10px;
   font-size: 14px;
 }
 .error.show {
@@ -68,7 +73,7 @@ button:hover {
   <input type="email" id="login" placeholder="Email">
   <input type="password" id="senha" placeholder="Senha">
 
-  <button onclick="doLogin()">Entrar</button>
+  <button id="btnEntrar" onclick="doLogin()">Entrar</button>
 
   <div id="errorMsg" class="error"></div>
 </div>
@@ -76,9 +81,9 @@ button:hover {
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-// ✅ CORRIGIDO - sem espaços!
+// ✅ CORRIGIDO - usando a ANON PUBLIC KEY correta!
 const supabaseUrl = 'https://pntdrmsypgmemgwlruws.supabase.co';
-const supabaseKey = 'sb_publishable_BegZU19h4tkPRyuT1P9Dvw_IkO73MRh';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBudGRybXN5cGdtZW1nd2xydXdzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgyMzQ1NTgsImV4cCI6MjA4MzgxMDU1OH0.BC0iq5AfiiGSkWPMNsmco5U1sJsyEBxsRSSAspgb8IU';
 
 const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
@@ -86,13 +91,19 @@ window.doLogin = async function () {
   const email = document.getElementById('login').value.trim();
   const password = document.getElementById('senha').value;
   const err = document.getElementById('errorMsg');
+  const btn = document.getElementById('btnEntrar');
 
-  // Validação básica
+  // Validação
   if (!email || !password) {
     err.innerText = "Preencha email e senha";
     err.classList.add('show');
     return;
   }
+
+  // Desabilitar botão durante o login
+  btn.disabled = true;
+  btn.innerText = "Entrando...";
+  err.classList.remove('show');
 
   try {
     const { data, error } = await supabase.auth.signInWithPassword({
@@ -103,20 +114,26 @@ window.doLogin = async function () {
     if (error) {
       err.innerText = "Erro: " + error.message;
       err.classList.add('show');
+      btn.disabled = false;
+      btn.innerText = "Entrar";
     } else {
-      // Salvar sessão se necessário
       console.log("Login OK", data);
       window.location.href = "painel.html";
     }
   } catch (e) {
-    err.innerText = "Erro de conexão";
+    err.innerText = "Erro de conexão com o servidor";
     err.classList.add('show');
+    btn.disabled = false;
+    btn.innerText = "Entrar";
     console.error(e);
   }
 };
 
-// Permitir login com Enter
+// Login com Enter
 document.getElementById('senha').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') doLogin();
+});
+document.getElementById('login').addEventListener('keypress', function(e) {
   if (e.key === 'Enter') doLogin();
 });
 </script>
