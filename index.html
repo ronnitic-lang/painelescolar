@@ -13,6 +13,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  margin: 0; /* Adicionado para evitar scroll */
 }
 
 .card {
@@ -27,6 +28,9 @@ input {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
+  border: 1px solid #ddd; /* Adicionado para melhor UX */
+  border-radius: 4px;
+  box-sizing: border-box; /* Importante para width 100% */
 }
 
 button {
@@ -35,11 +39,20 @@ button {
   background: #1e5799;
   color: #fff;
   border: none;
+  border-radius: 4px;
+  cursor: pointer; /* Adicionado */
+  transition: background 0.3s; /* Adicionado */
+}
+
+button:hover {
+  background: #154a80; /* Adicionado */
 }
 
 .error {
   color: red;
   display: none;
+  margin-top: 10px; /* Adicionado */
+  font-size: 14px;
 }
 .error.show {
   display: block;
@@ -63,29 +76,49 @@ button {
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-const supabase = window.supabase.createClient(
-  'https://pntdrmsypgmemgwlruws.supabase.co',
-  'sb_publishable_BegZU19h4tkPRyuT1P9Dvw_IkO73MRh'
-);
+// ✅ CORRIGIDO - sem espaços!
+const supabaseUrl = 'https://pntdrmsypgmemgwlruws.supabase.co';
+const supabaseKey = 'sb_publishable_BegZU19h4tkPRyuT1P9Dvw_IkO73MRh';
+
+const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
 window.doLogin = async function () {
   const email = document.getElementById('login').value.trim();
   const password = document.getElementById('senha').value;
   const err = document.getElementById('errorMsg');
 
-  const { data, error } = await supabase.auth.signInWithPassword({
-    email: email,
-    password: password
-  });
-
-  if (error) {
-    err.innerText = "Erro: " + error.message;
+  // Validação básica
+  if (!email || !password) {
+    err.innerText = "Preencha email e senha";
     err.classList.add('show');
-  } else {
-    alert("Login OK");
-    window.location.href = "painel.html";
+    return;
+  }
+
+  try {
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: email,
+      password: password
+    });
+
+    if (error) {
+      err.innerText = "Erro: " + error.message;
+      err.classList.add('show');
+    } else {
+      // Salvar sessão se necessário
+      console.log("Login OK", data);
+      window.location.href = "painel.html";
+    }
+  } catch (e) {
+    err.innerText = "Erro de conexão";
+    err.classList.add('show');
+    console.error(e);
   }
 };
+
+// Permitir login com Enter
+document.getElementById('senha').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') doLogin();
+});
 </script>
 
 </body>
