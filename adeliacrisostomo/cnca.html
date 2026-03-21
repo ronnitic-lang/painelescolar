@@ -3,22 +3,887 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CNCA · EEF Adélia Crisóstomo</title>
+<title>CNCA · Adélia Crisóstomo EQEIEF</title>
 <style>
-body { font-family: 'Tahoma','Verdana','Arial',sans-serif; background:#f0f4f8; color:#0f1e2e; display:flex; align-items:center; justify-content:center; min-height:100vh; margin:0; }
-.box { background:#fff; border-radius:12px; border:1px solid #d8e2ec; padding:40px 36px; max-width:480px; width:100%; text-align:center; box-shadow:0 4px 20px rgba(0,0,0,0.09); }
-.icon { font-size:2.8rem; margin-bottom:16px; display:block; }
-h2 { font-size:1.2rem; font-weight:700; color:#1a3a5c; margin-bottom:8px; }
-p { font-size:0.85rem; color:#4a5e75; line-height:1.6; margin-bottom:20px; }
-a { display:inline-block; padding:10px 22px; background:linear-gradient(135deg,#1a3a5c,#1e5799); color:#fff; border-radius:7px; text-decoration:none; font-size:0.82rem; font-weight:700; letter-spacing:0.05em; }
+:root {
+  --bg: #f0f4f8; --surface: #ffffff; --border: #d8e2ec;
+  --sidebar-bg: #1a2535; --sidebar-hover: #243145; --sidebar-active: rgba(14,116,144,.18);
+  --blue-dark: #1a3a5c; --blue-mid: #1e5799;
+  --teal: #0e7490; --teal-bg: #ecfeff; --teal-bdr: #67e8f9;
+  --text: #0f1e2e; --muted: #4a5e75; --muted2: #8097b0;
+  --red: #c0392b; --red-bg: #fdf0ef; --red-bdr: #f5b7b1; --red-dark: #a93226;
+  --orange: #ca6f1e; --orange-bg: #fef5e7; --orange-bdr: #f8c471;
+  --yellow: #d68910; --yellow-bg: #fef9ec; --yellow-bdr: #f9d98a;
+  --green: #1a7a4a; --green-bg: #edfaf3; --green-bdr: #82e0aa;
+  --blue: #1a56a0; --blue-bg: #eaf2fc; --blue-bdr: #90bce8;
+  --purple: #6d28d9; --purple-bg: #f5f3ff; --purple-bdr: #c4b5fd;
+  --font: 'Tahoma','Verdana','Arial',sans-serif;
+  --radius: 10px; --shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:var(--font); background:var(--bg); color:var(--text); min-height:100vh; display:flex; font-size:0.94rem; line-height:1.6; }
+
+/* SIDEBAR */
+.sidebar { width:264px; min-width:264px; background:var(--sidebar-bg); height:100vh; position:sticky; top:0; display:flex; flex-direction:column; overflow-y:auto; z-index:100; }
+.sidebar::-webkit-scrollbar { width:4px; }
+.sidebar::-webkit-scrollbar-thumb { background:#2e3d52; border-radius:3px; }
+.sidebar-logo { padding:20px 20px 18px; border-bottom:1px solid #2e3d52; background:#111c2a; }
+.school-badge { display:inline-block; background:var(--teal); color:#fff; font-size:0.70rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; padding:3px 10px; border-radius:4px; margin-bottom:9px; }
+.school-name { font-size:1.08rem; font-weight:700; color:#fff; line-height:1.25; margin-bottom:3px; }
+.school-name span { color:#f0b429; }
+.school-sub { font-size:0.70rem; color:#7a90a8; margin-top:3px; letter-spacing:0.05em; }
+.nav-section { padding:12px 20px 5px; font-size:0.68rem; text-transform:uppercase; letter-spacing:0.13em; color:#5a7090; font-weight:700; }
+.nav-item { display:flex; align-items:center; gap:11px; padding:11px 20px; cursor:pointer; border-left:4px solid transparent; transition:all 0.2s; text-decoration:none; color:inherit; }
+.nav-item:hover { background:var(--sidebar-hover); }
+.nav-item.active { background:var(--sidebar-active); border-left-color:#22d3ee; }
+.nav-icon { width:32px; height:32px; border-radius:7px; display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0; }
+.nav-label { font-size:0.85rem; font-weight:600; color:#b8cce0; line-height:1.25; }
+.nav-item.active .nav-label { color:#fff; }
+.nav-badge { margin-left:auto; min-width:22px; height:22px; border-radius:11px; font-size:0.70rem; font-weight:700; display:flex; align-items:center; justify-content:center; padding:0 5px; flex-shrink:0; }
+.nb-red{background:var(--red);color:#fff} .nb-yellow{background:var(--yellow);color:#fff}
+.nb-green{background:var(--green);color:#fff} .nb-orange{background:var(--orange);color:#fff}
+.nb-teal{background:var(--teal);color:#fff} .nb-purple{background:var(--purple);color:#fff}
+.nav-item.recomp { border-top:1px solid #243145; margin-top:4px; padding-top:13px; }
+.legend-block { padding:8px 20px 6px; }
+.leg-row { display:flex; align-items:center; gap:8px; padding:5px 0; font-size:0.74rem; color:#8daabf; border-bottom:1px solid #243145; }
+.leg-row:last-child { border-bottom:none; }
+.leg-dot { width:11px; height:11px; border-radius:50%; flex-shrink:0; }
+.sidebar-footer { margin-top:auto; padding:14px 20px; border-top:1px solid #2e3d52; font-size:0.70rem; color:#5a7090; line-height:1.7; }
+
+/* MAIN */
+.main { flex:1; min-width:0; padding:28px 32px 52px; }
+
+/* TOPBAR */
+.topbar { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:26px; flex-wrap:wrap; gap:14px; }
+.topbar-title h2 { font-size:1.35rem; font-weight:700; color:var(--text); }
+.topbar-title p { font-size:0.80rem; color:var(--muted); margin-top:3px; }
+.topbar-stats { display:flex; gap:10px; flex-wrap:wrap; }
+.topbar-stat { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:9px 16px; text-align:center; box-shadow:var(--shadow); }
+.topbar-stat .ts-val { font-size:1.1rem; font-weight:700; display:block; }
+.topbar-stat .ts-lab { font-size:0.68rem; color:var(--muted2); text-transform:uppercase; letter-spacing:0.07em; }
+.ts-red{color:var(--red)} .ts-yellow{color:var(--yellow)} .ts-orange{color:var(--orange)}
+.ts-green{color:var(--green)} .ts-blue{color:var(--blue)} .ts-teal{color:var(--teal)}
+
+/* SECTION TITLE */
+.section-title { font-size:1.05rem; font-weight:700; color:var(--blue-dark); padding-bottom:8px; border-bottom:2px solid var(--border); margin-bottom:18px; margin-top:32px; display:flex; align-items:center; gap:10px; }
+.section-title:first-of-type { margin-top:0; }
+
+/* TURMAS GRID */
+.turmas-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:14px; margin-bottom:20px; }
+.turma-card { background:var(--surface); border:1.5px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:16px; transition:box-shadow 0.2s; }
+.turma-card:hover { box-shadow:0 4px 18px rgba(0,0,0,0.10); }
+.turma-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+.turma-nome { font-size:0.95rem; font-weight:700; color:var(--text); }
+.turma-badge { font-size:0.65rem; font-weight:700; padding:2px 8px; border-radius:10px; }
+.turma-badge.red    { background:var(--red-bg);    color:var(--red-dark); border:1px solid var(--red-bdr); }
+.turma-badge.yellow { background:var(--yellow-bg); color:#7d5a10; border:1px solid var(--yellow-bdr); }
+.turma-badge.green  { background:var(--green-bg);  color:#155234; border:1px solid var(--green-bdr); }
+.turma-badge.orange { background:var(--orange-bg); color:#7e4a10; border:1px solid var(--orange-bdr); }
+.turma-stat-row { display:flex; justify-content:space-between; align-items:center; font-size:0.78rem; margin-bottom:3px; }
+.turma-stat-row .lbl { color:var(--muted); }
+.turma-stat-row .val { font-weight:700; }
+.val.red{color:var(--red)} .val.green{color:var(--green)} .val.yellow{color:var(--yellow)} .val.orange{color:var(--orange)} .val.blue{color:var(--blue)}
+.leitura-row { display:flex; align-items:center; justify-content:space-between; font-size:0.74rem; margin-top:5px; padding:4px 0; border-top:1px dashed var(--border); }
+.leitura-label { color:var(--muted); }
+.leitura-val { font-weight:700; }
+.leitura-val.red{color:var(--red)} .leitura-val.green{color:var(--green)} .leitura-val.orange{color:var(--orange)} .leitura-val.yellow{color:var(--yellow)}
+.turma-divider { border:none; border-top:1px solid var(--border); margin:7px 0 5px; }
+.comp-label { font-size:0.65rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--muted2); margin-bottom:4px; margin-top:6px; }
+
+/* ALERT BANNERS */
+.alert-banner { border-radius:var(--radius); padding:13px 17px; margin-bottom:11px; border-left:5px solid; font-size:0.86rem; display:flex; align-items:flex-start; gap:11px; }
+.alert-banner.danger  { background:var(--red-bg);    border-color:var(--red);    color:#7a1a0e; }
+.alert-banner.warning { background:var(--yellow-bg); border-color:var(--yellow); color:#7a3e05; }
+.alert-banner.success { background:var(--green-bg);  border-color:var(--green);  color:#155234; }
+.alert-banner.info    { background:var(--blue-bg);   border-color:var(--blue);   color:#12347a; }
+.alert-banner .ab-icon { font-size:1.3rem; flex-shrink:0; margin-top:1px; }
+.alert-title { font-weight:700; margin-bottom:3px; }
+.alert-body { font-size:0.80rem; line-height:1.6; }
+
+/* SECTION BLOCK */
+.section-block { margin-bottom:30px; }
+.section-block-header { display:flex; align-items:center; gap:12px; padding:14px 18px; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius) var(--radius) 0 0; border-bottom:3px solid var(--border); box-shadow:var(--shadow); }
+.section-block-header.dark { background:var(--sidebar-bg); border-color:#2e3d52; }
+.sb-icon { width:38px; height:38px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
+.sb-info h3 { font-size:0.98rem; font-weight:700; color:var(--blue-dark); line-height:1.3; }
+.sb-info p  { font-size:0.75rem; color:var(--muted); margin-top:2px; }
+.section-block-header.dark .sb-info h3 { color:#fff; }
+.section-block-header.dark .sb-info p  { color:#7a90a8; }
+
+/* NOTIF CARDS */
+.notif-card { background:var(--surface); border:1px solid var(--border); border-top:none; cursor:pointer; transition:background 0.15s; overflow:hidden; }
+.notif-card:last-child { border-radius:0 0 var(--radius) var(--radius); }
+.notif-card:hover { background:#f5f8ff; }
+.notif-card.priority-red    { border-left:5px solid var(--red); }
+.notif-card.priority-yellow { border-left:5px solid var(--yellow); }
+.notif-card.priority-green  { border-left:5px solid var(--green); }
+.notif-card.priority-orange { border-left:5px solid var(--orange); }
+.notif-card.priority-blue   { border-left:5px solid var(--blue); }
+.notif-top { display:flex; align-items:flex-start; gap:14px; padding:16px 18px; }
+.notif-avatar { width:38px; height:38px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
+.notif-avatar.red   { background:var(--red-bg); } .notif-avatar.yellow { background:var(--yellow-bg); }
+.notif-avatar.green { background:var(--green-bg); } .notif-avatar.blue   { background:var(--blue-bg); }
+.notif-avatar.orange{ background:var(--orange-bg); }
+.notif-body { flex:1; min-width:0; }
+.notif-header-row { display:flex; align-items:flex-start; gap:10px; flex-wrap:wrap; margin-bottom:5px; }
+.notif-title { font-weight:700; font-size:0.88rem; line-height:1.35; flex:1; color:var(--text); }
+.notif-source { font-size:0.68rem; font-weight:700; padding:2px 9px; border-radius:20px; background:#e8eef6; color:var(--muted); white-space:nowrap; flex-shrink:0; }
+.notif-summary { font-size:0.82rem; color:var(--muted); line-height:1.6; margin-bottom:8px; }
+.notif-metrics { display:flex; flex-wrap:wrap; gap:7px; margin-top:8px; }
+.metric-pill { display:flex; align-items:center; gap:5px; padding:3px 10px; border-radius:20px; font-size:0.76rem; font-weight:700; }
+.metric-pill.red    { background:var(--red-bg);    color:var(--red-dark); border:1px solid var(--red-bdr); }
+.metric-pill.yellow { background:var(--yellow-bg); color:#7d5a10; border:1px solid var(--yellow-bdr); }
+.metric-pill.green  { background:var(--green-bg);  color:#155234; border:1px solid var(--green-bdr); }
+.metric-pill.blue   { background:var(--blue-bg);   color:#12347a; border:1px solid var(--blue-bdr); }
+.metric-pill.orange { background:var(--orange-bg); color:#7e4a10; border:1px solid var(--orange-bdr); }
+.dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
+.notif-toggle { background:none; border:none; cursor:pointer; font-size:1.2rem; color:var(--muted2); flex-shrink:0; padding:3px 5px; transition:transform 0.2s; align-self:center; }
+.notif-card.open .notif-toggle { transform:rotate(180deg); }
+.notif-expand { max-height:0; overflow:hidden; transition:max-height 0.35s ease; background:#f4f8ff; padding:0 18px; }
+.notif-card.open .notif-expand { max-height:800px; border-top:1px solid var(--border); padding:16px 18px; }
+.action-tag { display:inline-block; background:#1a2535; color:#f0b429; font-size:0.68rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:3px 10px; border-radius:4px; margin-bottom:7px; }
+.action-text { font-size:0.82rem; color:#2c3e50; line-height:1.8; }
+.expand-tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:9px; }
+.expand-tag { background:#dde4ef; color:#3d5270; font-size:0.68rem; font-weight:700; padding:2px 9px; border-radius:20px; }
+
+/* HAB PROGRESS */
+.hab-row { display:flex; align-items:center; gap:8px; padding:4px 0; font-size:0.80rem; }
+.hab-code { font-weight:700; font-size:0.68rem; min-width:58px; text-align:center; padding:2px 6px; border-radius:4px; white-space:nowrap; }
+.hab-row.red    .hab-code { background:var(--red-bg);    color:var(--red-dark); }
+.hab-row.yellow .hab-code { background:var(--yellow-bg); color:#7d5a10; }
+.hab-row.green  .hab-code { background:var(--green-bg);  color:#155234; }
+.hab-name { color:var(--muted); font-size:0.76rem; flex:1; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.hab-pct { font-weight:700; font-size:0.78rem; min-width:38px; text-align:right; }
+.hab-row.red    .hab-pct { color:var(--red); }
+.hab-row.yellow .hab-pct { color:var(--yellow); }
+.hab-row.green  .hab-pct { color:var(--green); }
+.progress-track { background:#dde4ef; border-radius:4px; overflow:hidden; flex:1; }
+.progress-fill { height:100%; border-radius:4px; transition:width 0.7s ease; }
+.progress-fill.red{background:var(--red)} .progress-fill.yellow{background:var(--yellow)}
+.progress-fill.green{background:var(--green)} .progress-fill.blue{background:var(--blue)}
+.progress-fill.orange{background:var(--orange)}
+
+/* DATA TABLE */
+.data-table-wrap { background:var(--surface); border-radius:var(--radius); border:1px solid var(--border); box-shadow:var(--shadow); overflow:hidden; margin-bottom:14px; }
+.data-table-wrap .table-header { padding:12px 16px 10px; border-bottom:1px solid var(--border); background:#fafcff; }
+.table-header h3 { font-size:0.90rem; font-weight:700; color:var(--blue-dark); }
+.table-header p  { font-size:0.73rem; color:var(--muted2); }
+.table-scroll { overflow-x:auto; }
+.data-table { width:100%; border-collapse:collapse; font-size:0.82rem; }
+.data-table thead tr { background:linear-gradient(135deg,#1a3a5c,#1e5799); color:#fff; }
+.data-table th { padding:10px 12px; text-align:left; font-size:0.70rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; white-space:nowrap; }
+.data-table td { padding:9px 12px; border-bottom:1px solid var(--border); vertical-align:middle; }
+.data-table tbody tr:last-child td { border-bottom:none; }
+.data-table tbody tr:hover { background:#f8fafc; }
+.badge-sm { display:inline-block; font-size:0.66rem; font-weight:700; padding:2px 8px; border-radius:8px; }
+.badge-sm.red    { background:var(--red-bg);    color:var(--red-dark); border:1px solid var(--red-bdr); }
+.badge-sm.yellow { background:var(--yellow-bg); color:#7d5a10; border:1px solid var(--yellow-bdr); }
+.badge-sm.green  { background:var(--green-bg);  color:#155234; border:1px solid var(--green-bdr); }
+.badge-sm.orange { background:var(--orange-bg); color:#7e4a10; border:1px solid var(--orange-bdr); }
+.badge-sm.blue   { background:var(--blue-bg);   color:#12347a; border:1px solid var(--blue-bdr); }
+
+@media (max-width:768px) {
+  .sidebar { display:none; }
+  .main { padding:18px 16px 40px; }
+  .turmas-grid { grid-template-columns:1fr; }
+}
 </style>
 </head>
 <body>
-<div class="box">
-  <span class="icon">📚</span>
-  <h2>CNCA · EEF Adélia Crisóstomo</h2>
-  <p>Este painel ainda não possui dados inseridos.<br>Em breve a Coordenação Pedagógica irá disponibilizar as informações desta escola.</p>
-  <a href="painel.html">← Voltar ao Painel</a>
-</div>
+
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="school-badge">Painel do Diretor</div>
+    <div class="school-name">Adélia <span>Crisóstomo</span></div>
+    <div class="school-sub">EQEIEF · Caucaia · CE · Região BR-222</div>
+  </div>
+
+  <div class="nav-section">Indicadores</div>
+  <a class="nav-item" href="painel.html"><div class="nav-icon" style="background:#ecfeff">🏠</div><span class="nav-label">Visão Geral</span></a>
+  <a class="nav-item" href="resumo_executivo.html"><div class="nav-icon" style="background:#fdf0ef">🚨</div><span class="nav-label">Resumo Executivo</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="busca_ativa.html"><div class="nav-icon" style="background:#fef5e7">🔍</div><span class="nav-label">Busca Ativa</span><span class="nav-badge nb-orange">!</span></a>
+  <a class="nav-item" href="adsec.html"><div class="nav-icon" style="background:#edfaf3">📖</div><span class="nav-label">ADESC 2025</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="avalie_ce_corrigido.html"><div class="nav-icon" style="background:#fef9ec">📊</div><span class="nav-label">Avalie.CE</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="bimestrais.html"><div class="nav-icon" style="background:#eaf2fc">📝</div><span class="nav-label">Bimestrais 2025</span><span class="nav-badge nb-yellow">!</span></a>
+  <a class="nav-item active" href="cnca.html"><div class="nav-icon" style="background:#fef5e7">📚</div><span class="nav-label">CNCA</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="qedu.html"><div class="nav-icon" style="background:#eaf2fc">🎓</div><span class="nav-label">QEdu / Censo</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item recomp" href="recomposicao.html"><div class="nav-icon" style="background:var(--purple-bg)">🎒</div><span class="nav-label" style="color:#c4b5fd">Recomposição</span><span class="nav-badge nb-purple">!</span></a>
+  <a class="nav-item" href="saeb.html"><div class="nav-icon" style="background:#fdf0ef">📋</div><span class="nav-label">SAEB 2023</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="spaece.html"><div class="nav-icon" style="background:#fef9ec">📈</div><span class="nav-label">SPAECE 2024</span><span class="nav-badge nb-red">!!</span></a>
+
+  <div class="nav-section" style="margin-top:10px">Navegação Interna</div>
+  <a class="nav-item" href="#visao"><div class="nav-icon" style="background:rgba(26,86,160,.12)">📋</div><span class="nav-label">Visão Geral</span></a>
+  <a class="nav-item" href="#lp"><div class="nav-icon" style="background:rgba(26,122,74,.12)">📖</div><span class="nav-label">Língua Portuguesa</span><span class="nav-badge nb-yellow">!</span></a>
+  <a class="nav-item" href="#mt"><div class="nav-icon" style="background:rgba(192,57,43,.12)">📐</div><span class="nav-label">Matemática</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="#leitura"><div class="nav-icon" style="background:rgba(202,111,30,.12)">📚</div><span class="nav-label">Fluência Leitora</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="#alertas"><div class="nav-icon" style="background:rgba(192,57,43,.12)">🔔</div><span class="nav-label">Alertas e Ações</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="#acoes"><div class="nav-icon" style="background:rgba(14,116,144,.15)">⚡</div><span class="nav-label">Plano de Ação</span></a>
+
+  <div class="nav-section" style="margin-top:10px">Semáforo</div>
+  <div class="legend-block">
+    <div class="leg-row"><div class="leg-dot" style="background:var(--red)"></div>Crítico (defasagem &gt;50%)</div>
+    <div class="leg-row"><div class="leg-dot" style="background:var(--yellow)"></div>Atenção (25–50%)</div>
+    <div class="leg-row"><div class="leg-dot" style="background:var(--green)"></div>Satisfatório (&lt;25%)</div>
+  </div>
+
+  <div class="nav-section" style="margin-top:10px">Sistema</div>
+  <a class="nav-item" href="../index.html"><div class="nav-icon" style="background:#fdf0ef">🏫</div><span class="nav-label">Trocar Escola</span></a>
+
+  <div class="sidebar-footer">
+    <div>Adélia Crisóstomo EQEIEF<br>Caucaia · CE · Região BR-222</div>
+    <div style="margin-top:6px;color:#8097b0">Fonte: CNCA – Avaliação Interna<br>1º, 2º, 3º e 5º Ano · LP + MT</div>
+    <div style="margin-top:4px;color:#8097b0">Clique nos cartões para ver as ações</div>
+  </div>
+</aside>
+
+<main class="main">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-title">
+      <h2>📚 CNCA · Adélia Crisóstomo EQEIEF</h2>
+      <p>Avaliação Interna · Língua Portuguesa, Matemática e Fluência Leitora · 1º, 2º, 3º e 5º Ano · Caucaia, CE</p>
+    </div>
+    <div class="topbar-stats">
+      <div class="topbar-stat"><span class="ts-val ts-blue">4</span><span class="ts-lab">Turmas</span></div>
+      <div class="topbar-stat"><span class="ts-val ts-red">55%</span><span class="ts-lab">Def. MT 5º Ano</span></div>
+      <div class="topbar-stat"><span class="ts-val ts-orange">15</span><span class="ts-lab">Pré-leitores</span></div>
+      <div class="topbar-stat"><span class="ts-val ts-green">85%</span><span class="ts-lab">Adeq. LP 1ºB</span></div>
+    </div>
+  </div>
+
+  <!-- ALERT PRINCIPAL -->
+  <div class="alert-banner danger">
+    <span class="ab-icon">🚨</span>
+    <div>
+      <div class="alert-title">Matemática em colapso no 5º e 3º Ano — e zero leitores fluentes no 2º e 3º Ano</div>
+      <div class="alert-body">5º Ano MT: <strong>55% de defasagem e apenas 9% de adequado</strong> — o pior resultado da escola. 3º Ano MT: <strong>44% de defasagem e apenas 6% de adequado</strong>. No eixo de leitura: 2º e 3º Anos têm <strong>0 leitores fluentes</strong> e somam 10 pré-leitores. O 1º Ano B se destaca com <strong>85% de adequado em LP</strong> — melhor resultado da escola. <strong>Clique em cada cartão para ver as ações sugeridas.</strong></div>
+    </div>
+  </div>
+
+  <!-- ========== VISÃO GERAL ========== -->
+  <div id="visao">
+    <div class="section-title">📊 Visão Geral por Turma — LP, MT e Fluência Leitora</div>
+
+    <div class="turmas-grid">
+
+      <!-- 1º ANO A -->
+      <div class="turma-card" style="border-left:5px solid var(--yellow)">
+        <div class="turma-header">
+          <span class="turma-nome">1º Ano A · Manhã</span>
+          <span class="turma-badge yellow">⚠ ATENÇÃO</span>
+        </div>
+        <div class="comp-label">📖 Língua Portuguesa</div>
+        <div class="turma-stat-row"><span class="lbl">Participação</span><span class="val blue">100%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Defasagem</span><span class="val yellow">33%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Intermediário</span><span class="val">17%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Adequado</span><span class="val green">50%</span></div>
+        <hr class="turma-divider">
+        <div class="comp-label">📐 Matemática</div>
+        <div class="turma-stat-row"><span class="lbl">Participação</span><span class="val blue">100%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Defasagem</span><span class="val green">0%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Intermediário</span><span class="val">42%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Adequado</span><span class="val green">58%</span></div>
+      </div>
+
+      <!-- 1º ANO B -->
+      <div class="turma-card" style="border-left:5px solid var(--green)">
+        <div class="turma-header">
+          <span class="turma-nome">1º Ano B · Tarde</span>
+          <span class="turma-badge green">✅ DESTAQUE</span>
+        </div>
+        <div class="comp-label">📖 Língua Portuguesa</div>
+        <div class="turma-stat-row"><span class="lbl">Participação</span><span class="val blue">76%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Defasagem</span><span class="val green">15%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Intermediário</span><span class="val green">0%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Adequado</span><span class="val green">85% ⭐</span></div>
+        <hr class="turma-divider">
+        <div class="comp-label">📐 Matemática</div>
+        <div class="turma-stat-row"><span class="lbl">Participação</span><span class="val blue">94%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Defasagem</span><span class="val yellow">19%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Intermediário</span><span class="val">19%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Adequado</span><span class="val green">63%</span></div>
+      </div>
+
+      <!-- 2º ANO A -->
+      <div class="turma-card" style="border-left:5px solid var(--red)">
+        <div class="turma-header">
+          <span class="turma-nome">2º Ano A · Manhã</span>
+          <span class="turma-badge red">🚨 CRÍTICO</span>
+        </div>
+        <div class="comp-label">📖 Língua Portuguesa</div>
+        <div class="turma-stat-row"><span class="lbl">Participação</span><span class="val blue">100%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Defasagem</span><span class="val yellow">27%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Intermediário</span><span class="val yellow">60%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Adequado</span><span class="val red">13%</span></div>
+        <hr class="turma-divider">
+        <div class="comp-label">📚 Fluência Leitora</div>
+        <div class="leitura-row"><span class="leitura-label">Participação</span><span class="leitura-val blue">100%</span></div>
+        <div class="leitura-row"><span class="leitura-label">Pré-leitores</span><span class="leitura-val red">6 alunos</span></div>
+        <div class="leitura-row"><span class="leitura-label">Leitores Iniciantes</span><span class="leitura-val yellow">9 alunos</span></div>
+        <div class="leitura-row"><span class="leitura-label">Leitores Fluentes</span><span class="leitura-val red">0 ⚠</span></div>
+      </div>
+
+      <!-- 3º ANO A -->
+      <div class="turma-card" style="border-left:5px solid var(--red)">
+        <div class="turma-header">
+          <span class="turma-nome">3º Ano A · Manhã</span>
+          <span class="turma-badge red">🚨 CRÍTICO</span>
+        </div>
+        <div class="comp-label">📖 Língua Portuguesa</div>
+        <div class="turma-stat-row"><span class="lbl">Participação</span><span class="val blue">100%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Defasagem</span><span class="val yellow">37%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Intermediário</span><span class="val yellow">42%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Adequado</span><span class="val red">21%</span></div>
+        <hr class="turma-divider">
+        <div class="comp-label">📐 Matemática</div>
+        <div class="turma-stat-row"><span class="lbl">Participação</span><span class="val blue">95%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Defasagem</span><span class="val red">44%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Intermediário</span><span class="val yellow">50%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Adequado</span><span class="val red">6%</span></div>
+        <hr class="turma-divider">
+        <div class="comp-label">📚 Fluência Leitora</div>
+        <div class="leitura-row"><span class="leitura-label">Participação</span><span class="leitura-val orange">68%</span></div>
+        <div class="leitura-row"><span class="leitura-label">Pré-leitores</span><span class="leitura-val red">4 alunos</span></div>
+        <div class="leitura-row"><span class="leitura-label">Leitores Iniciantes</span><span class="leitura-val yellow">9 alunos</span></div>
+        <div class="leitura-row"><span class="leitura-label">Leitores Fluentes</span><span class="leitura-val red">0 ⚠</span></div>
+      </div>
+
+      <!-- 5º ANO A -->
+      <div class="turma-card" style="border-left:5px solid var(--red)">
+        <div class="turma-header">
+          <span class="turma-nome">5º Ano A · Tarde</span>
+          <span class="turma-badge red">🚨 CRÍTICO</span>
+        </div>
+        <div class="comp-label">📖 Língua Portuguesa</div>
+        <div class="turma-stat-row"><span class="lbl">Participação</span><span class="val blue">86%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Defasagem</span><span class="val yellow">26%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Intermediário</span><span class="val yellow">32%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Adequado</span><span class="val yellow">42%</span></div>
+        <hr class="turma-divider">
+        <div class="comp-label">📐 Matemática</div>
+        <div class="turma-stat-row"><span class="lbl">Participação</span><span class="val blue">100%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Defasagem</span><span class="val red">55%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Intermediário</span><span class="val yellow">36%</span></div>
+        <div class="turma-stat-row"><span class="lbl">Adequado</span><span class="val red">9%</span></div>
+        <hr class="turma-divider">
+        <div class="comp-label">📚 Fluência Leitora</div>
+        <div class="leitura-row"><span class="leitura-label">Participação</span><span class="leitura-val orange">68%</span></div>
+        <div class="leitura-row"><span class="leitura-label">Pré-leitores</span><span class="leitura-val red">5 alunos</span></div>
+        <div class="leitura-row"><span class="leitura-label">Leitores Iniciantes</span><span class="leitura-val yellow">7 alunos</span></div>
+        <div class="leitura-row"><span class="leitura-label">Leitores Fluentes</span><span class="leitura-val yellow">3 alunos</span></div>
+      </div>
+
+    </div><!-- /turmas-grid -->
+  </div>
+
+  <!-- ========== LP ========== -->
+  <div id="lp">
+    <div class="section-title">📖 Língua Portuguesa — Análise por Turma</div>
+
+    <div class="alert-banner success">
+      <span class="ab-icon">⭐</span>
+      <div>
+        <div class="alert-title">1º Ano B LP: 85% de Adequado — melhor resultado da escola e referência de boas práticas</div>
+        <div class="alert-body">Com <strong>85% de aprendizado adequado e apenas 15% de defasagem</strong>, o 1º Ano B é a turma com melhor resultado em LP do CNCA. Curiosamente, 0% dos alunos está no nível intermediário — quase todos estão no adequado ou em defasagem, indicando turma de perfil bimodal com predominância positiva. As práticas pedagógicas do professor devem ser investigadas e disseminadas.</div>
+      </div>
+    </div>
+
+    <div class="data-table-wrap">
+      <div class="table-header">
+        <h3>Língua Portuguesa — Comparativo entre Turmas</h3>
+        <p>Fonte: CNCA · Avaliação Interna · Adélia Crisóstomo EQEIEF</p>
+      </div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr><th>Turma</th><th>Participação</th><th>Defasagem</th><th>Intermediário</th><th>Adequado</th><th>Semáforo</th></tr>
+          </thead>
+          <tbody>
+            <tr style="background:#f0fff8">
+              <td style="font-weight:700">1º Ano B · Tarde</td>
+              <td>76%</td>
+              <td><span class="badge-sm green">15%</span></td>
+              <td>0%</td>
+              <td><span class="badge-sm green">85% ⭐</span></td>
+              <td><span class="badge-sm green">✅ Destaque</span></td>
+            </tr>
+            <tr>
+              <td style="font-weight:700">1º Ano A · Manhã</td>
+              <td>100%</td>
+              <td><span class="badge-sm yellow">33%</span></td>
+              <td>17%</td>
+              <td><span class="badge-sm yellow">50%</span></td>
+              <td><span class="badge-sm yellow">⚠ Atenção</span></td>
+            </tr>
+            <tr>
+              <td style="font-weight:700">5º Ano A · Tarde</td>
+              <td>86%</td>
+              <td><span class="badge-sm yellow">26%</span></td>
+              <td>32%</td>
+              <td><span class="badge-sm yellow">42%</span></td>
+              <td><span class="badge-sm yellow">⚠ Atenção</span></td>
+            </tr>
+            <tr style="background:#fff5f5">
+              <td style="font-weight:700">2º Ano A · Manhã</td>
+              <td>100%</td>
+              <td><span class="badge-sm yellow">27%</span></td>
+              <td style="color:var(--orange);font-weight:700">60%</td>
+              <td><span class="badge-sm red">13%</span></td>
+              <td><span class="badge-sm red">🔴 Crítico</span></td>
+            </tr>
+            <tr style="background:#fff5f5">
+              <td style="font-weight:700">3º Ano A · Manhã</td>
+              <td>100%</td>
+              <td><span class="badge-sm yellow">37%</span></td>
+              <td style="color:var(--yellow);font-weight:700">42%</td>
+              <td><span class="badge-sm red">21%</span></td>
+              <td><span class="badge-sm red">🔴 Crítico</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="alert-banner warning">
+      <span class="ab-icon">⚠️</span>
+      <div>
+        <div class="alert-title">2º Ano A LP: 60% no nível intermediário — turma "represada" que pode regredir</div>
+        <div class="alert-body">O 2º Ano A tem um perfil preocupante em LP: <strong>60% dos alunos estão no nível intermediário</strong> e apenas 13% no adequado. Isso indica que a maioria da turma está "no limite" — uma avaliação mais difícil ou menor atenção pedagógica pode fazer esse grupo deslizar para a defasagem. Ação preventiva é fundamental agora.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== MT ========== -->
+  <div id="mt">
+    <div class="section-title">📐 Matemática — Análise por Turma</div>
+
+    <div class="alert-banner danger">
+      <span class="ab-icon">🚨</span>
+      <div>
+        <div class="alert-title">5º Ano MT: 55% de defasagem e 9% de adequado — emergência pedagógica no ciclo final</div>
+        <div class="alert-body">O 5º Ano encerra os Anos Iniciais com <strong>55% de defasagem em Matemática</strong> — mais da metade da turma abaixo do básico. Apenas 9% atingiram nível adequado. Esse dado é consistente com o Avalie.CE 2025 (10% de adequado no 5º Ano MT), confirmando uma crise estrutural em MT nos Anos Iniciais que comprometerá diretamente o desempenho dos anos seguintes.</div>
+      </div>
+    </div>
+
+    <div class="data-table-wrap">
+      <div class="table-header">
+        <h3>Matemática — Comparativo entre Turmas</h3>
+        <p>Fonte: CNCA · Avaliação Interna · Adélia Crisóstomo EQEIEF · * 1º Ano A sem dado de MT disponível na planilha</p>
+      </div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr><th>Turma</th><th>Participação</th><th>Defasagem</th><th>Intermediário</th><th>Adequado</th><th>Semáforo</th></tr>
+          </thead>
+          <tbody>
+            <tr style="background:#f0fff8">
+              <td style="font-weight:700">1º Ano A · Manhã</td>
+              <td>100%</td>
+              <td><span class="badge-sm green">0%</span></td>
+              <td>42%</td>
+              <td><span class="badge-sm green">58%</span></td>
+              <td><span class="badge-sm green">✅ Destaque</span></td>
+            </tr>
+            <tr style="background:#f0fff8">
+              <td style="font-weight:700">1º Ano B · Tarde</td>
+              <td>94%</td>
+              <td><span class="badge-sm green">19%</span></td>
+              <td>19%</td>
+              <td><span class="badge-sm green">63%</span></td>
+              <td><span class="badge-sm green">✅ Positivo</span></td>
+            </tr>
+            <tr style="background:#fff5f5">
+              <td style="font-weight:700">3º Ano A · Manhã</td>
+              <td>95%</td>
+              <td><span class="badge-sm red">44%</span></td>
+              <td style="color:var(--yellow);font-weight:700">50%</td>
+              <td><span class="badge-sm red">6%</span></td>
+              <td><span class="badge-sm red">🔴 Crítico</span></td>
+            </tr>
+            <tr style="background:#fff5f5">
+              <td style="font-weight:700">5º Ano A · Tarde</td>
+              <td>100%</td>
+              <td><span class="badge-sm red">55%</span></td>
+              <td>36%</td>
+              <td><span class="badge-sm red">9%</span></td>
+              <td><span class="badge-sm red">🔴 Emergência</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="alert-banner warning">
+      <span class="ab-icon">📈</span>
+      <div>
+        <div class="alert-title">3º Ano MT: 44% de defasagem com 50% no intermediário — trajetória de piora se não houver intervenção</div>
+        <div class="alert-body">O 3º Ano mostra que <strong>50% dos alunos estão no nível intermediário</strong> em MT, com apenas 6% de adequado. A turma corre o risco de repetir o padrão do 5º Ano — se esses alunos intermediários não forem consolidados, eles chegarão ao 4º e 5º Ano com defasagem acumulada, exatamente como observado no resultado atual do 5º Ano A.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== LEITURA ========== -->
+  <div id="leitura">
+    <div class="section-title">📚 Fluência Leitora — 2º, 3º e 5º Ano</div>
+
+    <div class="alert-banner danger">
+      <span class="ab-icon">🚨</span>
+      <div>
+        <div class="alert-title">2º e 3º Ano: zero leitores fluentes — crise na consolidação da alfabetização</div>
+        <div class="alert-body">O 2º e o 3º Ano registram <strong>0 leitores fluentes</strong> cada. O 2º Ano tem 6 pré-leitores e 9 iniciantes; o 3º Ano tem 4 pré-leitores e 9 iniciantes. No total da escola: <strong>15 pré-leitores distribuídos nas três turmas avaliadas</strong>. Apenas o 5º Ano tem leitores fluentes (3 alunos). A ausência de fluência no 2º e 3º Ano indica que a consolidação da alfabetização está incompleta — processo que deveria estar concluído ao final do 2º Ano.</div>
+      </div>
+    </div>
+
+    <div class="section-block">
+      <div class="section-block-header">
+        <div class="sb-icon" style="background:rgba(192,57,43,.12)">📖</div>
+        <div class="sb-info">
+          <h3>Detalhamento da Fluência Leitora por Turma</h3>
+          <p>Pré-leitor: níveis 1 a 4 (do menor para o maior grau de leitura). Iniciante: lê com dificuldades. Fluente: lê com compreensão e velocidade adequada.</p>
+        </div>
+      </div>
+
+      <div class="notif-card priority-red" onclick="toggle(this)">
+        <div class="notif-top">
+          <div class="notif-avatar red">🚨</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">2º Ano A — 6 pré-leitores, 9 iniciantes e 0 fluentes · Participação: 100%</div>
+              <span class="notif-source">CNCA · Fluência · 2º Ano A</span>
+            </div>
+            <div class="notif-summary">Com 100% de participação na avaliação de fluência, o retrato do 2º Ano A é claro: nenhum aluno atingiu o nível de leitura fluente. Há 6 pré-leitores (Nível 1: 2, Nível 2: 1, Nível 3: 1, Nível 4: 2) e 9 leitores iniciantes. O 2º Ano deveria estar consolidando a alfabetização — essa situação indica defasagem grave no processo de leitura.</div>
+            <div style="margin-top:10px">
+              <div class="hab-row red"><span class="hab-code">Pré-leit.</span><span class="hab-name">Nível 1 (muito inicial)</span><div class="progress-track" style="flex:1;height:7px"><div class="progress-fill red" style="width:20%"></div></div><span class="hab-pct">2 al.</span></div>
+              <div class="hab-row red"><span class="hab-code">Pré-leit.</span><span class="hab-name">Nível 2</span><div class="progress-track" style="flex:1;height:7px"><div class="progress-fill red" style="width:10%"></div></div><span class="hab-pct">1 al.</span></div>
+              <div class="hab-row red"><span class="hab-code">Pré-leit.</span><span class="hab-name">Nível 3</span><div class="progress-track" style="flex:1;height:7px"><div class="progress-fill orange" style="width:10%"></div></div><span class="hab-pct">1 al.</span></div>
+              <div class="hab-row red"><span class="hab-code">Pré-leit.</span><span class="hab-name">Nível 4 (quase iniciante)</span><div class="progress-track" style="flex:1;height:7px"><div class="progress-fill orange" style="width:20%"></div></div><span class="hab-pct">2 al.</span></div>
+              <div class="hab-row yellow"><span class="hab-code">Iniciante</span><span class="hab-name">Lê com dificuldade</span><div class="progress-track" style="flex:1;height:7px"><div class="progress-fill yellow" style="width:60%"></div></div><span class="hab-pct">9 al.</span></div>
+              <div class="hab-row green"><span class="hab-code">Fluente</span><span class="hab-name">Leitura fluente</span><div class="progress-track" style="flex:1;height:7px"><div class="progress-fill green" style="width:0%"></div></div><span class="hab-pct">0 al.</span></div>
+            </div>
+            <div class="notif-metrics" style="margin-top:8px">
+              <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>6 pré-leitores</span>
+              <span class="metric-pill yellow"><span class="dot" style="background:var(--yellow)"></span>9 iniciantes</span>
+              <span class="metric-pill" style="background:#f3f4f6;color:#6b7280;border:1px solid #e5e7eb"><span class="dot" style="background:var(--muted2)"></span>0 fluentes</span>
+            </div>
+          </div>
+          <button class="notif-toggle">▾</button>
+        </div>
+        <div class="notif-expand">
+          <div class="action-tag">🎯 Ação Urgente — 2º Ano A · Fluência</div>
+          <div class="action-text">1. <strong>Agrupamento por nível de leitura:</strong> organizar os 6 pré-leitores em grupos menores com atividades específicas de decodificação e consciência fonológica — especialmente os Nível 1 e 2, que ainda não dominam as relações grafema-fonema.<br><br>2. <strong>Rotina diária de leitura:</strong> implementar 15–20 minutos diários de prática de leitura em voz alta, individualmente e em duplas — prática sistemática é o único caminho para evoluir de iniciante para fluente.<br><br>3. <strong>Articulação com ADESC:</strong> cruzar os dados de fluência com os resultados da ADESC 2025 para verificar se os pré-leitores do 2º Ano coincidem com os alunos Iniciantes ou Intermediários — se sim, criar um plano integrado de intervenção.<br><br>4. <strong>Comunicação familiar:</strong> orientar as famílias sobre a importância da leitura em casa — leitura diária de 10 minutos com o responsável tem impacto significativo na fluência.</div>
+          <div class="expand-tags"><span class="expand-tag">2º Ano A</span><span class="expand-tag">Fluência Leitora</span><span class="expand-tag">Consciência Fonológica</span><span class="expand-tag">ADESC</span></div>
+        </div>
+      </div>
+
+      <div class="notif-card priority-red" onclick="toggle(this)">
+        <div class="notif-top">
+          <div class="notif-avatar red">📉</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">3º Ano A — 4 pré-leitores e 0 fluentes · Participação apenas 68%</div>
+              <span class="notif-source">CNCA · Fluência · 3º Ano A</span>
+            </div>
+            <div class="notif-summary">No 3º Ano, a situação é duplamente preocupante: além de 4 pré-leitores e 0 fluentes, a participação na avaliação foi de apenas 68%. Isso significa que os dados conhecidos já apontam para uma situação crítica — e há cerca de 32% da turma cujo nível de leitura é desconhecido. Os ausentes podem ser justamente os com maior dificuldade.</div>
+            <div style="margin-top:10px">
+              <div class="hab-row red"><span class="hab-code">Pré-leit.</span><span class="hab-name">Total (N2+N3+N4)</span><div class="progress-track" style="flex:1;height:7px"><div class="progress-fill red" style="width:30%"></div></div><span class="hab-pct">4 al.</span></div>
+              <div class="hab-row yellow"><span class="hab-code">Iniciante</span><span class="hab-name">Lê com dificuldade</span><div class="progress-track" style="flex:1;height:7px"><div class="progress-fill yellow" style="width:65%"></div></div><span class="hab-pct">9 al.</span></div>
+              <div class="hab-row green"><span class="hab-code">Fluente</span><span class="hab-name">Leitura fluente</span><div class="progress-track" style="flex:1;height:7px"><div class="progress-fill green" style="width:0%"></div></div><span class="hab-pct">0 al.</span></div>
+            </div>
+            <div class="notif-metrics" style="margin-top:8px">
+              <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>4 pré-leitores</span>
+              <span class="metric-pill yellow"><span class="dot" style="background:var(--yellow)"></span>9 iniciantes</span>
+              <span class="metric-pill orange"><span class="dot" style="background:var(--orange)"></span>68% participação</span>
+            </div>
+          </div>
+          <button class="notif-toggle">▾</button>
+        </div>
+        <div class="notif-expand">
+          <div class="action-tag">🎯 Ação Urgente — 3º Ano A · Fluência</div>
+          <div class="action-text">1. <strong>Identificar e avaliar os 32% ausentes:</strong> aplicar a avaliação de fluência individualmente para os alunos que não participaram. É fundamental ter o diagnóstico completo da turma antes de qualquer intervenção.<br><br>2. <strong>Pré-leitores no 3º Ano — situação grave:</strong> um aluno pré-leitor no 3º Ano já está com 2+ anos de atraso em leitura. Esses estudantes precisam de intervenção especializada, possivelmente com o professor de apoio ou AEE (Atendimento Educacional Especializado).<br><br>3. <strong>Foco na transição iniciante→fluente:</strong> os 9 iniciantes estão a um passo da fluência. Atividades de leitura oral crônica (leitura repetida de textos curtos), teatro de leitores e rodas de leitura são estratégias comprovadamente eficazes.<br><br>4. <strong>Monitoramento bimestral de fluência:</strong> aplicar avaliação de fluência (palavras por minuto) mensalmente para rastrear a evolução individual de cada aluno.</div>
+          <div class="expand-tags"><span class="expand-tag">3º Ano A</span><span class="expand-tag">Leitura Oral</span><span class="expand-tag">AEE</span><span class="expand-tag">Diagnóstico Completo</span></div>
+        </div>
+      </div>
+
+      <div class="notif-card priority-yellow" onclick="toggle(this)">
+        <div class="notif-top">
+          <div class="notif-avatar yellow">📊</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">5º Ano A — 3 fluentes, 7 iniciantes, 5 pré-leitores · Participação: 68%</div>
+              <span class="notif-source">CNCA · Fluência · 5º Ano A</span>
+            </div>
+            <div class="notif-summary">O 5º Ano é a única turma com leitores fluentes (3 alunos) — ponto positivo a ser reconhecido. Mas com 5 pré-leitores e apenas 68% de participação, o quadro ainda é preocupante. Estudantes pré-leitores no 5º Ano têm dificuldades que vão muito além da leitura — impactam todas as disciplinas.</div>
+            <div class="notif-metrics" style="margin-top:8px">
+              <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>3 fluentes ✅</span>
+              <span class="metric-pill yellow"><span class="dot" style="background:var(--yellow)"></span>7 iniciantes</span>
+              <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>5 pré-leitores</span>
+              <span class="metric-pill orange"><span class="dot" style="background:var(--orange)"></span>68% participação</span>
+            </div>
+          </div>
+          <button class="notif-toggle">▾</button>
+        </div>
+        <div class="notif-expand">
+          <div class="action-tag">🎯 Ação — 5º Ano A · Fluência</div>
+          <div class="action-text">1. <strong>Urgência para pré-leitores do 5º Ano:</strong> esses alunos enfrentam dificuldades em todas as disciplinas. Verificar se há encaminhamento para avaliação psicopedagógica ou neurológica — pode haver dificuldades de aprendizagem específicas não identificadas.<br><br>2. <strong>Valorizar os 3 fluentes:</strong> reconhecer esses alunos e usá-los como modelos positivos na turma — rodas de leitura onde eles leem para os colegas incentivam os não fluentes.<br><br>3. <strong>Completar o diagnóstico:</strong> avaliar os 32% ausentes na avaliação de fluência para ter visão completa da turma.<br><br>4. <strong>Conectar com o resultado de MT:</strong> alunos com baixa fluência leitora tendem a ter mais dificuldade em problemas de matemática contextualizados — a crise de leitura pode ser parte da explicação para os 55% de defasagem em MT.</div>
+          <div class="expand-tags"><span class="expand-tag">5º Ano A</span><span class="expand-tag">Avaliação Psicopedagógica</span><span class="expand-tag">Tutoria de Pares</span><span class="expand-tag">MT x Leitura</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== ALERTAS ========== -->
+  <div id="alertas">
+    <div class="section-title">🔔 Alertas Críticos — MT e LP por Turma</div>
+
+    <div class="section-block">
+      <div class="section-block-header dark">
+        <div class="sb-icon" style="background:rgba(192,57,43,.3)">🚨</div>
+        <div class="sb-info">
+          <h3>Situações que exigem intervenção imediata da coordenação pedagógica</h3>
+          <p>Clique em cada cartão para ver os passos de ação sugeridos</p>
+        </div>
+      </div>
+
+      <div class="notif-card priority-red" onclick="toggle(this)">
+        <div class="notif-top">
+          <div class="notif-avatar red">🚨</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">5º Ano MT: 55% de Defasagem e 9% Adequado — Crise Estrutural nos Anos Iniciais</div>
+              <span class="notif-source">CNCA · MT · 5º Ano A</span>
+            </div>
+            <div class="notif-summary">O 5º Ano encerra os Anos Iniciais com a pior situação em Matemática: mais da metade dos alunos em defasagem e apenas 9% com aprendizado adequado. Esse resultado é coerente com o Avalie.CE 2025 (10% adequado) — dois instrumentos distintos confirmam o mesmo diagnóstico. O ciclo de defasagem em MT precisa ser rompido antes que esses alunos avancem para os anos finais.</div>
+            <div style="margin-top:10px">
+              <div class="hab-row red"><span class="hab-code">Defasagem</span><span class="hab-name">Abaixo do básico</span><div class="progress-track" style="flex:1;height:7px"><div class="progress-fill red" style="width:55%"></div></div><span class="hab-pct">55%</span></div>
+              <div class="hab-row yellow"><span class="hab-code">Interm.</span><span class="hab-name">Nível básico</span><div class="progress-track" style="flex:1;height:7px"><div class="progress-fill yellow" style="width:36%"></div></div><span class="hab-pct">36%</span></div>
+              <div class="hab-row green"><span class="hab-code">Adequado</span><span class="hab-name">Proficiente+</span><div class="progress-track" style="flex:1;height:7px"><div class="progress-fill green" style="width:9%"></div></div><span class="hab-pct">9%</span></div>
+            </div>
+            <div class="notif-metrics" style="margin-top:8px">
+              <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>55% defasagem MT</span>
+              <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>Avalie.CE confirma: 10% adeq.</span>
+            </div>
+          </div>
+          <button class="notif-toggle">▾</button>
+        </div>
+        <div class="notif-expand">
+          <div class="action-tag">⚡ Ação Urgente — 5º Ano A · MT</div>
+          <div class="action-text">1. <strong>Diagnóstico por habilidade:</strong> identificar quais descritores de MT os alunos erraram mais — o CNCA é interno, mas pode ser cruzado com o Avalie.CE para mapear as habilidades mais críticas (H01, H02, operações básicas, frações, geometria).<br><br>2. <strong>Replanejamento curricular imediato:</strong> em parceria com o professor de MT do 5º Ano, redesenhar o 2º semestre com foco nas habilidades estruturantes não consolidadas — não é possível avançar no currículo sem sanar as lacunas de base.<br><br>3. <strong>Reforço em contraturno:</strong> implementar horário de reforço de MT para os alunos em defasagem (55% da turma). Uma hora semanal de atividade focada pode fazer diferença significativa.<br><br>4. <strong>Interdisciplinaridade MT × LP:</strong> o 5º Ano tem 42% de adequado em LP — usar as habilidades de leitura para trabalhar MT via problemas contextualizados pode aumentar o engajamento e o desempenho.</div>
+          <div class="expand-tags"><span class="expand-tag">5º Ano A</span><span class="expand-tag">Matemática</span><span class="expand-tag">Replanejamento</span><span class="expand-tag">Contraturno</span></div>
+        </div>
+      </div>
+
+      <div class="notif-card priority-red" onclick="toggle(this)">
+        <div class="notif-top">
+          <div class="notif-avatar red">📉</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">3º Ano MT: 44% de Defasagem e 6% Adequado — Trajetória de Agravamento</div>
+              <span class="notif-source">CNCA · MT · 3º Ano A</span>
+            </div>
+            <div class="notif-summary">O 3º Ano repete o padrão preocupante: 44% em defasagem e apenas 6% de adequado. Com 50% dos alunos no nível intermediário, a turma está num momento crítico — se não houver intervenção agora, esse grupo chegará ao 4º e 5º Ano reproduzindo exatamente o cenário atual do 5º Ano (55% de defasagem). É necessário quebrar o ciclo antes que ele se aprofunde.</div>
+            <div style="margin-top:10px">
+              <div class="hab-row red"><span class="hab-code">Defasagem</span><span class="hab-name">Abaixo do básico</span><div class="progress-track" style="flex:1;height:7px"><div class="progress-fill red" style="width:44%"></div></div><span class="hab-pct">44%</span></div>
+              <div class="hab-row yellow"><span class="hab-code">Interm.</span><span class="hab-name">Nível básico</span><div class="progress-track" style="flex:1;height:7px"><div class="progress-fill yellow" style="width:50%"></div></div><span class="hab-pct">50%</span></div>
+              <div class="hab-row green"><span class="hab-code">Adequado</span><span class="hab-name">Proficiente+</span><div class="progress-track" style="flex:1;height:7px"><div class="progress-fill green" style="width:6%"></div></div><span class="hab-pct">6%</span></div>
+            </div>
+            <div class="notif-metrics" style="margin-top:8px">
+              <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>44% defasagem</span>
+              <span class="metric-pill orange"><span class="dot" style="background:var(--orange)"></span>50% intermediário em risco</span>
+            </div>
+          </div>
+          <button class="notif-toggle">▾</button>
+        </div>
+        <div class="notif-expand">
+          <div class="action-tag">🎯 Ação — 3º Ano A · MT</div>
+          <div class="action-text">1. <strong>Priorizar os intermediários:</strong> com 50% no nível básico, há uma oportunidade real de mover metade da turma para o adequado com intervenção pedagógica direcionada. Esses alunos estão "no limite".<br><br>2. <strong>Material manipulativo:</strong> solicitar ao coordenador pedagógico recursos concretos (material dourado, blocos lógicos, ábaco) para trabalhar numeração e operações de forma lúdica com o grupo em defasagem.<br><br>3. <strong>Metas bimestrais:</strong> definir como meta para o 3º Ano MT: reduzir a defasagem de 44% para abaixo de 30% até o final do 3º bimestre, monitorando quinzenalmente.<br><br>4. <strong>Evitar o ciclo do 5º Ano:</strong> apresentar ao professor o dado do 5º Ano (55% defasagem) como perspectiva de futuro caso a intervenção não ocorra agora — isso cria urgência pedagógica concreta.</div>
+          <div class="expand-tags"><span class="expand-tag">3º Ano A</span><span class="expand-tag">MT</span><span class="expand-tag">Material Manipulativo</span><span class="expand-tag">Metas Bimestrais</span></div>
+        </div>
+      </div>
+
+      <div class="notif-card priority-yellow" onclick="toggle(this)">
+        <div class="notif-top">
+          <div class="notif-avatar yellow">⚠️</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">2º Ano A LP: 60% no Intermediário — Grupo Represado com Risco de Regressão</div>
+              <span class="notif-source">CNCA · LP · 2º Ano A</span>
+            </div>
+            <div class="notif-summary">Com 60% no intermediário e apenas 13% no adequado, o 2º Ano A em LP está num patamar instável. A maioria da turma conhece o suficiente para estar no básico, mas não consolidou o aprendizado adequado. Um conteúdo mais complexo ou um período de baixa frequência pode empurrar esses alunos para a defasagem.</div>
+            <div class="notif-metrics">
+              <span class="metric-pill yellow"><span class="dot" style="background:var(--yellow)"></span>60% intermediário</span>
+              <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>13% adequado</span>
+              <span class="metric-pill yellow"><span class="dot" style="background:var(--yellow)"></span>27% defasagem</span>
+            </div>
+          </div>
+          <button class="notif-toggle">▾</button>
+        </div>
+        <div class="notif-expand">
+          <div class="action-tag">🎯 Ação Preventiva — 2º Ano A · LP</div>
+          <div class="action-text">1. <strong>Aproveitar o potencial dos intermediários:</strong> 60% no básico é uma oportunidade — com atividades de aprofundamento bem planejadas, é possível mover parte desse grupo para o adequado no próximo ciclo.<br><br>2. <strong>Atividades de escrita e compreensão leitora:</strong> focar em produção textual simples, leitura com interpretação e ampliação de vocabulário para impulsionar os intermediários ao nível adequado.<br><br>3. <strong>Diferenciação pedagógica:</strong> enquanto os 60% intermediários avançam para o adequado, os 27% em defasagem precisam de atividades diferentes — foco em habilidades básicas de leitura e escrita que ainda não foram consolidadas.<br><br>4. <strong>Criar grupos de apoio:</strong> usar os 13% que já estão em adequado como tutores dos colegas — estratégia eficaz para o 2º Ano, onde a colaboração entre pares tem alto impacto no aprendizado.</div>
+          <div class="expand-tags"><span class="expand-tag">2º Ano A</span><span class="expand-tag">LP</span><span class="expand-tag">Diferenciação</span><span class="expand-tag">Tutoria</span></div>
+        </div>
+      </div>
+
+      <div class="notif-card priority-green" onclick="toggle(this)">
+        <div class="notif-top">
+          <div class="notif-avatar green">⭐</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">1º Ano B LP: 85% Adequado — Resultado Excepcional que Deve Ser Replicado</div>
+              <span class="notif-source">CNCA · LP · 1º Ano B</span>
+            </div>
+            <div class="notif-summary">Com 85% de adequado em LP, o 1º Ano B é o melhor resultado da escola no CNCA. O 1º Ano A tem 50% de adequado — uma diferença de 35pp entre as duas turmas do mesmo ano. Essa disparidade é uma informação valiosa: o professor do 1º Ano B tem algo que funciona muito bem e que pode ser compartilhado.</div>
+            <div class="notif-metrics">
+              <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>85% adequado LP</span>
+              <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>63% adequado MT</span>
+              <span class="metric-pill orange"><span class="dot" style="background:var(--orange)"></span>+35pp vs 1º Ano A (LP)</span>
+            </div>
+          </div>
+          <button class="notif-toggle">▾</button>
+        </div>
+        <div class="notif-expand">
+          <div class="action-tag">🌟 Ação — Disseminação de Boas Práticas</div>
+          <div class="action-text">1. <strong>Investigar o que funciona no 1º Ano B:</strong> convidar o professor do 1º Ano B para compartilhar suas estratégias metodológicas em reunião pedagógica (HTPC). Como estrutura as aulas de LP? Que materiais usa? Qual a rotina de leitura?<br><br>2. <strong>Comparar com o 1º Ano A:</strong> são turmas do mesmo ano, em turnos diferentes, provavelmente com o mesmo currículo. A diferença de 35pp em LP indica fator metodológico ou de gestão de sala que pode ser replicado.<br><br>3. <strong>Documentar para o PPP:</strong> registrar as práticas exitosas do 1º Ano B no Projeto Político-Pedagógico como metodologia de referência para o 1º Ano.<br><br>4. <strong>Estender para MT:</strong> o 1º Ano B também tem bom resultado em MT (63% adequado). Investigar se as mesmas estratégias de organização pedagógica se aplicam ao ensino de Matemática.</div>
+          <div class="expand-tags"><span class="expand-tag">1º Ano B</span><span class="expand-tag">Boas Práticas</span><span class="expand-tag">HTPC</span><span class="expand-tag">PPP</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== PLANO DE AÇÃO ========== -->
+  <div id="acoes">
+    <div class="section-title">⚡ Plano de Ação — CNCA · Adélia Crisóstomo</div>
+
+    <div class="data-table-wrap">
+      <div class="table-header">
+        <h3>Ações Prioritárias baseadas nos dados do CNCA</h3>
+        <p>Adélia Crisóstomo EQEIEF · Ordenadas por urgência e impacto pedagógico</p>
+      </div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr><th>#</th><th>Ação</th><th>Turma/Foco</th><th>Responsável</th><th>Prazo</th><th>Prioridade</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1</strong></td>
+              <td>Diagnóstico individual dos 5 pré-leitores do 5º Ano e dos 6 do 2º Ano — definir nível e estratégia específica por aluno</td>
+              <td>2º e 5º Ano</td>
+              <td>Coord. Pedagógico + Prof.</td>
+              <td>Imediato</td>
+              <td><span class="badge-sm red">🚨 Urgente</span></td>
+            </tr>
+            <tr>
+              <td><strong>2</strong></td>
+              <td>Replanejamento das sequências didáticas de MT para o 5º Ano com foco nas habilidades mais defasadas</td>
+              <td>5º Ano A · MT</td>
+              <td>Coord. + Prof. MT</td>
+              <td>15 dias</td>
+              <td><span class="badge-sm red">🚨 Urgente</span></td>
+            </tr>
+            <tr>
+              <td><strong>3</strong></td>
+              <td>Avaliar os 32% ausentes na avaliação de fluência do 3º e 5º Ano — completar o diagnóstico</td>
+              <td>3º e 5º Ano</td>
+              <td>Professores</td>
+              <td>15 dias</td>
+              <td><span class="badge-sm red">🚨 Urgente</span></td>
+            </tr>
+            <tr>
+              <td><strong>4</strong></td>
+              <td>Implementar rotina diária de leitura em voz alta para 2º e 3º Ano (15–20 min/dia)</td>
+              <td>2º e 3º Ano</td>
+              <td>Prof. LP</td>
+              <td>15 dias</td>
+              <td><span class="badge-sm red">🚨 Urgente</span></td>
+            </tr>
+            <tr>
+              <td><strong>5</strong></td>
+              <td>HTPC: socializar boas práticas do 1º Ano B (85% adequado em LP) com toda a equipe pedagógica</td>
+              <td>Toda a equipe</td>
+              <td>Coordenador</td>
+              <td>Próximo HTPC</td>
+              <td><span class="badge-sm yellow">⚠ Atenção</span></td>
+            </tr>
+            <tr>
+              <td><strong>6</strong></td>
+              <td>Cruzar dados de fluência leitora (CNCA) com os níveis do ADESC 2025 para identificar sobreposição de risco</td>
+              <td>2º e 3º Ano</td>
+              <td>Coord. Pedagógico</td>
+              <td>1 mês</td>
+              <td><span class="badge-sm yellow">⚠ Atenção</span></td>
+            </tr>
+            <tr>
+              <td><strong>7</strong></td>
+              <td>Cruzar dados de MT do CNCA com o Avalie.CE 2025 por turma — identificar habilidades mais críticas</td>
+              <td>3º e 5º Ano · MT</td>
+              <td>Coord. + Prof. MT</td>
+              <td>1 mês</td>
+              <td><span class="badge-sm yellow">⚠ Atenção</span></td>
+            </tr>
+            <tr>
+              <td><strong>8</strong></td>
+              <td>Encaminhar alunos pré-leitores do 5º Ano para avaliação psicopedagógica — possíveis dificuldades específicas</td>
+              <td>5º Ano A</td>
+              <td>Diretor + Coord.</td>
+              <td>1 mês</td>
+              <td><span class="badge-sm yellow">⚠ Atenção</span></td>
+            </tr>
+            <tr>
+              <td><strong>9</strong></td>
+              <td>Definir metas bimestrais de redução de defasagem por turma e componente — monitorar quinzenalmente</td>
+              <td>Todas as turmas</td>
+              <td>Coord. Pedagógico</td>
+              <td>1 mês</td>
+              <td><span class="badge-sm yellow">⚠ Atenção</span></td>
+            </tr>
+            <tr>
+              <td><strong>10</strong></td>
+              <td>Documentar práticas do 1º Ano B no PPP e replicar para o 1º Ano A e demais anos iniciais</td>
+              <td>1º Ano B → Escola</td>
+              <td>Diretor + Coord.</td>
+              <td>2 meses</td>
+              <td><span class="badge-sm blue">📌 Planejamento</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center; font-size:0.75rem; color:var(--muted2); margin-top:18px; padding-top:18px; border-top:1px solid var(--border);">
+    Adélia Crisóstomo EQEIEF · Caucaia-CE · Fonte: CNCA – Avaliação Interna · LP, MT e Fluência Leitora · 1º, 2º, 3º e 5º Ano · Clique nos cartões para ver as ações sugeridas
+  </div>
+
+</main>
+
+<script>
+function toggle(card) {
+  card.classList.toggle('open');
+}
+
+const sections = document.querySelectorAll('[id]');
+const navItems = document.querySelectorAll('.nav-item[href^="#"]');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
+  navItems.forEach(n => {
+    n.classList.remove('active');
+    if (n.getAttribute('href') === '#' + cur) n.classList.add('active');
+  });
+}, { passive: true });
+
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.querySelectorAll('.progress-fill').forEach(el => {
+      const w = el.style.width;
+      el.style.width = '0';
+      requestAnimationFrame(() => { requestAnimationFrame(() => { el.style.width = w; }); });
+    });
+  }, 300);
+});
+</script>
 </body>
 </html>

@@ -3,195 +3,194 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Painel do Diretor · Saeb 2023 · Adélia Crisóstomo EEIEF</title>
+<title>SAEB 2023 · Adélia Crisóstomo EQEIEF</title>
 <style>
 :root {
-  --bg: #eef2f7;
-  --sidebar-bg: #1a2535;
-  --sidebar-hover: #243145;
-  --surface: #ffffff;
-  --border: #d0d9e8;
-  --border-dark: #2e3d52;
-  --text: #0f1e2e;
-  --muted: #4a5e75;
-  --muted2: #8097b0;
-  --red: #c0392b;
-  --red-bg: #fdf0ef;
-  --red-bdr: #f5b7b1;
-  --red-dark: #a93226;
-  --yellow: #d68910;
-  --yellow-bg: #fef9ec;
-  --yellow-bdr: #f9d98a;
-  --green: #1a7a4a;
-  --green-bg: #edfaf3;
-  --green-bdr: #82e0aa;
-  --blue: #1a56a0;
-  --blue-bg: #eaf2fc;
-  --blue-bdr: #90bce8;
-  --orange: #ca6f1e;
-  --orange-bg: #fef5e7;
-  --orange-bdr: #f8c471;
-  --font-main: 'Arial', 'Tahoma', sans-serif;
-  --fs-xs: 0.80rem; --fs-sm: 0.88rem; --fs-base: 1.00rem;
-  --fs-md: 1.08rem; --fs-lg: 1.20rem; --fs-xl: 1.40rem; --fs-xxl: 1.65rem;
+  --bg:#f0f4f8;--surface:#ffffff;--border:#d8e2ec;
+  --sidebar-bg:#1a2535;--sidebar-hover:#243145;--sidebar-active:rgba(14,116,144,.18);
+  --blue-dark:#1a3a5c;--blue-mid:#1e5799;
+  --teal:#0e7490;--teal-bg:#ecfeff;--teal-bdr:#67e8f9;
+  --text:#0f1e2e;--muted:#4a5e75;--muted2:#8097b0;
+  --red:#c0392b;--red-bg:#fdf0ef;--red-bdr:#f5b7b1;--red-dark:#a93226;
+  --orange:#ca6f1e;--orange-bg:#fef5e7;--orange-bdr:#f8c471;
+  --yellow:#d68910;--yellow-bg:#fef9ec;--yellow-bdr:#f9d98a;
+  --green:#1a7a4a;--green-bg:#edfaf3;--green-bdr:#82e0aa;
+  --blue:#1a56a0;--blue-bg:#eaf2fc;--blue-bdr:#90bce8;
+  --purple:#6200ea;--purple-bg:#f3f0ff;--purple-bdr:#c4b5fd;
+  --font:'Tahoma','Verdana','Arial',sans-serif;
+  --radius:10px;--shadow:0 2px 12px rgba(0,0,0,0.08);
+  --lv0:#ef5350;--lv1:#ef7c43;--lv2:#ffa726;--lv3:#ffd54f;
+  --lv4:#d4e157;--lv5:#aed581;--lv6:#66bb6a;--lv7:#26a69a;
+  --lv8:#29b6f6;--lv9:#5c6bc0;
 }
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; font-size: 16px; }
-body { background: var(--bg); color: var(--text); font-family: var(--font-main); font-size: var(--fs-base); min-height: 100vh; display: flex; line-height: 1.6; letter-spacing: 0.01em; }
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;display:flex;font-size:0.94rem;line-height:1.6;}
 
 /* SIDEBAR */
-.sidebar { width: 270px; min-width: 270px; background: var(--sidebar-bg); height: 100vh; position: sticky; top: 0; display: flex; flex-direction: column; overflow-y: auto; z-index: 100; }
-.sidebar::-webkit-scrollbar { width: 5px; }
-.sidebar::-webkit-scrollbar-track { background: #111c2a; }
-.sidebar::-webkit-scrollbar-thumb { background: #2e3d52; border-radius: 3px; }
-.sidebar-logo { padding: 22px 22px 20px; border-bottom: 1px solid var(--border-dark); background: #111c2a; }
-.school-badge { display: inline-block; background: #1a56a0; color: #fff; font-size: var(--fs-xs); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 10px; border-radius: 4px; margin-bottom: 10px; }
-.school-name { font-size: var(--fs-lg); font-weight: 700; color: #ffffff; line-height: 1.25; margin-bottom: 4px; }
-.school-name span { color: #f0b429; }
-.school-sub { font-size: var(--fs-xs); color: #7a90a8; margin-top: 4px; letter-spacing: 0.06em; }
-.nav-section { padding: 14px 22px 6px; font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.13em; color: #5a7090; font-weight: 700; }
-.nav-item { display: flex; align-items: center; gap: 12px; padding: 13px 22px; cursor: pointer; border-left: 4px solid transparent; transition: all 0.2s; text-decoration: none; }
-.nav-item:hover { background: var(--sidebar-hover); }
-.nav-item.active { background: rgba(26,86,160,0.18); border-left-color: #4a9fd4; }
-.nav-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
-.nav-label { font-size: var(--fs-sm); font-weight: 600; color: #b8cce0; line-height: 1.25; }
-.nav-item.active .nav-label { color: #ffffff; }
-.nav-badge { margin-left: auto; min-width: 24px; height: 24px; border-radius: 12px; font-size: var(--fs-xs); font-weight: 700; display: flex; align-items: center; justify-content: center; padding: 0 6px; flex-shrink: 0; }
-.nav-badge.red { background: var(--red); color: #fff; }
-.nav-badge.yellow { background: var(--yellow); color: #fff; }
-.nav-badge.green { background: var(--green); color: #fff; }
-.semaforo-block { padding: 12px 20px 6px; }
-.sem-item { display: flex; align-items: center; gap: 10px; padding: 6px 0; font-size: var(--fs-sm); color: #8daabf; border-bottom: 1px solid #243145; }
-.sem-item:last-child { border-bottom: none; }
-.sem-dot { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
-.sidebar-footer { margin-top: auto; padding: 16px 22px; border-top: 1px solid var(--border-dark); font-size: var(--fs-xs); color: #5a7090; line-height: 1.7; }
+.sidebar{width:264px;min-width:264px;background:var(--sidebar-bg);height:100vh;position:sticky;top:0;display:flex;flex-direction:column;overflow-y:auto;z-index:100;}
+.sidebar::-webkit-scrollbar{width:4px;}
+.sidebar::-webkit-scrollbar-thumb{background:#2e3d52;border-radius:3px;}
+.sidebar-logo{padding:20px 20px 18px;border-bottom:1px solid #2e3d52;background:#111c2a;}
+.school-badge{display:inline-block;background:var(--teal);color:#fff;font-size:0.70rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:3px 10px;border-radius:4px;margin-bottom:9px;}
+.school-name{font-size:1.08rem;font-weight:700;color:#fff;line-height:1.25;margin-bottom:3px;}
+.school-name span{color:#f0b429;}
+.school-sub{font-size:0.70rem;color:#7a90a8;margin-top:3px;letter-spacing:0.05em;}
+.nav-section{padding:12px 20px 5px;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.13em;color:#5a7090;font-weight:700;}
+.nav-item{display:flex;align-items:center;gap:11px;padding:11px 20px;cursor:pointer;border-left:4px solid transparent;transition:all 0.2s;text-decoration:none;color:inherit;}
+.nav-item:hover{background:var(--sidebar-hover);}
+.nav-item.active{background:var(--sidebar-active);border-left-color:#22d3ee;}
+.nav-icon{width:32px;height:32px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.nav-label{font-size:0.85rem;font-weight:600;color:#b8cce0;line-height:1.25;}
+.nav-item.active .nav-label{color:#fff;}
+.nav-badge{margin-left:auto;min-width:22px;height:22px;border-radius:11px;font-size:0.70rem;font-weight:700;display:flex;align-items:center;justify-content:center;padding:0 5px;flex-shrink:0;}
+.nb-red{background:var(--red);color:#fff} .nb-yellow{background:var(--yellow);color:#fff}
+.nb-green{background:var(--green);color:#fff} .nb-orange{background:var(--orange);color:#fff}
+.nb-teal{background:var(--teal);color:#fff} .nb-purple{background:#6d28d9;color:#fff}
+.nav-item.recomp{border-top:1px solid #243145;margin-top:4px;padding-top:13px;}
+.legend-block{padding:8px 20px 6px;}
+.leg-row{display:flex;align-items:center;gap:8px;padding:5px 0;font-size:0.74rem;color:#8daabf;border-bottom:1px solid #243145;}
+.leg-row:last-child{border-bottom:none;}
+.leg-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0;}
+.sidebar-footer{margin-top:auto;padding:14px 20px;border-top:1px solid #2e3d52;font-size:0.70rem;color:#5a7090;line-height:1.7;}
 
 /* MAIN */
-.main { flex: 1; min-width: 0; padding: 32px 36px 48px; max-width: 960px; }
+.main{flex:1;min-width:0;padding:28px 32px 52px;}
 
 /* TOPBAR */
-.topbar { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 32px; flex-wrap: wrap; gap: 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 22px 26px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
-.topbar-title { font-size: var(--fs-xxl); font-weight: 700; color: var(--text); line-height: 1.2; }
-.topbar-sub { font-size: var(--fs-sm); color: var(--muted); margin-top: 5px; line-height: 1.5; }
-.topbar-date { font-size: var(--fs-xs); color: var(--muted2); margin-top: 4px; }
-.topbar-stats { display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-start; }
-.topbar-stat { background: var(--bg); border: 1.5px solid var(--border); border-radius: 10px; padding: 10px 16px; text-align: center; min-width: 90px; }
-.topbar-stat .val { font-size: var(--fs-lg); font-weight: 700; display: block; line-height: 1.2; }
-.topbar-stat .lbl { font-size: var(--fs-xs); color: var(--muted); text-transform: uppercase; letter-spacing: 0.07em; font-weight: 600; display: block; margin-top: 2px; }
-.topbar-stat.green .val { color: var(--green); }
-.topbar-stat.yellow .val { color: var(--yellow); }
-.topbar-stat.red .val { color: var(--red); }
-.topbar-stat.blue .val { color: var(--blue); }
+.topbar{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:26px;flex-wrap:wrap;gap:14px;}
+.topbar-title h2{font-size:1.35rem;font-weight:700;color:var(--text);}
+.topbar-title p{font-size:0.80rem;color:var(--muted);margin-top:3px;}
+.topbar-stats{display:flex;gap:10px;flex-wrap:wrap;}
+.topbar-stat{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:9px 16px;text-align:center;box-shadow:var(--shadow);}
+.topbar-stat .ts-val{font-size:1.1rem;font-weight:700;display:block;}
+.topbar-stat .ts-lab{font-size:0.68rem;color:var(--muted2);text-transform:uppercase;letter-spacing:0.07em;}
+.ts-red{color:var(--red)} .ts-yellow{color:var(--yellow)} .ts-orange{color:var(--orange)}
+.ts-green{color:var(--green)} .ts-blue{color:var(--blue)} .ts-teal{color:var(--teal)}
 
-/* SECTION */
-.section { margin-bottom: 36px; }
-.section-header { display: flex; align-items: center; gap: 14px; padding: 18px 22px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px 12px 0 0; border-bottom: 3px solid var(--border); }
-.section-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
-.section-info h2 { font-size: var(--fs-lg); font-weight: 700; color: var(--text); line-height: 1.3; }
-.section-info p { font-size: var(--fs-sm); color: var(--muted); margin-top: 3px; line-height: 1.5; }
+/* SECTION TITLE */
+.section-title{font-size:1.05rem;font-weight:700;color:var(--blue-dark);padding-bottom:8px;border-bottom:2px solid var(--border);margin-bottom:18px;margin-top:32px;display:flex;align-items:center;gap:10px;}
+.section-title:first-of-type{margin-top:0;}
 
-/* CARDS GRID */
-.cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; padding: 18px 22px; background: var(--surface); border: 1px solid var(--border); border-top: none; border-radius: 0 0 12px 12px; }
-.info-card { border: 1.5px solid var(--border); border-radius: 10px; padding: 16px; background: #fafbfd; }
-.info-card .ctx-label { font-size: var(--fs-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 6px; }
-.info-card .ctx-val { font-size: var(--fs-xl); font-weight: 700; line-height: 1.2; margin-bottom: 6px; }
-.info-card .ctx-desc { font-size: var(--fs-xs); color: var(--muted2); line-height: 1.6; }
+/* KPI GRID */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:14px;margin-bottom:24px;}
+.kpi-card{background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);padding:16px 14px 12px;text-align:center;}
+.kpi-val{font-size:1.8rem;font-weight:700;line-height:1;margin-bottom:5px;}
+.kpi-label{font-size:0.70rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.07em;line-height:1.4;}
+.kpi-sub{font-size:0.68rem;color:var(--muted2);margin-top:3px;}
 
-/* NÍVEL BARS */
-.nivel-section { padding: 18px 22px; background: var(--surface); border: 1px solid var(--border); border-top: none; }
-.nivel-section-label { font-size: var(--fs-xs); font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); padding-bottom: 12px; display: block; }
-.nivel-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
-.nivel-label { width: 48px; color: var(--muted); font-weight: 700; font-size: var(--fs-xs); flex-shrink: 0; text-align: right; }
-.nivel-track { flex: 1; background: #e8eef6; border-radius: 4px; height: 16px; overflow: hidden; }
-.nivel-fill { height: 100%; border-radius: 4px; transition: width 0.75s ease; display: flex; align-items: center; padding-left: 6px; }
-.nivel-pct { font-size: 0.70rem; font-weight: 700; color: rgba(255,255,255,0.9); white-space: nowrap; }
-.nivel-val-ext { width: 46px; font-weight: 700; font-size: var(--fs-xs); flex-shrink: 0; }
-.fill-n0 { background: #7f1d1d; }
-.fill-n1 { background: #c0392b; }
-.fill-n2 { background: #cb6344; }
-.fill-n3 { background: #d68910; }
-.fill-n4 { background: #a38600; }
-.fill-n5 { background: #2e86c1; }
-.fill-n6 { background: #1a7a4a; }
-.fill-n7 { background: #0d5c38; }
-.fill-n8 { background: #064e2e; }
+/* CTX BOXES */
+.ctx-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-bottom:16px;}
+.ctx-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;}
+.ctx-box.yellow{border-left:4px solid var(--yellow);}
+.ctx-box.green{border-left:4px solid var(--green);}
+.ctx-box.red{border-left:4px solid var(--red);}
+.ctx-box.blue{border-left:4px solid var(--blue);}
+.ctx-box.orange{border-left:4px solid var(--orange);}
+.ctx-label{font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);font-weight:700;margin-bottom:6px;}
+.ctx-val{font-size:2.2rem;font-weight:700;line-height:1;margin-bottom:4px;}
+.ctx-val.yellow{color:var(--yellow);} .ctx-val.green{color:var(--green);} .ctx-val.red{color:var(--red);} .ctx-val.blue{color:var(--blue);}
+.ctx-note{font-size:0.76rem;color:var(--muted);line-height:1.5;}
+.adeq-prog{margin-top:10px;}
+.adeq-prog-lbl{display:flex;justify-content:space-between;font-size:0.65rem;color:var(--muted);margin-bottom:4px;}
+.adeq-track{background:#eef1f5;border-radius:4px;height:9px;overflow:hidden;}
+.adeq-fill{height:100%;border-radius:4px;transition:width 0.8s ease;}
+.adeq-fill.yellow{background:var(--yellow);} .adeq-fill.red{background:var(--red);} .adeq-fill.green{background:var(--green);}
 
-/* ALERTA BOX */
-.alert-box { border-radius: 8px; padding: 12px 16px; margin-top: 14px; }
-.alert-box.red { background: var(--red-bg); border: 1px solid var(--red-bdr); }
-.alert-box.yellow { background: var(--yellow-bg); border: 1px solid var(--yellow-bdr); }
-.alert-box.blue { background: var(--blue-bg); border: 1px solid var(--blue-bdr); }
-.alert-box .al-title { font-size: var(--fs-xs); font-weight: 700; text-transform: uppercase; letter-spacing: .07em; margin-bottom: 6px; }
-.alert-box.red .al-title { color: var(--red-dark); }
-.alert-box.yellow .al-title { color: #7d5a10; }
-.alert-box.blue .al-title { color: #123e7a; }
-.alert-box .al-text { font-size: var(--fs-sm); line-height: 1.75; }
-.alert-box.red .al-text { color: #5a1a1a; }
-.alert-box.yellow .al-text { color: #5a3d08; }
-.alert-box.blue .al-text { color: #0f2d5e; }
+/* COMP STRIP */
+.comp-strip{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;}
+.comp-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:12px 16px;flex:1;min-width:120px;}
+.comp-box-lbl{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);font-weight:700;margin-bottom:4px;}
+.comp-val{font-size:1.6rem;font-weight:700;line-height:1.1;}
+.comp-val.school{color:var(--blue);} .comp-val.sim{color:var(--muted);}
+.comp-val.gap-red{color:var(--red);} .comp-val.gap-yellow{color:var(--yellow);}
+.comp-note{font-size:0.70rem;color:var(--muted);margin-top:3px;}
 
-/* COMP TABLE */
-.comp-wrap { background: var(--surface); border: 1px solid var(--border); border-top: none; border-radius: 0 0 12px 12px; overflow-x: auto; padding: 0 22px 22px; }
-.comp-table { width: 100%; border-collapse: collapse; font-size: var(--fs-sm); margin-top: 8px; }
-.comp-table th { background: #eef2f7; color: var(--muted); font-weight: 700; padding: 9px 10px; text-align: left; font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.07em; border-bottom: 2px solid var(--border); white-space: nowrap; }
-.comp-table td { padding: 9px 10px; border-bottom: 1px solid var(--border); font-size: var(--fs-sm); white-space: nowrap; }
-.comp-table tr:last-child td { border-bottom: none; }
-.comp-table tr:hover td { background: #f4f8ff; }
-.comp-table .dest td { background: rgba(26,86,160,.05); font-weight: 700; }
-.chip { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: var(--fs-xs); font-weight: 700; }
-.chip.red { background: var(--red-bg); color: var(--red-dark); border: 1px solid var(--red-bdr); }
-.chip.yellow { background: var(--yellow-bg); color: #7d5a10; border: 1px solid var(--yellow-bdr); }
-.chip.green { background: var(--green-bg); color: #155234; border: 1px solid var(--green-bdr); }
+/* ALERT BANNERS */
+.alert-banner{border-radius:var(--radius);padding:13px 17px;margin-bottom:11px;border-left:5px solid;font-size:0.86rem;display:flex;align-items:flex-start;gap:11px;}
+.alert-banner.danger{background:var(--red-bg);border-color:var(--red);color:#7a1a0e;}
+.alert-banner.warning{background:var(--yellow-bg);border-color:var(--yellow);color:#7a3e05;}
+.alert-banner.success{background:var(--green-bg);border-color:var(--green);color:#155234;}
+.alert-banner.info{background:var(--blue-bg);border-color:var(--blue);color:#12347a;}
+.alert-banner.purple{background:var(--purple-bg);border-color:var(--purple);color:#3d0080;}
+.alert-banner .ab-icon{font-size:1.3rem;flex-shrink:0;margin-top:1px;}
+.alert-title{font-weight:700;margin-bottom:3px;}
+.alert-body{font-size:0.80rem;line-height:1.6;}
 
-/* HIST GRID */
-.hist-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; padding: 18px 22px; background: var(--surface); border: 1px solid var(--border); border-top: none; }
-.hist-item { background: #fafbfd; border: 1.5px solid var(--border); border-radius: 8px; padding: 12px; text-align: center; }
-.hist-item .h-year { font-size: var(--fs-xs); color: var(--muted); font-weight: 700; margin-bottom: 4px; }
-.hist-item .h-escola { font-size: var(--fs-md); font-weight: 700; }
-.hist-item .h-sim { font-size: var(--fs-xs); color: var(--muted2); margin-top: 2px; }
-.hist-item .h-comp { font-size: var(--fs-xs); margin-top: 4px; font-weight: 700; }
-.hist-year-2023 { border-color: var(--blue) !important; background: var(--blue-bg) !important; }
+/* PROF BARS */
+.prof-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px;margin-bottom:14px;}
+.prof-title{font-weight:700;font-size:0.92rem;margin-bottom:3px;color:var(--blue-dark);}
+.prof-sub{font-size:0.74rem;color:var(--muted);margin-bottom:14px;}
+.prof-bars{display:flex;flex-direction:column;gap:6px;}
+.bar-row{display:flex;align-items:center;gap:8px;}
+.bar-lv{width:48px;font-size:0.68rem;font-weight:700;text-align:center;padding:2px 4px;border-radius:4px;flex-shrink:0;color:#fff;}
+.bar-desc{flex:1;min-width:0;}
+.bar-name{font-size:0.72rem;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.bar-track{height:20px;background:#eef1f5;border-radius:4px;overflow:hidden;flex:2;}
+.bar-fill{height:100%;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding-right:6px;transition:width 0.8s ease;}
+.bar-fill span{font-size:0.65rem;font-weight:700;color:rgba(255,255,255,0.9);white-space:nowrap;}
+.bar-ref{display:flex;align-items:center;gap:4px;width:52px;flex-shrink:0;}
+.bar-ref-val{font-size:0.68rem;font-weight:600;color:var(--muted2);}
+.bar-compare{width:10px;height:14px;border-radius:2px;flex-shrink:0;opacity:0.4;}
 
-/* NOTIF CARDS */
-.notif-card { background: var(--surface); border: 1px solid var(--border); border-top: none; cursor: pointer; transition: background 0.15s; overflow: hidden; }
-.notif-card:last-child { border-radius: 0 0 12px 12px; }
-.notif-card:hover { background: #f5f8ff; }
-.notif-card.priority-red { border-left: 5px solid var(--red); }
-.notif-card.priority-yellow { border-left: 5px solid var(--yellow); }
-.notif-card.priority-green { border-left: 5px solid var(--green); }
-.notif-top { display: flex; align-items: flex-start; gap: 16px; padding: 18px 22px; }
-.notif-avatar { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
-.notif-avatar.red { background: var(--red-bg); }
-.notif-avatar.yellow { background: var(--yellow-bg); }
-.notif-avatar.green { background: var(--green-bg); }
-.notif-body { flex: 1; min-width: 0; }
-.notif-header-row { display: flex; align-items: flex-start; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
-.notif-title { font-weight: 700; font-size: var(--fs-md); line-height: 1.4; flex: 1; color: var(--text); }
-.notif-source { font-size: var(--fs-xs); font-weight: 700; padding: 3px 10px; border-radius: 20px; background: #e8eef6; color: var(--muted); white-space: nowrap; flex-shrink: 0; align-self: flex-start; }
-.notif-summary { font-size: var(--fs-sm); color: var(--muted); line-height: 1.65; margin-bottom: 10px; }
-.notif-metrics { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
-.metric-pill { display: flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 20px; font-size: var(--fs-sm); font-weight: 700; }
-.metric-pill.red { background: var(--red-bg); color: var(--red-dark); border: 1px solid var(--red-bdr); }
-.metric-pill.yellow { background: var(--yellow-bg); color: #7d5a10; border: 1px solid var(--yellow-bdr); }
-.metric-pill.green { background: var(--green-bg); color: #155234; border: 1px solid var(--green-bdr); }
-.metric-pill.blue { background: var(--blue-bg); color: #123e7a; border: 1px solid var(--blue-bdr); }
-.dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-.notif-toggle { background: none; border: none; cursor: pointer; font-size: 1.3rem; color: var(--muted2); flex-shrink: 0; padding: 4px 6px; transition: transform 0.2s; align-self: center; }
-.notif-card.open .notif-toggle { transform: rotate(180deg); }
-.notif-expand { max-height: 0; overflow: hidden; transition: max-height 0.38s ease; background: #f4f8ff; padding: 0 22px; }
-.notif-card.open .notif-expand { max-height: 800px; border-top: 1px solid var(--border); padding: 18px 22px; }
-.expand-action { margin-bottom: 12px; }
-.action-tag { display: inline-block; background: #1a2535; color: #f0b429; font-size: var(--fs-xs); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border-radius: 4px; margin-bottom: 8px; }
-.action-text { font-size: var(--fs-sm); color: #2c3e50; line-height: 1.8; }
-.expand-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
-.expand-tag { background: #dde4ef; color: #3d5270; font-size: var(--fs-xs); font-weight: 700; padding: 3px 10px; border-radius: 20px; }
+/* DATA TABLE */
+.data-table-wrap{background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);overflow:hidden;margin-bottom:12px;}
+.data-table-wrap .table-header{padding:12px 16px 10px;border-bottom:1px solid var(--border);background:#fafcff;}
+.table-header h3{font-size:0.90rem;font-weight:700;color:var(--blue-dark);}
+.table-header p{font-size:0.73rem;color:var(--muted2);}
+.table-scroll{overflow-x:auto;}
+.data-table{width:100%;border-collapse:collapse;font-size:0.80rem;}
+.data-table thead tr{background:linear-gradient(135deg,#1a3a5c,#1e5799);color:#fff;}
+.data-table th{padding:10px 12px;text-align:left;font-size:0.70rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;white-space:nowrap;}
+.data-table td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:middle;}
+.data-table tbody tr:last-child td{border-bottom:none;}
+.data-table tbody tr:hover{background:#f8fafc;}
+.data-table tbody tr.adeq-row{background:#f0fdf4;}
+.lv-chip{display:inline-block;color:#fff;font-size:0.66rem;font-weight:700;padding:2px 7px;border-radius:4px;}
+.diff-pos{color:var(--green);font-weight:700;}
+.diff-neg{color:var(--red);font-weight:700;}
+.school-pct{font-weight:700;}
+.sim-pct{color:var(--muted2);}
+.fonte{font-size:0.68rem;color:var(--muted2);margin-top:5px;}
 
-.footer-note { text-align: center; padding: 22px; font-size: var(--fs-xs); color: var(--muted2); border-top: 1px solid var(--border); margin-top: 10px; line-height: 1.8; }
+/* HAB GRID */
+.hab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-bottom:14px;}
+.hab-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 16px;}
+.hab-card-title{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:10px;}
+.hab-row{display:flex;align-items:flex-start;gap:7px;padding:5px 0;border-bottom:1px solid var(--border);}
+.hab-row:last-child{border-bottom:none;}
+.hab-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:5px;}
+.hab-text{font-size:0.76rem;color:var(--text);line-height:1.45;flex:1;}
+.hab-lv{font-size:0.65rem;font-weight:700;padding:2px 5px;border-radius:4px;flex-shrink:0;margin-top:2px;color:#fff;}
 
-@media (max-width: 900px) {
-  .sidebar { display: none; }
-  .main { padding: 20px 18px; }
-  .topbar { flex-direction: column; }
+/* PLAN ITEMS */
+.plan-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:15px 18px;display:flex;gap:14px;margin-bottom:10px;cursor:pointer;transition:box-shadow 0.18s;}
+.plan-item:hover{box-shadow:0 4px 18px rgba(0,0,0,0.10);}
+.plan-num{font-size:1.8rem;font-weight:700;line-height:1;flex-shrink:0;width:32px;text-align:center;}
+.plan-num.red{color:var(--red);} .plan-num.yellow{color:var(--yellow);} .plan-num.green{color:var(--green);} .plan-num.blue{color:var(--blue);}
+.plan-content{flex:1;}
+.plan-hrow{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:4px;}
+.plan-title{font-weight:700;font-size:0.88rem;line-height:1.35;}
+.plan-badge{font-size:0.65rem;font-weight:700;padding:2px 8px;border-radius:20px;flex-shrink:0;white-space:nowrap;}
+.plan-badge.red{background:var(--red-bg);color:var(--red-dark);border:1px solid var(--red-bdr);}
+.plan-badge.yellow{background:var(--yellow-bg);color:#7d5a10;border:1px solid var(--yellow-bdr);}
+.plan-badge.green{background:var(--green-bg);color:#155234;border:1px solid var(--green-bdr);}
+.plan-desc{font-size:0.80rem;color:var(--muted);line-height:1.55;}
+.plan-steps{display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:0.80rem;color:#334155;line-height:1.85;}
+.plan-item.open .plan-steps{display:block;}
+.plan-item.open{border-left:4px solid var(--teal);}
+
+/* NOTA BOX */
+.nota-box{background:var(--blue-bg);border:1.5px solid var(--blue-bdr);border-radius:var(--radius);padding:14px 18px;margin-bottom:16px;}
+.nota-box h4{font-size:0.84rem;font-weight:700;color:var(--blue-dark);margin-bottom:6px;}
+.nota-box p{font-size:0.78rem;color:var(--muted);line-height:1.6;}
+
+@media(max-width:768px){
+  .sidebar{display:none;}
+  .main{padding:18px 16px 40px;}
+  .kpi-grid{grid-template-columns:repeat(2,1fr);}
+  .ctx-grid{grid-template-columns:1fr;}
+  .comp-strip{flex-direction:column;}
 }
 </style>
 </head>
@@ -199,64 +198,47 @@ body { background: var(--bg); color: var(--text); font-family: var(--font-main);
 
 <aside class="sidebar">
   <div class="sidebar-logo">
-    <div class="school-badge">📘 SAEB 2023</div>
-    <div class="school-name"><span>Adélia Crisóstomo</span> EEIEF</div>
-    <div class="school-sub">Caucaia · CE · INEP 23063734 · Municipal</div>
+    <div class="school-badge">Painel do Diretor</div>
+    <div class="school-name">Adélia <span>Crisóstomo</span></div>
+    <div class="school-sub">EQEIEF · Caucaia · CE · Região BR-222</div>
   </div>
 
-  <div class="nav-section">Navegação</div>
-  <a class="nav-item active" href="#contexto">
-    <div class="nav-icon" style="background:rgba(26,86,160,.15)">🏛️</div>
-    <span class="nav-label">Contexto da Escola</span>
-  </a>
-  <a class="nav-item" href="#visao">
-    <div class="nav-icon" style="background:rgba(192,57,43,.12)">📊</div>
-    <span class="nav-label">Visão Geral · 9º Ano</span>
-  </a>
-  <a class="nav-item" href="#lp">
-    <div class="nav-icon" style="background:rgba(192,57,43,.12)">📖</div>
-    <span class="nav-label">Língua Portuguesa</span>
-    <span class="nav-badge red">!</span>
-  </a>
-  <a class="nav-item" href="#mt">
-    <div class="nav-icon" style="background:rgba(192,57,43,.12)">🔢</div>
-    <span class="nav-label">Matemática</span>
-    <span class="nav-badge red">!!</span>
-  </a>
-  <a class="nav-item" href="#comparativo">
-    <div class="nav-icon" style="background:rgba(74,159,212,.15)">🔍</div>
-    <span class="nav-label">Comparativo</span>
-  </a>
-  <a class="nav-item" href="#historico">
-    <div class="nav-icon" style="background:rgba(108,76,180,.12)">📅</div>
-    <span class="nav-label">Série Histórica</span>
-  </a>
-  <a class="nav-item" href="#alertas">
-    <div class="nav-icon" style="background:rgba(202,111,30,.12)">🔔</div>
-    <span class="nav-label">Alertas Cruzados</span>
-    <span class="nav-badge red">5</span>
-  </a>
-  <a class="nav-item" href="#acoes">
-    <div class="nav-icon" style="background:rgba(26,86,160,.12)">⚡</div>
-    <span class="nav-label">Plano de Ação</span>
-  </a>
+  <div class="nav-section">Indicadores</div>
+  <a class="nav-item" href="painel.html"><div class="nav-icon" style="background:#ecfeff">🏠</div><span class="nav-label">Visão Geral</span></a>
+  <a class="nav-item" href="resumo_executivo.html"><div class="nav-icon" style="background:#fdf0ef">🚨</div><span class="nav-label">Resumo Executivo</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="busca_ativa.html"><div class="nav-icon" style="background:#fef5e7">🔍</div><span class="nav-label">Busca Ativa</span><span class="nav-badge nb-orange">!</span></a>
+  <a class="nav-item" href="adsec.html"><div class="nav-icon" style="background:#edfaf3">📖</div><span class="nav-label">ADESC 2025</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="avalie_ce_corrigido.html"><div class="nav-icon" style="background:#fef9ec">📊</div><span class="nav-label">Avalie.CE</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="bimestrais.html"><div class="nav-icon" style="background:#eaf2fc">📝</div><span class="nav-label">Bimestrais 2025</span><span class="nav-badge nb-yellow">!</span></a>
+  <a class="nav-item" href="cnca.html"><div class="nav-icon" style="background:#fef5e7">📚</div><span class="nav-label">CNCA</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="qedu.html"><div class="nav-icon" style="background:#eaf2fc">🎓</div><span class="nav-label">QEdu / Censo</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item recomp" href="recomposicao.html"><div class="nav-icon" style="background:var(--purple-bg)">🎒</div><span class="nav-label" style="color:#c4b5fd">Recomposição</span><span class="nav-badge nb-purple">!</span></a>
+  <a class="nav-item active" href="saeb.html"><div class="nav-icon" style="background:#fdf0ef">📋</div><span class="nav-label">SAEB 2023</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="spaece.html"><div class="nav-icon" style="background:#fef9ec">📈</div><span class="nav-label">SPAECE 2024</span><span class="nav-badge nb-red">!!</span></a>
 
-  <div class="nav-section" style="margin-top:12px">Escala Saeb — Níveis LP/MT</div>
-  <div class="semaforo-block">
-    <div class="sem-item"><div class="sem-dot" style="background:#7f1d1d"></div>Nível 0 — Elementar crítico</div>
-    <div class="sem-item"><div class="sem-dot" style="background:#c0392b"></div>Nível 1 — Muito Básico</div>
-    <div class="sem-item"><div class="sem-dot" style="background:#cb6344"></div>Nível 2 — Básico inferior</div>
-    <div class="sem-item"><div class="sem-dot" style="background:#d68910"></div>Níveis 3–4 — Básico</div>
-    <div class="sem-item"><div class="sem-dot" style="background:#2e86c1"></div>Nível 5 — Intermediário</div>
-    <div class="sem-item"><div class="sem-dot" style="background:#1a7a4a"></div>Níveis 6–9 — Adequado+</div>
+  <div class="nav-section" style="margin-top:10px">Navegação Interna</div>
+  <a class="nav-item" href="#contexto"><div class="nav-icon" style="background:rgba(26,86,160,.12)">📌</div><span class="nav-label">Contexto</span></a>
+  <a class="nav-item" href="#aprendizado"><div class="nav-icon" style="background:rgba(192,57,43,.12)">🎯</div><span class="nav-label">Aprendizado Adequado</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="#lp"><div class="nav-icon" style="background:rgba(26,86,160,.12)">📖</div><span class="nav-label">Língua Portuguesa</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="#mt"><div class="nav-icon" style="background:rgba(192,57,43,.12)">🔢</div><span class="nav-label">Matemática</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="#habilidades"><div class="nav-icon" style="background:rgba(214,137,16,.12)">📚</div><span class="nav-label">Habilidades por Nível</span></a>
+  <a class="nav-item" href="#acoes"><div class="nav-icon" style="background:#eaf2fc">⚡</div><span class="nav-label">Plano de Ação</span></a>
+
+  <div class="nav-section" style="margin-top:10px">Escala SAEB (9º Ano)</div>
+  <div class="legend-block">
+    <div class="leg-row"><div class="leg-dot" style="background:var(--lv7)"></div>N5–N8 (≥300) LP Adequado</div>
+    <div class="leg-row"><div class="leg-dot" style="background:var(--lv6)"></div>N3–N4 (250–299) LP Básico</div>
+    <div class="leg-row"><div class="leg-dot" style="background:var(--lv2)"></div>N0–N2 (&lt;250) LP Insuf.</div>
+    <div class="leg-row"><div class="leg-dot" style="background:var(--lv7)"></div>N5–N9 (≥275) MT Adequado</div>
+    <div class="leg-row"><div class="leg-dot" style="background:var(--lv2)"></div>N0–N4 (&lt;275) MT Insuf.</div>
   </div>
+
+  <div class="nav-section" style="margin-top:10px">Sistema</div>
+  <a class="nav-item" href="../index.html"><div class="nav-icon" style="background:#fdf0ef">🏫</div><span class="nav-label">Trocar Escola</span></a>
 
   <div class="sidebar-footer">
-    Adélia Crisóstomo EEIEF<br>
-    Caucaia · CE · INEP 23063734<br>
-    Fonte: Saeb 2023 / INEP<br>
-    9º Ano · 29 alunos avaliados<br>
-    <strong style="color:#7a90a8">Clique nos cartões para ver as ações</strong>
+    <div>Adélia Crisóstomo EQEIEF<br>Caucaia · CE · Região BR-222</div>
+    <div style="margin-top:6px;color:#8097b0">Fonte: Boletim Saeb 2023<br>INEP/MEC · 9º Ano · INEP 23063734</div>
   </div>
 </aside>
 
@@ -264,897 +246,475 @@ body { background: var(--bg); color: var(--text); font-family: var(--font-main);
 
   <!-- TOPBAR -->
   <div class="topbar">
-    <div>
-      <div class="topbar-title">📘 Painel do Diretor — Saeb 2023</div>
-      <div class="topbar-sub">Sistema de Avaliação da Educação Básica · INEP · 9º Ano do EF<br>
-        <strong>Adélia Crisóstomo EEIEF · Caucaia-CE · Municipal · INEP 23063734</strong></div>
-      <div class="topbar-date">Boletim da Escola · Saeb 2023 · 29 estudantes avaliados de 33 matriculados · Participação: 87,88%</div>
+    <div class="topbar-title">
+      <h2>📋 SAEB 2023 · Adélia Crisóstomo EQEIEF</h2>
+      <p>9º Ano do Ensino Fundamental · Municipal · Caucaia-CE · NSE Grupo 4 · Form. Docente AI: 98,1% · AF: 61,2%</p>
     </div>
     <div class="topbar-stats">
-      <div class="topbar-stat blue"><span class="val">237,42</span><span class="lbl">LP 2023</span></div>
-      <div class="topbar-stat red"><span class="val">228,93</span><span class="lbl">MT 2023</span></div>
-      <div class="topbar-stat red"><span class="val">49,6%</span><span class="lbl">LP N0+N1</span></div>
-      <div class="topbar-stat red"><span class="val">49,8%</span><span class="lbl">MT N0+N1</span></div>
+      <div class="topbar-stat"><span class="ts-val ts-red">237</span><span class="ts-lab">Média LP</span></div>
+      <div class="topbar-stat"><span class="ts-val ts-red">229</span><span class="ts-lab">Média MT</span></div>
+      <div class="topbar-stat"><span class="ts-val ts-red">21,8%</span><span class="ts-lab">Adeq. LP (N5+)</span></div>
+      <div class="topbar-stat"><span class="ts-val ts-red">10,9%</span><span class="ts-lab">Adeq. MT (N5+)</span></div>
+      <div class="topbar-stat"><span class="ts-val ts-teal">87,9%</span><span class="ts-lab">Participação</span></div>
     </div>
   </div>
 
-  <!-- ===== CONTEXTO ===== -->
-  <div class="section" id="contexto">
-    <div class="section-header">
-      <div class="section-icon" style="background:rgba(26,86,160,.12)">🏛️</div>
-      <div class="section-info">
-        <h2>Indicadores Contextuais da Escola</h2>
-        <p>Nível Socioeconômico · Formação Docente · Participação · Saeb 2023 / INEP</p>
-      </div>
+  <div class="alert-banner danger">
+    <span class="ab-icon">🚨</span>
+    <div>
+      <div class="alert-title">Situação crítica no 9º Ano: 49,6% em LP e 71,3% em MT nos níveis mais baixos (N0+N1). Apenas 5º e 9º Ano avaliados — sem dados do 5º Ano Saeb.</div>
+      <div class="alert-body">O Boletim SAEB 2023 mostra que <strong>24,93% dos alunos estão no Nível 0 em LP</strong> (abaixo de 200 pts — habilidades elementares ausentes) e <strong>32,09% no Nível 0 em MT</strong>. A média de LP (237,42) está <strong>acima das Escolas Similares (241,69)</strong> — um ponto positivo. MT (228,93) está <strong>abaixo das similares (237,73)</strong> — gap de −8,8 pts. A escola só avaliou o <strong>9º Ano</strong> no SAEB 2023 (5º Ano sem dados). Clique nas prioridades para ver os passos de ação.</div>
     </div>
-    <div class="cards-grid">
-      <div class="info-card">
+  </div>
+
+  <!-- ====== CONTEXTO ====== -->
+  <div id="contexto">
+    <div class="section-title">📌 Contexto Escolar — SAEB 2023</div>
+
+    <div class="kpi-grid">
+      <div class="kpi-card"><div class="kpi-val ts-blue">29</div><div class="kpi-label">Alunos Presentes</div><div class="kpi-sub">9º Ano · Saeb 2023</div></div>
+      <div class="kpi-card"><div class="kpi-val" style="color:var(--muted)">33</div><div class="kpi-label">Matriculados</div><div class="kpi-sub">Censo vigente</div></div>
+      <div class="kpi-card"><div class="kpi-val ts-teal">87,9%</div><div class="kpi-label">Participação</div><div class="kpi-sub">4 alunos ausentes</div></div>
+      <div class="kpi-card"><div class="kpi-val ts-green">98,1%</div><div class="kpi-label">Form. Doc. · AI</div><div class="kpi-sub">Licenciatura adequada</div></div>
+      <div class="kpi-card"><div class="kpi-val ts-yellow">61,2%</div><div class="kpi-label">Form. Doc. · AF</div><div class="kpi-sub">Anos Finais EF</div></div>
+      <div class="kpi-card"><div class="kpi-val ts-yellow">Gr. 4</div><div class="kpi-label">NSE</div><div class="kpi-sub">De 6 grupos</div></div>
+      <div class="kpi-card"><div class="kpi-val" style="color:var(--muted);font-size:1.2rem">9º EF</div><div class="kpi-label">Etapa Avaliada</div><div class="kpi-sub">5º e 3ºEM: sem dados</div></div>
+      <div class="kpi-card"><div class="kpi-val ts-red">237</div><div class="kpi-label">Profic. LP</div><div class="kpi-sub">Média escola · Crítico</div></div>
+    </div>
+
+    <div class="ctx-grid">
+      <div class="ctx-box yellow">
         <div class="ctx-label">Nível Socioeconômico</div>
-        <div class="ctx-val" style="color:var(--blue)">Grupo 4</div>
-        <div class="ctx-desc">Escala de 1 a 6 (Grupo 1 = mais alto). Grupo 4 indica nível médio-baixo — baseado em escolaridade dos pais e posse de bens. Exige atenção às condições de vida que afetam a aprendizagem.</div>
+        <div class="ctx-val yellow">Grupo 4</div>
+        <div class="ctx-note">De 6 grupos (1 = mais alto), a escola está no nível médio-baixo. O NSE contextualiza os resultados e explica parte do desafio, mas escolas similares com o mesmo NSE têm resultados levemente superiores em MT — o que aponta para margem de melhoria pedagógica.</div>
       </div>
-      <div class="info-card">
-        <div class="ctx-label">Formação Docente — Anos Iniciais EF</div>
-        <div class="ctx-val" style="color:var(--green)">98,1%</div>
-        <div class="ctx-desc">Excelente: quase a totalidade dos professores dos Anos Iniciais possui habilitação específica para o componente que leciona. Reflete-se nos resultados positivos do 2º Ano no Spaece.</div>
+      <div class="ctx-box green">
+        <div class="ctx-label">Formação Docente — Anos Iniciais</div>
+        <div class="ctx-val green">98,1%</div>
+        <div class="ctx-note">Excelente: 98,1% das disciplinas dos Anos Iniciais são ministradas por professores com formação adequada. Um dos melhores indicadores da escola — demonstra compromisso com a qualificação docente nas fases iniciais.</div>
       </div>
-      <div class="info-card">
-        <div class="ctx-label">Formação Docente — Anos Finais EF</div>
-        <div class="ctx-val" style="color:var(--yellow)">61,2%</div>
-        <div class="ctx-desc">Preocupante: 38,8% das aulas nos Anos Finais são ministradas por professores sem habilitação específica no componente. Isso impacta diretamente a qualidade do ensino no 9º Ano.</div>
+      <div class="ctx-box orange">
+        <div class="ctx-label">Formação Docente — Anos Finais</div>
+        <div class="ctx-val" style="color:var(--orange)">61,2%</div>
+        <div class="ctx-note">Preocupante: apenas 61,2% das disciplinas dos Anos Finais têm professores com formação adequada. Esse gap de formação nos anos finais coincide com os piores resultados do SAEB — 9º Ano em situação crítica. Há relação a ser investigada.</div>
       </div>
-      <div class="info-card">
-        <div class="ctx-label">Estudantes Avaliados — 9º Ano</div>
-        <div class="ctx-val" style="color:var(--blue)">29 / 33</div>
-        <div class="ctx-desc">29 alunos presentes de 33 matriculados. A ausência de 4 alunos (12,12%) pode distorcer o diagnóstico — especialmente se os ausentes são os de menor desempenho.</div>
-      </div>
-      <div class="info-card">
-        <div class="ctx-label">Taxa de Participação</div>
-        <div class="ctx-val" style="color:var(--yellow)">87,88%</div>
-        <div class="ctx-desc">Abaixo do ideal. A escola deve investigar os ausentes e garantir 100% de participação na próxima edição para obter diagnóstico fidedigno da turma.</div>
-      </div>
-      <div class="info-card">
-        <div class="ctx-label">5º e 3º Ano — SAEB 2023</div>
-        <div class="ctx-val" style="color:var(--muted2)">Não avaliados</div>
-        <div class="ctx-desc">Apenas o 9º Ano foi avaliado no Saeb 2023 nesta escola. O 5º Ano e o 3º Ano do EM não constam no boletim. Os dados do 5º Ano estão disponíveis no Spaece.</div>
+    </div>
+
+    <div class="nota-box">
+      <h4>ℹ️ Por que apenas o 9º Ano foi avaliado?</h4>
+      <p>O SAEB 2023 avalia tipicamente o 5º Ano (Anos Iniciais), o 9º Ano (Anos Finais) e o 3º Ano do EM. O boletim da Adélia Crisóstomo mostra dados apenas para o <strong>9º Ano</strong> (29 presentes, 87,88% de participação). O 5º Ano e 3º Ano do EM aparecem com traços (—) no boletim — provavelmente por <strong>taxa de participação abaixo de 80%</strong> no 5º Ano, o que inviabiliza a publicação dos dados. Isso é consistente com o QEdu, que também não exibe dados de aprendizado do 5º Ano Saeb para esta escola.</p>
+    </div>
+
+    <div class="alert-banner warning">
+      <span class="ab-icon">⚠️</span>
+      <div>
+        <div class="alert-title">Formação docente nos Anos Finais: 61,2% é insatisfatório — correlação com resultados críticos do 9º Ano</div>
+        <div class="alert-body">Quase 40% das disciplinas dos Anos Finais são ministradas por professores sem formação adequada. Nos Anos Iniciais, o índice é de 98,1% — o que possivelmente explica por que o 2º Ano performa melhor no SPAECE (Proficiente). A melhoria da formação docente nos Anos Finais é um vetor estratégico para elevar os resultados do 9º Ano em LP e MT.</div>
       </div>
     </div>
   </div>
 
-  <!-- ===== VISÃO GERAL ===== -->
-  <div class="section" id="visao">
-    <div class="section-header">
-      <div class="section-icon" style="background:rgba(192,57,43,.12)">📊</div>
-      <div class="section-info">
-        <h2>Visão Geral — 9º Ano · Saeb 2023</h2>
-        <p>LP: 237,42 (Escolas Similares: 241,69) · MT: 228,93 (Similares: 237,73) · Abaixo em ambos os componentes</p>
-      </div>
+  <!-- ====== APRENDIZADO ADEQUADO ====== -->
+  <div id="aprendizado">
+    <div class="section-title">🎯 Aprendizado Adequado — 9º Ano EF</div>
+
+    <div class="nota-box" style="background:var(--yellow-bg);border-color:var(--yellow-bdr)">
+      <h4 style="color:#7d5a10">📐 Como é calculado o "Adequado" no 9º Ano?</h4>
+      <p style="color:#7d5a10">Para o 9º Ano, os níveis de proficiência são diferentes do 5º Ano. Em <strong>Língua Portuguesa</strong>, o aprendizado adequado começa no <strong>Nível 5 (≥300 pts)</strong>. Em <strong>Matemática</strong>, o adequado começa no <strong>Nível 5 (≥300 pts)</strong>. Os Níveis 0 a 4 são considerados insuficientes para o 9º Ano.</p>
     </div>
-    <div style="padding:18px 22px; background:var(--surface); border:1px solid var(--border); border-top:none; border-radius:0 0 12px 12px;">
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
-        <div style="background:var(--yellow-bg); border:1.5px solid var(--yellow-bdr); border-radius:10px; padding:16px;">
-          <div style="font-size:var(--fs-xs); font-weight:700; color:#7d5a10; text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">LP · Língua Portuguesa</div>
-          <div style="font-size:2rem; font-weight:700; color:var(--yellow)">237,42</div>
-          <div style="font-size:var(--fs-xs); color:var(--muted); margin-top:4px">Escolas Similares: 241,69 · Gap: −4,27 pts</div>
-          <div style="margin-top:8px; display:flex; gap:6px; flex-wrap:wrap;">
-            <span style="background:var(--red-bg); color:var(--red-dark); border:1px solid var(--red-bdr); padding:3px 9px; border-radius:20px; font-size:var(--fs-xs); font-weight:700;">N0+N1: 49,6%</span>
-            <span style="background:#eaf2fc; color:#123e7a; border:1px solid #90bce8; padding:3px 9px; border-radius:20px; font-size:var(--fs-xs); font-weight:700;">N5: 14,33%</span>
-            <span style="background:var(--red-bg); color:var(--red-dark); border:1px solid var(--red-bdr); padding:3px 9px; border-radius:20px; font-size:var(--fs-xs); font-weight:700;">N6+: 0%</span>
-          </div>
-        </div>
-        <div style="background:var(--red-bg); border:1.5px solid var(--red-bdr); border-radius:10px; padding:16px;">
-          <div style="font-size:var(--fs-xs); font-weight:700; color:var(--red-dark); text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px">MT · Matemática ⚠</div>
-          <div style="font-size:2rem; font-weight:700; color:var(--red)">228,93</div>
-          <div style="font-size:var(--fs-xs); color:var(--muted); margin-top:4px">Escolas Similares: 237,73 · Gap: −8,80 pts</div>
-          <div style="margin-top:8px; display:flex; gap:6px; flex-wrap:wrap;">
-            <span style="background:var(--red-bg); color:var(--red-dark); border:1px solid var(--red-bdr); padding:3px 9px; border-radius:20px; font-size:var(--fs-xs); font-weight:700;">N0: 32,09%</span>
-            <span style="background:var(--red-bg); color:var(--red-dark); border:1px solid var(--red-bdr); padding:3px 9px; border-radius:20px; font-size:var(--fs-xs); font-weight:700;">N0+N1: 49,8%</span>
-            <span style="background:var(--red-bg); color:var(--red-dark); border:1px solid var(--red-bdr); padding:3px 9px; border-radius:20px; font-size:var(--fs-xs); font-weight:700;">N7+: 0%</span>
-          </div>
+
+    <div class="ctx-grid" style="margin-bottom:14px">
+      <div class="ctx-box yellow">
+        <div class="ctx-label">📖 Língua Portuguesa</div>
+        <div class="ctx-val yellow">21,8%</div>
+        <div class="ctx-note">Nível 5 ou superior (≥300 pts). 78,2% dos alunos ainda estão abaixo do adequado em LP.</div>
+        <div class="adeq-prog">
+          <div class="adeq-prog-lbl"><span>0%</span><span>Meta 70%</span><span>100%</span></div>
+          <div class="adeq-track"><div class="adeq-fill yellow" style="width:21.8%"></div></div>
+          <div style="font-size:0.66rem;color:var(--red);margin-top:3px;font-weight:600">Distância da meta: −48,2 pp · EMERGÊNCIA</div>
         </div>
       </div>
-      <p style="font-size:var(--fs-sm); color:var(--muted); line-height:1.8;">
-        A escola está <strong>abaixo das Escolas Similares em ambos os componentes</strong>. O gap é maior em Matemática (−8,80 pts). O dado mais alarmante é a concentração nos níveis inferiores: aproximadamente metade da turma (∼15 dos 29 alunos) está nos Níveis 0 e 1 em LP <em>e</em> em MT simultaneamente. Nenhum aluno atingiu os Níveis 6, 7 ou 8 em LP; apenas 3,43% chegaram ao Nível 6 em MT e nenhum alcançou o Nível 7 ou superior.
-      </p>
-    </div>
-  </div>
-
-  <!-- ===== LÍNGUA PORTUGUESA ===== -->
-  <div class="section" id="lp">
-    <div class="section-header">
-      <div class="section-icon" style="background:rgba(192,57,43,.10)">📖</div>
-      <div class="section-info">
-        <h2>Língua Portuguesa — Distribuição por Nível · 9º Ano</h2>
-        <p>Proficiência média 237,42 · 49,6% nos Níveis 0–1 · 0% nos Níveis 6, 7 e 8 · Saeb 2023</p>
-      </div>
-    </div>
-
-    <div class="nivel-section">
-      <span class="nivel-section-label">Distribuição percentual por nível — LP 9º Ano (Sua Escola vs Escolas Similares)</span>
-
-      <div class="nivel-row">
-        <span class="nivel-label">Nível 0</span>
-        <div class="nivel-track"><div class="nivel-fill fill-n0" style="width:24.93%"><span class="nivel-pct">24,93%</span></div></div>
-        <span class="nivel-val-ext" style="color:#7f1d1d">Escola</span>
-      </div>
-      <div class="nivel-row" style="margin-bottom:12px;">
-        <span class="nivel-label"></span>
-        <div class="nivel-track"><div class="nivel-fill" style="width:20.48%; background:#b0c4de;"><span class="nivel-pct">20,48%</span></div></div>
-        <span class="nivel-val-ext" style="color:var(--muted2)">Similar</span>
-      </div>
-
-      <div class="nivel-row">
-        <span class="nivel-label">Nível 1</span>
-        <div class="nivel-track"><div class="nivel-fill fill-n1" style="width:24.63%"><span class="nivel-pct">24,63%</span></div></div>
-        <span class="nivel-val-ext" style="color:var(--red)">Escola</span>
-      </div>
-      <div class="nivel-row" style="margin-bottom:12px;">
-        <span class="nivel-label"></span>
-        <div class="nivel-track"><div class="nivel-fill" style="width:16.26%; background:#b0c4de;"><span class="nivel-pct">16,26%</span></div></div>
-        <span class="nivel-val-ext" style="color:var(--muted2)">Similar</span>
-      </div>
-
-      <div class="nivel-row">
-        <span class="nivel-label">Nível 2</span>
-        <div class="nivel-track"><div class="nivel-fill fill-n2" style="width:10.89%"><span class="nivel-pct">10,89%</span></div></div>
-        <span class="nivel-val-ext" style="color:#cb6344">Escola</span>
-      </div>
-      <div class="nivel-row" style="margin-bottom:12px;">
-        <span class="nivel-label"></span>
-        <div class="nivel-track"><div class="nivel-fill" style="width:17.53%; background:#b0c4de;"><span class="nivel-pct">17,53%</span></div></div>
-        <span class="nivel-val-ext" style="color:var(--muted2)">Similar</span>
-      </div>
-
-      <div class="nivel-row">
-        <span class="nivel-label">Nível 3</span>
-        <div class="nivel-track"><div class="nivel-fill fill-n3" style="width:17.76%"><span class="nivel-pct">17,76%</span></div></div>
-        <span class="nivel-val-ext" style="color:var(--yellow)">Escola</span>
-      </div>
-      <div class="nivel-row" style="margin-bottom:12px;">
-        <span class="nivel-label"></span>
-        <div class="nivel-track"><div class="nivel-fill" style="width:19.60%; background:#b0c4de;"><span class="nivel-pct">19,60%</span></div></div>
-        <span class="nivel-val-ext" style="color:var(--muted2)">Similar</span>
-      </div>
-
-      <div class="nivel-row">
-        <span class="nivel-label">Nível 4</span>
-        <div class="nivel-track"><div class="nivel-fill fill-n4" style="width:7.46%"><span class="nivel-pct">7,46%</span></div></div>
-        <span class="nivel-val-ext" style="color:#a38600">Escola</span>
-      </div>
-      <div class="nivel-row" style="margin-bottom:12px;">
-        <span class="nivel-label"></span>
-        <div class="nivel-track"><div class="nivel-fill" style="width:15.63%; background:#b0c4de;"><span class="nivel-pct">15,63%</span></div></div>
-        <span class="nivel-val-ext" style="color:var(--muted2)">Similar</span>
-      </div>
-
-      <div class="nivel-row">
-        <span class="nivel-label">Nível 5</span>
-        <div class="nivel-track"><div class="nivel-fill fill-n5" style="width:14.33%"><span class="nivel-pct">14,33%</span></div></div>
-        <span class="nivel-val-ext" style="color:var(--blue)">Escola</span>
-      </div>
-      <div class="nivel-row" style="margin-bottom:12px;">
-        <span class="nivel-label"></span>
-        <div class="nivel-track"><div class="nivel-fill" style="width:8.22%; background:#b0c4de;"><span class="nivel-pct">8,22%</span></div></div>
-        <span class="nivel-val-ext" style="color:var(--muted2)">Similar</span>
-      </div>
-
-      <div class="nivel-row">
-        <span class="nivel-label">Nível 6</span>
-        <div class="nivel-track"><div class="nivel-fill fill-n6" style="width:0%"></div></div>
-        <span class="nivel-val-ext" style="color:var(--muted2)">0% Escola</span>
-      </div>
-      <div class="nivel-row">
-        <span class="nivel-label">Nível 7</span>
-        <div class="nivel-track"><div class="nivel-fill fill-n7" style="width:0%"></div></div>
-        <span class="nivel-val-ext" style="color:var(--muted2)">0% Escola</span>
-      </div>
-      <div class="nivel-row">
-        <span class="nivel-label">Nível 8</span>
-        <div class="nivel-track"><div class="nivel-fill fill-n8" style="width:0%"></div></div>
-        <span class="nivel-val-ext" style="color:var(--muted2)">0% Escola</span>
-      </div>
-
-      <div class="alert-box red" style="margin-top:16px;">
-        <div class="al-title">🔎 O que os Níveis 0 e 1 de LP significam para o diretor</div>
-        <div class="al-text">
-          <strong>Nível 0 (&lt;200 pts) — 24,93% dos alunos:</strong> não demonstram nem habilidades elementares esperadas no 9º Ano. Requerem atenção especial e diagnóstico individual imediato.<br>
-          <strong>Nível 1 (200–225 pts) — 24,63% dos alunos:</strong> só conseguem reconhecer linguagem científica/jornalística e inferir sentidos básicos. Não localizam informações explícitas em textos simples, não identificam temas em poemas nem reconhecem relações causais em fábulas.<br>
-          <strong>Juntos: 49,6% da turma concluirá o EF sem competências mínimas de leitura.</strong> Nenhum aluno atingiu os Níveis 6, 7 ou 8 — que representam leitura crítica, argumentação e comparação de textos.
+      <div class="ctx-box red">
+        <div class="ctx-label">🔢 Matemática</div>
+        <div class="ctx-val red">10,9%</div>
+        <div class="ctx-note">Nível 5 ou superior (≥300 pts). 89,1% dos alunos estão abaixo do adequado em MT — situação crítica.</div>
+        <div class="adeq-prog">
+          <div class="adeq-prog-lbl"><span>0%</span><span>Meta 70%</span><span>100%</span></div>
+          <div class="adeq-track"><div class="adeq-fill red" style="width:10.9%"></div></div>
+          <div style="font-size:0.66rem;color:var(--red);margin-top:3px;font-weight:600">Distância da meta: −59,1 pp · COLAPSO PEDAGÓGICO</div>
         </div>
       </div>
     </div>
 
-    <div style="padding:0 22px 18px; background:var(--surface); border:1px solid var(--border); border-top:none; border-radius:0 0 12px 12px;">
-      <p style="font-size:var(--fs-xs); font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); padding:14px 0 8px">O que cada nível significa — habilidades esperadas em LP</p>
-      <div style="display:grid; gap:8px;">
-        <div style="background:#fdf0ef; border-left:4px solid #7f1d1d; border-radius:0 6px 6px 0; padding:8px 12px; font-size:var(--fs-xs);"><strong style="color:#7f1d1d">Nível 0 (&lt;200):</strong> Não demonstra habilidades elementares. Requer atenção especial.</div>
-        <div style="background:#fdf0ef; border-left:4px solid var(--red); border-radius:0 6px 6px 0; padding:8px 12px; font-size:var(--fs-xs);"><strong style="color:var(--red)">Nível 1 (200–225):</strong> Reconhece linguagem jornalística/científica; infere sentidos em crônicas e reportagens.</div>
-        <div style="background:#fef5e7; border-left:4px solid #cb6344; border-radius:0 6px 6px 0; padding:8px 12px; font-size:var(--fs-xs);"><strong style="color:#cb6344">Nível 2 (225–250):</strong> Localiza informações explícitas em romances e crônicas; identifica tema em poemas e charges.</div>
-        <div style="background:#fef9ec; border-left:4px solid var(--yellow); border-radius:0 6px 6px 0; padding:8px 12px; font-size:var(--fs-xs);"><strong style="color:var(--yellow)">Nível 3 (250–275):</strong> Localiza informações em fábulas; identifica narrativa em música; reconhece pronomes e causalidade.</div>
-        <div style="background:#fef9ec; border-left:4px solid #a38600; border-radius:0 6px 6px 0; padding:8px 12px; font-size:var(--fs-xs);"><strong style="color:#a38600">Nível 4 (275–300):</strong> Localiza em artigos de opinião; reconhece opiniões distintas; infere tema e ideia principal em contos.</div>
-        <div style="background:var(--blue-bg); border-left:4px solid var(--blue); border-radius:0 6px 6px 0; padding:8px 12px; font-size:var(--fs-xs);"><strong style="color:var(--blue)">Nível 5 (300–325):</strong> Identifica argumento e finalidade; diferencia abordagem de textos distintos; infere em contos e charges.</div>
-        <div style="background:var(--green-bg); border-left:4px solid var(--green); border-radius:0 6px 6px 0; padding:8px 12px; font-size:var(--fs-xs);"><strong style="color:var(--green)">Nível 6+ (≥325):</strong> Identifica argumento em reportagens; diferencia fato de opinião; reconhece ironia e variantes linguísticas. <strong>0% da escola atingiu este nível.</strong></div>
+    <div class="alert-banner danger">
+      <span class="ab-icon">🚨</span>
+      <div>
+        <div class="alert-title">MT: apenas 3 alunos em cada 29 estão no nível adequado — emergência pedagógica confirmada por 3 instrumentos</div>
+        <div class="alert-body">Com 10,9% de adequado em MT (aproximadamente 3 alunos dos 29 presentes), o SAEB 2023 confirma o mesmo diagnóstico do SPAECE 2024 (Muito Crítico, 4,2% Adequado) e do Avalie.CE 2025 (92% de defasagem no 9º Ano MT). <strong>Três instrumentos distintos convergem: o 9º Ano MT é uma emergência pedagógica estrutural.</strong></div>
+      </div>
+    </div>
+    <div class="alert-banner warning">
+      <span class="ab-icon">⚠️</span>
+      <div>
+        <div class="alert-title">LP melhor que MT, mas ainda crítica — e acima das Escolas Similares (237 vs 241 pts)</div>
+        <div class="alert-body">Em LP, a média de 237,42 pts está <strong>3,73 pts abaixo das Escolas Similares</strong>, o que é relativamente próximo. Com 21,8% de adequado, a escola precisa de intervenção focada nos Níveis 3 e 4 (que somam 28,65%) para avançar para os padrões adequados. Em MT, o gap com similares é de −8,8 pts, e a situação é muito mais grave.</div>
       </div>
     </div>
   </div>
 
-  <!-- ===== MATEMÁTICA ===== -->
-  <div class="section" id="mt">
-    <div class="section-header">
-      <div class="section-icon" style="background:rgba(192,57,43,.10)">🔢</div>
-      <div class="section-info">
-        <h2>Matemática — Distribuição por Nível · 9º Ano</h2>
-        <p>Proficiência média 228,93 · 49,8% nos Níveis 0–1 · Nível 0: 32,09% · 0% nos Níveis 7, 8 e 9 · Saeb 2023</p>
-      </div>
+  <!-- ====== LP ====== -->
+  <div id="lp">
+    <div class="section-title">📖 Distribuição por Nível — Língua Portuguesa · 9º Ano</div>
+
+    <div class="comp-strip">
+      <div class="comp-box"><div class="comp-box-lbl">Sua Escola</div><div class="comp-val school">237,42 pts</div><div class="comp-note">Média LP · 9º Ano</div></div>
+      <div class="comp-box"><div class="comp-box-lbl">Escolas Similares</div><div class="comp-val sim">241,69 pts</div><div class="comp-note">Mesma microrregião/NSE</div></div>
+      <div class="comp-box"><div class="comp-box-lbl">Gap vs Similares</div><div class="comp-val gap-yellow">−4,3 pts</div><div class="comp-note">Próximo das similares</div></div>
+      <div class="comp-box"><div class="comp-box-lbl">Adequado (N5+)</div><div class="comp-val" style="color:var(--yellow)">21,8%</div><div class="comp-note">N5: 14,33% | Meta: 70%</div></div>
     </div>
 
-    <div class="nivel-section">
-      <span class="nivel-section-label">Distribuição percentual por nível — MT 9º Ano (Sua Escola vs Escolas Similares)</span>
-
-      <div class="nivel-row">
-        <span class="nivel-label">Nível 0</span>
-        <div class="nivel-track"><div class="nivel-fill fill-n0" style="width:32.09%"><span class="nivel-pct">32,09%</span></div></div>
-        <span class="nivel-val-ext" style="color:#7f1d1d">Escola</span>
-      </div>
-      <div class="nivel-row" style="margin-bottom:12px;">
-        <span class="nivel-label"></span>
-        <div class="nivel-track"><div class="nivel-fill" style="width:19.89%; background:#b0c4de;"><span class="nivel-pct">19,89%</span></div></div>
-        <span class="nivel-val-ext" style="color:var(--muted2)">Similar</span>
-      </div>
-
-      <div class="nivel-row">
-        <span class="nivel-label">Nível 1</span>
-        <div class="nivel-track"><div class="nivel-fill fill-n1" style="width:17.76%"><span class="nivel-pct">17,76%</span></div></div>
-        <span class="nivel-val-ext" style="color:var(--red)">Escola</span>
-      </div>
-      <div class="nivel-row" style="margin-bottom:12px;">
-        <span class="nivel-label"></span>
-        <div class="nivel-track"><div class="nivel-fill" style="width:21.28%; background:#b0c4de;"><span class="nivel-pct">21,28%</span></div></div>
-        <span class="nivel-val-ext" style="color:var(--muted2)">Similar</span>
-      </div>
-
-      <div class="nivel-row">
-        <span class="nivel-label">Nível 2</span>
-        <div class="nivel-track"><div class="nivel-fill fill-n2" style="width:21.49%"><span class="nivel-pct">21,49%</span></div></div>
-        <span class="nivel-val-ext" style="color:#cb6344">Escola</span>
-      </div>
-      <div class="nivel-row" style="margin-bottom:12px;">
-        <span class="nivel-label"></span>
-        <div class="nivel-track"><div class="nivel-fill" style="width:23.73%; background:#b0c4de;"><span class="nivel-pct">23,73%</span></div></div>
-        <span class="nivel-val-ext" style="color:var(--muted2)">Similar</span>
-      </div>
-
-      <div class="nivel-row">
-        <span class="nivel-label">Nível 3</span>
-        <div class="nivel-track"><div class="nivel-fill fill-n3" style="width:10.60%"><span class="nivel-pct">10,60%</span></div></div>
-        <span class="nivel-val-ext" style="color:var(--yellow)">Escola</span>
-      </div>
-      <div class="nivel-row" style="margin-bottom:12px;">
-        <span class="nivel-label"></span>
-        <div class="nivel-track"><div class="nivel-fill" style="width:14.03%; background:#b0c4de;"><span class="nivel-pct">14,03%</span></div></div>
-        <span class="nivel-val-ext" style="color:var(--muted2)">Similar</span>
-      </div>
-
-      <div class="nivel-row">
-        <span class="nivel-label">Nível 4</span>
-        <div class="nivel-track"><div class="nivel-fill fill-n4" style="width:7.16%"><span class="nivel-pct">7,16%</span></div></div>
-        <span class="nivel-val-ext" style="color:#a38600">Escola</span>
-      </div>
-      <div class="nivel-row" style="margin-bottom:12px;">
-        <span class="nivel-label"></span>
-        <div class="nivel-track"><div class="nivel-fill" style="width:12.31%; background:#b0c4de;"><span class="nivel-pct">12,31%</span></div></div>
-        <span class="nivel-val-ext" style="color:var(--muted2)">Similar</span>
-      </div>
-
-      <div class="nivel-row">
-        <span class="nivel-label">Nível 5</span>
-        <div class="nivel-track"><div class="nivel-fill fill-n5" style="width:7.46%"><span class="nivel-pct">7,46%</span></div></div>
-        <span class="nivel-val-ext" style="color:var(--blue)">Escola</span>
-      </div>
-      <div class="nivel-row" style="margin-bottom:12px;">
-        <span class="nivel-label"></span>
-        <div class="nivel-track"><div class="nivel-fill" style="width:3.59%; background:#b0c4de;"><span class="nivel-pct">3,59%</span></div></div>
-        <span class="nivel-val-ext" style="color:var(--muted2)">Similar</span>
-      </div>
-
-      <div class="nivel-row">
-        <span class="nivel-label">Nível 6</span>
-        <div class="nivel-track"><div class="nivel-fill fill-n6" style="width:3.43%"><span class="nivel-pct">3,43%</span></div></div>
-        <span class="nivel-val-ext" style="color:var(--green)">Escola</span>
-      </div>
-      <div class="nivel-row">
-        <span class="nivel-label">Nível 7</span>
-        <div class="nivel-track"><div class="nivel-fill fill-n7" style="width:0%"></div></div>
-        <span class="nivel-val-ext" style="color:var(--muted2)">0% Escola</span>
-      </div>
-      <div class="nivel-row">
-        <span class="nivel-label">Nível 8</span>
-        <div class="nivel-track"><div class="nivel-fill fill-n8" style="width:0%"></div></div>
-        <span class="nivel-val-ext" style="color:var(--muted2)">0% Escola</span>
-      </div>
-      <div class="nivel-row">
-        <span class="nivel-label">Nível 9</span>
-        <div class="nivel-track"><div class="nivel-fill fill-n8" style="width:0%"></div></div>
-        <span class="nivel-val-ext" style="color:var(--muted2)">0% Escola</span>
-      </div>
-
-      <div class="alert-box red" style="margin-top:16px;">
-        <div class="al-title">🔎 O que o Nível 0 em Matemática significa na prática</div>
-        <div class="al-text">
-          <strong>32,09% dos alunos do 9º Ano estão no Nível 0 (&lt;200 pts):</strong> não conseguem sequer reconhecer o maior ou menor número em uma coleção de decimais, nem interpretar um gráfico de colunas simples. São habilidades de 6º Ano que não foram consolidadas.<br>
-          <strong>Nível 0 + Nível 1 = 49,85%:</strong> quase metade da turma não domina operações básicas com racionais, frações elementares nem representação decimal — pré-requisitos de 7º e 8º Ano.<br>
-          <strong>Apenas 3,43% atingiram o Nível 6</strong> (Pitágoras, plano cartesiano, proporcionalidade). <strong>Nenhum aluno nos Níveis 7, 8 ou 9.</strong> O teto da turma está no Nível 6 — bem abaixo do esperado ao final do EF.
-        </div>
-      </div>
+    <div class="prof-wrap">
+      <div class="prof-title">📊 Distribuição por Nível de Proficiência — LP · 9º Ano</div>
+      <div class="prof-sub">Escola (barras coloridas) vs Escolas Similares (valor à direita) · Adequado = N5 a N8 (≥300 pts) para o 9º Ano</div>
+      <div class="prof-bars" id="lp-bars"></div>
     </div>
 
-    <div style="padding:0 22px 18px; background:var(--surface); border:1px solid var(--border); border-top:none; border-radius:0 0 12px 12px;">
-      <p style="font-size:var(--fs-xs); font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); padding:14px 0 8px">O que cada nível significa — habilidades esperadas em MT</p>
-      <div style="display:grid; gap:8px;">
-        <div style="background:#fdf0ef; border-left:4px solid #7f1d1d; border-radius:0 6px 6px 0; padding:8px 12px; font-size:var(--fs-xs);"><strong style="color:#7f1d1d">Nível 0 (&lt;200):</strong> Não demonstra habilidades matemáticas elementares. Requer atenção especial.</div>
-        <div style="background:#fdf0ef; border-left:4px solid var(--red); border-radius:0 6px 6px 0; padding:8px 12px; font-size:var(--fs-xs);"><strong style="color:var(--red)">Nível 1 (200–225):</strong> Reconhece maior/menor número em decimais; interpreta gráfico de colunas simples.</div>
-        <div style="background:#fef5e7; border-left:4px solid #cb6344; border-radius:0 6px 6px 0; padding:8px 12px; font-size:var(--fs-xs);"><strong style="color:#cb6344">Nível 2 (225–250):</strong> Reconhece fração parte-todo; associa número racional a representação decimal; interpreta gráfico de linha.</div>
-        <div style="background:#fef9ec; border-left:4px solid var(--yellow); border-radius:0 6px 6px 0; padding:8px 12px; font-size:var(--fs-xs);"><strong style="color:var(--yellow)">Nível 3 (250–275):</strong> Reconhece planificação de sólido; resolve operações com inteiros; trabalha com proporcionalidade.</div>
-        <div style="background:#fef9ec; border-left:4px solid #a38600; border-radius:0 6px 6px 0; padding:8px 12px; font-size:var(--fs-xs);"><strong style="color:#a38600">Nível 4 (275–300):</strong> Localiza ponto no plano cartesiano; converte unidades de comprimento; determina expressão algébrica de 1º grau.</div>
-        <div style="background:var(--blue-bg); border-left:4px solid var(--blue); border-radius:0 6px 6px 0; padding:8px 12px; font-size:var(--fs-xs);"><strong style="color:var(--blue)">Nível 5 (300–325):</strong> Determina perímetro de retângulo; aplica equações do 1º grau; calcula porcentagem.</div>
-        <div style="background:var(--green-bg); border-left:4px solid var(--green); border-radius:0 6px 6px 0; padding:8px 12px; font-size:var(--fs-xs);"><strong style="color:var(--green)">Nível 6 (325–350):</strong> Aplica Teorema de Pitágoras; reconhece coordenadas no plano cartesiano; resolve semelhança de triângulos. <strong>Apenas 3,43% da escola atingiu este nível.</strong></div>
-        <div style="background:var(--green-bg); border-left:4px solid #0d5c38; border-radius:0 6px 6px 0; padding:8px 12px; font-size:var(--fs-xs);"><strong style="color:#0d5c38">Níveis 7–9 (≥350):</strong> Geometria avançada, álgebra de 2º grau, inequações, estatística. <strong>0% da escola atingiu esses níveis.</strong></div>
+    <div class="data-table-wrap">
+      <div class="table-header">
+        <h3>Detalhamento por Nível — LP · 9º Ano</h3>
+        <p>Fonte: Boletim Saeb 2023 · INEP · Escola Adélia Crisóstomo EQEIEF (23063734)</p>
+      </div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr><th>Nível</th><th>Pontuação</th><th>Escola</th><th>Similares</th><th>Dif.</th><th>Adeq.?</th><th>Foco pedagógico</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="lv-chip" style="background:var(--lv0)">N0</span></td><td>&lt;200</td><td class="school-pct" style="color:var(--red)">24,93%</td><td class="sim-pct">20,48%</td><td class="diff-neg">+4,45</td><td><span style="color:var(--red)">✗</span></td><td>🚨 Atenção especial — habilidades elementares ausentes</td></tr>
+            <tr><td><span class="lv-chip" style="background:var(--lv1)">N1</span></td><td>200–225</td><td class="school-pct" style="color:var(--red)">24,63%</td><td class="sim-pct">16,26%</td><td class="diff-neg">+8,37</td><td><span style="color:var(--red)">✗</span></td><td>Inferência, linguagem científica, expressões em reportagens</td></tr>
+            <tr><td><span class="lv-chip" style="background:var(--lv2)">N2</span></td><td>225–250</td><td class="school-pct">10,89%</td><td class="sim-pct">17,53%</td><td class="diff-pos">−6,64</td><td><span style="color:var(--red)">✗</span></td><td>Localizar info em romances, crônicas; causa e consequência</td></tr>
+            <tr><td><span class="lv-chip" style="background:var(--lv3)">N3</span></td><td>250–275</td><td class="school-pct">17,76%</td><td class="sim-pct">19,60%</td><td class="diff-pos">−1,84</td><td><span style="color:var(--red)">✗</span></td><td>Pronomes, inferências em romances, advérbios, conjunções</td></tr>
+            <tr><td><span class="lv-chip" style="background:var(--lv4)">N4</span></td><td>275–300</td><td class="school-pct">7,46%</td><td class="sim-pct">15,63%</td><td class="diff-pos">−8,17</td><td><span style="color:var(--red)">✗</span></td><td>Finalidade, opiniões distintas, efeito de humor em múltiplos gêneros</td></tr>
+            <tr class="adeq-row"><td><span class="lv-chip" style="background:var(--lv5)">N5</span></td><td>300–325</td><td class="school-pct" style="color:var(--green)">14,33%</td><td class="sim-pct">8,22%</td><td class="diff-pos">+6,11</td><td><span style="color:var(--green)">✓</span></td><td>✅ Acima das similares! Identificar ideia principal, argumentos</td></tr>
+            <tr class="adeq-row"><td><span class="lv-chip" style="background:var(--lv6)">N6</span></td><td>325–350</td><td class="school-pct" style="color:var(--green)">0,00%</td><td class="sim-pct">1,52%</td><td class="diff-pos">−1,52</td><td><span style="color:var(--green)">✓</span></td><td>Figuras de linguagem, causa e consequência em contos</td></tr>
+            <tr class="adeq-row"><td><span class="lv-chip" style="background:var(--lv7)">N7</span></td><td>350–375</td><td class="school-pct">0,00%</td><td class="sim-pct">0,77%</td><td class="diff-pos">−0,77</td><td><span style="color:var(--green)">✓</span></td><td>Variantes linguísticas, finalidade em lendas e crônicas</td></tr>
+            <tr class="adeq-row"><td><span class="lv-chip" style="background:var(--lv8)">N8</span></td><td>≥375</td><td class="school-pct">0,00%</td><td class="sim-pct">0,00%</td><td>—</td><td><span style="color:var(--green)">✓</span></td><td>Fato vs opinião em artigos, manuais, teses</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="fonte">Fonte: Boletim Saeb 2023 · INEP · Linhas verdes = níveis de aprendizado adequado (N5+) para o 9º Ano</div>
+
+    <div class="alert-banner danger" style="margin-top:12px">
+      <span class="ab-icon">🚨</span>
+      <div>
+        <div class="alert-title">LP: 49,6% nos Níveis 0 e 1 — quase metade dos alunos sem habilidades básicas de leitura</div>
+        <div class="alert-body">A soma de N0 (24,93%) + N1 (24,63%) = <strong>49,56% dos alunos</strong> estão nos dois níveis mais baixos de LP. Esses estudantes não conseguem localizar informações explícitas em textos simples, identificar temas ou fazer inferências básicas. No N0, a escola supera as similares em +4,45 pp, e no N1 em +8,37 pp — sinais de alerta claros. O único ponto positivo é o N5, onde a escola supera as similares (14,33% vs 8,22%).</div>
       </div>
     </div>
   </div>
 
-  <!-- ===== COMPARATIVO ===== -->
-  <div class="section" id="comparativo">
-    <div class="section-header">
-      <div class="section-icon" style="background:rgba(74,159,212,.12)">🔍</div>
-      <div class="section-info">
-        <h2>Comparativo — Escola vs Grupos de Referência</h2>
-        <p>Distribuição por nível · Sua Escola · Escolas Similares · Município · Estado CE · Brasil</p>
+  <!-- ====== MT ====== -->
+  <div id="mt">
+    <div class="section-title">🔢 Distribuição por Nível — Matemática · 9º Ano</div>
+
+    <div class="comp-strip">
+      <div class="comp-box"><div class="comp-box-lbl">Sua Escola</div><div class="comp-val school">228,93 pts</div><div class="comp-note">Média MT · 9º Ano</div></div>
+      <div class="comp-box"><div class="comp-box-lbl">Escolas Similares</div><div class="comp-val sim">237,73 pts</div><div class="comp-note">Mesma microrregião/NSE</div></div>
+      <div class="comp-box"><div class="comp-box-lbl">Gap vs Similares</div><div class="comp-val gap-red">−8,8 pts</div><div class="comp-note">Abaixo das similares</div></div>
+      <div class="comp-box"><div class="comp-box-lbl">Nível mais comum</div><div class="comp-val gap-red">N2</div><div class="comp-note">21,49% dos alunos</div></div>
+    </div>
+
+    <div class="prof-wrap">
+      <div class="prof-title">📊 Distribuição por Nível de Proficiência — MT · 9º Ano</div>
+      <div class="prof-sub">Escola (barras coloridas) vs Escolas Similares · Adequado = N5 a N9 (≥300 pts) para o 9º Ano</div>
+      <div class="prof-bars" id="mt-bars"></div>
+    </div>
+
+    <div class="data-table-wrap">
+      <div class="table-header">
+        <h3>Detalhamento por Nível — MT · 9º Ano</h3>
+        <p>Fonte: Boletim Saeb 2023 · INEP · Adélia Crisóstomo EQEIEF (23063734)</p>
+      </div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr><th>Nível</th><th>Pontuação</th><th>Escola</th><th>Similares</th><th>Dif.</th><th>Adeq.?</th><th>Foco pedagógico</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="lv-chip" style="background:var(--lv0)">N0</span></td><td>&lt;200</td><td class="school-pct" style="color:var(--red)">32,09%</td><td class="sim-pct">19,89%</td><td class="diff-neg">+12,20</td><td><span style="color:var(--red)">✗</span></td><td>🚨 GARGALO: 32% sem habilidades básicas de MT</td></tr>
+            <tr><td><span class="lv-chip" style="background:var(--lv1)">N1</span></td><td>200–225</td><td class="school-pct" style="color:var(--red)">17,76%</td><td class="sim-pct">21,28%</td><td class="diff-pos">−3,52</td><td><span style="color:var(--red)">✗</span></td><td>Racionais decimais, tabelas, gráfico de colunas</td></tr>
+            <tr><td><span class="lv-chip" style="background:var(--lv2)">N2</span></td><td>225–250</td><td class="school-pct" style="color:var(--red)">21,49%</td><td class="sim-pct">23,73%</td><td class="diff-pos">−2,24</td><td><span style="color:var(--red)">✗</span></td><td>Frações, representação decimal, gráfico de linha</td></tr>
+            <tr><td><span class="lv-chip" style="background:var(--lv3)">N3</span></td><td>250–275</td><td class="school-pct">10,60%</td><td class="sim-pct">14,03%</td><td class="diff-pos">−3,43</td><td><span style="color:var(--red)">✗</span></td><td>Ângulos, planificação, proporcionalidade, inteiros</td></tr>
+            <tr><td><span class="lv-chip" style="background:var(--lv4)">N4</span></td><td>275–300</td><td class="school-pct">7,16%</td><td class="sim-pct">12,31%</td><td class="diff-pos">−5,15</td><td><span style="color:var(--red)">✗</span></td><td>Plano cartesiano, perímetro, expressão algébrica 1ºgrau</td></tr>
+            <tr class="adeq-row"><td><span class="lv-chip" style="background:var(--lv5)">N5</span></td><td>300–325</td><td class="school-pct" style="color:var(--green)">7,46%</td><td class="sim-pct">3,59%</td><td class="diff-pos">+3,87</td><td><span style="color:var(--green)">✓</span></td><td>✅ Acima das similares! Porcentagem, equações 1º grau</td></tr>
+            <tr class="adeq-row"><td><span class="lv-chip" style="background:var(--lv6)">N6</span></td><td>325–350</td><td class="school-pct" style="color:var(--green)">3,43%</td><td class="sim-pct">3,65%</td><td class="diff-pos">−0,22</td><td><span style="color:var(--green)">✓</span></td><td>Pitágoras, semelhança de triângulos, porcentagem não inteira</td></tr>
+            <tr class="adeq-row"><td><span class="lv-chip" style="background:var(--lv7)">N7</span></td><td>350–375</td><td class="school-pct">0,00%</td><td class="sim-pct">1,03%</td><td class="diff-pos">−1,03</td><td><span style="color:var(--green)">✓</span></td><td>Ângulos, plano cartesiano 4 quadrantes, eq. 2ºgrau</td></tr>
+            <tr class="adeq-row"><td><span class="lv-chip" style="background:var(--lv8)">N8</span></td><td>375–400</td><td class="school-pct">0,00%</td><td class="sim-pct">0,50%</td><td class="diff-pos">−0,50</td><td><span style="color:var(--green)">✓</span></td><td>Cevianas, conversão de unidades, área de figuras compostas</td></tr>
+            <tr class="adeq-row"><td><span class="lv-chip" style="background:var(--lv9)">N9</span></td><td>≥400</td><td class="school-pct">0,00%</td><td class="sim-pct">0,00%</td><td>—</td><td><span style="color:var(--green)">✓</span></td><td>Ângulos internos de polígonos, expressões algébricas</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
-    <div class="comp-wrap">
-      <p style="font-size:var(--fs-xs); font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); padding:16px 0 6px">Língua Portuguesa — 9º Ano · Saeb 2023</p>
-      <table class="comp-table">
-        <thead>
-          <tr><th>Grupo</th><th>Méd.</th><th>N0</th><th>N1</th><th>N2</th><th>N3</th><th>N4</th><th>N5</th><th>N6+</th></tr>
-        </thead>
-        <tbody>
-          <tr class="dest">
-            <td>📍 Sua Escola</td><td><strong>237,42</strong></td>
-            <td><span class="chip red">24,93%</span></td>
-            <td><span class="chip red">24,63%</span></td>
-            <td>10,89%</td><td>17,76%</td><td>7,46%</td><td>14,33%</td>
-            <td style="color:var(--muted2)"><strong>0,00%</strong></td>
-          </tr>
-          <tr>
-            <td>Escolas Similares</td><td>241,69</td>
-            <td>20,48%</td><td>16,26%</td><td>17,53%</td><td>19,60%</td><td>15,63%</td><td>8,22%</td><td>2,29%</td>
-          </tr>
-          <tr>
-            <td>Total Município</td><td>—</td>
-            <td>19,07%</td><td>13,45%</td><td>16,03%</td><td>17,61%</td><td>16,46%</td><td>10,87%</td><td>6,44%</td>
-          </tr>
-          <tr>
-            <td>Total Estado (CE)</td><td>—</td>
-            <td>11,86%</td><td>9,53%</td><td>13,04%</td><td>16,90%</td><td>18,99%</td><td>16,34%</td><td><span class="chip green">13,35%</span></td>
-          </tr>
-          <tr>
-            <td>Total Brasil</td><td>—</td>
-            <td>15,46%</td><td>11,84%</td><td>14,68%</td><td>16,95%</td><td>17,31%</td><td>13,95%</td><td>9,80%</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="fonte">Fonte: Boletim Saeb 2023 · INEP · Linhas verdes = níveis de aprendizado adequado (N5+) para o 9º Ano</div>
 
-      <p style="font-size:var(--fs-xs); font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); padding:20px 0 6px">Matemática — 9º Ano · Saeb 2023</p>
-      <table class="comp-table">
-        <thead>
-          <tr><th>Grupo</th><th>Méd.</th><th>N0</th><th>N1</th><th>N2</th><th>N3</th><th>N4</th><th>N5</th><th>N6+</th></tr>
-        </thead>
-        <tbody>
-          <tr class="dest">
-            <td>📍 Sua Escola</td><td><strong>228,93</strong></td>
-            <td><span class="chip red">32,09%</span></td>
-            <td><span class="chip red">17,76%</span></td>
-            <td>21,49%</td><td>10,60%</td><td>7,16%</td><td>7,46%</td>
-            <td>3,43%</td>
-          </tr>
-          <tr>
-            <td>Escolas Similares</td><td>237,73</td>
-            <td>19,89%</td><td>21,28%</td><td>23,73%</td><td>14,03%</td><td>12,31%</td><td>3,59%</td><td>5,18%</td>
-          </tr>
-          <tr>
-            <td>Total Município</td><td>—</td>
-            <td>18,65%</td><td>18,08%</td><td>19,14%</td><td>17,85%</td><td>13,15%</td><td>8,11%</td><td>5,02%</td>
-          </tr>
-          <tr>
-            <td>Total Estado (CE)</td><td>—</td>
-            <td>11,93%</td><td>12,22%</td><td>15,33%</td><td>16,54%</td><td>15,77%</td><td>12,65%</td><td><span class="chip green">19,57%</span></td>
-          </tr>
-          <tr>
-            <td>Total Brasil</td><td>—</td>
-            <td>14,35%</td><td>14,54%</td><td>16,84%</td><td>17,13%</td><td>15,44%</td><td>11,18%</td><td>10,52%</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="alert-banner danger" style="margin-top:12px">
+      <span class="ab-icon">🚨</span>
+      <div>
+        <div class="alert-title">GARGALO CRÍTICO: 32,09% no Nível 0 de MT — escola supera similares em +12,2 pp no pior nível</div>
+        <div class="alert-body">O Nível 0 de MT concentra <strong>32,09% dos alunos</strong> (≈9 estudantes dos 29 avaliados), contra 19,89% das Escolas Similares — um gap de +12,2 pp. Esses estudantes chegam ao 9º Ano sem habilidades básicas de Matemática. Nos níveis mais altos (N7–N9), a escola registra 0% em todos. O único ponto acima das similares é o N5 (7,46% vs 3,59%) — uma quantidade muito pequena para compensar a base larga de dificuldades.</div>
+      </div>
+    </div>
+  </div>
 
-      <div class="alert-box yellow" style="margin-top:16px;">
-        <div class="al-title">📌 Leitura crítica do comparativo</div>
-        <div class="al-text">
-          Em LP: o N0 da escola (24,93%) é <strong>o dobro do Estado do CE (11,86%)</strong> e supera as Escolas Similares (20,48%). O N6+ da escola é 0%, enquanto o Estado tem 13,35% — uma diferença de mais de 13 pontos percentuais nos níveis superiores de leitura.<br>
-          Em MT: o N0 da escola (32,09%) é <strong>quase o triplo do Estado CE (11,93%)</strong>. O Estado tem 19,57% de alunos nos Níveis 6+, enquanto a escola tem apenas 3,43%. A distância em relação ao padrão estadual é alarmante e revela déficit estrutural acumulado, não apenas circunstancial.
+  <!-- ====== HABILIDADES ====== -->
+  <div id="habilidades">
+    <div class="section-title">📚 Habilidades por Nível — O Que os Alunos Sabem e Precisam Aprender</div>
+
+    <div class="alert-banner info">
+      <span class="ab-icon">🎯</span>
+      <div>
+        <div class="alert-title">Como usar esta seção pedagogicamente</div>
+        <div class="alert-body">Cada nível descreve o que o aluno <strong>provavelmente sabe fazer</strong>. Para os grupos mais numerosos (N0–N1 em LP e N0–N2 em MT), é possível identificar as habilidades que precisam ser trabalhadas urgentemente. Para os alunos do N5 (que superaram as similares em LP e MT), o foco é aprofundar e elevar para N6+.</div>
+      </div>
+    </div>
+
+    <div class="hab-grid">
+      <div class="hab-card">
+        <div class="hab-card-title" style="color:var(--red)">🚨 LP — Nível 0 e 1 (49,6% dos alunos)</div>
+        <div class="hab-row"><div class="hab-dot" style="background:var(--red)"></div><div class="hab-text"><strong>N0 (24,93%):</strong> Ainda não demonstram habilidades muito elementares para o 9º Ano. Precisam de diagnóstico individual e plano especial.</div><span class="hab-lv" style="background:var(--lv0)">N0</span></div>
+        <div class="hab-row"><div class="hab-dot" style="background:var(--lv1)"></div><div class="hab-text"><strong>N1 (24,63%):</strong> Reconhecem expressões em reportagens, inferem sentido de expressões em crônicas. Ainda sem localização explícita em romances.</div><span class="hab-lv" style="background:var(--lv1)">N1</span></div>
+        <div class="hab-row"><div class="hab-dot" style="background:var(--muted)"></div><div class="hab-text"><strong>Intervenção necessária:</strong> Trabalhar localização de informação explícita, inferência básica e identificação de tema em textos simples (crônicas, fábulas, tirinhas).</div></div>
+      </div>
+
+      <div class="hab-card">
+        <div class="hab-card-title" style="color:var(--orange)">⚠️ LP — Nível 2 e 3 (28,65% dos alunos)</div>
+        <div class="hab-row"><div class="hab-dot" style="background:var(--lv2)"></div><div class="hab-text"><strong>N2 (10,89%):</strong> Localizam informações em romances e crônicas. Identificam tema em poemas e charges. Reconhecem causa e consequência em lendas.</div><span class="hab-lv" style="background:var(--lv2)">N2</span></div>
+        <div class="hab-row"><div class="hab-dot" style="background:var(--lv3)"></div><div class="hab-text"><strong>N3 (17,76%):</strong> Localizam info em crônicas e fábulas. Reconhecem relação pronome–referente. Interpretam sentido de conjunções e advérbios. Inferem tema principal.</div><span class="hab-lv" style="background:var(--lv3)">N3</span></div>
+        <div class="hab-row"><div class="hab-dot" style="background:var(--green)"></div><div class="hab-text"><strong>Objetivo:</strong> Mover esses alunos para N4–N5. Foco em: opinião, finalidade de texto, opiniões distintas em reportagens, inferência de sentido de expressões em múltiplos gêneros.</div></div>
+      </div>
+
+      <div class="hab-card">
+        <div class="hab-card-title" style="color:var(--green)">✅ LP — Nível 5 (14,33% — acima das similares!)</div>
+        <div class="hab-row"><div class="hab-dot" style="background:var(--lv5)"></div><div class="hab-text"><strong>N5 (14,33% vs 8,22% similares):</strong> Identificam ideia principal em reportagens e resenhas. Reconhecem características de linguagem científica. Reconhecem argumentos em notícias e artigos. Inferem informação em contos e crônicas.</div><span class="hab-lv" style="background:var(--lv5)">N5</span></div>
+        <div class="hab-row"><div class="hab-dot" style="background:var(--green)"></div><div class="hab-text"><strong>Ação positiva:</strong> Este grupo está acima das similares. Investir em atividades desafiadoras para elevar ao N6 — figuras de linguagem, relação de causa e consequência em contos, diferenciação fato vs opinião.</div></div>
+      </div>
+
+      <div class="hab-card">
+        <div class="hab-card-title" style="color:var(--red)">🚨 MT — Nível 0 e 1 (49,85% dos alunos)</div>
+        <div class="hab-row"><div class="hab-dot" style="background:var(--red)"></div><div class="hab-text"><strong>N0 (32,09%):</strong> Habilidades básicas de MT completamente ausentes. Não demonstram as habilidades elementares esperadas para o 9º Ano. Emergência.</div><span class="hab-lv" style="background:var(--lv0)">N0</span></div>
+        <div class="hab-row"><div class="hab-dot" style="background:var(--lv1)"></div><div class="hab-text"><strong>N1 (17,76%):</strong> Reconhecem o maior ou menor número racional em decimal. Interpretam dados em tabelas e gráficos de colunas.</div><span class="hab-lv" style="background:var(--lv1)">N1</span></div>
+        <div class="hab-row"><div class="hab-dot" style="background:var(--muted)"></div><div class="hab-text"><strong>Intervenção:</strong> Diagnóstico individual urgente. Foco em números racionais, frações, operações básicas e representação decimal — pré-requisitos fundamentais.</div></div>
+      </div>
+
+      <div class="hab-card">
+        <div class="hab-card-title" style="color:var(--orange)">⚠️ MT — Nível 2 e 3 (32,09% dos alunos)</div>
+        <div class="hab-row"><div class="hab-dot" style="background:var(--lv2)"></div><div class="hab-text"><strong>N2 (21,49%):</strong> Reconhecem frações (parte-todo), associam racional escrito por extenso à decimal. Interpretam gráfico de linha simples.</div><span class="hab-lv" style="background:var(--lv2)">N2</span></div>
+        <div class="hab-row"><div class="hab-dot" style="background:var(--lv3)"></div><div class="hab-text"><strong>N3 (10,60%):</strong> Reconhecem ângulos e planificações. Determinam frações irredutíveis. Resolvem problemas com inteiros e proporções. Interpretam tabelas e gráficos de setor.</div><span class="hab-lv" style="background:var(--lv3)">N3</span></div>
+        <div class="hab-row"><div class="hab-dot" style="background:var(--green)"></div><div class="hab-text"><strong>Objetivo:</strong> Elevar para N4–N5. Foco em: plano cartesiano, expressão algébrica, equações 1º grau, porcentagem — conteúdos do N4 e N5.</div></div>
+      </div>
+
+      <div class="hab-card">
+        <div class="hab-card-title" style="color:var(--green)">✅ MT — Nível 5 (7,46% — acima das similares!)</div>
+        <div class="hab-row"><div class="hab-dot" style="background:var(--lv5)"></div><div class="hab-text"><strong>N5 (7,46% vs 3,59% similares):</strong> Reconhecem que ângulo não se altera em ampliação/redução. Determinam perímetro, volume. Associam fração com den.10 à decimal. Resolvem equações 1º grau. Determinam porcentagem com inteiros.</div><span class="hab-lv" style="background:var(--lv5)">N5</span></div>
+        <div class="hab-row"><div class="hab-dot" style="background:var(--green)"></div><div class="hab-text"><strong>Ação positiva:</strong> Este grupo supera as similares. Trabalhar N6 com: Pitágoras, semelhança, coordenadas nos 4 quadrantes, porcentagem não inteira, raiz quadrada, expressão algébrica com parênteses.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== PLANO DE AÇÃO ====== -->
+  <div id="acoes">
+    <div class="section-title">⚡ Plano de Ação — SAEB 2023 · Prioridades para o 9º Ano</div>
+
+    <div class="plan-item" onclick="this.classList.toggle('open')">
+      <div class="plan-num red">1</div>
+      <div class="plan-content">
+        <div class="plan-hrow">
+          <div class="plan-title">Intervenção emergencial para os ~32% no N0 de MT — diagnóstico individual e plano de recuperação intensiva</div>
+          <span class="plan-badge red">🚨 Urgente</span>
+        </div>
+        <div class="plan-desc">9 a 10 alunos (32,09%) chegaram ao 9º Ano sem habilidades básicas de Matemática. Esse grupo requer diagnóstico individualizado e intervenção imediata — eles não acompanharão o currículo regular sem suporte especializado.</div>
+        <div class="plan-steps">
+          ✅ Mapear individualmente os alunos do N0 e N1 de MT — identificar lacunas específicas usando itens calibrados da escala SAEB.<br>
+          ✅ Criar grupos de nivelamento com sequências didáticas voltadas a: números racionais, frações, operações básicas e representação decimal.<br>
+          ✅ Alocar tempo extra (contraturno ou monitoria) para esses alunos com professor de MT ou tutor capacitado.<br>
+          ✅ Cruzar com a Busca Ativa: alunos com alta infrequência provavelmente estão nesse grupo — intervenção dupla (frequência + aprendizagem).
+        </div>
+      </div>
+    </div>
+
+    <div class="plan-item" onclick="this.classList.toggle('open')">
+      <div class="plan-num red">2</div>
+      <div class="plan-content">
+        <div class="plan-hrow">
+          <div class="plan-title">Enfrentar os 49,6% no N0+N1 de LP — intervenção em leitura e compreensão básica urgente</div>
+          <span class="plan-badge red">🚨 Urgente</span>
+        </div>
+        <div class="plan-desc">Quase metade dos alunos do 9º Ano está nos dois níveis mais baixos de LP. Em N0 (24,93%), a escola supera as similares em 4,45 pp — sinal claro de que há um problema pedagógico específico que precisa ser endereçado com ações concretas.</div>
+        <div class="plan-steps">
+          ✅ Trabalhar intensivamente localização de informação explícita, identificação de tema e personagem em textos curtos e acessíveis.<br>
+          ✅ Usar textos com múltiplos gêneros (tirinhas, crônicas, fábulas) para trabalhar inferência básica e causa/consequência — habilidades do N1–N2.<br>
+          ✅ Rotina diária de leitura: 15–20 minutos de leitura silenciosa seguida de discussão oral para desenvolver fluência e compreensão.<br>
+          ✅ Monitorar evolução dos alunos de N0 para N1 e N2 ao longo do semestre.
+        </div>
+      </div>
+    </div>
+
+    <div class="plan-item" onclick="this.classList.toggle('open')">
+      <div class="plan-num red">3</div>
+      <div class="plan-content">
+        <div class="plan-hrow">
+          <div class="plan-title">Elevar formação docente dos Anos Finais de 61,2% para 80%+ — investimento estratégico no médio prazo</div>
+          <span class="plan-badge red">🚨 Estrutural</span>
+        </div>
+        <div class="plan-desc">A diferença entre 98,1% (AI) e 61,2% (AF) de formação docente adequada é um fator estrutural que explica parte dos resultados críticos do 9º Ano. Quase 40% das disciplinas dos Anos Finais são ministradas sem formação específica.</div>
+        <div class="plan-steps">
+          ✅ Levantar quais disciplinas dos Anos Finais têm professores sem formação adequada e priorizar concurso ou contratação com perfil correto.<br>
+          ✅ Solicitar formação continuada específica à SEDUC-CE/CREDE para professores dos Anos Finais — especialmente de MT e LP.<br>
+          ✅ Acompanhar evolução do indicador nas próximas edições do Saeb.
+        </div>
+      </div>
+    </div>
+
+    <div class="plan-item" onclick="this.classList.toggle('open')">
+      <div class="plan-num yellow">4</div>
+      <div class="plan-content">
+        <div class="plan-hrow">
+          <div class="plan-title">Aprofundar o grupo de N5 em LP e MT — a escola supera as similares nesses níveis</div>
+          <span class="plan-badge yellow">⚠ Atenção</span>
+        </div>
+        <div class="plan-desc">A escola tem 14,33% no N5 de LP (vs 8,22% similares) e 7,46% no N5 de MT (vs 3,59%). Esses alunos representam a vanguarda da escola — com investimento certo, podem avançar para N6+ e elevar a média geral.</div>
+        <div class="plan-steps">
+          ✅ LP N6: trabalhar figuras de linguagem, causa e consequência em contos, opiniões de cartas de leitor, efeito de sentido de conjunções.<br>
+          ✅ MT N6: Teorema de Pitágoras, semelhança de triângulos, coordenadas em 4 quadrantes, porcentagem não inteira, raiz quadrada aproximada.<br>
+          ✅ Usar esses alunos como monitores para auxiliar os colegas nos N2 e N3 — tutoria de pares com supervisão docente.
+        </div>
+      </div>
+    </div>
+
+    <div class="plan-item" onclick="this.classList.toggle('open')">
+      <div class="plan-num yellow">5</div>
+      <div class="plan-content">
+        <div class="plan-hrow">
+          <div class="plan-title">Garantir participação de 95%+ no SAEB 2025 — o 5º Ano deve ter dados publicados</div>
+          <span class="plan-badge yellow">⚠ Atenção</span>
+        </div>
+        <div class="plan-desc">O boletim SAEB 2023 não mostra dados do 5º Ano (provável participação < 80%). Para o SAEB 2025, garantir que o 5º Ano e o 9º Ano tenham pelo menos 95% de participação para que os dados sejam publicados e utilizados para acompanhamento.</div>
+        <div class="plan-steps">
+          ✅ Monitorar frequência das turmas do 5º e 9º Ano nos meses anteriores ao SAEB 2025.<br>
+          ✅ Comunicar famílias sobre a data da avaliação e sua importância com antecedência mínima de 1 mês.<br>
+          ✅ Cruzar lista de alunos infrequentes (Busca Ativa) com as turmas avaliadas para garantir presença no dia.<br>
+          ✅ Familiarizar os alunos com o formato da prova SAEB (escala de resposta, tempo, tipos de questão) para reduzir a ansiedade.
+        </div>
+      </div>
+    </div>
+
+    <div class="plan-item" onclick="this.classList.toggle('open')">
+      <div class="plan-num green">6</div>
+      <div class="plan-content">
+        <div class="plan-hrow">
+          <div class="plan-title">Aproveitar LP próxima das similares (−4,3 pts) como base para crescimento em 2025</div>
+          <span class="plan-badge green">✅ Consolidar</span>
+        </div>
+        <div class="plan-desc">A média de LP (237,42) está apenas 4,3 pts abaixo das similares — o menor gap entre os dois componentes. Com a intervenção nos N0–N1 (que juntos equivalem a ~50% dos alunos), é possível superar as similares no SAEB 2025 e elevar a média para a faixa de 250 pts.</div>
+        <div class="plan-steps">
+          ✅ Definir meta interna de LP para 2025: atingir 250+ pts de média e reduzir N0+N1 para abaixo de 35%.<br>
+          ✅ Documentar as práticas que levaram 14,33% dos alunos ao N5 (acima das similares) e replicar para toda a turma.<br>
+          ✅ Usar os dados do Avalie.CE 2025 e Recomposição para alinhar as estratégias de LP com os descritores mais críticos da escala SAEB.
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ===== SÉRIE HISTÓRICA ===== -->
-  <div class="section" id="historico">
-    <div class="section-header">
-      <div class="section-icon" style="background:rgba(108,76,180,.12)">📅</div>
-      <div class="section-info">
-        <h2>Série Histórica — Saeb 2011 a 2023 · 9º Ano</h2>
-        <p>Evolução da proficiência média · Escola vs Escolas Similares · LP e Matemática</p>
-      </div>
-    </div>
-    <div style="padding:18px 22px 6px; background:var(--surface); border:1px solid var(--border); border-top:none;">
-      <p style="font-size:var(--fs-xs); font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin-bottom:10px">Língua Portuguesa — Proficiência Média por Edição</p>
-      <div style="display:grid; grid-template-columns:repeat(7,1fr); gap:8px; margin-bottom:14px;">
-        <div style="text-align:center; background:#fafbfd; border:1.5px solid var(--border); border-radius:8px; padding:10px 6px;">
-          <div style="font-size:var(--fs-xs); color:var(--muted); font-weight:700;">2011</div>
-          <div style="font-size:var(--fs-md); font-weight:700; color:var(--yellow);">232,01</div>
-          <div style="font-size:0.70rem; color:var(--muted2);">Escola</div>
-        </div>
-        <div style="text-align:center; background:#fafbfd; border:1.5px solid var(--border); border-radius:8px; padding:10px 6px;">
-          <div style="font-size:var(--fs-xs); color:var(--muted); font-weight:700;">2013</div>
-          <div style="font-size:var(--fs-md); font-weight:700; color:var(--green);">302,36</div>
-          <div style="font-size:0.70rem; color:var(--muted2);">Escola</div>
-        </div>
-        <div style="text-align:center; background:#fafbfd; border:1.5px solid var(--border); border-radius:8px; padding:10px 6px;">
-          <div style="font-size:var(--fs-xs); color:var(--muted); font-weight:700;">2015</div>
-          <div style="font-size:var(--fs-md); font-weight:700; color:var(--yellow);">237,77</div>
-          <div style="font-size:0.70rem; color:var(--muted2);">Escola</div>
-        </div>
-        <div style="text-align:center; background:#fafbfd; border:1.5px solid var(--border); border-radius:8px; padding:10px 6px;">
-          <div style="font-size:var(--fs-xs); color:var(--muted); font-weight:700;">2017</div>
-          <div style="font-size:var(--fs-md); font-weight:700; color:var(--yellow);">232,01</div>
-          <div style="font-size:0.70rem; color:var(--muted2);">Escola</div>
-        </div>
-        <div style="text-align:center; background:#fafbfd; border:1.5px solid var(--border); border-radius:8px; padding:10px 6px;">
-          <div style="font-size:var(--fs-xs); color:var(--muted); font-weight:700;">2019</div>
-          <div style="font-size:var(--fs-md); font-weight:700; color:var(--yellow);">245,86</div>
-          <div style="font-size:0.70rem; color:var(--muted2);">Escola</div>
-        </div>
-        <div style="text-align:center; background:#fafbfd; border:1.5px solid var(--border); border-radius:8px; padding:10px 6px;">
-          <div style="font-size:var(--fs-xs); color:var(--muted); font-weight:700;">2021</div>
-          <div style="font-size:var(--fs-md); font-weight:700; color:var(--yellow);">231,11</div>
-          <div style="font-size:0.70rem; color:var(--muted2);">Escola</div>
-        </div>
-        <div style="text-align:center; background:var(--blue-bg); border:1.5px solid var(--blue); border-radius:8px; padding:10px 6px;">
-          <div style="font-size:var(--fs-xs); color:var(--blue); font-weight:700;">2023</div>
-          <div style="font-size:var(--fs-md); font-weight:700; color:var(--blue);">237,42</div>
-          <div style="font-size:0.70rem; color:var(--muted2);">Escola</div>
-        </div>
-      </div>
-      <div class="alert-box blue" style="margin-bottom:18px;">
-        <div class="al-title">📊 Análise LP 2011–2023</div>
-        <div class="al-text">Pico histórico em 2013 (302,36) — resultado excepcional nunca mais repetido. Em 2023 (237,42), a escola está próxima do nível de 2011 (232,01) — 12 anos sem avanço real. O melhor resultado recente foi 2019 (245,86). A leve alta de 231,11 (2021) para 237,42 (2023) é positiva, mas não significativa. A escola <strong>não atingiu as Escolas Similares (241,69)</strong> nessa edição.</div>
-      </div>
-
-      <p style="font-size:var(--fs-xs); font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin-bottom:10px">Matemática — Proficiência Média por Edição</p>
-      <div style="display:grid; grid-template-columns:repeat(7,1fr); gap:8px; margin-bottom:14px;">
-        <div style="text-align:center; background:#fafbfd; border:1.5px solid var(--border); border-radius:8px; padding:10px 6px;">
-          <div style="font-size:var(--fs-xs); color:var(--muted); font-weight:700;">2011</div>
-          <div style="font-size:var(--fs-md); font-weight:700; color:var(--yellow);">238,56</div>
-          <div style="font-size:0.70rem; color:var(--muted2);">Escola</div>
-        </div>
-        <div style="text-align:center; background:#edfaf3; border:1.5px solid #82e0aa; border-radius:8px; padding:10px 6px;">
-          <div style="font-size:var(--fs-xs); color:var(--green); font-weight:700;">2013</div>
-          <div style="font-size:var(--fs-md); font-weight:700; color:var(--green);">270,26</div>
-          <div style="font-size:0.70rem; color:var(--muted2);">Escola</div>
-        </div>
-        <div style="text-align:center; background:#fafbfd; border:1.5px solid var(--border); border-radius:8px; padding:10px 6px;">
-          <div style="font-size:var(--fs-xs); color:var(--muted); font-weight:700;">2015</div>
-          <div style="font-size:var(--fs-md); font-weight:700; color:var(--yellow);">235,82</div>
-          <div style="font-size:0.70rem; color:var(--muted2);">Escola</div>
-        </div>
-        <div style="text-align:center; background:#fafbfd; border:1.5px solid var(--border); border-radius:8px; padding:10px 6px;">
-          <div style="font-size:var(--fs-xs); color:var(--muted); font-weight:700;">2017</div>
-          <div style="font-size:var(--fs-md); font-weight:700; color:var(--red);">218,16</div>
-          <div style="font-size:0.70rem; color:var(--muted2);">Escola</div>
-        </div>
-        <div style="text-align:center; background:#fafbfd; border:1.5px solid var(--border); border-radius:8px; padding:10px 6px;">
-          <div style="font-size:var(--fs-xs); color:var(--muted); font-weight:700;">2019</div>
-          <div style="font-size:var(--fs-md); font-weight:700; color:var(--yellow);">246,14</div>
-          <div style="font-size:0.70rem; color:var(--muted2);">Escola</div>
-        </div>
-        <div style="text-align:center; background:#fafbfd; border:1.5px solid var(--border); border-radius:8px; padding:10px 6px;">
-          <div style="font-size:var(--fs-xs); color:var(--muted); font-weight:700;">2021</div>
-          <div style="font-size:var(--fs-md); font-weight:700; color:var(--yellow);">240,38</div>
-          <div style="font-size:0.70rem; color:var(--muted2);">Escola</div>
-        </div>
-        <div style="text-align:center; background:var(--red-bg); border:1.5px solid var(--red); border-radius:8px; padding:10px 6px;">
-          <div style="font-size:var(--fs-xs); color:var(--red); font-weight:700;">2023</div>
-          <div style="font-size:var(--fs-md); font-weight:700; color:var(--red);">228,93</div>
-          <div style="font-size:0.70rem; color:var(--muted2);">Escola</div>
-        </div>
-      </div>
-      <div class="alert-box red">
-        <div class="al-title">📉 Análise MT 2011–2023 — Queda alarmante em 2023</div>
-        <div class="al-text">Pico em 2013 (270,26) — mais de 41 pontos acima do resultado atual. Em 2021 a escola estava em 240,38 — após a pandemia havia se recuperado bem. Em 2023, <strong>caiu bruscamente para 228,93 — queda de 11,45 pontos em dois anos</strong>. Esse é o maior retrocesso recente da série histórica. A escola em 2023 está <strong>abaixo até de 2011 (238,56)</strong>, o que representa um apagamento de mais de uma década de avanços em MT.</div>
-      </div>
-    </div>
-    <div style="padding:0 22px 18px; background:var(--surface); border:1px solid var(--border); border-top:none; border-radius:0 0 12px 12px;"></div>
-  </div>
-
-  <!-- ===== ALERTAS ===== -->
-  <div class="section" id="alertas">
-    <div class="section-header">
-      <div class="section-icon" style="background:rgba(202,111,30,.12)">🔔</div>
-      <div class="section-info">
-        <h2>Alertas Cruzados — Pontos Críticos e Análises</h2>
-        <p>Interpretação pedagógica dos dados Saeb 2023 · Clique em cada cartão para ver as ações recomendadas</p>
-      </div>
-    </div>
-
-    <div class="notif-card priority-red" onclick="toggle(this)">
-      <div class="notif-top">
-        <div class="notif-avatar red">🔴</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">CRÍTICO: ~15 alunos estão simultaneamente nos Níveis 0–1 em LP e em MT — déficit duplo e grave</div>
-            <span class="notif-source">Saeb 2023 · 9º Ano</span>
-          </div>
-          <div class="notif-summary">Estatisticamente, os alunos nos Níveis 0 e 1 de LP (49,6%) e de MT (49,8%) são em grande parte os mesmos estudantes. Isso significa que aproximadamente 15 dos 29 alunos avaliados concluirão o Ensino Fundamental sem domínio das competências mínimas esperadas em nenhum dos dois componentes centrais. Esse perfil de aluno — em déficit duplo — exige intervenção especializada, não apenas reforço de turma.</div>
-          <div class="notif-metrics">
-            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>LP N0+N1: 49,6%</span>
-            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>MT N0+N1: 49,8%</span>
-            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>MT Nível 0: 32,09%</span>
-          </div>
-        </div>
-        <button class="notif-toggle">▾</button>
-      </div>
-      <div class="notif-expand">
-        <div class="expand-action">
-          <div class="action-tag">Ação Recomendada</div>
-          <div class="action-text">
-            ✅ <strong>Mapeamento individual urgente:</strong> identificar por nome os alunos nos Níveis 0 e 1, cruzando LP e MT, para estabelecer prioridades de atendimento.<br>
-            ✅ <strong>Criar grupo de intervenção intensiva</strong> com carga horária adicional para esses alunos — separado do fluxo normal de aula, com material específico para os níveis 1–3 da escala Saeb.<br>
-            ✅ <strong>Envolver as famílias:</strong> comunicar individualmente aos responsáveis a situação do aluno, o que significa estar no Nível 0 ou 1, e o que a escola está fazendo para mudar isso.<br>
-            ✅ <strong>Verificar histórico escolar:</strong> esses alunos já apresentavam dificuldades no 6º e 7º Anos? Foram aprovados sem consolidar habilidades mínimas? Que intervenções ocorreram?<br>
-            ✅ <strong>Acionar psicopedagogo ou suporte especializado</strong> da SME para os casos mais críticos (alunos no Nível 0 em ambos os componentes).
-          </div>
-        </div>
-        <div class="expand-tags">
-          <span class="expand-tag">Déficit Duplo</span><span class="expand-tag">LP e MT</span><span class="expand-tag">Intervenção</span><span class="expand-tag">Individual</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="notif-card priority-red" onclick="toggle(this)">
-      <div class="notif-top">
-        <div class="notif-avatar red">📉</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">CRÍTICO: MT caiu 11,45 pontos em dois anos — apagando recuperação pós-pandemia e revertendo para 2011</div>
-            <span class="notif-source">Saeb 2021 → 2023</span>
-          </div>
-          <div class="notif-summary">Em 2021 a escola havia se recuperado bem em MT (240,38). Em 2023, caiu para 228,93 — abaixo de 2011 (238,56). Esse é o maior recuo recente da série histórica e indica que o processo pedagógico pós-pandemia não foi eficaz ou que houve mudança negativa nas condições de ensino (docentes, gestão curricular, retenção). A queda não é resultado da pandemia — é resultado do que aconteceu depois.</div>
-          <div class="notif-metrics">
-            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>2021: 240,38 → 2023: 228,93</span>
-            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>Queda: −11,45 pts</span>
-            <span class="metric-pill yellow"><span class="dot" style="background:var(--yellow)"></span>Abaixo de 2011</span>
-          </div>
-        </div>
-        <button class="notif-toggle">▾</button>
-      </div>
-      <div class="notif-expand">
-        <div class="expand-action">
-          <div class="action-tag">Ação Recomendada</div>
-          <div class="action-text">
-            ✅ <strong>Análise do biênio 2022–2023:</strong> o que mudou nas práticas pedagógicas de MT? Houve troca de professor? Mudança na carga horária? Redução no planejamento?<br>
-            ✅ <strong>Revisão do currículo de MT dos Anos Finais:</strong> houve sequenciamento coerente entre 7º, 8º e 9º Anos? Quais habilidades foram deixadas para trás?<br>
-            ✅ <strong>Verificar a formação do professor de MT:</strong> o docente que lecionou em 2022–2023 tem habilitação em Matemática? Recebeu formação continuada?<br>
-            ✅ <strong>Propor Plano de Recomposição estruturado</strong> para MT, com metas bimestrais monitoradas pela coordenação pedagógica até o próximo Saeb (2025).
-          </div>
-        </div>
-        <div class="expand-tags">
-          <span class="expand-tag">MT</span><span class="expand-tag">Queda Histórica</span><span class="expand-tag">Recomposição</span><span class="expand-tag">Formação Docente</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="notif-card priority-red" onclick="toggle(this)">
-      <div class="notif-top">
-        <div class="notif-avatar red">📖</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">ALERTA: 0% nos Níveis 6, 7 e 8 de LP — nenhum aluno com leitura adequada para o fim do EF</div>
-            <span class="notif-source">Saeb 2023 · LP</span>
-          </div>
-          <div class="notif-summary">Os Níveis 6, 7 e 8 representam competências esperadas ao final do EF: identificar argumentos em reportagens, diferenciar fato de opinião, inferir ironia, comparar textos de gêneros distintos, localizar ideias principais em artigos e teses. Nenhum aluno da Adélia Crisóstomo atingiu esses níveis. O Estado do CE tem 13,35% nessa faixa — a escola está 13 pontos abaixo em capacidade de leitura adequada.</div>
-          <div class="notif-metrics">
-            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>Escola: 0% N6+</span>
-            <span class="metric-pill yellow"><span class="dot" style="background:var(--yellow)"></span>Similares: 2,29% N6+</span>
-            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>Estado CE: 13,35% N6+</span>
-          </div>
-        </div>
-        <button class="notif-toggle">▾</button>
-      </div>
-      <div class="notif-expand">
-        <div class="expand-action">
-          <div class="action-tag">Ação Recomendada</div>
-          <div class="action-text">
-            ✅ <strong>Ampliar o repertório de leitura:</strong> incluir textos jornalísticos, literários e científicos variados na rotina semanal de LP — textos que exijam inferência, comparação e análise argumentativa.<br>
-            ✅ <strong>Trabalhar habilidades de Níveis 5 e 6 explicitamente:</strong> propor tarefas de debate, produção de artigo de opinião fundamentado e comparação de textos de gêneros distintos.<br>
-            ✅ <strong>Usar os descritores da escala Saeb como mapa de ensino:</strong> o professor deve conhecer o que cada nível exige e planejar atividades progressivas rumo ao Nível 6.<br>
-            ✅ <strong>Articular LP com todas as disciplinas:</strong> leitura crítica de enunciados, interpretação de fontes históricas, análise de dados científicos — todas as aulas devem contribuir com leitura.
-          </div>
-        </div>
-        <div class="expand-tags">
-          <span class="expand-tag">LP</span><span class="expand-tag">Leitura Crítica</span><span class="expand-tag">Argumentação</span><span class="expand-tag">Inferência</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="notif-card priority-yellow" onclick="toggle(this)">
-      <div class="notif-top">
-        <div class="notif-avatar yellow">🎓</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">ATENÇÃO: 38,8% das aulas dos Anos Finais são ministradas por professores sem habilitação específica</div>
-            <span class="notif-source">Saeb 2023 · Formação Docente</span>
-          </div>
-          <div class="notif-summary">O Indicador de Adequação de Formação Docente nos Anos Finais é de 61,2% — 38,8% das disciplinas são ministradas por profissionais sem licenciatura específica. Isso é estruturalmente problemático, especialmente em MT e LP onde os resultados são mais graves. O contraste com os Anos Iniciais (98,1%) evidencia uma fragilidade exclusiva dos Anos Finais que precisa de ação da gestão escolar junto à SME.</div>
-          <div class="notif-metrics">
-            <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>Anos Finais: 61,2%</span>
-            <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>Anos Iniciais: 98,1%</span>
-          </div>
-        </div>
-        <button class="notif-toggle">▾</button>
-      </div>
-      <div class="notif-expand">
-        <div class="expand-action">
-          <div class="action-tag">Ação Recomendada</div>
-          <div class="action-text">
-            ✅ <strong>Identificar quais componentes têm professores sem habilitação específica</strong> — sobretudo MT, LP e Ciências no 9º Ano.<br>
-            ✅ <strong>Protocolar ofício formal à SME</strong> solicitando recomposição do quadro com profissionais habilitados — especialmente para MT, onde a queda foi mais grave.<br>
-            ✅ <strong>Enquanto aguarda:</strong> garantir formação interna mínima — compartilhar materiais de apoio, sequências didáticas e descritores Saeb com todos os docentes dos Anos Finais.<br>
-            ✅ <strong>Inserir no PPP</strong> a meta de alcançar 80%+ de formação adequada nos Anos Finais até 2026 — e monitorar anualmente.
-          </div>
-        </div>
-        <div class="expand-tags">
-          <span class="expand-tag">Formação Docente</span><span class="expand-tag">Anos Finais</span><span class="expand-tag">SME</span><span class="expand-tag">Gestão</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="notif-card priority-yellow" onclick="toggle(this)">
-      <div class="notif-top">
-        <div class="notif-avatar yellow">📌</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">ATENÇÃO: 87,88% de participação — 4 ausentes podem estar distorcendo o resultado real da turma</div>
-            <span class="notif-source">Saeb 2023 · Participação</span>
-          </div>
-          <div class="notif-summary">Com 4 alunos ausentes dos 33 matriculados, o diagnóstico é incompleto. Se esses alunos tiverem perfil de baixo rendimento — o que é estatisticamente esperado — a proficiência real da turma pode ser ainda menor do que os dados mostram. Garantir participação plena é pré-condição para diagnóstico fidedigno e planejamento pedagógico eficaz.</div>
-          <div class="notif-metrics">
-            <span class="metric-pill yellow"><span class="dot" style="background:var(--yellow)"></span>29 de 33 presentes</span>
-            <span class="metric-pill yellow"><span class="dot" style="background:var(--yellow)"></span>Taxa: 87,88%</span>
-          </div>
-        </div>
-        <button class="notif-toggle">▾</button>
-      </div>
-      <div class="notif-expand">
-        <div class="expand-action">
-          <div class="action-tag">Ação Recomendada</div>
-          <div class="action-text">
-            ✅ <strong>Identificar os 4 alunos ausentes</strong> — investigar os motivos (falta, evasão, recusa, problema familiar) e agir de forma diferenciada.<br>
-            ✅ <strong>Estabelecer meta institucional de 100% de participação</strong> em todas as avaliações externas — Saeb, Spaece, Avalie.CE — como política da escola.<br>
-            ✅ <strong>Mobilizar famílias antes das avaliações:</strong> avisar com antecedência, esclarecer a importância e comunicar as datas de forma eficiente e proativa.<br>
-            ✅ <strong>Verificar possível risco de abandono escolar</strong> entre os ausentes — acionar Conselho Tutelar ou CRAS se necessário.
-          </div>
-        </div>
-        <div class="expand-tags">
-          <span class="expand-tag">Participação</span><span class="expand-tag">Diagnóstico</span><span class="expand-tag">Família</span><span class="expand-tag">Evasão</span>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- ===== PLANO DE AÇÃO ===== -->
-  <div class="section" id="acoes">
-    <div class="section-header" style="background:var(--sidebar-bg);border-color:var(--border-dark)">
-      <div class="section-icon" style="background:rgba(240,180,40,.15)">⚡</div>
-      <div class="section-info">
-        <h2 style="color:#ffffff">Prioridades do Gestor — Plano de Ação Imediato</h2>
-        <p style="color:#7a90a8">Próximas ações concretas para o diretor e coordenação · Baseadas nos dados Saeb 2023 · 9º Ano</p>
-      </div>
-    </div>
-
-    <div class="notif-card priority-red" onclick="toggle(this)" style="background:#fef8f8">
-      <div class="notif-top">
-        <div class="notif-avatar red">1️⃣</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">PRIORIDADE 1: Diagnóstico individual dos alunos nos Níveis 0 e 1 — nomear e dimensionar o déficit</div>
-            <span class="notif-source">Esta semana</span>
-          </div>
-          <div class="notif-summary">Aproximadamente 15 alunos estão nos níveis mais baixos em LP e MT simultaneamente. Sem identificá-los individualmente, qualquer intervenção será genérica e ineficaz. O diagnóstico é o primeiro passo inegociável.</div>
-        </div>
-        <button class="notif-toggle">▾</button>
-      </div>
-      <div class="notif-expand">
-        <div class="expand-action">
-          <div class="action-tag">Passos</div>
-          <div class="action-text">
-            ✅ Solicitar ao INEP ou à SME acesso ao microdado ou resultado individual dos alunos no Saeb 2023.<br>
-            ✅ Aplicar avaliação diagnóstica própria (ou Avalie.CE) focada nos descritores dos Níveis 0–3 da escala Saeb — tanto em LP quanto em MT.<br>
-            ✅ Organizar mapa por aluno com nível estimado em cada componente — base para agrupamento e intervenção diferenciada.<br>
-            ✅ Apresentar o diagnóstico em Conselho de Classe e construir plano de ação individualizado para os casos mais graves.
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="notif-card priority-red" onclick="toggle(this)">
-      <div class="notif-top">
-        <div class="notif-avatar red">2️⃣</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">PRIORIDADE 2: Reverter a queda brusca de MT (−11,45 pts em 2 anos) com plano pedagógico estruturado</div>
-            <span class="notif-source">Urgente · MT 9º Ano</span>
-          </div>
-          <div class="notif-summary">A queda de 240,38 (2021) para 228,93 (2023) em MT precisa ser investigada e revertida. O plano deve incluir reorganização curricular, reforço semanal e monitoramento bimestral com instrumento interno — sem esperar o próximo Saeb (2025).</div>
-        </div>
-        <button class="notif-toggle">▾</button>
-      </div>
-      <div class="notif-expand">
-        <div class="expand-action">
-          <div class="action-tag">Passos</div>
-          <div class="action-text">
-            ✅ Reunião com professores de MT dos Anos Finais — apresentar histórico Saeb e construir plano coletivo com metas por bimestre.<br>
-            ✅ Organizar reforço semanal de MT focado nos Níveis 0–3 (operações com racionais, frações, proporcionalidade, grandezas básicas).<br>
-            ✅ Verificar habilitação do professor de MT — e acionar SME para recomposição do quadro se necessário.<br>
-            ✅ Monitorar bimestralmente com instrumento próprio e ajustar estratégias em tempo real — não esperar o Saeb 2025 para descobrir se funcionou.
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="notif-card priority-red" onclick="toggle(this)">
-      <div class="notif-top">
-        <div class="notif-avatar red">3️⃣</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">PRIORIDADE 3: Criar rota pedagógica em LP rumo ao Nível 6 — nenhum aluno com leitura adequada é inaceitável</div>
-            <span class="notif-source">LP · 9º Ano</span>
-          </div>
-          <div class="notif-summary">Ao concluir o EF, os alunos devem ter pelo menos competências do Nível 6 em LP. A escola não tem nenhum. O foco imediato deve ser desenvolver os 14,33% no Nível 5 rumo ao 6, enquanto se trabalha para tirar os do Nível 2 para o 3 e 4. A escala Saeb deve funcionar como mapa de ensino.</div>
-        </div>
-        <button class="notif-toggle">▾</button>
-      </div>
-      <div class="notif-expand">
-        <div class="expand-action">
-          <div class="action-tag">Passos</div>
-          <div class="action-text">
-            ✅ Usar os descritores dos Níveis 5 e 6 da escala Saeb como guia explícito do planejamento de LP — o professor deve saber o que cada nível exige.<br>
-            ✅ Criar rotina semanal de leitura diversificada: 1 texto jornalístico + 1 literário + 1 argumentativo — com atividade de inferência, comparação ou análise crítica.<br>
-            ✅ Propor projeto de argumentação escrita: os alunos devem produzir artigos de opinião mensalmente, com feedback estruturado do professor.<br>
-            ✅ Articular LP com todas as disciplinas — interpretação de fontes históricas, análise de gráficos científicos, leitura de enunciados matemáticos.
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="notif-card priority-yellow" onclick="toggle(this)">
-      <div class="notif-top">
-        <div class="notif-avatar yellow">4️⃣</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">PRIORIDADE 4: Resolver a fragilidade de formação docente nos Anos Finais (38,8% sem habilitação)</div>
-            <span class="notif-source">Médio prazo · SME</span>
-          </div>
-          <div class="notif-summary">38,8% das aulas dos Anos Finais são ministradas por professores sem a licenciatura específica. É uma fragilidade estrutural que afeta diretamente a qualidade pedagógica e os resultados. Resolver isso depende de articulação com a Secretaria, mas é inegociável para sustentar melhoria nos anos seguintes.</div>
-        </div>
-        <button class="notif-toggle">▾</button>
-      </div>
-      <div class="notif-expand">
-        <div class="expand-action">
-          <div class="action-tag">Passos</div>
-          <div class="action-text">
-            ✅ Elaborar levantamento formal dos docentes dos Anos Finais por componente — identificar quem leciona fora de sua formação.<br>
-            ✅ Protocolar ofício à SME solicitando recomposição do quadro, especialmente para MT e LP — com dados Saeb como evidência.<br>
-            ✅ Enquanto aguarda, garantir formação interna mínima: compartilhar sequências didáticas, descritores Saeb e materiais de apoio com todos os docentes dos Anos Finais.<br>
-            ✅ Inserir no PPP meta de formação docente adequada: 80%+ nos Anos Finais até 2026.
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="notif-card priority-yellow" onclick="toggle(this)">
-      <div class="notif-top">
-        <div class="notif-avatar yellow">5️⃣</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">PRIORIDADE 5: Garantir 100% de participação no Saeb 2025 e implementar avaliação bimestral interna</div>
-            <span class="notif-source">Curto prazo</span>
-          </div>
-          <div class="notif-summary">87,88% de participação pode estar subestimando o problema real. Além de garantir 100% nas avaliações externas, a escola precisa de instrumento interno bimestral — não se pode esperar o Saeb 2025 para saber se as intervenções estão funcionando.</div>
-        </div>
-        <button class="notif-toggle">▾</button>
-      </div>
-      <div class="notif-expand">
-        <div class="expand-action">
-          <div class="action-tag">Passos</div>
-          <div class="action-text">
-            ✅ Investigar os 4 ausentes no Saeb 2023 — causas e riscos de evasão.<br>
-            ✅ Comunicar datas do Saeb 2025 às famílias com antecedência — garantir presença como meta institucional.<br>
-            ✅ Implementar avaliação bimestral padronizada por componente para o 9º Ano, com referência nos descritores Saeb — monitorar evolução ao longo do ano.<br>
-            ✅ Usar o Avalie.CE como ferramenta de diagnóstico interno — socializar resultados com equipe e famílias a cada bimestre.
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="notif-card priority-green" onclick="toggle(this)">
-      <div class="notif-top">
-        <div class="notif-avatar green">6️⃣</div>
-        <div class="notif-body">
-          <div class="notif-header-row">
-            <div class="notif-title">PRIORIDADE 6: Aprender com os Anos Iniciais — replicar o modelo de qualidade (98,1%) para os Anos Finais</div>
-            <span class="notif-source">Estratégico</span>
-          </div>
-          <div class="notif-summary">O contraste entre Anos Iniciais (98,1% de formação adequada, bons resultados no 2º Ano via Spaece) e Anos Finais (61,2%, resultados críticos no 9º Ano) é uma oportunidade de aprendizado institucional. O que garante qualidade nos Anos Iniciais pode inspirar a transformação dos Anos Finais.</div>
-        </div>
-        <button class="notif-toggle">▾</button>
-      </div>
-      <div class="notif-expand">
-        <div class="expand-action">
-          <div class="action-tag">🎯 Ação Estratégica</div>
-          <div class="action-text">
-            ✅ Promover encontros entre professores dos Anos Iniciais e Anos Finais para trocas sobre planejamento, avaliação formativa e monitoramento da aprendizagem.<br>
-            ✅ Identificar o que explica o alto nível de formação nos Anos Iniciais — e documentar como prática de gestão a ser replicada.<br>
-            ✅ Propor à SME programa de formação continuada específico para docentes dos Anos Finais fora de área, priorizando MT e LP.<br>
-            ✅ Alinhar a coordenação pedagógica para apoiar mais intensivamente os Anos Finais nos próximos dois anos letivos.
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="footer-note">
-    <strong>Adélia Crisóstomo EEIEF</strong> · Caucaia-CE · INEP 23063734 · Municipal<br>
-    Fonte: Boletim da Escola · Saeb 2023 / INEP · 9º Ano do Ensino Fundamental<br>
-    Nível Socioeconômico: Grupo 4 · Formação Docente Anos Iniciais: 98,1% · Anos Finais: 61,2%<br>
-    29 estudantes avaliados de 33 matriculados · Taxa de participação: 87,88%<br>
-    <strong>Clique em cada cartão para ver as ações recomendadas ao gestor</strong>
+  <div style="text-align:center; font-size:0.75rem; color:var(--muted2); margin-top:10px; padding-top:18px; border-top:1px solid var(--border);">
+    SAEB 2023 · Adélia Crisóstomo EQEIEF · Caucaia-CE · INEP: 23063734 · Fonte: Boletim da Escola · INEP/MEC · 9º Ano do EF · Clique nas prioridades para ver os passos
   </div>
 
 </main>
 
 <script>
-function toggle(card) { card.classList.toggle('open'); }
+/* LP 9º Ano — dados reais do boletim PDF */
+const lpData = [
+  {lv:'N0',col:'#ef5350',esc:24.93,sim:20.48,name:'< 200 pts – Atenção especial'},
+  {lv:'N1',col:'#ef7c43',esc:24.63,sim:16.26,name:'200–225 – Inferência, linguagem científica'},
+  {lv:'N2',col:'#ffa726',esc:10.89,sim:17.53,name:'225–250 – Localizar info, causa/consequência'},
+  {lv:'N3',col:'#ffd54f',esc:17.76,sim:19.60,name:'250–275 – Pronomes, advérbios, conjunções'},
+  {lv:'N4',col:'#d4e157',esc:7.46,sim:15.63,name:'275–300 – Finalidade, opiniões distintas'},
+  {lv:'N5',col:'#aed581',esc:14.33,sim:8.22,name:'300–325 – ADEQUADO ✓ (acima das similares!)'},
+  {lv:'N6',col:'#66bb6a',esc:0.00,sim:1.52,name:'325–350 – ADEQUADO ✓ Figuras de linguagem'},
+  {lv:'N7',col:'#26a69a',esc:0.00,sim:0.77,name:'350–375 – AVANÇADO ✓'},
+  {lv:'N8',col:'#29b6f6',esc:0.00,sim:0.00,name:'≥ 375 – AVANÇADO ✓'},
+];
+
+/* MT 9º Ano — dados reais do boletim PDF */
+const mtData = [
+  {lv:'N0',col:'#ef5350',esc:32.09,sim:19.89,name:'< 200 pts – GARGALO: habilidades básicas ausentes'},
+  {lv:'N1',col:'#ef7c43',esc:17.76,sim:21.28,name:'200–225 – Racionais decimais, tabelas'},
+  {lv:'N2',col:'#ffa726',esc:21.49,sim:23.73,name:'225–250 – Frações, representação decimal'},
+  {lv:'N3',col:'#ffd54f',esc:10.60,sim:14.03,name:'250–275 – Ângulos, planificação, proporções'},
+  {lv:'N4',col:'#d4e157',esc:7.16,sim:12.31,name:'275–300 – Plano cartesiano, álgebra 1º grau'},
+  {lv:'N5',col:'#aed581',esc:7.46,sim:3.59,name:'300–325 – ADEQUADO ✓ (acima das similares!)'},
+  {lv:'N6',col:'#66bb6a',esc:3.43,sim:3.65,name:'325–350 – ADEQUADO ✓ Pitágoras, semelhança'},
+  {lv:'N7',col:'#26a69a',esc:0.00,sim:1.03,name:'350–375 – AVANÇADO ✓'},
+  {lv:'N8',col:'#29b6f6',esc:0.00,sim:0.50,name:'375–400 – AVANÇADO ✓'},
+  {lv:'N9',col:'#5c6bc0',esc:0.00,sim:0.00,name:'≥ 400 – AVANÇADO ✓'},
+];
+
+function buildBars(containerId, data, adequadoFrom) {
+  const c = document.getElementById(containerId);
+  if (!c) return;
+  data.forEach(d => {
+    const lvNum = parseInt(d.lv.replace('N',''));
+    const isAdeq = lvNum >= adequadoFrom;
+    const row = document.createElement('div');
+    row.className = 'bar-row';
+    row.innerHTML = `
+      <span class="bar-lv" style="background:${d.col}">${d.lv}</span>
+      <div class="bar-desc"><div class="bar-name">${d.name}</div></div>
+      <div class="bar-track" style="${isAdeq?'outline:1px solid rgba(26,122,74,.3)':''}">
+        <div class="bar-fill" style="width:0%;background:${d.col}" data-w="${d.esc}">
+          <span>${d.esc > 2 ? d.esc.toFixed(2)+'%' : ''}</span>
+        </div>
+      </div>
+      <div class="bar-ref">
+        <span class="bar-ref-val" title="Similares">${d.sim}%</span>
+        <div class="bar-compare" style="background:${d.col}"></div>
+      </div>
+    `;
+    c.appendChild(row);
+  });
+  setTimeout(() => {
+    c.querySelectorAll('.bar-fill').forEach(el => {
+      el.style.width = el.dataset.w + '%';
+    });
+  }, 400);
+}
+
+buildBars('lp-bars', lpData, 5);
+buildBars('mt-bars', mtData, 5);
+
+/* Scroll-spy */
+const secs = document.querySelectorAll('[id]');
+const navs = document.querySelectorAll('.nav-item[href^="#"]');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  secs.forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
+  navs.forEach(n => {
+    n.classList.remove('active');
+    if (n.getAttribute('href') === '#' + cur) n.classList.add('active');
+  });
+}, {passive: true});
+
+/* Adeq fill animation */
 window.addEventListener('load', () => {
   setTimeout(() => {
-    document.querySelectorAll('.nivel-fill').forEach(el => {
+    document.querySelectorAll('.adeq-fill').forEach(el => {
       const w = el.style.width;
       el.style.width = '0';
       requestAnimationFrame(() => { requestAnimationFrame(() => { el.style.width = w; }); });
     });
-  }, 400);
+  }, 300);
 });
-const sections = document.querySelectorAll('.section');
-const navItems = document.querySelectorAll('.nav-item');
-window.addEventListener('scroll', () => {
-  let cur = '';
-  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) cur = s.id; });
-  navItems.forEach(i => {
-    i.classList.remove('active');
-    if (i.getAttribute('href') === '#' + cur) i.classList.add('active');
-  });
-}, { passive: true });
 </script>
 </body>
 </html>
