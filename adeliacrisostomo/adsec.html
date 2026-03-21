@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADESC 2025 · Adélia Crisóstomo EQEIEF · Painel do Diretor</title>
+<style>
+:root {
+  --bg: #f0f4f8;
+  --surface: #ffffff;
+  --border: #d8e2ec;
+  --sidebar-bg: #1a2535;
+  --sidebar-hover: #243145;
+  --sidebar-active: rgba(14,116,144,.18);
+  --blue-dark: #1a3a5c;
+  --blue-mid: #1e5799;
+  --teal: #0e7490;
+  --teal-bg: #ecfeff;
+  --teal-bdr: #67e8f9;
+  --text: #0f1e2e;
+  --muted: #4a5e75;
+  --muted2: #8097b0;
+  --red: #c0392b;
+  --red-bg: #fdf0ef;
+  --red-bdr: #f5b7b1;
+  --red-dark: #a93226;
+  --orange: #ca6f1e;
+  --orange-bg: #fef5e7;
+  --orange-bdr: #f8c471;
+  --yellow: #d68910;
+  --yellow-bg: #fef9ec;
+  --yellow-bdr: #f9d98a;
+  --green: #1a7a4a;
+  --green-bg: #edfaf3;
+  --green-bdr: #82e0aa;
+  --blue: #1a56a0;
+  --blue-bg: #eaf2fc;
+  --blue-bdr: #90bce8;
+  --purple: #6d28d9;
+  --purple-bg: #f5f3ff;
+  --purple-bdr: #c4b5fd;
+  --font: 'Tahoma', 'Verdana', 'Arial', sans-serif;
+  --radius: 10px;
+  --shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; display: flex; font-size: 0.94rem; line-height: 1.6; }
+
+/* ─── SIDEBAR ─── */
+.sidebar { width: 264px; min-width: 264px; background: var(--sidebar-bg); height: 100vh; position: sticky; top: 0; display: flex; flex-direction: column; overflow-y: auto; z-index: 100; }
+.sidebar::-webkit-scrollbar { width: 4px; }
+.sidebar::-webkit-scrollbar-thumb { background: #2e3d52; border-radius: 3px; }
+
+.sidebar-logo { padding: 20px 20px 18px; border-bottom: 1px solid #2e3d52; background: #111c2a; }
+.school-badge { display: inline-block; background: var(--teal); color: #fff; font-size: 0.70rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 10px; border-radius: 4px; margin-bottom: 9px; }
+.school-name { font-size: 1.08rem; font-weight: 700; color: #fff; line-height: 1.25; margin-bottom: 3px; }
+.school-name span { color: #f0b429; }
+.school-sub { font-size: 0.70rem; color: #7a90a8; margin-top: 3px; letter-spacing: 0.05em; }
+
+.nav-section { padding: 12px 20px 5px; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.13em; color: #5a7090; font-weight: 700; }
+
+.nav-item { display: flex; align-items: center; gap: 11px; padding: 11px 20px; cursor: pointer; border-left: 4px solid transparent; transition: all 0.2s; text-decoration: none; color: inherit; }
+.nav-item:hover { background: var(--sidebar-hover); }
+.nav-item.active { background: var(--sidebar-active); border-left-color: #22d3ee; }
+.nav-icon { width: 32px; height: 32px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+.nav-label { font-size: 0.85rem; font-weight: 600; color: #b8cce0; line-height: 1.25; }
+.nav-item.active .nav-label { color: #fff; }
+.nav-badge { margin-left: auto; min-width: 22px; height: 22px; border-radius: 11px; font-size: 0.70rem; font-weight: 700; display: flex; align-items: center; justify-content: center; padding: 0 5px; flex-shrink: 0; }
+.nb-red    { background: var(--red);    color: #fff; }
+.nb-yellow { background: var(--yellow); color: #fff; }
+.nb-green  { background: var(--green);  color: #fff; }
+.nb-orange { background: var(--orange); color: #fff; }
+.nb-teal   { background: var(--teal);   color: #fff; }
+.nb-purple { background: var(--purple); color: #fff; }
+
+/* separador sutil entre indicadores e recomposição */
+.nav-item.recomp { border-top: 1px solid #243145; margin-top: 4px; padding-top: 13px; }
+
+.legend-block { padding: 8px 20px 6px; }
+.leg-row { display: flex; align-items: center; gap: 8px; padding: 5px 0; font-size: 0.74rem; color: #8daabf; border-bottom: 1px solid #243145; }
+.leg-row:last-child { border-bottom: none; }
+.leg-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+.sidebar-footer { margin-top: auto; padding: 14px 20px; border-top: 1px solid #2e3d52; font-size: 0.70rem; color: #5a7090; line-height: 1.7; }
+
+/* ─── MAIN ─── */
+.main { flex: 1; min-width: 0; padding: 28px 32px 52px; }
+
+/* TOPBAR */
+.topbar { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 26px; flex-wrap: wrap; gap: 14px; }
+.topbar-title h2 { font-size: 1.35rem; font-weight: 700; color: var(--text); }
+.topbar-title p { font-size: 0.80rem; color: var(--muted); margin-top: 3px; }
+.topbar-stats { display: flex; gap: 10px; flex-wrap: wrap; }
+.topbar-stat { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 9px 16px; text-align: center; box-shadow: var(--shadow); }
+.topbar-stat .ts-val { font-size: 1.1rem; font-weight: 700; display: block; }
+.topbar-stat .ts-lab { font-size: 0.68rem; color: var(--muted2); text-transform: uppercase; letter-spacing: 0.07em; }
+.ts-red { color: var(--red); } .ts-yellow { color: var(--yellow); } .ts-orange { color: var(--orange); }
+.ts-green { color: var(--green); } .ts-teal { color: var(--teal); } .ts-blue { color: var(--blue); }
+
+/* SECTION TITLE */
+.section-title { font-size: 1.05rem; font-weight: 700; color: var(--blue-dark); padding-bottom: 8px; border-bottom: 2px solid var(--border); margin-bottom: 18px; margin-top: 32px; display: flex; align-items: center; gap: 10px; }
+.section-title:first-of-type { margin-top: 0; }
+
+/* ALERT BANNER */
+.alert-banner { border-radius: var(--radius); padding: 13px 17px; margin-bottom: 11px; border-left: 5px solid; font-size: 0.86rem; display: flex; align-items: flex-start; gap: 11px; }
+.alert-banner.danger  { background: var(--red-bg);    border-color: var(--red);    color: #7a1a0e; }
+.alert-banner.warning { background: var(--yellow-bg); border-color: var(--yellow); color: #7a3e05; }
+.alert-banner.success { background: var(--green-bg);  border-color: var(--green);  color: #155234; }
+.alert-banner.info    { background: var(--teal-bg);   border-color: var(--teal);   color: #0e4f5e; }
+.alert-banner .ab-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 1px; }
+.alert-title { font-weight: 700; margin-bottom: 3px; }
+.alert-body  { font-size: 0.80rem; line-height: 1.6; }
+
+/* DATA TABLE */
+.data-table-wrap { background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); overflow: hidden; margin-bottom: 18px; }
+.table-header { padding: 12px 16px 10px; border-bottom: 1px solid var(--border); background: #fafcff; }
+.table-header h3 { font-size: 0.90rem; font-weight: 700; color: var(--blue-dark); }
+.table-header p  { font-size: 0.73rem; color: var(--muted2); }
+.table-scroll { overflow-x: auto; }
+.data-table { width: 100%; border-collapse: collapse; font-size: 0.80rem; }
+.data-table thead tr { background: linear-gradient(135deg, #1a3a5c, #1e5799); color: #fff; }
+.data-table th { padding: 9px 12px; text-align: left; font-size: 0.70rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; white-space: nowrap; }
+.data-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.data-table tbody tr:last-child td { border-bottom: none; }
+.data-table tbody tr:hover { background: #f8fafc; }
+.delta { font-weight: 700; font-size: 0.80rem; }
+.delta.up { color: var(--green); } .delta.down { color: var(--red); } .delta.neutral { color: var(--muted2); }
+.nivel-badge { font-size: 0.67rem; font-weight: 700; padding: 2px 8px; border-radius: 20px; }
+.nivel-badge.nl  { background: #fdecea; color: var(--red-dark); border: 1px solid var(--red-bdr); }
+.nivel-badge.fra { background: var(--yellow-bg); color: #7d5a10; border: 1px solid var(--yellow-bdr); }
+.nivel-badge.tcf { background: var(--green-bg); color: #155234; border: 1px solid var(--green-bdr); }
+
+/* PERIODO TIMELINE */
+.periodo-timeline { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 24px; }
+.periodo-card { padding: 14px 12px; background: #f7fafd; border: 1.5px solid var(--border); border-radius: var(--radius); transition: box-shadow 0.2s; }
+.periodo-card:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.08); }
+.periodo-card.highlight { background: var(--teal-bg); border-color: var(--teal-bdr); }
+.periodo-label { font-size: 0.68rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+.periodo-card.highlight .periodo-label { color: var(--teal); }
+.kpi-row { display: flex; justify-content: space-between; align-items: center; gap: 4px; font-size: 0.76rem; padding: 2px 0; }
+.kpi-name { color: var(--muted); }
+.kpi-val { font-weight: 700; font-size: 0.76rem; }
+.kpi-val.green { color: var(--green); } .kpi-val.teal { color: var(--teal); }
+.kpi-val.yellow { color: var(--yellow); } .kpi-val.orange { color: var(--orange); } .kpi-val.red { color: var(--red); }
+.leit-stack { margin-top: 10px; height: 9px; border-radius: 5px; overflow: hidden; display: flex; gap: 1px; }
+.ls { height: 100%; transition: width 0.8s ease; }
+.ls.nl { background: #c0392b; } .ls.sil { background: #ca6f1e; } .ls.pal { background: #d4860a; }
+.ls.fra { background: #d4b60a; } .ls.tsf { background: #5cb85c; } .ls.tcf { background: #1a7a4a; } .ls.ni { background: #b0c4d8; }
+.leit-legend { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+.ll { display: flex; align-items: center; gap: 3px; font-size: 0.66rem; color: var(--muted); }
+.lld { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+
+/* PROGRESS BARS */
+.prog-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 18px 20px; margin-bottom: 16px; }
+.prog-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.prog-row:last-child { margin-bottom: 0; }
+.prog-label { font-size: 0.78rem; color: var(--muted); width: 130px; flex-shrink: 0; font-weight: 600; }
+.prog-bar-wrap { flex: 1; background: #e8eef6; border-radius: 5px; height: 12px; overflow: hidden; }
+.prog-fill { height: 100%; border-radius: 5px; transition: width 0.9s ease; }
+.prog-fill.nl  { background: linear-gradient(90deg, #e74c3c, #c0392b); }
+.prog-fill.sil { background: linear-gradient(90deg, #e67e22, #ca6f1e); }
+.prog-fill.pal { background: linear-gradient(90deg, #f39c12, #d68910); }
+.prog-fill.fra { background: linear-gradient(90deg, #f1c40f, #d4b60a); }
+.prog-fill.tsf { background: linear-gradient(90deg, #27ae60, #1e8449); }
+.prog-fill.tcf { background: linear-gradient(90deg, #1a7a4a, #0d5c35); }
+.prog-fill.ni  { background: #b0c4d8; }
+.prog-pct { font-size: 0.72rem; font-weight: 700; color: var(--muted); width: 46px; flex-shrink: 0; text-align: right; }
+.prog-num { font-size: 0.70rem; color: var(--muted2); width: 38px; flex-shrink: 0; text-align: right; }
+
+/* SECTION BLOCK */
+.section-block { margin-bottom: 24px; }
+.section-block-header { display: flex; align-items: center; gap: 12px; padding: 14px 18px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius) var(--radius) 0 0; border-bottom: 3px solid var(--border); box-shadow: var(--shadow); }
+.section-block-header.dark { background: var(--sidebar-bg); border-color: #2e3d52; }
+.sb-icon { width: 38px; height: 38px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+.sb-info h3 { font-size: 0.98rem; font-weight: 700; color: var(--blue-dark); line-height: 1.3; }
+.sb-info p  { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+.section-block-header.dark .sb-info h3 { color: #fff; }
+.section-block-header.dark .sb-info p  { color: #7a90a8; }
+
+/* NOTIF CARDS */
+.notif-card { background: var(--surface); border: 1px solid var(--border); border-top: none; cursor: pointer; transition: background 0.15s; overflow: hidden; }
+.notif-card:last-child { border-radius: 0 0 var(--radius) var(--radius); }
+.notif-card:hover { background: #f5f8ff; }
+.notif-card.priority-red    { border-left: 5px solid var(--red); }
+.notif-card.priority-yellow { border-left: 5px solid var(--yellow); }
+.notif-card.priority-green  { border-left: 5px solid var(--green); }
+.notif-card.priority-teal   { border-left: 5px solid var(--teal); }
+.notif-card.priority-orange { border-left: 5px solid var(--orange); }
+.notif-top { display: flex; align-items: flex-start; gap: 14px; padding: 16px 18px; }
+.notif-avatar { width: 38px; height: 38px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+.notif-avatar.red    { background: var(--red-bg); }
+.notif-avatar.yellow { background: var(--yellow-bg); }
+.notif-avatar.green  { background: var(--green-bg); }
+.notif-avatar.teal   { background: var(--teal-bg); }
+.notif-avatar.orange { background: var(--orange-bg); }
+.notif-body { flex: 1; min-width: 0; }
+.notif-header-row { display: flex; align-items: flex-start; gap: 10px; flex-wrap: wrap; margin-bottom: 5px; }
+.notif-title { font-weight: 700; font-size: 0.88rem; line-height: 1.35; flex: 1; color: var(--text); }
+.notif-source { font-size: 0.68rem; font-weight: 700; padding: 2px 9px; border-radius: 20px; background: #e8eef6; color: var(--muted); white-space: nowrap; flex-shrink: 0; }
+.notif-summary { font-size: 0.82rem; color: var(--muted); line-height: 1.6; margin-bottom: 8px; }
+.notif-metrics { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 8px; }
+.metric-pill { display: flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 20px; font-size: 0.76rem; font-weight: 700; }
+.metric-pill.red    { background: var(--red-bg);    color: var(--red-dark); border: 1px solid var(--red-bdr); }
+.metric-pill.yellow { background: var(--yellow-bg); color: #7d5a10; border: 1px solid var(--yellow-bdr); }
+.metric-pill.green  { background: var(--green-bg);  color: #155234; border: 1px solid var(--green-bdr); }
+.metric-pill.teal   { background: var(--teal-bg);   color: #0e4f5e; border: 1px solid var(--teal-bdr); }
+.metric-pill.orange { background: var(--orange-bg); color: #7e4a10; border: 1px solid var(--orange-bdr); }
+.dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.notif-toggle { background: none; border: none; cursor: pointer; font-size: 1.2rem; color: var(--muted2); flex-shrink: 0; padding: 3px 5px; transition: transform 0.2s; align-self: center; }
+.notif-card.open .notif-toggle { transform: rotate(180deg); }
+.notif-expand { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; background: #f4f8ff; padding: 0 18px; }
+.notif-card.open .notif-expand { max-height: 700px; border-top: 1px solid var(--border); padding: 16px 18px; }
+.action-tag { display: inline-block; background: #1a2535; color: #f0b429; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border-radius: 4px; margin-bottom: 7px; }
+.action-text { font-size: 0.82rem; color: #2c3e50; line-height: 1.85; }
+.expand-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 9px; }
+.expand-tag { background: #dde4ef; color: #3d5270; font-size: 0.68rem; font-weight: 700; padding: 2px 9px; border-radius: 20px; }
+
+/* ETAPAS */
+.etapas-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 10px; margin-bottom: 10px; }
+.etapa-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 13px 10px; box-shadow: var(--shadow); text-align: center; }
+.etapa-card .ec-ano  { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing:.07em; margin-bottom: 6px; }
+.etapa-card .ec-num  { font-size: 1.05rem; font-weight: 700; color: var(--blue-dark); }
+.etapa-card .ec-pct  { font-size: 0.82rem; font-weight: 700; color: var(--teal); }
+.etapa-card .ec-matr { font-size: 0.70rem; color: var(--muted2); margin-top: 2px; }
+.etapa-card.ok   { border-color: var(--teal-bdr); background: var(--teal-bg); }
+.etapa-card.warn { border-color: var(--yellow-bdr); background: var(--yellow-bg); }
+.etapa-card.zero { border-color: var(--red-bdr); background: var(--red-bg); }
+
+/* KPI SUMMARY CARDS */
+.kpi3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 20px; }
+.kc { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 16px 18px; box-shadow: var(--shadow); text-align: center; }
+.kc .kc-v { font-size: 2rem; font-weight: 700; line-height: 1.1; display: block; }
+.kc .kc-l { font-size: 0.75rem; font-weight: 700; margin-top: 4px; }
+.kc .kc-d { font-size: 0.69rem; color: var(--muted2); margin-top: 3px; }
+.kc.cr  { border-color: var(--red-bdr);    background: var(--red-bg); }
+.kc.cy  { border-color: var(--yellow-bdr); background: var(--yellow-bg); }
+.kc.cg  { border-color: var(--green-bdr);  background: var(--green-bg); }
+
+/* CHART */
+.chart-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 20px 22px 16px; margin-bottom: 18px; }
+.chart-wrap h4 { font-size: 0.90rem; font-weight: 700; color: var(--blue-dark); margin-bottom: 3px; }
+.chart-sub { font-size: 0.73rem; color: var(--muted2); margin-bottom: 14px; }
+.chart-legend { display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 12px; }
+.cl { display: flex; align-items: center; gap: 6px; font-size: 0.76rem; color: var(--muted); font-weight: 600; }
+.cl-line { width: 20px; height: 3px; border-radius: 2px; flex-shrink: 0; }
+
+@media (max-width: 860px) {
+  .sidebar { display: none; }
+  .main { padding: 18px 16px 40px; }
+  .periodo-timeline, .etapas-grid, .kpi3 { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .periodo-timeline, .etapas-grid, .kpi3 { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="school-badge">Painel do Diretor</div>
+    <div class="school-name">Adélia <span>Crisóstomo</span></div>
+    <div class="school-sub">EQEIEF · Caucaia · CE · Região BR-222</div>
+  </div>
+
+  <!-- ── INDICADORES ── -->
+  <div class="nav-section">Indicadores</div>
+
+  <a class="nav-item" href="painel.html">
+    <div class="nav-icon" style="background:#ecfeff">🏠</div>
+    <span class="nav-label">Visão Geral</span>
+  </a>
+
+  <a class="nav-item" href="resumo_executivo.html">
+    <div class="nav-icon" style="background:#fdf0ef">🚨</div>
+    <span class="nav-label">Resumo Executivo</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+
+  <a class="nav-item" href="busca_ativa.html">
+    <div class="nav-icon" style="background:#fef5e7">🔍</div>
+    <span class="nav-label">Busca Ativa</span>
+    <span class="nav-badge nb-orange">!</span>
+  </a>
+
+  <a class="nav-item active" href="adesc.html">
+    <div class="nav-icon" style="background:#edfaf3">📖</div>
+    <span class="nav-label">ADESC 2025</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+
+  <a class="nav-item" href="avalie_ce.html">
+    <div class="nav-icon" style="background:#fef9ec">📊</div>
+    <span class="nav-label">Avalie.CE</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+
+  <a class="nav-item" href="bimestrais.html">
+    <div class="nav-icon" style="background:#eaf2fc">📝</div>
+    <span class="nav-label">Bimestrais 2025</span>
+    <span class="nav-badge nb-yellow">!</span>
+  </a>
+
+  <a class="nav-item" href="cnca.html">
+    <div class="nav-icon" style="background:#fef5e7">📚</div>
+    <span class="nav-label">CNCA</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+
+  <a class="nav-item" href="qedu.html">
+    <div class="nav-icon" style="background:#eaf2fc">🎓</div>
+    <span class="nav-label">QEdu / Censo</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+
+  <!-- Recomposição — destaque visual -->
+  <a class="nav-item recomp" href="recomposicao.html">
+    <div class="nav-icon" style="background:var(--purple-bg)">🎒</div>
+    <span class="nav-label" style="color:#c4b5fd">Recomposição</span>
+    <span class="nav-badge nb-purple">!</span>
+  </a>
+
+  <a class="nav-item" href="saeb.html">
+    <div class="nav-icon" style="background:#fdf0ef">📋</div>
+    <span class="nav-label">SAEB 2023</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+
+  <a class="nav-item" href="spaece.html">
+    <div class="nav-icon" style="background:#fef9ec">📈</div>
+    <span class="nav-label">SPAECE 2024</span>
+    <span class="nav-badge nb-red">!!</span>
+  </a>
+
+  <!-- ── NAVEGAÇÃO INTERNA ── -->
+  <div class="nav-section" style="margin-top:10px">Navegação Interna</div>
+
+  <a class="nav-item" href="#visao">
+    <div class="nav-icon" style="background:rgba(14,116,144,.15)">📊</div>
+    <span class="nav-label">Visão Geral</span>
+  </a>
+  <a class="nav-item" href="#etapas">
+    <div class="nav-icon" style="background:rgba(26,85,160,.12)">🏫</div>
+    <span class="nav-label">Alunos por Etapa</span>
+  </a>
+  <a class="nav-item" href="#inicial">
+    <div class="nav-icon" style="background:rgba(202,111,30,.12)">📋</div>
+    <span class="nav-label">Av. Inicial — Níveis</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+  <a class="nav-item" href="#evolucao">
+    <div class="nav-icon" style="background:rgba(14,116,144,.12)">📈</div>
+    <span class="nav-label">Evolução por Período</span>
+    <span class="nav-badge nb-teal">5</span>
+  </a>
+  <a class="nav-item" href="#leitores">
+    <div class="nav-icon" style="background:rgba(26,122,74,.12)">✅</div>
+    <span class="nav-label">Leitores de Texto</span>
+    <span class="nav-badge nb-green">▲</span>
+  </a>
+  <a class="nav-item" href="#alertas">
+    <div class="nav-icon" style="background:rgba(192,57,43,.12)">🔔</div>
+    <span class="nav-label">Alertas Cruzados</span>
+    <span class="nav-badge nb-red">4</span>
+  </a>
+  <a class="nav-item" href="#acoes">
+    <div class="nav-icon" style="background:rgba(14,116,144,.15)">⚡</div>
+    <span class="nav-label">Plano de Ação</span>
+  </a>
+
+  <!-- ── LEGENDA ── -->
+  <div class="nav-section" style="margin-top:10px">Níveis de Leitura</div>
+  <div class="legend-block">
+    <div class="leg-row"><div class="leg-dot" style="background:#1a7a4a"></div>Leitor de Texto c/ Fluência</div>
+    <div class="leg-row"><div class="leg-dot" style="background:#5cb85c"></div>Leitor de Texto s/ Fluência</div>
+    <div class="leg-row"><div class="leg-dot" style="background:#d4b60a"></div>Leitor de Frases</div>
+    <div class="leg-row"><div class="leg-dot" style="background:#d4860a"></div>Leitor de Palavras</div>
+    <div class="leg-row"><div class="leg-dot" style="background:#ca6f1e"></div>Leitor de Sílabas</div>
+    <div class="leg-row"><div class="leg-dot" style="background:#c0392b"></div>Não Leitor</div>
+  </div>
+
+  <!-- ── SISTEMA ── -->
+  <div class="nav-section" style="margin-top:10px">Sistema</div>
+  <a class="nav-item" href="../index.html">
+    <div class="nav-icon" style="background:#fdf0ef">🏫</div>
+    <span class="nav-label">Trocar Escola</span>
+  </a>
+
+  <div class="sidebar-footer">
+    <div>Adélia Crisóstomo EQEIEF<br>Caucaia · CE · Região BR-222</div>
+    <div style="margin-top:6px;color:#8097b0">Fonte: ADESC 2025 / SEDUC-CE<br>Leitura · 1º–5º Ano · 244 matriculados</div>
+    <div style="margin-top:4px;color:#8097b0">Clique nos cartões para ver ações</div>
+  </div>
+</aside>
+
+<!-- ══════════════ MAIN CONTENT ══════════════ -->
+<main class="main">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-title">
+      <h2>📖 ADESC 2025 · Adélia Crisóstomo EQEIEF</h2>
+      <p>Avaliação Diagnóstica do Estado do Ceará · Leitura · Av. Inicial ao 4º Período · 244 matriculados · 135–138 avaliados · Caucaia-CE · Região BR-222</p>
+    </div>
+    <div class="topbar-stats">
+      <div class="topbar-stat"><span class="ts-val ts-red">26,67%</span><span class="ts-lab">Iniciantes (Inicial)</span></div>
+      <div class="topbar-stat"><span class="ts-val ts-green">57,25%</span><span class="ts-lab">Leit. Texto (4º P.)</span></div>
+      <div class="topbar-stat"><span class="ts-val ts-teal">+18,73pp</span><span class="ts-lab">Evolução no Ano</span></div>
+      <div class="topbar-stat"><span class="ts-val ts-orange">20,29%</span><span class="ts-lab">Iniciantes (4º P.)</span></div>
+    </div>
+  </div>
+
+  <!-- ══ VISÃO GERAL ══ -->
+  <div id="visao">
+    <div class="section-title">📊 Visão Geral — Resumo Executivo ADESC 2025</div>
+
+    <div class="alert-banner success">
+      <span class="ab-icon">✅</span>
+      <div>
+        <div class="alert-title">Evolução Positiva Expressiva ao Longo do Ano</div>
+        <div class="alert-body">A escola avançou de <strong>38,52% de Leitores de Texto</strong> na Avaliação Inicial para <strong>57,25% no 3º e 4º Períodos</strong> — uma progressão de <strong>+18,73 pontos percentuais</strong>. A taxa de Iniciantes (NL/LS) recuou de 26,67% para 20,29%. A tendência é consistente, especialmente a partir do 2º Período.</div>
+      </div>
+    </div>
+
+    <div class="alert-banner danger">
+      <span class="ab-icon">⚠️</span>
+      <div>
+        <div class="alert-title">Cobertura de Avaliação Abaixo do Ideal — 55,3% dos Matriculados Avaliados</div>
+        <div class="alert-body">Com <strong>244 matriculados</strong> e apenas <strong>135 avaliados na Av. Inicial (55,3%)</strong> e 138 no Resumo Anual (56,6%), a escola não tem diagnóstico de leitura de quase metade dos alunos. Os anos finais (6º–9º Ano) não são escopo da ADESC de Leitura, mas há ausências também entre os anos iniciais. É prioritário atingir cobertura total nos anos iniciais em 2026.</div>
+      </div>
+    </div>
+
+    <div class="alert-banner warning">
+      <span class="ab-icon">📉</span>
+      <div>
+        <div class="alert-title">Pico Anômalo de Iniciantes no 1º Período — Investigação Necessária</div>
+        <div class="alert-body">O percentual de Iniciantes saltou de <strong>26,67% (Inicial)</strong> para <strong>42,03% no 1º Período</strong> (+15,36pp) antes de retornar à trajetória descendente. Esse comportamento pode indicar variação metodológica na aplicação, diferença de critério entre avaliadores ou composição diferente do grupo avaliado. Recomenda-se verificar antes de interpretar como regressão real.</div>
+      </div>
+    </div>
+
+    <div class="kpi3">
+      <div class="kc cr">
+        <span class="kc-v" style="color:var(--red)">36</span>
+        <div class="kc-l" style="color:var(--red-dark)">Iniciantes · Av. Inicial</div>
+        <div class="kc-d">NL (22) + Sílabas (14) · 26,67%</div>
+      </div>
+      <div class="kc cy">
+        <span class="kc-v" style="color:var(--yellow)">27</span>
+        <div class="kc-l" style="color:#7d5a10">Intermediários · Av. Inicial</div>
+        <div class="kc-d">Palavras (15) + Frases (12) · 20,00%</div>
+      </div>
+      <div class="kc cg">
+        <span class="kc-v" style="color:var(--green)">52</span>
+        <div class="kc-l" style="color:#155234">Leitores de Texto · Av. Inicial</div>
+        <div class="kc-d">TSF (20) + TCF (32) · 38,52%</div>
+      </div>
+    </div>
+
+    <div class="data-table-wrap">
+      <div class="table-header">
+        <h3>Comparativo entre Avaliação Inicial e 4º Período · 244 matriculados</h3>
+        <p>Fonte: ADESC 2025 / SEDUC-CE · Escola Adélia Crisóstomo EQEIEF · Caucaia-CE · Região BR-222</p>
+      </div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr><th>Indicador</th><th>Av. Inicial</th><th>1º Período</th><th>2º Período</th><th>3º Período</th><th>4º Período</th><th>Δ Total</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Alunos Avaliados</strong></td>
+              <td>135 · 55,3%</td>
+              <td colspan="3" style="color:var(--muted2);font-size:0.76rem">dados no Resumo Anual (agrupados)</td>
+              <td>138 · 56,6%</td>
+              <td><span class="delta up">▲ +3 al.</span></td>
+            </tr>
+            <tr>
+              <td><strong>Iniciantes NL/LS</strong></td>
+              <td><span class="nivel-badge nl">26,67%</span></td>
+              <td style="color:var(--red);font-weight:700">42,03% ⚠️</td>
+              <td>33,33%</td>
+              <td>19,57%</td>
+              <td><span class="nivel-badge nl">20,29%</span></td>
+              <td><span class="delta up">▼ −6,38pp</span></td>
+            </tr>
+            <tr>
+              <td><strong>Intermediário LP/LF</strong></td>
+              <td><span class="nivel-badge fra">20,00%</span></td>
+              <td>10,14%</td>
+              <td>15,22%</td>
+              <td>23,19%</td>
+              <td><span class="nivel-badge fra">22,46%</span></td>
+              <td><span class="delta neutral">~ +2,46pp</span></td>
+            </tr>
+            <tr>
+              <td><strong>Leitor de Texto TSF+TCF</strong></td>
+              <td><span class="nivel-badge tcf">38,52%</span></td>
+              <td>47,83%</td>
+              <td>51,45%</td>
+              <td style="color:var(--green);font-weight:700">57,25% ⭐</td>
+              <td><span class="nivel-badge tcf">57,25%</span></td>
+              <td><span class="delta up">▲ +18,73pp</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ ALUNOS POR ETAPA ══ -->
+  <div id="etapas">
+    <div class="section-title">🏫 Estudantes Matriculados e Avaliados por Etapa — Avaliação Inicial</div>
+
+    <div class="alert-banner info">
+      <span class="ab-icon">ℹ️</span>
+      <div>
+        <div class="alert-title">A ADESC de Leitura avalia apenas os Anos Iniciais (1º ao 5º Ano)</div>
+        <div class="alert-body">Os Anos Finais (6º ao 9º Ano — 106 alunos) não são escopo desta avaliação diagnóstica. O 0% de cobertura nesses anos é esperado e não representa problema de cobertura.</div>
+      </div>
+    </div>
+
+    <p style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:8px">Anos Iniciais — escopo da ADESC de Leitura</p>
+    <div class="etapas-grid">
+      <div class="etapa-card warn">
+        <div class="ec-ano">1º Ano</div>
+        <div class="ec-num">27 aval.</div>
+        <div class="ec-pct">96,4%</div>
+        <div class="ec-matr">de 28 matriculados</div>
+      </div>
+      <div class="etapa-card ok">
+        <div class="ec-ano">2º Ano</div>
+        <div class="ec-num">32 aval.</div>
+        <div class="ec-pct">100,0%</div>
+        <div class="ec-matr">de 32 matriculados</div>
+      </div>
+      <div class="etapa-card ok">
+        <div class="ec-ano">3º Ano</div>
+        <div class="ec-num">19 aval.</div>
+        <div class="ec-pct">100,0%</div>
+        <div class="ec-matr">de 19 matriculados</div>
+      </div>
+      <div class="etapa-card ok">
+        <div class="ec-ano">4º Ano</div>
+        <div class="ec-num">35 aval.</div>
+        <div class="ec-pct">100,0%</div>
+        <div class="ec-matr">de 35 matriculados</div>
+      </div>
+      <div class="etapa-card warn">
+        <div class="ec-ano">5º Ano</div>
+        <div class="ec-num">22 aval.</div>
+        <div class="ec-pct">91,7%</div>
+        <div class="ec-matr">de 24 matriculados</div>
+      </div>
+    </div>
+
+    <p style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:8px;margin-top:14px">Anos Finais — fora do escopo da ADESC de Leitura</p>
+    <div class="etapas-grid">
+      <div class="etapa-card zero">
+        <div class="ec-ano">6º Ano</div>
+        <div class="ec-num" style="color:var(--red)">0 aval.</div>
+        <div class="ec-pct" style="color:var(--red)">0,0%</div>
+        <div class="ec-matr">de 28 matriculados</div>
+      </div>
+      <div class="etapa-card zero">
+        <div class="ec-ano">7º Ano</div>
+        <div class="ec-num" style="color:var(--red)">0 aval.</div>
+        <div class="ec-pct" style="color:var(--red)">0,0%</div>
+        <div class="ec-matr">de 20 matriculados</div>
+      </div>
+      <div class="etapa-card zero">
+        <div class="ec-ano">8º Ano</div>
+        <div class="ec-num" style="color:var(--red)">0 aval.</div>
+        <div class="ec-pct" style="color:var(--red)">0,0%</div>
+        <div class="ec-matr">de 39 matriculados</div>
+      </div>
+      <div class="etapa-card zero">
+        <div class="ec-ano">9º Ano</div>
+        <div class="ec-num" style="color:var(--red)">0 aval.</div>
+        <div class="ec-pct" style="color:var(--red)">0,0%</div>
+        <div class="ec-matr">de 19 matriculados</div>
+      </div>
+      <div class="etapa-card" style="border-color:var(--blue-bdr);background:var(--blue-bg)">
+        <div class="ec-ano">Total Geral</div>
+        <div class="ec-num" style="color:var(--blue)">135 aval.</div>
+        <div class="ec-pct" style="color:var(--blue)">55,3%</div>
+        <div class="ec-matr">de 244 matriculados</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ AVALIAÇÃO INICIAL ══ -->
+  <div id="inicial">
+    <div class="section-title">📋 Avaliação Inicial — Distribuição por Nível de Leitura</div>
+
+    <div class="prog-wrap">
+      <p style="font-size:0.76rem;font-weight:700;color:var(--muted);margin-bottom:14px;text-transform:uppercase;letter-spacing:.08em">Distribuição por Nível · Avaliação Inicial (135 alunos avaliados)</p>
+      <div class="prog-row">
+        <span class="prog-label">Não Leitor</span>
+        <div class="prog-bar-wrap"><div class="prog-fill nl" style="width:16.3%"></div></div>
+        <span class="prog-pct">16,3%</span><span class="prog-num">22 al.</span>
+      </div>
+      <div class="prog-row">
+        <span class="prog-label">Leitor de Sílabas</span>
+        <div class="prog-bar-wrap"><div class="prog-fill sil" style="width:10.4%"></div></div>
+        <span class="prog-pct">10,4%</span><span class="prog-num">14 al.</span>
+      </div>
+      <div class="prog-row">
+        <span class="prog-label">Leitor de Palavras</span>
+        <div class="prog-bar-wrap"><div class="prog-fill pal" style="width:11.1%"></div></div>
+        <span class="prog-pct">11,1%</span><span class="prog-num">15 al.</span>
+      </div>
+      <div class="prog-row">
+        <span class="prog-label">Leitor de Frases</span>
+        <div class="prog-bar-wrap"><div class="prog-fill fra" style="width:8.9%"></div></div>
+        <span class="prog-pct">8,9%</span><span class="prog-num">12 al.</span>
+      </div>
+      <div class="prog-row">
+        <span class="prog-label">Tex. s/ Fluência</span>
+        <div class="prog-bar-wrap"><div class="prog-fill tsf" style="width:14.8%"></div></div>
+        <span class="prog-pct">14,8%</span><span class="prog-num">20 al.</span>
+      </div>
+      <div class="prog-row">
+        <span class="prog-label">Tex. c/ Fluência</span>
+        <div class="prog-bar-wrap"><div class="prog-fill tcf" style="width:23.7%"></div></div>
+        <span class="prog-pct">23,7%</span><span class="prog-num">32 al.</span>
+      </div>
+      <div class="prog-row">
+        <span class="prog-label" style="color:var(--muted2)">Não Informado</span>
+        <div class="prog-bar-wrap"><div class="prog-fill ni" style="width:14.8%"></div></div>
+        <span class="prog-pct" style="color:var(--muted2)">14,8%</span><span class="prog-num" style="color:var(--muted2)">20 al.</span>
+      </div>
+    </div>
+
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow);margin-bottom:18px">
+      <p style="font-size:0.80rem;font-weight:700;color:var(--blue-dark);margin-bottom:10px">Perfil de Leitura Consolidado · Avaliação Inicial</p>
+      <div class="leit-stack" style="height:16px;border-radius:8px">
+        <div class="ls nl"  style="width:16.3%"></div>
+        <div class="ls sil" style="width:10.4%"></div>
+        <div class="ls pal" style="width:11.1%"></div>
+        <div class="ls fra" style="width:8.9%"></div>
+        <div class="ls tsf" style="width:14.8%"></div>
+        <div class="ls tcf" style="width:23.7%"></div>
+        <div class="ls ni"  style="width:14.8%"></div>
+      </div>
+      <div class="leit-legend" style="margin-top:10px">
+        <span class="ll"><span class="lld" style="background:#c0392b"></span>NL 16,3% (22)</span>
+        <span class="ll"><span class="lld" style="background:#ca6f1e"></span>Síl. 10,4% (14)</span>
+        <span class="ll"><span class="lld" style="background:#d4860a"></span>Pal. 11,1% (15)</span>
+        <span class="ll"><span class="lld" style="background:#d4b60a"></span>Fra. 8,9% (12)</span>
+        <span class="ll"><span class="lld" style="background:#5cb85c"></span>TSF 14,8% (20)</span>
+        <span class="ll"><span class="lld" style="background:#1a7a4a"></span>TCF 23,7% (32)</span>
+        <span class="ll"><span class="lld" style="background:#b0c4d8"></span>N/I 14,8% (20)</span>
+      </div>
+    </div>
+
+    <div class="kpi3">
+      <div style="background:var(--red-bg);border:1.5px solid var(--red-bdr);border-radius:var(--radius);padding:16px;text-align:center">
+        <div style="font-size:1.9rem;font-weight:700;color:var(--red)">26,67%</div>
+        <div style="font-size:0.76rem;font-weight:700;color:var(--red-dark);margin-top:4px">Iniciantes · NL + LS</div>
+        <div style="font-size:0.69rem;color:var(--muted2);margin-top:2px">36 alunos · sem autonomia leitora mínima</div>
+      </div>
+      <div style="background:var(--yellow-bg);border:1.5px solid var(--yellow-bdr);border-radius:var(--radius);padding:16px;text-align:center">
+        <div style="font-size:1.9rem;font-weight:700;color:var(--yellow)">20,00%</div>
+        <div style="font-size:0.76rem;font-weight:700;color:#7d5a10;margin-top:4px">Intermediário · LP + LF</div>
+        <div style="font-size:0.69rem;color:var(--muted2);margin-top:2px">27 alunos · em desenvolvimento</div>
+      </div>
+      <div style="background:var(--green-bg);border:1.5px solid var(--green-bdr);border-radius:var(--radius);padding:16px;text-align:center">
+        <div style="font-size:1.9rem;font-weight:700;color:var(--green)">38,52%</div>
+        <div style="font-size:0.76rem;font-weight:700;color:#155234;margin-top:4px">Leitores de Texto · TSF + TCF</div>
+        <div style="font-size:0.69rem;color:var(--muted2);margin-top:2px">52 alunos · leitura autônoma</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ EVOLUÇÃO POR PERÍODO ══ -->
+  <div id="evolucao">
+    <div class="section-title">📈 Evolução por Período — Grupos de Desempenho</div>
+
+    <div class="periodo-timeline">
+      <div class="periodo-card">
+        <div class="periodo-label">🟡 Av. Inicial</div>
+        <div class="kpi-row"><span class="kpi-name">Iniciantes</span><span class="kpi-val red">26,67%</span></div>
+        <div class="kpi-row"><span class="kpi-name">Intermediário</span><span class="kpi-val yellow">20,00%</span></div>
+        <div class="kpi-row"><span class="kpi-name">Leit. Texto</span><span class="kpi-val green">38,52%</span></div>
+        <div class="kpi-row"><span class="kpi-name">Não Informado</span><span class="kpi-val" style="color:var(--muted2)">14,81%</span></div>
+        <div class="leit-stack">
+          <div class="ls nl"  style="width:26.67%"></div>
+          <div class="ls fra" style="width:20.00%"></div>
+          <div class="ls tcf" style="width:38.52%"></div>
+          <div class="ls ni"  style="width:14.81%"></div>
+        </div>
+        <div class="leit-legend">
+          <span class="ll"><span class="lld" style="background:#c0392b"></span>Inic.</span>
+          <span class="ll"><span class="lld" style="background:#d4b60a"></span>Inter.</span>
+          <span class="ll"><span class="lld" style="background:#1a7a4a"></span>Text.</span>
+        </div>
+      </div>
+
+      <div class="periodo-card">
+        <div class="periodo-label">📋 1º Período</div>
+        <div class="kpi-row"><span class="kpi-name">Iniciantes</span><span class="kpi-val red">42,03%</span></div>
+        <div class="kpi-row"><span class="kpi-name">Intermediário</span><span class="kpi-val yellow">10,14%</span></div>
+        <div class="kpi-row"><span class="kpi-name">Leit. Texto</span><span class="kpi-val green">47,83%</span></div>
+        <div style="margin-top:6px"><span style="font-size:0.64rem;color:var(--red);font-weight:700;background:var(--red-bg);border-radius:4px;padding:2px 5px">⚠️ Pico de Iniciantes</span></div>
+        <div class="leit-stack">
+          <div class="ls nl"  style="width:42.03%"></div>
+          <div class="ls fra" style="width:10.14%"></div>
+          <div class="ls tcf" style="width:47.83%"></div>
+        </div>
+        <div class="leit-legend">
+          <span class="ll"><span class="lld" style="background:#c0392b"></span>Inic.</span>
+          <span class="ll"><span class="lld" style="background:#d4b60a"></span>Inter.</span>
+          <span class="ll"><span class="lld" style="background:#1a7a4a"></span>Text.</span>
+        </div>
+      </div>
+
+      <div class="periodo-card">
+        <div class="periodo-label">📋 2º Período</div>
+        <div class="kpi-row"><span class="kpi-name">Iniciantes</span><span class="kpi-val red">33,33%</span></div>
+        <div class="kpi-row"><span class="kpi-name">Intermediário</span><span class="kpi-val yellow">15,22%</span></div>
+        <div class="kpi-row"><span class="kpi-name">Leit. Texto</span><span class="kpi-val green">51,45%</span></div>
+        <div class="leit-stack">
+          <div class="ls nl"  style="width:33.33%"></div>
+          <div class="ls fra" style="width:15.22%"></div>
+          <div class="ls tcf" style="width:51.45%"></div>
+        </div>
+        <div class="leit-legend">
+          <span class="ll"><span class="lld" style="background:#c0392b"></span>Inic.</span>
+          <span class="ll"><span class="lld" style="background:#d4b60a"></span>Inter.</span>
+          <span class="ll"><span class="lld" style="background:#1a7a4a"></span>Text.</span>
+        </div>
+      </div>
+
+      <div class="periodo-card highlight">
+        <div class="periodo-label">⭐ 3º Período</div>
+        <div class="kpi-row"><span class="kpi-name">Iniciantes</span><span class="kpi-val red">19,57%</span></div>
+        <div class="kpi-row"><span class="kpi-name">Intermediário</span><span class="kpi-val yellow">23,19%</span></div>
+        <div class="kpi-row"><span class="kpi-name">Leit. Texto</span><span class="kpi-val green">57,25%</span></div>
+        <div style="margin-top:6px"><span style="font-size:0.64rem;color:var(--green);font-weight:700;background:var(--green-bg);border-radius:4px;padding:2px 5px">📈 Maior salto do ano</span></div>
+        <div class="leit-stack">
+          <div class="ls nl"  style="width:19.57%"></div>
+          <div class="ls fra" style="width:23.19%"></div>
+          <div class="ls tcf" style="width:57.25%"></div>
+        </div>
+        <div class="leit-legend">
+          <span class="ll"><span class="lld" style="background:#c0392b"></span>Inic.</span>
+          <span class="ll"><span class="lld" style="background:#d4b60a"></span>Inter.</span>
+          <span class="ll"><span class="lld" style="background:#1a7a4a"></span>Text.</span>
+        </div>
+      </div>
+
+      <div class="periodo-card highlight">
+        <div class="periodo-label">🏁 4º Período</div>
+        <div class="kpi-row"><span class="kpi-name">Iniciantes</span><span class="kpi-val red">20,29%</span></div>
+        <div class="kpi-row"><span class="kpi-name">Intermediário</span><span class="kpi-val yellow">22,46%</span></div>
+        <div class="kpi-row"><span class="kpi-name">Leit. Texto</span><span class="kpi-val green">57,25%</span></div>
+        <div class="leit-stack">
+          <div class="ls nl"  style="width:20.29%"></div>
+          <div class="ls fra" style="width:22.46%"></div>
+          <div class="ls tcf" style="width:57.25%"></div>
+        </div>
+        <div class="leit-legend">
+          <span class="ll"><span class="lld" style="background:#c0392b"></span>Inic.</span>
+          <span class="ll"><span class="lld" style="background:#d4b60a"></span>Inter.</span>
+          <span class="ll"><span class="lld" style="background:#1a7a4a"></span>Text.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gráfico de linhas SVG -->
+    <div class="chart-wrap">
+      <h4>Curva de Evolução por Grupo · Avaliação Inicial ao 4º Período</h4>
+      <p class="chart-sub">Fonte: ADESC 2025 / SEDUC-CE · Adélia Crisóstomo EQEIEF · dados do Resumo Anual Power BI</p>
+      <div class="chart-legend">
+        <div class="cl"><div class="cl-line" style="background:#1a7a4a"></div>Leitores de Texto (TSF+TCF)</div>
+        <div class="cl"><div class="cl-line" style="background:#ca6f1e"></div>Iniciantes (NL+LS)</div>
+        <div class="cl"><div class="cl-line" style="background:#d68910;border-top:2px dashed #d68910;height:0;margin-top:1px"></div><div class="cl-line" style="background:#d68910"></div>Intermediário LP/LF</div>
+      </div>
+      <svg viewBox="0 0 740 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;overflow:visible">
+        <line x1="75" y1="20"  x2="75"  y2="193" stroke="#dde6f0" stroke-width="1"/>
+        <line x1="75" y1="20"  x2="700" y2="20"  stroke="#dde6f0" stroke-width="1"/>
+        <line x1="75" y1="53"  x2="700" y2="53"  stroke="#e8eef8" stroke-width="1" stroke-dasharray="4,3"/>
+        <line x1="75" y1="86"  x2="700" y2="86"  stroke="#e8eef8" stroke-width="1" stroke-dasharray="4,3"/>
+        <line x1="75" y1="119" x2="700" y2="119" stroke="#e8eef8" stroke-width="1" stroke-dasharray="4,3"/>
+        <line x1="75" y1="152" x2="700" y2="152" stroke="#e8eef8" stroke-width="1" stroke-dasharray="4,3"/>
+        <line x1="75" y1="185" x2="700" y2="185" stroke="#dde6f0" stroke-width="1"/>
+        <text x="68" y="24"  font-size="9" fill="#8097b0" text-anchor="end" font-family="Tahoma,Arial,sans-serif">60%</text>
+        <text x="68" y="57"  font-size="9" fill="#8097b0" text-anchor="end" font-family="Tahoma,Arial,sans-serif">50%</text>
+        <text x="68" y="90"  font-size="9" fill="#8097b0" text-anchor="end" font-family="Tahoma,Arial,sans-serif">40%</text>
+        <text x="68" y="123" font-size="9" fill="#8097b0" text-anchor="end" font-family="Tahoma,Arial,sans-serif">30%</text>
+        <text x="68" y="156" font-size="9" fill="#8097b0" text-anchor="end" font-family="Tahoma,Arial,sans-serif">20%</text>
+        <text x="68" y="188" font-size="9" fill="#8097b0" text-anchor="end" font-family="Tahoma,Arial,sans-serif">10%</text>
+        <text x="75"  y="207" font-size="9" fill="#8097b0" text-anchor="middle" font-family="Tahoma,Arial,sans-serif">Inicial</text>
+        <text x="228" y="207" font-size="9" fill="#8097b0" text-anchor="middle" font-family="Tahoma,Arial,sans-serif">1º Período</text>
+        <text x="381" y="207" font-size="9" fill="#8097b0" text-anchor="middle" font-family="Tahoma,Arial,sans-serif">2º Período</text>
+        <text x="534" y="207" font-size="9" fill="#8097b0" text-anchor="middle" font-family="Tahoma,Arial,sans-serif">3º Período</text>
+        <text x="687" y="207" font-size="9" fill="#8097b0" text-anchor="middle" font-family="Tahoma,Arial,sans-serif">4º Período</text>
+        <!-- Leitor de Texto (verde) -->
+        <polyline points="75,87 228,61 381,49 534,31 687,31" fill="none" stroke="#1a7a4a" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+        <circle cx="75"  cy="87" r="4.5" fill="#1a7a4a"/>
+        <circle cx="228" cy="61" r="4.5" fill="#1a7a4a"/>
+        <circle cx="381" cy="49" r="4.5" fill="#1a7a4a"/>
+        <circle cx="534" cy="31" r="4.5" fill="#1a7a4a"/>
+        <circle cx="687" cy="31" r="4.5" fill="#1a7a4a"/>
+        <text x="75"  y="79"  font-size="8.5" fill="#1a7a4a" text-anchor="middle" font-weight="700" font-family="Tahoma,Arial,sans-serif">38,52%</text>
+        <text x="228" y="53"  font-size="8.5" fill="#1a7a4a" text-anchor="middle" font-weight="700" font-family="Tahoma,Arial,sans-serif">47,83%</text>
+        <text x="381" y="41"  font-size="8.5" fill="#1a7a4a" text-anchor="middle" font-weight="700" font-family="Tahoma,Arial,sans-serif">51,45%</text>
+        <text x="534" y="23"  font-size="8.5" fill="#1a7a4a" text-anchor="middle" font-weight="700" font-family="Tahoma,Arial,sans-serif">57,25%</text>
+        <text x="687" y="23"  font-size="8.5" fill="#1a7a4a" text-anchor="middle" font-weight="700" font-family="Tahoma,Arial,sans-serif">57,25%</text>
+        <!-- Iniciantes (laranja) -->
+        <polyline points="75,131 228,79 381,108 534,134 687,132" fill="none" stroke="#ca6f1e" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+        <circle cx="75"  cy="131" r="4.5" fill="#ca6f1e"/>
+        <circle cx="228" cy="79"  r="4.5" fill="#ca6f1e"/>
+        <circle cx="381" cy="108" r="4.5" fill="#ca6f1e"/>
+        <circle cx="534" cy="134" r="4.5" fill="#ca6f1e"/>
+        <circle cx="687" cy="132" r="4.5" fill="#ca6f1e"/>
+        <text x="75"  y="144" font-size="8.5" fill="#ca6f1e" text-anchor="middle" font-weight="700" font-family="Tahoma,Arial,sans-serif">26,67%</text>
+        <text x="228" y="71"  font-size="8.5" fill="#ca6f1e" text-anchor="middle" font-weight="700" font-family="Tahoma,Arial,sans-serif">42,03%</text>
+        <text x="381" y="120" font-size="8.5" fill="#ca6f1e" text-anchor="middle" font-weight="700" font-family="Tahoma,Arial,sans-serif">33,33%</text>
+        <text x="534" y="147" font-size="8.5" fill="#ca6f1e" text-anchor="middle" font-weight="700" font-family="Tahoma,Arial,sans-serif">19,57%</text>
+        <text x="687" y="145" font-size="8.5" fill="#ca6f1e" text-anchor="middle" font-weight="700" font-family="Tahoma,Arial,sans-serif">20,29%</text>
+        <!-- Intermediário (amarelo tracejado) -->
+        <polyline points="75,152 228,182 381,148 534,122 687,124" fill="none" stroke="#d68910" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="7,4"/>
+        <circle cx="75"  cy="152" r="4.5" fill="#d68910"/>
+        <circle cx="228" cy="182" r="4.5" fill="#d68910"/>
+        <circle cx="381" cy="148" r="4.5" fill="#d68910"/>
+        <circle cx="534" cy="122" r="4.5" fill="#d68910"/>
+        <circle cx="687" cy="124" r="4.5" fill="#d68910"/>
+        <text x="75"  y="165" font-size="8.5" fill="#d68910" text-anchor="middle" font-weight="700" font-family="Tahoma,Arial,sans-serif">20,00%</text>
+        <text x="228" y="176" font-size="8.5" fill="#d68910" text-anchor="middle" font-weight="700" font-family="Tahoma,Arial,sans-serif">10,14%</text>
+        <text x="381" y="161" font-size="8.5" fill="#d68910" text-anchor="middle" font-weight="700" font-family="Tahoma,Arial,sans-serif">15,22%</text>
+        <text x="534" y="115" font-size="8.5" fill="#d68910" text-anchor="middle" font-weight="700" font-family="Tahoma,Arial,sans-serif">23,19%</text>
+        <text x="687" y="117" font-size="8.5" fill="#d68910" text-anchor="middle" font-weight="700" font-family="Tahoma,Arial,sans-serif">22,46%</text>
+      </svg>
+    </div>
+
+    <div class="prog-wrap">
+      <p style="font-size:0.76rem;font-weight:700;color:var(--muted);margin-bottom:14px;text-transform:uppercase;letter-spacing:.08em">Distribuição Final — 4º Período (grupos consolidados)</p>
+      <div class="prog-row">
+        <span class="prog-label">Iniciantes NL/LS</span>
+        <div class="prog-bar-wrap"><div class="prog-fill nl" style="width:20.29%"></div></div>
+        <span class="prog-pct">20,29%</span><span class="prog-num">~28 al.</span>
+      </div>
+      <div class="prog-row">
+        <span class="prog-label">Intermediário LP/LF</span>
+        <div class="prog-bar-wrap"><div class="prog-fill fra" style="width:22.46%"></div></div>
+        <span class="prog-pct">22,46%</span><span class="prog-num">~31 al.</span>
+      </div>
+      <div class="prog-row">
+        <span class="prog-label">Leitor de Texto</span>
+        <div class="prog-bar-wrap"><div class="prog-fill tcf" style="width:57.25%"></div></div>
+        <span class="prog-pct">57,25%</span><span class="prog-num">~79 al.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ LEITORES DE TEXTO ══ -->
+  <div id="leitores">
+    <div class="section-title">✅ Leitores de Texto — Avanço e Perspectivas</div>
+
+    <div class="alert-banner success">
+      <span class="ab-icon">🎉</span>
+      <div>
+        <div class="alert-title">Conquista Real: de 38,52% para 57,25% de Leitores de Texto em um ano</div>
+        <div class="alert-body">A escola avançou quase <strong>19 pontos percentuais</strong> em Leitores de Texto ao longo de 2025. A maioria dos alunos avaliados — mais da metade — lê textos com autonomia. Na Av. Inicial, 52 alunos eram Leitores de Texto (TSF=20 + TCF=32). Ao final do ano, estimam-se cerca de 79 Leitores de Texto entre os avaliados.</div>
+      </div>
+    </div>
+
+    <div class="section-block">
+      <div class="section-block-header">
+        <div class="sb-icon" style="background:var(--green-bg)">✅</div>
+        <div class="sb-info">
+          <h3>Análise do grupo Leitor de Texto — O que os dados revelam</h3>
+          <p>Clique em cada cartão para ver análise completa e ações</p>
+        </div>
+      </div>
+
+      <div class="notif-card priority-green" onclick="toggle(this)">
+        <div class="notif-top">
+          <div class="notif-avatar green">📈</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">Leitor de Texto: crescimento de +18,73pp — o maior avanço da escola em 2025</div>
+              <span class="notif-source">Av. Inicial → 4º Período</span>
+            </div>
+            <div class="notif-summary">De 38,52% na Avaliação Inicial para 57,25% no 3º e 4º Períodos. A escola partiu com quase 4 em cada 10 alunos lendo textos e encerrou o ano com mais de 5 em cada 10. Crescimento sólido e consistente.</div>
+            <div class="notif-metrics">
+              <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>38,52% → 57,25%</span>
+              <span class="metric-pill teal"><span class="dot" style="background:var(--teal)"></span>+18,73pp em 4 períodos</span>
+              <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>~52 → ~79 Leitores de Texto</span>
+            </div>
+          </div>
+          <button class="notif-toggle">▾</button>
+        </div>
+        <div class="notif-expand">
+          <div class="action-tag">Análise</div>
+          <div class="action-text">O crescimento de quase 19pp é expressivo. Na Av. Inicial, 52 alunos liam textos (TSF=20 + TCF=32). Estimando-se a mesma base de avaliados (~138) no 4º Período, aproximadamente 79 alunos são Leitores de Texto — cerca de 27 a mais do que no início. Confirmar com dados nominais do 4º Período para identificar quais turmas mais evoluíram e quais professores conduziram as melhores intervenções.</div>
+          <div class="expand-tags">
+            <span class="expand-tag">Crescimento Confirmado</span>
+            <span class="expand-tag">Meta 2026: 65%+</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="notif-card priority-teal" onclick="toggle(this)">
+        <div class="notif-top">
+          <div class="notif-avatar teal">⭐</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">Maior salto: do 2º para o 3º Período (+5,80pp) — o que aconteceu no 3º bimestre?</div>
+              <span class="notif-source">2º → 3º Período</span>
+            </div>
+            <div class="notif-summary">O intervalo de maior crescimento foi entre o 2º Período (51,45%) e o 3º Período (57,25%) — um salto de +5,80pp em Leitores de Texto, simultaneamente à maior queda de Iniciantes do ano (−13,76pp). Identificar as práticas desse bimestre é a principal alavanca para 2026.</div>
+            <div class="notif-metrics">
+              <span class="metric-pill teal"><span class="dot" style="background:var(--teal)"></span>+5,80pp em Leit. Texto</span>
+              <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>−13,76pp em Iniciantes</span>
+            </div>
+          </div>
+          <button class="notif-toggle">▾</button>
+        </div>
+        <div class="notif-expand">
+          <div class="action-tag">Ação — Investigar e Replicar</div>
+          <div class="action-text">Mapear o que foi realizado pedagogicamente no 3º Bimestre: houve projeto de leitura? Formação de professores? Material didático diferente? Parceria com biblioteca ou assessoria pedagógica? Esse é o período de maior crescimento da escola em 2025. Sistematizar as práticas em portfólio pedagógico e planejar a replicação já no 1º Bimestre de 2026.</div>
+          <div class="expand-tags">
+            <span class="expand-tag">Boas Práticas</span>
+            <span class="expand-tag">Replicar em 2026</span>
+            <span class="expand-tag">3º Bimestre</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="notif-card priority-yellow" onclick="toggle(this)">
+        <div class="notif-top">
+          <div class="notif-avatar yellow">📌</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">Estagnação entre 3º e 4º Períodos — 57,25% em ambos: barreira nos alunos mais complexos</div>
+              <span class="notif-source">3º → 4º Período</span>
+            </div>
+            <div class="notif-summary">Após crescimento consistente, os Leitores de Texto ficaram estagnados nos dois últimos períodos (57,25%). Os alunos remanescentes nos níveis inferiores provavelmente têm perfil mais complexo e precisam de intervenção diferenciada.</div>
+            <div class="notif-metrics">
+              <span class="metric-pill yellow"><span class="dot" style="background:var(--yellow)"></span>3º P.: 57,25%</span>
+              <span class="metric-pill yellow"><span class="dot" style="background:var(--yellow)"></span>4º P.: 57,25%</span>
+            </div>
+          </div>
+          <button class="notif-toggle">▾</button>
+        </div>
+        <div class="notif-expand">
+          <div class="action-tag">Ação — Intervenção Especializada</div>
+          <div class="action-text">Os alunos que chegaram ao final do ano ainda como Iniciantes ou Intermediários provavelmente têm perfil mais complexo: possível histórico de distorção idade-série, necessidades educacionais específicas (NEE), frequência irregular ou contexto familiar fragilizado. Estratégias convencionais podem não ser suficientes. Planejar intervenção diferenciada e individualizada para o início de 2026 é essencial para romper essa barreira.</div>
+          <div class="expand-tags">
+            <span class="expand-tag">NEE</span>
+            <span class="expand-tag">Intervenção Especializada</span>
+            <span class="expand-tag">Acompanhamento Individual</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ ALERTAS CRUZADOS ══ -->
+  <div id="alertas">
+    <div class="section-title">🔔 Alertas Cruzados — Padrões e Inconsistências</div>
+
+    <div class="section-block">
+      <div class="section-block-header">
+        <div class="sb-icon" style="background:rgba(202,111,30,.12)">🔔</div>
+        <div class="sb-info">
+          <h3>Análise cruzada entre períodos · Pontos que exigem investigação ou ação imediata</h3>
+          <p>Clique em cada cartão para ver as ações recomendadas</p>
+        </div>
+      </div>
+
+      <div class="notif-card priority-red" onclick="toggle(this)">
+        <div class="notif-top">
+          <div class="notif-avatar red">🔴</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">Cobertura de 55,3% — quase metade da escola sem diagnóstico de leitura em 2025</div>
+              <span class="notif-source">Crítico</span>
+            </div>
+            <div class="notif-summary">Com 244 matriculados e apenas 135 avaliados, a escola não tem diagnóstico de leitura de 109 alunos. A maioria são anos finais (fora de escopo), mas há 3 ausentes também nos anos iniciais. Em 2026, 100% dos anos iniciais devem ser avaliados.</div>
+            <div class="notif-metrics">
+              <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>244 matriculados</span>
+              <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>135 avaliados (55,3%)</span>
+              <span class="metric-pill yellow"><span class="dot" style="background:var(--yellow)"></span>3 ausentes nos anos iniciais</span>
+            </div>
+          </div>
+          <button class="notif-toggle">▾</button>
+        </div>
+        <div class="notif-expand">
+          <div class="action-tag">Ação — Protocolo de Cobertura Total em 2026</div>
+          <div class="action-text">Criar protocolo de reposição de avaliação para alunos ausentes — prevendo reagendamento na semana seguinte com comunicado à família. Designar responsável por cada turma para acompanhar participação em tempo real. Meta: 100% de cobertura nos anos iniciais em todos os períodos de 2026.</div>
+          <div class="expand-tags">
+            <span class="expand-tag">Protocolo de Cobertura</span>
+            <span class="expand-tag">100% em 2026</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="notif-card priority-red" onclick="toggle(this)">
+        <div class="notif-top">
+          <div class="notif-avatar red">⚠️</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">Pico de Iniciantes no 1º Período (42,03%) — inconsistência com a Av. Inicial (26,67%)</div>
+              <span class="notif-source">Inicial → 1º Período</span>
+            </div>
+            <div class="notif-summary">Alta de +15,36pp nos Iniciantes quebra a lógica esperada de melhoria progressiva. Ao mesmo tempo, Intermediários caíram de 20,00% para 10,14%. Padrão atípico que precisa ser investigado antes de qualquer interpretação pedagógica.</div>
+            <div class="notif-metrics">
+              <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>+15,36pp de Iniciantes</span>
+              <span class="metric-pill orange"><span class="dot" style="background:var(--orange)"></span>Intermediários −9,86pp</span>
+            </div>
+          </div>
+          <button class="notif-toggle">▾</button>
+        </div>
+        <div class="notif-expand">
+          <div class="action-tag">Ação — Investigar Antes de Concluir</div>
+          <div class="action-text">
+            Antes de interpretar essa variação como regressão real, verificar:<br>
+            1) Os mesmos avaliadores aplicaram a avaliação nos dois momentos?<br>
+            2) O protocolo de aplicação foi padronizado e seguido rigorosamente?<br>
+            3) O grupo de alunos avaliados no 1º Período era o mesmo da Av. Inicial?<br>
+            4) Houve mudanças no texto-base ou nos critérios de classificação por nível?<br>
+            Propor formação de calibração para os aplicadores antes da ADESC 2026.
+          </div>
+          <div class="expand-tags">
+            <span class="expand-tag">Calibração de Avaliadores</span>
+            <span class="expand-tag">Protocolo 2026</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="notif-card priority-yellow" onclick="toggle(this)">
+        <div class="notif-top">
+          <div class="notif-avatar yellow">📌</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">Intermediários com trajetória irregular — oscilam de 10,14% a 23,19% sem tendência clara</div>
+              <span class="notif-source">Todos os Períodos</span>
+            </div>
+            <div class="notif-summary">O grupo Intermediário (LP/LF) oscilou ao longo do ano: 20,00% → 10,14% → 15,22% → 23,19% → 22,46%. Sem trajetória consistente, o que pode indicar rotatividade de alunos transitando entre os níveis adjacentes em ambas as direções.</div>
+            <div class="notif-metrics">
+              <span class="metric-pill yellow"><span class="dot" style="background:var(--yellow)"></span>Mín: 10,14% (1º P.)</span>
+              <span class="metric-pill yellow"><span class="dot" style="background:var(--yellow)"></span>Máx: 23,19% (3º P.)</span>
+              <span class="metric-pill orange"><span class="dot" style="background:var(--orange)"></span>Variação de 13pp no grupo</span>
+            </div>
+          </div>
+          <button class="notif-toggle">▾</button>
+        </div>
+        <div class="notif-expand">
+          <div class="action-tag">Ação — Monitoramento Nominal</div>
+          <div class="action-text">Criar planilha de acompanhamento individual dos alunos Intermediários ao longo dos períodos. É esperado que alunos desse grupo migrem para o nível de Texto — e a confirmação nominal desse movimento é a evidência mais valiosa para as intervenções pedagógicas de 2026. Monitorar também se algum aluno regrediu de Texto para Intermediário.</div>
+          <div class="expand-tags">
+            <span class="expand-tag">Monitoramento Individual</span>
+            <span class="expand-tag">Planilha Nominal</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="notif-card priority-teal" onclick="toggle(this)">
+        <div class="notif-top">
+          <div class="notif-avatar teal">📊</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">Crescimento mais forte no 3º Período — identificar o que mudou nesse bimestre</div>
+              <span class="notif-source">2º → 3º Período</span>
+            </div>
+            <div class="notif-summary">Do 2º para o 3º Período: Leitores de Texto subiram +5,80pp e Iniciantes caíram −13,76pp — maiores variações do ano em um único intervalo. Identificar o que aconteceu no 3º bimestre é a principal alavanca para 2026.</div>
+            <div class="notif-metrics">
+              <span class="metric-pill teal"><span class="dot" style="background:var(--teal)"></span>+5,80pp Leit. Texto</span>
+              <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>−13,76pp Iniciantes</span>
+              <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>Maior salto do ano</span>
+            </div>
+          </div>
+          <button class="notif-toggle">▾</button>
+        </div>
+        <div class="notif-expand">
+          <div class="action-tag">Ação — Investigar e Replicar</div>
+          <div class="action-text">Mapear o que foi realizado pedagogicamente no 3º Bimestre: houve projeto específico de leitura, material novo, visita técnica, formação de professores ou parceria com biblioteca? Sistematizar as práticas em portfólio pedagógico e planejar a replicação no 1º Bimestre de 2026.</div>
+          <div class="expand-tags">
+            <span class="expand-tag">Boas Práticas</span>
+            <span class="expand-tag">Replicar em 2026</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ PLANO DE AÇÃO ══ -->
+  <div id="acoes">
+    <div class="section-title">⚡ Prioridades do Gestor — Plano de Ação Imediato</div>
+
+    <div class="section-block">
+      <div class="section-block-header dark">
+        <div class="sb-icon" style="background:rgba(240,180,40,.15)">⚡</div>
+        <div class="sb-info">
+          <h3>Próximas ações para o diretor e coordenação · Baseadas nos dados ADESC 2025</h3>
+          <p>Clique em cada prioridade para ver os passos de implementação</p>
+        </div>
+      </div>
+
+      <div class="notif-card priority-red" onclick="toggle(this)" style="background:#fef8f8">
+        <div class="notif-top">
+          <div class="notif-avatar red">1️⃣</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">PRIORIDADE 1: Mapear nominalmente os Iniciantes do 4º Período e construir plano de intervenção individual</div>
+              <span class="notif-source">Esta semana</span>
+            </div>
+            <div class="notif-summary">Os alunos como Não Leitores ou Leitores de Sílabas ao final do ano (20,29% dos avaliados) chegaram ao limite de 2025 sem autonomia leitora mínima. Cada aluno precisa de estratégia específica antes do início de 2026.</div>
+          </div>
+          <button class="notif-toggle">▾</button>
+        </div>
+        <div class="notif-expand">
+          <div class="action-tag">Passos</div>
+          <div class="action-text">
+            ✅ Solicitar à coordenação a lista nominal dos alunos NL e Leit. Sílabas do 4º Período por turma.<br>
+            ✅ Cruzar com dados de frequência, NEE e histórico escolar.<br>
+            ✅ Convocar reunião com os professores responsáveis para discutir cada caso individualmente.<br>
+            ✅ Definir estratégia por aluno: reforço escolar, sala de recursos, encaminhamento para avaliação psicopedagógica.<br>
+            ✅ Comunicar às famílias com linguagem acessível sobre a situação e o suporte oferecido pela escola.
+          </div>
+          <div class="expand-tags">
+            <span class="expand-tag">Esta Semana</span>
+            <span class="expand-tag">Iniciantes</span>
+            <span class="expand-tag">Intervenção Individual</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="notif-card priority-red" onclick="toggle(this)">
+        <div class="notif-top">
+          <div class="notif-avatar red">2️⃣</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">PRIORIDADE 2: Investigar a inconsistência do 1º Período e padronizar a avaliação para 2026</div>
+              <span class="notif-source">Próximas 2 semanas</span>
+            </div>
+            <div class="notif-summary">O salto de 26,67% para 42,03% de Iniciantes no 1º Período compromete a validade diagnóstica desse período. Verificar e padronizar o protocolo antes de usar esses dados como referência para intervenções.</div>
+          </div>
+          <button class="notif-toggle">▾</button>
+        </div>
+        <div class="notif-expand">
+          <div class="action-tag">Passos</div>
+          <div class="action-text">
+            ✅ Conversar com os aplicadores da Av. Inicial e do 1º Período sobre o protocolo utilizado.<br>
+            ✅ Verificar se houve diferença no texto-base, no critério de fluência ou na forma de registro.<br>
+            ✅ Checar se os mesmos alunos foram avaliados nos dois momentos — ou se houve rotatividade.<br>
+            ✅ Propor formação de calibração para os aplicadores antes da ADESC 2026.<br>
+            ✅ Registrar o procedimento padrão de avaliação em documento institucional da escola.
+          </div>
+          <div class="expand-tags">
+            <span class="expand-tag">Próximas 2 Semanas</span>
+            <span class="expand-tag">Calibração</span>
+            <span class="expand-tag">Protocolo 2026</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="notif-card priority-yellow" onclick="toggle(this)">
+        <div class="notif-top">
+          <div class="notif-avatar yellow">3️⃣</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">PRIORIDADE 3: Documentar as práticas do 3º Bimestre que geraram o maior salto do ano</div>
+              <span class="notif-source">Próximo mês</span>
+            </div>
+            <div class="notif-summary">O crescimento de +5,80pp em Leitores de Texto e a queda de −13,76pp em Iniciantes entre o 2º e 3º Período são os maiores movimentos do ano. Documentar e replicar essas práticas é a principal alavanca pedagógica para 2026.</div>
+          </div>
+          <button class="notif-toggle">▾</button>
+        </div>
+        <div class="notif-expand">
+          <div class="action-tag">Passos</div>
+          <div class="action-text">
+            ✅ Entrevistar os professores sobre o que foi diferente no 3º Bimestre.<br>
+            ✅ Verificar se houve projeto específico de leitura, material novo, visita técnica ou formação nesse período.<br>
+            ✅ Sistematizar as práticas identificadas em portfólio pedagógico.<br>
+            ✅ Planejar a replicação dessas ações já no 1º Bimestre de 2026 para antecipar os resultados positivos.
+          </div>
+          <div class="expand-tags">
+            <span class="expand-tag">Próximo Mês</span>
+            <span class="expand-tag">Boas Práticas</span>
+            <span class="expand-tag">3º Bimestre</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="notif-card priority-yellow" onclick="toggle(this)">
+        <div class="notif-top">
+          <div class="notif-avatar yellow">4️⃣</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">PRIORIDADE 4: Criar grupo de leitura intensiva para Intermediários (LP/LF) — alta alavancagem</div>
+              <span class="notif-source">Início de 2026</span>
+            </div>
+            <div class="notif-summary">Os alunos nos níveis Palavras e Frases (22,46% no 4º Período) têm alta probabilidade de avanço rápido — pois já têm decodificação básica estabelecida. Um grupo de leitura mediada diária de 15–20 minutos pode promovê-los ao nível de texto em até um semestre.</div>
+          </div>
+          <button class="notif-toggle">▾</button>
+        </div>
+        <div class="notif-expand">
+          <div class="action-tag">Passos</div>
+          <div class="action-text">
+            ✅ Organizar grupo de leitura mediada com textos curtos, variados e de crescente complexidade.<br>
+            ✅ Garantir 15–20 minutos diários de leitura em voz alta com mediação ativa do professor.<br>
+            ✅ Monitorar a evolução mensalmente com avaliação interna simples.<br>
+            ✅ Meta: promover ao menos 70% dos alunos Intermediários para o nível de Texto até o 2º Período de 2026.
+          </div>
+          <div class="expand-tags">
+            <span class="expand-tag">Início de 2026</span>
+            <span class="expand-tag">Leitura Mediada</span>
+            <span class="expand-tag">Alta Alavancagem</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="notif-card priority-yellow" onclick="toggle(this)">
+        <div class="notif-top">
+          <div class="notif-avatar yellow">5️⃣</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">PRIORIDADE 5: Garantir 100% de cobertura da ADESC nos Anos Iniciais em 2026</div>
+              <span class="notif-source">Planejamento 2026</span>
+            </div>
+            <div class="notif-summary">Com apenas 55,3% de cobertura em 2025, a escola não tem diagnóstico completo de seus alunos. Em 2026, todos os alunos dos anos iniciais devem ser avaliados em todos os períodos. Sem dados, não há como planejar intervenção eficaz.</div>
+          </div>
+          <button class="notif-toggle">▾</button>
+        </div>
+        <div class="notif-expand">
+          <div class="action-tag">Passos</div>
+          <div class="action-text">
+            ✅ Mapear os alunos dos anos iniciais que não foram avaliados em 2025 e identificar o motivo.<br>
+            ✅ Criar protocolo interno de convocação e reposição de avaliação para alunos ausentes.<br>
+            ✅ Designar um responsável por cada turma para garantir cobertura antes de cada avaliação.<br>
+            ✅ Registrar avaliados em planilha compartilhada com a coordenação para acompanhamento em tempo real.<br>
+            ✅ Meta: mínimo de 95% de participação em cada etapa e em cada período em 2026.
+          </div>
+          <div class="expand-tags">
+            <span class="expand-tag">Planejamento 2026</span>
+            <span class="expand-tag">Cobertura Total</span>
+            <span class="expand-tag">Protocolo</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="notif-card priority-green" onclick="toggle(this)">
+        <div class="notif-top">
+          <div class="notif-avatar green">6️⃣</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">PRIORIDADE 6: Comunicar os avanços às famílias — de 38,5% para 57,3% de Leitores em 2025</div>
+              <span class="notif-source">Curto prazo</span>
+            </div>
+            <div class="notif-summary">A escola avançou quase 19pp em Leitores de Texto — uma conquista real e coletiva que merece ser celebrada. Comunicar esse resultado fortalece o engajamento familiar, reconhece o trabalho dos professores e cria cultura de resultado na comunidade.</div>
+          </div>
+          <button class="notif-toggle">▾</button>
+        </div>
+        <div class="notif-expand">
+          <div class="action-tag">Passos</div>
+          <div class="action-text">
+            ✅ Preparar comunicado visual (mural, folheto ou WhatsApp da escola): "Em 2025, mais da metade dos alunos avaliados da Escola Adélia Crisóstomo já lê textos com autonomia."<br>
+            ✅ Reconhecer publicamente os professores cujas turmas apresentaram maior evolução no ano.<br>
+            ✅ Apresentar os dados resumidos na próxima reunião de pais com linguagem acessível, sem jargão pedagógico.<br>
+            ✅ Criar momento de celebração com os alunos que avançaram de nível — o reconhecimento motiva a continuidade.
+          </div>
+          <div class="expand-tags">
+            <span class="expand-tag">Curto Prazo</span>
+            <span class="expand-tag">Famílias</span>
+            <span class="expand-tag">Cultura de Resultado</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div style="text-align:center;font-size:0.75rem;color:var(--muted2);margin-top:10px;padding-top:18px;border-top:1px solid var(--border)">
+    <strong>Adélia Crisóstomo EQEIEF</strong> · Caucaia-CE · Região: BR-222 · Modalidade: Regular<br>
+    Fonte: ADESC 2025 / SEDUC-CE · Avaliação Diagnóstica de Leitura · Avaliação Inicial + 1º ao 4º Período<br>
+    244 alunos matriculados · 135–138 avaliados (55,3%–56,6%) · Escopo: 1º ao 5º Ano (anos iniciais)<br>
+    Clique em cada cartão para ver as análises e ações sugeridas ao gestor
+  </div>
+
+</main>
+
+<script>
+function toggle(card) { card.classList.toggle('open'); }
+
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.querySelectorAll('.prog-fill, .ls').forEach(el => {
+      const w = el.style.width;
+      el.style.width = '0';
+      requestAnimationFrame(() => { setTimeout(() => { el.style.width = w; }, 50); });
+    });
+  }, 200);
+});
+
+/* highlight active nav-item on scroll */
+const sections = document.querySelectorAll('[id]');
+const navItems = document.querySelectorAll('.nav-item[href^="#"]');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) cur = s.id; });
+  navItems.forEach(i => {
+    i.classList.remove('active');
+    if (i.getAttribute('href') === '#' + cur) i.classList.add('active');
+  });
+}, { passive: true });
+</script>
+</body>
+</html>
