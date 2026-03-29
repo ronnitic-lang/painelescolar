@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Busca Ativa · E.E.I.E.F. Aba Tapeba</title>
+<title>Busca Ativa · Aba Tapeba EDEIEF</title>
 <style>
 :root {
   --bg: #f0f4f8;
@@ -15,13 +15,15 @@
   --blue-dark: #1a3a5c;
   --blue-mid: #1e5799;
   --teal: #0e7490;
-  --teal-light: #ecfeff;
+  --teal-bg: #ecfeff;
+  --teal-bdr: #67e8f9;
   --text: #0f1e2e;
   --muted: #4a5e75;
   --muted2: #8097b0;
   --red: #c0392b;
   --red-bg: #fdf0ef;
   --red-bdr: #f5b7b1;
+  --red-dark: #a93226;
   --orange: #ca6f1e;
   --orange-bg: #fef5e7;
   --orange-bdr: #f8c471;
@@ -34,268 +36,1054 @@
   --blue: #1a56a0;
   --blue-bg: #eaf2fc;
   --blue-bdr: #90bce8;
+  --purple: #6d28d9;
+  --purple-bg: #f5f3ff;
+  --purple-bdr: #c4b5fd;
   --font: 'Tahoma', 'Verdana', 'Arial', sans-serif;
   --radius: 10px;
   --shadow: 0 2px 12px rgba(0,0,0,0.08);
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body {
-  font-family: var(--font);
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  display: flex;
-  font-size: 0.94rem;
-  line-height: 1.6;
-}
-.sidebar {
-  width: 264px; min-width: 264px;
-  background: var(--sidebar-bg);
-  height: 100vh;
-  position: sticky; top: 0;
-  display: flex; flex-direction: column;
-  overflow-y: auto; z-index: 100;
-}
+body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; display: flex; font-size: 0.94rem; line-height: 1.6; }
+
+/* ─── SIDEBAR ─── */
+.sidebar { width: 264px; min-width: 264px; background: var(--sidebar-bg); height: 100vh; position: sticky; top: 0; display: flex; flex-direction: column; overflow-y: auto; z-index: 100; }
 .sidebar::-webkit-scrollbar { width: 4px; }
 .sidebar::-webkit-scrollbar-thumb { background: #2e3d52; border-radius: 3px; }
-.sidebar-logo {
-  padding: 20px 20px 18px;
-  border-bottom: 1px solid #2e3d52;
-  background: #111c2a;
-}
-.school-badge {
-  display: inline-block;
-  background: var(--teal);
-  color: #fff;
-  font-size: 0.70rem; font-weight: 700;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  padding: 3px 10px; border-radius: 4px; margin-bottom: 9px;
-}
+.sidebar-logo { padding: 20px 20px 18px; border-bottom: 1px solid #2e3d52; background: #111c2a; }
+.school-badge { display: inline-block; background: var(--teal); color: #fff; font-size: 0.70rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 10px; border-radius: 4px; margin-bottom: 9px; }
 .school-name { font-size: 1.08rem; font-weight: 700; color: #fff; line-height: 1.25; margin-bottom: 3px; }
 .school-name span { color: #f0b429; }
 .school-sub { font-size: 0.70rem; color: #7a90a8; margin-top: 3px; letter-spacing: 0.05em; }
-.nav-section {
-  padding: 12px 20px 5px;
-  font-size: 0.68rem; text-transform: uppercase;
-  letter-spacing: 0.13em; color: #5a7090; font-weight: 700;
-}
-.nav-item {
-  display: flex; align-items: center; gap: 11px;
-  padding: 11px 20px;
-  cursor: pointer; border-left: 4px solid transparent;
-  transition: all 0.2s; text-decoration: none;
-  color: inherit;
-}
+.nav-section { padding: 12px 20px 5px; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.13em; color: #5a7090; font-weight: 700; }
+.nav-item { display: flex; align-items: center; gap: 11px; padding: 11px 20px; cursor: pointer; border-left: 4px solid transparent; transition: all 0.2s; text-decoration: none; color: inherit; }
 .nav-item:hover { background: var(--sidebar-hover); }
 .nav-item.active { background: var(--sidebar-active); border-left-color: #22d3ee; }
-.nav-icon {
-  width: 32px; height: 32px; border-radius: 7px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1rem; flex-shrink: 0;
-}
+.nav-icon { width: 32px; height: 32px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
 .nav-label { font-size: 0.85rem; font-weight: 600; color: #b8cce0; line-height: 1.25; }
 .nav-item.active .nav-label { color: #fff; }
-.sidebar-footer {
-  margin-top: auto; padding: 14px 20px;
-  border-top: 1px solid #2e3d52;
-  font-size: 0.70rem; color: #5a7090; line-height: 1.7;
-}
-.logout-btn {
-  display: block; text-align: center;
-  margin-top: 10px; padding: 8px;
-  background: rgba(192,57,43,0.18);
-  color: #f5a9a4; border-radius: 6px;
-  text-decoration: none; font-size: 0.78rem; font-weight: 700;
-  letter-spacing: 0.05em;
-  transition: background 0.2s;
-}
-.logout-btn:hover { background: rgba(192,57,43,0.35); }
+.nav-badge { margin-left: auto; min-width: 22px; height: 22px; border-radius: 11px; font-size: 0.70rem; font-weight: 700; display: flex; align-items: center; justify-content: center; padding: 0 5px; flex-shrink: 0; }
+.nb-red    { background: var(--red);    color: #fff; }
+.nb-yellow { background: var(--yellow); color: #fff; }
+.nb-green  { background: var(--green);  color: #fff; }
+.nb-orange { background: var(--orange); color: #fff; }
+.nb-teal   { background: var(--teal);   color: #fff; }
+.nb-purple { background: var(--purple); color: #fff; }
+.legend-block { padding: 8px 20px 6px; }
+.leg-row { display: flex; align-items: center; gap: 8px; padding: 5px 0; font-size: 0.74rem; color: #8daabf; border-bottom: 1px solid #243145; }
+.leg-row:last-child { border-bottom: none; }
+.leg-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.sidebar-footer { margin-top: auto; padding: 14px 20px; border-top: 1px solid #2e3d52; font-size: 0.70rem; color: #5a7090; line-height: 1.7; }
+
+/* ─── MAIN ─── */
 .main { flex: 1; min-width: 0; padding: 28px 32px 52px; }
-.topbar {
-  display: flex; align-items: flex-start;
-  justify-content: space-between;
-  margin-bottom: 26px; flex-wrap: wrap; gap: 14px;
-}
+
+/* TOPBAR */
+.topbar { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 26px; flex-wrap: wrap; gap: 14px; }
 .topbar-title h2 { font-size: 1.35rem; font-weight: 700; color: var(--text); }
 .topbar-title p { font-size: 0.80rem; color: var(--muted); margin-top: 3px; }
-.section-title {
-  font-size: 1.05rem; font-weight: 700;
-  color: var(--blue-dark);
-  padding-bottom: 8px;
-  border-bottom: 2px solid var(--border);
-  margin-bottom: 18px; margin-top: 32px;
-  display: flex; align-items: center; gap: 10px;
-}
-.section-title:first-of-type { margin-top: 0; }
-/* Empty state */
-.empty-state {
-  background: var(--surface);
-  border: 2px dashed var(--border);
-  border-radius: var(--radius);
-  padding: 60px 32px;
-  text-align: center;
-  margin-bottom: 30px;
-}
-.empty-icon { font-size: 3.5rem; margin-bottom: 16px; }
-.empty-state h3 { font-size: 1.1rem; font-weight: 700; color: var(--muted); margin-bottom: 8px; }
-.empty-state p { font-size: 0.85rem; color: var(--muted2); max-width: 460px; margin: 0 auto; line-height: 1.7; }
-.empty-note {
-  background: var(--yellow-bg);
-  border: 1px solid var(--yellow-bdr);
-  border-radius: 8px;
-  padding: 12px 18px;
-  font-size: 0.82rem;
-  color: #7a5600;
-  margin-top: 20px;
-  display: inline-block;
-}
-/* Table placeholder */
-.table-placeholder {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  overflow: hidden;
-  margin-bottom: 30px;
-}
-.table-placeholder-head {
-  padding: 14px 18px 12px;
-  border-bottom: 1px solid var(--border);
-  background: #fafcff;
-}
-.table-placeholder-head h3 { font-size: 0.95rem; font-weight: 700; color: var(--blue-dark); }
-.table-placeholder-head p { font-size: 0.75rem; color: var(--muted2); margin-top: 3px; }
-.placeholder-cols {
-  display: grid;
-  grid-template-columns: 40px 110px 1fr 120px 100px 100px 140px 90px;
-  gap: 0;
-  padding: 10px 18px;
-  background: linear-gradient(135deg, #1a3a5c, #1e5799);
-}
-.placeholder-col {
-  font-size: 0.70rem; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.07em;
-  color: rgba(255,255,255,0.7);
-  padding: 4px 8px;
-}
-.placeholder-rows { padding: 0 18px 18px; }
-.placeholder-row {
-  display: grid;
-  grid-template-columns: 40px 110px 1fr 120px 100px 100px 140px 90px;
-  border-bottom: 1px solid var(--border);
-  padding: 10px 0;
-  gap: 0;
-  align-items: center;
-}
-.placeholder-row:last-child { border-bottom: none; }
-.ph-cell {
-  padding: 0 8px;
-  height: 14px;
-  border-radius: 4px;
-  background: #eef1f5;
-  margin: 0 4px;
-}
-.ph-cell.short { max-width: 32px; }
-.ph-cell.med { max-width: 90px; }
-.ph-cell.long { max-width: 180px; }
-.ph-cell.pill { max-width: 70px; height: 20px; border-radius: 10px; }
+.topbar-stats { display: flex; gap: 10px; flex-wrap: wrap; }
+.topbar-stat { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 9px 16px; text-align: center; box-shadow: var(--shadow); }
+.topbar-stat .ts-val { font-size: 1.1rem; font-weight: 700; display: block; }
+.topbar-stat .ts-lab { font-size: 0.68rem; color: var(--muted2); text-transform: uppercase; letter-spacing: 0.07em; }
+.ts-red { color: var(--red); } .ts-yellow { color: var(--yellow); } .ts-orange { color: var(--orange); }
+.ts-green { color: var(--green); } .ts-teal { color: var(--teal); } .ts-blue { color: var(--blue); }
 
-@media (max-width: 768px) {
+/* SECTION TITLE */
+.section-title { font-size: 1.05rem; font-weight: 700; color: var(--blue-dark); padding-bottom: 8px; border-bottom: 2px solid var(--border); margin-bottom: 18px; margin-top: 32px; display: flex; align-items: center; gap: 10px; }
+.section-title:first-of-type { margin-top: 0; }
+
+/* ALERT BANNER */
+.alert-banner { border-radius: var(--radius); padding: 13px 17px; margin-bottom: 11px; border-left: 5px solid; font-size: 0.86rem; display: flex; align-items: flex-start; gap: 11px; }
+.alert-banner.danger  { background: var(--red-bg);    border-color: var(--red);    color: #7a1a0e; }
+.alert-banner.warning { background: var(--yellow-bg); border-color: var(--yellow); color: #7a3e05; }
+.alert-banner.success { background: var(--green-bg);  border-color: var(--green);  color: #155234; }
+.alert-banner.info    { background: var(--teal-bg);   border-color: var(--teal);   color: #0e4f5e; }
+.alert-banner .ab-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 1px; }
+.alert-title { font-weight: 700; margin-bottom: 3px; }
+.alert-body  { font-size: 0.80rem; line-height: 1.6; }
+
+/* KPI CARDS */
+.kpi4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 20px; }
+.kpi3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 20px; }
+.kc { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 16px 18px; box-shadow: var(--shadow); text-align: center; }
+.kc .kc-v { font-size: 2rem; font-weight: 700; line-height: 1.1; display: block; }
+.kc .kc-l { font-size: 0.75rem; font-weight: 700; margin-top: 4px; }
+.kc .kc-d { font-size: 0.69rem; color: var(--muted2); margin-top: 3px; }
+.kc.cr  { border-color: var(--red-bdr);    background: var(--red-bg); }
+.kc.cy  { border-color: var(--yellow-bdr); background: var(--yellow-bg); }
+.kc.cg  { border-color: var(--green-bdr);  background: var(--green-bg); }
+.kc.ct  { border-color: var(--teal-bdr);   background: var(--teal-bg); }
+.kc.co  { border-color: var(--orange-bdr); background: var(--orange-bg); }
+.kc.cb  { border-color: var(--blue-bdr);   background: var(--blue-bg); }
+
+/* TURMA CARDS */
+.turma-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
+.turma-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; box-shadow: var(--shadow); position: relative; overflow: hidden; }
+.turma-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+.turma-card.tc-crit::before { background: var(--red); }
+.turma-card.tc-warn::before { background: var(--yellow); }
+.turma-card.tc-ok::before { background: var(--teal); }
+.tc-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.tc-nome { font-size: 0.80rem; font-weight: 700; color: var(--blue-dark); }
+.tc-badge { font-size: 0.67rem; font-weight: 700; padding: 2px 8px; border-radius: 20px; }
+.tc-badge.crit { background: var(--red-bg); color: var(--red-dark); border: 1px solid var(--red-bdr); }
+.tc-badge.warn { background: var(--yellow-bg); color: #7d5a10; border: 1px solid var(--yellow-bdr); }
+.tc-badge.ok   { background: var(--teal-bg); color: #0e4f5e; border: 1px solid var(--teal-bdr); }
+.tc-stats { display: flex; gap: 12px; margin-top: 6px; }
+.tc-stat { text-align: center; }
+.tc-stat .tv { font-size: 1.3rem; font-weight: 700; line-height: 1; }
+.tc-stat .tl { font-size: 0.64rem; color: var(--muted2); }
+.tc-bar { margin-top: 8px; background: #e8eef6; border-radius: 4px; height: 6px; overflow: hidden; }
+.tc-fill { height: 100%; border-radius: 4px; }
+
+/* PROGRESS BARS */
+.prog-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 18px 20px; margin-bottom: 16px; }
+.prog-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.prog-row:last-child { margin-bottom: 0; }
+.prog-label { font-size: 0.78rem; color: var(--muted); width: 150px; flex-shrink: 0; font-weight: 600; }
+.prog-bar-wrap { flex: 1; background: #e8eef6; border-radius: 5px; height: 12px; overflow: hidden; }
+.prog-fill { height: 100%; border-radius: 5px; }
+.prog-fill.red  { background: linear-gradient(90deg, #e74c3c, #c0392b); }
+.prog-fill.teal { background: linear-gradient(90deg, #0e7490, #0c5f78); }
+.prog-fill.orange { background: linear-gradient(90deg, #ca6f1e, #a85c10); }
+.prog-fill.yellow { background: linear-gradient(90deg, #d68910, #b5740c); }
+.prog-pct { font-size: 0.72rem; font-weight: 700; color: var(--muted); width: 36px; flex-shrink: 0; text-align: right; }
+.prog-num { font-size: 0.70rem; color: var(--muted2); width: 58px; flex-shrink: 0; text-align: right; }
+
+/* DATA TABLE */
+.data-table-wrap { background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); overflow: hidden; margin-bottom: 18px; }
+.table-header { padding: 12px 16px 10px; border-bottom: 1px solid var(--border); background: #fafcff; display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+.table-header h3 { font-size: 0.90rem; font-weight: 700; color: var(--blue-dark); }
+.table-header p  { font-size: 0.73rem; color: var(--muted2); }
+.table-scroll { overflow-x: auto; }
+.data-table { width: 100%; border-collapse: collapse; font-size: 0.80rem; }
+.data-table thead tr { background: linear-gradient(135deg, #1a3a5c, #1e5799); color: #fff; }
+.data-table th { padding: 9px 12px; text-align: left; font-size: 0.70rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; white-space: nowrap; }
+.data-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.data-table tbody tr:last-child td { border-bottom: none; }
+.data-table tbody tr:hover { background: #f8fafc; }
+
+/* FILTERS */
+.filters-bar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; align-items: center; }
+.filter-input { border: 1px solid var(--border); border-radius: 7px; padding: 7px 12px; font-size: 0.82rem; font-family: var(--font); color: var(--text); background: var(--surface); outline: none; transition: border 0.2s; }
+.filter-input:focus { border-color: var(--teal); }
+.filter-input.wide { min-width: 240px; }
+.row-count { font-size: 0.75rem; color: var(--muted2); margin-left: auto; align-self: center; }
+
+/* PILLS */
+.pill { font-size: 0.67rem; font-weight: 700; padding: 2px 8px; border-radius: 20px; display: inline-block; white-space: nowrap; }
+.pill-doente  { background: var(--orange-bg); color: #7e4a10; border: 1px solid var(--orange-bdr); }
+.pill-outros  { background: var(--yellow-bg); color: #7d5a10; border: 1px solid var(--yellow-bdr); }
+.pill-parcial { background: var(--blue-bg);   color: #1a3a6a; border: 1px solid var(--blue-bdr); }
+.pill-total   { background: var(--red-bg);    color: var(--red-dark); border: 1px solid var(--red-bdr); }
+.pill-contato { background: var(--teal-bg);   color: #0e4f5e; border: 1px solid var(--teal-bdr); }
+.pill-conselho{ background: var(--purple-bg); color: #4c1d95; border: 1px solid var(--purple-bdr); }
+.pill-visita  { background: var(--green-bg);  color: #155234; border: 1px solid var(--green-bdr); }
+
+/* HEAT rank badges */
+.rank-badge { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; font-size: 0.72rem; font-weight: 700; }
+.rb-10plus { background: #c0392b; color: #fff; }
+.rb-7to9   { background: #e74c3c; color: #fff; }
+.rb-5to6   { background: var(--orange); color: #fff; }
+.rb-3to4   { background: var(--yellow); color: #fff; }
+.rb-1to2   { background: #e8eef6; color: var(--muted); }
+
+/* SECTION BLOCK */
+.section-block { margin-bottom: 24px; }
+.section-block-header { display: flex; align-items: center; gap: 12px; padding: 14px 18px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius) var(--radius) 0 0; border-bottom: 3px solid var(--border); box-shadow: var(--shadow); }
+.section-block-header.dark { background: var(--sidebar-bg); border-color: #2e3d52; }
+.sb-icon { width: 38px; height: 38px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+.sb-info h3 { font-size: 0.98rem; font-weight: 700; color: var(--blue-dark); line-height: 1.3; }
+.sb-info p  { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+.section-block-header.dark .sb-info h3 { color: #fff; }
+.section-block-header.dark .sb-info p  { color: #7a90a8; }
+
+/* NOTIF CARDS */
+.notif-card { background: var(--surface); border: 1px solid var(--border); border-top: none; cursor: pointer; transition: background 0.15s; overflow: hidden; }
+.notif-card:last-child { border-radius: 0 0 var(--radius) var(--radius); }
+.notif-card:hover { background: #f5f8ff; }
+.notif-card.priority-red    { border-left: 5px solid var(--red); }
+.notif-card.priority-yellow { border-left: 5px solid var(--yellow); }
+.notif-card.priority-green  { border-left: 5px solid var(--green); }
+.notif-card.priority-teal   { border-left: 5px solid var(--teal); }
+.notif-top { display: flex; align-items: flex-start; gap: 14px; padding: 16px 18px; }
+.notif-avatar { width: 38px; height: 38px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+.notif-avatar.red    { background: var(--red-bg); }
+.notif-avatar.yellow { background: var(--yellow-bg); }
+.notif-avatar.green  { background: var(--green-bg); }
+.notif-avatar.teal   { background: var(--teal-bg); }
+.notif-body { flex: 1; min-width: 0; }
+.notif-header-row { display: flex; align-items: flex-start; gap: 10px; flex-wrap: wrap; margin-bottom: 5px; }
+.notif-title { font-weight: 700; font-size: 0.88rem; line-height: 1.35; flex: 1; color: var(--text); }
+.notif-source { font-size: 0.68rem; font-weight: 700; padding: 2px 9px; border-radius: 20px; background: #e8eef6; color: var(--muted); white-space: nowrap; flex-shrink: 0; }
+.notif-summary { font-size: 0.82rem; color: var(--muted); line-height: 1.6; margin-bottom: 8px; }
+.notif-metrics { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 8px; }
+.metric-pill { display: flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 20px; font-size: 0.76rem; font-weight: 700; }
+.metric-pill.red    { background: var(--red-bg);    color: var(--red-dark); border: 1px solid var(--red-bdr); }
+.metric-pill.yellow { background: var(--yellow-bg); color: #7d5a10; border: 1px solid var(--yellow-bdr); }
+.metric-pill.green  { background: var(--green-bg);  color: #155234; border: 1px solid var(--green-bdr); }
+.metric-pill.teal   { background: var(--teal-bg);   color: #0e4f5e; border: 1px solid var(--teal-bdr); }
+.metric-pill.orange { background: var(--orange-bg); color: #7e4a10; border: 1px solid var(--orange-bdr); }
+.dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.notif-toggle { background: none; border: none; cursor: pointer; font-size: 1.2rem; color: var(--muted2); flex-shrink: 0; padding: 3px 5px; transition: transform 0.2s; align-self: center; }
+.notif-card.open .notif-toggle { transform: rotate(180deg); }
+.notif-expand { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; background: #f4f8ff; padding: 0 18px; }
+.notif-card.open .notif-expand { max-height: 600px; border-top: 1px solid var(--border); padding: 16px 18px; }
+.action-tag { display: inline-block; background: #1a2535; color: #f0b429; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border-radius: 4px; margin-bottom: 7px; }
+.action-text { font-size: 0.82rem; color: #2c3e50; line-height: 1.85; }
+.expand-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 9px; }
+.expand-tag { background: #dde4ef; color: #3d5270; font-size: 0.68rem; font-weight: 700; padding: 2px 9px; border-radius: 20px; }
+
+/* PLAN TABLE */
+.plan-table { width: 100%; border-collapse: collapse; font-size: 0.80rem; }
+.plan-table th { background: linear-gradient(135deg,#1a3a5c,#1e5799); color:#fff; padding:9px 12px; text-align:left; font-size:0.70rem; text-transform:uppercase; letter-spacing:.08em; }
+.plan-table td { padding:8px 12px; border-bottom:1px solid var(--border); vertical-align:top; }
+.plan-table tr:last-child td { border-bottom:none; }
+.plan-table tr:hover td { background:#f8fafc; }
+
+@media (max-width: 900px) {
   .sidebar { display: none; }
   .main { padding: 18px 16px 40px; }
-  .placeholder-cols, .placeholder-row { grid-template-columns: 40px 1fr 100px 100px; }
-  .placeholder-col:nth-child(n+5), .ph-cell:nth-child(n+5) { display: none; }
+  .kpi4, .kpi3 { grid-template-columns: 1fr 1fr; }
+  .turma-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .kpi4, .kpi3, .turma-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 <body>
 
-<!-- SIDEBAR -->
 <aside class="sidebar">
   <div class="sidebar-logo">
     <div class="school-badge">Painel do Diretor</div>
     <div class="school-name">Aba <span>Tapeba</span></div>
-    <div class="school-sub">EEIEF · Caucaia · CE</div>
+    <div class="school-sub">EDEIEF · Caucaia · CE · Região BR-222</div>
   </div>
 
   <div class="nav-section">Indicadores</div>
+
   <a class="nav-item" href="painel.html">
     <div class="nav-icon" style="background:#ecfeff">🏠</div>
     <span class="nav-label">Visão Geral</span>
   </a>
+  <a class="nav-item" href="resumo_executivo.html">
+    <div class="nav-icon" style="background:#fdf0ef">🚨</div>
+    <span class="nav-label">Resumo Executivo</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
   <a class="nav-item active" href="busca_ativa.html">
     <div class="nav-icon" style="background:#fef5e7">🔍</div>
     <span class="nav-label">Busca Ativa</span>
+    <span class="nav-badge nb-orange">!</span>
   </a>
+  <a class="nav-item" href="adsec.html">
+    <div class="nav-icon" style="background:#edfaf3">📖</div>
+    <span class="nav-label">ADESC 2025</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+  <a class="nav-item" href="avalie_ce.html">
+    <div class="nav-icon" style="background:#fef9ec">📊</div>
+    <span class="nav-label">Avalie.CE</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+  <a class="nav-item" href="bimestrais.html">
+    <div class="nav-icon" style="background:#eaf2fc">📝</div>
+    <span class="nav-label">Bimestrais 2025</span>
+    <span class="nav-badge nb-yellow">!</span>
+  </a>
+  <a class="nav-item" href="cnca.html">
+    <div class="nav-icon" style="background:#fef5e7">📚</div>
+    <span class="nav-label">CNCA</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+  <a class="nav-item" href="qedu.html">
+    <div class="nav-icon" style="background:#eaf2fc">🎓</div>
+    <span class="nav-label">QEdu / Censo</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+
+  <div class="nav-section" style="margin-top:10px">Navegação Interna</div>
+  <a class="nav-item" href="#visao">
+    <div class="nav-icon" style="background:rgba(14,116,144,.15)">📊</div>
+    <span class="nav-label">Visão Geral</span>
+  </a>
+  <a class="nav-item" href="#turmas">
+    <div class="nav-icon" style="background:rgba(202,111,30,.12)">🏫</div>
+    <span class="nav-label">Por Turma</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+  <a class="nav-item" href="#alertas">
+    <div class="nav-icon" style="background:rgba(214,137,16,.12)">⚠️</div>
+    <span class="nav-label">Alertas e Sugestões</span>
+    <span class="nav-badge nb-yellow">!</span>
+  </a>
+  <a class="nav-item" href="#tabela">
+    <div class="nav-icon" style="background:rgba(26,86,160,.12)">📋</div>
+    <span class="nav-label">Tabela Completa</span>
+  </a>
+  <a class="nav-item" href="#acoes">
+    <div class="nav-icon" style="background:rgba(14,116,144,.15)">⚡</div>
+    <span class="nav-label">Plano de Ação</span>
+  </a>
+
+  <div class="nav-section" style="margin-top:10px">Legenda — Justificativas</div>
+  <div class="legend-block">
+    <div class="leg-row"><div class="leg-dot" style="background:var(--orange)"></div>Aluno Doente</div>
+    <div class="leg-row"><div class="leg-dot" style="background:var(--yellow)"></div>Outros (sem justificativa)</div>
+    <div class="leg-row"><div class="leg-dot" style="background:var(--blue)"></div>Falta Parcial (1 turno)</div>
+    <div class="leg-row"><div class="leg-dot" style="background:var(--red)"></div>Falta Total (dia inteiro)</div>
+    <div class="leg-row"><div class="leg-dot" style="background:var(--teal)"></div>Contato c/ Família</div>
+  </div>
 
   <div class="nav-section" style="margin-top:10px">Sistema</div>
   <a class="nav-item" href="../index.html">
     <div class="nav-icon" style="background:#fdf0ef">🏫</div>
     <span class="nav-label">Trocar Escola</span>
   </a>
-
   <div class="sidebar-footer">
-    <div>E.E.I.E.F. Aba Tapeba<br>Caucaia · CE</div>
-    <div style="margin-top:6px; color:#8097b0">Fonte: Sistema Busca Ativa · 2026</div>
-    <a class="logout-btn" href="../index.html">⬅ Sair do Painel</a>
+    <div>Aba Tapeba EDEIEF<br>Caucaia · CE · Região BR-222</div>
+    <div style="margin-top:6px;color:#8097b0">Fonte: Sistema Busca Ativa / SEDUC-CE<br>Período: fev–mar/2026 · 230 registros</div>
+    <div style="margin-top:4px;color:#8097b0">Servidores: Nayane Nunes da Silva · Jennifer Lima de Sousa</div>
   </div>
 </aside>
 
-<!-- MAIN -->
 <main class="main">
 
+  <!-- TOPBAR -->
   <div class="topbar">
     <div class="topbar-title">
-      <h2>🔍 Busca Ativa · E.E.I.E.F. Aba Tapeba</h2>
-      <p>Acompanhamento de infrequência e contatos realizados · 2026</p>
+      <h2>🔍 Busca Ativa · Aba Tapeba EDEIEF</h2>
+      <p>Monitoramento de Frequência Escolar · Fevereiro–Março/2026 · Caucaia-CE · Região BR-222 · Servidores: Nayane Nunes da Silva · Jennifer Lima de Sousa</p>
+    </div>
+    <div class="topbar-stats">
+      <div class="topbar-stat"><span class="ts-val ts-red">181</span><span class="ts-lab">Alunos c/ Registro</span></div>
+      <div class="topbar-stat"><span class="ts-val ts-orange">230</span><span class="ts-lab">Total de Registros</span></div>
+      <div class="topbar-stat"><span class="ts-val ts-yellow">97,4%</span><span class="ts-lab">Justif. "Outros"</span></div>
+      <div class="topbar-stat"><span class="ts-val ts-teal">100%</span><span class="ts-lab">c/ Contato Familiar</span></div>
     </div>
   </div>
 
-  <!-- Empty State -->
-  <div class="empty-state">
-    <div class="empty-icon">📋</div>
-    <h3>Nenhum dado importado ainda</h3>
-    <p>
-      Os registros de Busca Ativa desta escola ainda não foram inseridos no sistema.
-      Quando os dados forem disponibilizados, esta página exibirá o histórico completo de
-      acionamentos, alunos infrequentes, justificativas e protocolos de contato com famílias.
-    </p>
-    <div class="empty-note">
-      ⏳ Aguardando exportação do sistema · Responsável: Coordenação Pedagógica
+  <!-- ══ VISÃO GERAL ══ -->
+  <div id="visao">
+    <div class="section-title">📊 Visão Geral — Busca Ativa fev–mar/2026</div>
+
+    <div class="alert-banner danger">
+      <span class="ab-icon">🚨</span>
+      <div>
+        <div class="alert-title">7º Ano concentra o maior volume absoluto de infrequência da escola</div>
+        <div class="alert-body">O <strong>7º Ano A (Manhã)</strong> lidera com 34 registros e 17 alunos únicos afetados. Somando os três turnos do 7º Ano (A-M, B-T e C-T), chegamos a <strong>64 registros e 40 alunos únicos</strong> — quase 28% do total de alunos afetados. O 5º Ano B (Tarde) aparece em segundo lugar, com 31 registros e 20 alunos. Esses dois anos exigem atenção pedagógica imediata.</div>
+      </div>
+    </div>
+
+    <div class="alert-banner danger">
+      <span class="ab-icon">⚠️</span>
+      <div>
+        <div class="alert-title">97,4% das faltas sem justificativa clara — "Outros" domina os registros</div>
+        <div class="alert-body">De <strong>230 registros</strong>, 224 (97,4%) estão classificados como <strong>"Outros"</strong>, sem motivo explícito informado. Apenas 6 (2,6%) têm justificativa de "Aluno Doente". Esse índice é ainda mais elevado que a média regional e evidencia a necessidade urgente de um protocolo de investigação familiar mais aprofundado nos contatos realizados.</div>
+      </div>
+    </div>
+
+    <div class="alert-banner warning">
+      <span class="ab-icon">📈</span>
+      <div>
+        <div class="alert-title">Semana 9 concentra o maior pico: 98 alunos únicos ausentes em uma única semana</div>
+        <div class="alert-body">A semana de <strong>23 a 28/02/2026</strong> registrou 98 alunos únicos ausentes — o maior pico do período. Isso pode indicar um evento específico (climático, segurança no entorno, período de avaliações ou evento comunitário). A gestão deve investigar a causa para evitar recorrência nos próximos meses.</div>
+      </div>
+    </div>
+
+    <div class="alert-banner info">
+      <span class="ab-icon">✅</span>
+      <div>
+        <div class="alert-title">Protocolo de contato familiar aplicado em 100% dos casos — ponto muito positivo</div>
+        <div class="alert-body">Todos os <strong>230 registros incluem o protocolo</strong> de contato com a família (100% de cobertura). O trabalho das servidoras <strong>Nayane Nunes da Silva</strong> (86 registros) e <strong>Jennifer Lima de Sousa</strong> (144 registros) demonstra excelente disciplina operacional no monitoramento da infrequência. O desafio agora é evoluir do contato para a identificação e resolução das causas reais.</div>
+      </div>
+    </div>
+
+    <!-- KPIs -->
+    <div class="kpi4" style="margin-top:20px">
+      <div class="kc cr">
+        <span class="kc-v" style="color:var(--red)">181</span>
+        <div class="kc-l" style="color:var(--red-dark)">Alunos com Registro</div>
+        <div class="kc-d">de fev a mar/2026</div>
+      </div>
+      <div class="kc co">
+        <span class="kc-v" style="color:var(--orange)">230</span>
+        <div class="kc-l" style="color:#7e4a10">Total de Registros</div>
+        <div class="kc-d">média 1,3 reg./aluno</div>
+      </div>
+      <div class="kc cy">
+        <span class="kc-v" style="color:var(--yellow)">20</span>
+        <div class="kc-l" style="color:#7d5a10">Turmas Afetadas</div>
+        <div class="kc-d">1º ao 9º Ano · Todos os turnos</div>
+      </div>
+      <div class="kc ct">
+        <span class="kc-v" style="color:var(--teal)">2</span>
+        <div class="kc-l" style="color:#0e4f5e">Servidores Ativos</div>
+        <div class="kc-d">Nayane + Jennifer</div>
+      </div>
+    </div>
+
+    <!-- Justificativas e Protocolos -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px">
+      <div class="prog-wrap">
+        <h4 style="font-size:0.88rem;font-weight:700;color:var(--blue-dark);margin-bottom:14px">📋 Distribuição por Justificativa</h4>
+        <div class="prog-row">
+          <div class="prog-label">Outros / S. Justif.</div>
+          <div class="prog-bar-wrap"><div class="prog-fill red" style="width:97.4%"></div></div>
+          <div class="prog-pct" style="color:var(--red)">97,4%</div>
+          <div class="prog-num">224 reg.</div>
+        </div>
+        <div class="prog-row">
+          <div class="prog-label">Aluno Doente</div>
+          <div class="prog-bar-wrap"><div class="prog-fill orange" style="width:2.6%"></div></div>
+          <div class="prog-pct" style="color:var(--orange)">2,6%</div>
+          <div class="prog-num">6 reg.</div>
+        </div>
+      </div>
+      <div class="prog-wrap">
+        <h4 style="font-size:0.88rem;font-weight:700;color:var(--blue-dark);margin-bottom:14px">📞 Protocolos Adotados</h4>
+        <div class="prog-row">
+          <div class="prog-label">Contato c/ Família</div>
+          <div class="prog-bar-wrap"><div class="prog-fill teal" style="width:100%"></div></div>
+          <div class="prog-pct" style="color:var(--teal)">100%</div>
+          <div class="prog-num">230 reg.</div>
+        </div>
+        <div class="prog-row">
+          <div class="prog-label">Nayane N. da Silva</div>
+          <div class="prog-bar-wrap"><div class="prog-fill yellow" style="width:37.4%"></div></div>
+          <div class="prog-pct" style="color:var(--yellow)">37,4%</div>
+          <div class="prog-num">86 reg.</div>
+        </div>
+        <div class="prog-row">
+          <div class="prog-label">Jennifer L. de Sousa</div>
+          <div class="prog-bar-wrap"><div class="prog-fill teal" style="width:62.6%"></div></div>
+          <div class="prog-pct" style="color:var(--teal)">62,6%</div>
+          <div class="prog-num">144 reg.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tendência semanal -->
+    <div class="prog-wrap">
+      <h4 style="font-size:0.88rem;font-weight:700;color:var(--blue-dark);margin-bottom:4px">📅 Alunos Únicos por Semana — Tendência de Infrequência</h4>
+      <p style="font-size:0.73rem;color:var(--muted2);margin-bottom:14px">Semanas 8–12 de 2026 · Semana 12 ainda parcial (até 16/03)</p>
+      <div class="prog-row">
+        <div class="prog-label">Sem. 8 (17–21/fev)</div>
+        <div class="prog-bar-wrap"><div class="prog-fill teal" style="width:28.6%"></div></div>
+        <div class="prog-pct" style="color:var(--teal)">28</div>
+        <div class="prog-num">alunos</div>
+      </div>
+      <div class="prog-row">
+        <div class="prog-label">Sem. 9 (23–28/fev)</div>
+        <div class="prog-bar-wrap"><div class="prog-fill red" style="width:100%"></div></div>
+        <div class="prog-pct" style="color:var(--red)">98</div>
+        <div class="prog-num">alunos ⬆️ pico</div>
+      </div>
+      <div class="prog-row">
+        <div class="prog-label">Sem. 10 (02–06/mar)</div>
+        <div class="prog-bar-wrap"><div class="prog-fill orange" style="width:10.2%"></div></div>
+        <div class="prog-pct" style="color:var(--orange)">10</div>
+        <div class="prog-num">alunos</div>
+      </div>
+      <div class="prog-row">
+        <div class="prog-label">Sem. 11 (09–13/mar)</div>
+        <div class="prog-bar-wrap"><div class="prog-fill yellow" style="width:34.7%"></div></div>
+        <div class="prog-pct" style="color:var(--yellow)">34</div>
+        <div class="prog-num">alunos</div>
+      </div>
+      <div class="prog-row">
+        <div class="prog-label">Sem. 12 (16/mar →)</div>
+        <div class="prog-bar-wrap"><div class="prog-fill orange" style="width:58.2%"></div></div>
+        <div class="prog-pct" style="color:var(--orange)">57</div>
+        <div class="prog-num">parcial</div>
+      </div>
     </div>
   </div>
 
-  <!-- Table structure preview -->
-  <div class="section-title">📄 Estrutura da Tabela (Pré-visualização)</div>
-  <div class="table-placeholder">
-    <div class="table-placeholder-head">
-      <h3>Registros de Busca Ativa — a preencher</h3>
-      <p>Os dados abaixo são apenas uma prévia da estrutura que será utilizada quando os registros forem importados.</p>
+  <!-- ══ POR TURMA ══ -->
+  <div id="turmas">
+    <div class="section-title">🏫 Infrequência por Turma — Análise Comparativa</div>
+
+    <div class="alert-banner warning">
+      <span class="ab-icon">📌</span>
+      <div>
+        <div class="alert-title">7º e 5º Anos concentram a maior parte da infrequência — anos de transição em risco</div>
+        <div class="alert-body">O 7º Ano (A-M, B-T e C-T) soma <strong>64 registros e 40 alunos únicos</strong>, seguido pelo 5º Ano (A e B) com 43 registros e 30 alunos. A distribuição abrangente — 20 turmas afetadas de 1º ao 9º Ano — indica que a infrequência não está concentrada em apenas um segmento, exigindo estratégias diferenciadas por nível de ensino.</div>
+      </div>
     </div>
-    <div class="placeholder-cols">
-      <div class="placeholder-col">#</div>
-      <div class="placeholder-col">Data</div>
-      <div class="placeholder-col">Aluno</div>
-      <div class="placeholder-col">Turma</div>
-      <div class="placeholder-col">Tipo</div>
-      <div class="placeholder-col">Justificativa</div>
-      <div class="placeholder-col">Observação</div>
-      <div class="placeholder-col">Nível</div>
-    </div>
-    <div class="placeholder-rows">
-      <div class="placeholder-row"><div class="ph-cell short"></div><div class="ph-cell med"></div><div class="ph-cell long"></div><div class="ph-cell med"></div><div class="ph-cell pill"></div><div class="ph-cell pill"></div><div class="ph-cell med"></div><div class="ph-cell pill"></div></div>
-      <div class="placeholder-row"><div class="ph-cell short"></div><div class="ph-cell med"></div><div class="ph-cell long" style="max-width:140px"></div><div class="ph-cell med"></div><div class="ph-cell pill"></div><div class="ph-cell pill"></div><div class="ph-cell med"></div><div class="ph-cell pill"></div></div>
-      <div class="placeholder-row"><div class="ph-cell short"></div><div class="ph-cell med"></div><div class="ph-cell long"></div><div class="ph-cell med"></div><div class="ph-cell pill"></div><div class="ph-cell pill"></div><div class="ph-cell med"></div><div class="ph-cell pill"></div></div>
-      <div class="placeholder-row"><div class="ph-cell short"></div><div class="ph-cell med"></div><div class="ph-cell long" style="max-width:160px"></div><div class="ph-cell med"></div><div class="ph-cell pill"></div><div class="ph-cell pill"></div><div class="ph-cell med"></div><div class="ph-cell pill"></div></div>
-      <div class="placeholder-row"><div class="ph-cell short"></div><div class="ph-cell med"></div><div class="ph-cell long"></div><div class="ph-cell med"></div><div class="ph-cell pill"></div><div class="ph-cell pill"></div><div class="ph-cell med"></div><div class="ph-cell pill"></div></div>
+
+    <div class="turma-grid">
+      <!-- 7º A-M -->
+      <div class="turma-card tc-crit">
+        <div class="tc-top">
+          <div class="tc-nome">7º Ano A · Manhã</div>
+          <div class="tc-badge crit">🚨 Crítico</div>
+        </div>
+        <div class="tc-stats">
+          <div class="tc-stat"><div class="tv" style="color:var(--red)">17</div><div class="tl">alunos únicos</div></div>
+          <div class="tc-stat"><div class="tv" style="color:var(--red)">34</div><div class="tl">registros</div></div>
+          <div class="tc-stat"><div class="tv" style="color:var(--orange)">2,0</div><div class="tl">reg./aluno</div></div>
+        </div>
+        <div class="tc-bar"><div class="tc-fill" style="width:100%;background:var(--red)"></div></div>
+      </div>
+      <!-- 5º B-T -->
+      <div class="turma-card tc-crit">
+        <div class="tc-top">
+          <div class="tc-nome">5º Ano B · Tarde</div>
+          <div class="tc-badge crit">🚨 Crítico</div>
+        </div>
+        <div class="tc-stats">
+          <div class="tc-stat"><div class="tv" style="color:var(--red)">20</div><div class="tl">alunos únicos</div></div>
+          <div class="tc-stat"><div class="tv" style="color:var(--red)">31</div><div class="tl">registros</div></div>
+          <div class="tc-stat"><div class="tv" style="color:var(--orange)">1,6</div><div class="tl">reg./aluno</div></div>
+        </div>
+        <div class="tc-bar"><div class="tc-fill" style="width:91%;background:var(--red)"></div></div>
+      </div>
+      <!-- 1º B-I -->
+      <div class="turma-card tc-warn">
+        <div class="tc-top">
+          <div class="tc-nome">1º Ano B · Integral</div>
+          <div class="tc-badge warn">⚠️ Atenção</div>
+        </div>
+        <div class="tc-stats">
+          <div class="tc-stat"><div class="tv" style="color:var(--yellow)">13</div><div class="tl">alunos únicos</div></div>
+          <div class="tc-stat"><div class="tv" style="color:var(--yellow)">18</div><div class="tl">registros</div></div>
+          <div class="tc-stat"><div class="tv" style="color:var(--yellow)">1,4</div><div class="tl">reg./aluno</div></div>
+        </div>
+        <div class="tc-bar"><div class="tc-fill" style="width:53%;background:var(--yellow)"></div></div>
+      </div>
+      <!-- 4º B-M -->
+      <div class="turma-card tc-warn">
+        <div class="tc-top">
+          <div class="tc-nome">4º Ano B · Manhã</div>
+          <div class="tc-badge warn">⚠️ Atenção</div>
+        </div>
+        <div class="tc-stats">
+          <div class="tc-stat"><div class="tv" style="color:var(--yellow)">13</div><div class="tl">alunos únicos</div></div>
+          <div class="tc-stat"><div class="tv" style="color:var(--yellow)">15</div><div class="tl">registros</div></div>
+          <div class="tc-stat"><div class="tv" style="color:var(--yellow)">1,2</div><div class="tl">reg./aluno</div></div>
+        </div>
+        <div class="tc-bar"><div class="tc-fill" style="width:44%;background:var(--yellow)"></div></div>
+      </div>
+      <!-- 7º B-T -->
+      <div class="turma-card tc-warn">
+        <div class="tc-top">
+          <div class="tc-nome">7º Ano B · Tarde</div>
+          <div class="tc-badge warn">⚠️ Atenção</div>
+        </div>
+        <div class="tc-stats">
+          <div class="tc-stat"><div class="tv" style="color:var(--yellow)">10</div><div class="tl">alunos únicos</div></div>
+          <div class="tc-stat"><div class="tv" style="color:var(--yellow)">15</div><div class="tl">registros</div></div>
+          <div class="tc-stat"><div class="tv" style="color:var(--yellow)">1,5</div><div class="tl">reg./aluno</div></div>
+        </div>
+        <div class="tc-bar"><div class="tc-fill" style="width:44%;background:var(--yellow)"></div></div>
+      </div>
+      <!-- 7º C-T -->
+      <div class="turma-card tc-warn">
+        <div class="tc-top">
+          <div class="tc-nome">7º Ano C · Tarde</div>
+          <div class="tc-badge warn">⚠️ Atenção</div>
+        </div>
+        <div class="tc-stats">
+          <div class="tc-stat"><div class="tv" style="color:var(--yellow)">13</div><div class="tl">alunos únicos</div></div>
+          <div class="tc-stat"><div class="tv" style="color:var(--yellow)">15</div><div class="tl">registros</div></div>
+          <div class="tc-stat"><div class="tv" style="color:var(--yellow)">1,2</div><div class="tl">reg./aluno</div></div>
+        </div>
+        <div class="tc-bar"><div class="tc-fill" style="width:44%;background:var(--yellow)"></div></div>
+      </div>
+      <!-- 8º A-M -->
+      <div class="turma-card tc-warn">
+        <div class="tc-top">
+          <div class="tc-nome">8º Ano A · Manhã</div>
+          <div class="tc-badge warn">⚠️ Monitorar</div>
+        </div>
+        <div class="tc-stats">
+          <div class="tc-stat"><div class="tv" style="color:var(--yellow)">11</div><div class="tl">alunos únicos</div></div>
+          <div class="tc-stat"><div class="tv" style="color:var(--yellow)">13</div><div class="tl">registros</div></div>
+          <div class="tc-stat"><div class="tv" style="color:var(--teal)">1,2</div><div class="tl">reg./aluno</div></div>
+        </div>
+        <div class="tc-bar"><div class="tc-fill" style="width:38%;background:var(--yellow)"></div></div>
+      </div>
+      <!-- 5º A-M -->
+      <div class="turma-card tc-ok">
+        <div class="tc-top">
+          <div class="tc-nome">5º Ano A · Manhã</div>
+          <div class="tc-badge ok">✅ Leve</div>
+        </div>
+        <div class="tc-stats">
+          <div class="tc-stat"><div class="tv" style="color:var(--teal)">10</div><div class="tl">alunos únicos</div></div>
+          <div class="tc-stat"><div class="tv" style="color:var(--teal)">12</div><div class="tl">registros</div></div>
+          <div class="tc-stat"><div class="tv" style="color:var(--teal)">1,2</div><div class="tl">reg./aluno</div></div>
+        </div>
+        <div class="tc-bar"><div class="tc-fill" style="width:35%;background:var(--teal)"></div></div>
+      </div>
+      <!-- 4º A-M -->
+      <div class="turma-card tc-ok">
+        <div class="tc-top">
+          <div class="tc-nome">4º Ano A · Manhã</div>
+          <div class="tc-badge ok">✅ Leve</div>
+        </div>
+        <div class="tc-stats">
+          <div class="tc-stat"><div class="tv" style="color:var(--teal)">9</div><div class="tl">alunos únicos</div></div>
+          <div class="tc-stat"><div class="tv" style="color:var(--teal)">11</div><div class="tl">registros</div></div>
+          <div class="tc-stat"><div class="tv" style="color:var(--teal)">1,2</div><div class="tl">reg./aluno</div></div>
+        </div>
+        <div class="tc-bar"><div class="tc-fill" style="width:32%;background:var(--teal)"></div></div>
+      </div>
+      <!-- 3º A-I -->
+      <div class="turma-card tc-ok">
+        <div class="tc-top">
+          <div class="tc-nome">3º Ano A · Integral</div>
+          <div class="tc-badge ok">✅ Leve</div>
+        </div>
+        <div class="tc-stats">
+          <div class="tc-stat"><div class="tv" style="color:var(--teal)">10</div><div class="tl">alunos únicos</div></div>
+          <div class="tc-stat"><div class="tv" style="color:var(--teal)">11</div><div class="tl">registros</div></div>
+          <div class="tc-stat"><div class="tv" style="color:var(--teal)">1,1</div><div class="tl">reg./aluno</div></div>
+        </div>
+        <div class="tc-bar"><div class="tc-fill" style="width:32%;background:var(--teal)"></div></div>
+      </div>
+      <!-- 6º A-M -->
+      <div class="turma-card tc-ok">
+        <div class="tc-top">
+          <div class="tc-nome">6º Ano A · Manhã</div>
+          <div class="tc-badge ok">✅ Leve</div>
+        </div>
+        <div class="tc-stats">
+          <div class="tc-stat"><div class="tv" style="color:var(--teal)">11</div><div class="tl">alunos únicos</div></div>
+          <div class="tc-stat"><div class="tv" style="color:var(--teal)">11</div><div class="tl">registros</div></div>
+          <div class="tc-stat"><div class="tv" style="color:var(--teal)">1,0</div><div class="tl">reg./aluno</div></div>
+        </div>
+        <div class="tc-bar"><div class="tc-fill" style="width:32%;background:var(--teal)"></div></div>
+      </div>
+      <!-- Demais turmas resumidas -->
+      <div class="turma-card tc-ok">
+        <div class="tc-top">
+          <div class="tc-nome">Demais Turmas (9)</div>
+          <div class="tc-badge ok">✅ Baixo</div>
+        </div>
+        <div class="tc-stats">
+          <div class="tc-stat"><div class="tv" style="color:var(--teal)">44</div><div class="tl">alunos únicos</div></div>
+          <div class="tc-stat"><div class="tv" style="color:var(--teal)">44</div><div class="tl">registros</div></div>
+          <div class="tc-stat"><div class="tv" style="color:var(--teal)">1,0</div><div class="tl">reg./aluno</div></div>
+        </div>
+        <div class="tc-bar"><div class="tc-fill" style="width:20%;background:var(--teal)"></div></div>
+      </div>
     </div>
   </div>
 
-  <div style="text-align:center; font-size:0.75rem; color:var(--muted2); margin-top:10px; padding-top:18px; border-top:1px solid var(--border);">
-    Busca Ativa · E.E.I.E.F. Aba Tapeba · Caucaia-CE · Dados: a inserir · Painel de Indicadores Educacionais 2026
+  <!-- ══ ALERTAS ══ -->
+  <div id="alertas">
+    <div class="section-title">⚠️ Alertas Pedagógicos e Sugestões para a Gestão</div>
+
+    <div class="section-block">
+      <div class="section-block-header">
+        <div class="sb-icon" style="background:var(--yellow-bg)">💡</div>
+        <div class="sb-info">
+          <h3>Sugestões Estratégicas com Base nos Dados</h3>
+          <p>Análise cruzada dos padrões de infrequência e recomendações para o núcleo gestor</p>
+        </div>
+      </div>
+
+      <div class="notif-card priority-yellow" onclick="toggleCard(this)">
+        <div class="notif-top">
+          <div class="notif-avatar yellow">📊</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">97,4% dos registros sem causa definida — necessário aprimorar o protocolo de investigação</div>
+              <div class="notif-source">TODOS OS ANOS</div>
+            </div>
+            <div class="notif-summary">A categoria "Outros" domina de forma esmagadora os registros da Aba Tapeba. Isso indica que, na maioria dos contatos com a família, o motivo real da ausência não foi registrado. Sem essa informação, é impossível tratar as causas raízes da infrequência de forma eficaz.</div>
+            <div class="notif-metrics">
+              <div class="metric-pill red"><div class="dot" style="background:var(--red)"></div>224 registros "Outros"</div>
+              <div class="metric-pill yellow"><div class="dot" style="background:var(--yellow)"></div>97,4% dos casos</div>
+            </div>
+          </div>
+          <button class="notif-toggle">▼</button>
+        </div>
+        <div class="notif-expand">
+          <div class="action-tag">📋 SUGESTÃO — PROTOCOLO DE BUSCA ATIVA</div>
+          <div class="action-text">
+            <strong>1. Criar roteiro de perguntas para o contato familiar:</strong> Ao ligar para a família, a servidora deve seguir um roteiro estruturado: "Qual o motivo da ausência? Foi doença? Problema de transporte? Questão de segurança? Trabalho da criança ou do responsável?"<br><br>
+            <strong>2. Categorias mais específicas no sistema:</strong> Propor à SEDUC/CREDE a inclusão de novas categorias: Problema de Transporte, Situação de Trabalho, Conflito Escolar, Questão Socioeconômica, Sem Resposta da Família.<br><br>
+            <strong>3. HTPC temático:</strong> Dedicar momento do próximo HTPC para treinar professores na identificação precoce de sinais de risco de infrequência em sala de aula — comportamento, rendimento, relato de colegas.
+          </div>
+          <div class="expand-tags">
+            <div class="expand-tag">Protocolo</div>
+            <div class="expand-tag">HTPC</div>
+            <div class="expand-tag">Causas Raízes</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="notif-card priority-yellow" onclick="toggleCard(this)">
+        <div class="notif-top">
+          <div class="notif-avatar yellow">🏫</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">7º Ano em alerta total — 40 alunos únicos distribuídos em 3 turmas, exige intervenção coordenada</div>
+              <div class="notif-source">7º ANO · A · B · C</div>
+            </div>
+            <div class="notif-summary">Os três turnos do 7º Ano somam 64 registros e 40 alunos afetados — o dobro da segunda turma mais afetada. Esse padrão é consistente com dados nacionais sobre a transição do 6º para o 7º Ano, onde a multiplicidade de professores e disciplinas aumenta o risco de desengajamento e infrequência.</div>
+            <div class="notif-metrics">
+              <div class="metric-pill red"><div class="dot" style="background:var(--red)"></div>64 registros 7º Ano</div>
+              <div class="metric-pill orange"><div class="dot" style="background:var(--orange)"></div>40 alunos únicos</div>
+              <div class="metric-pill yellow"><div class="dot" style="background:var(--yellow)"></div>27,8% do total</div>
+            </div>
+          </div>
+          <button class="notif-toggle">▼</button>
+        </div>
+        <div class="notif-expand">
+          <div class="action-tag">📋 SUGESTÃO — ENGAJAMENTO 7º ANO</div>
+          <div class="action-text">
+            <strong>1. Reunião diagnóstica com professores do 7º Ano:</strong> Identificar quais alunos têm presença irregular por turma e mapear possíveis causas — conflitos interpessoais, dificuldades com disciplinas específicas, bullying ou fatores externos.<br><br>
+            <strong>2. Professor de referência por aluno infrequente:</strong> Designar um professor como referência para os alunos com mais de 2 registros, responsável por acompanhar presença semanalmente e manter comunicação com a família.<br><br>
+            <strong>3. Projeto de acolhimento e pertencimento:</strong> Criar atividades de integração nas três turmas do 7º Ano — rodas de conversa, projetos coletivos, atividades culturais — para fortalecer o vínculo dos alunos com a escola.<br><br>
+            <strong>4. Visitas domiciliares para alunos com 3 registros:</strong> Os 12 alunos com 3 registros (o máximo da escola) devem ter visita domiciliar agendada como próximo passo após o contato telefônico.
+          </div>
+          <div class="expand-tags">
+            <div class="expand-tag">7º Ano</div>
+            <div class="expand-tag">Professor Referência</div>
+            <div class="expand-tag">Acolhimento</div>
+            <div class="expand-tag">Visita Domiciliar</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="notif-card priority-yellow" onclick="toggleCard(this)">
+        <div class="notif-top">
+          <div class="notif-avatar yellow">📈</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">Pico na semana 9 (23–28/fev) com 98 alunos únicos — investigar causa específica</div>
+              <div class="notif-source">TODA A ESCOLA</div>
+            </div>
+            <div class="notif-summary">A semana de 23 a 28 de fevereiro registrou o maior número de alunos únicos ausentes (98), concentrando mais de 42% de todos os registros do período em apenas uma semana. Esse volume desproporcional pode indicar um evento externo à escola — problema de transporte, insegurança no entorno, evento na comunidade ou surto de doença não notificado.</div>
+            <div class="notif-metrics">
+              <div class="metric-pill red"><div class="dot" style="background:var(--red)"></div>98 alunos · Sem. 9</div>
+              <div class="metric-pill teal"><div class="dot" style="background:var(--teal)"></div>Pico identificado</div>
+            </div>
+          </div>
+          <button class="notif-toggle">▼</button>
+        </div>
+        <div class="notif-expand">
+          <div class="action-tag">📋 SUGESTÃO — ANÁLISE DO PICO</div>
+          <div class="action-text">
+            <strong>1. Investigar contexto da semana 9:</strong> Verificar nos registros escolares o que ocorreu entre 23 e 28 de fevereiro — havia avaliações programadas? Feriado local próximo? Problema de transporte escolar? Evento climático ou de segurança na comunidade Aba Tapeba?<br><br>
+            <strong>2. Cruzar com informações comunitárias:</strong> Dado o contexto de escola indígena, verificar se houve evento cultural, assembleia ou mobilização da comunidade Tapeba naquele período que possa ter impactado a frequência.<br><br>
+            <strong>3. Monitoramento semanal preventivo:</strong> Criar painel de frequência semanal por turma, atualizado às sextas-feiras, para identificar picos antes que se tornem tendência.<br><br>
+            <strong>4. Comunicação proativa com famílias:</strong> Nos casos de pico, enviar comunicado geral às famílias reforçando a importância da frequência e os mecanismos de apoio disponíveis.
+          </div>
+          <div class="expand-tags">
+            <div class="expand-tag">Análise de Pico</div>
+            <div class="expand-tag">Contexto Comunitário</div>
+            <div class="expand-tag">Monitoramento Semanal</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="notif-card priority-teal" onclick="toggleCard(this)">
+        <div class="notif-top">
+          <div class="notif-avatar teal">✅</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">100% de cobertura de protocolos — Jennifer Lima e Nayane Nunes demonstram excelência operacional</div>
+              <div class="notif-source">RECONHECIMENTO</div>
+            </div>
+            <div class="notif-summary">A escola atingiu 100% de contato familiar em todos os 230 registros do período, com dois servidores ativos: Jennifer Lima de Sousa (144 registros, 62,6%) e Nayane Nunes da Silva (86 registros, 37,4%). A cobertura total é um diferencial importante em relação a outras escolas da rede e deve ser reconhecida e mantida.</div>
+            <div class="notif-metrics">
+              <div class="metric-pill green"><div class="dot" style="background:var(--green)"></div>230 registros · 100% cobertura</div>
+              <div class="metric-pill teal"><div class="dot" style="background:var(--teal)"></div>2 servidores ativos</div>
+            </div>
+          </div>
+          <button class="notif-toggle">▼</button>
+        </div>
+        <div class="notif-expand">
+          <div class="action-tag">🌟 PONTO POSITIVO — RECONHECER E FORTALECER</div>
+          <div class="action-text">
+            <strong>1. Reconhecimento formal em reunião de equipe:</strong> Registrar a dedicação das servidoras e o impacto do trabalho de busca ativa na garantia do direito à educação dos estudantes da comunidade Tapeba.<br><br>
+            <strong>2. Garantir recursos e tempo protegido:</strong> Assegurar que ambas as servidoras tenham celular institucional, acesso ao sistema e tempo protegido na agenda para realizar os contatos com qualidade e profundidade.<br><br>
+            <strong>3. Próximo passo — qualidade dos registros:</strong> Com a quantidade já garantida (100%), o foco agora deve ser a qualidade: identificar o motivo real por trás de cada "Outros" para orientar intervenções mais precisas.
+          </div>
+          <div class="expand-tags">
+            <div class="expand-tag">Reconhecimento</div>
+            <div class="expand-tag">Boa Prática</div>
+            <div class="expand-tag">Qualidade dos Dados</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ TABELA COMPLETA ══ -->
+  <div id="tabela">
+    <div class="section-title">📋 Tabela Completa — Todos os Alunos com Registro de Infrequência</div>
+
+    <div class="data-table-wrap">
+      <div class="table-header">
+        <div>
+          <h3>Registro de Alunos Infrequentes · Aba Tapeba EDEIEF · fev–mar/2026</h3>
+          <p>181 alunos únicos · 230 registros totais · Ordenado por frequência de registros (maior para menor)</p>
+        </div>
+        <span id="rowCount" style="font-size:0.75rem;color:var(--muted2);align-self:center">181 registro(s) exibido(s)</span>
+      </div>
+      <div class="filters-bar" style="padding:10px 16px 0">
+        <input type="text" id="searchInput" class="filter-input wide" placeholder="🔍 Buscar por nome ou turma..." oninput="filterTable()">
+        <select id="turmaFilter" class="filter-input" onchange="filterTable()">
+          <option value="">Todas as Turmas</option>
+          <option value="1º - A - I">1º A · Integral</option>
+          <option value="1º - B - I">1º B · Integral</option>
+          <option value="2º - A - I">2º A · Integral</option>
+          <option value="2º - B - I">2º B · Integral</option>
+          <option value="3º - A - I">3º A · Integral</option>
+          <option value="4º - A - M">4º A · Manhã</option>
+          <option value="4º - B - M">4º B · Manhã</option>
+          <option value="4º - C - T">4º C · Tarde</option>
+          <option value="5º - A - M">5º A · Manhã</option>
+          <option value="5º - B - T">5º B · Tarde</option>
+          <option value="6º - A - M">6º A · Manhã</option>
+          <option value="6º - B - T">6º B · Tarde</option>
+          <option value="6º - C - T">6º C · Tarde</option>
+          <option value="7º - A - M">7º A · Manhã</option>
+          <option value="7º - B - T">7º B · Tarde</option>
+          <option value="7º - C - T">7º C · Tarde</option>
+          <option value="8º - A - M">8º A · Manhã</option>
+          <option value="8º - B - T">8º B · Tarde</option>
+          <option value="9º - B - M">9º B · Manhã</option>
+          <option value="9º - C - T">9º C · Tarde</option>
+        </select>
+        <select id="justFilter" class="filter-input" onchange="filterTable()">
+          <option value="">Todas as Justificativas</option>
+          <option value="ALUNO DOENTE">Aluno Doente</option>
+          <option value="OUTROS">Outros</option>
+        </select>
+        <select id="prioFilter" class="filter-input" onchange="filterTable()">
+          <option value="">Todos os Volumes</option>
+          <option value="alto">Alta (3 registros)</option>
+          <option value="medio">Média (2 registros)</option>
+          <option value="baixo">Baixa (1 registro)</option>
+        </select>
+      </div>
+      <div class="table-scroll" style="padding:0 0 4px">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Aluno</th>
+              <th>Turma</th>
+              <th>Registros</th>
+              <th>Justificativa</th>
+              <th>Protocolo</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ PLANO DE AÇÃO ══ -->
+  <div id="acoes">
+    <div class="section-title">⚡ Plano de Ação — Núcleo Gestor · Abril/2026</div>
+
+    <div class="data-table-wrap">
+      <div class="table-header">
+        <h3>Ações Prioritárias de Frequência Escolar</h3>
+        <p>Baseadas nos dados de Busca Ativa fev–mar/2026 · Aba Tapeba EDEIEF</p>
+      </div>
+      <div class="table-scroll">
+        <table class="plan-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Ação</th>
+              <th>Público-Alvo</th>
+              <th>Responsável</th>
+              <th>Prazo</th>
+              <th>Prioridade</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1</strong></td>
+              <td>Convocar responsáveis dos 12 alunos com 3 registros para reunião presencial ou visita domiciliar</td>
+              <td>12 alunos com maior frequência de faltas</td>
+              <td>Diretor + Coord.</td>
+              <td>5 dias úteis</td>
+              <td><span class="pill pill-total">🚨 Urgente</span></td>
+            </tr>
+            <tr>
+              <td><strong>2</strong></td>
+              <td>Investigar causa do pico da semana 9 (23–28/fev): verificar registros e ouvir comunidade Tapeba</td>
+              <td>Toda a escola</td>
+              <td>Diretor</td>
+              <td>Imediato</td>
+              <td><span class="pill pill-total">🚨 Urgente</span></td>
+            </tr>
+            <tr>
+              <td><strong>3</strong></td>
+              <td>Reunião diagnóstica com professores do 7º Ano (A, B e C) para mapear causas de infrequência</td>
+              <td>7º Ano · 3 turmas · 40 alunos</td>
+              <td>Coord. Pedagógico</td>
+              <td>10 dias</td>
+              <td><span class="pill pill-total">🚨 Urgente</span></td>
+            </tr>
+            <tr>
+              <td><strong>4</strong></td>
+              <td>Criar painel semanal de frequência por turma para monitoramento da gestão</td>
+              <td>Todas as turmas · 1º ao 9º Ano</td>
+              <td>Coord. Pedagógico</td>
+              <td>15 dias</td>
+              <td><span class="pill pill-doente">⚠ Atenção</span></td>
+            </tr>
+            <tr>
+              <td><strong>5</strong></td>
+              <td>Implementar roteiro padronizado de perguntas para registro das causas nos contatos familiares</td>
+              <td>Nayane + Jennifer + equipe</td>
+              <td>Diretor + CREDE</td>
+              <td>15 dias</td>
+              <td><span class="pill pill-doente">⚠ Atenção</span></td>
+            </tr>
+            <tr>
+              <td><strong>6</strong></td>
+              <td>HTPC temático: identificação precoce de sinais de risco de infrequência em sala de aula</td>
+              <td>Todos os professores</td>
+              <td>Coordenador Pedagógico</td>
+              <td>Próximo HTPC</td>
+              <td><span class="pill pill-doente">⚠ Atenção</span></td>
+            </tr>
+            <tr>
+              <td><strong>7</strong></td>
+              <td>Articular com lideranças da comunidade Tapeba sobre fatores culturais/comunitários que impactam a frequência</td>
+              <td>Famílias da comunidade</td>
+              <td>Diretor + Liderança</td>
+              <td>1 mês</td>
+              <td><span class="pill pill-doente">⚠ Atenção</span></td>
+            </tr>
+            <tr>
+              <td><strong>8</strong></td>
+              <td>Projeto de engajamento para o 7º Ano: professor de referência e atividades de pertencimento</td>
+              <td>7º Ano A, B e C</td>
+              <td>Coord. + Professores</td>
+              <td>1 mês</td>
+              <td><span class="pill pill-parcial">📌 Planejamento</span></td>
+            </tr>
+            <tr>
+              <td><strong>9</strong></td>
+              <td>Reconhecimento formal de Jennifer Lima e Nayane Nunes pelo trabalho de busca ativa</td>
+              <td>Equipe escolar</td>
+              <td>Diretor</td>
+              <td>Próxima reunião</td>
+              <td><span class="pill pill-contato">✅ Melhoria</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Calendário -->
+    <div class="prog-wrap" style="margin-top:20px">
+      <h4 style="font-size:0.90rem;font-weight:700;color:var(--blue-dark);margin-bottom:14px">📅 Calendário de Monitoramento — 2º Bimestre 2026</h4>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+        <div style="background:var(--red-bg);border:1px solid var(--red-bdr);border-radius:8px;padding:12px">
+          <div style="font-size:0.68rem;font-weight:700;text-transform:uppercase;color:var(--red-dark);letter-spacing:.08em;margin-bottom:5px">Abril — Urgente</div>
+          <div style="font-size:0.78rem;color:#7a1a0e;line-height:1.6">• Reuniões c/ famílias dos top 12<br>• Investigar pico semana 9<br>• Reunião professores do 7º Ano<br>• Painel semanal de frequência</div>
+        </div>
+        <div style="background:var(--yellow-bg);border:1px solid var(--yellow-bdr);border-radius:8px;padding:12px">
+          <div style="font-size:0.68rem;font-weight:700;text-transform:uppercase;color:#7d5a10;letter-spacing:.08em;margin-bottom:5px">Maio — Implementação</div>
+          <div style="font-size:0.78rem;color:#7a3e05;line-height:1.6">• Novo protocolo de registro<br>• HTPC: infrequência e risco<br>• Articulação com lideranças<br>• Visitas domiciliares</div>
+        </div>
+        <div style="background:var(--teal-bg);border:1px solid var(--teal-bdr);border-radius:8px;padding:12px">
+          <div style="font-size:0.68rem;font-weight:700;text-transform:uppercase;color:var(--teal);letter-spacing:.08em;margin-bottom:5px">Jun–Jul — Avaliação</div>
+          <div style="font-size:0.78rem;color:#0e4f5e;line-height:1.6">• Projeto engajamento 7º Ano<br>• Balanço 1º semestre frequência<br>• Ajuste de estratégias<br>• Relatório para CREDE</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:40px;padding:16px 0;border-top:1px solid var(--border);font-size:0.72rem;color:var(--muted2);line-height:1.8">
+    <strong style="color:var(--muted)">Fonte dos dados:</strong> Sistema Busca Ativa / SEDUC-CE · Planilha de Monitoramento de Frequência<br>
+    <strong style="color:var(--muted)">Escola:</strong> Aba Tapeba EDEIEF · Caucaia-CE · Região BR-222<br>
+    <strong style="color:var(--muted)">Período:</strong> 19/02/2026 a 16/03/2026 · 230 registros · 181 alunos únicos<br>
+    <strong style="color:var(--muted)">Servidores responsáveis:</strong> Nayane Nunes da Silva · Jennifer Lima de Sousa | <strong style="color:var(--muted)">Gerado em:</strong> Março/2026
   </div>
 
 </main>
+
+<script>
+const studentsData = [{"nome": "ANA BEATRIZ BARROS DE OLIVEIRA", "turma": "7\u00ba - A - M", "count": 3, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ANA PRISCILA AYLA VIEIRA DA SILVA", "turma": "4\u00ba - B - M", "count": 3, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ANTONIO LEVI DE SOUZA XAVIER", "turma": "7\u00ba - B - T", "count": 3, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "CLAENY LIMA PORFIRIO", "turma": "7\u00ba - A - M", "count": 3, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "FRANCISCO KAUE ALMEIDA DE SOUZA", "turma": "7\u00ba - A - M", "count": 3, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ISABELY DE OLIVEIRA SAMPAIO", "turma": "5\u00ba - B - T", "count": 3, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "JAMESON RODRIGUES LIMA", "turma": "5\u00ba - B - T", "count": 3, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "JOAO LEVI CORREIA DA SILVA", "turma": "7\u00ba - A - M", "count": 3, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "JOAO LUCAS CORREIA DA SILVA", "turma": "7\u00ba - A - M", "count": 3, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "MARIA ALESSANDRA DE SOUSA ALVES", "turma": "7\u00ba - A - M", "count": 3, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "SILVANA FERNANDES DE JESUS", "turma": "7\u00ba - A - M", "count": 3, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "WANIFER CORDEIRO DA SILVA", "turma": "7\u00ba - B - T", "count": 3, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ADRIEL DA SILVA DE FREITAS", "turma": "4\u00ba - A - M", "count": 2, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ANA GABRIELE ALVES DA SILVA", "turma": "5\u00ba - B - T", "count": 2, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ANA LIVIA MOREIRA AZEVEDO", "turma": "7\u00ba - C - T", "count": 2, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ANTONIO JACINTO NOBRE", "turma": "7\u00ba - A - M", "count": 2, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "CARLOS EDUARDO MATIAS DA SILVA", "turma": "7\u00ba - B - T", "count": 2, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "CECILIA RAPHAELLA LOPES DE SOUSA", "turma": "5\u00ba - A - M", "count": 2, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "DAVILA AURORA FLOR MOURA", "turma": "1\u00ba - B - I", "count": 2, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ENZO GABRIEL MOREIRA DE OLIVEIRA", "turma": "1\u00ba - B - I", "count": 2, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "FRANCISCO ISAAC ALVES DE BRITO", "turma": "5\u00ba - B - T", "count": 2, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "GABRIEL ADRYAN RODRIGUES LOPES", "turma": "1\u00ba - B - I", "count": 2, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "GUILHERME FREITAS DE OLIVEIRA FRAGA", "turma": "5\u00ba - B - T", "count": 2, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "INGRID VITORIA MORENO DA SILVA", "turma": "5\u00ba - B - T", "count": 2, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "JOAQUIM ANGELO RODRIGUES AMORIM", "turma": "5\u00ba - B - T", "count": 2, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "JOSE GABRIEL DA SILVA SABOIA", "turma": "4\u00ba - A - M", "count": 2, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "JOSE GABRIEL ROCHA DE SOUZA", "turma": "7\u00ba - A - M", "count": 2, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "JOSUE BEZERRA DA SILVA", "turma": "1\u00ba - B - I", "count": 2, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "LARA SOPHYA FERREIRA DE SOUSA", "turma": "3\u00ba - A - I", "count": 2, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "LUIZ ISAQUE DE OLIVEIRA SAMPAIO", "turma": "7\u00ba - C - T", "count": 2, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "MARIA ARLIENE FERNANDES SALES", "turma": "5\u00ba - B - T", "count": 2, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "MARIA CECILIA FREIRE FORTE", "turma": "8\u00ba - A - M", "count": 2, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "MARIA CINTIA FREIRE FORTE", "turma": "8\u00ba - A - M", "count": 2, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "MARIA ISADORA ALVES DE BRITO", "turma": "5\u00ba - B - T", "count": 2, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "PEDRO ICARO DE SOUSA TEIXEIRA", "turma": "1\u00ba - B - I", "count": 2, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "SAMUEL SALES DA MOTA", "turma": "7\u00ba - A - M", "count": 2, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "YASMIM DE SOUSA DA ROCHA", "turma": "5\u00ba - A - M", "count": 2, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ABRAAO CHAGAS MATOS", "turma": "6\u00ba - A - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ADRIEL RIBEIRO DE BRITO", "turma": "6\u00ba - B - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "AGATHA DE OLIVEIRA MOTA", "turma": "8\u00ba - B - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "AGATHA DE SOUSA DO NASCIMENTO", "turma": "7\u00ba - C - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ALLAN DEIVSON MOURA DE SOUSA", "turma": "4\u00ba - B - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ANA ALICE DE ANDRADE", "turma": "7\u00ba - A - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ANA ALICE VIEIRA DA SILVA", "turma": "8\u00ba - A - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ANA BEATRIZ MENEZES BRITO", "turma": "3\u00ba - A - I", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ANA CLARA TEIXEIRA DO NASCIMENTO", "turma": "7\u00ba - C - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ANA HELOISA DE ASSIS BARBOSA", "turma": "9\u00ba - C - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ANA HELOISA DO NASCIMENTO VERAS", "turma": "1\u00ba - B - I", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ANA LARISSA TEIXEIRA DE MORAIS", "turma": "5\u00ba - B - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ANA LETICIA NASCIMENTO PONCIANO", "turma": "5\u00ba - A - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ANA LUISA CORDEIRO GONCALVES AMARAL", "turma": "4\u00ba - B - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ANA RAYLLA DA SILVA DOS SANTOS", "turma": "4\u00ba - C - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ANA SAFFYRA MORAES DO NASCIMENTO", "turma": "4\u00ba - B - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ANA SOPHIA DA SILVA SANTOS", "turma": "2\u00ba - A - I", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ANA SOPHIA FERREIRA SOARES", "turma": "4\u00ba - B - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ANA VICTORIA DE ANDRADE", "turma": "9\u00ba - C - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ANNA ESTER PAIVA MORAIS", "turma": "4\u00ba - B - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ANNA LIVYA MARTINS MATOS DO NASCIMENTO", "turma": "6\u00ba - A - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ANNA NICOLY DE SOUSA MOREIRA", "turma": "6\u00ba - A - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ANTONIA ALICE DE ASSIS BARBOSA", "turma": "6\u00ba - B - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ANTONIA MILENA MOREIRA AZEVEDO", "turma": "7\u00ba - B - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ANTONIA VALENTINA GABRIEL COSTA", "turma": "4\u00ba - B - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ANTONIO DAVI DOS SANTOS DA SILVA", "turma": "5\u00ba - B - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ANTONIO FERREIRA DE SOUSA", "turma": "7\u00ba - B - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ANTONIO GLADSON FERNANDES DA SILVA", "turma": "7\u00ba - C - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ARTHUR BENICIO FERREIRA AMORIM", "turma": "2\u00ba - B - I", "count": 1, "just": "ALUNO DOENTE", "just_class": "doente", "proto": "Contato Familiar"}, {"nome": "ARTHUR DE OLIVEIRA SOUSA", "turma": "4\u00ba - C - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ARTUR BRUNO MOURA BATISTA", "turma": "7\u00ba - A - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "AYLA LORRANE FLOR SAMPAIO", "turma": "3\u00ba - A - I", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "AYLA SOPHIA XAVIER DE SOUSA", "turma": "1\u00ba - A - I", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "BARBARA VALENTINA DOMINGOS GOMES RODRIGUES", "turma": "5\u00ba - A - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "BIANCA ISABELLY FERREIRA DE ARAUJO", "turma": "1\u00ba - A - I", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "BRENDA ALEXIA BRAGA DE SOUSA", "turma": "7\u00ba - C - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "BRENO ZAQUEL MONTEIRO MOURA", "turma": "7\u00ba - B - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "CAIO RODRIGUES DA SILVA", "turma": "7\u00ba - A - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "CARLA NAYLA DE SOUSA SANTOS", "turma": "5\u00ba - A - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "CARLOS EDUARDO SALES MOURA", "turma": "1\u00ba - B - I", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "CARLOS HENRIQUE SILVA DO NASCIMENTO", "turma": "8\u00ba - B - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "CLARA VITORIA ARAUJO GOMES", "turma": "6\u00ba - B - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "DAVI HENRIQUE DE SOUZA MARQUES", "turma": "6\u00ba - C - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ELLEN SOPHIA GUIMARAES OLIVEIRA", "turma": "4\u00ba - B - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "EMANUEL PAIVA DOS SANTOS", "turma": "1\u00ba - B - I", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ENZO GABRIEL ROCHA DE ANDRADE", "turma": "4\u00ba - C - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ERIC ARTHUR LIMA DA SILVA", "turma": "1\u00ba - B - I", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ESTHER FERREIRA ABREU", "turma": "5\u00ba - B - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "FELISIANE NASCIMENTO FERNANDES", "turma": "2\u00ba - B - I", "count": 1, "just": "ALUNO DOENTE", "just_class": "doente", "proto": "Contato Familiar"}, {"nome": "FRANCISCA BIANCA RIBEIRO DE ARAUJO", "turma": "6\u00ba - A - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "FRANCISCO ADRIAN MACIEL DA COSTA", "turma": "5\u00ba - A - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "FRANCISCO ERICK MACIEL DO NASCIMENTO", "turma": "3\u00ba - A - I", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "FRANCISCO HELIO DO O SOARES", "turma": "7\u00ba - C - T", "count": 1, "just": "ALUNO DOENTE", "just_class": "doente", "proto": "Contato Familiar"}, {"nome": "FRANCISCO KAIKY DE SOUZA FERNANDES", "turma": "8\u00ba - A - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "FRANCISCO MARCELO TAVEIRO DE SOUSA", "turma": "3\u00ba - A - I", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "GABRIEL CHAGAS MATOS", "turma": "1\u00ba - B - I", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "GABRIELLE SILVA FERREIRA", "turma": "5\u00ba - B - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "GRASILENE RODRIGUES DO NASCIMENTO", "turma": "8\u00ba - B - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "GUSTAVO DA SILVA PEREIRA", "turma": "7\u00ba - A - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "HEITOR RODRIGUES GOMES", "turma": "1\u00ba - A - I", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "IANDRA NOEMI DO NASCIMENTO RODRIGUES", "turma": "2\u00ba - B - I", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ISABELLE DE SOUSA MENEZES", "turma": "4\u00ba - B - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ISABELLE SALES MOURA", "turma": "6\u00ba - B - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ISADORA DE JESUS DA SILVA", "turma": "1\u00ba - B - I", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ISRAEL CHAVES SOUSA", "turma": "4\u00ba - B - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "ITALO VINICIUS DE FREITAS DOS SANTOS", "turma": "1\u00ba - B - I", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "JOAO ARIEL NASCIMENTO FERNANDES", "turma": "4\u00ba - B - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "JOAO CLAUDIO ALMEIDA MEDEIROS", "turma": "7\u00ba - B - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "JOAO KEVIN DE LIMA DANTAS", "turma": "6\u00ba - A - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "JOAO LUCAS FERREIRA MIRANDA", "turma": "5\u00ba - B - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "JOAO MIGUEL MARTINS TEIXEIRA", "turma": "5\u00ba - B - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "JOAO MIGUEL MOURA BATISTA", "turma": "5\u00ba - A - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "JOAO MIGUEL VIEIRA DE ARAUJO", "turma": "4\u00ba - B - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "JOAO MIQUEIAS ALMEIDA MEDEIROS", "turma": "5\u00ba - B - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "JOAO NICOLAS DE ARRUDA DA COSTA", "turma": "5\u00ba - B - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "JOEL COELHO GUIMARAES FILHO", "turma": "8\u00ba - A - M", "count": 1, "just": "ALUNO DOENTE", "just_class": "doente", "proto": "Contato Familiar"}, {"nome": "JOSE ABRAAO DE ASSIS SALES", "turma": "1\u00ba - A - I", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "JOSE ANGELO SANTANA", "turma": "7\u00ba - C - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "JOSE DUAN SOUSA DOS SANTOS", "turma": "8\u00ba - A - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "JOSE FABRICIO DA SILVA PEREIRA", "turma": "7\u00ba - A - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "JOSE MAXWELL DE SOUSA MOREIRA", "turma": "4\u00ba - A - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "JOSE MIGUEL DO NASCIMENTO DOMINGOS", "turma": "4\u00ba - C - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "JOSE MOISES RODRIGUES DE SOUZA", "turma": "2\u00ba - B - I", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "JOSE OTAVIO DE LIMA MOREIRA", "turma": "4\u00ba - A - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "JOSE WILSON DA SILVA NASCIMENTO", "turma": "7\u00ba - B - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "KALLEB NICOLAS SILVA LEMOS", "turma": "4\u00ba - A - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "LAILA YASMIN ALVES DA SILVA", "turma": "6\u00ba - A - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "LARA AGNES RIBEIRO DA SILVA", "turma": "2\u00ba - B - I", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "LAURA DE ARAUJO FREIRE", "turma": "3\u00ba - A - I", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "LEONARDO MARTINS NASCIMENTO", "turma": "5\u00ba - B - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "LETICIA SANTOS ARAGAO CARLOS", "turma": "8\u00ba - A - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "LUCAS GABRIEL ANDRADE CUNHA", "turma": "2\u00ba - B - I", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "LUCAS HEITOR SOUSA DE MENEZES", "turma": "6\u00ba - C - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "LUCIO VICTOR SOUSA DO NASCIMENTO", "turma": "7\u00ba - B - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "LUIS MIGUEL DA CRUZ CAVALCANTE", "turma": "4\u00ba - C - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "LUIZ GUSTAVO DE MORAIS SOUSA", "turma": "8\u00ba - B - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "MANOEL FELIPE FERREIRA ALMEIDA", "turma": "8\u00ba - A - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "MARCELLY VITORIA DA SILVA SALES", "turma": "3\u00ba - A - I", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "MARIA ADRIELLY MOREIRA DA SILVA", "turma": "6\u00ba - A - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "MARIA AGUEDA DE FREITAS DE MENDONCA", "turma": "6\u00ba - C - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "MARIA ALICE DO NASCIMENTO FERREIRA", "turma": "7\u00ba - C - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "MARIA CLARA DA SILVA GUEDES", "turma": "9\u00ba - C - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "MARIA CLARA DA SILVA SABOIA", "turma": "8\u00ba - A - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "MARIA CLARA DE OLIVEIRA SOUSA", "turma": "6\u00ba - C - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "MARIA CLARA FERNANDES DA CRUZ", "turma": "5\u00ba - A - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "MARIA CLARA HERCULANO FERREIRA DO NASCIMENTO", "turma": "9\u00ba - B - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "MARIA EDUARDA TEIXEIRA DA SILVA", "turma": "3\u00ba - A - I", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "MARIA ELAINE RODRIGUES DE SOUZA", "turma": "9\u00ba - B - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "MARIA ELLOA DA SILVA MOURA", "turma": "6\u00ba - A - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "MARIA EMILLY DA COSTA ALMEIDA", "turma": "5\u00ba - B - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "MARIA ERIKA DE FREITAS FERREIRA", "turma": "6\u00ba - C - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "MARIA ISABELE TEIXEIRA DE SOUSA", "turma": "5\u00ba - B - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "MARIA ISADORA DE ANDRADE MOURA", "turma": "4\u00ba - B - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "MARIA ISIS DE SOUSA DE MENEZES", "turma": "3\u00ba - A - I", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "MARIA SOFIA OLIVEIRA DO NASCIMENTO DA SILVA", "turma": "4\u00ba - C - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "MARIA VALENTINA SOUSA DE ALENCAR", "turma": "1\u00ba - B - I", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "MIRELLA SARAIVA SALES", "turma": "7\u00ba - C - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "MIRELLE ALVES DA SILVA", "turma": "1\u00ba - A - I", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "MONICA VITORIA ALVES BRASIL", "turma": "6\u00ba - C - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "MONIQUE MORAIS ARAUJO", "turma": "8\u00ba - B - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "NAYARA KELLY CRUZ RODRIGUES", "turma": "6\u00ba - A - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "OSEIAS DE PAULA DE MESQUITA MATOS", "turma": "6\u00ba - C - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "PEDRO LORENZO MIRANDA DA SILVA", "turma": "6\u00ba - C - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "PEDRO LUCAS FERREIRA AMORIM", "turma": "8\u00ba - B - T", "count": 1, "just": "ALUNO DOENTE", "just_class": "doente", "proto": "Contato Familiar"}, {"nome": "PEDRO MIGUEL DA COSTA TEIXEIRA", "turma": "2\u00ba - A - I", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "PEDRO RIAN DA SILVA DOS SANTOS", "turma": "7\u00ba - B - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "RAVY LOPES DE SOUSA", "turma": "2\u00ba - A - I", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "RAYSSA GOMES DE SOUSA", "turma": "6\u00ba - A - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "REBECA DE MORAES RODRIGUES", "turma": "7\u00ba - C - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "RICARDO VINICIUS DA SILVA BORGES", "turma": "8\u00ba - A - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "RUANNY CRISTINE NASCIMENTO GOES", "turma": "7\u00ba - C - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "SAMIA VITORIA DE JESUS PEREIRA", "turma": "4\u00ba - A - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "SARAH EMILLY DE SOUZA FERNANDES", "turma": "4\u00ba - A - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "SOFIA RAYLANE NASCIMENTO PONCIANO", "turma": "7\u00ba - C - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "SOPHIA GRAZIELLA VIEIRA LIMA", "turma": "4\u00ba - A - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "SYBELLE RAYLLA NASCIMENTO RODRIGUES", "turma": "3\u00ba - A - I", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "TAYANE REBECA DE LIMA RODRIGUES", "turma": "8\u00ba - A - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "THAENNY VITORIA ALMEIDA DE MORAIS", "turma": "5\u00ba - A - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "THAYLA HELLEN DA SILVA NASCIMENTO", "turma": "6\u00ba - A - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "VALENTINA RUTH ALVES RODRIGUES", "turma": "5\u00ba - A - M", "count": 1, "just": "ALUNO DOENTE", "just_class": "doente", "proto": "Contato Familiar"}, {"nome": "VITOR EMANUEL BEZERRA DA SILVA", "turma": "4\u00ba - A - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "VITOR WENDERSON DO NASCIMENTO DE SOUSA", "turma": "6\u00ba - B - T", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "VITORIA ELLEN BATISTA BEZERRA", "turma": "7\u00ba - A - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}, {"nome": "WILLIAM JEAN DA SILVA DO NASCIMENTO", "turma": "7\u00ba - A - M", "count": 1, "just": "OUTROS", "just_class": "outros", "proto": "Contato Familiar"}];
+
+function getRankClass(count) {
+  if (count >= 3) return 'rb-3to4';
+  if (count >= 2) return 'rb-1to2';
+  return 'rb-1to2';
+}
+
+function getJustPill(just) {
+  if (just === 'ALUNO DOENTE') return '<span class="pill pill-doente">🟠 Aluno Doente</span>';
+  return '<span class="pill pill-outros">🟡 Outros</span>';
+}
+
+function buildTable(data) {
+  const tbody = document.getElementById('tableBody');
+  tbody.innerHTML = '';
+  data.forEach((s, i) => {
+    const tr = document.createElement('tr');
+    if (s.count >= 3) tr.style.background = '#fff5f5';
+    else if (s.count >= 2) tr.style.background = '#fffbf0';
+    tr.innerHTML = `
+      <td><span class="rank-badge ${getRankClass(s.count)}">${s.count}</span></td>
+      <td><strong>${s.nome}</strong></td>
+      <td>${s.turma}</td>
+      <td style="font-weight:700;color:${s.count>=3?'var(--red)':s.count>=2?'var(--orange)':'var(--muted)'}">${s.count} reg.</td>
+      <td>${getJustPill(s.just)}</td>
+      <td><span class="pill pill-contato">📞 ${s.proto}</span></td>
+    `;
+    tbody.appendChild(tr);
+  });
+  document.getElementById('rowCount').textContent = data.length + ' registro(s) exibido(s)';
+}
+
+function filterTable() {
+  const search = document.getElementById('searchInput').value.toLowerCase();
+  const turma  = document.getElementById('turmaFilter').value;
+  const just   = document.getElementById('justFilter').value;
+  const prio   = document.getElementById('prioFilter').value;
+
+  const filtered = studentsData.filter(s => {
+    const matchSearch = !search || s.nome.toLowerCase().includes(search) || s.turma.toLowerCase().includes(search);
+    const matchTurma  = !turma  || s.turma === turma;
+    const matchJust   = !just   || s.just === just;
+    let matchPrio = true;
+    if (prio === 'alto')  matchPrio = s.count >= 3;
+    if (prio === 'medio') matchPrio = s.count === 2;
+    if (prio === 'baixo') matchPrio = s.count === 1;
+    return matchSearch && matchTurma && matchJust && matchPrio;
+  });
+  buildTable(filtered);
+}
+
+function toggleCard(card) {
+  card.classList.toggle('open');
+}
+
+// Scroll-spy
+const sections = document.querySelectorAll('[id]');
+const internalNavItems = document.querySelectorAll('.nav-item[href^="#"]');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 110) cur = s.id; });
+  internalNavItems.forEach(i => {
+    i.classList.remove('active');
+    if (i.getAttribute('href') === '#' + cur) i.classList.add('active');
+  });
+}, { passive: true });
+
+// Init
+buildTable(studentsData);
+</script>
 </body>
 </html>

@@ -3,22 +3,900 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bimestrais · EEF Aba Tapeba</title>
+<title>Bimestrais 2025 · Aba Tapeba EDEIEF</title>
 <style>
-body { font-family: 'Tahoma','Verdana','Arial',sans-serif; background:#f0f4f8; color:#0f1e2e; display:flex; align-items:center; justify-content:center; min-height:100vh; margin:0; }
-.box { background:#fff; border-radius:12px; border:1px solid #d8e2ec; padding:40px 36px; max-width:480px; width:100%; text-align:center; box-shadow:0 4px 20px rgba(0,0,0,0.09); }
-.icon { font-size:2.8rem; margin-bottom:16px; display:block; }
-h2 { font-size:1.2rem; font-weight:700; color:#1a3a5c; margin-bottom:8px; }
-p { font-size:0.85rem; color:#4a5e75; line-height:1.6; margin-bottom:20px; }
-a { display:inline-block; padding:10px 22px; background:linear-gradient(135deg,#1a3a5c,#1e5799); color:#fff; border-radius:7px; text-decoration:none; font-size:0.82rem; font-weight:700; letter-spacing:0.05em; }
+:root {
+  --bg:#f0f4f8;--surface:#ffffff;--border:#d8e2ec;
+  --sidebar-bg:#1a2535;--sidebar-hover:#243145;--sidebar-active:rgba(14,116,144,.18);
+  --blue-dark:#1a3a5c;--blue-mid:#1e5799;
+  --teal:#0e7490;--text:#0f1e2e;--muted:#4a5e75;--muted2:#8097b0;
+  --red:#c0392b;--red-bg:#fdf0ef;--red-bdr:#f5b7b1;--red-dark:#a93226;
+  --orange:#ca6f1e;--orange-bg:#fef5e7;--orange-bdr:#f8c471;
+  --yellow:#d68910;--yellow-bg:#fef9ec;--yellow-bdr:#f9d98a;
+  --green:#1a7a4a;--green-bg:#edfaf3;--green-bdr:#82e0aa;
+  --blue:#1a56a0;--blue-bg:#eaf2fc;--blue-bdr:#90bce8;
+  --purple:#6d28d9;--purple-bg:#f5f3ff;--purple-bdr:#c4b5fd;
+  --font:'Tahoma','Verdana','Arial',sans-serif;
+  --radius:10px;--shadow:0 2px 12px rgba(0,0,0,0.08);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;display:flex;font-size:0.94rem;line-height:1.6;}
+
+/* SIDEBAR */
+.sidebar{width:264px;min-width:264px;background:var(--sidebar-bg);height:100vh;position:sticky;top:0;display:flex;flex-direction:column;overflow-y:auto;z-index:100;}
+.sidebar::-webkit-scrollbar{width:4px;}
+.sidebar::-webkit-scrollbar-thumb{background:#2e3d52;border-radius:3px;}
+.sidebar-logo{padding:20px 20px 18px;border-bottom:1px solid #2e3d52;background:#111c2a;}
+.school-badge{display:inline-block;background:var(--teal);color:#fff;font-size:0.70rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:3px 10px;border-radius:4px;margin-bottom:9px;}
+.school-name{font-size:1.08rem;font-weight:700;color:#fff;line-height:1.25;margin-bottom:3px;}
+.school-name span{color:#f0b429;}
+.school-sub{font-size:0.70rem;color:#7a90a8;margin-top:3px;letter-spacing:0.05em;}
+.nav-section{padding:12px 20px 5px;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.13em;color:#5a7090;font-weight:700;}
+.nav-item{display:flex;align-items:center;gap:11px;padding:11px 20px;cursor:pointer;border-left:4px solid transparent;transition:all 0.2s;text-decoration:none;color:inherit;}
+.nav-item:hover{background:var(--sidebar-hover);}
+.nav-item.active{background:var(--sidebar-active);border-left-color:#22d3ee;}
+.nav-icon{width:32px;height:32px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.nav-label{font-size:0.85rem;font-weight:600;color:#b8cce0;line-height:1.25;}
+.nav-item.active .nav-label{color:#fff;}
+.nav-badge{margin-left:auto;min-width:22px;height:22px;border-radius:11px;font-size:0.70rem;font-weight:700;display:flex;align-items:center;justify-content:center;padding:0 5px;flex-shrink:0;}
+.nb-red{background:var(--red);color:#fff} .nb-yellow{background:var(--yellow);color:#fff}
+.nb-green{background:var(--green);color:#fff} .nb-orange{background:var(--orange);color:#fff}
+.nb-teal{background:var(--teal);color:#fff} .nb-purple{background:var(--purple);color:#fff}
+.nav-item.recomp{border-top:1px solid #243145;margin-top:4px;padding-top:13px;}
+.sidebar-sit{margin:12px 14px 0;background:#111c2a;border:1px solid #2e3d52;border-radius:8px;padding:12px 14px;}
+.sidebar-sit-title{font-size:0.66rem;text-transform:uppercase;letter-spacing:0.12em;color:#5a7090;font-weight:700;margin-bottom:10px;}
+.sit-row{display:flex;align-items:center;gap:8px;padding:4px 0;font-size:0.76rem;border-bottom:1px solid #1e2d42;}
+.sit-row:last-child{border-bottom:none;}
+.sit-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0;}
+.sit-label{color:#7a90a8;flex:1;}
+.sit-val{font-weight:700;font-size:0.78rem;}
+.sidebar-footer{margin-top:auto;padding:14px 20px;border-top:1px solid #2e3d52;font-size:0.70rem;color:#5a7090;line-height:1.7;}
+
+/* MAIN */
+.main{flex:1;min-width:0;padding:28px 32px 52px;}
+
+/* TOPBAR */
+.topbar{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:26px;flex-wrap:wrap;gap:14px;}
+.topbar-title h2{font-size:1.35rem;font-weight:700;color:var(--text);}
+.topbar-title p{font-size:0.80rem;color:var(--muted);margin-top:3px;}
+.topbar-stats{display:flex;gap:10px;flex-wrap:wrap;}
+.topbar-stat{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:9px 16px;text-align:center;box-shadow:var(--shadow);}
+.topbar-stat .ts-val{font-size:1.1rem;font-weight:700;display:block;}
+.topbar-stat .ts-lab{font-size:0.68rem;color:var(--muted2);text-transform:uppercase;letter-spacing:0.07em;}
+.ts-red{color:var(--red)} .ts-yellow{color:var(--yellow)} .ts-orange{color:var(--orange)}
+.ts-green{color:var(--green)} .ts-teal{color:var(--teal)} .ts-blue{color:var(--blue)}
+
+/* SECTION TITLE */
+.section-title{font-size:1.05rem;font-weight:700;color:var(--blue-dark);padding-bottom:8px;border-bottom:2px solid var(--border);margin-bottom:18px;margin-top:32px;display:flex;align-items:center;gap:10px;}
+.section-title:first-of-type{margin-top:0;}
+
+/* KPI GRID */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:14px;margin-bottom:24px;}
+.kpi-card{background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);padding:16px 14px 12px;text-align:center;border-top:3px solid;}
+.kpi-card.teal{border-top-color:var(--teal);}
+.kpi-card.green{border-top-color:var(--green);}
+.kpi-card.yellow{border-top-color:var(--yellow);}
+.kpi-card.red{border-top-color:var(--red);}
+.kpi-card.orange{border-top-color:var(--orange);}
+.kpi-val{font-size:1.8rem;font-weight:700;line-height:1;margin-bottom:5px;}
+.kpi-card.teal .kpi-val{color:var(--teal);}
+.kpi-card.green .kpi-val{color:var(--green);}
+.kpi-card.yellow .kpi-val{color:var(--yellow);}
+.kpi-card.red .kpi-val{color:var(--red);}
+.kpi-card.orange .kpi-val{color:var(--orange);}
+.kpi-label{font-size:0.70rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.07em;line-height:1.4;}
+.kpi-note{font-size:0.68rem;color:var(--muted2);margin-top:3px;}
+
+/* ALERT BANNER */
+.alert-banner{border-radius:var(--radius);padding:13px 17px;margin-bottom:11px;border-left:5px solid;font-size:0.86rem;display:flex;align-items:flex-start;gap:11px;}
+.alert-banner.danger{background:var(--red-bg);border-color:var(--red);color:#7a1a0e;}
+.alert-banner.warning{background:var(--yellow-bg);border-color:var(--yellow);color:#7a3e05;}
+.alert-banner.success{background:var(--green-bg);border-color:var(--green);color:#155234;}
+.alert-banner.info{background:var(--blue-bg);border-color:var(--blue);color:#12347a;}
+.alert-banner .ab-icon{font-size:1.3rem;flex-shrink:0;margin-top:1px;}
+.alert-title{font-weight:700;margin-bottom:3px;}
+.alert-body{font-size:0.80rem;line-height:1.6;}
+
+/* CHART WRAP */
+.chart-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px 22px;margin-bottom:20px;}
+.chart-wrap-title{font-size:0.92rem;font-weight:700;color:var(--blue-dark);margin-bottom:3px;}
+.chart-wrap-sub{font-size:0.74rem;color:var(--muted);margin-bottom:18px;}
+.chart-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.chart-col-label{font-size:0.70rem;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;color:var(--muted);margin-bottom:10px;text-align:center;}
+.bar-group{display:flex;align-items:flex-end;justify-content:center;gap:4px;height:90px;padding:0 4px;}
+.bar{flex:1;border-radius:4px 4px 0 0;position:relative;min-height:4px;}
+.bar-tooltip{position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-size:0.62rem;font-weight:700;white-space:nowrap;}
+.bar.adeq{background:var(--green);}
+.bar.inter{background:var(--yellow);}
+.bar.crit{background:var(--orange);}
+.bar.mcrit{background:var(--red);}
+.legend-strip{display:flex;gap:14px;justify-content:center;margin-top:14px;flex-wrap:wrap;}
+.leg-item{display:flex;align-items:center;gap:5px;font-size:0.74rem;color:var(--muted);}
+.leg-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0;}
+
+/* TREND CHART */
+.trend-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px 22px;margin-bottom:20px;}
+.trend-title{font-size:0.92rem;font-weight:700;color:var(--blue-dark);margin-bottom:3px;}
+.trend-sub{font-size:0.74rem;color:var(--muted);margin-bottom:16px;}
+.media-track{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-bottom:8px;position:relative;}
+.media-track::before{content:'';position:absolute;top:50%;left:10%;right:10%;height:3px;background:var(--border);z-index:0;}
+.media-node{display:flex;flex-direction:column;align-items:center;position:relative;z-index:1;}
+.media-ball{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:6px;border:3px solid #fff;box-shadow:var(--shadow);}
+.media-ball.adeq{background:#22c55e;}
+.media-ball.inter{background:var(--yellow);}
+.media-ball.crit{background:var(--orange);}
+.media-lbl{font-size:0.68rem;color:var(--muted);text-align:center;}
+.media-period{font-size:0.60rem;color:var(--muted2);}
+
+/* PROGRESS SECTION */
+.prog-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px 22px;margin-bottom:16px;}
+.prog-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.prog-col-label{font-size:0.86rem;font-weight:700;color:var(--blue-dark);margin-bottom:12px;display:flex;align-items:center;gap:6px;}
+.prog-row{display:flex;align-items:center;gap:8px;margin-bottom:7px;}
+.prog-lbl{font-size:0.72rem;color:var(--muted);width:46px;flex-shrink:0;}
+.prog-bar-wrap{flex:1;height:9px;background:#eef1f5;border-radius:4px;overflow:hidden;}
+.prog-fill{height:100%;border-radius:4px;transition:width 0.8s ease;}
+.prog-fill.adeq{background:var(--green);}
+.prog-fill.inter{background:var(--yellow);}
+.prog-fill.crit{background:var(--orange);}
+.prog-fill.mcrit{background:var(--red);}
+.prog-pct{font-size:0.72rem;font-weight:700;color:var(--text);width:40px;text-align:right;flex-shrink:0;}
+.prog-n{font-size:0.68rem;color:var(--muted2);width:44px;flex-shrink:0;}
+
+/* YEAR TABLE */
+.year-table-wrap{background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);overflow:hidden;margin-bottom:16px;}
+.year-table-wrap .table-header{padding:12px 16px 10px;border-bottom:1px solid var(--border);background:#fafcff;}
+.table-header h3{font-size:0.90rem;font-weight:700;color:var(--blue-dark);}
+.table-header p{font-size:0.73rem;color:var(--muted2);}
+.tbl-scroll{overflow-x:auto;}
+.yr-table{width:100%;border-collapse:collapse;font-size:0.82rem;}
+.yr-table thead tr{background:linear-gradient(135deg,#1a3a5c,#1e5799);color:#fff;}
+.yr-table th{padding:9px 12px;text-align:left;font-size:0.70rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;white-space:nowrap;}
+.yr-table td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:middle;}
+.yr-table tbody tr:last-child td{border-bottom:none;}
+.yr-table tbody tr:hover{background:#f8fafc;}
+.bar-inline{display:inline-block;height:8px;border-radius:4px;vertical-align:middle;margin-right:6px;}
+.pct-badge{display:inline-block;font-size:0.67rem;font-weight:700;padding:2px 8px;border-radius:8px;}
+.pb-green{background:var(--green-bg);color:#155234;border:1px solid var(--green-bdr);}
+.pb-yellow{background:var(--yellow-bg);color:#7d5a10;border:1px solid var(--yellow-bdr);}
+.pb-orange{background:var(--orange-bg);color:#7e4a10;border:1px solid var(--orange-bdr);}
+.pb-red{background:var(--red-bg);color:var(--red-dark);border:1px solid var(--red-bdr);}
+
+/* N DONUT GRID */
+.donut-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-bottom:20px;}
+.donut-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;text-align:center;}
+.donut-title{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:12px;}
+.donut-ring{position:relative;width:80px;height:80px;margin:0 auto 10px;}
+.donut-ring svg{transform:rotate(-90deg);}
+.donut-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:0.82rem;font-weight:700;color:var(--blue-dark);}
+.donut-stats{display:flex;flex-direction:column;gap:4px;margin-top:8px;}
+.donut-stat-row{display:flex;align-items:center;justify-content:space-between;font-size:0.72rem;}
+.donut-stat-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0;}
+.donut-stat-lbl{color:var(--muted);flex:1;margin-left:6px;}
+.donut-stat-val{font-weight:700;}
+
+/* SECTION BLOCK */
+.section-block{margin-bottom:28px;display:block;width:100%;clear:both;}
+.section-block-header{display:flex;align-items:center;gap:12px;padding:14px 18px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius) var(--radius) 0 0;border-bottom:3px solid var(--border);box-shadow:var(--shadow);}
+.section-block-header.dark{background:var(--sidebar-bg);border-color:#2e3d52;}
+.sb-icon{width:38px;height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.sb-info h3{font-size:0.98rem;font-weight:700;color:var(--blue-dark);line-height:1.3;}
+.sb-info p{font-size:0.75rem;color:var(--muted);margin-top:2px;}
+.section-block-header.dark .sb-info h3{color:#fff;}
+.section-block-header.dark .sb-info p{color:#7a90a8;}
+
+/* NOTIF CARDS */
+.notif-card{background:var(--surface);border:1px solid var(--border);border-top:none;cursor:pointer;transition:background 0.15s;overflow:hidden;}
+.notif-card:last-child{border-radius:0 0 var(--radius) var(--radius);}
+.notif-card:hover{background:#f5f8ff;}
+.notif-card.c-red{border-left:5px solid var(--red);}
+.notif-card.c-yellow{border-left:5px solid var(--yellow);}
+.notif-card.c-green{border-left:5px solid var(--green);}
+.notif-card.c-teal{border-left:5px solid var(--teal);}
+.notif-card.c-orange{border-left:5px solid var(--orange);}
+.notif-top{display:flex;align-items:flex-start;gap:14px;padding:16px 18px;min-width:0;}
+.notif-avatar{width:38px;height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.notif-avatar.red{background:var(--red-bg);} .notif-avatar.yellow{background:var(--yellow-bg);}
+.notif-avatar.green{background:var(--green-bg);} .notif-avatar.orange{background:var(--orange-bg);}
+.notif-avatar.teal{background:#ecfeff;}
+.notif-body{flex:1;min-width:0;overflow:hidden;}
+.notif-header-row{display:flex;align-items:flex-start;gap:10px;flex-wrap:wrap;margin-bottom:5px;min-width:0;width:100%;}
+.notif-title{font-weight:700;font-size:0.88rem;line-height:1.35;flex:1;color:var(--text);min-width:0;word-wrap:break-word;overflow-wrap:break-word;}
+.notif-tag{font-size:0.68rem;font-weight:700;padding:2px 9px;border-radius:20px;background:#e8eef6;color:var(--muted);white-space:nowrap;flex-shrink:0;}
+.notif-tag.red{background:var(--red-bg);color:var(--red-dark);border:1px solid var(--red-bdr);}
+.notif-tag.yellow{background:var(--yellow-bg);color:#7d5a10;border:1px solid var(--yellow-bdr);}
+.notif-tag.green{background:var(--green-bg);color:#155234;border:1px solid var(--green-bdr);}
+.notif-tag.teal{background:#ecfeff;color:var(--teal);border:1px solid #a5f3fc;}
+.notif-summary{font-size:0.82rem;color:var(--muted);line-height:1.6;margin-bottom:8px;word-wrap:break-word;overflow-wrap:break-word;}
+.notif-pills{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px;}
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:0.74rem;font-weight:700;padding:3px 10px;border-radius:20px;background:#f0f4f8;border:1px solid var(--border);color:var(--muted);}
+.pill-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+.notif-toggle{background:none;border:none;cursor:pointer;font-size:1.2rem;color:var(--muted2);flex-shrink:0;padding:3px 5px;transition:transform 0.2s;align-self:center;}
+.notif-card.open .notif-toggle{transform:rotate(180deg);}
+.notif-expand{max-height:0;overflow:hidden;transition:max-height 0.35s ease;background:#f4f8ff;padding:0 18px;}
+.notif-card.open .notif-expand{max-height:700px;border-top:1px solid var(--border);padding:16px 18px;}
+.action-tag-label{display:inline-block;background:#1a2535;color:#f0b429;font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:3px 10px;border-radius:4px;margin-bottom:7px;}
+.action-text{font-size:0.82rem;color:#2c3e50;line-height:1.85;}
+.action-text strong{color:var(--text);}
+.action-tags-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px;}
+.action-chip{background:#dde4ef;color:#3d5270;font-size:0.68rem;font-weight:700;padding:2px 9px;border-radius:20px;}
+
+/* RESUMO POR ANO - BAR CHART HORIZONTAL */
+.ano-bar-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px 22px;margin-bottom:20px;}
+.ano-bar-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.ano-bar-label{font-size:0.74rem;font-weight:700;color:var(--muted);width:52px;flex-shrink:0;}
+.ano-bar-periodo{font-size:0.66rem;color:var(--muted2);width:68px;flex-shrink:0;}
+.ano-bar-track{flex:1;height:16px;background:#eef1f5;border-radius:4px;overflow:hidden;display:flex;}
+.ano-bar-above{height:100%;border-radius:4px 0 0 4px;}
+.ano-bar-below{height:100%;}
+.ano-bar-pct{font-size:0.72rem;font-weight:700;color:var(--muted);width:46px;flex-shrink:0;text-align:right;}
+.periodo-divider{font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted2);border-top:1px solid var(--border);margin:12px 0 8px;padding-top:8px;}
+
+@media(max-width:768px){
+  .sidebar{display:none;}
+  .main{padding:18px 16px 40px;}
+  .kpi-grid{grid-template-columns:repeat(2,1fr);}
+  .chart-grid{grid-template-columns:1fr;}
+  .prog-grid{grid-template-columns:1fr;}
+  .donut-grid{grid-template-columns:1fr 1fr;}
+}
 </style>
 </head>
 <body>
-<div class="box">
-  <span class="icon">📝</span>
-  <h2>Bimestrais · EEF Aba Tapeba</h2>
-  <p>Este painel ainda não possui dados inseridos.<br>Em breve a Coordenação Pedagógica irá disponibilizar as informações desta escola.</p>
-  <a href="painel.html">← Voltar ao Painel</a>
-</div>
+
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="school-badge">Painel do Diretor</div>
+    <div class="school-name">Aba <span>Tapeba</span></div>
+    <div class="school-sub">EDEIEF · Caucaia · CE · Regional Maracanau</div>
+  </div>
+
+  <div class="nav-section">Indicadores</div>
+  <a class="nav-item" href="painel.html"><div class="nav-icon" style="background:#ecfeff">🏠</div><span class="nav-label">Visão Geral</span></a>
+  <a class="nav-item" href="resumo_executivo.html"><div class="nav-icon" style="background:#fdf0ef">🚨</div><span class="nav-label">Resumo Executivo</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="busca_ativa.html"><div class="nav-icon" style="background:#fef5e7">🔍</div><span class="nav-label">Busca Ativa</span><span class="nav-badge nb-orange">!</span></a>
+  <a class="nav-item" href="adesc.html"><div class="nav-icon" style="background:#edfaf3">📖</div><span class="nav-label">ADESC 2025</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="avalie_ce.html"><div class="nav-icon" style="background:#fef9ec">📊</div><span class="nav-label">Avalie.CE</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item active" href="bimestrais.html"><div class="nav-icon" style="background:#eaf2fc">📝</div><span class="nav-label">Bimestrais 2025</span><span class="nav-badge nb-yellow">!</span></a>
+  <a class="nav-item" href="cnca.html"><div class="nav-icon" style="background:#fef5e7">📚</div><span class="nav-label">CNCA</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="qedu.html"><div class="nav-icon" style="background:#eaf2fc">🎓</div><span class="nav-label">QEdu / Censo</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item recomp" href="recomposicao.html"><div class="nav-icon" style="background:var(--purple-bg)">🎒</div><span class="nav-label" style="color:#c4b5fd">Recomposição</span><span class="nav-badge nb-purple">!</span></a>
+  <a class="nav-item" href="saeb.html"><div class="nav-icon" style="background:#fdf0ef">📋</div><span class="nav-label">SAEB 2023</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="spaece.html"><div class="nav-icon" style="background:#fef9ec">📈</div><span class="nav-label">SPAECE 2024</span><span class="nav-badge nb-red">!!</span></a>
+
+  <div class="nav-section" style="margin-top:10px">Navegação Interna</div>
+  <a class="nav-item" href="#resumo"><div class="nav-icon" style="background:rgba(14,116,144,.15)">📋</div><span class="nav-label">Resumo Executivo</span></a>
+  <a class="nav-item" href="#notas"><div class="nav-icon" style="background:rgba(26,86,160,.12)">📊</div><span class="nav-label">Notas N1/N2/N3</span></a>
+  <a class="nav-item" href="#provas"><div class="nav-icon" style="background:rgba(214,137,16,.12)">🎯</div><span class="nav-label">Provas Objetivas</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="#lp"><div class="nav-icon" style="background:rgba(26,86,160,.12)">📖</div><span class="nav-label">LP por Período</span></a>
+  <a class="nav-item" href="#mat"><div class="nav-icon" style="background:rgba(202,111,30,.12)">🔢</div><span class="nav-label">Matemática</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="#anos"><div class="nav-icon" style="background:rgba(26,122,74,.12)">🏫</div><span class="nav-label">Resumo por Ano</span></a>
+  <a class="nav-item" href="#alertas"><div class="nav-icon" style="background:rgba(192,57,43,.12)">🚨</div><span class="nav-label">Alertas e Ações</span><span class="nav-badge nb-red">!</span></a>
+
+  <div class="sidebar-sit">
+    <div class="sidebar-sit-title">Provas Objetivas · 3º Período</div>
+    <div class="sit-row"><div class="sit-dot" style="background:var(--green)"></div><span class="sit-label">Adequado (≥7,5)</span><span class="sit-val" style="color:var(--green)">24,3%</span></div>
+    <div class="sit-row"><div class="sit-dot" style="background:var(--yellow)"></div><span class="sit-label">Intermediário</span><span class="sit-val" style="color:var(--yellow)">24,3%</span></div>
+    <div class="sit-row"><div class="sit-dot" style="background:var(--orange)"></div><span class="sit-label">Crítico (2,5–5)</span><span class="sit-val" style="color:var(--orange)">24,8%</span></div>
+    <div class="sit-row"><div class="sit-dot" style="background:var(--red)"></div><span class="sit-label">Muito Crítico</span><span class="sit-val" style="color:var(--red)">7,5%</span></div>
+  </div>
+
+  <div class="nav-section" style="margin-top:10px">Sistema</div>
+  <a class="nav-item" href="../index.html"><div class="nav-icon" style="background:#fdf0ef">🏫</div><span class="nav-label">Trocar Escola</span></a>
+
+  <div class="sidebar-footer">
+    <div>Aba Tapeba EDEIEF<br>Caucaia · CE · Regional Maracanau</div>
+    <div style="margin-top:6px;color:#8097b0">Fonte: SEDUC-CE · Power BI<br>Bimestrais 2025 · 217 alunos avaliados</div>
+    <div style="margin-top:4px;color:#8097b0">Clique nos cartões para ver as ações</div>
+  </div>
+</aside>
+
+<main class="main">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-title">
+      <h2>📝 Bimestrais 2025 · Aba Tapeba EDEIEF</h2>
+      <p>N1 · N2 · N3 · Provas Objetivas · LP e Matemática · 2º ao 4º Período · 217 alunos avaliados · Regional Maracanau</p>
+    </div>
+    <div class="topbar-stats">
+      <div class="topbar-stat"><span class="ts-val ts-teal">217</span><span class="ts-lab">Avaliados</span></div>
+      <div class="topbar-stat"><span class="ts-val ts-yellow">63,08%</span><span class="ts-lab">% Avaliados</span></div>
+      <div class="topbar-stat"><span class="ts-val ts-green">91,62%</span><span class="ts-lab">Acima Média</span></div>
+      <div class="topbar-stat"><span class="ts-val ts-orange">8,38%</span><span class="ts-lab">Abaixo Média</span></div>
+      <div class="topbar-stat"><span class="ts-val ts-red">5,60</span><span class="ts-lab">Média 3ºP</span></div>
+    </div>
+  </div>
+
+  <!-- ====== RESUMO ====== -->
+  <div id="resumo">
+    <div class="section-title">📋 Resumo Executivo — Bimestrais 2025</div>
+
+    <div class="kpi-grid">
+      <div class="kpi-card teal"><div class="kpi-label">Alunos Avaliados</div><div class="kpi-val">217</div><div class="kpi-note">63,08% dos matriculados</div></div>
+      <div class="kpi-card green"><div class="kpi-label">Média 2º Período</div><div class="kpi-val">7,14</div><div class="kpi-note">Provas Objetivas · Intermediário</div></div>
+      <div class="kpi-card orange"><div class="kpi-label">Média 4º Período</div><div class="kpi-val">5,84</div><div class="kpi-note">Queda de 1,30 pts</div></div>
+      <div class="kpi-card red"><div class="kpi-label">Média 3º Período</div><div class="kpi-val">5,60</div><div class="kpi-note">Mais baixo · Atenção urgente</div></div>
+      <div class="kpi-card green"><div class="kpi-label">Acima da Média N1</div><div class="kpi-val">86,8%</div><div class="kpi-note">13.317 registros</div></div>
+      <div class="kpi-card red"><div class="kpi-label">Abaixo da Média N1</div><div class="kpi-val">13,0%</div><div class="kpi-note">1.997 registros</div></div>
+    </div>
+
+    <div class="alert-banner danger">
+      <span class="ab-icon">🚨</span>
+      <div>
+        <div class="alert-title">Queda progressiva nas médias ao longo do ano: 7,14 → 5,84 → 5,60</div>
+        <div class="alert-body">As Provas Objetivas mostram trajetória descendente em 2025: <strong>média 7,14 no 2º Período</strong> (intermediário positivo), <strong>5,84 no 4º Período</strong> e <strong>5,60 no 3º Período</strong> (o mais baixo do ano — abaixo do intermediário). A queda acumulada de 1,54 pontos indica que a escola avança no currículo sem consolidação suficiente das habilidades anteriores. O 3º Período com apenas 24,3% de Adequado e 32,3% em situação Crítica+M.Crítica exige intervenção imediata.</div>
+      </div>
+    </div>
+
+    <div class="alert-banner warning">
+      <span class="ab-icon">⚠️</span>
+      <div>
+        <div class="alert-title">Matemática em colapso no 3º e 4º Período — situação crítica nos anos finais</div>
+        <div class="alert-body">No 4º Período em Matemática, <strong>30,6% estão em Crítico e 11,0% em Muito Crítico</strong> — 41,6% dos alunos avaliados abaixo do básico. O 3º Período em MT apresentou 32,2% Crítico e 11,2% M.Crítico. Este cenário é consistente com o Avalie.CE 2025 (9º Ano MT com 85% de defasagem e proficiência média de 9 pontos). Matemática é a maior emergência pedagógica da escola.</div>
+      </div>
+    </div>
+
+    <div class="alert-banner info">
+      <span class="ab-icon">ℹ️</span>
+      <div>
+        <div class="alert-title">3º Ano: destaque positivo — 94,9% e 97,8% acima da média no 1º e 2º Períodos</div>
+        <div class="alert-body">O 3º Ano apresenta os melhores índices da escola em todos os períodos analisados. No 1º Período, <strong>94,9% estão acima da média</strong>. No 2º Período, chega a <strong>97,8%</strong> — o melhor resultado da escola. O 4º Ano também se destaca com 98,7% no 1º Período. As boas práticas desses anos devem ser investigadas e compartilhadas, especialmente para os anos finais (8º e 9º) que apresentam os maiores desafios.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== NOTAS N1 N2 N3 ====== -->
+  <div id="notas">
+    <div class="section-title">📊 Notas N1, N2 e N3 — Visão Geral</div>
+
+    <div class="donut-grid">
+      <!-- N1 -->
+      <div class="donut-card">
+        <div class="donut-title">N1 — 1ª Nota Bimestral</div>
+        <div class="donut-ring">
+          <svg width="80" height="80" viewBox="0 0 80 80">
+            <circle cx="40" cy="40" r="32" fill="none" stroke="#eef1f5" stroke-width="12"/>
+            <circle cx="40" cy="40" r="32" fill="none" stroke="#1a7a4a" stroke-width="12"
+              stroke-dasharray="173 28" stroke-linecap="round"/>
+          </svg>
+          <div class="donut-center">86,8%</div>
+        </div>
+        <div class="donut-stats">
+          <div class="donut-stat-row"><div class="donut-stat-dot" style="background:var(--green)"></div><span class="donut-stat-lbl">Acima da Média</span><span class="donut-stat-val" style="color:var(--green)">13.317 (86,8%)</span></div>
+          <div class="donut-stat-row"><div class="donut-stat-dot" style="background:var(--orange)"></div><span class="donut-stat-lbl">Abaixo da Média</span><span class="donut-stat-val" style="color:var(--orange)">1.997 (13,0%)</span></div>
+          <div class="donut-stat-row"><div class="donut-stat-dot" style="background:var(--muted2)"></div><span class="donut-stat-lbl">Sem Nota</span><span class="donut-stat-val" style="color:var(--muted)">— </span></div>
+        </div>
+      </div>
+
+      <!-- N2 -->
+      <div class="donut-card">
+        <div class="donut-title">N2 — 2ª Nota Bimestral</div>
+        <div class="donut-ring">
+          <svg width="80" height="80" viewBox="0 0 80 80">
+            <circle cx="40" cy="40" r="32" fill="none" stroke="#eef1f5" stroke-width="12"/>
+            <circle cx="40" cy="40" r="32" fill="none" stroke="#1a7a4a" stroke-width="12"
+              stroke-dasharray="157 44" stroke-linecap="round"/>
+            <circle cx="40" cy="40" r="32" fill="none" stroke="#c0392b" stroke-width="12"
+              stroke-dasharray="4 197" stroke-dashoffset="-157" stroke-linecap="round"/>
+          </svg>
+          <div class="donut-center">78,9%</div>
+        </div>
+        <div class="donut-stats">
+          <div class="donut-stat-row"><div class="donut-stat-dot" style="background:var(--green)"></div><span class="donut-stat-lbl">Acima da Média</span><span class="donut-stat-val" style="color:var(--green)">12.113 (78,9%)</span></div>
+          <div class="donut-stat-row"><div class="donut-stat-dot" style="background:var(--orange)"></div><span class="donut-stat-lbl">Abaixo da Média</span><span class="donut-stat-val" style="color:var(--orange)">3.154 (20,5%)</span></div>
+          <div class="donut-stat-row"><div class="donut-stat-dot" style="background:var(--red)"></div><span class="donut-stat-lbl">Sem Nota</span><span class="donut-stat-val" style="color:var(--red)">— (0,6%)</span></div>
+        </div>
+      </div>
+
+      <!-- N3 -->
+      <div class="donut-card">
+        <div class="donut-title">N3 — 3ª Nota Bimestral</div>
+        <div class="donut-ring">
+          <svg width="80" height="80" viewBox="0 0 80 80">
+            <circle cx="40" cy="40" r="32" fill="none" stroke="#eef1f5" stroke-width="12"/>
+            <circle cx="40" cy="40" r="32" fill="none" stroke="#1a7a4a" stroke-width="12"
+              stroke-dasharray="186 15" stroke-linecap="round"/>
+          </svg>
+          <div class="donut-center">93,4%</div>
+        </div>
+        <div class="donut-stats">
+          <div class="donut-stat-row"><div class="donut-stat-dot" style="background:var(--green)"></div><span class="donut-stat-lbl">Acima da Média</span><span class="donut-stat-val" style="color:var(--green)">14.334 (93,4%)</span></div>
+          <div class="donut-stat-row"><div class="donut-stat-dot" style="background:var(--orange)"></div><span class="donut-stat-lbl">Abaixo da Média</span><span class="donut-stat-val" style="color:var(--orange)">977 (6,4%)</span></div>
+          <div class="donut-stat-row"><div class="donut-stat-dot" style="background:var(--muted2)"></div><span class="donut-stat-lbl">Sem Nota</span><span class="donut-stat-val" style="color:var(--muted)">—</span></div>
+        </div>
+      </div>
+
+      <!-- MÉDIA GERAL -->
+      <div class="donut-card">
+        <div class="donut-title">Média Geral do Período</div>
+        <div class="donut-ring">
+          <svg width="80" height="80" viewBox="0 0 80 80">
+            <circle cx="40" cy="40" r="32" fill="none" stroke="#eef1f5" stroke-width="12"/>
+            <circle cx="40" cy="40" r="32" fill="none" stroke="#1a7a4a" stroke-width="12"
+              stroke-dasharray="169 32" stroke-linecap="round"/>
+          </svg>
+          <div class="donut-center">85,1%</div>
+        </div>
+        <div class="donut-stats">
+          <div class="donut-stat-row"><div class="donut-stat-dot" style="background:var(--green)"></div><span class="donut-stat-lbl">Acima da Média</span><span class="donut-stat-val" style="color:var(--green)">13.061 (85,1%)</span></div>
+          <div class="donut-stat-row"><div class="donut-stat-dot" style="background:var(--orange)"></div><span class="donut-stat-lbl">Abaixo da Média</span><span class="donut-stat-val" style="color:var(--orange)">2.264 (14,7%)</span></div>
+          <div class="donut-stat-row"><div class="donut-stat-dot" style="background:var(--muted2)"></div><span class="donut-stat-lbl">Sem Nota</span><span class="donut-stat-val" style="color:var(--muted)">—</span></div>
+        </div>
+      </div>
+
+      <!-- RP -->
+      <div class="donut-card" style="grid-column:span 2">
+        <div class="donut-title">Recuperação Paralela (RP)</div>
+        <div style="display:flex;align-items:center;gap:20px;margin-top:8px;">
+          <div class="donut-ring" style="flex-shrink:0">
+            <svg width="80" height="80" viewBox="0 0 80 80">
+              <circle cx="40" cy="40" r="32" fill="none" stroke="#eef1f5" stroke-width="12"/>
+              <circle cx="40" cy="40" r="32" fill="none" stroke="#0e7490" stroke-width="12"
+                stroke-dasharray="169 32" stroke-linecap="round"/>
+              <circle cx="40" cy="40" r="32" fill="none" stroke="#d68910" stroke-width="12"
+                stroke-dasharray="17 184" stroke-dashoffset="-169" stroke-linecap="round"/>
+            </svg>
+            <div class="donut-center">85%</div>
+          </div>
+          <div class="donut-stats" style="flex:1">
+            <div class="donut-stat-row"><div class="donut-stat-dot" style="background:var(--teal)"></div><span class="donut-stat-lbl">Acima da média (não fez RP)</span><span class="donut-stat-val" style="color:var(--teal)">13.048 (85,0%)</span></div>
+            <div class="donut-stat-row"><div class="donut-stat-dot" style="background:var(--orange)"></div><span class="donut-stat-lbl">Abaixo e fez RP</span><span class="donut-stat-val" style="color:var(--orange)">— (5,0%)</span></div>
+            <div class="donut-stat-row"><div class="donut-stat-dot" style="background:var(--yellow)"></div><span class="donut-stat-lbl">Abaixo e não fez RP</span><span class="donut-stat-val" style="color:var(--yellow)">2.159 (14,0%)</span></div>
+          </div>
+        </div>
+        <div style="font-size:0.74rem;color:var(--muted);margin-top:10px;padding-top:8px;border-top:1px solid var(--border)">⚠️ <strong>Atenção:</strong> 2.159 registros (14,0%) correspondem a alunos <strong>abaixo da média que não realizaram a Recuperação Paralela</strong>. Esse grupo precisa de busca ativa e acompanhamento prioritário junto às famílias.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== PROVAS OBJETIVAS ====== -->
+  <div id="provas">
+    <div class="section-title">🎯 Provas Objetivas — Evolução por Período</div>
+
+    <div class="trend-wrap">
+      <div class="trend-title">Desempenho Médio nas Provas Objetivas</div>
+      <div class="trend-sub">217 alunos avaliados · 63,08% de participação · Trajetória descendente ao longo de 2025</div>
+
+      <div class="media-track">
+        <div class="media-node">
+          <div class="media-ball inter">7,1</div>
+          <div class="media-lbl">2º Período</div>
+          <div class="media-period">Intermediário Positivo</div>
+        </div>
+        <div class="media-node">
+          <div class="media-ball crit">5,8</div>
+          <div class="media-lbl">4º Período</div>
+          <div class="media-period">Queda −1,3 pts</div>
+        </div>
+        <div class="media-node">
+          <div class="media-ball crit" style="background:#b03a2e">5,6</div>
+          <div class="media-lbl">3º Período</div>
+          <div class="media-period">Mais baixo do ano</div>
+        </div>
+      </div>
+
+      <div style="margin-top:18px;padding-top:14px;border-top:1px solid var(--border)">
+        <p style="font-size:0.76rem;color:var(--muted);font-weight:700;margin-bottom:10px">Questões e Acertos por Período:</p>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+          <div style="background:#f0fff8;border:1px solid var(--green-bdr);border-radius:8px;padding:12px;text-align:center">
+            <div style="font-size:0.68rem;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:4px">2º Período</div>
+            <div style="font-size:1.2rem;font-weight:700;color:var(--green)">7,14</div>
+            <div style="font-size:0.70rem;color:var(--muted)">5.088 questões · 3.634 acertos</div>
+          </div>
+          <div style="background:var(--red-bg);border:1px solid var(--red-bdr);border-radius:8px;padding:12px;text-align:center">
+            <div style="font-size:0.68rem;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:4px">3º Período</div>
+            <div style="font-size:1.2rem;font-weight:700;color:var(--red)">5,60</div>
+            <div style="font-size:0.70rem;color:var(--muted)">13.782 questões · 7.720 acertos</div>
+          </div>
+          <div style="background:#fffbf0;border:1px solid var(--orange-bdr);border-radius:8px;padding:12px;text-align:center">
+            <div style="font-size:0.68rem;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:4px">4º Período</div>
+            <div style="font-size:1.2rem;font-weight:700;color:var(--orange)">5,84</div>
+            <div style="font-size:0.70rem;color:var(--muted)">10.166 questões · 5.933 acertos</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EVOLUÇÃO por faixas -->
+    <div class="chart-wrap">
+      <div class="chart-wrap-title">Evolução por Faixa de Desempenho — Provas Objetivas</div>
+      <div class="chart-wrap-sub">2º, 3º e 4º Período · Adequado ≥7,5 | Intermediário 5–7,5 | Crítico 2,5–5 | Muito Crítico ≤2,5</div>
+
+      <div class="chart-grid">
+        <div>
+          <div class="chart-col-label">2º Período</div>
+          <div class="bar-group">
+            <div class="bar adeq" style="height:42%"><span class="bar-tooltip" style="color:var(--green)">103 · 42%</span></div>
+            <div class="bar inter" style="height:26.4%"><span class="bar-tooltip" style="color:var(--yellow)">112 · 26%</span></div>
+            <div class="bar crit" style="height:24.3%"><span class="bar-tooltip" style="color:var(--orange)">103 · 24%</span></div>
+            <div class="bar mcrit" style="height:7.3%"><span class="bar-tooltip" style="color:var(--red)">31 · 7%</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="chart-col-label">4º Período</div>
+          <div class="bar-group">
+            <div class="bar adeq" style="height:50%"><span class="bar-tooltip" style="color:var(--green)">107 · 50%</span></div>
+            <div class="bar inter" style="height:24.3%"><span class="bar-tooltip" style="color:var(--yellow)">101 · 24%</span></div>
+            <div class="bar crit" style="height:14.7%"><span class="bar-tooltip" style="color:var(--orange)">10 · 5%</span></div>
+            <div class="bar mcrit" style="height:8.1%"><span class="bar-tooltip" style="color:var(--red)">28 · 8%</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="chart-col-label">3º Período</div>
+          <div class="bar-group">
+            <div class="bar adeq" style="height:24.3%"><span class="bar-tooltip" style="color:var(--green)">103 · 24%</span></div>
+            <div class="bar inter" style="height:24.3%"><span class="bar-tooltip" style="color:var(--yellow)">101 · 24%</span></div>
+            <div class="bar crit" style="height:24.8%"><span class="bar-tooltip" style="color:var(--orange)">103 · 25%</span></div>
+            <div class="bar mcrit" style="height:7.5%"><span class="bar-tooltip" style="color:var(--red)">31 · 7,5%</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="legend-strip">
+        <div class="leg-item"><div class="leg-dot" style="background:var(--green)"></div>Adequado (≥7,5)</div>
+        <div class="leg-item"><div class="leg-dot" style="background:var(--yellow)"></div>Intermediário (5–7,5)</div>
+        <div class="leg-item"><div class="leg-dot" style="background:var(--orange)"></div>Crítico (2,5–5)</div>
+        <div class="leg-item"><div class="leg-dot" style="background:var(--red)"></div>Muito Crítico (≤2,5)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== LP ====== -->
+  <div id="lp">
+    <div class="section-title">📖 Língua Portuguesa — Distribuição por Período</div>
+
+    <div class="prog-wrap">
+      <div class="prog-grid">
+        <div>
+          <div class="prog-col-label">📋 2º Período — LP</div>
+          <div class="prog-row"><span class="prog-lbl">Adeq.</span><div class="prog-bar-wrap"><div class="prog-fill adeq" style="width:51%"></div></div><span class="prog-pct" style="color:var(--green)">51,0%</span><span class="prog-n">76 al.</span></div>
+          <div class="prog-row"><span class="prog-lbl">Inter.</span><div class="prog-bar-wrap"><div class="prog-fill inter" style="width:34.2%"></div></div><span class="prog-pct">34,2%</span><span class="prog-n">51 al.</span></div>
+          <div class="prog-row"><span class="prog-lbl">Crit.</span><div class="prog-bar-wrap"><div class="prog-fill crit" style="width:11.4%"></div></div><span class="prog-pct">11,4%</span><span class="prog-n">17 al.</span></div>
+          <div class="prog-row"><span class="prog-lbl">M.Crit</span><div class="prog-bar-wrap"><div class="prog-fill mcrit" style="width:3.4%"></div></div><span class="prog-pct" style="color:var(--red)">3,4%</span><span class="prog-n">5 al.</span></div>
+        </div>
+        <div>
+          <div class="prog-col-label">📋 3º Período — LP</div>
+          <div class="prog-row"><span class="prog-lbl">Adeq.</span><div class="prog-bar-wrap"><div class="prog-fill adeq" style="width:30.6%"></div></div><span class="prog-pct" style="color:var(--green)">30,6%</span><span class="prog-n">63 al.</span></div>
+          <div class="prog-row"><span class="prog-lbl">Inter.</span><div class="prog-bar-wrap"><div class="prog-fill inter" style="width:47.6%"></div></div><span class="prog-pct">47,6%</span><span class="prog-n">98 al.</span></div>
+          <div class="prog-row"><span class="prog-lbl">Crit.</span><div class="prog-bar-wrap"><div class="prog-fill crit" style="width:18%"></div></div><span class="prog-pct">18,0%</span><span class="prog-n">37 al.</span></div>
+          <div class="prog-row"><span class="prog-lbl">M.Crit</span><div class="prog-bar-wrap"><div class="prog-fill mcrit" style="width:3.9%"></div></div><span class="prog-pct" style="color:var(--red)">3,9%</span><span class="prog-n">8 al.</span></div>
+        </div>
+      </div>
+      <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border)">
+        <div class="prog-col-label">🏁 4º Período — LP (Final)</div>
+        <div class="prog-grid">
+          <div>
+            <div class="prog-row"><span class="prog-lbl">Adeq.</span><div class="prog-bar-wrap"><div class="prog-fill adeq" style="width:39.2%"></div></div><span class="prog-pct" style="color:var(--green)">39,2%</span><span class="prog-n">82 al.</span></div>
+            <div class="prog-row"><span class="prog-lbl">Inter.</span><div class="prog-bar-wrap"><div class="prog-fill inter" style="width:30.6%"></div></div><span class="prog-pct">30,6%</span><span class="prog-n">63 al.</span></div>
+          </div>
+          <div>
+            <div class="prog-row"><span class="prog-lbl">Crit.</span><div class="prog-bar-wrap"><div class="prog-fill crit" style="width:19.1%"></div></div><span class="prog-pct">19,1%</span><span class="prog-n">40 al.</span></div>
+            <div class="prog-row"><span class="prog-lbl">M.Crit</span><div class="prog-bar-wrap"><div class="prog-fill mcrit" style="width:11%"></div></div><span class="prog-pct" style="color:var(--red)">11,0%</span><span class="prog-n">23 al.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert-banner warning">
+      <span class="ab-icon">⚠️</span>
+      <div>
+        <div class="alert-title">LP: queda acentuada no Adequado — de 51% (2ºP) para 30,6% (3ºP) e Muito Crítico triplica</div>
+        <div class="alert-body">No 2º Período, <strong>51% dos alunos estavam no Adequado em LP</strong>. No 3º Período, essa taxa caiu para <strong>30,6%</strong> e no 4º Período o grupo Muito Crítico saltou de 3,4% para <strong>11,0%</strong> — uma triplicação. Essa deterioração progressiva no 4º Período pode indicar currículo mais exigente ou falta de consolidação das habilidades de compreensão leitora e produção textual nos bimestres finais.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== MATEMÁTICA ====== -->
+  <div id="mat">
+    <div class="section-title">🔢 Matemática — Distribuição por Período</div>
+
+    <div class="prog-wrap">
+      <div class="prog-grid">
+        <div>
+          <div class="prog-col-label">📋 2º Período — MT</div>
+          <div class="prog-row"><span class="prog-lbl">Adeq.</span><div class="prog-bar-wrap"><div class="prog-fill adeq" style="width:34.2%"></div></div><span class="prog-pct" style="color:var(--green)">34,2%</span><span class="prog-n">51 al.</span></div>
+          <div class="prog-row"><span class="prog-lbl">Inter.</span><div class="prog-bar-wrap"><div class="prog-fill inter" style="width:27.7%"></div></div><span class="prog-pct">27,7%</span><span class="prog-n">31 al.</span></div>
+          <div class="prog-row"><span class="prog-lbl">Crit.</span><div class="prog-bar-wrap"><div class="prog-fill crit" style="width:16.9%"></div></div><span class="prog-pct">16,9%</span><span class="prog-n">18 al.</span></div>
+          <div class="prog-row"><span class="prog-lbl">M.Crit</span><div class="prog-bar-wrap"><div class="prog-fill mcrit" style="width:7.7%"></div></div><span class="prog-pct" style="color:var(--red)">7,7%</span><span class="prog-n">5 al.</span></div>
+        </div>
+        <div>
+          <div class="prog-col-label">📋 3º Período — MT</div>
+          <div class="prog-row"><span class="prog-lbl">Adeq.</span><div class="prog-bar-wrap"><div class="prog-fill adeq" style="width:18.2%"></div></div><span class="prog-pct" style="color:var(--green)">18,2%</span><span class="prog-n">39 al.</span></div>
+          <div class="prog-row"><span class="prog-lbl">Inter.</span><div class="prog-bar-wrap"><div class="prog-fill inter" style="width:38.3%"></div></div><span class="prog-pct">38,3%</span><span class="prog-n">82 al.</span></div>
+          <div class="prog-row"><span class="prog-lbl">Crit.</span><div class="prog-bar-wrap"><div class="prog-fill crit" style="width:32.2%"></div></div><span class="prog-pct" style="color:var(--orange)">32,2%</span><span class="prog-n">69 al.</span></div>
+          <div class="prog-row"><span class="prog-lbl">M.Crit</span><div class="prog-bar-wrap"><div class="prog-fill mcrit" style="width:11.2%"></div></div><span class="prog-pct" style="color:var(--red)">11,2%</span><span class="prog-n">24 al.</span></div>
+        </div>
+      </div>
+      <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border)">
+        <div class="prog-col-label">🏁 4º Período — MT (Final)</div>
+        <div class="prog-grid">
+          <div>
+            <div class="prog-row"><span class="prog-lbl">Adeq.</span><div class="prog-bar-wrap"><div class="prog-fill adeq" style="width:19.1%"></div></div><span class="prog-pct" style="color:var(--green)">19,1%</span><span class="prog-n">40 al.</span></div>
+            <div class="prog-row"><span class="prog-lbl">Inter.</span><div class="prog-bar-wrap"><div class="prog-fill inter" style="width:39.2%"></div></div><span class="prog-pct">39,2%</span><span class="prog-n">82 al.</span></div>
+          </div>
+          <div>
+            <div class="prog-row"><span class="prog-lbl">Crit.</span><div class="prog-bar-wrap"><div class="prog-fill crit" style="width:30.6%"></div></div><span class="prog-pct" style="color:var(--red)">30,6%</span><span class="prog-n">64 al.</span></div>
+            <div class="prog-row"><span class="prog-lbl">M.Crit</span><div class="prog-bar-wrap"><div class="prog-fill mcrit" style="width:11%"></div></div><span class="prog-pct" style="color:var(--red)">11,0%</span><span class="prog-n">23 al.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert-banner danger">
+      <span class="ab-icon">🚨</span>
+      <div>
+        <div class="alert-title">MT em colapso: Crítico+M.Crítico salta de 24,6% (2ºP) para 41,6% (4ºP)</div>
+        <div class="alert-body">Em Matemática, a situação deteriorou gravemente ao longo do ano: o grupo Crítico saltou de <strong>16,9% no 2º Período para 30,6% no 4º Período</strong>. O Muito Crítico chegou a <strong>11,0% no 4º Período</strong> — somados, <strong>41,6% dos alunos estão em situação de risco em MT</strong>. O grupo Adequado caiu de 34,2% para apenas 19,1%. Três instrumentos (Bimestrais, Avalie.CE e dados de habilidades) confirmam o mesmo diagnóstico: MT é a maior emergência pedagógica da Aba Tapeba.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== RESUMO POR ANO ====== -->
+  <div id="anos">
+    <div class="section-title">🏫 Resumo por Ano e Período — % Acima da Média</div>
+
+    <div class="year-table-wrap">
+      <div class="table-header">
+        <h3>Percentual de alunos acima da média por Ano e Período</h3>
+        <p>Fonte: Power BI SEDUC-CE · Notas Resumo · Aba Tapeba EDEIEF · 2025</p>
+      </div>
+      <div class="tbl-scroll">
+        <table class="yr-table">
+          <thead>
+            <tr><th>Ano</th><th>1º Período</th><th>2º Período</th><th>3º Período</th><th>Situação Geral</th></tr>
+          </thead>
+          <tbody>
+            <tr style="background:#f0fff8">
+              <td style="font-weight:700">3º Ano</td>
+              <td><span class="bar-inline" style="width:47px;background:var(--green)"></span><span class="pct-badge pb-green">94,91%</span></td>
+              <td><span class="bar-inline" style="width:49px;background:var(--green)"></span><span class="pct-badge pb-green">97,78%</span></td>
+              <td><span class="bar-inline" style="width:47px;background:var(--green)"></span><span class="pct-badge pb-green">94,91%</span></td>
+              <td><span class="pct-badge pb-green">✅ Destaque</span></td>
+            </tr>
+            <tr style="background:#f0fff8">
+              <td style="font-weight:700">4º Ano</td>
+              <td><span class="bar-inline" style="width:49px;background:var(--green)"></span><span class="pct-badge pb-green">98,08%</span></td>
+              <td><span class="bar-inline" style="width:49px;background:var(--green)"></span><span class="pct-badge pb-green">98,72%</span></td>
+              <td><span class="bar-inline" style="width:43px;background:var(--green)"></span><span class="pct-badge pb-green">86,00%</span></td>
+              <td><span class="pct-badge pb-green">✅ Destaque</span></td>
+            </tr>
+            <tr>
+              <td style="font-weight:700">5º Ano</td>
+              <td><span class="bar-inline" style="width:46px;background:var(--green)"></span><span class="pct-badge pb-green">93,40%</span></td>
+              <td><span class="bar-inline" style="width:44px;background:var(--green)"></span><span class="pct-badge pb-green">90,54%</span></td>
+              <td><span class="bar-inline" style="width:43px;background:var(--green)"></span><span class="pct-badge pb-green">86,00%</span></td>
+              <td><span class="pct-badge pb-green">✅ Positivo</span></td>
+            </tr>
+            <tr style="background:#fff8f0">
+              <td style="font-weight:700">6º Ano</td>
+              <td><span class="bar-inline" style="width:48px;background:var(--green)"></span><span class="pct-badge pb-green">96,75%</span></td>
+              <td><span class="bar-inline" style="width:44px;background:var(--green)"></span><span class="pct-badge pb-yellow">89,35%</span></td>
+              <td><span class="bar-inline" style="width:42px;background:var(--yellow)"></span><span class="pct-badge pb-yellow">85,40%</span></td>
+              <td><span class="pct-badge pb-yellow">⚠ Atenção</span></td>
+            </tr>
+            <tr style="background:#fff5f5">
+              <td style="font-weight:700">7º Ano</td>
+              <td><span class="bar-inline" style="width:45px;background:var(--green)"></span><span class="pct-badge pb-green">91,06%</span></td>
+              <td><span class="bar-inline" style="width:42px;background:var(--yellow)"></span><span class="pct-badge pb-yellow">85,71%</span></td>
+              <td><span class="bar-inline" style="width:43px;background:var(--yellow)"></span><span class="pct-badge pb-yellow">86,71%</span></td>
+              <td><span class="pct-badge pb-yellow">⚠ Atenção</span></td>
+            </tr>
+            <tr style="background:#fff5f5">
+              <td style="font-weight:700">8º Ano</td>
+              <td><span class="bar-inline" style="width:45px;background:var(--green)"></span><span class="pct-badge pb-yellow">90,38%</span></td>
+              <td><span class="bar-inline" style="width:44px;background:var(--yellow)"></span><span class="pct-badge pb-yellow">90,53%</span></td>
+              <td><span class="bar-inline" style="width:43px;background:var(--yellow)"></span><span class="pct-badge pb-yellow">86,18%</span></td>
+              <td><span class="pct-badge pb-orange">⚠ Crítico</span></td>
+            </tr>
+            <tr style="background:#fff5f5">
+              <td style="font-weight:700">9º Ano</td>
+              <td><span class="bar-inline" style="width:47px;background:var(--green)"></span><span class="pct-badge pb-green">93,68%</span></td>
+              <td><span class="bar-inline" style="width:47px;background:var(--green)"></span><span class="pct-badge pb-green">95,53%</span></td>
+              <td><span class="bar-inline" style="width:46px;background:var(--green)"></span><span class="pct-badge pb-green">93,19%</span></td>
+              <td><span class="pct-badge pb-yellow">⚠ Atenção</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="alert-banner success">
+      <span class="ab-icon">⭐</span>
+      <div>
+        <div class="alert-title">3º e 4º Ano: referências positivas da escola — ambos acima de 94% no 1º Período</div>
+        <div class="alert-body">O <strong>4º Ano</strong> se destaca com 98,72% acima da média no 2º Período — melhor resultado da escola. O <strong>3º Ano</strong> mantém estabilidade com 94,9% no 1º e 3º Períodos. Esses resultados excepcionais sugerem práticas pedagógicas diferenciadas que merecem ser investigadas e disseminadas, especialmente para os anos finais (6º ao 9º) que mostram os maiores desafios de rendimento nos bimestres do 3º Período.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== ALERTAS ====== -->
+  <div id="alertas">
+    <div class="section-title">🚨 Alertas e Plano de Ação</div>
+
+    <div class="section-block">
+      <div class="section-block-header dark">
+        <div class="sb-icon" style="background:rgba(192,57,43,.3)">🚨</div>
+        <div class="sb-info">
+          <h3>Situações críticas que exigem intervenção pedagógica imediata</h3>
+          <p>Clique em cada cartão para ver as ações recomendadas</p>
+        </div>
+      </div>
+
+      <div class="notif-card c-red" onclick="toggle(this)" style="background:#fef8f8">
+        <div class="notif-top">
+          <div class="notif-avatar red">🚨</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">MT 4º Período: 41,6% em Crítico+M.Crítico — emergência confirmada por múltiplos instrumentos</div>
+              <span class="notif-tag red">MT · Urgente</span>
+            </div>
+            <div class="notif-summary">30,6% Crítico + 11,0% Muito Crítico em Matemática no 4º Período — mais de dois quintos dos alunos abaixo do básico. Esse dado é consistente com o Avalie.CE 2025 (9º Ano MT com 85% de defasagem e proficiência média de apenas 9 pontos) e as habilidades de MT muito abaixo de 30% de acerto. A crise em MT é estrutural e requer intervenção sistêmica, não pontual.</div>
+            <div class="notif-pills">
+              <span class="pill"><span class="pill-dot" style="background:var(--red)"></span>30,6% Crítico no 4ºP</span>
+              <span class="pill"><span class="pill-dot" style="background:var(--red)"></span>Avalie.CE + Notas confirmam</span>
+            </div>
+          </div>
+          <button class="notif-toggle">▾</button>
+        </div>
+        <div class="notif-expand">
+          <div class="action-tag-label">⚡ Ação Urgente — Matemática</div>
+          <div class="action-text">
+            ✅ <strong>Diagnóstico por habilidade:</strong> identificar quais descritores de MT os alunos erraram mais nas Provas Objetivas do 3º e 4º Período — montar lista de habilidades prioritárias para intervenção imediata e planejamento de 2026.<br><br>
+            ✅ <strong>Replanejamento curricular:</strong> reunião imediata com professores de MT do 5º ao 9º Ano para redesenhar o planejamento considerando as lacunas acumuladas — álgebra, geometria, frações e proporções são os pontos mais críticos.<br><br>
+            ✅ <strong>Reforço em contraturno:</strong> implementar horário de reforço de MT especialmente para o 7º, 8º e 9º Ano, onde o Avalie.CE indica os piores indicadores de habilidades.<br><br>
+            ✅ <strong>Cruzamento de dados:</strong> os alunos Crítico/M.Crítico nas Provas Objetivas provavelmente são os mesmos com 85%+ de defasagem no Avalie.CE — identificar individualmente para plano de recuperação personalizado.
+          </div>
+          <div class="action-tags-row"><span class="action-chip">MT Emergência</span><span class="action-chip">Replanejamento</span><span class="action-chip">Contraturno</span><span class="action-chip">Diagnóstico</span></div>
+        </div>
+      </div>
+
+      <div class="notif-card c-red" onclick="toggle(this)">
+        <div class="notif-top">
+          <div class="notif-avatar red">📉</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">Queda progressiva nas médias: 7,14 → 5,84 → 5,60 — currículo avança sem consolidação</div>
+              <span class="notif-tag red">Tendência · Urgente</span>
+            </div>
+            <div class="notif-summary">A trajetória descendente das médias ao longo de 2025 é o principal sinal de alerta sistêmico. Os alunos começam o ano com desempenho razoável (7,14) mas não consolidam o aprendizado para sustentar o nível nos bimestres seguintes. A queda acumulada de 1,54 pontos — do 2º ao 3º Período — indica que a escola avança no currículo mais rápido do que os alunos conseguem absorver, especialmente em Matemática.</div>
+            <div class="notif-pills">
+              <span class="pill"><span class="pill-dot" style="background:var(--orange)"></span>−1,54 pts de 2º ao 3º P</span>
+              <span class="pill"><span class="pill-dot" style="background:var(--red)"></span>5,60 abaixo do Intermediário</span>
+            </div>
+          </div>
+          <button class="notif-toggle">▾</button>
+        </div>
+        <div class="notif-expand">
+          <div class="action-tag-label">🎯 Ação Estrutural</div>
+          <div class="action-text">
+            ✅ <strong>Revisão do ritmo curricular:</strong> verificar se o volume de conteúdo por bimestre é compatível com o ritmo de aprendizagem dos alunos — pode ser necessário reduzir a quantidade e aumentar a profundidade, especialmente em MT.<br><br>
+            ✅ <strong>Análise de itens das provas:</strong> verificar se há aumento de dificuldade súbito nas questões do 3º e 4º Período — pode indicar desalinhamento entre o currículo ensinado e o avaliado.<br><br>
+            ✅ <strong>Monitoramento quinzenal:</strong> implementar acompanhamento de desempenho a cada duas semanas para identificar quedas antes do final do bimestre, permitindo intervenção antecipada.<br><br>
+            ✅ <strong>Consolidação antes de avançar:</strong> para 2026, adotar a estratégia de verificar proficiência mínima antes de introduzir novos conteúdos — especialmente nos anos finais (7º, 8º, 9º).
+          </div>
+          <div class="action-tags-row"><span class="action-chip">Currículo</span><span class="action-chip">Ritmo de Aprendizagem</span><span class="action-chip">Monitoramento</span></div>
+        </div>
+      </div>
+
+      <div class="notif-card c-orange" onclick="toggle(this)">
+        <div class="notif-top">
+          <div class="notif-avatar orange">⚠️</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">2.159 registros (14%) abaixo da média não realizaram a Recuperação Paralela</div>
+              <span class="notif-tag yellow">RP · Atenção</span>
+            </div>
+            <div class="notif-summary">Com 2.159 registros de alunos abaixo da média que não realizaram a RP, há uma lacuna expressiva no acompanhamento individual. Esse número é significativamente maior que o esperado e pode indicar: ausências frequentes, desinteresse, falta de comunicação com as famílias ou dificuldade de acesso nos horários ofertados. Cada caso precisa ser investigado individualmente.</div>
+            <div class="notif-pills">
+              <span class="pill"><span class="pill-dot" style="background:var(--orange)"></span>2.159 registros sem RP</span>
+              <span class="pill"><span class="pill-dot" style="background:var(--teal)"></span>13.048 acima da média</span>
+            </div>
+          </div>
+          <button class="notif-toggle">▾</button>
+        </div>
+        <div class="notif-expand">
+          <div class="action-tag-label">🎯 Ação — Recuperação Paralela</div>
+          <div class="action-text">
+            ✅ <strong>Identificar os alunos por turma:</strong> cruzar com dados de frequência — parte pode ser de alunos infrequentes que precisam de Busca Ativa.<br><br>
+            ✅ <strong>Comunicar às famílias:</strong> enviar comunicado explicando a obrigatoriedade da RP e os impactos no rendimento final do aluno, especialmente nos anos com maior defasagem em MT.<br><br>
+            ✅ <strong>Oferecer RP acessível:</strong> verificar se os horários da RP são compatíveis com a realidade dos alunos da Aba Tapeba — a escola atende uma comunidade indígena com dinâmica própria que deve ser considerada no planejamento.<br><br>
+            ✅ <strong>Priorizar anos finais:</strong> o 8º e 9º Ano com maiores defasagens em MT devem ter RP estruturada e acompanhada com mais rigor.
+          </div>
+          <div class="action-tags-row"><span class="action-chip">Recuperação Paralela</span><span class="action-chip">Frequência</span><span class="action-chip">Família</span><span class="action-chip">Busca Ativa</span></div>
+        </div>
+      </div>
+
+      <div class="notif-card c-yellow" onclick="toggle(this)">
+        <div class="notif-top">
+          <div class="notif-avatar yellow">⚠️</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">LP no 4º Período: Muito Crítico triplica para 11% — alerta para fechamento do ano</div>
+              <span class="notif-tag yellow">LP · 4º Período</span>
+            </div>
+            <div class="notif-summary">Em Língua Portuguesa, o grupo Muito Crítico saltou de 3,4% no 2º Período para 11,0% no 4º Período — uma triplicação. Somado ao Crítico (19,1%), <strong>30,1% dos alunos estão em situação de risco em LP no 4º Período</strong>. Este deterioramento no final do ano é preocupante, especialmente para o 8º e 9º Ano que precisam de LP consolidada para o SAEB e para os anos seguintes.</div>
+            <div class="notif-pills">
+              <span class="pill"><span class="pill-dot" style="background:var(--red)"></span>11,0% M.Crítico no 4ºP</span>
+              <span class="pill"><span class="pill-dot" style="background:var(--orange)"></span>30,1% abaixo do básico</span>
+            </div>
+          </div>
+          <button class="notif-toggle">▾</button>
+        </div>
+        <div class="notif-expand">
+          <div class="action-tag-label">🎯 Ação — Língua Portuguesa</div>
+          <div class="action-text">
+            ✅ <strong>Identificar alunos no Muito Crítico LP:</strong> mapear individualmente os alunos com desempenho ≤2,5 em LP no 4º Período — verificar se há sobreposição com M.Crítico em MT.<br><br>
+            ✅ <strong>Habilidades críticas de LP:</strong> baseado no Avalie.CE, H02 (comparação de textos — 42%), H11 (fato/opinião — 53%) e H12 (relações lógicas — 60%) são as mais fracas nos anos finais. Priorizar no planejamento de 2026.<br><br>
+            ✅ <strong>Articular com preparação para o SAEB:</strong> o 9º Ano realizará o SAEB — as habilidades críticas do Avalie.CE e Bimestrais são indicadores confiáveis de lacunas que impactarão nos resultados externos.<br><br>
+            ✅ <strong>Projetos de leitura:</strong> investigar e ampliar práticas de leitura extensiva e compreensão textual para todos os anos, aproveitando o sucesso do 4º Ano LP (74% adequado no Avalie.CE).
+          </div>
+          <div class="action-tags-row"><span class="action-chip">LP</span><span class="action-chip">Compreensão Leitora</span><span class="action-chip">SAEB</span><span class="action-chip">Boas Práticas</span></div>
+        </div>
+      </div>
+
+      <div class="notif-card c-green" onclick="toggle(this)">
+        <div class="notif-top">
+          <div class="notif-avatar green">⭐</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">3º e 4º Ano: destaques absolutos — 94 a 98,7% acima da média em múltiplos períodos</div>
+              <span class="notif-tag green">Destaque · Boas Práticas</span>
+            </div>
+            <div class="notif-summary">O 4º Ano atingiu 98,72% acima da média no 2º Período (melhor resultado da escola) e manteve 86% no 3º Período. O 3º Ano se manteve acima de 94% em todos os períodos. Esses resultados excepcionais, aliados ao ótimo desempenho em LP no Avalie.CE (74% adequado no 4º Ano), sugerem práticas pedagógicas diferenciadas que merecem ser investigadas e compartilhadas.</div>
+            <div class="notif-pills">
+              <span class="pill"><span class="pill-dot" style="background:var(--green)"></span>4º Ano: 98,7% no 2ºP</span>
+              <span class="pill"><span class="pill-dot" style="background:var(--green)"></span>3º Ano: 94,9% no 3ºP</span>
+            </div>
+          </div>
+          <button class="notif-toggle">▾</button>
+        </div>
+        <div class="notif-expand">
+          <div class="action-tag-label">🌟 Ação — Disseminação</div>
+          <div class="action-text">
+            ✅ <strong>HTPC de Boas Práticas:</strong> convidar professores do 3º e 4º Ano para compartilhar suas estratégias no próximo HTPC — planejamento de aula, tipo de avaliação, metodologia de ensino de LP e MT.<br><br>
+            ✅ <strong>Documentar no PPP:</strong> registrar as estratégias como referência institucional — o sucesso do 4º Ano em LP (74% adequado no Avalie.CE + 98,7% nas notas) é notável.<br><br>
+            ✅ <strong>Tutoria entre professores:</strong> criar programa de troca de experiências entre docentes dos anos destaques (3º e 4º) e os dos anos com maior dificuldade (8º e 9º em MT).<br><br>
+            ✅ <strong>Valorizar o contexto indígena:</strong> as práticas bem-sucedidas provavelmente incorporam elementos culturais da comunidade Tapeba — documentar esse diferencial pedagógico como estratégia replicável.
+          </div>
+          <div class="action-tags-row"><span class="action-chip">3º Ano</span><span class="action-chip">4º Ano</span><span class="action-chip">HTPC</span><span class="action-chip">PPP</span><span class="action-chip">Boas Práticas</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;font-size:0.75rem;color:var(--muted2);margin-top:10px;padding-top:18px;border-top:1px solid var(--border);">
+    Bimestrais 2025 · Aba Tapeba EDEIEF · Caucaia-CE · Regional Maracanau · Fonte: Power BI SEDUC-CE · N1, N2, N3, Provas Objetivas e Recuperação Paralela · Clique nos cartões para ver as ações
+  </div>
+
+</main>
+
+<script>
+function toggle(card) { card.classList.toggle('open'); }
+
+/* Scroll-spy */
+const secs = document.querySelectorAll('[id]');
+const navs = document.querySelectorAll('.nav-item[href^="#"]');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  secs.forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
+  navs.forEach(n => {
+    n.classList.remove('active');
+    if (n.getAttribute('href') === '#' + cur) n.classList.add('active');
+  });
+}, {passive: true});
+
+/* Progress bar animation */
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.querySelectorAll('.prog-fill').forEach(el => {
+      const w = el.style.width;
+      el.style.width = '0';
+      requestAnimationFrame(() => { requestAnimationFrame(() => { el.style.width = w; }); });
+    });
+  }, 300);
+});
+</script>
 </body>
 </html>
