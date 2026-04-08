@@ -74,6 +74,14 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); min-
 .leg-row { display: flex; align-items: center; gap: 8px; padding: 5px 0; font-size: 0.74rem; color: #8daabf; border-bottom: 1px solid #243145; }
 .leg-row:last-child { border-bottom: none; }
 .leg-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.nav-item.recomp { border-top: 1px solid #243145; margin-top: 4px; padding-top: 13px; }
+.sidebar-sit { margin: 12px 14px 0; background: #111c2a; border: 1px solid #2e3d52; border-radius: 8px; padding: 12px 14px; }
+.sidebar-sit-title { font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.12em; color: #5a7090; font-weight: 700; margin-bottom: 10px; }
+.sit-row { display: flex; align-items: center; gap: 8px; padding: 4px 0; font-size: 0.76rem; border-bottom: 1px solid #1e2d42; }
+.sit-row:last-child { border-bottom: none; }
+.sit-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+.sit-label { color: #7a90a8; flex: 1; }
+.sit-val { font-weight: 700; font-size: 0.78rem; }
 .sidebar-footer { margin-top: auto; padding: 14px 20px; border-top: 1px solid #2e3d52; font-size: 0.70rem; color: #5a7090; line-height: 1.7; }
 
 /* ─── MAIN ─── */
@@ -264,85 +272,36 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); min-
   </div>
 
   <div class="nav-section">Indicadores</div>
-
-  <a class="nav-item" href="painel.html">
-    <div class="nav-icon" style="background:#ecfeff">🏠</div>
-    <span class="nav-label">Visão Geral</span>
-  </a>
-  <a class="nav-item" href="resumo_executivo.html">
-    <div class="nav-icon" style="background:#fdf0ef">🚨</div>
-    <span class="nav-label">Resumo Executivo</span>
-    <span class="nav-badge nb-red">!</span>
-  </a>
-  <a class="nav-item active" href="busca_ativa.html">
-    <div class="nav-icon" style="background:#fef5e7">🔍</div>
-    <span class="nav-label">Busca Ativa</span>
-    <span class="nav-badge nb-orange">!</span>
-  </a>
-  <a class="nav-item" href="adsec.html">
-    <div class="nav-icon" style="background:#edfaf3">📖</div>
-    <span class="nav-label">ADESC 2025</span>
-    <span class="nav-badge nb-red">!</span>
-  </a>
-  <a class="nav-item" href="avalie_ce.html">
-    <div class="nav-icon" style="background:#fef9ec">📊</div>
-    <span class="nav-label">Avalie.CE</span>
-    <span class="nav-badge nb-red">!</span>
-  </a>
-  <a class="nav-item" href="bimestrais.html">
-    <div class="nav-icon" style="background:#eaf2fc">📝</div>
-    <span class="nav-label">Bimestrais 2025</span>
-    <span class="nav-badge nb-yellow">!</span>
-  </a>
-  <a class="nav-item" href="cnca.html">
-    <div class="nav-icon" style="background:#fef5e7">📚</div>
-    <span class="nav-label">CNCA</span>
-    <span class="nav-badge nb-red">!</span>
-  </a>
-  <a class="nav-item" href="qedu.html">
-    <div class="nav-icon" style="background:#eaf2fc">🎓</div>
-    <span class="nav-label">QEdu / Censo</span>
-    <span class="nav-badge nb-red">!</span>
-  </a>
+  <a class="nav-item" href="painel.html"><div class="nav-icon" style="background:#ecfeff">🏠</div><span class="nav-label">Visão Geral</span></a>
+  <a class="nav-item" href="resumo_executivo.html"><div class="nav-icon" style="background:#fdf0ef">🚨</div><span class="nav-label">Resumo Executivo</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item active" href="busca_ativa.html"><div class="nav-icon" style="background:#fef5e7">🔍</div><span class="nav-label">Busca Ativa</span><span class="nav-badge nb-orange">!</span></a>
+  <a class="nav-item" href="adsec.html"><div class="nav-icon" style="background:#edfaf3">📖</div><span class="nav-label">ADSEC 2025</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="avalie_ce.html"><div class="nav-icon" style="background:#fef9ec">📊</div><span class="nav-label">Avalie.CE</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="bimestrais.html"><div class="nav-icon" style="background:#eaf2fc">📝</div><span class="nav-label">Bimestrais 2025</span><span class="nav-badge nb-yellow">!</span></a>
+  <a class="nav-item" href="cnca.html"><div class="nav-icon" style="background:#fef5e7">📚</div><span class="nav-label">CNCA</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="qedu.html"><div class="nav-icon" style="background:#eaf2fc">🎓</div><span class="nav-label">QEdu / Censo</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item recomp" href="recomposicao.html"><div class="nav-icon" style="background:var(--purple-bg)">🎒</div><span class="nav-label" style="color:#c4b5fd">Recomposição</span><span class="nav-badge nb-purple">!</span></a>
+  <a class="nav-item" href="saeb.html"><div class="nav-icon" style="background:#fdf0ef">📋</div><span class="nav-label">SAEB 2023</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="spaece.html"><div class="nav-icon" style="background:#fef9ec">📈</div><span class="nav-label">SPAECE 2024</span><span class="nav-badge nb-red">!!</span></a>
 
   <div class="nav-section" style="margin-top:10px">Navegação Interna</div>
-  <a class="nav-item" href="#visao">
-    <div class="nav-icon" style="background:rgba(14,116,144,.15)">📊</div>
-    <span class="nav-label">Visão Geral</span>
-  </a>
-  <a class="nav-item" href="#turmas">
-    <div class="nav-icon" style="background:rgba(202,111,30,.12)">🏫</div>
-    <span class="nav-label">Por Turma</span>
-    <span class="nav-badge nb-red">!</span>
-  </a>
-  <a class="nav-item" href="#alertas">
-    <div class="nav-icon" style="background:rgba(214,137,16,.12)">⚠️</div>
-    <span class="nav-label">Alertas e Sugestões</span>
-    <span class="nav-badge nb-yellow">!</span>
-  </a>
-  <a class="nav-item" href="#tabela">
-    <div class="nav-icon" style="background:rgba(26,86,160,.12)">📋</div>
-    <span class="nav-label">Tabela Completa</span>
-  </a>
-  <a class="nav-item" href="#acoes">
-    <div class="nav-icon" style="background:rgba(14,116,144,.15)">⚡</div>
-    <span class="nav-label">Plano de Ação</span>
-  </a>
+  <a class="nav-item" href="#visao"><div class="nav-icon" style="background:rgba(14,116,144,.15)">📊</div><span class="nav-label">Visão Geral</span></a>
+  <a class="nav-item" href="#turmas"><div class="nav-icon" style="background:rgba(202,111,30,.12)">🏫</div><span class="nav-label">Por Turma</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="#alertas"><div class="nav-icon" style="background:rgba(214,137,16,.12)">⚠️</div><span class="nav-label">Alertas e Sugestões</span><span class="nav-badge nb-yellow">!</span></a>
+  <a class="nav-item" href="#tabela"><div class="nav-icon" style="background:rgba(26,86,160,.12)">📋</div><span class="nav-label">Tabela Completa</span></a>
+  <a class="nav-item" href="#acoes"><div class="nav-icon" style="background:rgba(14,116,144,.15)">⚡</div><span class="nav-label">Plano de Ação</span></a>
 
-  <div class="nav-section" style="margin-top:10px">Legenda — Justificativas</div>
-  <div class="legend-block">
-    <div class="leg-row"><div class="leg-dot" style="background:var(--orange)"></div>Aluno Doente</div>
-    <div class="leg-row"><div class="leg-dot" style="background:var(--yellow)"></div>Outros (sem justificativa)</div>
-    <div class="leg-row"><div class="leg-dot" style="background:var(--blue)"></div>Falta Parcial (1 turno)</div>
-    <div class="leg-row"><div class="leg-dot" style="background:var(--red)"></div>Falta Total (dia inteiro)</div>
-    <div class="leg-row"><div class="leg-dot" style="background:var(--teal)"></div>Contato c/ Família</div>
+  <div class="sidebar-sit">
+    <div class="sidebar-sit-title">Busca Ativa · fev–mar/2026</div>
+    <div class="sit-row"><div class="sit-dot" style="background:var(--red)"></div><span class="sit-label">Alunos c/ Registro</span><span class="sit-val" style="color:var(--red)">181</span></div>
+    <div class="sit-row"><div class="sit-dot" style="background:var(--orange)"></div><span class="sit-label">Total de Registros</span><span class="sit-val" style="color:var(--orange)">230</span></div>
+    <div class="sit-row"><div class="sit-dot" style="background:var(--yellow)"></div><span class="sit-label">Justif. "Outros"</span><span class="sit-val" style="color:var(--yellow)">97,4%</span></div>
+    <div class="sit-row"><div class="sit-dot" style="background:var(--teal)"></div><span class="sit-label">Contato Familiar</span><span class="sit-val" style="color:var(--teal)">100%</span></div>
   </div>
 
   <div class="nav-section" style="margin-top:10px">Sistema</div>
-  <a class="nav-item" href="../index.html">
-    <div class="nav-icon" style="background:#fdf0ef">🏫</div>
-    <span class="nav-label">Trocar Escola</span>
-  </a>
+  <a class="nav-item" href="../index.html"><div class="nav-icon" style="background:#fdf0ef">🏫</div><span class="nav-label">Trocar Escola</span></a>
+
   <div class="sidebar-footer">
     <div>Aba Tapeba EDEIEF<br>Caucaia · CE · Região BR-222</div>
     <div style="margin-top:6px;color:#8097b0">Fonte: Sistema Busca Ativa / SEDUC-CE<br>Período: fev–mar/2026 · 230 registros</div>

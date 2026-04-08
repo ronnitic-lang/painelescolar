@@ -261,22 +261,22 @@ body {
 .prog-pct { font-size: 0.72rem; font-weight: 700; color: var(--text); width: 40px; text-align: right; flex-shrink: 0; }
 .prog-n   { font-size: 0.68rem; color: var(--muted2); width: 44px; flex-shrink: 0; }
 
-/* ===== ADESC CELLS ===== */
-.adesc-row {
+/* ===== ADSEC CELLS ===== */
+.adsec-row {
   display: grid; grid-template-columns: repeat(5, 1fr);
   gap: 10px; margin-bottom: 18px;
 }
-.adesc-cell {
+.adsec-cell {
   background: var(--surface); border: 1px solid var(--border);
   border-radius: var(--radius); padding: 12px 10px; text-align: center;
   box-shadow: var(--shadow);
 }
-.adesc-period {
+.adsec-period {
   font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.09em;
   color: var(--muted2); margin-bottom: 6px; font-weight: 700;
 }
-.adesc-val { font-size: 1.3rem; font-weight: 700; margin-bottom: 2px; }
-.adesc-lbl { font-size: 0.67rem; color: var(--muted2); }
+.adsec-val { font-size: 1.3rem; font-weight: 700; margin-bottom: 2px; }
+.adsec-lbl { font-size: 0.67rem; color: var(--muted2); }
 
 /* ===== SECTION BLOCK (expandable groups) ===== */
 .section-block { margin-bottom: 28px; }
@@ -382,7 +382,7 @@ body {
   .kpi-grid { grid-template-columns: repeat(2, 1fr); }
   .prog-grid { grid-template-columns: 1fr; }
   .chart-grid { grid-template-columns: 1fr; }
-  .adesc-row { grid-template-columns: repeat(3, 1fr); }
+  .adsec-row { grid-template-columns: repeat(3, 1fr); }
 }
 </style>
 </head>
@@ -406,9 +406,9 @@ body {
     <span class="nav-label">Busca Ativa</span>
     <span class="nav-badge nb-orange">32</span>
   </a>
-  <a class="nav-item" href="adesc.html">
+  <a class="nav-item" href="adsec.html">
     <div class="nav-icon" style="background:#edfaf3">📖</div>
-    <span class="nav-label">ADESC 2025</span>
+    <span class="nav-label">ADSEC 2025</span>
     <span class="nav-badge nb-red">!</span>
   </a>
   <a class="nav-item" href="avalie_ce.html">
@@ -461,14 +461,14 @@ body {
     <span class="nav-label">Matemática</span>
     <span class="nav-badge nb-yellow">!</span>
   </a>
-  <a class="nav-item" href="#adesc-ok">
+  <a class="nav-item" href="#adsec-ok">
     <div class="nav-icon" style="background:rgba(26,122,74,.12)">✅</div>
-    <span class="nav-label">ADESC · Destaques</span>
+    <span class="nav-label">ADSEC · Destaques</span>
     <span class="nav-badge nb-green">3</span>
   </a>
-  <a class="nav-item" href="#adesc-alert">
+  <a class="nav-item" href="#adsec-alert">
     <div class="nav-icon" style="background:rgba(192,57,43,.12)">🚨</div>
-    <span class="nav-label">ADESC · Alertas</span>
+    <span class="nav-label">ADSEC · Alertas</span>
     <span class="nav-badge nb-red">3</span>
   </a>
   <a class="nav-item" href="#acoes">
@@ -493,7 +493,7 @@ body {
 
   <div class="sidebar-footer">
     <div>Adriano Martins EEIEF<br>Caucaia · CE · Região Praia</div>
-    <div style="margin-top:6px;color:#8097b0">Fonte: SEDUC-CE · ADESC 2025<br>Provas Bimestrais · 78 alunos</div>
+    <div style="margin-top:6px;color:#8097b0">Fonte: SEDUC-CE · ADSEC 2025<br>Provas Bimestrais · 78 alunos</div>
     <div style="margin-top:4px;color:#8097b0">Clique nos cartões para ver as ações</div>
   </div>
 </aside>
@@ -841,35 +841,35 @@ body {
     </div>
   </div>
 
-  <!-- ===== ADESC DESTAQUES ===== -->
-  <div id="adesc-ok">
-    <div class="section-title">✅ ADESC 2025 — Destaques Positivos em Leitura</div>
+  <!-- ===== ADSEC DESTAQUES ===== -->
+  <div id="adsec-ok">
+    <div class="section-title">✅ ADSEC 2025 — Destaques Positivos em Leitura</div>
 
-    <div class="adesc-row">
-      <div class="adesc-cell">
-        <div class="adesc-period">Av. Inicial</div>
-        <div class="adesc-val" style="color:var(--teal)">40,1%</div>
-        <div class="adesc-lbl">Leit. Texto</div>
+    <div class="adsec-row">
+      <div class="adsec-cell">
+        <div class="adsec-period">Av. Inicial</div>
+        <div class="adsec-val" style="color:var(--teal)">40,1%</div>
+        <div class="adsec-lbl">Leit. Texto</div>
       </div>
-      <div class="adesc-cell">
-        <div class="adesc-period">1º Período</div>
-        <div class="adesc-val" style="color:var(--yellow)">—</div>
-        <div class="adesc-lbl">Em progresso</div>
+      <div class="adsec-cell">
+        <div class="adsec-period">1º Período</div>
+        <div class="adsec-val" style="color:var(--yellow)">—</div>
+        <div class="adsec-lbl">Em progresso</div>
       </div>
-      <div class="adesc-cell">
-        <div class="adesc-period">2º Período</div>
-        <div class="adesc-val" style="color:var(--yellow)">~46%</div>
-        <div class="adesc-lbl">Leit. Texto</div>
+      <div class="adsec-cell">
+        <div class="adsec-period">2º Período</div>
+        <div class="adsec-val" style="color:var(--yellow)">~46%</div>
+        <div class="adsec-lbl">Leit. Texto</div>
       </div>
-      <div class="adesc-cell">
-        <div class="adesc-period">3º Período</div>
-        <div class="adesc-val" style="color:var(--green)">~52%</div>
-        <div class="adesc-lbl">Leit. Texto</div>
+      <div class="adsec-cell">
+        <div class="adsec-period">3º Período</div>
+        <div class="adsec-val" style="color:var(--green)">~52%</div>
+        <div class="adsec-lbl">Leit. Texto</div>
       </div>
-      <div class="adesc-cell" style="border-color:var(--green-bdr);background:var(--green-bg)">
-        <div class="adesc-period">4º Período</div>
-        <div class="adesc-val" style="color:var(--green)">54,5%</div>
-        <div class="adesc-lbl">🏆 Final</div>
+      <div class="adsec-cell" style="border-color:var(--green-bdr);background:var(--green-bg)">
+        <div class="adsec-period">4º Período</div>
+        <div class="adsec-val" style="color:var(--green)">54,5%</div>
+        <div class="adsec-lbl">🏆 Final</div>
       </div>
     </div>
 
@@ -888,9 +888,9 @@ body {
           <div class="notif-body">
             <div class="notif-header-row">
               <div class="notif-title">DESTAQUE: Leitores com Fluência cresceram 7,8pp ao longo do ano — de 24,6% para 32,4%</div>
-              <span class="notif-tag green">ADESC · Crescimento</span>
+              <span class="notif-tag green">ADSEC · Crescimento</span>
             </div>
-            <div class="notif-summary">O nível mais alto de leitura — Leitor de Texto com Fluência — passou de 41 alunos (24,6%) na Avaliação Inicial para 57 alunos (32,4%) no 4º Período. São +16 alunos que consolidaram fluência leitora real. Esse é o crescimento mais significativo da ADESC 2025.</div>
+            <div class="notif-summary">O nível mais alto de leitura — Leitor de Texto com Fluência — passou de 41 alunos (24,6%) na Avaliação Inicial para 57 alunos (32,4%) no 4º Período. São +16 alunos que consolidaram fluência leitora real. Esse é o crescimento mais significativo da ADSEC 2025.</div>
             <div class="notif-pills">
               <span class="pill"><span class="pill-dot" style="background:var(--green)"></span>+16 alunos fluentes</span>
               <span class="pill"><span class="pill-dot" style="background:var(--teal)"></span>32,4% no nível máximo</span>
@@ -915,7 +915,7 @@ body {
           <div class="notif-body">
             <div class="notif-header-row">
               <div class="notif-title">DESTAQUE: 54,5% dos alunos encerraram 2025 como Leitores de Texto — virada histórica</div>
-              <span class="notif-tag green">ADESC · 4º Período</span>
+              <span class="notif-tag green">ADSEC · 4º Período</span>
             </div>
             <div class="notif-summary">96 alunos (54,55%) encerraram 2025 com autonomia leitora de texto — somando Leitores sem Fluência (22,2%) e com Fluência (32,4%). No início do ano, apenas 40,1% atingiam esse nível. Uma progressão de +14,4 pontos percentuais ao longo do ano.</div>
             <div class="notif-pills">
@@ -937,7 +937,7 @@ body {
           <div class="notif-body">
             <div class="notif-header-row">
               <div class="notif-title">DESTAQUE: 100% de participação nos 3º e 4º Períodos — resultado exemplar de gestão</div>
-              <span class="notif-tag teal">ADESC · Participação</span>
+              <span class="notif-tag teal">ADSEC · Participação</span>
             </div>
             <div class="notif-summary">Após 94,9% de participação na Avaliação Inicial, a escola atingiu 176/176 alunos avaliados nos dois últimos períodos. Participação plena garante que nenhum aluno fique invisível nos dados e é pré-condição para monitoramento real da aprendizagem.</div>
             <div class="notif-pills">
@@ -955,9 +955,9 @@ body {
     </div>
   </div>
 
-  <!-- ===== ADESC ALERTAS ===== -->
-  <div id="adesc-alert">
-    <div class="section-title">🚨 ADESC 2025 — Alertas Críticos em Leitura</div>
+  <!-- ===== ADSEC ALERTAS ===== -->
+  <div id="adsec-alert">
+    <div class="section-title">🚨 ADSEC 2025 — Alertas Críticos em Leitura</div>
 
     <div class="section-block">
       <div class="section-block-header">
@@ -974,7 +974,7 @@ body {
           <div class="notif-body">
             <div class="notif-header-row">
               <div class="notif-title">ALERTA CRÍTICO: 41 alunos encerraram 2025 no nível Iniciante — sem autonomia leitora mínima</div>
-              <span class="notif-tag red">ADESC · Urgente</span>
+              <span class="notif-tag red">ADSEC · Urgente</span>
             </div>
             <div class="notif-summary">21 alunos são Não Leitores e 20 são Leitores de Sílabas — totalizando 41 estudantes (23,3%) sem autonomia leitora ao final de 2025. Se avançarem de ano sem intervenção, o déficit tende a se agravar com a complexidade crescente do currículo.</div>
             <div class="notif-pills">
@@ -1004,7 +1004,7 @@ body {
           <div class="notif-body">
             <div class="notif-header-row">
               <div class="notif-title">ATENÇÃO: Leitores de Sílabas aumentaram no 3º Período — sinal de possível regressão</div>
-              <span class="notif-tag red">ADESC · 2º→3º P.</span>
+              <span class="notif-tag red">ADSEC · 2º→3º P.</span>
             </div>
             <div class="notif-summary">O número de Leitores de Sílabas subiu de 17 (2º Período) para 22 (3º Período). Esse movimento indica que alunos que não eram Não Leitores anteriormente podem ter regredido — um sinal preocupante que precisa ser investigado antes de concluir sobre a causa.</div>
             <div class="notif-pills">
@@ -1026,7 +1026,7 @@ body {
           <div class="notif-body">
             <div class="notif-header-row">
               <div class="notif-title">ATENÇÃO: 30 alunos em nível Intermediário (Palavras + Frases) — zona de alta alavancagem</div>
-              <span class="notif-tag yellow">ADESC · 4º Período</span>
+              <span class="notif-tag yellow">ADSEC · 4º Período</span>
             </div>
             <div class="notif-summary">16 Leitores de Palavras e 14 Leitores de Frases (30 alunos, 17,1%) já têm decodificação básica. São os mais próximos de avançar para a autonomia leitora e representam a maior oportunidade de melhoria rápida nos indicadores de leitura.</div>
             <div class="notif-pills">
@@ -1054,7 +1054,7 @@ body {
       <div class="section-block-header dark">
         <div class="sb-icon" style="background:rgba(240,180,40,.15)">⚡</div>
         <div class="sb-info">
-          <h3>5 ações imediatas baseadas nos dados das Provas Bimestrais e ADESC</h3>
+          <h3>5 ações imediatas baseadas nos dados das Provas Bimestrais e ADSEC</h3>
           <p>Clique em cada prioridade para ver os passos de implementação</p>
         </div>
       </div>
@@ -1137,7 +1137,7 @@ body {
               <div class="notif-title">PRIORIDADE 4: Documentar práticas do 3º Bimestre que geraram o maior salto em Leitura Fluente</div>
               <span class="notif-tag yellow">Próximo mês</span>
             </div>
-            <div class="notif-summary">O crescimento de +17 Leitores Fluentes entre o 2º e 3º Período (maior salto da ADESC 2025) precisa ser investigado. Entender o que aconteceu de diferente nesse bimestre pode revelar as práticas mais eficazes — replicáveis em 2026 para acelerar os resultados desde o início.</div>
+            <div class="notif-summary">O crescimento de +17 Leitores Fluentes entre o 2º e 3º Período (maior salto da ADSEC 2025) precisa ser investigado. Entender o que aconteceu de diferente nesse bimestre pode revelar as práticas mais eficazes — replicáveis em 2026 para acelerar os resultados desde o início.</div>
           </div>
           <button class="notif-toggle">▾</button>
         </div>
@@ -1183,7 +1183,7 @@ body {
 
   <div style="text-align:center; font-size:0.75rem; color:var(--muted2); margin-top:10px; padding-top:18px; border-top:1px solid var(--border);">
     <strong>Adriano Martins EEIEF</strong> · Caucaia-CE · INEP: 23061944 · Região Praia · Modalidade Regular<br>
-    Fonte: SEDUC-CE · Provas Objetivas + Notas Bimestrais 2025 · ADESC 2025 · Avaliação Diagnóstica de Leitura<br>
+    Fonte: SEDUC-CE · Provas Objetivas + Notas Bimestrais 2025 · ADSEC 2025 · Avaliação Diagnóstica de Leitura<br>
     Turma: 5º Ano (Turmas A e B) · 78 alunos avaliados · 100% de participação · Dados consolidados março/2025
   </div>
 
