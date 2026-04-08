@@ -49,6 +49,8 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 .nb-teal{background:var(--teal);color:#fff} .nb-purple{background:#6d28d9;color:#fff}
 .nav-item.recomp{border-top:1px solid #243145;margin-top:4px;padding-top:13px;}
 .sidebar-footer{margin-top:auto;padding:14px 20px;border-top:1px solid #2e3d52;font-size:0.70rem;color:#5a7090;line-height:1.7;}
+.logout-btn{display:block;text-align:center;margin-top:10px;padding:8px;background:rgba(192,57,43,0.18);color:#f5a9a4;border-radius:6px;text-decoration:none;font-size:0.78rem;font-weight:700;letter-spacing:0.05em;transition:background 0.2s;}
+.logout-btn:hover{background:rgba(192,57,43,0.35);}
 
 /* MAIN */
 .main{flex:1;min-width:0;padding:28px 32px 52px;}
@@ -203,20 +205,21 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
   <div class="sidebar-logo">
     <div class="school-badge">Painel do Diretor</div>
     <div class="school-name">Aba <span>Tapeba</span></div>
-    <div class="school-sub">EDEIEF · Caucaia · CE · Municipal</div>
+    <div class="school-sub">EDEIEF · Caucaia · CE · Território Indígena · INEP 23268743</div>
   </div>
 
   <div class="nav-section">Indicadores</div>
-  <a class="nav-item" href="#"><div class="nav-icon" style="background:#ecfeff">🏠</div><span class="nav-label">Visão Geral</span></a>
-  <a class="nav-item" href="#"><div class="nav-icon" style="background:#fdf0ef">🚨</div><span class="nav-label">Resumo Executivo</span><span class="nav-badge nb-red">!</span></a>
-  <a class="nav-item" href="#"><div class="nav-icon" style="background:#fef5e7">🔍</div><span class="nav-label">Busca Ativa</span><span class="nav-badge nb-orange">!</span></a>
-  <a class="nav-item" href="#"><div class="nav-icon" style="background:#edfaf3">📖</div><span class="nav-label">ADSEC 2025</span><span class="nav-badge nb-red">!</span></a>
-  <a class="nav-item" href="#"><div class="nav-icon" style="background:#fef9ec">📊</div><span class="nav-label">Avalie.CE</span><span class="nav-badge nb-red">!</span></a>
-  <a class="nav-item" href="#"><div class="nav-icon" style="background:#eaf2fc">📝</div><span class="nav-label">Bimestrais 2025</span><span class="nav-badge nb-yellow">!</span></a>
-  <a class="nav-item" href="#"><div class="nav-icon" style="background:#fef5e7">📚</div><span class="nav-label">CNCA</span><span class="nav-badge nb-red">!</span></a>
-  <a class="nav-item" href="#"><div class="nav-icon" style="background:#eaf2fc">🎓</div><span class="nav-label">QEdu / Censo</span><span class="nav-badge nb-red">!</span></a>
-  <a class="nav-item recomp" href="#"><div class="nav-icon" style="background:var(--purple-bg)">🎒</div><span class="nav-label" style="color:#c4b5fd">Recomposição</span><span class="nav-badge nb-purple">!</span></a>
-  <a class="nav-item active" href="saeb_aba_tapeba.html"><div class="nav-icon" style="background:#fdf0ef">📋</div><span class="nav-label">SAEB 2023</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="painel.html"><div class="nav-icon" style="background:#ecfeff">🏠</div><span class="nav-label">Visão Geral</span></a>
+  <a class="nav-item" href="resumo_executivo.html"><div class="nav-icon" style="background:#fdf0ef">🚨</div><span class="nav-label">Resumo Executivo</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="busca_ativa.html"><div class="nav-icon" style="background:#fef5e7">🔍</div><span class="nav-label">Busca Ativa</span><span class="nav-badge nb-orange">!</span></a>
+  <a class="nav-item" href="adsec.html"><div class="nav-icon" style="background:#edfaf3">📖</div><span class="nav-label">ADSEC 2025</span><span class="nav-badge nb-green">▲</span></a>
+  <a class="nav-item" href="avalie_ce.html"><div class="nav-icon" style="background:#fef9ec">📊</div><span class="nav-label">Avalie.CE</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="bimestrais.html"><div class="nav-icon" style="background:#eaf2fc">📝</div><span class="nav-label">Bimestrais 2025</span><span class="nav-badge nb-yellow">!</span></a>
+  <a class="nav-item" href="cnca.html"><div class="nav-icon" style="background:#fef5e7">📚</div><span class="nav-label">CNCA</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="qedu.html"><div class="nav-icon" style="background:#eaf2fc">🎓</div><span class="nav-label">QEdu / Censo</span><span class="nav-badge nb-yellow">!</span></a>
+  <a class="nav-item recomp" href="recomposicao.html"><div class="nav-icon" style="background:var(--purple-bg)">🎒</div><span class="nav-label" style="color:#c4b5fd">Recomposição</span><span class="nav-badge nb-purple">!</span></a>
+  <a class="nav-item active" href="saeb.html"><div class="nav-icon" style="background:#fdf0ef">📋</div><span class="nav-label">SAEB 2023</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="spaece.html"><div class="nav-icon" style="background:#fef9ec">📈</div><span class="nav-label">SPAECE 2024</span><span class="nav-badge nb-red">!!</span></a>
 
   <div class="nav-section" style="margin-top:10px">Navegação Interna</div>
   <a class="nav-item" href="#contexto"><div class="nav-icon" style="background:rgba(26,86,160,.12)">📌</div><span class="nav-label">Contexto</span></a>
@@ -228,10 +231,13 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
   <a class="nav-item" href="#mt9"><div class="nav-icon" style="background:rgba(192,57,43,.12)">🔢</div><span class="nav-label">MT – 9º Ano</span><span class="nav-badge nb-red">!</span></a>
   <a class="nav-item" href="#plano"><div class="nav-icon" style="background:rgba(14,116,144,.12)">🗺️</div><span class="nav-label">Plano de Ação</span></a>
 
+  <div class="nav-section" style="margin-top:10px">Sistema</div>
+  <a class="nav-item" href="../index.html"><div class="nav-icon" style="background:#fdf0ef">🏫</div><span class="nav-label">Trocar Escola</span></a>
+
   <div class="sidebar-footer">
-    SAEB 2023 · INEP: 23268743<br>
-    Caucaia · CE · Municipal<br>
-    Boletim da Escola · INEP/MEC
+    <div>Aba Tapeba EDEIEF<br>Caucaia · CE · Território Indígena</div>
+    <div style="margin-top:6px;color:#8097b0">Fonte: SAEB 2023 · INEP/MEC<br>INEP: 23268743</div>
+    <a class="logout-btn" href="../index.html">⬅ Sair do Painel</a>
   </div>
 </aside>
 
