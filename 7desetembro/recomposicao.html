@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recomposição da Aprendizagem · 7 de Setembro EEIEF · Painel do Diretor</title>
+<style>
+:root {
+  --bg: #f0f4f8; --surface: #ffffff; --border: #d8e2ec;
+  --sidebar-bg: #1a2535; --sidebar-hover: #243145; --sidebar-active: rgba(14,116,144,.18);
+  --blue-dark: #1a3a5c; --blue-mid: #1e5799;
+  --teal: #0e7490; --teal-bg: #ecfeff; --teal-bdr: #67e8f9;
+  --text: #0f1e2e; --muted: #4a5e75; --muted2: #8097b0;
+  --red: #c0392b; --red-bg: #fdf0ef; --red-bdr: #f5b7b1; --red-dark: #a93226;
+  --orange: #ca6f1e; --orange-bg: #fef5e7; --orange-bdr: #f8c471;
+  --yellow: #d68910; --yellow-bg: #fef9ec; --yellow-bdr: #f9d98a;
+  --green: #1a7a4a; --green-bg: #edfaf3; --green-bdr: #82e0aa;
+  --blue: #1a56a0; --blue-bg: #eaf2fc; --blue-bdr: #90bce8;
+  --purple: #6d28d9; --purple-bg: #f5f3ff; --purple-bdr: #c4b5fd;
+  --font: 'Tahoma','Verdana','Arial',sans-serif;
+  --radius: 10px; --shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:var(--font); background:var(--bg); color:var(--text); min-height:100vh; display:flex; font-size:0.94rem; line-height:1.6; }
+
+/* SIDEBAR */
+.sidebar { width:264px; min-width:264px; background:var(--sidebar-bg); height:100vh; position:sticky; top:0; display:flex; flex-direction:column; overflow-y:auto; z-index:100; }
+.sidebar::-webkit-scrollbar { width:4px; }
+.sidebar::-webkit-scrollbar-thumb { background:#2e3d52; border-radius:3px; }
+.sidebar-logo { padding:20px 20px 18px; border-bottom:1px solid #2e3d52; background:#111c2a; }
+.school-badge { display:inline-block; background:var(--teal); color:#fff; font-size:0.70rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; padding:3px 10px; border-radius:4px; margin-bottom:9px; }
+.school-name { font-size:1.08rem; font-weight:700; color:#fff; line-height:1.25; margin-bottom:3px; }
+.school-name span { color:#f0b429; }
+.school-sub { font-size:0.70rem; color:#7a90a8; margin-top:3px; letter-spacing:0.05em; }
+.nav-section { padding:12px 20px 5px; font-size:0.68rem; text-transform:uppercase; letter-spacing:0.13em; color:#5a7090; font-weight:700; }
+.nav-item { display:flex; align-items:center; gap:11px; padding:11px 20px; cursor:pointer; border-left:4px solid transparent; transition:all 0.2s; text-decoration:none; color:inherit; }
+.nav-item:hover { background:var(--sidebar-hover); }
+.nav-item.active { background:var(--sidebar-active); border-left-color:#22d3ee; }
+.nav-icon { width:32px; height:32px; border-radius:7px; display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0; }
+.nav-label { font-size:0.85rem; font-weight:600; color:#b8cce0; line-height:1.25; }
+.nav-item.active .nav-label { color:#fff; }
+.nav-badge { margin-left:auto; min-width:22px; height:22px; border-radius:11px; font-size:0.70rem; font-weight:700; display:flex; align-items:center; justify-content:center; padding:0 5px; flex-shrink:0; }
+.nb-red{background:var(--red);color:#fff} .nb-yellow{background:var(--yellow);color:#fff}
+.nb-green{background:var(--green);color:#fff} .nb-orange{background:var(--orange);color:#fff}
+.nb-teal{background:var(--teal);color:#fff} .nb-purple{background:var(--purple);color:#fff}
+.nav-item.recomp { border-top:1px solid #243145; margin-top:4px; padding-top:13px; }
+.legend-block { padding:8px 20px 6px; }
+.leg-row { display:flex; align-items:center; gap:8px; padding:5px 0; font-size:0.74rem; color:#8daabf; border-bottom:1px solid #243145; }
+.leg-row:last-child { border-bottom:none; }
+.leg-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+.sidebar-footer { margin-top:auto; padding:14px 20px; border-top:1px solid #2e3d52; font-size:0.70rem; color:#5a7090; line-height:1.7; }
+
+/* MAIN */
+.main { flex:1; min-width:0; padding:28px 32px 52px; }
+
+/* TOPBAR */
+.topbar { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:26px; flex-wrap:wrap; gap:14px; }
+.topbar-title h2 { font-size:1.35rem; font-weight:700; color:var(--text); }
+.topbar-title p { font-size:0.80rem; color:var(--muted); margin-top:3px; }
+.topbar-stats { display:flex; gap:10px; flex-wrap:wrap; }
+.topbar-stat { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:9px 16px; text-align:center; box-shadow:var(--shadow); }
+.topbar-stat .ts-val { font-size:1.1rem; font-weight:700; display:block; }
+.topbar-stat .ts-lab { font-size:0.68rem; color:var(--muted2); text-transform:uppercase; letter-spacing:0.07em; }
+.ts-red{color:var(--red)} .ts-yellow{color:var(--yellow)} .ts-orange{color:var(--orange)}
+.ts-green{color:var(--green)} .ts-teal{color:var(--teal)} .ts-blue{color:var(--blue)}
+
+/* SECTION TITLE */
+.section-title { font-size:1.05rem; font-weight:700; color:var(--blue-dark); padding-bottom:8px; border-bottom:2px solid var(--border); margin-bottom:18px; margin-top:32px; display:flex; align-items:center; gap:10px; }
+.section-title:first-of-type { margin-top:0; }
+
+/* ALERT BANNERS */
+.alert-banner { border-radius:var(--radius); padding:13px 17px; margin-bottom:11px; border-left:5px solid; font-size:0.86rem; display:flex; align-items:flex-start; gap:11px; }
+.alert-banner.danger  { background:var(--red-bg);    border-color:var(--red);    color:#7a1a0e; }
+.alert-banner.warning { background:var(--yellow-bg); border-color:var(--yellow); color:#7a3e05; }
+.alert-banner.success { background:var(--green-bg);  border-color:var(--green);  color:#155234; }
+.alert-banner.info    { background:var(--teal-bg);   border-color:var(--teal);   color:#0e4f5e; }
+.alert-banner .ab-icon { font-size:1.3rem; flex-shrink:0; margin-top:1px; }
+.alert-title { font-weight:700; margin-bottom:3px; }
+.alert-body  { font-size:0.80rem; line-height:1.6; }
+
+/* KPI CARDS */
+.kpi4 { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:20px; }
+.kpi3 { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:20px; }
+.kc { background:var(--surface); border:1.5px solid var(--border); border-radius:var(--radius); padding:16px 18px; box-shadow:var(--shadow); text-align:center; }
+.kc .kc-v { font-size:2rem; font-weight:700; line-height:1.1; display:block; }
+.kc .kc-l { font-size:0.75rem; font-weight:700; margin-top:4px; }
+.kc .kc-d { font-size:0.69rem; color:var(--muted2); margin-top:3px; }
+.kc.cr { border-color:var(--red-bdr);    background:var(--red-bg); }
+.kc.cy { border-color:var(--yellow-bdr); background:var(--yellow-bg); }
+.kc.cg { border-color:var(--green-bdr);  background:var(--green-bg); }
+.kc.ct { border-color:var(--teal-bdr);   background:var(--teal-bg); }
+.kc.co { border-color:var(--orange-bdr); background:var(--orange-bg); }
+.kc.cp { border-color:var(--purple-bdr); background:var(--purple-bg); }
+
+/* SEMÁFORO */
+.semaforo-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:20px; }
+.sem-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:16px; box-shadow:var(--shadow); position:relative; }
+.sem-card::after { content:''; position:absolute; top:0; left:0; right:0; height:4px; border-radius:var(--radius) var(--radius) 0 0; }
+.sem-card.s-red::after    { background:var(--red); }
+.sem-card.s-yellow::after { background:var(--yellow); }
+.sem-card.s-green::after  { background:var(--green); }
+.sem-card.s-teal::after   { background:var(--teal); }
+.sem-card.s-orange::after { background:var(--orange); }
+.sem-ano { font-size:0.68rem; font-weight:700; text-transform:uppercase; color:var(--muted2); letter-spacing:.08em; margin-bottom:6px; }
+.sem-title { font-size:0.86rem; font-weight:700; color:var(--blue-dark); margin-bottom:10px; line-height:1.3; }
+.sem-bars { display:flex; flex-direction:column; gap:5px; }
+.sem-row { display:flex; align-items:center; gap:7px; font-size:0.72rem; }
+.sem-lbl { width:80px; color:var(--muted); flex-shrink:0; }
+.sem-bar { flex:1; height:8px; background:#e8eef6; border-radius:4px; overflow:hidden; }
+.sem-fill { height:100%; border-radius:4px; }
+.sem-pct { width:32px; text-align:right; font-weight:700; flex-shrink:0; font-size:0.70rem; }
+
+/* TABS */
+.tabs { display:flex; gap:0; border-bottom:2px solid var(--border); margin-bottom:18px; overflow-x:auto; }
+.tab-btn { padding:9px 20px; font-size:0.82rem; font-weight:700; color:var(--muted); border:none; background:none; cursor:pointer; border-bottom:3px solid transparent; margin-bottom:-2px; white-space:nowrap; transition:all 0.2s; }
+.tab-btn.active { color:var(--teal); border-bottom-color:var(--teal); }
+.tab-btn:hover { color:var(--blue-dark); }
+.tab-pane { display:none; }
+.tab-pane.active { display:block; }
+
+/* DATA TABLE */
+.data-table-wrap { background:var(--surface); border-radius:var(--radius); border:1px solid var(--border); box-shadow:var(--shadow); overflow:hidden; margin-bottom:18px; }
+.table-header { padding:12px 16px 10px; border-bottom:1px solid var(--border); background:#fafcff; }
+.table-header h3 { font-size:0.90rem; font-weight:700; color:var(--blue-dark); }
+.table-header p  { font-size:0.73rem; color:var(--muted2); }
+.table-scroll { overflow-x:auto; }
+.data-table { width:100%; border-collapse:collapse; font-size:0.80rem; }
+.data-table thead tr { background:linear-gradient(135deg,#1a3a5c,#1e5799); color:#fff; }
+.data-table th { padding:9px 12px; text-align:left; font-size:0.70rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; white-space:nowrap; }
+.data-table td { padding:8px 12px; border-bottom:1px solid var(--border); vertical-align:middle; }
+.data-table tbody tr:last-child td { border-bottom:none; }
+.data-table tbody tr:hover { background:#f8fafc; }
+.nivel-badge { font-size:0.67rem; font-weight:700; padding:2px 8px; border-radius:20px; display:inline-block; }
+.nivel-badge.nl   { background:#fdecea; color:var(--red-dark); border:1px solid var(--red-bdr); }
+.nivel-badge.int  { background:var(--yellow-bg); color:#7d5a10; border:1px solid var(--yellow-bdr); }
+.nivel-badge.adeq { background:var(--green-bg); color:#155234; border:1px solid var(--green-bdr); }
+.nivel-badge.nd   { background:#f3f4f6; color:#6b7280; border:1px solid #e5e7eb; }
+
+/* SECTION BLOCK / NOTIF */
+.section-block { margin-bottom:24px; }
+.section-block-header { display:flex; align-items:center; gap:12px; padding:14px 18px; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius) var(--radius) 0 0; border-bottom:3px solid var(--border); box-shadow:var(--shadow); }
+.section-block-header.dark { background:var(--sidebar-bg); border-color:#2e3d52; }
+.sb-icon { width:38px; height:38px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
+.sb-info h3 { font-size:0.98rem; font-weight:700; color:var(--blue-dark); line-height:1.3; }
+.sb-info p  { font-size:0.75rem; color:var(--muted); margin-top:2px; }
+.section-block-header.dark .sb-info h3 { color:#fff; }
+.section-block-header.dark .sb-info p  { color:#7a90a8; }
+.notif-card { background:var(--surface); border:1px solid var(--border); border-top:none; cursor:pointer; transition:background 0.15s; overflow:hidden; }
+.notif-card:last-child { border-radius:0 0 var(--radius) var(--radius); }
+.notif-card:hover { background:#f5f8ff; }
+.notif-card.priority-red    { border-left:5px solid var(--red); }
+.notif-card.priority-yellow { border-left:5px solid var(--yellow); }
+.notif-card.priority-green  { border-left:5px solid var(--green); }
+.notif-card.priority-teal   { border-left:5px solid var(--teal); }
+.notif-card.priority-orange { border-left:5px solid var(--orange); }
+.notif-top { display:flex; align-items:flex-start; gap:14px; padding:16px 18px; }
+.notif-avatar { width:38px; height:38px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
+.notif-avatar.red    { background:var(--red-bg); }
+.notif-avatar.yellow { background:var(--yellow-bg); }
+.notif-avatar.green  { background:var(--green-bg); }
+.notif-avatar.teal   { background:var(--teal-bg); }
+.notif-avatar.orange { background:var(--orange-bg); }
+.notif-body { flex:1; min-width:0; }
+.notif-header-row { display:flex; align-items:flex-start; gap:10px; flex-wrap:wrap; margin-bottom:5px; }
+.notif-title { font-weight:700; font-size:0.88rem; line-height:1.35; flex:1; color:var(--text); }
+.notif-source { font-size:0.68rem; font-weight:700; padding:2px 9px; border-radius:20px; background:#e8eef6; color:var(--muted); white-space:nowrap; flex-shrink:0; }
+.notif-summary { font-size:0.82rem; color:var(--muted); line-height:1.6; margin-bottom:8px; }
+.notif-metrics { display:flex; flex-wrap:wrap; gap:7px; margin-top:8px; }
+.metric-pill { display:flex; align-items:center; gap:5px; padding:3px 10px; border-radius:20px; font-size:0.76rem; font-weight:700; }
+.metric-pill.red    { background:var(--red-bg);    color:var(--red-dark); border:1px solid var(--red-bdr); }
+.metric-pill.yellow { background:var(--yellow-bg); color:#7d5a10; border:1px solid var(--yellow-bdr); }
+.metric-pill.green  { background:var(--green-bg);  color:#155234; border:1px solid var(--green-bdr); }
+.metric-pill.teal   { background:var(--teal-bg);   color:#0e4f5e; border:1px solid var(--teal-bdr); }
+.metric-pill.orange { background:var(--orange-bg); color:#7e4a10; border:1px solid var(--orange-bdr); }
+.metric-pill.blue   { background:var(--blue-bg);   color:#1a3a6a; border:1px solid var(--blue-bdr); }
+.dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.notif-toggle { background:none; border:none; cursor:pointer; font-size:1.2rem; color:var(--muted2); flex-shrink:0; padding:3px 5px; transition:transform 0.2s; align-self:center; }
+.notif-card.open .notif-toggle { transform:rotate(180deg); }
+.notif-expand { max-height:0; overflow:hidden; transition:max-height 0.35s ease; background:#f4f8ff; padding:0 18px; }
+.notif-card.open .notif-expand { max-height:900px; border-top:1px solid var(--border); padding:16px 18px; }
+.action-tag { display:inline-block; background:#1a2535; color:#f0b429; font-size:0.68rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:3px 10px; border-radius:4px; margin-bottom:7px; }
+.action-text { font-size:0.82rem; color:#2c3e50; line-height:1.85; }
+.expand-tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:9px; }
+.expand-tag { background:#dde4ef; color:#3d5270; font-size:0.68rem; font-weight:700; padding:2px 9px; border-radius:20px; }
+
+/* PROG BARS */
+.prog-wrap { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:18px 20px; margin-bottom:16px; }
+.prog-row { display:flex; align-items:center; gap:12px; margin-bottom:10px; }
+.prog-row:last-child { margin-bottom:0; }
+.prog-label { font-size:0.78rem; color:var(--muted); width:160px; flex-shrink:0; font-weight:600; }
+.prog-bar-wrap { flex:1; background:#e8eef6; border-radius:5px; height:12px; overflow:hidden; }
+.prog-fill { height:100%; border-radius:5px; }
+.prog-fill.def  { background:linear-gradient(90deg,#e74c3c,#c0392b); }
+.prog-fill.int  { background:linear-gradient(90deg,#f39c12,#d68910); }
+.prog-fill.adeq { background:linear-gradient(90deg,#27ae60,#1a7a4a); }
+.prog-fill.blue { background:linear-gradient(90deg,#1a56a0,#1e5799); }
+.prog-fill.teal { background:linear-gradient(90deg,#0e7490,#0c5f78); }
+.prog-fill.orange { background:linear-gradient(90deg,#ca6f1e,#a85c10); }
+.prog-pct { font-size:0.72rem; font-weight:700; color:var(--muted); width:52px; flex-shrink:0; text-align:right; }
+
+/* PLAN TABLE */
+.plan-table { width:100%; border-collapse:collapse; font-size:0.80rem; }
+.plan-table th { background:linear-gradient(135deg,#1a3a5c,#1e5799); color:#fff; padding:9px 12px; text-align:left; font-size:0.70rem; text-transform:uppercase; letter-spacing:.08em; }
+.plan-table td { padding:8px 12px; border-bottom:1px solid var(--border); vertical-align:top; }
+.plan-table tr:last-child td { border-bottom:none; }
+.plan-table tr:hover td { background:#f8fafc; }
+.pill { font-size:0.67rem; font-weight:700; padding:2px 8px; border-radius:20px; display:inline-block; white-space:nowrap; }
+.pill-urgente { background:var(--red-bg); color:var(--red-dark); border:1px solid var(--red-bdr); }
+.pill-atencao { background:var(--yellow-bg); color:#7d5a10; border:1px solid var(--yellow-bdr); }
+.pill-plano   { background:var(--blue-bg); color:#1a3a6a; border:1px solid var(--blue-bdr); }
+.pill-melhoria{ background:var(--green-bg); color:#155234; border:1px solid var(--green-bdr); }
+
+@media (max-width:900px) {
+  .sidebar { display:none; }
+  .main { padding:18px 16px 40px; }
+  .kpi4,.kpi3,.semaforo-grid { grid-template-columns:1fr 1fr; }
+}
+@media (max-width:480px) {
+  .kpi4,.kpi3,.semaforo-grid { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="school-badge">Painel do Diretor</div>
+    <div class="school-name">7 de <span>Setembro</span></div>
+    <div class="school-sub">EEIEF · Caucaia · CE · INEP: 23063726</div>
+  </div>
+
+  <div class="nav-section">Indicadores</div>
+  <a class="nav-item" href="painel.html"><div class="nav-icon" style="background:#ecfeff">🏠</div><span class="nav-label">Visão Geral</span></a>
+  <a class="nav-item" href="resumo_executivo.html"><div class="nav-icon" style="background:#fdf0ef">🚨</div><span class="nav-label">Resumo Executivo</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="busca_ativa.html"><div class="nav-icon" style="background:#fef5e7">🔍</div><span class="nav-label">Busca Ativa</span><span class="nav-badge nb-orange">!</span></a>
+  <a class="nav-item" href="adsec.html"><div class="nav-icon" style="background:#edfaf3">📖</div><span class="nav-label">ADSEC 2025</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="avalie_ce.html"><div class="nav-icon" style="background:#fef9ec">📊</div><span class="nav-label">Avalie.CE</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="bimestrais.html"><div class="nav-icon" style="background:#eaf2fc">📝</div><span class="nav-label">Bimestrais 2025</span><span class="nav-badge nb-yellow">!</span></a>
+  <a class="nav-item" href="cnca.html"><div class="nav-icon" style="background:#fef5e7">📚</div><span class="nav-label">CNCA</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="qedu.html"><div class="nav-icon" style="background:#eaf2fc">🎓</div><span class="nav-label">QEdu / Censo</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item active recomp" href="recomposicao.html"><div class="nav-icon" style="background:var(--purple-bg)">🎒</div><span class="nav-label" style="color:#c4b5fd">Recomposição</span><span class="nav-badge nb-purple">!</span></a>
+  <a class="nav-item" href="saeb.html"><div class="nav-icon" style="background:#fdf0ef">📋</div><span class="nav-label">SAEB 2023</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="spaece.html"><div class="nav-icon" style="background:#fef9ec">📈</div><span class="nav-label">SPAECE 2024</span><span class="nav-badge nb-red">!!</span></a>
+
+  <div class="nav-section" style="margin-top:10px">Navegação Interna</div>
+  <a class="nav-item" href="#visao"><div class="nav-icon" style="background:rgba(14,116,144,.15)">📊</div><span class="nav-label">Visão Geral</span></a>
+  <a class="nav-item" href="#semaforo"><div class="nav-icon" style="background:rgba(192,57,43,.12)">🚦</div><span class="nav-label">Semáforo por Turma</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="#detalhes"><div class="nav-icon" style="background:rgba(202,111,30,.12)">📋</div><span class="nav-label">Dados por Componente</span></a>
+  <a class="nav-item" href="#alertas"><div class="nav-icon" style="background:rgba(214,137,16,.12)">🔔</div><span class="nav-label">Alertas e Prioridades</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="#acoes"><div class="nav-icon" style="background:rgba(26,122,74,.12)">⚡</div><span class="nav-label">Plano de Ação</span></a>
+
+  <div class="nav-section" style="margin-top:10px">Legenda — Níveis</div>
+  <div class="legend-block">
+    <div class="leg-row"><div class="leg-dot" style="background:var(--red)"></div>Defasagem (Abaixo do Básico)</div>
+    <div class="leg-row"><div class="leg-dot" style="background:var(--yellow)"></div>Intermediário (Básico)</div>
+    <div class="leg-row"><div class="leg-dot" style="background:var(--green)"></div>Adequado (Proficiente+)</div>
+    <div class="leg-row"><div class="leg-dot" style="background:var(--muted2)"></div>Sem dados / Ausentes</div>
+  </div>
+
+  <div class="nav-section" style="margin-top:10px">Sistema</div>
+  <a class="nav-item" href="../index.html"><div class="nav-icon" style="background:#fdf0ef">🏫</div><span class="nav-label">Trocar Escola</span></a>
+
+  <div class="sidebar-footer">
+    <div>7 de Setembro EEIEF<br>Caucaia · CE · INEP: 23063726</div>
+    <div style="margin-top:6px;color:#8097b0">Fonte: Relatório de Acompanhamento<br>Recomposição 2025 · SEDUC-CE</div>
+    <div style="margin-top:4px;color:#8097b0">6º, 7º e 9º Ano · LP + MT</div>
+  </div>
+</aside>
+
+<main class="main">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-title">
+      <h2>🎒 Recomposição da Aprendizagem · 7 de Setembro EEIEF</h2>
+      <p>Relatório de Acompanhamento · Português e Matemática · 6º (A/B), 7º (A/B/C) e 9º (A/B) Anos · Caucaia-CE</p>
+    </div>
+    <div class="topbar-stats">
+      <div class="topbar-stat"><span class="ts-val ts-red">95%</span><span class="ts-lab">Def. 9ºA MT</span></div>
+      <div class="topbar-stat"><span class="ts-val ts-red">85%</span><span class="ts-lab">Def. 7ºA LP</span></div>
+      <div class="topbar-stat"><span class="ts-val ts-green">57%</span><span class="ts-lab">Adeq. 6ºA LP</span></div>
+      <div class="topbar-stat"><span class="ts-val ts-teal">7 Turmas</span><span class="ts-lab">Avaliadas</span></div>
+    </div>
+  </div>
+
+  <!-- VISÃO GERAL -->
+  <div id="visao">
+    <div class="section-title">📊 Visão Geral — Recomposição da Aprendizagem 2025</div>
+
+    <div class="alert-banner danger">
+      <span class="ab-icon">🚨</span>
+      <div>
+        <div class="alert-title">Colapso em MT no 9º Ano — 95% e 91% de Defasagem com 0% de Adequado — Emergência Pedagógica</div>
+        <div class="alert-body">O <strong>9º Ano A registra 95% de defasagem em MT com 0% de adequado</strong> e o <strong>9º Ano B chega a 91% de defasagem em MT com 0% de adequado</strong> — ambos encerrando o Ensino Fundamental sem qualquer competência matemática consolidada no nível adequado. Os dois 9º Anos são avaliados pelo SPAECE 2025, tornando a situação duplamente crítica: pedagógica e institucional.</div>
+      </div>
+    </div>
+
+    <div class="alert-banner danger">
+      <span class="ab-icon">⚠️</span>
+      <div>
+        <div class="alert-title">7º Ano em colapso generalizado em LP — três turmas com 76% a 85% de defasagem</div>
+        <div class="alert-body">Os três 7º Anos apresentam situação crítica em Língua Portuguesa: <strong>7ºA com 85% de defasagem e 0% de adequado</strong>, <strong>7ºB com 76% de defasagem e 8% de adequado</strong> e <strong>7ºC com 81% de defasagem e apenas 4% de adequado</strong>. O padrão uniforme de colapso em LP no 7º Ano indica um problema estrutural que ultrapassa o nível da turma individual — exige análise do currículo e das práticas pedagógicas de todo o segmento.</div>
+      </div>
+    </div>
+
+    <div class="alert-banner warning">
+      <span class="ab-icon">📊</span>
+      <div>
+        <div class="alert-title">6º Ano: assimetria entre LP e MT — LP com destaque, MT com déficit significativo</div>
+        <div class="alert-body">No 6º Ano, o <strong>6ºA tem 57% de adequado em LP</strong> (melhor resultado da escola) e o <strong>6ºB tem 47% de adequado em LP</strong> — desempenho positivo no componente. Porém, em MT o quadro se inverte: <strong>6ºA com 60% de defasagem</strong> e <strong>6ºB com 31% de defasagem</strong>. O 6ºB é a turma com melhor equilíbrio entre os dois componentes da escola.</div>
+      </div>
+    </div>
+
+    <div class="alert-banner success">
+      <span class="ab-icon">✅</span>
+      <div>
+        <div class="alert-title">6ºA LP (57%) e 6ºB LP (47%) são as referências positivas — práticas a serem investigadas e disseminadas</div>
+        <div class="alert-body">Em meio ao cenário crítico generalizado, o <strong>6º Ano se destaca em LP</strong> com o 6ºA atingindo 57% de adequado e o 6ºB com 47%. Esses professores têm metodologias que funcionam e devem ser mapeadas, investigadas e disseminadas para as turmas de 7º e 9º Anos, que apresentam colapso em LP.</div>
+      </div>
+    </div>
+
+    <!-- KPIs -->
+    <div class="kpi4" style="margin-top:20px">
+      <div class="kc cp">
+        <span class="kc-v" style="color:var(--purple)">7</span>
+        <div class="kc-l" style="color:#4c1d95">Turmas Avaliadas</div>
+        <div class="kc-d">6ºA/B · 7ºA/B/C · 9ºA/B</div>
+      </div>
+      <div class="kc cr">
+        <span class="kc-v" style="color:var(--red)">95%</span>
+        <div class="kc-l" style="color:var(--red-dark)">Maior Defasagem MT</div>
+        <div class="kc-d">9º Ano A · 0% Adequado</div>
+      </div>
+      <div class="kc cr">
+        <span class="kc-v" style="color:var(--red)">85%</span>
+        <div class="kc-l" style="color:var(--red-dark)">Maior Defasagem LP</div>
+        <div class="kc-d">7º Ano A · 0% Adequado</div>
+      </div>
+      <div class="kc cg">
+        <span class="kc-v" style="color:var(--green)">57%</span>
+        <div class="kc-l" style="color:#155234">Melhor Resultado</div>
+        <div class="kc-d">6º Ano A · LP · Adequado</div>
+      </div>
+    </div>
+
+    <!-- Participação -->
+    <div class="prog-wrap">
+      <h4 style="font-size:0.88rem;font-weight:700;color:var(--blue-dark);margin-bottom:14px">👥 Participação na Avaliação por Turma e Componente</h4>
+      <div class="prog-row"><div class="prog-label">6ºA · LP</div><div class="prog-bar-wrap"><div class="prog-fill blue" style="width:80%"></div></div><div class="prog-pct" style="color:var(--blue)">80%</div></div>
+      <div class="prog-row"><div class="prog-label">6ºA · MT</div><div class="prog-bar-wrap"><div class="prog-fill teal" style="width:86%"></div></div><div class="prog-pct" style="color:var(--teal)">86%</div></div>
+      <div class="prog-row"><div class="prog-label">6ºB · LP</div><div class="prog-bar-wrap"><div class="prog-fill blue" style="width:84%"></div></div><div class="prog-pct" style="color:var(--blue)">84%</div></div>
+      <div class="prog-row"><div class="prog-label">6ºB · MT</div><div class="prog-bar-wrap"><div class="prog-fill teal" style="width:68%"></div></div><div class="prog-pct" style="color:var(--orange)">68% ⚠</div></div>
+      <div class="prog-row"><div class="prog-label">7ºA · LP</div><div class="prog-bar-wrap"><div class="prog-fill blue" style="width:89%"></div></div><div class="prog-pct" style="color:var(--blue)">89%</div></div>
+      <div class="prog-row"><div class="prog-label">7ºA · MT</div><div class="prog-bar-wrap"><div class="prog-fill teal" style="width:86%"></div></div><div class="prog-pct" style="color:var(--teal)">86%</div></div>
+      <div class="prog-row"><div class="prog-label">7ºB · LP</div><div class="prog-bar-wrap"><div class="prog-fill blue" style="width:68%"></div></div><div class="prog-pct" style="color:var(--orange)">68% ⚠</div></div>
+      <div class="prog-row"><div class="prog-label">7ºB · MT</div><div class="prog-bar-wrap"><div class="prog-fill teal" style="width:84%"></div></div><div class="prog-pct" style="color:var(--teal)">84%</div></div>
+      <div class="prog-row"><div class="prog-label">7ºC · LP</div><div class="prog-bar-wrap"><div class="prog-fill blue" style="width:79%"></div></div><div class="prog-pct" style="color:var(--blue)">79%</div></div>
+      <div class="prog-row"><div class="prog-label">7ºC · MT</div><div class="prog-bar-wrap"><div class="prog-fill teal" style="width:79%"></div></div><div class="prog-pct" style="color:var(--teal)">79%</div></div>
+      <div class="prog-row"><div class="prog-label">9ºA · LP</div><div class="prog-bar-wrap"><div class="prog-fill blue" style="width:84%"></div></div><div class="prog-pct" style="color:var(--blue)">84%</div></div>
+      <div class="prog-row"><div class="prog-label">9ºA · MT</div><div class="prog-bar-wrap"><div class="prog-fill teal" style="width:97%"></div></div><div class="prog-pct" style="color:var(--teal)">97%</div></div>
+      <div class="prog-row"><div class="prog-label">9ºB · LP</div><div class="prog-bar-wrap"><div class="prog-fill blue" style="width:79%"></div></div><div class="prog-pct" style="color:var(--blue)">79%</div></div>
+      <div class="prog-row"><div class="prog-label">9ºB · MT</div><div class="prog-bar-wrap"><div class="prog-fill teal" style="width:85%"></div></div><div class="prog-pct" style="color:var(--teal)">85%</div></div>
+    </div>
+  </div>
+
+  <!-- SEMÁFORO -->
+  <div id="semaforo">
+    <div class="section-title">🚦 Semáforo Pedagógico — Situação por Turma e Componente</div>
+
+    <!-- 6º ANO -->
+    <h4 style="font-size:0.86rem;font-weight:700;color:var(--blue-dark);margin-bottom:12px;margin-top:4px">📚 6º Ano — Duas Turmas</h4>
+    <div class="semaforo-grid">
+      <!-- 6A LP -->
+      <div class="sem-card s-green">
+        <div class="sem-ano">6º Ano A · Língua Portuguesa</div>
+        <div class="sem-title">⭐ Destaque — 57% de Adequado</div>
+        <div class="sem-bars">
+          <div class="sem-row"><div class="sem-lbl">Defasagem</div><div class="sem-bar"><div class="sem-fill" style="width:21%;background:var(--red)"></div></div><div class="sem-pct" style="color:var(--red)">21%</div></div>
+          <div class="sem-row"><div class="sem-lbl">Intermediário</div><div class="sem-bar"><div class="sem-fill" style="width:21%;background:var(--yellow)"></div></div><div class="sem-pct" style="color:var(--yellow)">21%</div></div>
+          <div class="sem-row"><div class="sem-lbl">Adequado</div><div class="sem-bar"><div class="sem-fill" style="width:57%;background:var(--green)"></div></div><div class="sem-pct" style="color:var(--green)">57%</div></div>
+        </div>
+      </div>
+      <!-- 6A MT -->
+      <div class="sem-card s-red">
+        <div class="sem-ano">6º Ano A · Matemática</div>
+        <div class="sem-title">🚨 Crítico — 60% de Defasagem, 10% Adequado</div>
+        <div class="sem-bars">
+          <div class="sem-row"><div class="sem-lbl">Defasagem</div><div class="sem-bar"><div class="sem-fill" style="width:60%;background:var(--red)"></div></div><div class="sem-pct" style="color:var(--red)">60%</div></div>
+          <div class="sem-row"><div class="sem-lbl">Intermediário</div><div class="sem-bar"><div class="sem-fill" style="width:30%;background:var(--yellow)"></div></div><div class="sem-pct" style="color:var(--yellow)">30%</div></div>
+          <div class="sem-row"><div class="sem-lbl">Adequado</div><div class="sem-bar"><div class="sem-fill" style="width:10%;background:var(--green)"></div></div><div class="sem-pct" style="color:var(--green)">10%</div></div>
+        </div>
+      </div>
+      <!-- 6B LP -->
+      <div class="sem-card s-green">
+        <div class="sem-ano">6º Ano B · Língua Portuguesa</div>
+        <div class="sem-title">✅ Positivo — 47% de Adequado</div>
+        <div class="sem-bars">
+          <div class="sem-row"><div class="sem-lbl">Defasagem</div><div class="sem-bar"><div class="sem-fill" style="width:19%;background:var(--red)"></div></div><div class="sem-pct" style="color:var(--red)">19%</div></div>
+          <div class="sem-row"><div class="sem-lbl">Intermediário</div><div class="sem-bar"><div class="sem-fill" style="width:34%;background:var(--yellow)"></div></div><div class="sem-pct" style="color:var(--yellow)">34%</div></div>
+          <div class="sem-row"><div class="sem-lbl">Adequado</div><div class="sem-bar"><div class="sem-fill" style="width:47%;background:var(--green)"></div></div><div class="sem-pct" style="color:var(--green)">47%</div></div>
+        </div>
+      </div>
+      <!-- 6B MT -->
+      <div class="sem-card s-yellow">
+        <div class="sem-ano">6º Ano B · Matemática · Part.: 68%</div>
+        <div class="sem-title">⚠️ Atenção — 31% Defasagem, 31% Adequado</div>
+        <div class="sem-bars">
+          <div class="sem-row"><div class="sem-lbl">Defasagem</div><div class="sem-bar"><div class="sem-fill" style="width:31%;background:var(--red)"></div></div><div class="sem-pct" style="color:var(--red)">31%</div></div>
+          <div class="sem-row"><div class="sem-lbl">Intermediário</div><div class="sem-bar"><div class="sem-fill" style="width:38%;background:var(--yellow)"></div></div><div class="sem-pct" style="color:var(--yellow)">38%</div></div>
+          <div class="sem-row"><div class="sem-lbl">Adequado</div><div class="sem-bar"><div class="sem-fill" style="width:31%;background:var(--green)"></div></div><div class="sem-pct" style="color:var(--green)">31%</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7º ANO -->
+    <h4 style="font-size:0.86rem;font-weight:700;color:var(--blue-dark);margin-bottom:12px;margin-top:24px">📚 7º Ano — Três Turmas</h4>
+    <div class="semaforo-grid">
+      <!-- 7A LP -->
+      <div class="sem-card s-red">
+        <div class="sem-ano">7º Ano A · Língua Portuguesa</div>
+        <div class="sem-title">🚨 Emergência — 85% Defasagem, 0% Adequado</div>
+        <div class="sem-bars">
+          <div class="sem-row"><div class="sem-lbl">Defasagem</div><div class="sem-bar"><div class="sem-fill" style="width:85%;background:var(--red)"></div></div><div class="sem-pct" style="color:var(--red)">85%</div></div>
+          <div class="sem-row"><div class="sem-lbl">Intermediário</div><div class="sem-bar"><div class="sem-fill" style="width:15%;background:var(--yellow)"></div></div><div class="sem-pct" style="color:var(--yellow)">15%</div></div>
+          <div class="sem-row"><div class="sem-lbl">Adequado</div><div class="sem-bar"><div class="sem-fill" style="width:1%;background:var(--green)"></div></div><div class="sem-pct" style="color:var(--muted2)">0%</div></div>
+        </div>
+      </div>
+      <!-- 7A MT -->
+      <div class="sem-card s-yellow">
+        <div class="sem-ano">7º Ano A · Matemática</div>
+        <div class="sem-title">⚠️ Atenção — 25% Defasagem, 31% Adequado</div>
+        <div class="sem-bars">
+          <div class="sem-row"><div class="sem-lbl">Defasagem</div><div class="sem-bar"><div class="sem-fill" style="width:25%;background:var(--red)"></div></div><div class="sem-pct" style="color:var(--red)">25%</div></div>
+          <div class="sem-row"><div class="sem-lbl">Intermediário</div><div class="sem-bar"><div class="sem-fill" style="width:44%;background:var(--yellow)"></div></div><div class="sem-pct" style="color:var(--yellow)">44%</div></div>
+          <div class="sem-row"><div class="sem-lbl">Adequado</div><div class="sem-bar"><div class="sem-fill" style="width:31%;background:var(--green)"></div></div><div class="sem-pct" style="color:var(--green)">31%</div></div>
+        </div>
+      </div>
+      <!-- 7B LP -->
+      <div class="sem-card s-red">
+        <div class="sem-ano">7º Ano B · Língua Portuguesa · Part.: 68%</div>
+        <div class="sem-title">🚨 Crítico — 76% Defasagem, 8% Adequado</div>
+        <div class="sem-bars">
+          <div class="sem-row"><div class="sem-lbl">Defasagem</div><div class="sem-bar"><div class="sem-fill" style="width:76%;background:var(--red)"></div></div><div class="sem-pct" style="color:var(--red)">76%</div></div>
+          <div class="sem-row"><div class="sem-lbl">Intermediário</div><div class="sem-bar"><div class="sem-fill" style="width:16%;background:var(--yellow)"></div></div><div class="sem-pct" style="color:var(--yellow)">16%</div></div>
+          <div class="sem-row"><div class="sem-lbl">Adequado</div><div class="sem-bar"><div class="sem-fill" style="width:8%;background:var(--green)"></div></div><div class="sem-pct" style="color:var(--green)">8%</div></div>
+        </div>
+      </div>
+      <!-- 7B MT -->
+      <div class="sem-card s-yellow">
+        <div class="sem-ano">7º Ano B · Matemática</div>
+        <div class="sem-title">⚠️ Atenção — 45% Defasagem, 13% Adequado</div>
+        <div class="sem-bars">
+          <div class="sem-row"><div class="sem-lbl">Defasagem</div><div class="sem-bar"><div class="sem-fill" style="width:45%;background:var(--red)"></div></div><div class="sem-pct" style="color:var(--red)">45%</div></div>
+          <div class="sem-row"><div class="sem-lbl">Intermediário</div><div class="sem-bar"><div class="sem-fill" style="width:42%;background:var(--yellow)"></div></div><div class="sem-pct" style="color:var(--yellow)">42%</div></div>
+          <div class="sem-row"><div class="sem-lbl">Adequado</div><div class="sem-bar"><div class="sem-fill" style="width:13%;background:var(--green)"></div></div><div class="sem-pct" style="color:var(--green)">13%</div></div>
+        </div>
+      </div>
+      <!-- 7C LP -->
+      <div class="sem-card s-red">
+        <div class="sem-ano">7º Ano C · Língua Portuguesa</div>
+        <div class="sem-title">🚨 Crítico — 81% Defasagem, 4% Adequado</div>
+        <div class="sem-bars">
+          <div class="sem-row"><div class="sem-lbl">Defasagem</div><div class="sem-bar"><div class="sem-fill" style="width:81%;background:var(--red)"></div></div><div class="sem-pct" style="color:var(--red)">81%</div></div>
+          <div class="sem-row"><div class="sem-lbl">Intermediário</div><div class="sem-bar"><div class="sem-fill" style="width:15%;background:var(--yellow)"></div></div><div class="sem-pct" style="color:var(--yellow)">15%</div></div>
+          <div class="sem-row"><div class="sem-lbl">Adequado</div><div class="sem-bar"><div class="sem-fill" style="width:4%;background:var(--green)"></div></div><div class="sem-pct" style="color:var(--green)">4%</div></div>
+        </div>
+      </div>
+      <!-- 7C MT -->
+      <div class="sem-card s-yellow">
+        <div class="sem-ano">7º Ano C · Matemática</div>
+        <div class="sem-title">⚠️ Atenção — 30% Defasagem, 30% Adequado</div>
+        <div class="sem-bars">
+          <div class="sem-row"><div class="sem-lbl">Defasagem</div><div class="sem-bar"><div class="sem-fill" style="width:30%;background:var(--red)"></div></div><div class="sem-pct" style="color:var(--red)">30%</div></div>
+          <div class="sem-row"><div class="sem-lbl">Intermediário</div><div class="sem-bar"><div class="sem-fill" style="width:41%;background:var(--yellow)"></div></div><div class="sem-pct" style="color:var(--yellow)">41%</div></div>
+          <div class="sem-row"><div class="sem-lbl">Adequado</div><div class="sem-bar"><div class="sem-fill" style="width:30%;background:var(--green)"></div></div><div class="sem-pct" style="color:var(--green)">30%</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9º ANO -->
+    <h4 style="font-size:0.86rem;font-weight:700;color:var(--blue-dark);margin-bottom:12px;margin-top:24px">📚 9º Ano — Duas Turmas</h4>
+    <div class="semaforo-grid">
+      <!-- 9A LP -->
+      <div class="sem-card s-red">
+        <div class="sem-ano">9º Ano A · Língua Portuguesa</div>
+        <div class="sem-title">🚨 Crítico — 59% Defasagem, 13% Adequado</div>
+        <div class="sem-bars">
+          <div class="sem-row"><div class="sem-lbl">Defasagem</div><div class="sem-bar"><div class="sem-fill" style="width:59%;background:var(--red)"></div></div><div class="sem-pct" style="color:var(--red)">59%</div></div>
+          <div class="sem-row"><div class="sem-lbl">Intermediário</div><div class="sem-bar"><div class="sem-fill" style="width:28%;background:var(--yellow)"></div></div><div class="sem-pct" style="color:var(--yellow)">28%</div></div>
+          <div class="sem-row"><div class="sem-lbl">Adequado</div><div class="sem-bar"><div class="sem-fill" style="width:13%;background:var(--green)"></div></div><div class="sem-pct" style="color:var(--green)">13%</div></div>
+        </div>
+      </div>
+      <!-- 9A MT -->
+      <div class="sem-card s-red">
+        <div class="sem-ano">9º Ano A · Matemática · Part.: 97%</div>
+        <div class="sem-title">🚨 Emergência — 95% Defasagem, 0% Adequado</div>
+        <div class="sem-bars">
+          <div class="sem-row"><div class="sem-lbl">Defasagem</div><div class="sem-bar"><div class="sem-fill" style="width:95%;background:var(--red)"></div></div><div class="sem-pct" style="color:var(--red)">95%</div></div>
+          <div class="sem-row"><div class="sem-lbl">Intermediário</div><div class="sem-bar"><div class="sem-fill" style="width:5%;background:var(--yellow)"></div></div><div class="sem-pct" style="color:var(--yellow)">5%</div></div>
+          <div class="sem-row"><div class="sem-lbl">Adequado</div><div class="sem-bar"><div class="sem-fill" style="width:1%;background:var(--green)"></div></div><div class="sem-pct" style="color:var(--muted2)">0%</div></div>
+        </div>
+      </div>
+      <!-- 9B LP -->
+      <div class="sem-card s-red">
+        <div class="sem-ano">9º Ano B · Língua Portuguesa</div>
+        <div class="sem-title">🚨 Crítico — 65% Defasagem, 13% Adequado</div>
+        <div class="sem-bars">
+          <div class="sem-row"><div class="sem-lbl">Defasagem</div><div class="sem-bar"><div class="sem-fill" style="width:65%;background:var(--red)"></div></div><div class="sem-pct" style="color:var(--red)">65%</div></div>
+          <div class="sem-row"><div class="sem-lbl">Intermediário</div><div class="sem-bar"><div class="sem-fill" style="width:23%;background:var(--yellow)"></div></div><div class="sem-pct" style="color:var(--yellow)">23%</div></div>
+          <div class="sem-row"><div class="sem-lbl">Adequado</div><div class="sem-bar"><div class="sem-fill" style="width:13%;background:var(--green)"></div></div><div class="sem-pct" style="color:var(--green)">13%</div></div>
+        </div>
+      </div>
+      <!-- 9B MT -->
+      <div class="sem-card s-red">
+        <div class="sem-ano">9º Ano B · Matemática</div>
+        <div class="sem-title">🚨 Emergência — 91% Defasagem, 0% Adequado</div>
+        <div class="sem-bars">
+          <div class="sem-row"><div class="sem-lbl">Defasagem</div><div class="sem-bar"><div class="sem-fill" style="width:91%;background:var(--red)"></div></div><div class="sem-pct" style="color:var(--red)">91%</div></div>
+          <div class="sem-row"><div class="sem-lbl">Intermediário</div><div class="sem-bar"><div class="sem-fill" style="width:9%;background:var(--yellow)"></div></div><div class="sem-pct" style="color:var(--yellow)">9%</div></div>
+          <div class="sem-row"><div class="sem-lbl">Adequado</div><div class="sem-bar"><div class="sem-fill" style="width:1%;background:var(--green)"></div></div><div class="sem-pct" style="color:var(--muted2)">0%</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DADOS POR COMPONENTE -->
+  <div id="detalhes">
+    <div class="section-title">📋 Dados Detalhados por Componente Curricular</div>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('lp', this)">📖 Língua Portuguesa</button>
+      <button class="tab-btn" onclick="switchTab('mt', this)">📐 Matemática</button>
+    </div>
+
+    <!-- LP -->
+    <div id="tab-lp" class="tab-pane active">
+      <div class="data-table-wrap">
+        <div class="table-header">
+          <h3>Língua Portuguesa — Distribuição por Nível · Recomposição 2025</h3>
+          <p>Fonte: Relatório de Acompanhamento da Recomposição · SEDUC-CE · 7 de Setembro EEIEF · INEP: 23063726</p>
+        </div>
+        <div class="table-scroll">
+          <table class="data-table">
+            <thead>
+              <tr><th>Turma</th><th>Participação</th><th>Defasagem</th><th>Intermediário</th><th>Adequado</th><th>Situação</th></tr>
+            </thead>
+            <tbody>
+              <tr style="background:#f0fff8">
+                <td><strong>6º Ano A</strong></td><td>80%</td>
+                <td><span class="nivel-badge nl">21%</span></td><td><span class="nivel-badge int">21%</span></td><td><span class="nivel-badge adeq">57% ⭐</span></td>
+                <td><span style="color:var(--green);font-weight:700">⭐ Destaque</span></td>
+              </tr>
+              <tr style="background:#f0fff8">
+                <td><strong>6º Ano B</strong></td><td>84%</td>
+                <td><span class="nivel-badge nl">19%</span></td><td><span class="nivel-badge int">34%</span></td><td><span class="nivel-badge adeq">47%</span></td>
+                <td><span style="color:var(--green);font-weight:700">✅ Positivo</span></td>
+              </tr>
+              <tr style="background:#fff5f5">
+                <td><strong>9º Ano A</strong></td><td>84%</td>
+                <td><span class="nivel-badge nl">59%</span></td><td><span class="nivel-badge int">28%</span></td><td><span class="nivel-badge nl">13%</span></td>
+                <td><span style="color:var(--red);font-weight:700">🚨 Crítico</span></td>
+              </tr>
+              <tr style="background:#fff5f5">
+                <td><strong>9º Ano B</strong></td><td>79%</td>
+                <td><span class="nivel-badge nl">65%</span></td><td><span class="nivel-badge int">23%</span></td><td><span class="nivel-badge nl">13%</span></td>
+                <td><span style="color:var(--red);font-weight:700">🚨 Crítico</span></td>
+              </tr>
+              <tr style="background:#fff5f5">
+                <td><strong>7º Ano B</strong></td><td style="color:var(--orange);font-weight:700">68% ⚠</td>
+                <td><span class="nivel-badge nl">76%</span></td><td><span class="nivel-badge int">16%</span></td><td><span class="nivel-badge nl">8%</span></td>
+                <td><span style="color:var(--red);font-weight:700">🚨 Crítico</span></td>
+              </tr>
+              <tr style="background:#fff5f5">
+                <td><strong>7º Ano C</strong></td><td>79%</td>
+                <td><span class="nivel-badge nl">81%</span></td><td><span class="nivel-badge int">15%</span></td><td><span class="nivel-badge nl">4%</span></td>
+                <td><span style="color:var(--red);font-weight:700">🚨 Emergência</span></td>
+              </tr>
+              <tr style="background:#fff5f5">
+                <td><strong>7º Ano A</strong></td><td>89%</td>
+                <td><span class="nivel-badge nl">85%</span></td><td><span class="nivel-badge int">15%</span></td><td><span class="nivel-badge nl">0%</span></td>
+                <td><span style="color:var(--red);font-weight:700">🚨 Emergência</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="prog-wrap">
+        <h4 style="font-size:0.88rem;font-weight:700;color:var(--blue-dark);margin-bottom:14px">Comparativo LP — Aprendizado Adequado por Turma (maior = melhor)</h4>
+        <div class="prog-row"><div class="prog-label">6ºA</div><div class="prog-bar-wrap"><div class="prog-fill adeq" style="width:57%"></div></div><div class="prog-pct" style="color:var(--green)">57% ⭐</div></div>
+        <div class="prog-row"><div class="prog-label">6ºB</div><div class="prog-bar-wrap"><div class="prog-fill adeq" style="width:47%"></div></div><div class="prog-pct" style="color:var(--green)">47%</div></div>
+        <div class="prog-row"><div class="prog-label">9ºA</div><div class="prog-bar-wrap"><div class="prog-fill def" style="width:13%"></div></div><div class="prog-pct" style="color:var(--red)">13% 🚨</div></div>
+        <div class="prog-row"><div class="prog-label">9ºB</div><div class="prog-bar-wrap"><div class="prog-fill def" style="width:13%"></div></div><div class="prog-pct" style="color:var(--red)">13% 🚨</div></div>
+        <div class="prog-row"><div class="prog-label">7ºB</div><div class="prog-bar-wrap"><div class="prog-fill def" style="width:8%"></div></div><div class="prog-pct" style="color:var(--red)">8% 🚨</div></div>
+        <div class="prog-row"><div class="prog-label">7ºC</div><div class="prog-bar-wrap"><div class="prog-fill def" style="width:4%"></div></div><div class="prog-pct" style="color:var(--red)">4% 🚨</div></div>
+        <div class="prog-row"><div class="prog-label">7ºA</div><div class="prog-bar-wrap"><div class="prog-fill def" style="width:1%"></div></div><div class="prog-pct" style="color:var(--red)">0% 🚨</div></div>
+      </div>
+    </div>
+
+    <!-- MT -->
+    <div id="tab-mt" class="tab-pane">
+      <div class="data-table-wrap">
+        <div class="table-header">
+          <h3>Matemática — Distribuição por Nível · Recomposição 2025</h3>
+          <p>Fonte: Relatório de Acompanhamento da Recomposição · SEDUC-CE · 7 de Setembro EEIEF · INEP: 23063726</p>
+        </div>
+        <div class="table-scroll">
+          <table class="data-table">
+            <thead>
+              <tr><th>Turma</th><th>Participação</th><th>Defasagem</th><th>Intermediário</th><th>Adequado</th><th>Situação</th></tr>
+            </thead>
+            <tbody>
+              <tr style="background:#f0fff8">
+                <td><strong>6º Ano B</strong></td><td style="color:var(--orange);font-weight:700">68% ⚠</td>
+                <td><span class="nivel-badge nl">31%</span></td><td><span class="nivel-badge int">38%</span></td><td><span class="nivel-badge adeq">31% ⭐</span></td>
+                <td><span style="color:var(--green);font-weight:700">⭐ Melhor MT</span></td>
+              </tr>
+              <tr style="background:#fffbf0">
+                <td><strong>7º Ano A</strong></td><td>86%</td>
+                <td><span class="nivel-badge nl">25%</span></td><td><span class="nivel-badge int">44%</span></td><td><span class="nivel-badge int">31%</span></td>
+                <td><span style="color:var(--yellow);font-weight:700">⚠️ Atenção</span></td>
+              </tr>
+              <tr style="background:#fffbf0">
+                <td><strong>7º Ano C</strong></td><td>79%</td>
+                <td><span class="nivel-badge nl">30%</span></td><td><span class="nivel-badge int">41%</span></td><td><span class="nivel-badge int">30%</span></td>
+                <td><span style="color:var(--yellow);font-weight:700">⚠️ Atenção</span></td>
+              </tr>
+              <tr style="background:#fffbf0">
+                <td><strong>7º Ano B</strong></td><td>84%</td>
+                <td><span class="nivel-badge nl">45%</span></td><td><span class="nivel-badge int">42%</span></td><td><span class="nivel-badge int">13%</span></td>
+                <td><span style="color:var(--yellow);font-weight:700">⚠️ Atenção</span></td>
+              </tr>
+              <tr style="background:#fff5f5">
+                <td><strong>6º Ano A</strong></td><td>86%</td>
+                <td><span class="nivel-badge nl">60%</span></td><td><span class="nivel-badge int">30%</span></td><td><span class="nivel-badge nl">10%</span></td>
+                <td><span style="color:var(--red);font-weight:700">🚨 Crítico</span></td>
+              </tr>
+              <tr style="background:#fff5f5">
+                <td><strong>9º Ano B</strong></td><td>85%</td>
+                <td><span class="nivel-badge nl">91%</span></td><td><span class="nivel-badge int">9%</span></td><td><span class="nivel-badge nl">0%</span></td>
+                <td><span style="color:var(--red);font-weight:700">🚨 Emergência</span></td>
+              </tr>
+              <tr style="background:#fff5f5">
+                <td><strong>9º Ano A</strong></td><td>97%</td>
+                <td><span class="nivel-badge nl">95%</span></td><td><span class="nivel-badge int">5%</span></td><td><span class="nivel-badge nl">0%</span></td>
+                <td><span style="color:var(--red);font-weight:700">🚨 Emergência</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="prog-wrap">
+        <h4 style="font-size:0.88rem;font-weight:700;color:var(--blue-dark);margin-bottom:14px">Comparativo MT — Defasagem por Turma (quanto maior, pior)</h4>
+        <div class="prog-row"><div class="prog-label">9ºA</div><div class="prog-bar-wrap"><div class="prog-fill def" style="width:95%"></div></div><div class="prog-pct" style="color:var(--red)">95% 🚨</div></div>
+        <div class="prog-row"><div class="prog-label">9ºB</div><div class="prog-bar-wrap"><div class="prog-fill def" style="width:91%"></div></div><div class="prog-pct" style="color:var(--red)">91% 🚨</div></div>
+        <div class="prog-row"><div class="prog-label">6ºA</div><div class="prog-bar-wrap"><div class="prog-fill def" style="width:60%"></div></div><div class="prog-pct" style="color:var(--red)">60% 🚨</div></div>
+        <div class="prog-row"><div class="prog-label">7ºB</div><div class="prog-bar-wrap"><div class="prog-fill int" style="width:45%"></div></div><div class="prog-pct" style="color:var(--orange)">45% ⚠</div></div>
+        <div class="prog-row"><div class="prog-label">7ºC</div><div class="prog-bar-wrap"><div class="prog-fill int" style="width:30%"></div></div><div class="prog-pct" style="color:var(--yellow)">30% ⚠</div></div>
+        <div class="prog-row"><div class="prog-label">7ºA</div><div class="prog-bar-wrap"><div class="prog-fill int" style="width:25%"></div></div><div class="prog-pct" style="color:var(--yellow)">25% ⚠</div></div>
+        <div class="prog-row"><div class="prog-label">6ºB</div><div class="prog-bar-wrap"><div class="prog-fill adeq" style="width:31%"></div></div><div class="prog-pct" style="color:var(--green)">31% ✅</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ALERTAS -->
+  <div id="alertas">
+    <div class="section-title">🔔 Alertas e Prioridades para o Núcleo Gestor</div>
+
+    <div class="section-block">
+      <div class="section-block-header dark">
+        <div class="sb-icon" style="background:rgba(192,57,43,.3)">🚨</div>
+        <div class="sb-info">
+          <h3>Alertas Críticos — Intervenção Imediata</h3>
+          <p>Situações que comprometem o ciclo de aprendizagem e exigem ação urgente</p>
+        </div>
+      </div>
+
+      <div class="notif-card priority-red" onclick="toggleCard(this)">
+        <div class="notif-top">
+          <div class="notif-avatar red">🚨</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">9º Ano A e B MT: 95% e 91% de Defasagem e 0% de Adequado — EF encerrado sem Matemática básica</div>
+              <div class="notif-source">9ºA e 9ºB · MT</div>
+            </div>
+            <div class="notif-summary">Os dois 9º Anos encerram o Ensino Fundamental com defasagem acima de 90% em Matemática e zero alunos no nível adequado. Com participação de 97% (9ºA) e 85% (9ºB), os dados são representativos e alarmantes. Esses alunos ingressarão no Ensino Médio sem os pré-requisitos básicos de MT — impacto direto no SPAECE e no Ideb.</div>
+            <div class="notif-metrics">
+              <div class="metric-pill red"><div class="dot" style="background:var(--red)"></div>95% Defasagem 9ºA</div>
+              <div class="metric-pill red"><div class="dot" style="background:var(--red)"></div>91% Defasagem 9ºB</div>
+              <div class="metric-pill red"><div class="dot" style="background:var(--red)"></div>0% Adequado MT ambos</div>
+              <div class="metric-pill orange"><div class="dot" style="background:var(--orange)"></div>Impacto SPAECE 2025</div>
+            </div>
+          </div>
+          <button class="notif-toggle">▼</button>
+        </div>
+        <div class="notif-expand">
+          <div class="action-tag">⚡ AÇÃO EMERGENCIAL — MT 9º ANO</div>
+          <div class="action-text">
+            <strong>1. Diagnóstico por habilidade (9ºA e 9ºB MT):</strong> Aplicar avaliação diagnóstica detalhada por descritor para identificar quais conteúdos não foram consolidados (operações, álgebra, geometria, grandezas). O dado agregado é insuficiente para planejar a intervenção.<br><br>
+            <strong>2. Reforço intensivo em contraturno:</strong> Com 90%+ de defasagem, a aula regular é insuficiente. Implementar reforço de MT em contraturno para os 9º Anos — pelo menos 2h semanais adicionais com foco nas habilidades estruturantes.<br><br>
+            <strong>3. Preparação para o SPAECE 2025:</strong> Os 9º Anos são avaliados pelo SPAECE. Articular com CREDE materiais específicos de preparação e simulados alinhados ao padrão da avaliação — impacto direto no Ideb.<br><br>
+            <strong>4. Cruzar com Busca Ativa:</strong> Identificar por nome os alunos com maior defasagem e cruzar com dados de infrequência — alunos muito defasados e muito ausentes têm maior risco de abandono no EM.<br><br>
+            <strong>5. Comunicar às famílias:</strong> Reunião urgente com famílias dos 9º Anos explicando a situação, os riscos para o EM e as ações que a escola está tomando.
+          </div>
+          <div class="expand-tags">
+            <div class="expand-tag">9ºA e 9ºB</div><div class="expand-tag">MT Emergência</div><div class="expand-tag">SPAECE</div><div class="expand-tag">Contraturno</div><div class="expand-tag">Busca Ativa</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="notif-card priority-red" onclick="toggleCard(this)">
+        <div class="notif-top">
+          <div class="notif-avatar red">🚨</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">7º Ano: colapso estrutural em LP nas três turmas — 85%, 81% e 76% de defasagem, 0% a 8% de adequado</div>
+              <div class="notif-source">7ºA / 7ºB / 7ºC · LP</div>
+            </div>
+            <div class="notif-summary">Os três 7º Anos apresentam colapso generalizado em LP: 7ºA com 85% (0% adequado), 7ºC com 81% (4% adequado) e 7ºB com 76% (8% adequado). O padrão uniforme em todas as turmas do ano indica um problema estrutural — não é caso isolado de turma ou professor, mas de currículo, sequência didática e abordagem pedagógica do segmento como um todo.</div>
+            <div class="notif-metrics">
+              <div class="metric-pill red"><div class="dot" style="background:var(--red)"></div>7ºA LP: 85% defasagem · 0% adeq.</div>
+              <div class="metric-pill red"><div class="dot" style="background:var(--red)"></div>7ºC LP: 81% defasagem · 4% adeq.</div>
+              <div class="metric-pill red"><div class="dot" style="background:var(--red)"></div>7ºB LP: 76% defasagem · 8% adeq.</div>
+            </div>
+          </div>
+          <button class="notif-toggle">▼</button>
+        </div>
+        <div class="notif-expand">
+          <div class="action-tag">⚡ AÇÃO EMERGENCIAL — LP 7º ANO</div>
+          <div class="action-text">
+            <strong>1. Diagnóstico por descritor em LP para os três 7º Anos:</strong> O dado global não orienta a intervenção. É necessário identificar quais habilidades específicas de LP estão ausentes — compreensão textual, produção escrita, análise linguística — para planejar ações direcionadas.<br><br>
+            <strong>2. Investigar a causa estrutural do colapso em LP:</strong> O padrão uniforme nas três turmas sugere algo além do professor individual. Investigar: alinhamento curricular com os anos anteriores, metodologias do 6º para o 7º Ano, formação dos professores de LP, continuidade pedagógica.<br><br>
+            <strong>3. Usar as práticas exitosas do 6º Ano como modelo:</strong> O 6ºA (57%) e 6ºB (47%) têm resultados positivos em LP. Os professores de LP do 6º Ano têm metodologias que funcionam — organizar HTPC em que compartilhem suas práticas com os professores de LP do 7º Ano.<br><br>
+            <strong>4. Replanejamento coletivo das sequências didáticas de LP:</strong> Os três professores de LP do 7º Ano, junto ao coordenador pedagógico, devem replanejar as sequências do 2º semestre de forma integrada, com foco nos descritores mais críticos.<br><br>
+            <strong>5. Monitoramento mensal:</strong> Aplicar mini-diagnósticos mensais em LP para medir progresso e ajustar intervenções antes do próximo ciclo de avaliação.
+          </div>
+          <div class="expand-tags">
+            <div class="expand-tag">7ºA / B / C</div><div class="expand-tag">LP Emergência</div><div class="expand-tag">Diagnóstico</div><div class="expand-tag">HTPC</div><div class="expand-tag">Replanejamento</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="notif-card priority-red" onclick="toggleCard(this)">
+        <div class="notif-top">
+          <div class="notif-avatar red">📉</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">9º Ano LP: 59% e 65% de defasagem — 9º Ano em colapso em LP e MT simultaneamente</div>
+              <div class="notif-source">9ºA e 9ºB · LP</div>
+            </div>
+            <div class="notif-summary">Além da crise em MT, os dois 9º Anos apresentam déficit severo em LP: 9ºA com 59% e 9ºB com 65% de defasagem. Com apenas 13% de adequado em ambos, a situação é crítica nos dois componentes avaliados pelo SPAECE. Esses alunos concluem o Ensino Fundamental com déficit duplo — LP e MT — em níveis que comprometem qualquer perspectiva no Ensino Médio.</div>
+            <div class="notif-metrics">
+              <div class="metric-pill red"><div class="dot" style="background:var(--red)"></div>9ºA LP: 59% defasagem</div>
+              <div class="metric-pill red"><div class="dot" style="background:var(--red)"></div>9ºB LP: 65% defasagem</div>
+              <div class="metric-pill orange"><div class="dot" style="background:var(--orange)"></div>13% adequado LP em ambos</div>
+            </div>
+          </div>
+          <button class="notif-toggle">▼</button>
+        </div>
+        <div class="notif-expand">
+          <div class="action-tag">⚡ AÇÃO — 9º ANO · LP + SPAECE</div>
+          <div class="action-text">
+            <strong>1. Diagnóstico por descritor em LP para 9ºA e 9ºB:</strong> Identificar quais habilidades de LP estão mais críticas — com 28% e 23% de intermediários, há um grupo próximo da transição que pode ser impulsionado com intervenção direcionada nos descritores-fronteira.<br><br>
+            <strong>2. Integrar preparação SPAECE em LP e MT simultaneamente:</strong> Os alunos do 9º Ano precisam avançar em LP e MT de forma integrada. Criar um calendário de preparação SPAECE que alterne os dois componentes com foco nos descritores de maior peso na avaliação.<br><br>
+            <strong>3. Aproveitar os intermediários (28% e 23%):</strong> Estratégia de curto prazo — focar os intermediários para migrar ao nível adequado é mais eficiente do que atacar toda a defasagem de uma vez. Meta realista: dobrar o percentual de adequados até o SPAECE.<br><br>
+            <strong>4. Solicitar apoio técnico da CREDE/SEDUC:</strong> Pedir materiais de recomposição de LP para o 9º Ano, simulados SPAECE e tutoria pedagógica especializada para os professores.
+          </div>
+          <div class="expand-tags">
+            <div class="expand-tag">9ºA e 9ºB</div><div class="expand-tag">LP Crítico</div><div class="expand-tag">SPAECE LP+MT</div><div class="expand-tag">Intermediários</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="notif-card priority-orange" onclick="toggleCard(this)">
+        <div class="notif-top">
+          <div class="notif-avatar orange">⚠️</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">6ºA MT: 60% de defasagem — queda abrupta de LP (57% adequado) para MT (10% adequado) na mesma turma</div>
+              <div class="notif-source">6º ANO A · MT</div>
+            </div>
+            <div class="notif-summary">O 6ºA apresenta o contraste mais acentuado da escola: 57% de adequado em LP (destaque máximo) contra apenas 10% de adequado em MT com 60% de defasagem. Essa assimetria extrema entre componentes na mesma turma indica metodologias e práticas muito distintas entre os professores de LP e MT — ou fatores específicos da turma com relação ao componente de matemática.</div>
+            <div class="notif-metrics">
+              <div class="metric-pill green"><div class="dot" style="background:var(--green)"></div>57% Adequado LP ⭐</div>
+              <div class="metric-pill red"><div class="dot" style="background:var(--red)"></div>60% Defasagem MT</div>
+              <div class="metric-pill red"><div class="dot" style="background:var(--red)"></div>10% Adequado MT</div>
+            </div>
+          </div>
+          <button class="notif-toggle">▼</button>
+        </div>
+        <div class="notif-expand">
+          <div class="action-tag">🎯 AÇÃO — 6ºA MT · INVESTIGAÇÃO E INTERVENÇÃO</div>
+          <div class="action-text">
+            <strong>1. Investigar a causa da assimetria LP x MT no 6ºA:</strong> Verificar metodologia, planejamento e abordagem do professor de MT do 6ºA. Observação de aula e comparação com o 6ºB (que tem 31% adequado em MT — melhor que o 6ºA mesmo com participação menor) pode revelar diferenças relevantes.<br><br>
+            <strong>2. Diagnóstico por descritor em MT para o 6ºA:</strong> Com 30% de intermediários, há um grupo significativo próximo do adequado. Identificar quais habilidades separam intermediários de adequados para focar a intervenção.<br><br>
+            <strong>3. Meta de progressão para o 6ºA MT:</strong> Dobrar o percentual de adequados — de 10% para 20%+ — até o próximo ciclo avaliativo, priorizando o grupo intermediário.<br><br>
+            <strong>4. Usar o sucesso em LP como motivação pedagógica:</strong> Os alunos do 6ºA têm capacidade demonstrada de aprendizagem em LP. Usar essa autoconfiança como alavanca para engajamento em MT.
+          </div>
+          <div class="expand-tags">
+            <div class="expand-tag">6ºA</div><div class="expand-tag">MT Crítico</div><div class="expand-tag">Assimetria LP x MT</div><div class="expand-tag">Diagnóstico</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-block">
+      <div class="section-block-header">
+        <div class="sb-icon" style="background:var(--green-bg)">✅</div>
+        <div class="sb-info">
+          <h3>Pontos Positivos — Replicar e Investigar</h3>
+          <p>Resultados que merecem análise e disseminação para as demais turmas</p>
+        </div>
+      </div>
+
+      <div class="notif-card priority-green" onclick="toggleCard(this)">
+        <div class="notif-top">
+          <div class="notif-avatar green">⭐</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">6ºA LP (57%) e 6ºB LP (47%) — as duas referências positivas da escola em Língua Portuguesa</div>
+              <div class="notif-source">6ºA · 6ºB · LP · DESTAQUE</div>
+            </div>
+            <div class="notif-summary">O 6º Ano é o único segmento com resultados positivos em LP: 6ºA com 57% de adequado e 6ºB com 47% — ambos acima de 40%. Em contraste, o 7º e o 9º Ano têm colapso total em LP. Os professores de LP do 6º Ano têm práticas que funcionam e devem ser urgentemente investigadas e disseminadas para os demais segmentos.</div>
+            <div class="notif-metrics">
+              <div class="metric-pill green"><div class="dot" style="background:var(--green)"></div>6ºA LP: 57% Adequado ⭐</div>
+              <div class="metric-pill green"><div class="dot" style="background:var(--green)"></div>6ºB LP: 47% Adequado</div>
+              <div class="metric-pill teal"><div class="dot" style="background:var(--teal)"></div>Único segmento positivo em LP</div>
+            </div>
+          </div>
+          <button class="notif-toggle">▼</button>
+        </div>
+        <div class="notif-expand">
+          <div class="action-tag">🌟 AÇÃO — DISSEMINAÇÃO DE BOAS PRÁTICAS · LP</div>
+          <div class="action-text">
+            <strong>1. HTPC com professores de LP do 6º Ano:</strong> Organizar HTPC em que os professores de LP do 6ºA e 6ºB compartilhem suas rotinas pedagógicas, estratégias de leitura e produção textual, e instrumentos de avaliação formativa com os professores de LP do 7º e 9º Anos.<br><br>
+            <strong>2. Observação de aula cruzada:</strong> Promover visitas dos professores de LP do 7º Ano às aulas de LP do 6ºA — observação sem julgamento, focada em aprendizagem entre pares. Identificar estratégias replicáveis para outros níveis.<br><br>
+            <strong>3. Investigar a continuidade pedagógica:</strong> Por que o 6º Ano vai bem em LP e o 7º Ano vai mal? Verificar se há descontinuidade curricular, rotatividade de professores, ou diferença metodológica entre o 6º e 7º Ano que explique a queda abrupta.<br><br>
+            <strong>4. Documentar no PPP:</strong> Registrar as práticas exitosas de LP do 6º Ano no Projeto Político-Pedagógico como referência metodológica para os Anos Finais da escola.
+          </div>
+          <div class="expand-tags">
+            <div class="expand-tag">6ºA e 6ºB</div><div class="expand-tag">LP Destaque</div><div class="expand-tag">Boas Práticas</div><div class="expand-tag">HTPC</div><div class="expand-tag">PPP</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="notif-card priority-teal" onclick="toggleCard(this)">
+        <div class="notif-top">
+          <div class="notif-avatar teal">📊</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">7º Ano MT relativamente equilibrado — 25% a 45% de defasagem, com 30% a 31% de adequado no 7ºA e 7ºC</div>
+              <div class="notif-source">7ºA / 7ºB / 7ºC · MT</div>
+            </div>
+            <div class="notif-summary">Em contraste com o colapso em LP, o 7º Ano apresenta resultados relativamente melhores em MT: 7ºA com 31% de adequado (25% defasagem), 7ºC com 30% de adequado (30% defasagem) e 7ºB com 13% de adequado (45% defasagem). O 7ºA e 7ºC mostram que há aprendizagem acontecendo em MT nesse segmento — o que é positivo e deve ser preservado.</div>
+            <div class="notif-metrics">
+              <div class="metric-pill green"><div class="dot" style="background:var(--green)"></div>7ºA MT: 31% Adequado</div>
+              <div class="metric-pill green"><div class="dot" style="background:var(--green)"></div>7ºC MT: 30% Adequado</div>
+              <div class="metric-pill yellow"><div class="dot" style="background:var(--yellow)"></div>7ºB MT: 13% Adequado</div>
+            </div>
+          </div>
+          <button class="notif-toggle">▼</button>
+        </div>
+        <div class="notif-expand">
+          <div class="action-tag">📋 ANÁLISE — 7º ANO MT · PRESERVAR E AMPLIAR</div>
+          <div class="action-text">
+            <strong>1. Manter o que funciona em MT no 7ºA e 7ºC:</strong> Esses dois 7º Anos têm 30-31% de adequado em MT — resultado positivo no contexto da escola. Garantir continuidade metodológica e não sobrecarregar os professores com mudanças abruptas enquanto se intervém nas turmas críticas.<br><br>
+            <strong>2. Investigar a diferença do 7ºB MT em relação ao 7ºA e 7ºC:</strong> O 7ºB tem 45% de defasagem e apenas 13% de adequado em MT — pior resultado do 7º Ano no componente. O que diferencia o 7ºB dos outros dois 7º Anos em MT? Professor, composição da turma, horários?<br><br>
+            <strong>3. Meta para os intermediários do 7º Ano MT:</strong> O 7ºA tem 44% e o 7ºC tem 41% de intermediários — esses alunos são os candidatos mais prováveis a migrar para o adequado com intervenção focada. Estabelecer metas: elevar de 31%/30% para 40%+ de adequado.<br><br>
+            <strong>4. Investigar a progressão MT do 7º para o 9º Ano:</strong> O 7º Ano vai razoavelmente bem em MT (25-45% defasagem), mas o 9º Ano vai pessimamente (91-95% defasagem). Por que a defasagem explode entre o 7º e o 9º Ano? Verificar o 8º Ano e a continuidade pedagógica.
+          </div>
+          <div class="expand-tags">
+            <div class="expand-tag">7ºA e 7ºC</div><div class="expand-tag">MT Relativo</div><div class="expand-tag">Intermediários</div><div class="expand-tag">Progressão 7º→9º</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PLANO DE AÇÃO -->
+  <div id="acoes">
+    <div class="section-title">⚡ Plano de Ação — Recomposição da Aprendizagem · 2025</div>
+
+    <div class="data-table-wrap">
+      <div class="table-header">
+        <h3>Ações Prioritárias de Recomposição da Aprendizagem</h3>
+        <p>Baseadas nos dados do Relatório de Acompanhamento · 7 de Setembro EEIEF · INEP: 23063726</p>
+      </div>
+      <div class="table-scroll">
+        <table class="plan-table">
+          <thead>
+            <tr><th>#</th><th>Ação</th><th>Público-Alvo</th><th>Responsável</th><th>Prazo</th><th>Prioridade</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1</strong></td>
+              <td>Diagnóstico por descritor em MT para os dois 9º Anos — identificar habilidades críticas para planejar intervenção específica</td>
+              <td>9ºA e 9ºB · MT</td>
+              <td>Coord. + Prof. MT</td>
+              <td>Imediato</td>
+              <td><span class="pill pill-urgente">🚨 Urgente</span></td>
+            </tr>
+            <tr>
+              <td><strong>2</strong></td>
+              <td>Implementar reforço contraturno de MT para os dois 9º Anos — foco nas habilidades estruturantes (álgebra, operações, geometria)</td>
+              <td>9ºA e 9ºB · MT</td>
+              <td>Diretor + Prof. MT</td>
+              <td>Imediato</td>
+              <td><span class="pill pill-urgente">🚨 Urgente</span></td>
+            </tr>
+            <tr>
+              <td><strong>3</strong></td>
+              <td>Diagnóstico por descritor em LP para os três 7º Anos — identificar habilidades ausentes de forma coletiva e integrada</td>
+              <td>7ºA, 7ºB, 7ºC · LP</td>
+              <td>Coord. + Profs. LP</td>
+              <td>Imediato</td>
+              <td><span class="pill pill-urgente">🚨 Urgente</span></td>
+            </tr>
+            <tr>
+              <td><strong>4</strong></td>
+              <td>Replanejamento coletivo das sequências didáticas de LP para os três 7º Anos — foco nos descritores críticos do segmento</td>
+              <td>7ºA, 7ºB, 7ºC · LP</td>
+              <td>Coord. + Profs. LP 7º Ano</td>
+              <td>15 dias</td>
+              <td><span class="pill pill-urgente">🚨 Urgente</span></td>
+            </tr>
+            <tr>
+              <td><strong>5</strong></td>
+              <td>Solicitar apoio técnico da CREDE/SEDUC — materiais de recomposição de LP e MT para o 9º Ano e SPAECE 2025</td>
+              <td>9ºA e 9ºB · LP + MT</td>
+              <td>Diretor</td>
+              <td>15 dias</td>
+              <td><span class="pill pill-urgente">🚨 Urgente</span></td>
+            </tr>
+            <tr>
+              <td><strong>6</strong></td>
+              <td>Investigar causa da assimetria LP x MT no 6ºA (57% adeq. LP vs 10% adeq. MT) — observação de aula de MT e entrevista com professor</td>
+              <td>6º Ano A · MT</td>
+              <td>Coordenador Pedagógico</td>
+              <td>15 dias</td>
+              <td><span class="pill pill-urgente">🚨 Urgente</span></td>
+            </tr>
+            <tr>
+              <td><strong>7</strong></td>
+              <td>HTPC de boas práticas: professores de LP do 6ºA e 6ºB compartilham estratégias com os professores de LP do 7º e 9º Anos</td>
+              <td>Todos os professores de LP</td>
+              <td>Coordenador</td>
+              <td>Próximo HTPC</td>
+              <td><span class="pill pill-atencao">⚠ Atenção</span></td>
+            </tr>
+            <tr>
+              <td><strong>8</strong></td>
+              <td>Cruzar dados de defasagem LP e MT com infrequência (Busca Ativa) — identificar alunos do 9º Ano com risco duplo de abandono</td>
+              <td>9ºA e 9ºB · Famílias</td>
+              <td>Coord. + Diretor</td>
+              <td>1 mês</td>
+              <td><span class="pill pill-atencao">⚠ Atenção</span></td>
+            </tr>
+            <tr>
+              <td><strong>9</strong></td>
+              <td>Investigar descontinuidade pedagógica LP do 6º para o 7º Ano — por que o 6º vai bem e o 7º vai mal?</td>
+              <td>6º e 7º Ano · LP</td>
+              <td>Coord. Pedagógico</td>
+              <td>1 mês</td>
+              <td><span class="pill pill-atencao">⚠ Atenção</span></td>
+            </tr>
+            <tr>
+              <td><strong>10</strong></td>
+              <td>Investigar progressão da defasagem em MT do 7º para o 9º Ano — verificar o que acontece no 8º Ano e onde a defasagem explode</td>
+              <td>7º, 8º e 9º Ano · MT</td>
+              <td>Coord. Pedagógico</td>
+              <td>1 mês</td>
+              <td><span class="pill pill-atencao">⚠ Atenção</span></td>
+            </tr>
+            <tr>
+              <td><strong>11</strong></td>
+              <td>Reunião com famílias dos 9º Anos — comunicar os dados, os riscos para o EM e as ações de recomposição da escola</td>
+              <td>9ºA e 9ºB · Famílias</td>
+              <td>Diretor</td>
+              <td>1 mês</td>
+              <td><span class="pill pill-atencao">⚠ Atenção</span></td>
+            </tr>
+            <tr>
+              <td><strong>12</strong></td>
+              <td>Plano de preparação integrado para o SPAECE 2025 — dois 9º Anos em LP e MT com calendário e simulados</td>
+              <td>9ºA e 9ºB</td>
+              <td>Coord. + Prof. LP e MT</td>
+              <td>2 meses</td>
+              <td><span class="pill pill-plano">📌 Planejamento</span></td>
+            </tr>
+            <tr>
+              <td><strong>13</strong></td>
+              <td>Criar avaliações diagnósticas bimestrais de LP e MT para todos os anos avaliados — monitoramento sistemático do progresso</td>
+              <td>6º, 7º e 9º Ano</td>
+              <td>Professores + Coord.</td>
+              <td>2 meses</td>
+              <td><span class="pill pill-plano">📌 Planejamento</span></td>
+            </tr>
+            <tr>
+              <td><strong>14</strong></td>
+              <td>Documentar práticas exitosas de LP do 6ºA e 6ºB no PPP — referência metodológica para os Anos Finais</td>
+              <td>Gestão Escolar</td>
+              <td>Diretor + Coordenador</td>
+              <td>2 meses</td>
+              <td><span class="pill pill-melhoria">✅ Consolidar</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Calendário -->
+    <div class="prog-wrap" style="margin-top:20px">
+      <h4 style="font-size:0.90rem;font-weight:700;color:var(--blue-dark);margin-bottom:14px">📅 Calendário de Recomposição — 2025</h4>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+        <div style="background:var(--red-bg);border:1px solid var(--red-bdr);border-radius:8px;padding:12px">
+          <div style="font-size:0.68rem;font-weight:700;text-transform:uppercase;color:var(--red-dark);letter-spacing:.08em;margin-bottom:5px">Imediato — Emergencial</div>
+          <div style="font-size:0.78rem;color:#7a1a0e;line-height:1.7">• Diagnóstico por descritor 9ºA/B MT<br>• Reforço contraturno 9º Anos MT<br>• Diagnóstico por descritor 7ºA/B/C LP<br>• Investigar assimetria 6ºA LP x MT<br>• Solicitar apoio CREDE/SEDUC</div>
+        </div>
+        <div style="background:var(--yellow-bg);border:1px solid var(--yellow-bdr);border-radius:8px;padding:12px">
+          <div style="font-size:0.68rem;font-weight:700;text-transform:uppercase;color:#7d5a10;letter-spacing:.08em;margin-bottom:5px">1 Mês — Implementação</div>
+          <div style="font-size:0.78rem;color:#7a3e05;line-height:1.7">• HTPC boas práticas LP 6º Ano<br>• Cruzamento Busca Ativa 9º Ano<br>• Investigar descontinuidade LP<br>• Comunicação às famílias 9º Ano<br>• Investigar progressão MT 7º→9º</div>
+        </div>
+        <div style="background:var(--teal-bg);border:1px solid var(--teal-bdr);border-radius:8px;padding:12px">
+          <div style="font-size:0.68rem;font-weight:700;text-transform:uppercase;color:var(--teal);letter-spacing:.08em;margin-bottom:5px">2 Meses — Consolidação</div>
+          <div style="font-size:0.78rem;color:#0e4f5e;line-height:1.7">• Plano SPAECE 2025 integrado<br>• Diagnósticos bimestrais sistemáticos<br>• Documentar boas práticas PPP<br>• Avaliação do progresso<br>• Relatório à CREDE</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:40px;padding:16px 0;border-top:1px solid var(--border);font-size:0.72rem;color:var(--muted2);line-height:1.8">
+    <strong style="color:var(--muted)">Fonte dos dados:</strong> Relatório de Acompanhamento da Recomposição da Aprendizagem · SEDUC-CE<br>
+    <strong style="color:var(--muted)">Escola:</strong> 7 de Setembro EEIEF · Caucaia-CE · INEP: 23063726<br>
+    <strong style="color:var(--muted)">Turmas avaliadas:</strong> 6ºA/B · 7ºA/B/C · 9ºA/B · LP e Matemática<br>
+    <strong style="color:var(--muted)">Componentes:</strong> Língua Portuguesa e Matemática &nbsp;|&nbsp; <strong style="color:var(--muted)">Gerado em:</strong> Abril/2026
+  </div>
+
+</main>
+
+<script>
+function toggleCard(card) { card.classList.toggle('open'); }
+
+function switchTab(tab, btn) {
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  btn.classList.add('active');
+}
+
+const sections = document.querySelectorAll('[id]');
+const navItems = document.querySelectorAll('.nav-item[href^="#"]');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 110) cur = s.id; });
+  navItems.forEach(i => {
+    i.classList.remove('active');
+    if (i.getAttribute('href') === '#' + cur) i.classList.add('active');
+  });
+}, { passive: true });
+</script>
+</body>
+</html>

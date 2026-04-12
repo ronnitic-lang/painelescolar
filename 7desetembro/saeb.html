@@ -3,22 +3,832 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SAEB · EEF 7 de Setembro</title>
+<title>SAEB 2023 · 7 de Setembro EEIEF</title>
 <style>
-body { font-family: 'Tahoma','Verdana','Arial',sans-serif; background:#f0f4f8; color:#0f1e2e; display:flex; align-items:center; justify-content:center; min-height:100vh; margin:0; }
-.box { background:#fff; border-radius:12px; border:1px solid #d8e2ec; padding:40px 36px; max-width:480px; width:100%; text-align:center; box-shadow:0 4px 20px rgba(0,0,0,0.09); }
-.icon { font-size:2.8rem; margin-bottom:16px; display:block; }
-h2 { font-size:1.2rem; font-weight:700; color:#1a3a5c; margin-bottom:8px; }
-p { font-size:0.85rem; color:#4a5e75; line-height:1.6; margin-bottom:20px; }
-a { display:inline-block; padding:10px 22px; background:linear-gradient(135deg,#1a3a5c,#1e5799); color:#fff; border-radius:7px; text-decoration:none; font-size:0.82rem; font-weight:700; letter-spacing:0.05em; }
+:root {
+  --bg:#f0f4f8;--surface:#ffffff;--border:#d8e2ec;
+  --sidebar-bg:#1a2535;--sidebar-hover:#243145;--sidebar-active:rgba(14,116,144,.18);
+  --blue-dark:#1a3a5c;--blue-mid:#1e5799;
+  --teal:#0e7490;--teal-bg:#ecfeff;--teal-bdr:#67e8f9;
+  --text:#0f1e2e;--muted:#4a5e75;--muted2:#8097b0;
+  --red:#c0392b;--red-bg:#fdf0ef;--red-bdr:#f5b7b1;--red-dark:#a93226;
+  --orange:#ca6f1e;--orange-bg:#fef5e7;--orange-bdr:#f8c471;
+  --yellow:#d68910;--yellow-bg:#fef9ec;--yellow-bdr:#f9d98a;
+  --green:#1a7a4a;--green-bg:#edfaf3;--green-bdr:#82e0aa;
+  --blue:#1a56a0;--blue-bg:#eaf2fc;--blue-bdr:#90bce8;
+  --purple:#6200ea;--purple-bg:#f3f0ff;--purple-bdr:#c4b5fd;
+  --font:'Tahoma','Verdana','Arial',sans-serif;
+  --radius:10px;--shadow:0 2px 12px rgba(0,0,0,0.08);
+  --lv0:#ef5350;--lv1:#ef7c43;--lv2:#ffa726;--lv3:#ffd54f;
+  --lv4:#d4e157;--lv5:#aed581;--lv6:#66bb6a;--lv7:#26a69a;
+  --lv8:#29b6f6;--lv9:#5c6bc0;--lv10:#7e57c2;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;display:flex;font-size:0.94rem;line-height:1.6;}
+
+/* SIDEBAR */
+.sidebar{width:264px;min-width:264px;background:var(--sidebar-bg);height:100vh;position:sticky;top:0;display:flex;flex-direction:column;overflow-y:auto;z-index:100;}
+.sidebar::-webkit-scrollbar{width:4px;}
+.sidebar::-webkit-scrollbar-thumb{background:#2e3d52;border-radius:3px;}
+.sidebar-logo{padding:20px 20px 18px;border-bottom:1px solid #2e3d52;background:#111c2a;}
+.school-badge{display:inline-block;background:var(--teal);color:#fff;font-size:0.70rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:3px 10px;border-radius:4px;margin-bottom:9px;}
+.school-name{font-size:1.08rem;font-weight:700;color:#fff;line-height:1.25;margin-bottom:3px;}
+.school-name span{color:#f0b429;}
+.school-sub{font-size:0.70rem;color:#7a90a8;margin-top:3px;letter-spacing:0.05em;}
+.nav-section{padding:12px 20px 5px;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.13em;color:#5a7090;font-weight:700;}
+.nav-item{display:flex;align-items:center;gap:11px;padding:11px 20px;cursor:pointer;border-left:4px solid transparent;transition:all 0.2s;text-decoration:none;color:inherit;}
+.nav-item:hover{background:var(--sidebar-hover);}
+.nav-item.active{background:var(--sidebar-active);border-left-color:#22d3ee;}
+.nav-icon{width:32px;height:32px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.nav-label{font-size:0.85rem;font-weight:600;color:#b8cce0;line-height:1.25;}
+.nav-item.active .nav-label{color:#fff;}
+.nav-badge{margin-left:auto;min-width:22px;height:22px;border-radius:11px;font-size:0.70rem;font-weight:700;display:flex;align-items:center;justify-content:center;padding:0 5px;flex-shrink:0;}
+.nb-red{background:var(--red);color:#fff} .nb-yellow{background:var(--yellow);color:#fff}
+.nb-green{background:var(--green);color:#fff} .nb-orange{background:var(--orange);color:#fff}
+.nb-teal{background:var(--teal);color:#fff} .nb-purple{background:#6d28d9;color:#fff}
+.nav-item.recomp{border-top:1px solid #243145;margin-top:4px;padding-top:13px;}
+.sidebar-footer{margin-top:auto;padding:14px 20px;border-top:1px solid #2e3d52;font-size:0.70rem;color:#5a7090;line-height:1.7;}
+.logout-btn{display:block;text-align:center;margin-top:10px;padding:8px;background:rgba(192,57,43,0.18);color:#f5a9a4;border-radius:6px;text-decoration:none;font-size:0.78rem;font-weight:700;letter-spacing:0.05em;transition:background 0.2s;}
+.logout-btn:hover{background:rgba(192,57,43,0.35);}
+
+/* MAIN */
+.main{flex:1;min-width:0;padding:28px 32px 52px;}
+
+/* TOPBAR */
+.topbar{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:26px;flex-wrap:wrap;gap:14px;}
+.topbar-title h2{font-size:1.35rem;font-weight:700;color:var(--text);}
+.topbar-title p{font-size:0.80rem;color:var(--muted);margin-top:3px;}
+.topbar-stats{display:flex;gap:10px;flex-wrap:wrap;}
+.topbar-stat{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:9px 16px;text-align:center;box-shadow:var(--shadow);}
+.topbar-stat .ts-val{font-size:1.1rem;font-weight:700;display:block;}
+.topbar-stat .ts-lab{font-size:0.68rem;color:var(--muted2);text-transform:uppercase;letter-spacing:0.07em;}
+.ts-red{color:var(--red)} .ts-yellow{color:var(--yellow)} .ts-orange{color:var(--orange)}
+.ts-green{color:var(--green)} .ts-blue{color:var(--blue)} .ts-teal{color:var(--teal)}
+
+/* SECTION TITLE */
+.section-title{font-size:1.05rem;font-weight:700;color:var(--blue-dark);padding-bottom:8px;border-bottom:2px solid var(--border);margin-bottom:18px;margin-top:32px;display:flex;align-items:center;gap:10px;}
+.section-title:first-of-type{margin-top:0;}
+
+/* KPI GRID */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:14px;margin-bottom:24px;}
+.kpi-card{background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);padding:16px 14px 12px;text-align:center;}
+.kpi-val{font-size:1.8rem;font-weight:700;line-height:1;margin-bottom:5px;}
+.kpi-label{font-size:0.70rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.07em;line-height:1.4;}
+.kpi-sub{font-size:0.68rem;color:var(--muted2);margin-top:3px;}
+
+/* CTX BOXES */
+.ctx-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-bottom:16px;}
+.ctx-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;}
+.ctx-box.yellow{border-left:4px solid var(--yellow);}
+.ctx-box.green{border-left:4px solid var(--green);}
+.ctx-box.red{border-left:4px solid var(--red);}
+.ctx-box.blue{border-left:4px solid var(--blue);}
+.ctx-box.orange{border-left:4px solid var(--orange);}
+.ctx-label{font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);font-weight:700;margin-bottom:6px;}
+.ctx-val{font-size:2.2rem;font-weight:700;line-height:1;margin-bottom:4px;}
+.ctx-val.yellow{color:var(--yellow);} .ctx-val.green{color:var(--green);} .ctx-val.red{color:var(--red);} .ctx-val.blue{color:var(--blue);}
+.ctx-note{font-size:0.76rem;color:var(--muted);line-height:1.5;}
+.adeq-prog{margin-top:10px;}
+.adeq-prog-lbl{display:flex;justify-content:space-between;font-size:0.65rem;color:var(--muted);margin-bottom:4px;}
+.adeq-track{background:#eef1f5;border-radius:4px;height:9px;overflow:hidden;}
+.adeq-fill{height:100%;border-radius:4px;transition:width 0.8s ease;}
+.adeq-fill.yellow{background:var(--yellow);} .adeq-fill.red{background:var(--red);} .adeq-fill.green{background:var(--green);}
+
+/* COMP STRIP */
+.comp-strip{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;}
+.comp-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:12px 16px;flex:1;min-width:120px;}
+.comp-box-lbl{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);font-weight:700;margin-bottom:4px;}
+.comp-val{font-size:1.6rem;font-weight:700;line-height:1.1;}
+.comp-val.school{color:var(--blue);} .comp-val.sim{color:var(--muted);}
+.comp-val.gap-red{color:var(--red);} .comp-val.gap-yellow{color:var(--yellow);} .comp-val.gap-green{color:var(--green);}
+.comp-note{font-size:0.70rem;color:var(--muted);margin-top:3px;}
+
+/* ALERT BANNERS */
+.alert-banner{border-radius:var(--radius);padding:13px 17px;margin-bottom:11px;border-left:5px solid;font-size:0.86rem;display:flex;align-items:flex-start;gap:11px;}
+.alert-banner.danger{background:var(--red-bg);border-color:var(--red);color:#7a1a0e;}
+.alert-banner.warning{background:var(--yellow-bg);border-color:var(--yellow);color:#7a3e05;}
+.alert-banner.success{background:var(--green-bg);border-color:var(--green);color:#155234;}
+.alert-banner.info{background:var(--blue-bg);border-color:var(--blue);color:#12347a;}
+.alert-banner.purple{background:var(--purple-bg);border-color:var(--purple);color:#3d0080;}
+.alert-banner .ab-icon{font-size:1.3rem;flex-shrink:0;margin-top:1px;}
+.alert-title{font-weight:700;margin-bottom:3px;}
+.alert-body{font-size:0.80rem;line-height:1.6;}
+
+/* PROF BARS */
+.prof-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px;margin-bottom:14px;}
+.prof-title{font-weight:700;font-size:0.92rem;margin-bottom:3px;color:var(--blue-dark);}
+.prof-sub{font-size:0.74rem;color:var(--muted);margin-bottom:14px;}
+.prof-bars{display:flex;flex-direction:column;gap:6px;}
+.bar-row{display:flex;align-items:center;gap:8px;}
+.bar-lv{width:48px;font-size:0.68rem;font-weight:700;text-align:center;padding:2px 4px;border-radius:4px;flex-shrink:0;color:#fff;}
+.bar-desc{flex:1;min-width:0;}
+.bar-name{font-size:0.72rem;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.bar-track{height:20px;background:#eef1f5;border-radius:4px;overflow:hidden;flex:2;}
+.bar-fill{height:100%;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding-right:6px;transition:width 0.8s ease;}
+.bar-fill span{font-size:0.65rem;font-weight:700;color:rgba(255,255,255,0.9);white-space:nowrap;}
+.bar-ref{display:flex;align-items:center;gap:4px;width:52px;flex-shrink:0;}
+.bar-ref-val{font-size:0.68rem;font-weight:600;color:var(--muted2);}
+.bar-compare{width:10px;height:14px;border-radius:2px;flex-shrink:0;opacity:0.4;}
+
+/* DATA TABLE */
+.data-table-wrap{background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);overflow:hidden;margin-bottom:12px;}
+.data-table-wrap .table-header{padding:12px 16px 10px;border-bottom:1px solid var(--border);background:#fafcff;}
+.table-header h3{font-size:0.90rem;font-weight:700;color:var(--blue-dark);}
+.table-header p{font-size:0.73rem;color:var(--muted2);}
+.table-scroll{overflow-x:auto;}
+.data-table{width:100%;border-collapse:collapse;font-size:0.80rem;}
+.data-table thead tr{background:linear-gradient(135deg,#1a3a5c,#1e5799);color:#fff;}
+.data-table th{padding:10px 12px;text-align:left;font-size:0.70rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;white-space:nowrap;}
+.data-table td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:middle;}
+.data-table tbody tr:last-child td{border-bottom:none;}
+.data-table tbody tr:hover{background:#f8fafc;}
+.data-table tbody tr.adeq-row{background:#f0fdf4;}
+.lv-chip{display:inline-block;color:#fff;font-size:0.66rem;font-weight:700;padding:2px 7px;border-radius:4px;}
+.diff-pos{color:var(--green);font-weight:700;}
+.diff-neg{color:var(--red);font-weight:700;}
+.school-pct{font-weight:700;}
+.sim-pct{color:var(--muted2);}
+
+/* PLAN ITEMS */
+.plan-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:15px 18px;display:flex;gap:14px;margin-bottom:10px;cursor:pointer;transition:box-shadow 0.18s;}
+.plan-item:hover{box-shadow:0 4px 18px rgba(0,0,0,0.10);}
+.plan-num{font-size:1.8rem;font-weight:700;line-height:1;flex-shrink:0;width:32px;text-align:center;}
+.plan-num.red{color:var(--red);} .plan-num.yellow{color:var(--yellow);} .plan-num.green{color:var(--green);} .plan-num.blue{color:var(--blue);}
+.plan-content{flex:1;}
+.plan-hrow{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:4px;}
+.plan-title{font-weight:700;font-size:0.88rem;line-height:1.35;}
+.plan-badge{font-size:0.65rem;font-weight:700;padding:2px 8px;border-radius:20px;flex-shrink:0;white-space:nowrap;}
+.plan-badge.red{background:var(--red-bg);color:var(--red-dark);border:1px solid var(--red-bdr);}
+.plan-badge.yellow{background:var(--yellow-bg);color:#7d5a10;border:1px solid var(--yellow-bdr);}
+.plan-badge.green{background:var(--green-bg);color:#155234;border:1px solid var(--green-bdr);}
+.plan-desc{font-size:0.80rem;color:var(--muted);line-height:1.55;}
+.plan-steps{display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:0.80rem;color:#334155;line-height:1.85;}
+.plan-item.open .plan-steps{display:block;}
+.plan-item.open{border-left:4px solid var(--teal);}
+
+/* NOTA BOX */
+.nota-box{background:var(--blue-bg);border:1.5px solid var(--blue-bdr);border-radius:var(--radius);padding:14px 18px;margin-bottom:16px;}
+.nota-box h4{font-size:0.84rem;font-weight:700;color:var(--blue-dark);margin-bottom:6px;}
+.nota-box p{font-size:0.78rem;color:var(--muted);line-height:1.6;}
+
+@media(max-width:768px){
+  .sidebar{display:none;}
+  .main{padding:18px 16px 40px;}
+  .kpi-grid{grid-template-columns:repeat(2,1fr);}
+  .ctx-grid{grid-template-columns:1fr;}
+  .comp-strip{flex-direction:column;}
+}
 </style>
 </head>
 <body>
-<div class="box">
-  <span class="icon">📋</span>
-  <h2>SAEB · EEF 7 de Setembro</h2>
-  <p>Este painel ainda não possui dados inseridos.<br>Em breve a Coordenação Pedagógica irá disponibilizar as informações desta escola.</p>
-  <a href="painel.html">← Voltar ao Painel</a>
-</div>
+
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="school-badge">Painel do Diretor</div>
+    <div class="school-name">7 de <span>Setembro</span></div>
+    <div class="school-sub">EEIEF · Caucaia · CE · INEP: 23063726</div>
+  </div>
+
+  <div class="nav-section">Indicadores</div>
+  <a class="nav-item" href="painel.html"><div class="nav-icon" style="background:#ecfeff">🏠</div><span class="nav-label">Visão Geral</span></a>
+  <a class="nav-item" href="resumo_executivo.html"><div class="nav-icon" style="background:#fdf0ef">🚨</div><span class="nav-label">Resumo Executivo</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="busca_ativa.html"><div class="nav-icon" style="background:#fef5e7">🔍</div><span class="nav-label">Busca Ativa</span><span class="nav-badge nb-orange">!</span></a>
+  <a class="nav-item" href="adsec.html"><div class="nav-icon" style="background:#edfaf3">📖</div><span class="nav-label">ADSEC 2025</span><span class="nav-badge nb-green">▲</span></a>
+  <a class="nav-item" href="avalie_ce.html"><div class="nav-icon" style="background:#fef9ec">📊</div><span class="nav-label">Avalie.CE</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="bimestrais.html"><div class="nav-icon" style="background:#eaf2fc">📝</div><span class="nav-label">Bimestrais 2025</span><span class="nav-badge nb-yellow">!</span></a>
+  <a class="nav-item" href="cnca.html"><div class="nav-icon" style="background:#fef5e7">📚</div><span class="nav-label">CNCA</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="qedu.html"><div class="nav-icon" style="background:#eaf2fc">🎓</div><span class="nav-label">QEdu / Censo</span><span class="nav-badge nb-yellow">!</span></a>
+  <a class="nav-item recomp" href="recomposicao.html"><div class="nav-icon" style="background:var(--purple-bg)">🎒</div><span class="nav-label" style="color:#c4b5fd">Recomposição</span><span class="nav-badge nb-purple">!</span></a>
+  <a class="nav-item active" href="saeb.html"><div class="nav-icon" style="background:#fdf0ef">📋</div><span class="nav-label">SAEB 2023</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="spaece.html"><div class="nav-icon" style="background:#fef9ec">📈</div><span class="nav-label">SPAECE 2024</span><span class="nav-badge nb-red">!!</span></a>
+
+  <div class="nav-section" style="margin-top:10px">Navegação Interna</div>
+  <a class="nav-item" href="#contexto"><div class="nav-icon" style="background:rgba(26,86,160,.12)">📌</div><span class="nav-label">Contexto</span></a>
+  <a class="nav-item" href="#participacao"><div class="nav-icon" style="background:rgba(26,122,74,.12)">✅</div><span class="nav-label">Participação</span></a>
+  <a class="nav-item" href="#aprendizado"><div class="nav-icon" style="background:rgba(192,57,43,.12)">🎯</div><span class="nav-label">Aprendizado Adequado</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="#lp5"><div class="nav-icon" style="background:rgba(26,86,160,.12)">📖</div><span class="nav-label">LP – 5º Ano</span><span class="nav-badge nb-yellow">!</span></a>
+  <a class="nav-item" href="#mt5"><div class="nav-icon" style="background:rgba(192,57,43,.12)">🔢</div><span class="nav-label">MT – 5º Ano</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="#lp9"><div class="nav-icon" style="background:rgba(26,86,160,.12)">📖</div><span class="nav-label">LP – 9º Ano</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="#mt9"><div class="nav-icon" style="background:rgba(192,57,43,.12)">🔢</div><span class="nav-label">MT – 9º Ano</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="#plano"><div class="nav-icon" style="background:rgba(14,116,144,.12)">🗺️</div><span class="nav-label">Plano de Ação</span></a>
+
+  <div class="nav-section" style="margin-top:10px">Sistema</div>
+  <a class="nav-item" href="../index.html"><div class="nav-icon" style="background:#fdf0ef">🏫</div><span class="nav-label">Trocar Escola</span></a>
+
+  <div class="sidebar-footer">
+    <div>7 de Setembro EEIEF<br>Caucaia · CE</div>
+    <div style="margin-top:6px;color:#8097b0">Fonte: SAEB 2023 · INEP/MEC<br>INEP: 23063726</div>
+    <a class="logout-btn" href="../index.html">⬅ Sair do Painel</a>
+  </div>
+</aside>
+
+<main class="main">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-title">
+      <h2>📋 SAEB 2023 · 7 de Setembro EEIEF</h2>
+      <p>Boletim da Escola · Caucaia-CE · INEP: 23063726 · Nível Socioeconômico: Grupo 4</p>
+    </div>
+    <div class="topbar-stats">
+      <div class="topbar-stat"><span class="ts-val ts-blue">98</span><span class="ts-lab">Presentes 5º Ano</span></div>
+      <div class="topbar-stat"><span class="ts-val ts-blue">100</span><span class="ts-lab">Presentes 9º Ano</span></div>
+      <div class="topbar-stat"><span class="ts-val ts-green">95,15%</span><span class="ts-lab">Participação 5º Ano</span></div>
+      <div class="topbar-stat"><span class="ts-val ts-green">96,15%</span><span class="ts-lab">Participação 9º Ano</span></div>
+    </div>
+  </div>
+
+  <!-- CONTEXTO -->
+  <div id="contexto">
+    <div class="section-title">📌 Contexto Institucional</div>
+
+    <div class="ctx-grid">
+      <div class="ctx-box blue">
+        <div class="ctx-label">🏫 Nível Socioeconômico</div>
+        <div class="ctx-val blue">Grupo 4</div>
+        <div class="ctx-note">Indicador calculado pela escolaridade dos pais e posse de bens. Contexto socioeconômico médio-baixo — entre os 6 grupos, do mais alto ao mais baixo.</div>
+      </div>
+      <div class="ctx-box green">
+        <div class="ctx-label">📚 Formação Docente – Anos Iniciais</div>
+        <div class="ctx-val green">87,6%</div>
+        <div class="ctx-note">Percentual de disciplinas ministradas por professores com formação superior na área — resultado positivo nos anos iniciais.</div>
+        <div class="adeq-prog">
+          <div class="adeq-prog-lbl"><span>0%</span><span>Meta 100%</span></div>
+          <div class="adeq-track"><div class="adeq-fill green" style="width:87.6%"></div></div>
+        </div>
+      </div>
+      <div class="ctx-box red">
+        <div class="ctx-label">📚 Formação Docente – Anos Finais</div>
+        <div class="ctx-val red">57,9%</div>
+        <div class="ctx-note">Pouco mais da metade das disciplinas dos anos finais são ministradas por professores com formação adequada. Impacto direto nos resultados do 9º Ano.</div>
+        <div class="adeq-prog">
+          <div class="adeq-prog-lbl"><span>0%</span><span>Meta 100%</span></div>
+          <div class="adeq-track"><div class="adeq-fill red" style="width:57.9%"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert-banner warning">
+      <span class="ab-icon">⚠️</span>
+      <div>
+        <div class="alert-title">Formação docente nos Anos Finais é o principal fator de risco estrutural da escola — 42,1% sem adequação</div>
+        <div class="alert-body">Com apenas 57,9% de adequação nos anos finais — contra 87,6% nos anos iniciais — há uma disparidade de 29,7 pontos percentuais que explica, em parte, a diferença de resultados entre os dois segmentos. Garantir a alocação de docentes com habilitação específica para LP e MT nos 9º Anos é uma prioridade estratégica que depende da gestão de rede (SME/SEDUC).</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PARTICIPAÇÃO -->
+  <div id="participacao">
+    <div class="section-title">✅ Participação na Avaliação</div>
+
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-val" style="color:var(--blue)">98</div>
+        <div class="kpi-label">Estudantes Presentes</div>
+        <div class="kpi-sub">5º Ano do EF</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val" style="color:var(--muted)">103</div>
+        <div class="kpi-label">Matriculados Censo</div>
+        <div class="kpi-sub">5º Ano do EF</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val" style="color:var(--green)">95,15%</div>
+        <div class="kpi-label">Taxa de Participação</div>
+        <div class="kpi-sub">5º Ano — Excelente ✓</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val" style="color:var(--blue)">100</div>
+        <div class="kpi-label">Estudantes Presentes</div>
+        <div class="kpi-sub">9º Ano do EF</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val" style="color:var(--muted)">104</div>
+        <div class="kpi-label">Matriculados Censo</div>
+        <div class="kpi-sub">9º Ano do EF</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-val" style="color:var(--green)">96,15%</div>
+        <div class="kpi-label">Taxa de Participação</div>
+        <div class="kpi-sub">9º Ano — Excelente ✓</div>
+      </div>
+    </div>
+
+    <div class="alert-banner success">
+      <span class="ab-icon">✅</span>
+      <div>
+        <div class="alert-title">Participação exemplar em ambas as etapas — acima do mínimo exigido para publicação</div>
+        <div class="alert-body">A Escola 7 de Setembro alcançou 95,15% no 5º Ano (98/103 alunos) e 96,15% no 9º Ano (100/104 alunos) — ambos muito acima do limiar de 80% exigido pelo INEP para publicação de resultados. Isso garante representatividade estatística plena dos dados e reflete comprometimento da gestão com o monitoramento educacional.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- APRENDIZADO ADEQUADO -->
+  <div id="aprendizado">
+    <div class="section-title">🎯 Aprendizado Adequado — Visão Geral</div>
+
+    <div class="nota-box" style="background:var(--yellow-bg);border-color:var(--yellow-bdr)">
+      <h4 style="color:#7d5a10">📐 Como é calculado o "Adequado" no SAEB?</h4>
+      <p style="color:#7d5a10">Para o <strong>5º Ano</strong>, o aprendizado adequado em <strong>Língua Portuguesa</strong> começa no <strong>Nível 4 (≥200 pts)</strong> e em <strong>Matemática</strong> no <strong>Nível 4 (≥200 pts)</strong>. Para o <strong>9º Ano</strong>, o adequado em <strong>Língua Portuguesa</strong> começa no <strong>Nível 5 (≥300 pts)</strong> e em <strong>Matemática</strong> também no <strong>Nível 5 (≥300 pts)</strong>. Os alunos abaixo desses limiares necessitam de intervenção pedagógica prioritária.</p>
+    </div>
+
+    <div class="ctx-grid">
+      <div class="ctx-box green">
+        <div class="ctx-label">📖 LP · 5º Ano (Adeq. N4+)</div>
+        <div class="ctx-val green">46,09%</div>
+        <div class="ctx-note">N4 a N9. 53,91% ainda abaixo do adequado. Escola próxima da média estadual (41,9%).</div>
+        <div class="adeq-prog">
+          <div class="adeq-prog-lbl"><span>0%</span><span>Meta 70%</span><span>100%</span></div>
+          <div class="adeq-track"><div class="adeq-fill green" style="width:46.09%"></div></div>
+          <div style="font-size:0.66rem;color:var(--orange);margin-top:3px;font-weight:600">Distância da meta: −23,9 pp · ATENÇÃO</div>
+        </div>
+      </div>
+      <div class="ctx-box red">
+        <div class="ctx-label">🔢 MT · 5º Ano (Adeq. N4+)</div>
+        <div class="ctx-val red">36,6%</div>
+        <div class="ctx-note">N4 a N10. 63,4% abaixo do adequado. Escola abaixo das similares (55,7%) em 19,1 pp.</div>
+        <div class="adeq-prog">
+          <div class="adeq-prog-lbl"><span>0%</span><span>Meta 70%</span><span>100%</span></div>
+          <div class="adeq-track"><div class="adeq-fill red" style="width:36.6%"></div></div>
+          <div style="font-size:0.66rem;color:var(--red);margin-top:3px;font-weight:600">Distância da meta: −33,4 pp · CRÍTICO</div>
+        </div>
+      </div>
+      <div class="ctx-box red">
+        <div class="ctx-label">📖 LP · 9º Ano (Adeq. N5+)</div>
+        <div class="ctx-val red">7,13%</div>
+        <div class="ctx-note">N5 a N8. 92,87% abaixo do adequado. Situação crítica — abaixo das similares (23,27%).</div>
+        <div class="adeq-prog">
+          <div class="adeq-prog-lbl"><span>0%</span><span>Meta 70%</span><span>100%</span></div>
+          <div class="adeq-track"><div class="adeq-fill red" style="width:7.13%"></div></div>
+          <div style="font-size:0.66rem;color:var(--red);margin-top:3px;font-weight:600">Distância da meta: −62,87 pp · EMERGÊNCIA</div>
+        </div>
+      </div>
+      <div class="ctx-box red">
+        <div class="ctx-label">🔢 MT · 9º Ano (Adeq. N5+)</div>
+        <div class="ctx-val red">7,94%</div>
+        <div class="ctx-note">N5 a N9. 92,06% abaixo do adequado. Muito abaixo das similares (17,14%).</div>
+        <div class="adeq-prog">
+          <div class="adeq-prog-lbl"><span>0%</span><span>Meta 70%</span><span>100%</span></div>
+          <div class="adeq-track"><div class="adeq-fill red" style="width:7.94%"></div></div>
+          <div style="font-size:0.66rem;color:var(--red);margin-top:3px;font-weight:600">Distância da meta: −62,06 pp · EMERGÊNCIA</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert-banner danger">
+      <span class="ab-icon">🚨</span>
+      <div>
+        <div class="alert-title">9º Ano em colapso em LP e MT — menos de 8% de alunos no nível adequado em ambos os componentes</div>
+        <div class="alert-body">Com apenas <strong>7,13% de adequado em LP</strong> e <strong>7,94% em MT</strong> no 9º Ano, quase a totalidade dos alunos que concluem o EF está abaixo do mínimo esperado — e abaixo das Escolas Similares em ambos os componentes. Em LP, a escola está 16,14 pontos percentuais abaixo das similares (23,27%). Em MT, 9,2 pp abaixo (17,14%). Esses dados exigem um plano de intervenção estrutural e urgente para os anos finais.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LP 5º ANO -->
+  <div id="lp5">
+    <div class="section-title">📖 Língua Portuguesa — 5º Ano do Ensino Fundamental</div>
+
+    <div class="comp-strip">
+      <div class="comp-box"><div class="comp-box-lbl">Sua Escola</div><div class="comp-val school">194,08 pts</div><div class="comp-note">Média LP · 5º Ano</div></div>
+      <div class="comp-box"><div class="comp-box-lbl">Escolas Similares</div><div class="comp-val sim">210,89 pts</div><div class="comp-note">Mesma microrregião/NSE</div></div>
+      <div class="comp-box"><div class="comp-box-lbl">Gap vs Similares</div><div class="comp-val gap-red">−16,8 pts</div><div class="comp-note">Abaixo das similares</div></div>
+      <div class="comp-box"><div class="comp-box-lbl">Adequado (N4+)</div><div class="comp-val" style="color:var(--yellow)">46,09%</div><div class="comp-note">N4 a N9 · Meta: 70%</div></div>
+    </div>
+
+    <div class="alert-banner warning">
+      <span class="ab-icon">⚠️</span>
+      <div>
+        <div class="alert-title">LP 5º Ano: escola 16,8 pts abaixo das similares — N0 e N1 concentram 25,07% dos alunos</div>
+        <div class="alert-body">Com 8,00% no N0 e 17,07% no N1, um quarto dos alunos do 5º Ano está nos níveis mais elementares de proficiência. O ponto positivo é que 46,09% atingem o nível adequado (N4+), superando o Total Estado (41,9%). O N4 é o nível adequado mais populoso (18,20%), indicando que um grupo expressivo está na fronteira — com intervenção focada nos descritores de N2 e N3, esses alunos podem atingir N4+.</div>
+      </div>
+    </div>
+
+    <div class="prof-wrap">
+      <div class="prof-title">📊 Distribuição por Nível de Proficiência — LP · 5º Ano</div>
+      <div class="prof-sub">Escola (barras coloridas) vs Escolas Similares (valor à direita) · Adequado = N4 a N9 (≥200 pts) para o 5º Ano</div>
+      <div class="prof-bars" id="lp5-bars"></div>
+    </div>
+
+    <div class="data-table-wrap">
+      <div class="table-header">
+        <h3>Detalhamento por Nível — LP · 5º Ano</h3>
+        <p>Fonte: Boletim Saeb 2023 · INEP · Escola 7 de Setembro EEIEF (23063726)</p>
+      </div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr><th>Nível</th><th>Pontuação</th><th>Escola</th><th>Similares</th><th>Dif.</th><th>Adeq.?</th><th>Foco pedagógico</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="lv-chip" style="background:var(--lv0)">N0</span></td><td>&lt;125</td><td class="school-pct" style="color:var(--red)">8,00%</td><td class="sim-pct">4,74%</td><td class="diff-neg">+3,26</td><td><span style="color:var(--red)">✗</span></td><td>🚨 Atenção especial — habilidades muito elementares ausentes</td></tr>
+            <tr><td><span class="lv-chip" style="background:var(--lv1)">N1</span></td><td>125–150</td><td class="school-pct" style="color:var(--red)">17,07%</td><td class="sim-pct">10,58%</td><td class="diff-neg">+6,49</td><td><span style="color:var(--red)">✗</span></td><td>Localizar info explícita em textos narrativos curtos e anúncios</td></tr>
+            <tr><td><span class="lv-chip" style="background:var(--lv2)">N2</span></td><td>150–175</td><td class="school-pct">12,64%</td><td class="sim-pct">12,31%</td><td class="diff-neg">+0,33</td><td><span style="color:var(--red)">✗</span></td><td>Localizar info em contos e fábulas; finalidade de receitas</td></tr>
+            <tr><td><span class="lv-chip" style="background:var(--lv3)">N3</span></td><td>175–200</td><td class="school-pct">14,21%</td><td class="sim-pct">13,14%</td><td class="diff-neg">+1,07</td><td><span style="color:var(--red)">✗</span></td><td>Causa/consequência em poemas e contos; inferir sentido em tirinhas</td></tr>
+            <tr class="adeq-row"><td><span class="lv-chip" style="background:var(--lv4)">N4</span></td><td>200–225</td><td class="school-pct" style="color:var(--green)">18,20%</td><td class="sim-pct">17,92%</td><td class="diff-pos">+0,28</td><td><span style="color:var(--green)">✓</span></td><td>✅ Identificar assunto/personagem, efeito de humor em piadas</td></tr>
+            <tr class="adeq-row"><td><span class="lv-chip" style="background:var(--lv5)">N5</span></td><td>225–250</td><td class="school-pct" style="color:var(--green)">17,59%</td><td class="sim-pct">17,38%</td><td class="diff-pos">+0,21</td><td><span style="color:var(--green)">✓</span></td><td>✅ Reconhecer finalidade, causa/consequência em múltiplos gêneros</td></tr>
+            <tr class="adeq-row"><td><span class="lv-chip" style="background:var(--lv6)">N6</span></td><td>250–275</td><td class="school-pct" style="color:var(--green)">6,97%</td><td class="sim-pct">12,28%</td><td class="diff-pos">−5,31</td><td><span style="color:var(--green)">✓</span></td><td>✅ Inferir assunto, humor e moral em fábulas e crônicas</td></tr>
+            <tr class="adeq-row"><td><span class="lv-chip" style="background:var(--lv7)">N7</span></td><td>275–300</td><td class="school-pct" style="color:var(--green)">4,37%</td><td class="sim-pct">8,13%</td><td class="diff-pos">−3,76</td><td><span style="color:var(--green)">✓</span></td><td>✅ Reconhecer gênero textual, elementos da narrativa em fábulas</td></tr>
+            <tr class="adeq-row"><td><span class="lv-chip" style="background:var(--lv8)">N8</span></td><td>300–325</td><td class="school-pct">0,96%</td><td class="sim-pct">2,21%</td><td class="diff-pos">−1,25</td><td><span style="color:var(--green)">✓</span></td><td>✅ Reconhecer assunto entre textos de gêneros diferentes</td></tr>
+            <tr class="adeq-row"><td><span class="lv-chip" style="background:var(--lv9)">N9</span></td><td>≥325</td><td class="school-pct">0,00%</td><td class="sim-pct">1,30%</td><td class="diff-pos">−1,30</td><td><span style="color:var(--green)">✓</span></td><td>✅ Identificar opinião em fábulas, sentido de advérbios</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- MT 5º ANO -->
+  <div id="mt5">
+    <div class="section-title">🔢 Matemática — 5º Ano do Ensino Fundamental</div>
+
+    <div class="comp-strip">
+      <div class="comp-box"><div class="comp-box-lbl">Sua Escola</div><div class="comp-val school">197,26 pts</div><div class="comp-note">Média MT · 5º Ano</div></div>
+      <div class="comp-box"><div class="comp-box-lbl">Escolas Similares</div><div class="comp-val sim">210,35 pts</div><div class="comp-note">Mesma microrregião/NSE</div></div>
+      <div class="comp-box"><div class="comp-box-lbl">Gap vs Similares</div><div class="comp-val gap-red">−13,1 pts</div><div class="comp-note">Abaixo das similares</div></div>
+      <div class="comp-box"><div class="comp-box-lbl">Adequado (N4+)</div><div class="comp-val" style="color:var(--red)">36,6%</div><div class="comp-note">N4 a N10 · Meta: 70%</div></div>
+    </div>
+
+    <div class="alert-banner danger">
+      <span class="ab-icon">🚨</span>
+      <div>
+        <div class="alert-title">MT 5º Ano: N3+N4 concentram 43,42% — escola 13 pts abaixo das similares e 19 pp abaixo em adequado</div>
+        <div class="alert-body">Com 3,41% no N0, 13,85% no N1 e 13,85% no N2, os três primeiros níveis somam 31,11% dos alunos. O N3 (19,98%) e N4 (23,44%) juntos representam 43,42% — um bloco expressivo na fronteira do adequado. Esse grupo é o ponto de maior alavancagem: com foco nos descritores de N3 (frações, coordenadas, conversão de moedas) e N4 (multiplicação, divisão, SND), a escola pode avançar significativamente no próximo ciclo.</div>
+      </div>
+    </div>
+
+    <div class="prof-wrap">
+      <div class="prof-title">📊 Distribuição por Nível de Proficiência — MT · 5º Ano</div>
+      <div class="prof-sub">Escola (barras coloridas) vs Escolas Similares (valor à direita) · Adequado = N4 a N10 (≥200 pts) para o 5º Ano</div>
+      <div class="prof-bars" id="mt5-bars"></div>
+    </div>
+
+    <div class="data-table-wrap">
+      <div class="table-header">
+        <h3>Detalhamento por Nível — MT · 5º Ano</h3>
+        <p>Fonte: Boletim Saeb 2023 · INEP · Escola 7 de Setembro EEIEF (23063726)</p>
+      </div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr><th>Nível</th><th>Pontuação</th><th>Escola</th><th>Similares</th><th>Dif.</th><th>Adeq.?</th><th>Foco pedagógico</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="lv-chip" style="background:var(--lv0)">N0</span></td><td>&lt;125</td><td class="school-pct" style="color:var(--red)">3,41%</td><td class="sim-pct">3,00%</td><td class="diff-neg">+0,41</td><td><span style="color:var(--red)">✗</span></td><td>🚨 Atenção especial — habilidades muito elementares ausentes</td></tr>
+            <tr><td><span class="lv-chip" style="background:var(--lv1)">N1</span></td><td>125–150</td><td class="school-pct" style="color:var(--red)">13,85%</td><td class="sim-pct">8,28%</td><td class="diff-neg">+5,57</td><td><span style="color:var(--red)">✗</span></td><td>Área de figuras em malha quadriculada por contagem</td></tr>
+            <tr><td><span class="lv-chip" style="background:var(--lv2)">N2</span></td><td>150–175</td><td class="school-pct" style="color:var(--red)">13,85%</td><td class="sim-pct">12,61%</td><td class="diff-neg">+1,24</td><td><span style="color:var(--red)">✗</span></td><td>Adição de quantias, localizar info em tabelas/gráficos</td></tr>
+            <tr><td><span class="lv-chip" style="background:var(--lv3)">N3</span></td><td>175–200</td><td class="school-pct">19,98%</td><td class="sim-pct">20,60%</td><td class="diff-pos">−0,62</td><td><span style="color:var(--red)">✗</span></td><td>Coordenadas em malha, conversão de moedas, frações simples</td></tr>
+            <tr class="adeq-row"><td><span class="lv-chip" style="background:var(--lv4)">N4</span></td><td>200–225</td><td class="school-pct" style="color:var(--green)">23,44%</td><td class="sim-pct">17,53%</td><td class="diff-pos">+5,91</td><td><span style="color:var(--green)">✓</span></td><td>✅ Acima das similares! Multiplicação, divisão, valor posicional SND</td></tr>
+            <tr class="adeq-row"><td><span class="lv-chip" style="background:var(--lv5)">N5</span></td><td>225–250</td><td class="school-pct" style="color:var(--green)">11,95%</td><td class="sim-pct">16,39%</td><td class="diff-pos">−4,44</td><td><span style="color:var(--green)">✓</span></td><td>✅ Subtração com reserva, sistema monetário, reta numérica</td></tr>
+            <tr class="adeq-row"><td><span class="lv-chip" style="background:var(--lv6)">N6</span></td><td>250–275</td><td class="school-pct" style="color:var(--green)">10,41%</td><td class="sim-pct">11,43%</td><td class="diff-pos">−1,02</td><td><span style="color:var(--green)">✓</span></td><td>✅ Porcentagens simples, área de terrenos, intervalos de tempo</td></tr>
+            <tr class="adeq-row"><td><span class="lv-chip" style="background:var(--lv7)">N7</span></td><td>275–300</td><td class="school-pct" style="color:var(--green)">1,92%</td><td class="sim-pct">6,79%</td><td class="diff-pos">−4,87</td><td><span style="color:var(--green)">✓</span></td><td>✅ Perímetro de retângulo, conversão de massa, gráficos de setores</td></tr>
+            <tr class="adeq-row"><td><span class="lv-chip" style="background:var(--lv8)">N8</span></td><td>300–325</td><td class="school-pct" style="color:var(--green)">1,21%</td><td class="sim-pct">2,29%</td><td class="diff-pos">−1,08</td><td><span style="color:var(--green)">✓</span></td><td>✅ Área de retângulo modificada, conversão de medidas lineares</td></tr>
+            <tr class="adeq-row"><td><span class="lv-chip" style="background:var(--lv9)">N9</span></td><td>325–350</td><td class="school-pct">0,00%</td><td class="sim-pct">0,82%</td><td class="diff-pos">−0,82</td><td><span style="color:var(--green)">✓</span></td><td>✅ Frações equivalentes, conversão de medidas de tempo</td></tr>
+            <tr class="adeq-row"><td><span class="lv-chip" style="background:var(--lv10)">N10</span></td><td>≥350</td><td class="school-pct">0,00%</td><td class="sim-pct">0,26%</td><td class="diff-pos">−0,26</td><td><span style="color:var(--green)">✓</span></td><td>✅ Perpendiculares, medidas lineares avançadas</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- LP 9º ANO -->
+  <div id="lp9">
+    <div class="section-title">📖 Língua Portuguesa — 9º Ano do Ensino Fundamental</div>
+
+    <div class="comp-strip">
+      <div class="comp-box"><div class="comp-box-lbl">Sua Escola</div><div class="comp-val school">242,15 pts</div><div class="comp-note">Média LP · 9º Ano</div></div>
+      <div class="comp-box"><div class="comp-box-lbl">Escolas Similares</div><div class="comp-val sim">258,91 pts</div><div class="comp-note">Mesma microrregião/NSE</div></div>
+      <div class="comp-box"><div class="comp-box-lbl">Gap vs Similares</div><div class="comp-val gap-red">−16,8 pts</div><div class="comp-note">Abaixo das similares</div></div>
+      <div class="comp-box"><div class="comp-box-lbl">Adequado (N5+)</div><div class="comp-val" style="color:var(--red)">7,13%</div><div class="comp-note">N5 a N8 · Meta: 70%</div></div>
+    </div>
+
+    <div class="alert-banner danger">
+      <span class="ab-icon">🚨</span>
+      <div>
+        <div class="alert-title">LP 9º Ano: N0+N1 somam 37,42% — mais de um terço dos alunos nos dois piores níveis; apenas 7,13% adequados</div>
+        <div class="alert-body">Com 18,35% no N0 e 19,07% no N1, mais de um terço dos 100 alunos avaliados (≈37 alunos) não dominam nem as habilidades básicas esperadas para o 9º Ano. O N2 (17,90%) e N3 (19,06%) concentram mais 37 alunos nas zonas intermediárias críticas. Apenas 7,13% atingem o adequado (N5+) — contra 23,27% das Escolas Similares. É urgente um programa de nivelamento intensivo focado em leitura e interpretação de múltiplos gêneros textuais.</div>
+      </div>
+    </div>
+
+    <div class="prof-wrap">
+      <div class="prof-title">📊 Distribuição por Nível de Proficiência — LP · 9º Ano</div>
+      <div class="prof-sub">Escola (barras coloridas) vs Escolas Similares (valor à direita) · Adequado = N5 a N8 (≥300 pts) para o 9º Ano</div>
+      <div class="prof-bars" id="lp9-bars"></div>
+    </div>
+
+    <div class="data-table-wrap">
+      <div class="table-header">
+        <h3>Detalhamento por Nível — LP · 9º Ano</h3>
+        <p>Fonte: Boletim Saeb 2023 · INEP · Escola 7 de Setembro EEIEF (23063726)</p>
+      </div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr><th>Nível</th><th>Pontuação</th><th>Escola</th><th>Similares</th><th>Dif.</th><th>Adeq.?</th><th>Foco pedagógico</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="lv-chip" style="background:var(--lv0)">N0</span></td><td>&lt;200</td><td class="school-pct" style="color:var(--red)">18,35%</td><td class="sim-pct">15,35%</td><td class="diff-neg">+3,00</td><td><span style="color:var(--red)">✗</span></td><td>🚨 Atenção especial — habilidades muito elementares ausentes</td></tr>
+            <tr><td><span class="lv-chip" style="background:var(--lv1)">N1</span></td><td>200–225</td><td class="school-pct" style="color:var(--red)">19,07%</td><td class="sim-pct">11,34%</td><td class="diff-neg">+7,73</td><td><span style="color:var(--red)">✗</span></td><td>Linguagem científica/jornalística, inferência em crônicas e reportagens</td></tr>
+            <tr><td><span class="lv-chip" style="background:var(--lv2)">N2</span></td><td>225–250</td><td class="school-pct" style="color:var(--red)">17,90%</td><td class="sim-pct">14,84%</td><td class="diff-neg">+3,06</td><td><span style="color:var(--red)">✗</span></td><td>Localizar info em romances/crônicas, causa/consequência em lendas</td></tr>
+            <tr><td><span class="lv-chip" style="background:var(--lv3)">N3</span></td><td>250–275</td><td class="school-pct">19,06%</td><td class="sim-pct">16,63%</td><td class="diff-neg">+2,43</td><td><span style="color:var(--red)">✗</span></td><td>Pronomes, advérbios, conjunções em romances e reportagens</td></tr>
+            <tr><td><span class="lv-chip" style="background:var(--lv4)">N4</span></td><td>275–300</td><td class="school-pct">18,49%</td><td class="sim-pct">18,35%</td><td class="diff-neg">+0,14</td><td><span style="color:var(--red)">✗</span></td><td>Finalidade, opiniões distintas em fábulas, contos e reportagens</td></tr>
+            <tr class="adeq-row"><td><span class="lv-chip" style="background:var(--lv5)">N5</span></td><td>300–325</td><td class="school-pct" style="color:var(--green)">7,13%</td><td class="sim-pct">14,13%</td><td class="diff-pos">−7,00</td><td><span style="color:var(--green)">✓</span></td><td>✅ Argumentos e opiniões em reportagens e crônicas</td></tr>
+            <tr class="adeq-row"><td><span class="lv-chip" style="background:var(--lv6)">N6</span></td><td>325–350</td><td class="school-pct">0,00%</td><td class="sim-pct">6,88%</td><td class="diff-pos">−6,88</td><td><span style="color:var(--green)">✓</span></td><td>✅ Figuras de linguagem, causa/consequência, fato vs opinião</td></tr>
+            <tr class="adeq-row"><td><span class="lv-chip" style="background:var(--lv7)">N7</span></td><td>350–375</td><td class="school-pct">0,00%</td><td class="sim-pct">2,27%</td><td class="diff-pos">−2,27</td><td><span style="color:var(--green)">✓</span></td><td>✅ Variantes linguísticas, finalidade em lendas e crônicas</td></tr>
+            <tr class="adeq-row"><td><span class="lv-chip" style="background:var(--lv8)">N8</span></td><td>≥375</td><td class="school-pct">0,00%</td><td class="sim-pct">0,21%</td><td class="diff-pos">−0,21</td><td><span style="color:var(--green)">✓</span></td><td>✅ Manuais, artigos, teses, fatos vs opiniões em nível avançado</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- MT 9º ANO -->
+  <div id="mt9">
+    <div class="section-title">🔢 Matemática — 9º Ano do Ensino Fundamental</div>
+
+    <div class="comp-strip">
+      <div class="comp-box"><div class="comp-box-lbl">Sua Escola</div><div class="comp-val school">233,83 pts</div><div class="comp-note">Média MT · 9º Ano</div></div>
+      <div class="comp-box"><div class="comp-box-lbl">Escolas Similares</div><div class="comp-val sim">250,57 pts</div><div class="comp-note">Mesma microrregião/NSE</div></div>
+      <div class="comp-box"><div class="comp-box-lbl">Gap vs Similares</div><div class="comp-val gap-red">−16,7 pts</div><div class="comp-note">Abaixo das similares</div></div>
+      <div class="comp-box"><div class="comp-box-lbl">Adequado (N5+)</div><div class="comp-val" style="color:var(--red)">7,94%</div><div class="comp-note">N5 a N9 · Meta: 70%</div></div>
+    </div>
+
+    <div class="alert-banner danger">
+      <span class="ab-icon">🚨</span>
+      <div>
+        <div class="alert-title">MT 9º Ano: N0+N1+N2 somam 59,64% — mais da metade dos alunos nos três piores níveis; 16,7 pts abaixo das similares</div>
+        <div class="alert-body">Com 23,62% no N0, 18,01% no N1 e 18,01% no N2, quase 60 dos 100 alunos avaliados estão nos três níveis mais elementares de Matemática — sem domínio de frações, representação decimal ou ângulos básicos. O N3 (22,23%) somado ao bloco crítico representa mais de 80% dos alunos abaixo do adequado. Com apenas 7,94% de adequado e 16,74 pts abaixo das similares (250,57), a escola precisa de um plano estrutural urgente de recomposição em MT para os 9º Anos.</div>
+      </div>
+    </div>
+
+    <div class="prof-wrap">
+      <div class="prof-title">📊 Distribuição por Nível de Proficiência — MT · 9º Ano</div>
+      <div class="prof-sub">Escola (barras coloridas) vs Escolas Similares (valor à direita) · Adequado = N5 a N9 (≥300 pts) para o 9º Ano</div>
+      <div class="prof-bars" id="mt9-bars"></div>
+    </div>
+
+    <div class="data-table-wrap">
+      <div class="table-header">
+        <h3>Detalhamento por Nível — MT · 9º Ano</h3>
+        <p>Fonte: Boletim Saeb 2023 · INEP · Escola 7 de Setembro EEIEF (23063726)</p>
+      </div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr><th>Nível</th><th>Pontuação</th><th>Escola</th><th>Similares</th><th>Dif.</th><th>Adeq.?</th><th>Foco pedagógico</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="lv-chip" style="background:var(--lv0)">N0</span></td><td>&lt;200</td><td class="school-pct" style="color:var(--red)">23,62%</td><td class="sim-pct">15,76%</td><td class="diff-neg">+7,86</td><td><span style="color:var(--red)">✗</span></td><td>🚨 Atenção especial — habilidades básicas absolutamente ausentes</td></tr>
+            <tr><td><span class="lv-chip" style="background:var(--lv1)">N1</span></td><td>200–225</td><td class="school-pct" style="color:var(--red)">18,01%</td><td class="sim-pct">15,92%</td><td class="diff-neg">+2,09</td><td><span style="color:var(--red)">✗</span></td><td>Racionais decimais, tabelas e gráficos de colunas simples</td></tr>
+            <tr><td><span class="lv-chip" style="background:var(--lv2)">N2</span></td><td>225–250</td><td class="school-pct" style="color:var(--red)">18,01%</td><td class="sim-pct">17,34%</td><td class="diff-neg">+0,67</td><td><span style="color:var(--red)">✗</span></td><td>Frações, representação decimal, gráficos de linha simples</td></tr>
+            <tr><td><span class="lv-chip" style="background:var(--lv3)">N3</span></td><td>250–275</td><td class="school-pct">22,23%</td><td class="sim-pct">18,49%</td><td class="diff-neg">+3,74</td><td><span style="color:var(--red)">✗</span></td><td>Ângulos, planificação de sólidos, proporções com inteiros</td></tr>
+            <tr><td><span class="lv-chip" style="background:var(--lv4)">N4</span></td><td>275–300</td><td class="school-pct">10,18%</td><td class="sim-pct">15,07%</td><td class="diff-pos">−4,89</td><td><span style="color:var(--red)">✗</span></td><td>Plano cartesiano, álgebra 1º grau, grandezas proporcionais</td></tr>
+            <tr class="adeq-row"><td><span class="lv-chip" style="background:var(--lv5)">N5</span></td><td>300–325</td><td class="school-pct" style="color:var(--green)">7,01%</td><td class="sim-pct">11,50%</td><td class="diff-pos">−4,49</td><td><span style="color:var(--green)">✓</span></td><td>✅ Pitágoras, equações 1º grau, porcentagem, plano cartesiano</td></tr>
+            <tr class="adeq-row"><td><span class="lv-chip" style="background:var(--lv6)">N6</span></td><td>325–350</td><td class="school-pct" style="color:var(--green)">0,93%</td><td class="sim-pct">4,32%</td><td class="diff-pos">−3,39</td><td><span style="color:var(--green)">✓</span></td><td>✅ Semelhança de triângulos, raiz quadrada, Teorema de Pitágoras</td></tr>
+            <tr class="adeq-row"><td><span class="lv-chip" style="background:var(--lv7)">N7</span></td><td>350–375</td><td class="school-pct">0,00%</td><td class="sim-pct">1,35%</td><td class="diff-pos">−1,35</td><td><span style="color:var(--green)">✓</span></td><td>✅ Equações 2º grau, média aritmética, ângulos internos</td></tr>
+            <tr class="adeq-row"><td><span class="lv-chip" style="background:var(--lv8)">N8</span></td><td>375–400</td><td class="school-pct">0,00%</td><td class="sim-pct">0,27%</td><td class="diff-pos">−0,27</td><td><span style="color:var(--green)">✓</span></td><td>✅ Cevianas de triângulo, grandezas inversamente proporcionais</td></tr>
+            <tr class="adeq-row"><td><span class="lv-chip" style="background:var(--lv9)">N9</span></td><td>≥400</td><td class="school-pct">0,00%</td><td class="sim-pct">0,00%</td><td>—</td><td><span style="color:var(--green)">✓</span></td><td>✅ Ângulos internos de polígonos, expressões algébricas avançadas</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- PLANO DE AÇÃO -->
+  <div id="plano">
+    <div class="section-title">🗺️ Plano de Ação — Prioridades Pedagógicas 2025</div>
+
+    <div class="nota-box">
+      <h4>📋 Como usar este plano</h4>
+      <p>As ações estão ordenadas por urgência e impacto esperado. Clique em cada item para ver os passos detalhados. Priorize as ações em vermelho, que representam emergências pedagógicas que precisam de intervenção imediata.</p>
+    </div>
+
+    <div class="plan-item" onclick="this.classList.toggle('open')">
+      <div class="plan-num red">1</div>
+      <div class="plan-content">
+        <div class="plan-hrow">
+          <div class="plan-title">Intervir urgentemente no 9º Ano em LP — N0+N1 somam 37,42% dos alunos (≈37 alunos)</div>
+          <span class="plan-badge red">🚨 Emergência</span>
+        </div>
+        <div class="plan-desc">Com 18,35% no N0 e 19,07% no N1 de LP no 9º Ano, mais de um terço dos alunos não domina nem as habilidades básicas esperadas para o EM. O N4 (18,49%) é o maior bloco de não-adequados próximo da transição — com intervenção focada nesses alunos, é possível elevar o percentual de adequados de 7,13% para 15%+ ainda este ano.</div>
+        <div class="plan-steps">
+          ✅ Diagnóstico individual: aplicar avaliação baseada nos descritores dos N1, N2 e N3 para mapear habilidades ausentes por aluno — localizar info explícita, inferência de expressões, causa/consequência.<br>
+          ✅ Aulas de reforço focadas em leitura de múltiplos gêneros: reportagens, crônicas, fábulas, artigos de opinião — os gêneros mais frequentes no SAEB do 9º Ano.<br>
+          ✅ Focar o grupo do N4 (18,49% dos alunos): eles já identificam finalidade e opiniões distintas em contos. Precisam avançar para o N5 — argumentos e opiniões em reportagens. É o grupo com maior potencial de impacto rápido.<br>
+          ✅ Estratégia de leitura semanal estruturada: 3 textos por semana com questões progressivas de inferência, causa/consequência e identificação de argumento.<br>
+          ✅ Solicitar materiais de recomposição de LP para o 9º Ano à CREDE/SEDUC e simulados SPAECE alinhados aos descritores prioritários.
+        </div>
+      </div>
+    </div>
+
+    <div class="plan-item" onclick="this.classList.toggle('open')">
+      <div class="plan-num red">2</div>
+      <div class="plan-content">
+        <div class="plan-hrow">
+          <div class="plan-title">Intervir urgentemente no 9º Ano em MT — N0+N1+N2 somam 59,64%; escola 16,7 pts abaixo das similares</div>
+          <span class="plan-badge red">🚨 Emergência</span>
+        </div>
+        <div class="plan-desc">Com 23,62% no N0, quase 1 em cada 4 alunos do 9º Ano não demonstra habilidades elementares de Matemática. O bloco N0+N1+N2 soma 59 alunos (em 100 avaliados). O N3 (22,23%) é o maior bloco individual — esses alunos já entendem ângulos e proporções com inteiros, mas estão a passos do N4 (plano cartesiano, álgebra).</div>
+        <div class="plan-steps">
+          ✅ Diagnóstico por descritor em MT para o 9º Ano: mapear quais habilidades do N3 já foram consolidadas (ângulos, sólidos, proporções com inteiros) e quais do N4 estão ausentes (plano cartesiano, álgebra 1º grau, grandezas proporcionais racionais).<br>
+          ✅ Formar grupo de intensificação com os alunos do N3 (22,23% ≈22 alunos): 2–3 aulas extras semanais com foco nos descritores do N4 — esse grupo tem o maior potencial de migrar para N5 (adequado) até o SPAECE.<br>
+          ✅ Para o bloco N0+N1+N2: retomada de conceitos fundamentais (operações com racionais, representação decimal, frações equivalentes) com atividades contextualizadas e progressivas.<br>
+          ✅ Articular com CREDE materiais específicos de recomposição de MT e simulados SPAECE para o 9º Ano, com foco em Números e Operações e Álgebra.<br>
+          ✅ Monitoramento mensal com fichas individuais de acompanhamento por descritor — medir avanço e ajustar grupos de intensificação.
+        </div>
+      </div>
+    </div>
+
+    <div class="plan-item" onclick="this.classList.toggle('open')">
+      <div class="plan-num red">3</div>
+      <div class="plan-content">
+        <div class="plan-hrow">
+          <div class="plan-title">Resolver a defasagem de formação docente nos Anos Finais — 42,1% sem adequação formal</div>
+          <span class="plan-badge red">🚨 Estrutural</span>
+        </div>
+        <div class="plan-desc">Com 57,9% de adequação de formação docente nos anos finais, 42% das disciplinas são ministradas por professores sem habilitação específica. Isso explica estruturalmente a diferença de 29,7 pp entre anos iniciais (87,6%) e finais, e os resultados críticos do 9º Ano. A solução requer ação da gestão de rede (SME/SEDUC).</div>
+        <div class="plan-steps">
+          ✅ Mapear quais disciplinas e professores nos anos finais não têm formação específica — com foco em LP e MT do 9º Ano, que são os componentes avaliados pelo SAEB e SPAECE.<br>
+          ✅ Apresentar o diagnóstico à Secretaria Municipal de Educação solicitando alocação de professores habilitados para LP e MT nos 9º Anos como prioridade.<br>
+          ✅ Enquanto a adequação formal não ocorre: implementar formação continuada interna com grupos de estudo mensais por área, focados no planejamento por descritores do SAEB.<br>
+          ✅ Usar a vantagem dos anos iniciais (87,6%) como modelo: documentar as práticas que funcionam nos 5ºs anos e propor adaptações para os 9ºs anos.<br>
+          ✅ Registrar a solicitação formalmente com dados do boletim SAEB 2023 como evidência do impacto da inadequação docente nos resultados.
+        </div>
+      </div>
+    </div>
+
+    <div class="plan-item" onclick="this.classList.toggle('open')">
+      <div class="plan-num yellow">4</div>
+      <div class="plan-content">
+        <div class="plan-hrow">
+          <div class="plan-title">Capitalizar o N4 de MT no 5º Ano — 23,44% da escola vs 17,53% das similares (+5,91 pp)</div>
+          <span class="plan-badge yellow">⚠ Consolidar</span>
+        </div>
+        <div class="plan-desc">O N4 de Matemática no 5º Ano é o único nível em que a escola supera as Escolas Similares (+5,91 pp). Com 23,44% no N4, há um grupo expressivo que já domina multiplicação, divisão exata e valor posicional — a um passo do N5 (subtração com reserva, reta numérica) e em progressão para o N6. É o ponto de maior alavancagem nos 5ºs anos.</div>
+        <div class="plan-steps">
+          ✅ Identificar os professores de MT que ensinaram as turmas do 5º Ano com maior concentração no N4 — documentar as práticas que geraram esse resultado acima das similares.<br>
+          ✅ Criar um grupo de intensificação para os alunos do N4: trabalhar os descritores do N5 (subtração com reserva, problemas com monetário, reta numérica) para elevar esse grupo para N5+.<br>
+          ✅ Focar os alunos do N3 (19,98%): eles precisam avançar para o N4 — trabalhar coordenadas em malha, frações simples e conversão de moedas com situações-problema contextualizadas.<br>
+          ✅ Meta: elevar o adequado (N4+) de 36,6% para 42%+ até o próximo ciclo avaliativo, priorizando a progressão N3→N4 e N4→N5.
+        </div>
+      </div>
+    </div>
+
+    <div class="plan-item" onclick="this.classList.toggle('open')">
+      <div class="plan-num yellow">5</div>
+      <div class="plan-content">
+        <div class="plan-hrow">
+          <div class="plan-title">Reduzir N0 e N1 de LP no 5º Ano — 25,07% dos alunos nos níveis críticos, acima das similares</div>
+          <span class="plan-badge yellow">⚠ Atenção</span>
+        </div>
+        <div class="plan-desc">Com 8,00% no N0 e 17,07% no N1, um quarto dos alunos do 5º Ano não domina nem a localização de informações explícitas em textos curtos. O N1 da escola (17,07%) é 6,49 pp acima das similares (10,58%) — o maior gap negativo em LP no 5º Ano. Esses alunos precisam de intervenção sistemática em leitura antes de avançar no currículo regular.</div>
+        <div class="plan-steps">
+          ✅ Identificar por nome os alunos do N0 e N1 do 5º Ano e aplicar diagnóstico individual por habilidade para mapear os descritores ausentes com precisão.<br>
+          ✅ Implementar leitura diária compartilhada: 15 minutos de leitura supervisionada com textos progressivos — começando com textos narrativos curtos (N1) e avançando para fábulas e reportagens simples (N2).<br>
+          ✅ Trabalhar intensivamente: localizar personagem principal e ação em contos; identificar assunto e tema em fábulas; reconhecer finalidade de receitas e manuais — habilidades-chave do N2 que aceleram a progressão.<br>
+          ✅ Criar grupos de leitura colaborativa com alunos do N4/N5 como monitores — tutoria de pares orientada pelo professor, com roteiro de perguntas progressivas.<br>
+          ✅ Meta: reduzir o bloco N0+N1 de 25,07% para abaixo de 18% até o próximo ciclo avaliativo.
+        </div>
+      </div>
+    </div>
+
+    <div class="plan-item" onclick="this.classList.toggle('open')">
+      <div class="plan-num green">6</div>
+      <div class="plan-content">
+        <div class="plan-hrow">
+          <div class="plan-title">Consolidar o adequado em LP do 5º Ano — 46,09% supera o Total Estado (41,9%) e é ponto de referência</div>
+          <span class="plan-badge green">✅ Consolidar</span>
+        </div>
+        <div class="plan-desc">O LP do 5º Ano é o melhor resultado relativo da escola: 46,09% de adequado supera o Total Estado (41,9%) e está equilibrado em relação às Escolas Similares. Os N4 (18,20%) e N5 (17,59%) são próximos e representam um bloco sólido de alunos proficientes. As práticas de ensino de LP nos 5ºs anos precisam ser documentadas e protegidas — especialmente o que garante esses resultados acima do estado.</div>
+        <div class="plan-steps">
+          ✅ Mapear e documentar as estratégias pedagógicas dos professores de LP dos 5ºs anos — sequências didáticas, tipos de texto usados, frequência de leitura, modelos de avaliação formativa.<br>
+          ✅ Usar os dados do N4 e N5 como base para metas de progressão: elevar o bloco adequado (N4+) de 46,09% para 52%+ priorizando os alunos do N3 (14,21%) que estão na fronteira.<br>
+          ✅ Trabalhar o N3 com causa/consequência em poemas e contos e inferência de sentido em tirinhas — habilidades que abrem a porta para o N4.<br>
+          ✅ Usar as boas práticas de LP do 5º Ano como modelo para criar um programa de formação continuada para os professores de LP do 7º e 9º Anos, que apresentam colapso no componente.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;font-size:0.75rem;color:var(--muted2);margin-top:10px;padding-top:18px;border-top:1px solid var(--border);">
+    SAEB 2023 · 7 de Setembro EEIEF · Caucaia-CE · INEP: 23063726 · Fonte: Boletim da Escola · INEP/MEC · 5º e 9º Ano do EF · Clique nas prioridades para ver os passos
+  </div>
+
+</main>
+
+<script>
+/* LP 5º Ano */
+const lp5Data = [
+  {lv:'N0',col:'#ef5350',esc:8.00,sim:4.74,name:'< 125 pts – Atenção especial'},
+  {lv:'N1',col:'#ef7c43',esc:17.07,sim:10.58,name:'125–150 – Localizar info em textos narrativos curtos'},
+  {lv:'N2',col:'#ffa726',esc:12.64,sim:12.31,name:'150–175 – Localizar info em contos/fábulas'},
+  {lv:'N3',col:'#ffd54f',esc:14.21,sim:13.14,name:'175–200 – Causa/consequência, inferir em tirinhas'},
+  {lv:'N4',col:'#d4e157',esc:18.20,sim:17.92,name:'200–225 – ADEQUADO ✓ Assunto/personagem, humor em piadas'},
+  {lv:'N5',col:'#aed581',esc:17.59,sim:17.38,name:'225–250 – ADEQUADO ✓ Finalidade, causa/consequência'},
+  {lv:'N6',col:'#66bb6a',esc:6.97,sim:12.28,name:'250–275 – ADEQUADO ✓ Inferir assunto, humor e moral'},
+  {lv:'N7',col:'#26a69a',esc:4.37,sim:8.13,name:'275–300 – ADEQUADO ✓ Gênero textual, narrativa em fábulas'},
+  {lv:'N8',col:'#29b6f6',esc:0.96,sim:2.21,name:'300–325 – ADEQUADO ✓ Assunto entre gêneros diferentes'},
+  {lv:'N9',col:'#5c6bc0',esc:0.00,sim:1.30,name:'≥ 325 – ADEQUADO ✓ Opinião em fábulas, advérbios'},
+];
+
+/* MT 5º Ano */
+const mt5Data = [
+  {lv:'N0',col:'#ef5350',esc:3.41,sim:3.00,name:'< 125 pts – Atenção especial'},
+  {lv:'N1',col:'#ef7c43',esc:13.85,sim:8.28,name:'125–150 – Área de figuras em malha quadriculada'},
+  {lv:'N2',col:'#ffa726',esc:13.85,sim:12.61,name:'150–175 – Adição de quantias, tabelas e gráficos'},
+  {lv:'N3',col:'#ffd54f',esc:19.98,sim:20.60,name:'175–200 – Coordenadas, conversão de moedas, frações'},
+  {lv:'N4',col:'#d4e157',esc:23.44,sim:17.53,name:'200–225 – ADEQUADO ✓ (acima similares!) Multiplicação, divisão, SND'},
+  {lv:'N5',col:'#aed581',esc:11.95,sim:16.39,name:'225–250 – ADEQUADO ✓ Subtração com reserva, monetário'},
+  {lv:'N6',col:'#66bb6a',esc:10.41,sim:11.43,name:'250–275 – ADEQUADO ✓ Porcentagens, área, intervalos de tempo'},
+  {lv:'N7',col:'#26a69a',esc:1.92,sim:6.79,name:'275–300 – ADEQUADO ✓ Perímetro, conversão de massa'},
+  {lv:'N8',col:'#29b6f6',esc:1.21,sim:2.29,name:'300–325 – ADEQUADO ✓ Área de retângulo, medidas lineares'},
+  {lv:'N9',col:'#5c6bc0',esc:0.00,sim:0.82,name:'325–350 – ADEQUADO ✓ Frações equivalentes, tempo'},
+  {lv:'N10',col:'#7e57c2',esc:0.00,sim:0.26,name:'≥ 350 – ADEQUADO ✓ Perpendiculares, medidas avançadas'},
+];
+
+/* LP 9º Ano */
+const lp9Data = [
+  {lv:'N0',col:'#ef5350',esc:18.35,sim:15.35,name:'< 200 pts – Atenção especial'},
+  {lv:'N1',col:'#ef7c43',esc:19.07,sim:11.34,name:'200–225 – Linguagem jornalística, inferência em crônicas'},
+  {lv:'N2',col:'#ffa726',esc:17.90,sim:14.84,name:'225–250 – Localizar info em romances e crônicas'},
+  {lv:'N3',col:'#ffd54f',esc:19.06,sim:16.63,name:'250–275 – Pronomes, advérbios, conjunções em reportagens'},
+  {lv:'N4',col:'#d4e157',esc:18.49,sim:18.35,name:'275–300 – Finalidade, opiniões distintas em fábulas/contos'},
+  {lv:'N5',col:'#aed581',esc:7.13,sim:14.13,name:'300–325 – ADEQUADO ✓ Argumentos em reportagens e crônicas'},
+  {lv:'N6',col:'#66bb6a',esc:0.00,sim:6.88,name:'325–350 – ADEQUADO ✓ Figuras de linguagem, fato vs opinião'},
+  {lv:'N7',col:'#26a69a',esc:0.00,sim:2.27,name:'350–375 – ADEQUADO ✓ Variantes linguísticas, lendas/crônicas'},
+  {lv:'N8',col:'#29b6f6',esc:0.00,sim:0.21,name:'≥ 375 – ADEQUADO ✓ Manuais, artigos, teses avançadas'},
+];
+
+/* MT 9º Ano */
+const mt9Data = [
+  {lv:'N0',col:'#ef5350',esc:23.62,sim:15.76,name:'< 200 pts – Atenção especial'},
+  {lv:'N1',col:'#ef7c43',esc:18.01,sim:15.92,name:'200–225 – Racionais decimais, tabelas e gráficos de colunas'},
+  {lv:'N2',col:'#ffa726',esc:18.01,sim:17.34,name:'225–250 – Frações, representação decimal, gráficos de linha'},
+  {lv:'N3',col:'#ffd54f',esc:22.23,sim:18.49,name:'250–275 – Ângulos, planificação de sólidos, proporções'},
+  {lv:'N4',col:'#d4e157',esc:10.18,sim:15.07,name:'275–300 – Plano cartesiano, álgebra 1º grau, proporções racionais'},
+  {lv:'N5',col:'#aed581',esc:7.01,sim:11.50,name:'300–325 – ADEQUADO ✓ Pitágoras, equações, porcentagem'},
+  {lv:'N6',col:'#66bb6a',esc:0.93,sim:4.32,name:'325–350 – ADEQUADO ✓ Semelhança de triângulos, raiz quadrada'},
+  {lv:'N7',col:'#26a69a',esc:0.00,sim:1.35,name:'350–375 – ADEQUADO ✓ Equações 2º grau, média aritmética'},
+  {lv:'N8',col:'#29b6f6',esc:0.00,sim:0.27,name:'375–400 – ADEQUADO ✓ Cevianas, grandezas inversas'},
+  {lv:'N9',col:'#5c6bc0',esc:0.00,sim:0.00,name:'≥ 400 – ADEQUADO ✓ Ângulos de polígonos, expressões algébricas'},
+];
+
+function buildBars(containerId, data, adequadoFrom) {
+  const c = document.getElementById(containerId);
+  if (!c) return;
+  data.forEach(d => {
+    const lvNum = parseInt(d.lv.replace('N',''));
+    const isAdeq = lvNum >= adequadoFrom;
+    const row = document.createElement('div');
+    row.className = 'bar-row';
+    row.innerHTML = `
+      <span class="bar-lv" style="background:${d.col}">${d.lv}</span>
+      <div class="bar-desc"><div class="bar-name">${d.name}</div></div>
+      <div class="bar-track" style="${isAdeq?'outline:1px solid rgba(26,122,74,.3)':''}">
+        <div class="bar-fill" style="width:0%;background:${d.col}" data-w="${d.esc}">
+          <span>${d.esc > 2 ? d.esc.toFixed(2)+'%' : ''}</span>
+        </div>
+      </div>
+      <div class="bar-ref">
+        <span class="bar-ref-val" title="Similares">${d.sim}%</span>
+        <div class="bar-compare" style="background:${d.col}"></div>
+      </div>
+    `;
+    c.appendChild(row);
+  });
+  setTimeout(() => {
+    c.querySelectorAll('.bar-fill').forEach(el => {
+      el.style.width = el.dataset.w + '%';
+    });
+  }, 400);
+}
+
+buildBars('lp5-bars', lp5Data, 4);
+buildBars('mt5-bars', mt5Data, 4);
+buildBars('lp9-bars', lp9Data, 5);
+buildBars('mt9-bars', mt9Data, 5);
+
+/* Scroll-spy */
+const secs = document.querySelectorAll('[id]');
+const navs = document.querySelectorAll('.nav-item[href^="#"]');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  secs.forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
+  navs.forEach(n => {
+    n.classList.remove('active');
+    if (n.getAttribute('href') === '#' + cur) n.classList.add('active');
+  });
+}, {passive: true});
+
+/* Adeq fill animation */
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.querySelectorAll('.adeq-fill').forEach(el => {
+      const w = el.style.width;
+      el.style.width = '0';
+      requestAnimationFrame(() => { requestAnimationFrame(() => { el.style.width = w; }); });
+    });
+  }, 300);
+});
+</script>
 </body>
 </html>
