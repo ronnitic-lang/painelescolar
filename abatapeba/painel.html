@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Painel do Diretor · Aba Tapeba EDEIEF</title>
+<title>Painel do Diretor · 7 de Setembro EEIEF</title>
 <style>
 :root {
   --bg: #f0f4f8;
@@ -111,12 +111,13 @@ body {
   display: flex; align-items: center; justify-content: center;
   padding: 0 5px; flex-shrink: 0;
 }
-.nb-red { background: var(--red); color: #fff; }
+.nb-red    { background: var(--red);    color: #fff; }
 .nb-yellow { background: var(--yellow); color: #fff; }
-.nb-green { background: var(--green); color: #fff; }
-.nb-blue { background: var(--blue); color: #fff; }
+.nb-green  { background: var(--green);  color: #fff; }
+.nb-blue   { background: var(--blue);   color: #fff; }
 .nb-orange { background: var(--orange); color: #fff; }
 .nb-purple { background: var(--purple); color: #fff; }
+.nb-teal   { background: var(--teal);   color: #fff; }
 
 .sidebar-footer {
   margin-top: auto; padding: 14px 20px;
@@ -151,18 +152,14 @@ body {
   border-radius: 8px; padding: 9px 16px; text-align: center;
   box-shadow: var(--shadow);
 }
-.topbar-stat .ts-val {
-  font-size: 1.1rem; font-weight: 700; display: block;
-}
-.topbar-stat .ts-lab {
-  font-size: 0.68rem; color: var(--muted2);
-  text-transform: uppercase; letter-spacing: 0.07em;
-}
-.ts-red { color: var(--red); }
+.topbar-stat .ts-val { font-size: 1.1rem; font-weight: 700; display: block; }
+.topbar-stat .ts-lab { font-size: 0.68rem; color: var(--muted2); text-transform: uppercase; letter-spacing: 0.07em; }
+.ts-red    { color: var(--red); }
 .ts-yellow { color: var(--yellow); }
-.ts-green { color: var(--green); }
-.ts-teal { color: var(--teal); }
+.ts-green  { color: var(--green); }
+.ts-teal   { color: var(--teal); }
 .ts-indigo { color: var(--indigo); }
+.ts-orange { color: var(--orange); }
 
 /* ===== SECTION TITLE ===== */
 .section-title {
@@ -202,13 +199,14 @@ body {
   display: flex; align-items: center; justify-content: center;
   font-size: 1.4rem; flex-shrink: 0;
 }
-.ind-icon.teal { background: var(--teal-light); }
-.ind-icon.blue { background: var(--blue-bg); }
+.ind-icon.teal   { background: var(--teal-light); }
+.ind-icon.blue   { background: var(--blue-bg); }
 .ind-icon.yellow { background: var(--yellow-bg); }
-.ind-icon.green { background: var(--green-bg); }
+.ind-icon.green  { background: var(--green-bg); }
 .ind-icon.orange { background: var(--orange-bg); }
-.ind-icon.red { background: var(--red-bg); }
+.ind-icon.red    { background: var(--red-bg); }
 .ind-icon.indigo { background: var(--indigo-bg); }
+.ind-icon.purple { background: var(--purple-bg); }
 
 .ind-head-text h3 { font-size: 1rem; font-weight: 700; color: var(--text); }
 .ind-head-text p { font-size: 0.75rem; color: var(--muted2); margin-top: 2px; }
@@ -225,11 +223,11 @@ body {
   min-width: 8px; height: 8px; border-radius: 50%;
   margin-top: 5px; flex-shrink: 0;
 }
-.ad-red { background: var(--red); }
+.ad-red    { background: var(--red); }
 .ad-orange { background: var(--orange); }
 .ad-yellow { background: var(--yellow); }
-.ad-green { background: var(--green); }
-.ad-blue { background: var(--blue); }
+.ad-green  { background: var(--green); }
+.ad-blue   { background: var(--blue); }
 .ad-indigo { background: var(--indigo); }
 
 .alert-tag {
@@ -237,11 +235,11 @@ body {
   font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em;
   margin-bottom: 8px;
 }
-.tag-crit { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-bdr); }
-.tag-attn { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-bdr); }
-.tag-ok { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-bdr); }
-.tag-info { background: var(--blue-bg); color: var(--blue); border: 1px solid var(--blue-bdr); }
-.tag-indigena { background: var(--indigo-bg); color: var(--indigo); border: 1px solid var(--indigo-bdr); }
+.tag-crit    { background: var(--red-bg);    color: var(--red);    border: 1px solid var(--red-bdr); }
+.tag-attn    { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-bdr); }
+.tag-ok      { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-bdr); }
+.tag-info    { background: var(--blue-bg);   color: var(--blue);   border: 1px solid var(--blue-bdr); }
+.tag-orange  { background: var(--orange-bg); color: var(--orange); border: 1px solid var(--orange-bdr); }
 
 .ind-link {
   display: block; text-align: center;
@@ -274,7 +272,7 @@ body {
   font-size: 0.75rem; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.08em;
 }
-.summary-table td { padding: 11px 16px; border-bottom: 1px solid var(--border); }
+.summary-table td { padding: 11px 16px; border-bottom: 1px solid var(--border); vertical-align: middle; }
 .summary-table tbody tr:last-child td { border-bottom: none; }
 .summary-table tbody tr:hover { background: #f8fafc; }
 .status-pill {
@@ -282,9 +280,9 @@ body {
   border-radius: 20px; font-size: 0.70rem; font-weight: 700;
   letter-spacing: 0.05em;
 }
-.sp-crit { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-bdr); }
+.sp-crit { background: var(--red-bg);    color: var(--red);    border: 1px solid var(--red-bdr); }
 .sp-attn { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-bdr); }
-.sp-ok { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-bdr); }
+.sp-ok   { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-bdr); }
 .sp-dest { background: var(--indigo-bg); color: var(--indigo); border: 1px solid var(--indigo-bdr); }
 
 /* ===== RESPONSIVE ===== */
@@ -301,8 +299,8 @@ body {
 <aside class="sidebar">
   <div class="sidebar-logo">
     <div class="school-badge">Painel do Diretor</div>
-    <div class="school-name">Aba <span>Tapeba</span></div>
-    <div class="school-sub">EDEIEF · Caucaia · CE · Território Indígena · INEP 23268743</div>
+    <div class="school-name">7 de <span>Setembro</span></div>
+    <div class="school-sub">EEIEF · Caucaia · CE · Regional Jurema · INEP 23063726</div>
   </div>
 
   <div class="nav-section">Indicadores</div>
@@ -369,23 +367,24 @@ body {
   </a>
 
   <div class="sidebar-footer">
-    <div>Aba Tapeba EDEIEF<br>Caucaia · CE · Território Indígena</div>
-    <div style="margin-top:6px; color:#8097b0">Fonte: SEDUC-CE · INEP · 2025</div>
+    <div>7 de Setembro EEIEF<br>Caucaia · CE · Reg. Jurema</div>
+    <div style="margin-top:6px; color:#8097b0">Fonte: SEDUC-CE · INEP · 2025–2026</div>
     <a class="logout-btn" href="../index.html">⬅ Sair do Painel</a>
   </div>
 </aside>
 
 <!-- MAIN -->
 <main class="main">
+
   <!-- Topbar -->
   <div class="topbar">
     <div class="topbar-title">
-      <h2>🏫 Painel do Diretor — Aba Tapeba EDEIEF</h2>
-      <p>Caucaia · CE · INEP 23268743 · Território Indígena (Jandaiguaba/Capuan) · Indicadores Educacionais 2024–2025</p>
+      <h2>🏫 Painel do Diretor — 7 de Setembro EEIEF</h2>
+      <p>Caucaia · CE · INEP 23063726 · Av. Dom Almeida Lustosa, 2322 – Parque Guadalajara · Regional Jurema · Indicadores Educacionais 2024–2026</p>
     </div>
     <div class="topbar-stats">
       <div class="topbar-stat">
-        <span class="ts-val ts-red">9</span>
+        <span class="ts-val ts-red">8</span>
         <span class="ts-lab">Alertas Críticos</span>
       </div>
       <div class="topbar-stat">
@@ -393,12 +392,12 @@ body {
         <span class="ts-lab">Indicadores</span>
       </div>
       <div class="topbar-stat">
-        <span class="ts-val ts-teal">~846</span>
+        <span class="ts-val ts-teal">748</span>
         <span class="ts-lab">Matrículas</span>
       </div>
       <div class="topbar-stat">
-        <span class="ts-val ts-indigo">🪶 Indígena</span>
-        <span class="ts-lab">Território Tapeba</span>
+        <span class="ts-val ts-green">+20pp</span>
+        <span class="ts-lab">Evolução ADSEC</span>
       </div>
     </div>
   </div>
@@ -418,64 +417,64 @@ body {
     <tbody>
       <tr>
         <td><strong>Busca Ativa</strong></td>
-        <td>Frequência · fev–mar/2026</td>
-        <td>181 alunos com registro; 97,4% sem justificativa; 7º Ano concentra maior infrequência</td>
-        <td><span class="status-pill sp-crit">🔴 Crítico</span></td>
+        <td>Frequência · jan–abr/2026</td>
+        <td>Registros de infrequência em múltiplas turmas; motivos predominantes Aluno Doente e Outros; protocolo de contato ativo</td>
+        <td><span class="status-pill sp-attn">🟡 Monitorar</span></td>
         <td><a href="busca_ativa.html" style="color:var(--teal);font-weight:700;text-decoration:none;">Ver →</a></td>
       </tr>
       <tr>
         <td><strong>ADSEC 2025</strong></td>
-        <td>Leitura · 1º–5º Ano · 489 matr.</td>
-        <td>Evolução positiva: 55,6% → 73,0% leitores de texto (+17,4 pp); iniciantes despencam de 26% para 7%</td>
+        <td>Leitura · 1º–5º Ano · ~376 aval.</td>
+        <td>Evolução positiva: 41,99% → 61,97% leitores de texto (+19,98 pp); meta 2026: atingir 70% com cobertura de 98%</td>
         <td><span class="status-pill sp-dest">🟢 Destaque</span></td>
         <td><a href="adsec.html" style="color:var(--teal);font-weight:700;text-decoration:none;">Ver →</a></td>
       </tr>
       <tr>
         <td><strong>Avalie.CE 2025.1</strong></td>
-        <td>LP e MT · 2º ao 9º Ano · 382 aval.</td>
-        <td>85% de defasagem em MT no 9º Ano; 74% adequado em LP no 4º Ano (melhor resultado)</td>
+        <td>LP e MT · 2º ao 9º Ano · ~725 aval.</td>
+        <td>86% de defasagem em MT no 8ºC; 82% no 9º Ano MT; 4º Ano LP referência positiva</td>
         <td><span class="status-pill sp-crit">🔴 Crítico</span></td>
         <td><a href="avalie_ce.html" style="color:var(--teal);font-weight:700;text-decoration:none;">Ver →</a></td>
       </tr>
       <tr>
         <td><strong>Bimestrais 2025</strong></td>
-        <td>LP + Matemática · 217 avaliados</td>
-        <td>Queda progressiva: média 7,14 → 5,84 → 5,60; MT com 41,6% crítico+m.crítico no 4º P.</td>
+        <td>LP + Matemática · todos os anos</td>
+        <td>Queda progressiva: média 6,59 → 5,78 → 5,45; 1.073 alunos sem RP registrada; 3º e 4º Ano são destaques positivos</td>
         <td><span class="status-pill sp-attn">🟡 Atenção</span></td>
         <td><a href="bimestrais.html" style="color:var(--teal);font-weight:700;text-decoration:none;">Ver →</a></td>
       </tr>
       <tr>
         <td><strong>CNCA</strong></td>
-        <td>LP, MT e Fluência · 1º–5º Ano · 9 turmas</td>
-        <td>67% de defasagem em MT no 5ºB e C; 30 pré-leitores; 3ºB e 1ºB destaques positivos</td>
+        <td>LP, MT e Fluência · 1º–5º Ano</td>
+        <td>47 pré-leitores no 2º Ano; 3ºC colapso (83% def. MT); 1ºA (68% LP + 84% MT) e 1ºC (80% LP + 78% MT) são referências</td>
         <td><span class="status-pill sp-crit">🔴 Crítico</span></td>
         <td><a href="cnca.html" style="color:var(--teal);font-weight:700;text-decoration:none;">Ver →</a></td>
       </tr>
       <tr>
         <td><strong>QEdu / Censo</strong></td>
-        <td>Ideb · Taxas · Infraestrutura · ~846 matr.</td>
-        <td>Ideb abaixo da média municipal; alta distorção idade-série; contexto indígena de alta complexidade</td>
-        <td><span class="status-pill sp-attn">🟡 Contextual</span></td>
+        <td>Ideb · Taxas · Infraestrutura · 748 matr.</td>
+        <td>Ideb 5º Ano: 4,4 (meta 4,7); Ideb 9º Ano: 3,8; escola urbana de zona periférica com Sala AEE e perfil socioeconômico médio-baixo</td>
+        <td><span class="status-pill sp-attn">🟡 Atenção</span></td>
         <td><a href="qedu.html" style="color:var(--teal);font-weight:700;text-decoration:none;">Ver →</a></td>
       </tr>
       <tr>
         <td><strong>Recomposição 2025</strong></td>
-        <td>LP e MT · 6º, 7º e 9º Ano · 8 turmas</td>
-        <td>9ºA: 91% defasagem MT; 7ºB: 87% defasagem LP e 0% adequado; 6ºB LP destaque (65%)</td>
+        <td>LP e MT · 6º ao 9º Ano · 7 turmas</td>
+        <td>9º Ano: 82% defasagem MT; 7ºC: 88% defasagem LP; 6ºA/B destaque em LP (61–67% adequado); descontinuidade LP 6º→7º Ano</td>
         <td><span class="status-pill sp-crit">🔴 Crítico</span></td>
         <td><a href="recomposicao.html" style="color:var(--teal);font-weight:700;text-decoration:none;">Ver →</a></td>
       </tr>
       <tr>
         <td><strong>SAEB 2023</strong></td>
         <td>5º e 9º Ano do EF</td>
-        <td>LP 5º Ano: 46,9% adequado; MT 9º Ano: 18,2% adequado; LP 9º Ano: 10,5% adequado</td>
+        <td>LP 9º Ano: 7,13% adequado; MT 9º Ano: 7,94% adequado; 5º Ano LP: 18,2% adequado (N4); 37,4% dos alunos do 9º no N0–N1</td>
         <td><span class="status-pill sp-crit">🔴 Crítico</span></td>
         <td><a href="saeb.html" style="color:var(--teal);font-weight:700;text-decoration:none;">Ver →</a></td>
       </tr>
       <tr>
         <td><strong>SPAECE 2024</strong></td>
         <td>2º, 5º e 9º Anos · LP e MT</td>
-        <td>2º Ano Avançado em MT (611,92) e Proficiente em LP (678,84) — destaque; 9º MT muito crítico (228 pts)</td>
+        <td>9º Ano LP: +28,6 pts (221→250 pts); 2º Ano LP: meta superada (627 pts); 9º Ano MT: 0% Adequado pelo 10º ano consecutivo</td>
         <td><span class="status-pill sp-attn">🟡 Parcial</span></td>
         <td><a href="spaece.html" style="color:var(--teal);font-weight:700;text-decoration:none;">Ver →</a></td>
       </tr>
@@ -486,23 +485,23 @@ body {
   <div class="section-title">📌 Pontos Críticos por Indicador</div>
   <div class="indicators-grid">
 
-    <!-- BUSCA ATIVA -->
-    <div class="ind-card" style="border:2px solid var(--red); grid-column: 1 / -1;">
-      <div class="ind-card-head" style="background:linear-gradient(135deg,#fdf0ef,#fff);">
-        <div class="ind-icon red">🔍</div>
+    <!-- BUSCA ATIVA — destaque com borda -->
+    <div class="ind-card" style="border:2px solid var(--orange); grid-column: 1 / -1;">
+      <div class="ind-card-head" style="background:linear-gradient(135deg,#fef5e7,#fff);">
+        <div class="ind-icon orange">🔍</div>
         <div class="ind-head-text">
           <h3>Busca Ativa · Frequência Escolar</h3>
-          <p>Monitoramento de Infrequência · fev–mar/2026 · Servidoras: Nayane Nunes da Silva · Jennifer Lima de Sousa</p>
+          <p>Monitoramento de Infrequência · jan–abr/2026 · 7 de Setembro EEIEF · 748 alunos matriculados</p>
         </div>
       </div>
       <div class="ind-card-body">
-        <span class="alert-tag tag-crit">🔴 Atenção Urgente</span>
+        <span class="alert-tag tag-orange">🟠 Monitoramento Ativo</span>
         <ul class="alert-list">
-          <li class="alert-item"><span class="alert-dot ad-red"></span><span><strong>181 alunos com registro</strong> de fev–mar/2026 — 230 registros totais em 20 turmas afetadas (1º ao 9º Ano).</span></li>
-          <li class="alert-item"><span class="alert-dot ad-red"></span><span><strong>97,4% dos registros (224 de 230)</strong> classificados como "Outros" sem motivo explícito — protocolo de investigação precisa ser aprofundado.</span></li>
-          <li class="alert-item"><span class="alert-dot ad-orange"></span><span><strong>7º Ano concentra o maior volume absoluto</strong>: 64 registros e 40 alunos únicos entre as turmas A, B e C — 28% do total.</span></li>
-          <li class="alert-item"><span class="alert-dot ad-orange"></span><span>Semana 9 (23–28/02/2026) registrou <strong>98 alunos únicos ausentes</strong> em uma única semana — pico máximo do período, causa a investigar.</span></li>
-          <li class="alert-item"><span class="alert-dot ad-green"></span><span>Protocolo de contato familiar aplicado em <strong>100% dos casos</strong> — excelente disciplina operacional das servidoras responsáveis.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-orange"></span><span>Registros de infrequência distribuídos ao longo de jan–abr/2026 — múltiplas turmas e anos afetados; padrão requer investigação das causas reais.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-orange"></span><span>Motivos registrados incluem <strong>Aluno Doente</strong> e <strong>Outros</strong> — a categoria "Outros" sem justificativa específica deve ser aprofundada com protocolo de entrevista familiar.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-yellow"></span><span>Alunos com 2 ou mais registros de infrequência no período estão em <strong>risco elevado de abandono</strong> — acionar Conselho Tutelar quando necessário.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-yellow"></span><span>Cruzar lista de alunos infrequentes com dados do CNCA (pré-leitores) e da Recomposição (defasagem) — identificar alunos com <strong>dupla vulnerabilidade</strong> (infrequência + déficit de aprendizagem).</span></li>
+          <li class="alert-item"><span class="alert-dot ad-green"></span><span>Protocolo de contato familiar está sendo aplicado — manter a disciplina operacional e registrar os retornos das famílias para subsidiar ações de acompanhamento.</span></li>
         </ul>
         <a class="ind-link" href="busca_ativa.html">🔍 Acessar Painel Busca Ativa Completo</a>
       </div>
@@ -514,16 +513,16 @@ body {
         <div class="ind-icon green">📖</div>
         <div class="ind-head-text">
           <h3>ADSEC 2025</h3>
-          <p>Avaliação Diagnóstica de Leitura · 1º–5º Ano · 489 matriculados · 223–226 avaliados</p>
+          <p>Avaliação Diagnóstica de Leitura · 1º–5º Ano · 748 matriculados · ~376 avaliados por período</p>
         </div>
       </div>
       <div class="ind-card-body">
         <span class="alert-tag tag-ok">🟢 Evolução Expressiva</span>
         <ul class="alert-list">
-          <li class="alert-item"><span class="alert-dot ad-green"></span><span>Evolução sólida e consistente: de <strong>55,61% para 73,01%</strong> de Leitores de Texto ao longo do ano (+17,40 pp).</span></li>
-          <li class="alert-item"><span class="alert-dot ad-green"></span><span>Taxa de Iniciantes (NL/LS) despencou de <strong>26,01% para apenas 7,08%</strong> — queda de quase 19 pp; progresso real e robusto.</span></li>
-          <li class="alert-item"><span class="alert-dot ad-orange"></span><span>Cobertura média de <strong>~46% dos 489 matriculados</strong> avaliados — ampliar participação para garantir representatividade.</span></li>
-          <li class="alert-item"><span class="alert-dot ad-yellow"></span><span>Práticas pedagógicas eficazes detectadas — <strong>identificar e sistematizar</strong> os métodos responsáveis pela evolução para replicação.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-green"></span><span>Evolução sólida e consistente: de <strong>41,99% para 61,97%</strong> de Leitores de Texto ao longo do ano (+19,98 pp) — resultado mais positivo da escola em 2025.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-green"></span><span>O <strong>2º Bimestre foi o período de maior crescimento</strong> — investigar quais práticas pedagógicas foram diferentes e replicá-las para 2026.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-orange"></span><span>Cobertura média de <strong>~50% dos 748 matriculados</strong> avaliados — metade da escola sem diagnóstico de leitura; ampliar para 98% é meta prioritária para 2026.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-yellow"></span><span>O <strong>1º Ano tem a menor cobertura dos anos iniciais</strong> (93,2% — 55 de 59 alunos) — protocolo de reposição para alunos ausentes precisa ser institucionalizado.</span></li>
         </ul>
         <a class="ind-link" href="adsec.html">📖 Acessar Painel ADSEC Completo</a>
       </div>
@@ -535,16 +534,16 @@ body {
         <div class="ind-icon red">📊</div>
         <div class="ind-head-text">
           <h3>Avalie.CE 2025.1</h3>
-          <p>LP e MT · 2º, 4º, 5º, 8º e 9º Anos · 382 alunos avaliados · 10 avaliações</p>
+          <p>LP e MT · 2º, 4º, 5º, 8º e 9º Anos · ~725 alunos avaliados · Regional Maracanau</p>
         </div>
       </div>
       <div class="ind-card-body">
         <span class="alert-tag tag-crit">🔴 Situação Crítica</span>
         <ul class="alert-list">
-          <li class="alert-item"><span class="alert-dot ad-red"></span><span><strong>85% de defasagem em MT no 9º Ano</strong> — proficiência média de apenas 9 pts; praticamente toda a turma sem aprendizado adequado.</span></li>
-          <li class="alert-item"><span class="alert-dot ad-red"></span><span><strong>64% de defasagem no 8º Ano MT</strong> — turma B é a mais crítica com 86% de defasagem e proficiência de apenas 13 pts.</span></li>
-          <li class="alert-item"><span class="alert-dot ad-orange"></span><span>5º Ano MT: 40% de defasagem geral, mas 5ºC registra <strong>67% de defasagem</strong> vs 10% no 5ºA — diferença de 48 pts entre turmas.</span></li>
-          <li class="alert-item"><span class="alert-dot ad-green"></span><span><strong>4º Ano LP: 74% de aprendizado adequado</strong> e proficiência 78 pts — melhor resultado da escola; referência de boas práticas.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-red"></span><span><strong>82% de defasagem em MT no 9º Ano</strong> — proficiência praticamente zero; convergente com 10 anos sem padrão Adequado no SPAECE.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-red"></span><span><strong>8ºC com 100% de defasagem MT e 86,15% no 8º Ano</strong> — os piores resultados de Matemática da escola em todos os anos avaliados.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-orange"></span><span>5º Ano MT: defasagem significativa com assimetria entre turmas — intervenção diagnóstica por turma é necessária antes do SPAECE 2025.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-green"></span><span><strong>4º Ano LP é a referência positiva da escola</strong> — boas práticas pedagógicas a mapear, formalizar em HTPC e disseminar para os anos finais.</span></li>
         </ul>
         <a class="ind-link" href="avalie_ce.html">📊 Acessar Painel Avalie.CE Completo</a>
       </div>
@@ -556,16 +555,16 @@ body {
         <div class="ind-icon blue">📝</div>
         <div class="ind-head-text">
           <h3>Provas Bimestrais 2025</h3>
-          <p>LP + Matemática · 2º ao 9º Ano · 217 alunos avaliados · 63% dos matriculados</p>
+          <p>LP + Matemática · 1º ao 9º Ano · Power BI SEDUC-CE · N1, N2, N3 + Rec. Paralela</p>
         </div>
       </div>
       <div class="ind-card-body">
         <span class="alert-tag tag-attn">🟡 Atenção</span>
         <ul class="alert-list">
-          <li class="alert-item"><span class="alert-dot ad-red"></span><span>Trajetória descendente ao longo do ano: média <strong>7,14 → 5,84 → 5,60</strong> — queda de 1,54 pts; escola avança sem consolidar habilidades.</span></li>
-          <li class="alert-item"><span class="alert-dot ad-red"></span><span>Matemática em colapso no 3º e 4º Período: <strong>30,6% em Crítico e 11,0% em Muito Crítico</strong> no 4º P. (41,6% abaixo do básico).</span></li>
-          <li class="alert-item"><span class="alert-dot ad-orange"></span><span>8º e 9º Ano concentram os resultados mais críticos em Matemática — convergente com Avalie.CE e SPAECE.</span></li>
-          <li class="alert-item"><span class="alert-dot ad-green"></span><span><strong>3º Ano: destaque positivo</strong> — 94,9% e 97,8% acima da média no 1º e 2º Períodos; boas práticas a replicar nos anos finais.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-red"></span><span>Trajetória descendente ao longo do ano: média <strong>6,59 → 5,78 → 5,45</strong> — queda de 1,14 pts do 2º ao 3º Período; escola avança sem consolidar habilidades.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-red"></span><span><strong>1.073 alunos sem Recuperação Paralela registrada</strong> — obrigatoriedade não está sendo cumprida; urgente identificar e comunicar às famílias.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-orange"></span><span>8º e 9º Ano concentram os resultados mais críticos em MT e LP — convergente com Avalie.CE, Recomposição e SPAECE.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-green"></span><span><strong>3º Ano (96,27%) e 4º Ano (98,72%)</strong> são os destaques absolutos das bimestrais — boas práticas desses professores devem ser disseminadas nos HTPCs.</span></li>
         </ul>
         <a class="ind-link" href="bimestrais.html">📝 Acessar Painel Bimestrais Completo</a>
       </div>
@@ -577,16 +576,16 @@ body {
         <div class="ind-icon orange">📚</div>
         <div class="ind-head-text">
           <h3>CNCA</h3>
-          <p>LP, MT e Fluência Leitora · 1º, 2º, 3º e 5º Ano · 9 turmas</p>
+          <p>LP, MT e Fluência Leitora · 1º, 2º, 3º e 5º Ano · Anos Iniciais · 7 de Setembro EEIEF</p>
         </div>
       </div>
       <div class="ind-card-body">
         <span class="alert-tag tag-crit">🔴 Atenção Urgente</span>
         <ul class="alert-list">
-          <li class="alert-item"><span class="alert-dot ad-red"></span><span><strong>5ºB e 5ºC MT: 67% de defasagem e 0% de adequado no 5ºB</strong> — pior resultado da escola em Matemática.</span></li>
-          <li class="alert-item"><span class="alert-dot ad-red"></span><span><strong>30 pré-leitores identificados</strong> — 2º Ano A com 18 pré-leitores e 48% de defasagem em LP; intervenção especializada urgente.</span></li>
-          <li class="alert-item"><span class="alert-dot ad-orange"></span><span>3º Ano C: forte assimetria — <strong>59% de defasagem em LP</strong> e ao mesmo tempo 72% de adequado em MT.</span></li>
-          <li class="alert-item"><span class="alert-dot ad-green"></span><span><strong>3º Ano B e 1º Ano B: destaques absolutos</strong> — 79–86% de adequado em MT; práticas a identificar e disseminar para toda a escola.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-red"></span><span><strong>47 pré-leitores no 2º Ano</strong> — 2ºA com 1 único fluente; 2ºB e 2ºC com 8 e 6 alunos nos níveis mais críticos; intervenção especializada urgente (AEE).</span></li>
+          <li class="alert-item"><span class="alert-dot ad-red"></span><span><strong>3ºC em colapso: 83% de defasagem em MT e 61% em LP</strong> — turma mais crítica dos anos iniciais; reunião de emergência com o professor necessária.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-orange"></span><span>1ºB: dissociação extrema — <strong>93% adequado MT mas 41% defasagem LP</strong> — mesma turma, resultados opostos; paradoxo a investigar urgente.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-green"></span><span><strong>1ºA (68% LP + 84% MT) e 1ºC (80% LP + 78% MT)</strong> são as referências absolutas da escola — práticas a mapear e disseminar para os anos críticos.</span></li>
         </ul>
         <a class="ind-link" href="cnca.html">📚 Acessar Painel CNCA Completo</a>
       </div>
@@ -598,16 +597,16 @@ body {
         <div class="ind-icon indigo">🎓</div>
         <div class="ind-head-text">
           <h3>QEdu / Censo Escolar</h3>
-          <p>Ideb · Aprendizado · Taxas · Infraestrutura · Território Indígena Tapeba</p>
+          <p>Ideb · Aprendizado · Taxas · Infraestrutura · Rede Municipal · Zona Urbana</p>
         </div>
       </div>
       <div class="ind-card-body">
-        <span class="alert-tag tag-indigena">🪶 Leitura Contextualizada</span>
+        <span class="alert-tag tag-attn">🟡 Abaixo da Meta</span>
         <ul class="alert-list">
-          <li class="alert-item"><span class="alert-dot ad-yellow"></span><span><strong>Ideb abaixo da média municipal de Caucaia</strong> — componente de aprendizado baixo/médio e fluxo médio; contextualizar com perfil indígena.</span></li>
-          <li class="alert-item"><span class="alert-dot ad-red"></span><span><strong>Alta distorção idade-série</strong> — principal problema estrutural identificado; impacta diretamente os indicadores externos.</span></li>
-          <li class="alert-item"><span class="alert-dot ad-indigo"></span><span>Escola de alta complexidade: <strong>~846 matrículas · ~39 professores · 5 modalidades</strong> (Creche, Pré, EF I e II, EJA).</span></li>
-          <li class="alert-item"><span class="alert-dot ad-blue"></span><span>INSE Grupo vulnerável — contexto indígena (Jandaiguaba/Capuan) contextualiza resultados, sem dispensar ação pedagógica.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-red"></span><span><strong>Ideb 5º Ano: 4,4 (meta 4,7)</strong> e <strong>Ideb 9º Ano: 3,8</strong> — ambos abaixo das metas projetadas; componente de aprendizado é o principal gargalo.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-orange"></span><span><strong>748 alunos matriculados · ~34 professores</strong> — escola de porte médio com desafios de gestão pedagógica nos anos finais e infraestrutura a melhorar.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-yellow"></span><span>Perfil socioeconômico médio-baixo (INSE moderado) — contextualiza os resultados, mas não dispensa ação pedagógica intensa e focada.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-blue"></span><span><strong>Sala AEE disponível</strong> — recurso estratégico para os 47 pré-leitores do 2º Ano e 12 do 5º Ano; integração com planejamento pedagógico das turmas regulares é urgente.</span></li>
         </ul>
         <a class="ind-link" href="qedu.html">🎓 Acessar Painel QEdu Completo</a>
       </div>
@@ -619,16 +618,16 @@ body {
         <div class="ind-icon red">🎒</div>
         <div class="ind-head-text">
           <h3>Recomposição da Aprendizagem</h3>
-          <p>LP e MT · 6º, 7º e 9º Ano · 8 turmas avaliadas · Anos Finais</p>
+          <p>LP e MT · 6º, 7º e 9º Ano · 7 turmas avaliadas · Anos Finais · Abril/2026</p>
         </div>
       </div>
       <div class="ind-card-body">
         <span class="alert-tag tag-crit">🔴 Emergência Pedagógica</span>
         <ul class="alert-list">
-          <li class="alert-item"><span class="alert-dot ad-red"></span><span><strong>9º Ano A: 91% de defasagem em MT e apenas 5% de adequado</strong> — alunos encerram o EF sem competências matemáticas básicas.</span></li>
-          <li class="alert-item"><span class="alert-dot ad-red"></span><span><strong>7º Ano B: 87% de defasagem em LP e 0% de adequado</strong> — crise estrutural gravíssima, exige intervenção coordenada imediata.</span></li>
-          <li class="alert-item"><span class="alert-dot ad-orange"></span><span>Paradoxo no 7ºB: <strong>0% adequado em LP e 57% adequado em MT</strong> — maior assimetria entre componentes da escola; investigar urgente.</span></li>
-          <li class="alert-item"><span class="alert-dot ad-green"></span><span><strong>6ºB LP (65%) e 7ºB MT (57%)</strong> são as referências positivas da escola — práticas a mapear e disseminar para as turmas críticas.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-red"></span><span><strong>9º Ano MT: 82% de defasagem (9ºA/B)</strong> — alunos encerram o Ensino Fundamental sem competências matemáticas básicas para o Ensino Médio.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-red"></span><span><strong>7ºC: 88% de defasagem em LP</strong> — pior resultado de LP dos Anos Finais; 7ºA e 7ºB também em colapso (80–84% def. LP).</span></li>
+          <li class="alert-item"><span class="alert-dot ad-orange"></span><span>Descontinuidade pedagógica crítica: <strong>6ºA/B com 61–67% adequado LP → 7ºA/B/C com 12–20% adequado LP</strong> — queda de 40–55pp em apenas um ano.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-green"></span><span><strong>6ºA (67% LP) e 6ºB (61% LP)</strong> são as referências dos Anos Finais — HTPC urgente para esses professores compartilharem metodologia com os colegas do 7º Ano.</span></li>
         </ul>
         <a class="ind-link" href="recomposicao.html">🎒 Acessar Painel Recomposição Completo</a>
       </div>
@@ -640,16 +639,16 @@ body {
         <div class="ind-icon red">📋</div>
         <div class="ind-head-text">
           <h3>SAEB 2023</h3>
-          <p>5º e 9º Ano do EF · LP e Matemática · INEP 23268743</p>
+          <p>5º e 9º Ano do EF · LP e Matemática · INEP 23063726</p>
         </div>
       </div>
       <div class="ind-card-body">
         <span class="alert-tag tag-crit">🔴 Crítico</span>
         <ul class="alert-list">
-          <li class="alert-item"><span class="alert-dot ad-red"></span><span><strong>LP 9º Ano: apenas 10,5% de adequado</strong> (N5+) — 89,5% abaixo do adequado; distância da meta de 70%: −59,5 pp.</span></li>
-          <li class="alert-item"><span class="alert-dot ad-red"></span><span><strong>MT 9º Ano: 18,2% de adequado</strong> — acima das similares (4,5%), mas distante da meta; escola supera pares em contexto crítico.</span></li>
-          <li class="alert-item"><span class="alert-dot ad-orange"></span><span>LP 5º Ano: escola <strong>16,4 pts abaixo das similares</strong> — N0+N1 concentram 26,5% dos alunos; foco em habilidades elementares urgente.</span></li>
-          <li class="alert-item"><span class="alert-dot ad-yellow"></span><span>MT 5º Ano: 38,8% de adequado — escola próxima das similares (−7,1 pts); N2 concentra 18,3% — maior bloco individual da escola.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-red"></span><span><strong>LP 9º Ano: apenas 7,13% de adequado</strong> (N5+) — 37,4% dos alunos estão no N0–N1 (abaixo de 200 pts); distância da meta de 70%: −62,9 pp.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-red"></span><span><strong>MT 9º Ano: 7,94% de adequado</strong> — 41,6% abaixo do N2; déficit convergente com SPAECE (0% Adequado por 10 anos consecutivos).</span></li>
+          <li class="alert-item"><span class="alert-dot ad-orange"></span><span>LP 5º Ano: <strong>44,6% dos alunos estão no nível Intermediário (N4)</strong> — grupo mais próximo de converter para Adequado; intervenção focada nesse grupo pode elevar a proficiência.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-yellow"></span><span>MT 5º Ano: 5º Ano com 49,4% adequado (N4+) — resultado mais próximo da meta; foco nos N1–N3 (51%) para elevar a proficiência média rumo às metas 2025.</span></li>
         </ul>
         <a class="ind-link" href="saeb.html">📋 Acessar Painel SAEB Completo</a>
       </div>
@@ -661,16 +660,16 @@ body {
         <div class="ind-icon yellow">📈</div>
         <div class="ind-head-text">
           <h3>SPAECE 2024</h3>
-          <p>2º, 5º e 9º Anos · LP e Matemática · IDE Alfa</p>
+          <p>2º, 5º e 9º Anos · LP e Matemática · Metas SME 2025 Pactuadas</p>
         </div>
       </div>
       <div class="ind-card-body">
         <span class="alert-tag tag-attn">🟡 Meta Parcialmente Atingida</span>
         <ul class="alert-list">
-          <li class="alert-item"><span class="alert-dot ad-green"></span><span><strong>2º Ano: AVANÇADO em MT (611,92) e PROFICIENTE em LP (678,84)</strong> — IDE Alfa 5,57; 96,1% nos dois melhores padrões; referência da escola.</span></li>
-          <li class="alert-item"><span class="alert-dot ad-red"></span><span><strong>9º Ano MT: CRÍTICO com 228 pts</strong> — 48,8% em Muito Crítico e 38,8% em Crítico; apenas 1,3% de adequado. Emergência pedagógica.</span></li>
-          <li class="alert-item"><span class="alert-dot ad-orange"></span><span><strong>5º Ano MT: INTERMEDIÁRIO com 206 pts</strong> — meta 2025 é 219,72 pts; 39,7% em Crítico+M.Crítico; precisa de +13,72 pts urgente.</span></li>
-          <li class="alert-item"><span class="alert-dot ad-yellow"></span><span>5º Ano LP (211 pts) e 9º Ano LP (256 pts) no nível INTERMEDIÁRIO — metas 2025 pactuadas com a SME para todas as etapas.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-green"></span><span><strong>9º Ano LP: +28,6 pts</strong> — de 221,60 para 250,24 pts; maior avanço positivo da escola em indicador externo. Meta 2025: ≥ 260 pts.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-green"></span><span><strong>2º Ano LP: meta superada</strong> — 627 pts (meta: 597 pts); 57,1% no Proficiente. MT com 499 pts — foco nos 30,2% do Básico para subir ao Proficiente.</span></li>
+          <li class="alert-item"><span class="alert-dot ad-red"></span><span><strong>9º Ano MT: 0% Adequado pelo 10º ano consecutivo</strong> — 33,9% Muito Crítico + 52,1% Crítico; histórico estrutural que exige apoio técnico externo (CREDE/SME).</span></li>
+          <li class="alert-item"><span class="alert-dot ad-orange"></span><span><strong>5º Ano MT: Crítico (195 pts)</strong> — meta 2025 é 208 pts (+13 pts); 5º Ano LP (211 pts) também abaixo da meta (220 pts); intervenção focada nos descritores defasados é urgente.</span></li>
         </ul>
         <a class="ind-link" href="spaece.html">📈 Acessar Painel SPAECE Completo</a>
       </div>
@@ -680,7 +679,7 @@ body {
 
   <!-- Footer info -->
   <div style="text-align:center; font-size:0.75rem; color:var(--muted2); margin-top:10px; padding-top:18px; border-top:1px solid var(--border);">
-    Painel de Indicadores Educacionais · Aba Tapeba EDEIEF · Caucaia-CE · Território Indígena (Jandaiguaba/Capuan) · INEP 23268743 · Dados: SEDUC-CE / INEP · Atualizado: março 2026
+    Painel de Indicadores Educacionais · 7 de Setembro EEIEF · Caucaia-CE · Av. Dom Almeida Lustosa, 2322 – Parque Guadalajara · Regional Jurema · INEP 23063726 · Dados: SEDUC-CE / INEP · Atualizado: abril 2026
   </div>
 </main>
 

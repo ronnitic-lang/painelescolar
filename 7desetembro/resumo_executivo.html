@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo Geral · 7 de Setembro EEIEF</title>
+<style>
+:root {
+  --bg: #f0f4f8;
+  --surface: #ffffff;
+  --border: #d8e2ec;
+  --sidebar-bg: #1a2535;
+  --sidebar-hover: #243145;
+  --sidebar-active: rgba(14,116,144,.18);
+  --blue-dark: #1a3a5c;
+  --blue-mid: #1e5799;
+  --teal: #0e7490;
+  --text: #0f1e2e;
+  --muted: #4a5e75;
+  --muted2: #8097b0;
+  --red: #c0392b;
+  --red-bg: #fdf0ef;
+  --red-bdr: #f5b7b1;
+  --red-dark: #a93226;
+  --orange: #ca6f1e;
+  --orange-bg: #fef5e7;
+  --orange-bdr: #f8c471;
+  --yellow: #d68910;
+  --yellow-bg: #fef9ec;
+  --yellow-bdr: #f9d98a;
+  --green: #1a7a4a;
+  --green-bg: #edfaf3;
+  --green-bdr: #82e0aa;
+  --blue: #1a56a0;
+  --blue-bg: #eaf2fc;
+  --blue-bdr: #90bce8;
+  --indigo: #4338ca;
+  --indigo-bg: #eef2ff;
+  --indigo-bdr: #a5b4fc;
+  --purple: #6d28d9;
+  --purple-bg: #f5f3ff;
+  --font: 'Tahoma', 'Verdana', 'Arial', sans-serif;
+  --radius: 10px;
+  --shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  font-size: 0.94rem;
+  line-height: 1.6;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+  width: 264px; min-width: 264px;
+  background: var(--sidebar-bg);
+  height: 100vh; position: sticky; top: 0;
+  display: flex; flex-direction: column;
+  overflow-y: auto; z-index: 100;
+}
+.sidebar::-webkit-scrollbar { width: 4px; }
+.sidebar::-webkit-scrollbar-thumb { background: #2e3d52; border-radius: 3px; }
+.sidebar-logo { padding: 20px 20px 18px; border-bottom: 1px solid #2e3d52; background: #111c2a; }
+.school-badge { display: inline-block; background: var(--teal); color: #fff; font-size: 0.70rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 10px; border-radius: 4px; margin-bottom: 9px; }
+.school-name { font-size: 1.08rem; font-weight: 700; color: #fff; line-height: 1.25; margin-bottom: 3px; }
+.school-name span { color: #f0b429; }
+.school-sub { font-size: 0.70rem; color: #7a90a8; margin-top: 3px; letter-spacing: 0.05em; }
+.nav-section { padding: 12px 20px 5px; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.13em; color: #5a7090; font-weight: 700; }
+.nav-item { display: flex; align-items: center; gap: 11px; padding: 11px 20px; cursor: pointer; border-left: 4px solid transparent; transition: all 0.2s; text-decoration: none; color: inherit; }
+.nav-item:hover { background: var(--sidebar-hover); }
+.nav-item.active { background: var(--sidebar-active); border-left-color: #22d3ee; }
+.nav-icon { width: 32px; height: 32px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+.nav-label { font-size: 0.85rem; font-weight: 600; color: #b8cce0; line-height: 1.25; }
+.nav-item.active .nav-label { color: #fff; }
+.nav-badge { margin-left: auto; min-width: 22px; height: 22px; border-radius: 11px; font-size: 0.70rem; font-weight: 700; display: flex; align-items: center; justify-content: center; padding: 0 5px; flex-shrink: 0; }
+.nb-red    { background: var(--red);    color: #fff; }
+.nb-yellow { background: var(--yellow); color: #fff; }
+.nb-green  { background: var(--green);  color: #fff; }
+.nb-orange { background: var(--orange); color: #fff; }
+.nb-purple { background: var(--purple); color: #fff; }
+.nb-teal   { background: var(--teal);   color: #fff; }
+.sidebar-footer { margin-top: auto; padding: 14px 20px; border-top: 1px solid #2e3d52; font-size: 0.70rem; color: #5a7090; line-height: 1.7; }
+.logout-btn { display: block; text-align: center; margin-top: 10px; padding: 8px; background: rgba(192,57,43,0.18); color: #f5a9a4; border-radius: 6px; text-decoration: none; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em; transition: background 0.2s; }
+.logout-btn:hover { background: rgba(192,57,43,0.35); }
+
+/* ===== MAIN ===== */
+.main { flex: 1; min-width: 0; padding: 0 0 60px; }
+
+/* ===== TOPBAR ===== */
+.topbar {
+  display: flex; align-items: flex-start;
+  justify-content: space-between;
+  padding: 28px 36px 24px;
+  flex-wrap: wrap; gap: 14px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.topbar-title h2 { font-size: 1.35rem; font-weight: 700; color: var(--text); }
+.topbar-title p { font-size: 0.80rem; color: var(--muted); margin-top: 3px; }
+.topbar-stats { display: flex; gap: 10px; flex-wrap: wrap; }
+.topbar-stat { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 9px 16px; text-align: center; box-shadow: var(--shadow); }
+.topbar-stat .ts-val { font-size: 1.1rem; font-weight: 700; display: block; }
+.topbar-stat .ts-lab { font-size: 0.68rem; color: var(--muted2); text-transform: uppercase; letter-spacing: 0.07em; }
+.ts-red    { color: var(--red); }
+.ts-yellow { color: var(--yellow); }
+.ts-orange { color: var(--orange); }
+.ts-green  { color: var(--green); }
+.ts-teal   { color: var(--teal); }
+.ts-indigo { color: var(--indigo); }
+
+/* ===== URGENCY BAR ===== */
+.urgency-bar {
+  margin: 24px 36px 0;
+  background: linear-gradient(135deg, #7a1a0e, #c0392b);
+  border-radius: var(--radius);
+  padding: 18px 22px;
+  display: flex; align-items: flex-start; gap: 16px;
+  box-shadow: 0 4px 18px rgba(192,57,43,0.25);
+}
+.urgency-icon { font-size: 2rem; flex-shrink: 0; margin-top: 2px; }
+.urgency-text h3 { font-size: 1rem; font-weight: 800; color: #fff; margin-bottom: 5px; }
+.urgency-text p { font-size: 0.82rem; color: rgba(255,255,255,0.82); line-height: 1.6; }
+
+/* ===== CONTENT ===== */
+.content { padding: 28px 36px 10px; }
+
+/* ===== SECTION TITLE ===== */
+.section-title {
+  font-size: 1.05rem; font-weight: 700; color: var(--blue-dark);
+  padding-bottom: 8px; border-bottom: 2px solid var(--border);
+  margin-bottom: 20px; margin-top: 36px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-title:first-of-type { margin-top: 0; }
+
+/* ===== KPI ROW ===== */
+.kpi-row { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 28px; }
+.kpi-box {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); box-shadow: var(--shadow);
+  border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 16px 18px; flex: 1; min-width: 110px; text-align: center;
+  border-top: 3px solid;
+}
+.kpi-box.kred    { border-top-color: var(--red); }
+.kpi-box.kyellow { border-top-color: var(--yellow); }
+.kpi-box.korange { border-top-color: var(--orange); }
+.kpi-box.kgreen  { border-top-color: var(--green); }
+.kpi-box.kteal   { border-top-color: var(--teal); }
+.kpi-box.kindigo { border-top-color: var(--indigo); }
+.kpi-val { font-size: 1.8rem; font-weight: 800; line-height: 1; margin-bottom: 5px; }
+.kpi-val.red    { color: var(--red); }
+.kpi-val.yellow { color: var(--yellow); }
+.kpi-val.orange { color: var(--orange); }
+.kpi-val.green  { color: var(--green); }
+.kpi-val.teal   { color: var(--teal); }
+.kpi-val.indigo { color: var(--indigo); }
+.kpi-lbl { font-size: 0.67rem; color: var(--muted2); text-transform: uppercase; letter-spacing: 0.07em; }
+
+/* ===== CRITICAL GRID ===== */
+.critical-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 16px; margin-bottom: 32px; }
+.crit-card { background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); overflow: hidden; }
+.crit-card-head { padding: 14px 18px 12px; display: flex; align-items: center; gap: 13px; border-bottom: 3px solid; }
+.crit-card-head.red    { border-color: var(--red);    background: var(--red-bg); }
+.crit-card-head.orange { border-color: var(--orange); background: var(--orange-bg); }
+.crit-card-head.yellow { border-color: var(--yellow); background: var(--yellow-bg); }
+.crit-card-head.green  { border-color: var(--green);  background: var(--green-bg); }
+.crit-card-head.blue   { border-color: var(--blue);   background: var(--blue-bg); }
+.crit-card-head.indigo { border-color: var(--indigo); background: var(--indigo-bg); }
+.crit-head-icon { font-size: 1.5rem; flex-shrink: 0; }
+.crit-head-text h3 { font-size: 0.92rem; font-weight: 800; color: var(--text); }
+.crit-head-text .source { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; margin-top: 1px; }
+.source.red    { color: var(--red); }
+.source.orange { color: var(--orange); }
+.source.yellow { color: var(--yellow); }
+.source.green  { color: var(--green); }
+.source.blue   { color: var(--blue); }
+.source.indigo { color: var(--indigo); }
+.crit-card-body { padding: 14px 18px 16px; }
+.crit-number { font-size: 2.2rem; font-weight: 800; line-height: 1; margin-bottom: 4px; }
+.crit-number.red    { color: var(--red); }
+.crit-number.orange { color: var(--orange); }
+.crit-number.yellow { color: var(--yellow); }
+.crit-number.green  { color: var(--green); }
+.crit-number.blue   { color: var(--blue); }
+.crit-desc { font-size: 0.80rem; color: var(--muted); line-height: 1.55; margin-bottom: 12px; }
+.crit-facts { list-style: none; display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+.crit-fact { display: flex; align-items: flex-start; gap: 8px; font-size: 0.78rem; line-height: 1.45; color: var(--text); }
+.crit-dot { min-width: 7px; height: 7px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
+.cd-red    { background: var(--red); }
+.cd-orange { background: var(--orange); }
+.cd-yellow { background: var(--yellow); }
+.cd-green  { background: var(--green); }
+.cd-blue   { background: var(--blue); }
+.cd-indigo { background: var(--indigo); }
+.crit-link { display: block; text-align: center; padding: 9px; margin-top: 2px; background: linear-gradient(135deg, #1a3a5c, #1e5799); color: #fff !important; text-decoration: none; border-radius: 7px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; transition: opacity 0.2s; }
+.crit-link:hover { opacity: 0.87; }
+
+/* ===== STRENGTHS GRID ===== */
+.strengths-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; margin-bottom: 32px; }
+.str-card { background: var(--surface); border: 1px solid var(--green-bdr); border-left: 4px solid var(--green); border-radius: var(--radius); padding: 16px 18px; box-shadow: var(--shadow); }
+.str-card h4 { font-size: 0.88rem; font-weight: 800; color: var(--green); margin-bottom: 5px; display: flex; align-items: center; gap: 7px; }
+.str-card p { font-size: 0.78rem; color: var(--muted); line-height: 1.55; }
+.str-card.indigo-card { border: 1px solid var(--indigo-bdr); border-left: 4px solid var(--indigo); }
+.str-card.indigo-card h4 { color: var(--indigo); }
+
+/* ===== SUMMARY TABLE ===== */
+.summary-table { width: 100%; border-collapse: collapse; background: var(--surface); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--border); margin-bottom: 32px; font-size: 0.84rem; }
+.summary-table thead tr { background: linear-gradient(135deg, #1a3a5c, #1e5799); color: #fff; }
+.summary-table th { padding: 11px 16px; text-align: left; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
+.summary-table td { padding: 11px 16px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.summary-table tbody tr:last-child td { border-bottom: none; }
+.summary-table tbody tr:hover { background: #f8fafc; }
+.status-pill { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.04em; }
+.sp-crit { background: var(--red-bg);    color: var(--red);    border: 1px solid var(--red-bdr); }
+.sp-attn { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-bdr); }
+.sp-ok   { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-bdr); }
+.sp-info { background: var(--blue-bg);   color: var(--blue);   border: 1px solid var(--blue-bdr); }
+.sp-ind  { background: var(--indigo-bg); color: var(--indigo); border: 1px solid var(--indigo-bdr); }
+
+/* ===== ACTION PLAN ===== */
+.action-list { display: flex; flex-direction: column; gap: 14px; margin-bottom: 32px; }
+.action-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; display: flex; }
+.action-priority { min-width: 8px; flex-shrink: 0; }
+.ap-red    { background: var(--red); }
+.ap-orange { background: var(--orange); }
+.ap-yellow { background: var(--yellow); }
+.ap-green  { background: var(--green); }
+.ap-blue   { background: var(--blue); }
+.action-body { padding: 16px 20px; flex: 1; }
+.action-header { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 8px; flex-wrap: wrap; }
+.action-num { min-width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 800; flex-shrink: 0; color: #fff; }
+.an-red    { background: var(--red); }
+.an-orange { background: var(--orange); }
+.an-yellow { background: var(--yellow); }
+.an-green  { background: var(--green); }
+.an-blue   { background: var(--blue); }
+.action-title { font-size: 0.92rem; font-weight: 800; color: var(--text); flex: 1; line-height: 1.3; }
+.action-tag { display: inline-block; padding: 2px 9px; border-radius: 20px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.05em; white-space: nowrap; flex-shrink: 0; }
+.at-imediato { background: var(--red-bg);    color: var(--red);    border: 1px solid var(--red-bdr); }
+.at-curto    { background: var(--orange-bg); color: var(--orange); border: 1px solid var(--orange-bdr); }
+.at-medio    { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-bdr); }
+.at-continuo { background: var(--blue-bg);   color: var(--blue);   border: 1px solid var(--blue-bdr); }
+.action-desc { font-size: 0.80rem; color: var(--muted); line-height: 1.65; }
+.action-meta { margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap; }
+.action-chip { display: inline-block; padding: 2px 9px; border-radius: 20px; font-size: 0.68rem; font-weight: 700; background: #f0f4f8; color: var(--muted); border: 1px solid var(--border); }
+
+/* ===== PROGRESS BAR ===== */
+.prog-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 22px 24px; margin-bottom: 32px; }
+.prog-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.prog-row:last-child { margin-bottom: 0; }
+.prog-label { min-width: 230px; font-size: 0.78rem; color: var(--muted); flex-shrink: 0; }
+.prog-track { flex: 1; background: #eef1f5; border-radius: 4px; height: 18px; overflow: hidden; }
+.prog-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 8px; }
+.prog-fill span { font-size: 0.68rem; font-weight: 800; color: #fff; }
+.prog-meta { min-width: 90px; font-size: 0.74rem; font-weight: 700; text-align: right; }
+
+/* ===== PRINT FOOTER ===== */
+.print-footer { text-align: center; font-size: 0.72rem; color: var(--muted2); padding-top: 20px; border-top: 1px solid var(--border); margin-top: 12px; }
+
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .main { padding: 0 0 40px; }
+  .content { padding: 18px 16px 10px; }
+  .kpi-row { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="school-badge">Painel do Diretor</div>
+    <div class="school-name">7 de <span>Setembro</span></div>
+    <div class="school-sub">EEIEF · Caucaia · CE · Regional Jurema · INEP 23063726</div>
+  </div>
+
+  <div class="nav-section">Indicadores</div>
+  <a class="nav-item active" href="resumo_executivo.html">
+    <div class="nav-icon" style="background:#fdf0ef">🚨</div>
+    <span class="nav-label">Resumo Geral</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+  <a class="nav-item" href="busca_ativa.html">
+    <div class="nav-icon" style="background:#fef5e7">🔍</div>
+    <span class="nav-label">Busca Ativa</span>
+    <span class="nav-badge nb-orange">!</span>
+  </a>
+  <a class="nav-item" href="adsec.html">
+    <div class="nav-icon" style="background:#edfaf3">📖</div>
+    <span class="nav-label">ADSEC 2025</span>
+    <span class="nav-badge nb-green">▲</span>
+  </a>
+  <a class="nav-item" href="avalie_ce.html">
+    <div class="nav-icon" style="background:#fef9ec">📊</div>
+    <span class="nav-label">Avalie.CE</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+  <a class="nav-item" href="bimestrais.html">
+    <div class="nav-icon" style="background:#eaf2fc">📝</div>
+    <span class="nav-label">Bimestrais 2025</span>
+    <span class="nav-badge nb-yellow">!</span>
+  </a>
+  <a class="nav-item" href="cnca.html">
+    <div class="nav-icon" style="background:#fef5e7">📚</div>
+    <span class="nav-label">CNCA</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+  <a class="nav-item" href="qedu.html">
+    <div class="nav-icon" style="background:#eaf2fc">🎓</div>
+    <span class="nav-label">QEdu / Censo</span>
+    <span class="nav-badge nb-yellow">!</span>
+  </a>
+  <a class="nav-item" href="recomposicao.html">
+    <div class="nav-icon" style="background:var(--purple-bg)">🎒</div>
+    <span class="nav-label" style="color:#c4b5fd">Recomposição</span>
+    <span class="nav-badge nb-purple">!</span>
+  </a>
+  <a class="nav-item" href="saeb.html">
+    <div class="nav-icon" style="background:#fdf0ef">📋</div>
+    <span class="nav-label">SAEB 2023</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+  <a class="nav-item" href="spaece.html">
+    <div class="nav-icon" style="background:#fef9ec">📈</div>
+    <span class="nav-label">SPAECE 2024</span>
+    <span class="nav-badge nb-red">!!</span>
+  </a>
+
+  <div class="nav-section" style="margin-top:10px">Sistema</div>
+  <a class="nav-item" href="../index.html">
+    <div class="nav-icon" style="background:#fdf0ef">🏫</div>
+    <span class="nav-label">Trocar Escola</span>
+  </a>
+
+  <div class="sidebar-footer">
+    <div>7 de Setembro EEIEF<br>Caucaia · CE · Reg. Jurema</div>
+    <div style="margin-top:6px;color:#8097b0">Dados: SEDUC-CE / INEP · 2025–2026</div>
+    <a class="logout-btn" href="../index.html">⬅ Sair do Painel</a>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-title">
+      <h2>🚨 Resumo Geral — Pontos Críticos 2025–2026</h2>
+      <p>Síntese de todos os indicadores · ADSEC · Avalie.CE · Bimestrais · CNCA · QEdu · SAEB · SPAECE · Recomposição · Busca Ativa · 7 de Setembro EEIEF</p>
+    </div>
+    <div class="topbar-stats">
+      <div class="topbar-stat"><span class="ts-val ts-red">8</span><span class="ts-lab">Indicadores Críticos</span></div>
+      <div class="topbar-stat"><span class="ts-val ts-red">82%</span><span class="ts-lab">Defas. MT · 9º Ano</span></div>
+      <div class="topbar-stat"><span class="ts-val ts-orange">47</span><span class="ts-lab">Pré-leitores · 2º Ano</span></div>
+      <div class="topbar-stat"><span class="ts-val ts-green">62%</span><span class="ts-lab">Leitores ADSEC 4ºP</span></div>
+      <div class="topbar-stat"><span class="ts-val ts-teal">748</span><span class="ts-lab">Matrículas</span></div>
+    </div>
+  </div>
+
+  <!-- URGENCY BAR -->
+  <div class="urgency-bar">
+    <span class="urgency-icon">⚡</span>
+    <div class="urgency-text">
+      <h3>Atenção da Gestão — Crise Estrutural em Matemática nos Anos Finais, Pré-leitores no 2º Ano e Queda Progressiva nas Bimestrais Exigem Ação Imediata</h3>
+      <p>O cruzamento de todos os indicadores revela uma escola com conquistas reais — avanço expressivo de +20pp nos Leitores de Texto ADSEC (41,99% → 61,97%), destaque absoluto do 1ºA e 1ºC no CNCA (68–84% adequado), 3º e 4º Ano como referências nas Bimestrais (94–98,7% acima da média) e crescimento de +28,6 pts no 9º Ano LP no SPAECE — mas com uma crise estrutural grave em Matemática nos Anos Finais (9º Ano MT: 10 anos sem nenhum aluno no padrão Adequado), 47 pré-leitores no 2º Ano, queda progressiva nas médias bimestrais (6,59→5,78→5,45) e déficit histórico no SAEB. Este resumo reúne os principais alertas e um plano de ação direto para a gestão agir em 2025–2026.</p>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- KPI ROW -->
+    <div class="kpi-row" style="margin-top:28px">
+      <div class="kpi-box kred">
+        <div class="kpi-val red">82%</div>
+        <div class="kpi-lbl">Defas. MT · 9º Ano (Recomp.)</div>
+      </div>
+      <div class="kpi-box kred">
+        <div class="kpi-val red">7,13%</div>
+        <div class="kpi-lbl">Adequado LP · 9º Ano (SAEB)</div>
+      </div>
+      <div class="kpi-box kred">
+        <div class="kpi-val red">0%</div>
+        <div class="kpi-lbl">Adequado MT · 9º SPAECE (10 anos)</div>
+      </div>
+      <div class="kpi-box korange">
+        <div class="kpi-val orange">47</div>
+        <div class="kpi-lbl">Pré-leitores no 2º Ano (CNCA)</div>
+      </div>
+      <div class="kpi-box kyellow">
+        <div class="kpi-val yellow">5,45</div>
+        <div class="kpi-lbl">Média Bimestral · 3º Período</div>
+      </div>
+      <div class="kpi-box kgreen">
+        <div class="kpi-val green">+20pp</div>
+        <div class="kpi-lbl">Leitores ADSEC · Evolução 2025</div>
+      </div>
+      <div class="kpi-box kteal">
+        <div class="kpi-val teal">748</div>
+        <div class="kpi-lbl">Alunos Matriculados · Censo 2025</div>
+      </div>
+    </div>
+
+    <!-- ===== SEÇÃO 1: ALERTAS CRÍTICOS ===== -->
+    <div class="section-title">🔴 Alertas Críticos — Foco Prioritário da Gestão</div>
+    <div class="critical-grid">
+
+      <!-- Card 1: MT Anos Finais -->
+      <div class="crit-card">
+        <div class="crit-card-head red">
+          <span class="crit-head-icon">📐</span>
+          <div class="crit-head-text">
+            <h3>Crise Estrutural em Matemática — 9º e 8º Ano</h3>
+            <div class="source red">Recomposição · SPAECE · Avalie.CE · SAEB</div>
+          </div>
+        </div>
+        <div class="crit-card-body">
+          <div class="crit-number red">82%</div>
+          <div class="crit-desc">Defasagem em MT no 9º Ano (Recomposição). O SPAECE 2024 confirma: o 9º Ano nunca atingiu o padrão Adequado em MT em 10 anos de histórico. 23,6% abaixo do N0 no SAEB. Situação idêntica no 8º Ano com 86% de defasagem MT.</div>
+          <ul class="crit-facts">
+            <li class="crit-fact"><span class="crit-dot cd-red"></span><span>9º Ano: 33,9% Muito Crítico + 52,1% Crítico no SPAECE 2024 MT — 0% Adequado.</span></li>
+            <li class="crit-fact"><span class="crit-dot cd-red"></span><span>8ºC com 100% de defasagem e 86,15% em média no 8º Ano MT (Avalie.CE).</span></li>
+            <li class="crit-fact"><span class="crit-dot cd-orange"></span><span>5º Ano MT no padrão Crítico (195 pts) — 52,3% nos padrões críticos (SPAECE).</span></li>
+            <li class="crit-fact"><span class="crit-dot cd-yellow"></span><span>SAEB 2023: MT 9º Ano com 18,01% adequado vs meta de 70% — distância de 52pp.</span></li>
+          </ul>
+          <a class="crit-link" href="recomposicao.html">Ver Recomposição →</a>
+        </div>
+      </div>
+
+      <!-- Card 2: CNCA 2º Ano -->
+      <div class="crit-card">
+        <div class="crit-card-head red">
+          <span class="crit-head-icon">📚</span>
+          <div class="crit-head-text">
+            <h3>47 Pré-leitores no 2º Ano — Ruptura com o 1º Ano</h3>
+            <div class="source red">CNCA · AEE · 2º Ano A, B e C</div>
+          </div>
+        </div>
+        <div class="crit-card-body">
+          <div class="crit-number red">47</div>
+          <div class="crit-desc">Pré-leitores identificados no 2º Ano, sendo 8 no 2ºB e 6 no 2ºC nos níveis mais críticos. O 1º Ano apresenta 68–84% de adequado (1ºA e 1ºC) — a ruptura entre 1º e 2º Ano é um paradoxo que exige investigação imediata sobre continuidade pedagógica.</div>
+          <ul class="crit-facts">
+            <li class="crit-fact"><span class="crit-dot cd-red"></span><span>2ºA: 1 único fluente; 2ºB: 8 alunos no nível 1–2 (mais críticos); 2ºC: 6 alunos nível 1–2.</span></li>
+            <li class="crit-fact"><span class="crit-dot cd-red"></span><span>3ºC: 83% de defasagem em MT e 61% em LP — turma em colapso pedagógico.</span></li>
+            <li class="crit-fact"><span class="crit-dot cd-orange"></span><span>5ºA e 5ºB: 12 pré-leitores — déficit de 4+ anos; risco direto para SPAECE 2025.</span></li>
+            <li class="crit-fact"><span class="crit-dot cd-yellow"></span><span>1ºB: dissociação extrema — 93% adequado MT mas 41% defasagem LP na mesma turma.</span></li>
+          </ul>
+          <a class="crit-link" href="cnca.html">Ver CNCA →</a>
+        </div>
+      </div>
+
+      <!-- Card 3: Bimestrais -->
+      <div class="crit-card">
+        <div class="crit-card-head orange">
+          <span class="crit-head-icon">📝</span>
+          <div class="crit-head-text">
+            <h3>Queda Progressiva nas Bimestrais — 6,59 → 5,45</h3>
+            <div class="source orange">Bimestrais 2025 · Power BI SEDUC-CE</div>
+          </div>
+        </div>
+        <div class="crit-card-body">
+          <div class="crit-number orange">5,45</div>
+          <div class="crit-desc">Média geral no 3º Período — queda acumulada de 1,14 pts do 2º ao 3º Período. Indica que os alunos não consolidam o aprendizado a cada bimestre. 8º e 9º Ano em MT e LP são os maiores responsáveis. 1.073 alunos sem Recuperação Paralela registrada.</div>
+          <ul class="crit-facts">
+            <li class="crit-fact"><span class="crit-dot cd-red"></span><span>8º e 9º Ano: colapso em MT e LP no 3º Período — tendência descendente em todos os períodos.</span></li>
+            <li class="crit-fact"><span class="crit-dot cd-orange"></span><span>1.073 alunos sem RP registrada — obrigatoriedade não está sendo cumprida.</span></li>
+            <li class="crit-fact"><span class="crit-dot cd-yellow"></span><span>Ritmo curricular não compatível com capacidade de absorção dos alunos.</span></li>
+            <li class="crit-fact"><span class="crit-dot cd-green"></span><span>3º e 4º Ano são exceção: 94–98,7% acima da média — referências internas da escola.</span></li>
+          </ul>
+          <a class="crit-link" href="bimestrais.html">Ver Bimestrais →</a>
+        </div>
+      </div>
+
+      <!-- Card 4: SAEB -->
+      <div class="crit-card">
+        <div class="crit-card-head red">
+          <span class="crit-head-icon">📋</span>
+          <div class="crit-head-text">
+            <h3>SAEB 2023 — Déficit Histórico em LP e MT (9º Ano)</h3>
+            <div class="source red">SAEB 2023 · 5º e 9º Ano</div>
+          </div>
+        </div>
+        <div class="crit-card-body">
+          <div class="crit-number red">7,1%</div>
+          <div class="crit-desc">Adequado em LP no 9º Ano (SAEB 2023) — distância de 62,9pp da meta de 70%. MT 9º Ano com 7,94% adequado. 37,4% dos alunos do 9º Ano estão no N0-N1 (padrão mais crítico) em LP. Cruzamento com SPAECE confirma crise crônica.</div>
+          <ul class="crit-facts">
+            <li class="crit-fact"><span class="crit-dot cd-red"></span><span>LP 9º Ano: 37,4% no N0–N1 (atenção especial); apenas 7,13% no nível adequado.</span></li>
+            <li class="crit-fact"><span class="crit-dot cd-red"></span><span>MT 9º Ano: 41,6% abaixo do N2 (< 225 pts) — base extremamente frágil.</span></li>
+            <li class="crit-fact"><span class="crit-dot cd-orange"></span><span>5º Ano MT: 51,2% nos padrões críticos (N0–N3) — meta 2025 exige +13 pts.</span></li>
+            <li class="crit-fact"><span class="crit-dot cd-yellow"></span><span>5º Ano LP: 47% abaixo do adequado — 44,6% no Intermediário, próximo da conversão.</span></li>
+          </ul>
+          <a class="crit-link" href="saeb.html">Ver SAEB →</a>
+        </div>
+      </div>
+
+      <!-- Card 5: Recomposição AF LP -->
+      <div class="crit-card">
+        <div class="crit-card-head yellow">
+          <span class="crit-head-icon">🎒</span>
+          <div class="crit-head-text">
+            <h3>7º Ano LP — Colapso em LP com Referência em MT</h3>
+            <div class="source yellow">Recomposição 2025 · 7ºA, B e C</div>
+          </div>
+        </div>
+        <div class="crit-card-body">
+          <div class="crit-number yellow">84%</div>
+          <div class="crit-desc">Defasagem média em LP no 7º Ano (Recomposição). O 7ºC tem 88% de defasagem LP. Em contraste, o 6ºA e 6ºB têm os melhores resultados em LP dos Anos Finais (61–67% adequado). A descontinuidade pedagógica do 6º para o 7º Ano em LP é uma crise que precisa ser investigada urgentemente.</div>
+          <ul class="crit-facts">
+            <li class="crit-fact"><span class="crit-dot cd-red"></span><span>7ºA: 80% def. LP; 7ºB: 84% def. LP; 7ºC: 88% def. LP — todos em colapso.</span></li>
+            <li class="crit-fact"><span class="crit-dot cd-orange"></span><span>Descontinuidade: 6ºA/B com 61–67% adequado LP → 7ºA/B/C com 12–20% adequado.</span></li>
+            <li class="crit-fact"><span class="crit-dot cd-yellow"></span><span>6ºA: assimetria interna — 67% adequado LP mas 71% defasagem MT na mesma turma.</span></li>
+            <li class="crit-fact"><span class="crit-dot cd-green"></span><span>6ºA e 6ºB são as referências de LP nos Anos Finais — práticas a mapear e disseminar.</span></li>
+          </ul>
+          <a class="crit-link" href="recomposicao.html">Ver Recomposição →</a>
+        </div>
+      </div>
+
+      <!-- Card 6: ADSEC / SPAECE Metas -->
+      <div class="crit-card">
+        <div class="crit-card-head green">
+          <span class="crit-head-icon">📖</span>
+          <div class="crit-head-text">
+            <h3>ADSEC — Avanço de +20pp mas Cobertura Incompleta</h3>
+            <div class="source green">ADSEC 2025 · Anos Iniciais · 748 matr.</div>
+          </div>
+        </div>
+        <div class="crit-card-body">
+          <div class="crit-number green">62%</div>
+          <div class="crit-desc">Leitores de Texto no 4º Período (2025) — avanço real de 41,99% para 61,97% em 12 meses (+20pp). Meta para 2026: atingir 70%. Desafio: apenas ~50% dos 748 alunos foram avaliados; 1º Ano com 93,2% de cobertura (menor dos anos iniciais).</div>
+          <ul class="crit-facts">
+            <li class="crit-fact"><span class="crit-dot cd-green"></span><span>Leitores de Texto: 41,99% → 61,97% — crescimento consistente em todos os períodos.</span></li>
+            <li class="crit-fact"><span class="crit-dot cd-orange"></span><span>Cobertura: ~50% avaliados de 748 matriculados — metade da escola sem diagnóstico de leitura.</span></li>
+            <li class="crit-fact"><span class="crit-dot cd-yellow"></span><span>2º Bimestre foi o melhor período — investigar e replicar as boas práticas que causaram o pico.</span></li>
+            <li class="crit-fact"><span class="crit-dot cd-blue"></span><span>Meta 2026: 70% de Leitores de Texto e 98% de cobertura em todos os anos iniciais.</span></li>
+          </ul>
+          <a class="crit-link" href="adsec.html">Ver ADSEC →</a>
+        </div>
+      </div>
+
+    </div><!-- /critical-grid -->
+
+    <!-- ===== SEÇÃO 2: PONTOS FORTES ===== -->
+    <div class="section-title">✅ Pontos Fortes a Preservar e Ampliar</div>
+    <div class="strengths-grid">
+      <div class="str-card">
+        <h4>🏆 1º Ano A e C — Referências Absolutas da Escola</h4>
+        <p>O 1ºA tem 68% adequado em LP e 84% em MT. O 1ºC tem 80% adequado em LP e 78% em MT. Dois resultados excepcionais que comprovam: com a metodologia certa, excelência é possível. Essas práticas precisam ser mapeadas, documentadas e disseminadas para toda a escola.</p>
+      </div>
+      <div class="str-card">
+        <h4>📖 ADSEC +20pp — Evolução Leitora Expressiva</h4>
+        <p>A taxa de Leitores de Texto avançou de 41,99% para 61,97% ao longo de 2025 — quase 20pp de progressão real e consistente. O 2º Bimestre foi o período com maior crescimento. Escola está a 8pp da meta de 70% para 2026 — distância alcançável com as intervenções certas.</p>
+      </div>
+      <div class="str-card">
+        <h4>📊 3º e 4º Ano — Destaques das Bimestrais</h4>
+        <p>O 4º Ano atingiu 98,72% acima da média no 1º Período (melhor resultado da escola). O 3º Ano se manteve acima de 94% em todos os bimestres, chegando a 96,27% no 3º Período. Professores desses anos têm práticas que merecem ser formalizadas e compartilhadas com os anos finais.</p>
+      </div>
+      <div class="str-card">
+        <h4>📈 9º Ano LP — Salto de +28,6 pts no SPAECE</h4>
+        <p>O 9º Ano LP avançou de 221,60 para 250,24 pts no SPAECE — o maior crescimento positivo da escola em qualquer indicador externo em 2024. Histórico volátil exige monitoramento mensal para sustentar esse avanço e evitar regressão como ocorreu em edições anteriores.</p>
+      </div>
+      <div class="str-card">
+        <h4>🎒 6º Ano A e B — Referências de LP nos Anos Finais</h4>
+        <p>O 6ºA tem 67% adequado em LP e o 6ºB tem 61% adequado em LP — melhores resultados de LP em todos os Anos Finais (Recomposição 2025). Em um cenário de colapso generalizado no 7º e 9º Ano, esses professores têm algo que funciona e precisam compartilhá-lo urgentemente.</p>
+      </div>
+      <div class="str-card">
+        <h4>🏛️ Sala AEE — Recurso Estratégico para Intervenção</h4>
+        <p>A escola dispõe de Sala de Atendimento Educacional Especializado (AEE) — recurso fundamental para os 47 pré-leitores identificados no 2º Ano e para os 12 pré-leitores no 5º Ano. A integração do professor do AEE com o planejamento das turmas críticas é urgente e estratégica.</p>
+      </div>
+      <div class="str-card">
+        <h4>🎓 2º Ano LP — Meta SPAECE Superada</h4>
+        <p>O 2º Ano LP atingiu 627 pts no SPAECE 2024 — superando a meta de 597 pts pactuada. Apenas 15,6% abaixo do Básico. O 2º Ano MT (499 pts) está próximo do Proficiente — foco nos 30,2% do Básico pode elevar para Proficiente em 2025 com intensificação dirigida.</p>
+      </div>
+      <div class="str-card indigo-card">
+        <h4>📌 Gestão Orientada a Dados — Potencial Real</h4>
+        <p>A escola possui dados completos e detalhados de 9 instrumentos avaliativos diferentes — ADSEC, Avalie.CE, Bimestrais, CNCA, QEdu, Recomposição, SAEB, SPAECE e Busca Ativa. A qualidade do diagnóstico é o primeiro passo; o próximo é transformar esses dados em ação pedagógica sistemática.</p>
+      </div>
+    </div>
+
+    <!-- ===== SEÇÃO 3: PAINEL COMPARATIVO ===== -->
+    <div class="section-title">📊 Painel Comparativo dos Indicadores</div>
+    <table class="summary-table">
+      <thead>
+        <tr>
+          <th>Indicador</th>
+          <th>Resultado Principal</th>
+          <th>Meta / Referência</th>
+          <th>Distância</th>
+          <th>Status</th>
+          <th>Ação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>ADSEC 2025</strong><br><small style="color:var(--muted2)">Leitura · 1º–5º Ano</small></td>
+          <td>61,97% Leitores de Texto no 4º Período · ~376 avaliados de 748</td>
+          <td>70% leitores · Cobertura 98%</td>
+          <td style="color:var(--green)">+19,98pp ✅</td>
+          <td><span class="status-pill sp-ok">🟢 Destaque</span></td>
+          <td><a href="adsec.html" style="color:var(--teal);font-weight:700;text-decoration:none;">Ver →</a></td>
+        </tr>
+        <tr>
+          <td><strong>Avalie.CE 2025.1</strong><br><small style="color:var(--muted2)">LP e MT · 2º ao 9º Ano</small></td>
+          <td>86% def. MT 8ºC; 82% def. MT 9º; 4º Ano LP referência com bom adequado</td>
+          <td>Meta 70% adequado</td>
+          <td style="color:var(--red)">−56pp (MT 9º Ano)</td>
+          <td><span class="status-pill sp-crit">🔴 Crítico</span></td>
+          <td><a href="avalie_ce.html" style="color:var(--teal);font-weight:700;text-decoration:none;">Ver →</a></td>
+        </tr>
+        <tr>
+          <td><strong>Bimestrais 2025</strong><br><small style="color:var(--muted2)">LP + MT · todos os anos</small></td>
+          <td>Média 6,59 → 5,78 → 5,45 — queda progressiva ao longo do ano</td>
+          <td>Média ≥ 7,0</td>
+          <td style="color:var(--orange)">−1,55 pts</td>
+          <td><span class="status-pill sp-attn">🟡 Atenção</span></td>
+          <td><a href="bimestrais.html" style="color:var(--teal);font-weight:700;text-decoration:none;">Ver →</a></td>
+        </tr>
+        <tr>
+          <td><strong>Busca Ativa 2026</strong><br><small style="color:var(--muted2)">Frequência · jan–abr/2026</small></td>
+          <td>Registros de infrequência · motivos predominantes: Aluno Doente e Outros</td>
+          <td>Zero registros sem justificativa</td>
+          <td style="color:var(--orange)">Monitoramento ativo</td>
+          <td><span class="status-pill sp-attn">🟡 Monitorar</span></td>
+          <td><a href="busca_ativa.html" style="color:var(--teal);font-weight:700;text-decoration:none;">Ver →</a></td>
+        </tr>
+        <tr>
+          <td><strong>CNCA</strong><br><small style="color:var(--muted2)">LP, MT, Fluência · 1º–5º Ano</small></td>
+          <td>47 pré-leitores no 2º Ano; 3ºC colapso (83% def. MT); 1ºA/C referências</td>
+          <td>&lt;20% defasagem por turma</td>
+          <td style="color:var(--red)">+63pp (3ºC MT)</td>
+          <td><span class="status-pill sp-crit">🔴 Crítico</span></td>
+          <td><a href="cnca.html" style="color:var(--teal);font-weight:700;text-decoration:none;">Ver →</a></td>
+        </tr>
+        <tr>
+          <td><strong>QEdu / Censo</strong><br><small style="color:var(--muted2)">Ideb · Taxas · 748 matr.</small></td>
+          <td>Ideb 5º Ano: 4,4 (meta 4,7); Ideb 9º Ano: 3,8 — abaixo da meta municipal</td>
+          <td>Média municipal Caucaia</td>
+          <td style="color:var(--red)">Abaixo da meta</td>
+          <td><span class="status-pill sp-crit">🔴 Crítico</span></td>
+          <td><a href="qedu.html" style="color:var(--teal);font-weight:700;text-decoration:none;">Ver →</a></td>
+        </tr>
+        <tr>
+          <td><strong>Recomposição 2025</strong><br><small style="color:var(--muted2)">LP e MT · 6º ao 9º Ano</small></td>
+          <td>9ºA/B: 82% def. MT; 7ºA/B/C: 80–88% def. LP; 6ºA/B: referências LP</td>
+          <td>&lt;50% defasagem por turma</td>
+          <td style="color:var(--red)">+38pp (9ºA/B MT)</td>
+          <td><span class="status-pill sp-crit">🔴 Emergência</span></td>
+          <td><a href="recomposicao.html" style="color:var(--teal);font-weight:700;text-decoration:none;">Ver →</a></td>
+        </tr>
+        <tr>
+          <td><strong>SAEB 2023</strong><br><small style="color:var(--muted2)">5º e 9º Ano</small></td>
+          <td>LP 9º: 7,13% adequado; MT 9º: 7,94% adequado; LP 5º: N4 com 18,2%</td>
+          <td>Meta 70% adequado</td>
+          <td style="color:var(--red)">−62,9pp (LP 9º)</td>
+          <td><span class="status-pill sp-crit">🔴 Crítico</span></td>
+          <td><a href="saeb.html" style="color:var(--teal);font-weight:700;text-decoration:none;">Ver →</a></td>
+        </tr>
+        <tr>
+          <td><strong>SPAECE 2024</strong><br><small style="color:var(--muted2)">2º, 5º e 9º Anos</small></td>
+          <td>9º LP: +28,6 pts (221→250); 2º LP: meta superada; 9º MT: 0% Adequado</td>
+          <td>Metas SME 2025 pactuadas</td>
+          <td style="color:var(--orange)">−13 a −23 pts (MT)</td>
+          <td><span class="status-pill sp-attn">🟡 Parcial</span></td>
+          <td><a href="spaece.html" style="color:var(--teal);font-weight:700;text-decoration:none;">Ver →</a></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- ===== SEÇÃO 4: PLANO DE AÇÃO ===== -->
+    <div class="section-title">⚡ Plano de Ação Prioritário — Gestão 2025–2026</div>
+    <div class="action-list">
+
+      <div class="action-item">
+        <div class="action-priority ap-red"></div>
+        <div class="action-body">
+          <div class="action-header">
+            <div class="action-num an-red">1</div>
+            <div class="action-title">Intervenção Pedagógica Emergencial em Matemática nos Anos Finais — 9º e 8º Ano</div>
+            <span class="action-tag at-imediato">🚨 Imediato</span>
+          </div>
+          <div class="action-desc">O 9º Ano MT tem 82% de defasagem (Recomposição) e 86,15% (Avalie.CE), com 0% de adequado no SPAECE por 10 anos consecutivos. O 8ºC tem 100% de defasagem. Esses alunos encerrarão o EF sem as competências matemáticas básicas para o Ensino Médio. Criar imediatamente um plano de intervenção em MT: diagnóstico individual por habilidade usando Avalie.CE e Recomposição como ponto de partida, reagrupamento temporário por nível, foco nos descritores de transição do Muito Crítico para o Crítico. Solicitar apoio técnico da SME/CREDE apresentando o histórico de 10 anos do SPAECE como evidência de crise estrutural que exige suporte externo. Monitorar com avaliações quinzenais.</div>
+          <div class="action-meta">
+            <span class="action-chip">Avalie.CE</span>
+            <span class="action-chip">Recomposição</span>
+            <span class="action-chip">8º e 9º Ano · MT</span>
+            <span class="action-chip">SPAECE 2025</span>
+            <span class="action-chip">CREDE/SME · Apoio Técnico</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-item">
+        <div class="action-priority ap-red"></div>
+        <div class="action-body">
+          <div class="action-header">
+            <div class="action-num an-red">2</div>
+            <div class="action-title">Reunião de Emergência com Professores do 2º Ano — 47 Pré-leitores e 1 Fluente</div>
+            <span class="action-tag at-imediato">🚨 Imediato</span>
+          </div>
+          <div class="action-desc">Com 47 pré-leitores no 2º Ano e apenas 1 fluente (2ºA), o 2º Ano é a turma com maior risco estrutural da escola. O 1º Ano tem resultados excelentes (1ºA: 68% LP + 84% MT; 1ºC: 80% LP + 78% MT) — o colapso está acontecendo na transição. Convocar reunião conjunta dos três professores do 2º Ano com coordenação pedagógica para plano unificado de fluência. Encaminhar pré-leitores dos níveis 1 e 2 para o AEE (avaliação especializada urgente). Cruzar lista dos pré-leitores com registros da Busca Ativa para identificar alunos com dupla vulnerabilidade (infrequência + não-leitura). Investigar o que acontece na transição pedagógica entre o 1º e o 2º Ano.</div>
+          <div class="action-meta">
+            <span class="action-chip">CNCA</span>
+            <span class="action-chip">2º Ano A, B e C</span>
+            <span class="action-chip">AEE</span>
+            <span class="action-chip">PAIC</span>
+            <span class="action-chip">Fluência Leitora</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-item">
+        <div class="action-priority ap-red"></div>
+        <div class="action-body">
+          <div class="action-header">
+            <div class="action-num an-red">3</div>
+            <div class="action-title">Investigar e Reverter o Colapso do 3ºC — 83% Defasagem MT e 61% Defasagem LP</div>
+            <span class="action-tag at-imediato">🚨 Imediato</span>
+          </div>
+          <div class="action-desc">O 3ºC apresenta os piores resultados dos anos iniciais: 83% de defasagem em MT e 61% em LP (CNCA). Para contexto: o 3ºA tem 65% de defasagem MT e o 3ºB tem resultados satisfatórios — ou seja, o problema é específico do 3ºC, não do ano escolar. Isso indica que há algo diferente no contexto desta turma (professor, metodologia, frequência, perfil dos alunos). Reunião de emergência com o professor do 3ºC para plano integrado LP + MT. Diagnóstico por habilidade para identificar lacunas específicas. Pedir ao coordenador para observar as aulas. Comparar estratégias com o professor do 3ºB e promover troca pedagógica.</div>
+          <div class="action-meta">
+            <span class="action-chip">CNCA</span>
+            <span class="action-chip">3º Ano C</span>
+            <span class="action-chip">LP + MT</span>
+            <span class="action-chip">Coordenação Pedagógica</span>
+            <span class="action-chip">Diagnóstico por Habilidade</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-item">
+        <div class="action-priority ap-red"></div>
+        <div class="action-body">
+          <div class="action-header">
+            <div class="action-num an-red">4</div>
+            <div class="action-title">Investigar a Descontinuidade Pedagógica LP do 6º para o 7º Ano — Paradoxo dos Anos Finais</div>
+            <span class="action-tag at-imediato">🚨 Imediato</span>
+          </div>
+          <div class="action-desc">O 6ºA e 6ºB têm 61–67% de adequado em LP (Recomposição) — os melhores resultados dos Anos Finais. O 7ºA, B e C têm 80–88% de defasagem em LP — colapso total. Mesma escola, mesmo currículo, mesma rede. Essa descontinuidade extrema indica um problema pedagógico específico: mudança de professor, metodologia incompatível, falta de continuidade no diagnóstico, ou ruptura nas estratégias de leitura entre etapas. Investigar o que diferencia o professor de LP do 6º Ano dos professores do 7º Ano. Promover HTPC urgente onde os professores do 6ºA e 6ºB compartilham suas metodologias com os colegas do 7º Ano. Aplicar diagnóstico imediato no 7º Ano para mapear o nível de entrada e intervir.</div>
+          <div class="action-meta">
+            <span class="action-chip">Recomposição</span>
+            <span class="action-chip">6º → 7º Ano · LP</span>
+            <span class="action-chip">HTPC · Boas Práticas</span>
+            <span class="action-chip">Diagnóstico Descritorial</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-item">
+        <div class="action-priority ap-orange"></div>
+        <div class="action-body">
+          <div class="action-header">
+            <div class="action-num an-orange">5</div>
+            <div class="action-title">Mapear e Disseminar as Práticas do 1ºA e 1ºC — Referências Absolutas da Escola</div>
+            <span class="action-tag at-curto">⚠️ Curto Prazo</span>
+          </div>
+          <div class="action-desc">O 1ºA tem 68% de adequado em LP e 84% em MT. O 1ºC tem 80% em LP e 78% em MT (CNCA). Esses resultados excepcionais contrastam com o 2º Ano (47 pré-leitores) e o 3ºC (83% def. MT) — e provam que a escola é capaz de excelência pedagógica. Mapear formalmente as práticas dos professores do 1ºA e 1ºC: rotinas, materiais, frequência de avaliação, estratégias de intervenção, gestão de sala, relação com as famílias. Investigar o que acontece na transição pedagógica para o 2º Ano — os alunos que saem com 80% adequado chegam ao 2º Ano como pré-leitores? Organizar observação de aula dos professores dos anos críticos (2º Ano, 3ºC) no 1ºA e 1ºC. Documentar no PPP.</div>
+          <div class="action-meta">
+            <span class="action-chip">CNCA · 1ºA e 1ºC</span>
+            <span class="action-chip">Formação Docente</span>
+            <span class="action-chip">Boas Práticas</span>
+            <span class="action-chip">PPP</span>
+            <span class="action-chip">Transição 1º → 2º Ano</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-item">
+        <div class="action-priority ap-orange"></div>
+        <div class="action-body">
+          <div class="action-header">
+            <div class="action-num an-orange">6</div>
+            <div class="action-title">Intervir na Queda Progressiva das Bimestrais — Revisão Curricular e Recuperação Paralela</div>
+            <span class="action-tag at-curto">⚠️ Curto Prazo</span>
+          </div>
+          <div class="action-desc">A trajetória descendente das médias bimestrais (6,59 → 5,78 → 5,45) indica que o ritmo curricular não é compatível com a capacidade de absorção dos alunos, especialmente nos anos finais. 1.073 alunos sem Recuperação Paralela registrada — obrigatoriedade não cumprida. Para 2026: adotar estratégia de verificar proficiência mínima antes de avançar nos conteúdos, especialmente no 7º, 8º e 9º Ano. Implementar monitoramento quinzenal de desempenho. Garantir que todos os alunos com média abaixo da média cursem RP acessível e compatível com seus horários. Usar o modelo de sucesso do 3º e 4º Ano como referência de boas práticas bimestrais.</div>
+          <div class="action-meta">
+            <span class="action-chip">Bimestrais 2025</span>
+            <span class="action-chip">Recuperação Paralela</span>
+            <span class="action-chip">7º, 8º e 9º Ano</span>
+            <span class="action-chip">Ritmo Curricular</span>
+            <span class="action-chip">Planejamento 2026</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-item">
+        <div class="action-priority ap-yellow"></div>
+        <div class="action-body">
+          <div class="action-header">
+            <div class="action-num an-yellow">7</div>
+            <div class="action-title">Preparação Focada para o SPAECE 2025 — 5º e 9º Ano LP e MT</div>
+            <span class="action-tag at-medio">📅 Médio Prazo</span>
+          </div>
+          <div class="action-desc">A escola precisa ganhar +13 pts em MT no 5º Ano para atingir as metas 2025 pactuadas com a SME (195 → 208 pts). Para o 9º Ano MT, a meta exige sair do padrão Muito Crítico para o Crítico como passo mínimo — 10 anos sem Adequado. O 9º Ano LP tem uma oportunidade real: já avançou +28,6 pts (221→250) e a meta de 260 pts é alcançável com monitoramento. Criar simulados mensais com a escala SPAECE para 5º e 9º Ano. Identificar descritores mais defasados usando Avalie.CE e Recomposição como proxy. Monitorar os 44,6% do 5º Ano LP no padrão Intermediário — esses alunos são os mais próximos de converter para Adequado.</div>
+          <div class="action-meta">
+            <span class="action-chip">SPAECE 2025</span>
+            <span class="action-chip">5º Ano</span>
+            <span class="action-chip">9º Ano</span>
+            <span class="action-chip">LP + MT</span>
+            <span class="action-chip">SME · Metas Pactuadas</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-item">
+        <div class="action-priority ap-yellow"></div>
+        <div class="action-body">
+          <div class="action-header">
+            <div class="action-num an-yellow">8</div>
+            <div class="action-title">Ampliar Cobertura da ADSEC para 98% e Atingir 70% de Leitores em 2026</div>
+            <span class="action-tag at-medio">📅 Médio Prazo</span>
+          </div>
+          <div class="action-desc">Com 748 matriculados nos anos iniciais e apenas ~50% avaliados, a escola não tem diagnóstico de leitura de metade dos alunos — o que limita a efetividade de qualquer intervenção. O 1º Ano tem 93,2% de cobertura (menor dos anos iniciais), com 55 de 59 alunos avaliados. Criar protocolo de avaliação com datas fixas por turma, incluir alunos ausentes em reposição no mesmo período e treinar avaliadores para uniformidade metodológica. Meta: 70% de Leitores de Texto no 4º Período de 2026 — a escola está a 8pp do objetivo. Comunicar o avanço de +20pp às famílias como conquista coletiva que merece ser celebrada.</div>
+          <div class="action-meta">
+            <span class="action-chip">ADSEC 2026</span>
+            <span class="action-chip">Anos Iniciais</span>
+            <span class="action-chip">Cobertura 98%</span>
+            <span class="action-chip">Meta 70% Leitores</span>
+            <span class="action-chip">Protocolo Avaliação</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-item">
+        <div class="action-priority ap-blue"></div>
+        <div class="action-body">
+          <div class="action-header">
+            <div class="action-num an-blue">9</div>
+            <div class="action-title">Sistematizar e Documentar as Práticas de Sucesso no PPP — Aprendizagem Institucional</div>
+            <span class="action-tag at-continuo">🔄 Contínuo</span>
+          </div>
+          <div class="action-desc">A escola 7 de Setembro demonstra resultados díspares entre turmas do mesmo ano que comprovam que a metodologia do professor faz diferença decisiva: 1ºA com 84% adequado MT, 1ºC com 80% adequado LP, 4º Ano com 98,7% acima da média nas bimestrais, 3º Ano com 96,27% no 3º Período, 6ºA e 6ºB com 61–67% adequado LP — todos no mesmo contexto urbano periférico. Esses professores têm algo que funciona. Documentar formalmente essas práticas no PPP da escola. Criar um "Banco de Práticas Pedagógicas Exitosas" com protocolos replicáveis. Usar os HTPCs para disseminação sistemática — não pontual. A escola tem os antídotos para seus problemas dentro de si mesma.</div>
+          <div class="action-meta">
+            <span class="action-chip">PPP</span>
+            <span class="action-chip">HTPC · Formação Coletiva</span>
+            <span class="action-chip">Boas Práticas</span>
+            <span class="action-chip">Gestão do Conhecimento</span>
+            <span class="action-chip">Cultura de Resultado</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /action-list -->
+
+    <!-- ===== SEÇÃO 5: PROGRESSO METAS 2025 ===== -->
+    <div class="section-title">📏 Progresso em Direção às Metas 2025</div>
+    <div class="prog-wrap">
+      <div class="prog-row">
+        <div class="prog-label">SAEB LP (9º Ano) — meta 70% adequado</div>
+        <div class="prog-track"><div class="prog-fill" style="width:10%;background:var(--red)"><span>7,1%</span></div></div>
+        <div class="prog-meta" style="color:var(--red)">7,1% adeq.</div>
+      </div>
+      <div class="prog-row">
+        <div class="prog-label">SAEB MT (9º Ano) — meta 70% adequado</div>
+        <div class="prog-track"><div class="prog-fill" style="width:11%;background:var(--red)"><span>7,9%</span></div></div>
+        <div class="prog-meta" style="color:var(--red)">7,9% adeq.</div>
+      </div>
+      <div class="prog-row">
+        <div class="prog-label">SPAECE 9º MT — 243 pts · meta ≥ 255 pts</div>
+        <div class="prog-track"><div class="prog-fill" style="width:95%;background:var(--red)"><span>243 pts</span></div></div>
+        <div class="prog-meta" style="color:var(--red)">243 / 255 pts</div>
+      </div>
+      <div class="prog-row">
+        <div class="prog-label">SPAECE 5º MT — 195 pts · meta 208 pts</div>
+        <div class="prog-track"><div class="prog-fill" style="width:93%;background:var(--orange)"><span>195 pts</span></div></div>
+        <div class="prog-meta" style="color:var(--orange)">195 / 208 pts</div>
+      </div>
+      <div class="prog-row">
+        <div class="prog-label">SPAECE 5º LP — 211 pts · meta ≥ 220 pts</div>
+        <div class="prog-track"><div class="prog-fill" style="width:95%;background:var(--yellow)"><span>211 pts</span></div></div>
+        <div class="prog-meta" style="color:var(--yellow)">211 / 220 pts</div>
+      </div>
+      <div class="prog-row">
+        <div class="prog-label">SPAECE 9º LP — 250 pts · meta ≥ 260 pts</div>
+        <div class="prog-track"><div class="prog-fill" style="width:96%;background:var(--yellow)"><span>250 pts</span></div></div>
+        <div class="prog-meta" style="color:var(--yellow)">250 / 260 pts</div>
+      </div>
+      <div class="prog-row">
+        <div class="prog-label">Avalie.CE — Média Geral Adequado (MT 9º Ano)</div>
+        <div class="prog-track"><div class="prog-fill" style="width:26%;background:var(--red)"><span>18%</span></div></div>
+        <div class="prog-meta" style="color:var(--red)">18% / 70%</div>
+      </div>
+      <div class="prog-row">
+        <div class="prog-label">ADSEC Leitores de Texto — meta 70% em 2026</div>
+        <div class="prog-track"><div class="prog-fill" style="width:88%;background:var(--yellow)"><span>61,97%</span></div></div>
+        <div class="prog-meta" style="color:var(--yellow)">62% / 70%</div>
+      </div>
+      <div class="prog-row">
+        <div class="prog-label">ADSEC Cobertura — meta 98% avaliados</div>
+        <div class="prog-track"><div class="prog-fill" style="width:51%;background:var(--orange)"><span>~50%</span></div></div>
+        <div class="prog-meta" style="color:var(--orange)">~50% / 98%</div>
+      </div>
+      <div class="prog-row">
+        <div class="prog-label">Bimestrais — Média Geral ≥ 7,0</div>
+        <div class="prog-track"><div class="prog-fill" style="width:77%;background:var(--orange)"><span>5,45</span></div></div>
+        <div class="prog-meta" style="color:var(--orange)">5,45 / 7,0</div>
+      </div>
+      <div class="prog-row">
+        <div class="prog-label">SPAECE 2º LP — meta Proficiente (597 pts)</div>
+        <div class="prog-track"><div class="prog-fill" style="width:100%;background:var(--green)"><span>627 pts ✅</span></div></div>
+        <div class="prog-meta" style="color:var(--green)">✅ Superada</div>
+      </div>
+      <div class="prog-row">
+        <div class="prog-label">ADSEC Evolução Anual — meta +10pp de leitores</div>
+        <div class="prog-track"><div class="prog-fill" style="width:100%;background:var(--green)"><span>+19,98pp ✅</span></div></div>
+        <div class="prog-meta" style="color:var(--green)">✅ +20pp</div>
+      </div>
+    </div>
+
+    <div class="print-footer">
+      Resumo Geral · 7 de Setembro EEIEF · Caucaia-CE · Av. Dom Almeida Lustosa, 2322 – Parque Guadalajara · Regional Jurema · INEP 23063726 · Síntese: ADSEC, Avalie.CE, Bimestrais, CNCA, QEdu, Recomposição, SAEB 2023, SPAECE 2024, Busca Ativa 2026 · Gerado em abril de 2026
+    </div>
+
+  </div><!-- /content -->
+</main>
+
+</body>
+</html>
