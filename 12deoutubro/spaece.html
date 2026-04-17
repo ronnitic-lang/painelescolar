@@ -3,22 +3,830 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SPAECE · EEF 12 de Outubro</title>
+<title>SPAECE 2024 · 12 de Outubro EEIEF</title>
 <style>
-body { font-family: 'Tahoma','Verdana','Arial',sans-serif; background:#f0f4f8; color:#0f1e2e; display:flex; align-items:center; justify-content:center; min-height:100vh; margin:0; }
-.box { background:#fff; border-radius:12px; border:1px solid #d8e2ec; padding:40px 36px; max-width:480px; width:100%; text-align:center; box-shadow:0 4px 20px rgba(0,0,0,0.09); }
-.icon { font-size:2.8rem; margin-bottom:16px; display:block; }
-h2 { font-size:1.2rem; font-weight:700; color:#1a3a5c; margin-bottom:8px; }
-p { font-size:0.85rem; color:#4a5e75; line-height:1.6; margin-bottom:20px; }
-a { display:inline-block; padding:10px 22px; background:linear-gradient(135deg,#1a3a5c,#1e5799); color:#fff; border-radius:7px; text-decoration:none; font-size:0.82rem; font-weight:700; letter-spacing:0.05em; }
+:root {
+  --bg:#f0f4f8;--surface:#ffffff;--border:#d8e2ec;
+  --sidebar-bg:#1a2535;--sidebar-hover:#243145;--sidebar-active:rgba(14,116,144,.18);
+  --blue-dark:#1a3a5c;--blue-mid:#1e5799;
+  --teal:#0e7490;--teal-bg:#ecfeff;--teal-bdr:#67e8f9;
+  --text:#0f1e2e;--muted:#4a5e75;--muted2:#8097b0;
+  --red:#c0392b;--red-bg:#fdf0ef;--red-bdr:#f5b7b1;--red-dark:#a93226;
+  --orange:#ca6f1e;--orange-bg:#fef5e7;--orange-bdr:#f8c471;
+  --yellow:#d68910;--yellow-bg:#fef9ec;--yellow-bdr:#f9d98a;
+  --green:#1a7a4a;--green-bg:#edfaf3;--green-bdr:#82e0aa;
+  --blue:#1a56a0;--blue-bg:#eaf2fc;--blue-bdr:#90bce8;
+  --purple:#6d28d9;--purple-bg:#f5f3ff;--purple-bdr:#c4b5fd;
+  --font:'Tahoma','Verdana','Arial',sans-serif;
+  --radius:10px;--shadow:0 2px 12px rgba(0,0,0,0.08);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;display:flex;font-size:0.94rem;line-height:1.6;}
+.sidebar{width:264px;min-width:264px;background:var(--sidebar-bg);height:100vh;position:sticky;top:0;display:flex;flex-direction:column;overflow-y:auto;z-index:100;}
+.sidebar::-webkit-scrollbar{width:4px;}
+.sidebar::-webkit-scrollbar-thumb{background:#2e3d52;border-radius:3px;}
+.sidebar-logo{padding:20px 20px 18px;border-bottom:1px solid #2e3d52;background:#111c2a;}
+.school-badge{display:inline-block;background:var(--teal);color:#fff;font-size:0.70rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:3px 10px;border-radius:4px;margin-bottom:9px;}
+.school-name{font-size:1.08rem;font-weight:700;color:#fff;line-height:1.25;margin-bottom:3px;}
+.school-name span{color:#f0b429;}
+.school-sub{font-size:0.70rem;color:#7a90a8;margin-top:3px;letter-spacing:0.05em;}
+.nav-section{padding:12px 20px 5px;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.13em;color:#5a7090;font-weight:700;}
+.nav-item{display:flex;align-items:center;gap:11px;padding:11px 20px;cursor:pointer;border-left:4px solid transparent;transition:all 0.2s;text-decoration:none;color:inherit;}
+.nav-item:hover{background:var(--sidebar-hover);}
+.nav-item.active{background:var(--sidebar-active);border-left-color:#22d3ee;}
+.nav-icon{width:32px;height:32px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.nav-label{font-size:0.85rem;font-weight:600;color:#b8cce0;line-height:1.25;}
+.nav-item.active .nav-label{color:#fff;}
+.nav-badge{margin-left:auto;min-width:22px;height:22px;border-radius:11px;font-size:0.70rem;font-weight:700;display:flex;align-items:center;justify-content:center;padding:0 5px;flex-shrink:0;}
+.nb-red{background:var(--red);color:#fff} .nb-yellow{background:var(--yellow);color:#fff}
+.nb-green{background:var(--green);color:#fff} .nb-orange{background:var(--orange);color:#fff}
+.nb-teal{background:var(--teal);color:#fff} .nb-purple{background:var(--purple);color:#fff}
+.nav-item.recomp{border-top:1px solid #243145;margin-top:4px;padding-top:13px;}
+.semaforo-block{padding:8px 20px 6px;}
+.sem-item{display:flex;align-items:center;gap:9px;padding:5px 0;font-size:0.75rem;color:#8daabf;border-bottom:1px solid #243145;}
+.sem-item:last-child{border-bottom:none;}
+.sem-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;}
+.sidebar-footer{margin-top:auto;padding:14px 20px;border-top:1px solid #2e3d52;font-size:0.70rem;color:#5a7090;line-height:1.7;}
+.logout-btn{display:block;text-align:center;margin-top:10px;padding:8px;background:rgba(192,57,43,0.18);color:#f5a9a4;border-radius:6px;text-decoration:none;font-size:0.78rem;font-weight:700;letter-spacing:0.05em;transition:background 0.2s;}
+.logout-btn:hover{background:rgba(192,57,43,0.35);}
+.main{flex:1;min-width:0;padding:28px 32px 52px;}
+.topbar{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:26px;flex-wrap:wrap;gap:14px;}
+.topbar-title h2{font-size:1.35rem;font-weight:700;color:var(--text);}
+.topbar-title p{font-size:0.80rem;color:var(--muted);margin-top:3px;}
+.topbar-stats{display:flex;gap:10px;flex-wrap:wrap;}
+.topbar-stat{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:9px 16px;text-align:center;box-shadow:var(--shadow);}
+.topbar-stat .ts-val{font-size:1.0rem;font-weight:700;display:block;}
+.topbar-stat .ts-lab{font-size:0.68rem;color:var(--muted2);text-transform:uppercase;letter-spacing:0.07em;}
+.ts-red{color:var(--red)} .ts-yellow{color:var(--yellow)} .ts-orange{color:var(--orange)}
+.ts-green{color:var(--green)} .ts-teal{color:var(--teal)} .ts-blue{color:var(--blue)}
+.section-title{font-size:1.05rem;font-weight:700;color:var(--blue-dark);padding-bottom:8px;border-bottom:2px solid var(--border);margin-bottom:18px;margin-top:32px;display:flex;align-items:center;gap:10px;}
+.section-title:first-of-type{margin-top:0;}
+.alert-banner{border-radius:var(--radius);padding:14px 18px;margin-bottom:18px;border-left:5px solid;font-size:0.88rem;display:flex;align-items:flex-start;gap:12px;}
+.alert-banner.warning{background:var(--orange-bg);border-color:var(--orange);color:#7a3e05;}
+.alert-banner.danger{background:var(--red-bg);border-color:var(--red);color:#7a1a0e;}
+.alert-banner.info{background:var(--blue-bg);border-color:var(--blue);color:#12347a;}
+.alert-banner.success{background:var(--green-bg);border-color:var(--green);color:#155234;}
+.alert-banner .ab-icon{font-size:1.4rem;flex-shrink:0;margin-top:1px;}
+.alert-title{font-weight:700;margin-bottom:3px;}
+.alert-body{font-size:0.80rem;line-height:1.6;}
+.turmas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-bottom:30px;}
+.turma-card{background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);padding:18px 16px;transition:box-shadow 0.2s;}
+.turma-card:hover{box-shadow:0 4px 18px rgba(0,0,0,0.11);}
+.turma-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;gap:8px;}
+.turma-nome{font-size:0.95rem;font-weight:700;line-height:1.3;color:var(--text);}
+.turma-badge{font-size:0.66rem;font-weight:700;padding:3px 8px;border-radius:20px;white-space:nowrap;flex-shrink:0;}
+.turma-badge.tb-green{background:var(--green-bg);color:#155234;border:1px solid var(--green-bdr);}
+.turma-badge.tb-yellow{background:var(--yellow-bg);color:#7d5a10;border:1px solid var(--yellow-bdr);}
+.turma-badge.tb-red{background:var(--red-bg);color:var(--red-dark);border:1px solid var(--red-bdr);}
+.turma-badge.tb-orange{background:var(--orange-bg);color:#7e4a10;border:1px solid var(--orange-bdr);}
+.turma-badge.tb-mc{background:#fdf0ef;color:#7a1a0e;border:1px solid #f5b7b1;}
+.turma-badge.tb-av{background:#e8f5e9;color:#1b5e20;border:1px solid #a5d6a7;}
+.turma-profic{font-size:1.9rem;font-weight:700;line-height:1;margin-bottom:3px;}
+.turma-profic.green{color:var(--green)} .turma-profic.yellow{color:var(--yellow)}
+.turma-profic.red{color:var(--red)} .turma-profic.orange{color:var(--orange)}
+.turma-profic.teal{color:var(--teal)}
+.profic-label{font-size:0.70rem;color:var(--muted2);margin-bottom:10px;}
+.turma-stats{display:flex;flex-direction:column;gap:5px;margin-top:10px;}
+.turma-stat-row{display:flex;justify-content:space-between;align-items:center;font-size:0.80rem;padding:2px 0;}
+.turma-stat-row .lbl{color:var(--muted);}
+.turma-stat-row .val{font-weight:700;}
+.val.red{color:var(--red)} .val.green{color:var(--green)} .val.yellow{color:var(--yellow)} .val.orange{color:var(--orange)}
+.bar-stack{display:flex;height:9px;border-radius:5px;overflow:hidden;margin-top:12px;gap:1px;}
+.bs{height:100%;transition:width 0.7s ease;}
+.bs.mc{background:#c0392b} .bs.cr{background:#ca6f1e} .bs.in{background:#d68910} .bs.ad{background:#1a7a4a}
+.bar-legend{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px;}
+.bl{display:flex;align-items:center;gap:4px;font-size:0.67rem;color:var(--muted);}
+.bld{width:8px;height:8px;border-radius:50%;}
+.section-block{margin-bottom:30px;}
+.section-block-header{display:flex;align-items:center;gap:12px;padding:14px 18px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius) var(--radius) 0 0;border-bottom:3px solid var(--border);box-shadow:var(--shadow);}
+.section-block-header.dark{background:var(--sidebar-bg);border-color:#2e3d52;}
+.sb-icon{width:38px;height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.sb-info h3{font-size:0.98rem;font-weight:700;color:var(--blue-dark);line-height:1.3;}
+.sb-info p{font-size:0.75rem;color:var(--muted);margin-top:2px;}
+.section-block-header.dark .sb-info h3{color:#fff;}
+.section-block-header.dark .sb-info p{color:#7a90a8;}
+.notif-card{background:var(--surface);border:1px solid var(--border);border-top:none;cursor:pointer;transition:background 0.15s;overflow:hidden;}
+.notif-card:last-child{border-radius:0 0 var(--radius) var(--radius);}
+.notif-card:hover{background:#f5f8ff;}
+.notif-card.priority-red{border-left:5px solid var(--red);}
+.notif-card.priority-yellow{border-left:5px solid var(--yellow);}
+.notif-card.priority-green{border-left:5px solid var(--green);}
+.notif-card.priority-orange{border-left:5px solid var(--orange);}
+.notif-top{display:flex;align-items:flex-start;gap:14px;padding:16px 18px;}
+.notif-avatar{width:38px;height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.notif-avatar.red{background:var(--red-bg);} .notif-avatar.yellow{background:var(--yellow-bg);}
+.notif-avatar.green{background:var(--green-bg);} .notif-avatar.blue{background:var(--blue-bg);}
+.notif-avatar.orange{background:var(--orange-bg);}
+.notif-body{flex:1;min-width:0;}
+.notif-header-row{display:flex;align-items:flex-start;gap:10px;flex-wrap:wrap;margin-bottom:6px;}
+.notif-title{font-weight:700;font-size:0.88rem;line-height:1.4;flex:1;color:var(--text);}
+.notif-source{font-size:0.68rem;font-weight:700;padding:2px 9px;border-radius:20px;background:#e8eef6;color:var(--muted);white-space:nowrap;flex-shrink:0;align-self:flex-start;}
+.notif-summary{font-size:0.82rem;color:var(--muted);line-height:1.6;margin-bottom:8px;}
+.notif-metrics{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px;}
+.metric-pill{display:flex;align-items:center;gap:5px;padding:3px 10px;border-radius:20px;font-size:0.76rem;font-weight:700;}
+.metric-pill.red{background:var(--red-bg);color:var(--red-dark);border:1px solid var(--red-bdr);}
+.metric-pill.yellow{background:var(--yellow-bg);color:#7d5a10;border:1px solid var(--yellow-bdr);}
+.metric-pill.green{background:var(--green-bg);color:#155234;border:1px solid var(--green-bdr);}
+.metric-pill.orange{background:var(--orange-bg);color:#7e4a10;border:1px solid var(--orange-bdr);}
+.metric-pill.blue{background:var(--blue-bg);color:#12347a;border:1px solid var(--blue-bdr);}
+.dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.notif-toggle{background:none;border:none;cursor:pointer;font-size:1.2rem;color:var(--muted2);flex-shrink:0;padding:3px 5px;transition:transform 0.2s;align-self:center;}
+.notif-card.open .notif-toggle{transform:rotate(180deg);}
+.notif-expand{max-height:0;overflow:hidden;transition:max-height 0.35s ease;background:#f4f8ff;padding:0 18px;}
+.notif-card.open .notif-expand{max-height:700px;border-top:1px solid var(--border);padding:16px 18px;}
+.expand-action{margin-bottom:10px;}
+.action-tag{display:inline-block;background:#1a2535;color:#f0b429;font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:3px 10px;border-radius:4px;margin-bottom:7px;}
+.action-text{font-size:0.82rem;color:#2c3e50;line-height:1.8;}
+.expand-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px;}
+.expand-tag{background:#dde4ef;color:#3d5270;font-size:0.68rem;font-weight:700;padding:2px 9px;border-radius:20px;}
+.hab-row{display:flex;align-items:center;gap:9px;padding:4px 0;font-size:0.80rem;}
+.hab-code{font-weight:700;font-size:0.68rem;min-width:58px;text-align:center;padding:2px 6px;border-radius:4px;white-space:nowrap;}
+.hab-row.red .hab-code{background:var(--red-bg);color:var(--red-dark);}
+.hab-row.yellow .hab-code{background:var(--yellow-bg);color:#7d5a10;}
+.hab-row.green .hab-code{background:var(--green-bg);color:#155234;}
+.hab-name{color:var(--muted);flex:1;min-width:0;}
+.hab-pct{font-weight:700;font-size:0.80rem;min-width:70px;text-align:right;}
+.hab-row.red .hab-pct{color:var(--red);} .hab-row.yellow .hab-pct{color:var(--yellow);} .hab-row.green .hab-pct{color:var(--green);}
+.progress-track{background:#dde4ef;border-radius:4px;overflow:hidden;flex:1;height:7px;}
+.progress-fill{height:100%;border-radius:4px;transition:width 0.7s ease;}
+.progress-fill.red{background:var(--red);} .progress-fill.yellow{background:var(--yellow);} .progress-fill.green{background:var(--green);}
+.data-table-wrap{background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);overflow:hidden;margin-bottom:24px;}
+.data-table-wrap .table-header{padding:14px 18px 12px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);background:#fafcff;flex-wrap:wrap;gap:10px;}
+.table-header h3{font-size:0.95rem;font-weight:700;color:var(--blue-dark);}
+.table-header p{font-size:0.75rem;color:var(--muted2);}
+.table-scroll{overflow-x:auto;}
+.data-table{width:100%;border-collapse:collapse;font-size:0.82rem;}
+.data-table thead tr{background:linear-gradient(135deg,#1a3a5c,#1e5799);color:#fff;}
+.data-table th{padding:10px 12px;text-align:left;font-size:0.71rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;white-space:nowrap;}
+.data-table td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:middle;}
+.data-table tbody tr:last-child td{border-bottom:none;}
+.data-table tbody tr:hover{background:#f8fafc;}
+.pill{display:inline-block;padding:2px 9px;border-radius:20px;font-size:0.68rem;font-weight:700;letter-spacing:0.04em;white-space:nowrap;}
+.pill-green{background:var(--green-bg);color:#155234;border:1px solid var(--green-bdr);}
+.pill-yellow{background:var(--yellow-bg);color:#7d5a10;border:1px solid var(--yellow-bdr);}
+.pill-red{background:var(--red-bg);color:var(--red-dark);border:1px solid var(--red-bdr);}
+.pill-orange{background:var(--orange-bg);color:#7e4a10;border:1px solid var(--orange-bdr);}
+.pill-gray{background:#f3f4f6;color:#6b7280;border:1px solid #e5e7eb;}
+.pill-av{background:#e8f5e9;color:#1b5e20;border:1px solid #a5d6a7;}
+.meta-box{background:var(--yellow-bg);border:1.5px solid var(--yellow-bdr);border-radius:var(--radius);padding:14px 18px;margin-bottom:16px;}
+.meta-box h3{font-size:0.90rem;font-weight:700;color:#7d5a10;margin-bottom:10px;}
+.meta-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;}
+.meta-item{background:#fff;border:1px solid var(--yellow-bdr);border-radius:8px;padding:10px 13px;}
+.meta-item .meta-etapa{font-size:0.68rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;}
+.meta-item .meta-val{font-size:1.30rem;font-weight:700;color:#7d5a10;line-height:1.2;}
+.meta-item .meta-ref{font-size:0.68rem;color:var(--muted2);}
+@media(max-width:768px){
+  .sidebar{display:none;}
+  .main{padding:18px 16px 40px;}
+  .turmas-grid{grid-template-columns:1fr;}
+}
 </style>
 </head>
 <body>
-<div class="box">
-  <span class="icon">📈</span>
-  <h2>SPAECE · EEF 12 de Outubro</h2>
-  <p>Este painel ainda não possui dados inseridos.<br>Em breve a Coordenação Pedagógica irá disponibilizar as informações desta escola.</p>
-  <a href="painel.html">← Voltar ao Painel</a>
-</div>
+
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="school-badge">Painel do Diretor</div>
+    <div class="school-name">12 de <span>Outubro</span></div>
+    <div class="school-sub">EEIEF · Caucaia · CE · Região BR-222 · INEP 23249595</div>
+  </div>
+
+  <div class="nav-section">Indicadores</div>
+  <a class="nav-item" href="painel.html"><div class="nav-icon" style="background:#ecfeff">🏠</div><span class="nav-label">Visão Geral</span></a>
+  <a class="nav-item" href="resumo_executivo.html"><div class="nav-icon" style="background:#fdf0ef">🚨</div><span class="nav-label">Resumo Executivo</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="busca_ativa.html"><div class="nav-icon" style="background:#fef5e7">🔍</div><span class="nav-label">Busca Ativa</span><span class="nav-badge nb-orange">!</span></a>
+  <a class="nav-item" href="adsec.html"><div class="nav-icon" style="background:#edfaf3">📖</div><span class="nav-label">ADSEC 2025</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="avalie_ce.html"><div class="nav-icon" style="background:#fef9ec">📊</div><span class="nav-label">Avalie.CE</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="bimestrais.html"><div class="nav-icon" style="background:#eaf2fc">📝</div><span class="nav-label">Bimestrais 2025</span><span class="nav-badge nb-yellow">!</span></a>
+  <a class="nav-item" href="cnca.html"><div class="nav-icon" style="background:#fef5e7">📚</div><span class="nav-label">CNCA</span><span class="nav-badge nb-red">!</span></a>
+  <a class="nav-item" href="qedu.html"><div class="nav-icon" style="background:#eaf2fc">🎓</div><span class="nav-label">QEdu / Censo</span><span class="nav-badge nb-green">✓</span></a>
+  <a class="nav-item recomp" href="recomposicao.html"><div class="nav-icon" style="background:var(--purple-bg)">🎒</div><span class="nav-label" style="color:#c4b5fd">Recomposição</span><span class="nav-badge nb-purple">!</span></a>
+  <a class="nav-item" href="saeb.html"><div class="nav-icon" style="background:#fdf0ef">📋</div><span class="nav-label">SAEB 2023</span><span class="nav-badge nb-yellow">!</span></a>
+  <a class="nav-item active" href="spaece.html"><div class="nav-icon" style="background:#fef9ec">📈</div><span class="nav-label">SPAECE 2024</span><span class="nav-badge nb-green">⭐</span></a>
+
+  <div class="nav-section" style="margin-top:10px">Navegação Interna</div>
+  <a class="nav-item" href="#metas"><div class="nav-icon" style="background:rgba(240,180,40,.15)">🎯</div><span class="nav-label">Metas 2025</span></a>
+  <a class="nav-item" href="#visao"><div class="nav-icon" style="background:rgba(26,122,74,.12)">📊</div><span class="nav-label">Visão Geral 2024</span></a>
+  <a class="nav-item" href="#segundo"><div class="nav-icon" style="background:rgba(214,137,16,.12)">⚠️</div><span class="nav-label">2º Ano</span><span class="nav-badge nb-yellow">!</span></a>
+  <a class="nav-item" href="#quinto"><div class="nav-icon" style="background:rgba(26,122,74,.12)">⭐</div><span class="nav-label">5º Ano</span><span class="nav-badge nb-green">⭐</span></a>
+  <a class="nav-item" href="#historico"><div class="nav-icon" style="background:#eaf2fc">📅</div><span class="nav-label">Histórico</span></a>
+  <a class="nav-item" href="#acoes"><div class="nav-icon" style="background:#eaf2fc">⚡</div><span class="nav-label">Plano de Ação</span></a>
+
+  <div class="nav-section" style="margin-top:10px">Semáforo SPAECE</div>
+  <div class="semaforo-block">
+    <div class="sem-item"><div class="sem-dot" style="background:#1a7a4a"></div>Adequado (5º) / Avançado (2º)</div>
+    <div class="sem-item"><div class="sem-dot" style="background:#d68910"></div>Intermediário (5º) / Proficiente (2º)</div>
+    <div class="sem-item"><div class="sem-dot" style="background:#ca6f1e"></div>Crítico (5º) / Básico (2º)</div>
+    <div class="sem-item"><div class="sem-dot" style="background:#c0392b"></div>Muito Crítico (5º) / Ab. do Básico (2º)</div>
+  </div>
+
+  <div class="nav-section" style="margin-top:10px">Sistema</div>
+  <a class="nav-item" href="../index.html"><div class="nav-icon" style="background:#fdf0ef">🏫</div><span class="nav-label">Trocar Escola</span></a>
+
+  <div class="sidebar-footer">
+    <div>12 de Outubro EEIEF<br>Caucaia · CE · Região BR-222</div>
+    <div style="margin-top:6px;color:#8097b0">Fonte: SPAECE / SEDUC-CE<br>2012–2024 · 2º e 5º Ano · LP e MT</div>
+    <a class="logout-btn" href="../index.html">⬅ Sair do Painel</a>
+  </div>
+</aside>
+
+<main class="main">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-title">
+      <h2>📈 SPAECE 2024 · 12 de Outubro EEIEF</h2>
+      <p>Sistema Permanente de Avaliação da Educação Básica do Ceará · Edições 2012–2024 · 2º e 5º Ano · Caucaia-CE · INEP 23249595 · Região JUREMA</p>
+    </div>
+    <div class="topbar-stats">
+      <div class="topbar-stat"><span class="ts-val ts-green">Adequado ⭐</span><span class="ts-lab">5º Ano MT 2024</span></div>
+      <div class="topbar-stat"><span class="ts-val ts-green">Adequado ⭐</span><span class="ts-lab">5º Ano LP 2024</span></div>
+      <div class="topbar-stat"><span class="ts-val ts-yellow">Proficiente</span><span class="ts-lab">2º Ano LP 2024</span></div>
+      <div class="topbar-stat"><span class="ts-val ts-yellow">Proficiente</span><span class="ts-lab">2º Ano MT 2024</span></div>
+    </div>
+  </div>
+
+  <div class="alert-banner success">
+    <span class="ab-icon">🏆</span>
+    <div>
+      <div class="alert-title">5º Ano em ADEQUADO nos dois componentes — resultado inédito na história da escola!</div>
+      <div class="alert-body">Em 2024, a 12 de Outubro atingiu <strong>ADEQUADO simultaneamente em LP (225,43 pts) e MT (250,67 pts) no 5º Ano</strong> — a primeira vez na história da escola que ambos os componentes atingem o padrão Adequado no mesmo ano. MT registra 56,14% dos alunos no Adequado (o melhor resultado histórico absoluto) e LP tem 52,63%. O <strong>2º Ano mantém-se em Proficiente</strong> nos dois componentes. As metas de 2025 para o 5º Ano (LP: 238,43 e MT: 263,67) já foram <strong>superadas em 2024</strong>. <strong>Clique em cada cartão para ver as ações.</strong></div>
+    </div>
+  </div>
+
+  <!-- METAS 2025 -->
+  <div id="metas">
+    <div class="section-title">🎯 Metas Pactuadas — SPAECE 2025 · Prêmio Destaque Gestão Escolar</div>
+
+    <div class="meta-box" style="background:var(--yellow-bg);border-color:var(--yellow-bdr)">
+      <h3>⚠️ 2º Ano do Ensino Fundamental — Metas 2025 (Nova Escala)</h3>
+      <div class="meta-grid">
+        <div class="meta-item">
+          <div class="meta-etapa">LP · Leitura e Escrita</div>
+          <div class="meta-val" style="color:var(--orange)">660,92</div>
+          <div class="meta-ref">2024: 633,47 (Proficiente) · Precisa +27,5 pts · Queda vs 2023 (679,2)</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-etapa">Matemática</div>
+          <div class="meta-val" style="color:var(--orange)">547,05</div>
+          <div class="meta-ref">2024: 532,05 (Proficiente) · Precisa +15 pts · Queda vs 2023 (679,2)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="meta-box" style="background:var(--green-bg);border-color:var(--green-bdr)">
+      <h3 style="color:#155234">✅ 5º Ano do Ensino Fundamental — Metas 2025 JÁ SUPERADAS em 2024!</h3>
+      <div class="meta-grid">
+        <div class="meta-item" style="border-color:var(--green-bdr)">
+          <div class="meta-etapa">LP · Língua Portuguesa</div>
+          <div class="meta-val" style="color:var(--green)">238,43</div>
+          <div class="meta-ref">2024: 225,43 (Adequado ⭐) · Meta superada · Desafio: elevar ainda mais</div>
+        </div>
+        <div class="meta-item" style="border-color:var(--green-bdr)">
+          <div class="meta-etapa">Matemática</div>
+          <div class="meta-val" style="color:var(--green)">263,67</div>
+          <div class="meta-ref">2024: 250,67 (Adequado ⭐) · Meta superada · Desafio: manter e avançar</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert-banner info">
+      <span class="ab-icon">ℹ️</span>
+      <div>
+        <div class="alert-title">5º Ano: metas 2025 definidas antes dos resultados de 2024 — ambas já foram superadas</div>
+        <div class="alert-body">As metas de 2025 para o 5º Ano (LP: 238,43 e MT: 263,67) foram pactuadas com base nas proficiências anteriores. Com os resultados de 2024 (LP: 225,43 e MT: 250,67 — ambos Adequado), as metas formais de 2025 já foram <strong>superadas pelos resultados de 2024</strong>. A escola deve agora pactar novas metas mais ambiciosas para consolidar o patamar Adequado e avançar em direção às margens superiores do padrão.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VISÃO GERAL 2024 -->
+  <div id="visao">
+    <div class="section-title">📊 Visão Geral das Etapas Avaliadas — SPAECE 2024</div>
+
+    <div class="turmas-grid">
+
+      <!-- 2º LP 2024 -->
+      <div class="turma-card" style="border-left:5px solid var(--yellow)">
+        <div class="turma-header">
+          <span class="turma-nome">2º Ano<br>LP · Leitura e Escrita</span>
+          <span class="turma-badge tb-yellow">📖 PROFICIENTE</span>
+        </div>
+        <div class="turma-profic yellow">633</div>
+        <div class="profic-label">Profic. Média 2024 · Meta 2025: 660,92 · ↓ vs 2023 (679,2)</div>
+        <div class="turma-stats">
+          <div class="turma-stat-row"><span class="lbl">Participação</span><span class="val yellow">100% (52/52)</span></div>
+          <div class="turma-stat-row"><span class="lbl">Ab. do Básico</span><span class="val orange">11,54%</span></div>
+          <div class="turma-stat-row"><span class="lbl">Básico</span><span class="val yellow">25,00%</span></div>
+          <div class="turma-stat-row"><span class="lbl">Proficiente</span><span class="val yellow">32,69%</span></div>
+          <div class="turma-stat-row"><span class="lbl">Avançado</span><span class="val green">30,77%</span></div>
+          <div class="turma-stat-row"><span class="lbl">IDE Alfa</span><span class="val yellow">5,84</span></div>
+        </div>
+        <div class="bar-stack">
+          <div class="bs mc" style="width:11.54%"></div>
+          <div class="bs cr" style="width:25%"></div>
+          <div class="bs in" style="width:32.69%"></div>
+          <div class="bs ad" style="width:30.77%"></div>
+        </div>
+        <div class="bar-legend">
+          <div class="bl"><div class="bld" style="background:#c0392b"></div>Ab.Básico</div>
+          <div class="bl"><div class="bld" style="background:#ca6f1e"></div>Básico</div>
+          <div class="bl"><div class="bld" style="background:#d68910"></div>Profic.</div>
+          <div class="bl"><div class="bld" style="background:#1a7a4a"></div>Avançado</div>
+        </div>
+      </div>
+
+      <!-- 2º MT 2024 -->
+      <div class="turma-card" style="border-left:5px solid var(--yellow)">
+        <div class="turma-header">
+          <span class="turma-nome">2º Ano<br>Matemática</span>
+          <span class="turma-badge tb-yellow">📐 PROFICIENTE</span>
+        </div>
+        <div class="turma-profic yellow">532</div>
+        <div class="profic-label">Profic. Média 2024 · Meta 2025: 547,05 · Entrada nova escala</div>
+        <div class="turma-stats">
+          <div class="turma-stat-row"><span class="lbl">Participação</span><span class="val yellow">98% (51/52)</span></div>
+          <div class="turma-stat-row"><span class="lbl">Ab. do Básico</span><span class="val yellow">5,88%</span></div>
+          <div class="turma-stat-row"><span class="lbl">Básico</span><span class="val yellow">27,45%</span></div>
+          <div class="turma-stat-row"><span class="lbl">Proficiente</span><span class="val yellow">43,14%</span></div>
+          <div class="turma-stat-row"><span class="lbl">Avançado</span><span class="val green">23,53%</span></div>
+          <div class="turma-stat-row"><span class="lbl">IDE</span><span class="val yellow">4,04</span></div>
+        </div>
+        <div class="bar-stack">
+          <div class="bs mc" style="width:5.88%"></div>
+          <div class="bs cr" style="width:27.45%"></div>
+          <div class="bs in" style="width:43.14%"></div>
+          <div class="bs ad" style="width:23.53%"></div>
+        </div>
+        <div class="bar-legend">
+          <div class="bl"><div class="bld" style="background:#c0392b"></div>Ab.Básico</div>
+          <div class="bl"><div class="bld" style="background:#ca6f1e"></div>Básico</div>
+          <div class="bl"><div class="bld" style="background:#d68910"></div>Profic.</div>
+          <div class="bl"><div class="bld" style="background:#1a7a4a"></div>Avançado</div>
+        </div>
+      </div>
+
+      <!-- 5º LP 2024 -->
+      <div class="turma-card" style="border-left:5px solid var(--green)">
+        <div class="turma-header">
+          <span class="turma-nome">5º Ano<br>LP · Língua Portuguesa</span>
+          <span class="turma-badge tb-av">⭐ ADEQUADO</span>
+        </div>
+        <div class="turma-profic green">225</div>
+        <div class="profic-label">Profic. Média 2024 · Meta 2025: 238,43 · Já superada!</div>
+        <div class="turma-stats">
+          <div class="turma-stat-row"><span class="lbl">Participação</span><span class="val green">98% (57/58)</span></div>
+          <div class="turma-stat-row"><span class="lbl">Muito Crítico</span><span class="val green">0,0%</span></div>
+          <div class="turma-stat-row"><span class="lbl">Crítico</span><span class="val yellow">17,54%</span></div>
+          <div class="turma-stat-row"><span class="lbl">Intermediário</span><span class="val yellow">29,82%</span></div>
+          <div class="turma-stat-row"><span class="lbl">Adequado</span><span class="val green">52,63% ⭐</span></div>
+        </div>
+        <div class="bar-stack">
+          <div class="bs mc" style="width:0%"></div>
+          <div class="bs cr" style="width:17.54%"></div>
+          <div class="bs in" style="width:29.82%"></div>
+          <div class="bs ad" style="width:52.63%"></div>
+        </div>
+        <div class="bar-legend">
+          <div class="bl"><div class="bld" style="background:#c0392b"></div>M.Crit.</div>
+          <div class="bl"><div class="bld" style="background:#ca6f1e"></div>Crítico</div>
+          <div class="bl"><div class="bld" style="background:#d68910"></div>Interm.</div>
+          <div class="bl"><div class="bld" style="background:#1a7a4a"></div>Adequado</div>
+        </div>
+      </div>
+
+      <!-- 5º MT 2024 -->
+      <div class="turma-card" style="border-left:5px solid var(--teal)">
+        <div class="turma-header">
+          <span class="turma-nome">5º Ano<br>Matemática</span>
+          <span class="turma-badge tb-av">🏆 ADEQUADO</span>
+        </div>
+        <div class="turma-profic teal">250</div>
+        <div class="profic-label">Profic. Média 2024 · Meta 2025: 263,67 · Melhor história!</div>
+        <div class="turma-stats">
+          <div class="turma-stat-row"><span class="lbl">Participação</span><span class="val green">98% (57/58)</span></div>
+          <div class="turma-stat-row"><span class="lbl">Muito Crítico</span><span class="val yellow">5,26%</span></div>
+          <div class="turma-stat-row"><span class="lbl">Crítico</span><span class="val yellow">14,04%</span></div>
+          <div class="turma-stat-row"><span class="lbl">Intermediário</span><span class="val yellow">24,56%</span></div>
+          <div class="turma-stat-row"><span class="lbl">Adequado</span><span class="val green">56,14% 🏆</span></div>
+        </div>
+        <div class="bar-stack">
+          <div class="bs mc" style="width:5.26%"></div>
+          <div class="bs cr" style="width:14.04%"></div>
+          <div class="bs in" style="width:24.56%"></div>
+          <div class="bs ad" style="width:56.14%"></div>
+        </div>
+        <div class="bar-legend">
+          <div class="bl"><div class="bld" style="background:#c0392b"></div>M.Crit.</div>
+          <div class="bl"><div class="bld" style="background:#ca6f1e"></div>Crítico</div>
+          <div class="bl"><div class="bld" style="background:#d68910"></div>Interm.</div>
+          <div class="bl"><div class="bld" style="background:#1a7a4a"></div>Adequado</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 2º ANO -->
+  <div id="segundo">
+    <div class="section-title">⚠️ 2º Ano — LP e Matemática · Proficiente, mas queda em relação a 2023</div>
+
+    <div class="section-block">
+      <div class="section-block-header">
+        <div class="sb-icon" style="background:rgba(214,137,16,.12)">⚠️</div>
+        <div class="sb-info">
+          <h3>2º Ano Proficiente em ambos (633 LP e 532 MT), mas queda vs 2023 (679,2 em LP) — monitorar</h3>
+          <p>Clique em cada cartão para ver as ações sugeridas</p>
+        </div>
+      </div>
+
+      <div class="notif-card priority-yellow" onclick="toggle(this)">
+        <div class="notif-top">
+          <div class="notif-avatar yellow">📖</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">2º Ano LP 2024 — 633,47 pts · Proficiente · 30,77% Avançado · queda de 45,7 pts vs 2023</div>
+              <span class="notif-source">SPAECE 2024</span>
+            </div>
+            <div class="notif-summary">Com 633,47 pts e IDE Alfa de 5,84, o 2º Ano LP mantém o padrão Proficiente mas recuou em relação a 2023 (679,2 pts). O surgimento de 11,54% no Ab. do Básico (era 0% em 2023) é o principal alerta. 30,77% no Avançado e 32,69% no Proficiente compõem 63,46% nos padrões positivos. A meta 2025 (660,92) exige recuperar a queda e avançar +27,5 pts.</div>
+            <div class="notif-metrics">
+              <span class="metric-pill yellow"><span class="dot" style="background:var(--yellow)"></span>633,47 pts — Proficiente</span>
+              <span class="metric-pill orange"><span class="dot" style="background:var(--orange)"></span>↓ 45,7 pts vs 2023</span>
+              <span class="metric-pill red"><span class="dot" style="background:var(--red)"></span>11,54% Ab. do Básico (era 0%)</span>
+              <span class="metric-pill yellow"><span class="dot" style="background:var(--yellow)"></span>Meta 2025: +27,5 pts</span>
+            </div>
+          </div>
+          <button class="notif-toggle">▾</button>
+        </div>
+        <div class="notif-expand">
+          <div class="expand-action">
+            <div class="action-tag">⚠️ Ação — 2º Ano · LP</div>
+            <div class="action-text">
+              1. <strong>Investigar a origem dos 11,54% no Abaixo do Básico:</strong> em 2023 era 0% — nenhum aluno estava nesse patamar. Esses 6 alunos são o principal foco de intervenção urgente. Identificar individualmente e cruzar com os dados de fluência do CNCA 2025 (onde o 2º Ano tem 45 pré-leitores).<br><br>
+              2. <strong>Meta 2025 (660,92) requer +27,5 pts:</strong> para alcançar, a escola precisa mover os 36,54% nos padrões Básico e Abaixo do Básico para Proficiente ou Avançado. Sequências de leitura diária, produção de texto com feedback e rotinas de escrita estruturada são estratégias eficazes.<br><br>
+              3. <strong>Monitorar a transição para o 3º Ano:</strong> garantir que os alunos do 2º Ano não percam o padrão Proficiente ao avançar — acompanhamento bimestral com avaliações internas alinhadas ao SPAECE.
+            </div>
+          </div>
+          <div class="expand-tags"><span class="expand-tag">2º Ano LP</span><span class="expand-tag">Proficiente</span><span class="expand-tag">Queda 2023→2024</span><span class="expand-tag">Ab.Básico</span></div>
+        </div>
+      </div>
+
+      <div class="notif-card priority-yellow" onclick="toggle(this)">
+        <div class="notif-top">
+          <div class="notif-avatar yellow">📐</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">2º Ano MT 2024 — 532,05 pts · Proficiente · 23,53% Avançado · nova escala SPAECE</div>
+              <span class="notif-source">SPAECE 2024</span>
+            </div>
+            <div class="notif-summary">Com 532,05 pts na nova escala do SPAECE, o 2º Ano MT está no padrão Proficiente com 23,53% no Avançado e 43,14% no Proficiente — 66,67% nos dois melhores padrões. 5,88% no Abaixo do Básico. A meta 2025 (547,05) é factível — requer +15 pts. Os dados precisam ser analisados com cautela em relação à mudança de escala.</div>
+            <div class="notif-metrics">
+              <span class="metric-pill yellow"><span class="dot" style="background:var(--yellow)"></span>532,05 pts — Proficiente</span>
+              <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>66,67% padrões positivos</span>
+              <span class="metric-pill orange"><span class="dot" style="background:var(--orange)"></span>5,88% Ab. do Básico</span>
+              <span class="metric-pill yellow"><span class="dot" style="background:var(--yellow)"></span>Meta 2025: +15 pts</span>
+            </div>
+          </div>
+          <button class="notif-toggle">▾</button>
+        </div>
+        <div class="notif-expand">
+          <div class="expand-action">
+            <div class="action-tag">🎯 Ação — 2º Ano · MT</div>
+            <div class="action-text">
+              1. <strong>Reduzir os 5,88% no Abaixo do Básico (3 alunos):</strong> esses alunos têm dificuldade severa em operações e conceitos matemáticos elementares do 2º Ano. Diagnóstico individual e reforço focado em numeração, adição e subtração simples — cruzar com dados do CNCA 2025 (onde o 2º Ano tem alta defasagem em MT).<br><br>
+              2. <strong>Meta 2025 (547,05 — +15 pts):</strong> mover os 33,33% nos padrões inferiores para Proficiente. Estratégia: atividades lúdicas com jogos matemáticos, resolução de problemas contextualizados do cotidiano do aluno e acompanhamento quinzenal por descritor.<br><br>
+              3. <strong>Manter o padrão Proficiente:</strong> documentar as práticas atuais do professor do 2º Ano MT para garantir continuidade e referência nos próximos ciclos.
+            </div>
+          </div>
+          <div class="expand-tags"><span class="expand-tag">2º Ano MT</span><span class="expand-tag">Proficiente</span><span class="expand-tag">Nova Escala</span><span class="expand-tag">Meta 547</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5º ANO -->
+  <div id="quinto">
+    <div class="section-title">⭐ 5º Ano — ADEQUADO em LP e MT pela primeira vez na história simultânea!</div>
+
+    <div class="section-block">
+      <div class="section-block-header" style="background:var(--green-bg);border-color:var(--green-bdr)">
+        <div class="sb-icon" style="background:rgba(26,122,74,.18)">🏆</div>
+        <div class="sb-info">
+          <h3 style="color:#155234">5º Ano ADEQUADO em ambos os componentes: LP (225,43) e MT (250,67) — resultado histórico</h3>
+          <p style="color:var(--green)">Clique em cada cartão para ver as ações sugeridas</p>
+        </div>
+      </div>
+
+      <div class="notif-card priority-green" onclick="toggle(this)">
+        <div class="notif-top">
+          <div class="notif-avatar green">🏆</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">5º Ano MT 2024 — 250,67 pts · ADEQUADO · 56,14% Adequado · melhor resultado histórico absoluto</div>
+              <span class="notif-source">SPAECE 2024</span>
+            </div>
+            <div class="notif-summary">O 5º Ano MT atingiu 250,67 pts em 2024 — o <strong>melhor resultado histórico da escola nessa etapa e componente</strong>, superando até o recorde anterior de 2018 (244,84 pts). 56,14% dos alunos no padrão Adequado e apenas 19,3% nos padrões críticos. Esse resultado é consistente com o SAEB 2023 (244,74 pts, 78,18% adequado, muito acima das similares). A escola está em patamar de destaque regional em MT no 5º Ano.</div>
+            <div class="notif-metrics">
+              <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>250,67 — ADEQUADO 🏆</span>
+              <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>56,14% Adequado — recorde!</span>
+              <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>Meta 2025 superada!</span>
+              <span class="metric-pill yellow"><span class="dot" style="background:var(--yellow)"></span>Foco: manter em 2025</span>
+            </div>
+            <div style="margin-top:10px">
+              <div class="hab-row red"><span class="hab-code">M.Crítico</span><span class="hab-name">5,26% · 3 alunos</span><div class="progress-track"><div class="progress-fill red" style="width:5.26%"></div></div><span class="hab-pct" style="color:var(--red)">5,26%</span></div>
+              <div class="hab-row yellow"><span class="hab-code">Crítico</span><span class="hab-name">14,04% · 8 alunos</span><div class="progress-track"><div class="progress-fill" style="width:14.04%;background:var(--orange)"></div></div><span class="hab-pct" style="color:var(--orange)">14,04%</span></div>
+              <div class="hab-row yellow"><span class="hab-code">Intermed.</span><span class="hab-name">24,56% · 14 alunos</span><div class="progress-track"><div class="progress-fill yellow" style="width:24.56%"></div></div><span class="hab-pct" style="color:var(--yellow)">24,56%</span></div>
+              <div class="hab-row green"><span class="hab-code">Adequado</span><span class="hab-name">56,14% · 32 alunos</span><div class="progress-track"><div class="progress-fill green" style="width:56.14%"></div></div><span class="hab-pct" style="color:var(--green)">56,14%</span></div>
+            </div>
+          </div>
+          <button class="notif-toggle">▾</button>
+        </div>
+        <div class="notif-expand">
+          <div class="expand-action">
+            <div class="action-tag">🌟 Ação — 5º Ano · MT · Consolidar Destaque</div>
+            <div class="action-text">
+              1. <strong>Documentar as práticas pedagógicas de MT do 5º Ano:</strong> o resultado combinado SPAECE 2024 (250,67 pts Adequado) e SAEB 2023 (244,74 pts, +41,74 pts acima das similares) confirma que há práticas pedagógicas excepcionais no 5º Ano de MT. Mapear metodologias, rotinas e materiais usados e registrar no PPP da escola como referência permanente.<br><br>
+              2. <strong>Mover os 14 alunos Intermediários para Adequado:</strong> são 24,56% próximos do Adequado. Focar nos descritores de transição do 5º Ano: frações equivalentes, conversão de medidas, resolução de problemas com múltiplas etapas e proporcionalidade.<br><br>
+              3. <strong>Meta 2025 (263,67) já superada em 2024 (250,67):</strong> a escola deve pactar nova meta mais ambiciosa. Meta interna sugerida: ≥260 pts com ≥60% Adequado no SPAECE 2025.<br><br>
+              4. <strong>Transferir para o 3º Ano:</strong> onde MT está em colapso (0% adequado no 3ºA no CNCA 2025). Os professores do 5º Ano MT devem compartilhar práticas com os do 3º Ano nos próximos HTPCs.
+            </div>
+          </div>
+          <div class="expand-tags"><span class="expand-tag">5º Ano MT</span><span class="expand-tag">Adequado</span><span class="expand-tag">Recorde Histórico</span><span class="expand-tag">Boas Práticas</span></div>
+        </div>
+      </div>
+
+      <div class="notif-card priority-green" onclick="toggle(this)">
+        <div class="notif-top">
+          <div class="notif-avatar green">📖</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">5º Ano LP 2024 — 225,43 pts · ADEQUADO · 52,63% Adequado · zero alunos Muito Crítico</div>
+              <span class="notif-source">SPAECE 2024</span>
+            </div>
+            <div class="notif-summary">O 5º Ano LP atingiu 225,43 pts em 2024 — apenas a <strong>segunda vez na história</strong> que atinge o padrão Adequado (a primeira foi em 2018, com 249,32 pts). 52,63% dos alunos no Adequado e 0% no Muito Crítico. A meta 2025 (238,43) foi superada. Apesar do resultado positivo, é necessário cuidado: a escola também já tinha atingido Adequado em 2018 (249,32 pts) e recuou para Intermediário nos anos seguintes.</div>
+            <div class="notif-metrics">
+              <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>225,43 — ADEQUADO ⭐</span>
+              <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>52,63% Adequado</span>
+              <span class="metric-pill green"><span class="dot" style="background:var(--green)"></span>0% Muito Crítico</span>
+              <span class="metric-pill yellow"><span class="dot" style="background:var(--yellow)"></span>Alerta: recuou em 2019 após 2018</span>
+            </div>
+          </div>
+          <button class="notif-toggle">▾</button>
+        </div>
+        <div class="notif-expand">
+          <div class="expand-action">
+            <div class="action-tag">🎯 Ação — 5º Ano · LP · Consolidar e Avançar</div>
+            <div class="action-text">
+              1. <strong>Lição de 2018→2019:</strong> em 2018 LP atingiu Adequado (249,32 pts), mas em 2019 recuou para Intermediário (216,66 pts). Isso aconteceu provavelmente por mudança de turma/professores. A escola deve garantir continuidade das práticas pedagógicas que geraram o resultado de 2024 — documentar e institucionalizar no PPP.<br><br>
+              2. <strong>Foco nos 17,54% Críticos (10 alunos):</strong> o grupo Crítico é o principal risco de regressão. Intervenção específica em leitura inferencial, identificação de causa/consequência e compreensão de textos narrativos — os descritores que separam o Crítico do Intermediário.<br><br>
+              3. <strong>Meta 2025 (238,43) já superada:</strong> a escola deve pactar nova meta mais ambiciosa. Meta interna sugerida: manter Adequado com ≥ 55% no padrão e atingir ≥230 pts de proficiência média no SPAECE 2025.<br><br>
+              4. <strong>Cruzar com CNCA 2025:</strong> o 5ºC LP (55% adequado CNCA) e 5ºA LP (50% adequado CNCA) são referências internas consistentes com o resultado do SPAECE. Identificar quais turmas mais contribuíram para o resultado e fortalecer as práticas dessas turmas.
+            </div>
+          </div>
+          <div class="expand-tags"><span class="expand-tag">5º Ano LP</span><span class="expand-tag">Adequado</span><span class="expand-tag">2ª vez histórica</span><span class="expand-tag">Risco Regressão</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HISTÓRICO -->
+  <div id="historico">
+    <div class="section-title">📅 Série Histórica — Proficiências 2012–2024</div>
+
+    <div class="data-table-wrap">
+      <div class="table-header">
+        <h3>5º Ano — Matemática · Histórico 2012–2024</h3>
+        <p>12 de Outubro EEIEF · INEP 23249595 · Fonte: SPAECE/SEDUC-CE</p>
+      </div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr><th>Edição</th><th>Proficiência</th><th>Padrão</th><th>M.Crítico %</th><th>Crítico %</th><th>Intermediário %</th><th>Adequado %</th><th>Alunos</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>2012</td><td>193,6</td><td><span class="pill pill-red">Crítico</span></td><td>12,0%</td><td>44,0%</td><td>32,0%</td><td>12,0%</td><td>25</td></tr>
+            <tr><td>2013</td><td>195,8</td><td><span class="pill pill-red">Crítico</span></td><td>16,7%</td><td>33,3%</td><td>41,7%</td><td>8,3%</td><td>24</td></tr>
+            <tr><td>2014</td><td>181,9</td><td><span class="pill pill-red">Crítico</span></td><td>21,4%</td><td>46,4%</td><td>28,6%</td><td>3,6%</td><td>28</td></tr>
+            <tr><td>2015</td><td>199,3</td><td><span class="pill pill-red">Crítico</span></td><td>10,5%</td><td>34,2%</td><td>44,7%</td><td>10,5%</td><td>38</td></tr>
+            <tr><td>2016</td><td>188,7</td><td><span class="pill pill-red">Crítico</span></td><td>7,7%</td><td>66,7%</td><td>20,5%</td><td>5,1%</td><td>39</td></tr>
+            <tr><td>2017</td><td>212,1</td><td><span class="pill pill-yellow">Intermediário</span></td><td>7,9%</td><td>36,8%</td><td>34,2%</td><td>21,1%</td><td>38</td></tr>
+            <tr><td>2018</td><td>244,8</td><td><span class="pill pill-yellow">Intermediário</span></td><td>0,0%</td><td>19,6%</td><td>30,4%</td><td>50,0%</td><td>46</td></tr>
+            <tr><td>2019</td><td>238,6</td><td><span class="pill pill-yellow">Intermediário</span></td><td>2,2%</td><td>26,7%</td><td>28,9%</td><td>42,2%</td><td>45</td></tr>
+            <tr><td>2022 Diag.</td><td>193,0</td><td><span class="pill pill-red">Crítico</span></td><td>19,0%</td><td>44,0%</td><td>26,0%</td><td>11,0%</td><td>97</td></tr>
+            <tr><td>2022</td><td>221,3</td><td><span class="pill pill-yellow">Intermediário</span></td><td>13,0%</td><td>20,7%</td><td>32,6%</td><td>33,7%</td><td>92</td></tr>
+            <tr><td>2023</td><td>236,4</td><td><span class="pill pill-yellow">Intermediário</span></td><td>4,3%</td><td>19,6%</td><td>34,8%</td><td>41,3%</td><td>46</td></tr>
+            <tr style="background:#ecfeff;font-weight:700"><td>2024</td><td>250,7</td><td><span class="pill pill-av">🏆 Adequado</span></td><td>5,3%</td><td>14,0%</td><td>24,6%</td><td>56,1%</td><td>57</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="data-table-wrap">
+      <div class="table-header">
+        <h3>5º Ano — Língua Portuguesa · Histórico 2012–2024</h3>
+        <p>12 de Outubro EEIEF · INEP 23249595 · Fonte: SPAECE/SEDUC-CE</p>
+      </div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr><th>Edição</th><th>Proficiência</th><th>Padrão</th><th>M.Crítico %</th><th>Crítico %</th><th>Intermediário %</th><th>Adequado %</th><th>Alunos</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>2012</td><td>199,8</td><td><span class="pill pill-yellow">Intermediário</span></td><td>0,0%</td><td>32,0%</td><td>40,0%</td><td>28,0%</td><td>25</td></tr>
+            <tr><td>2013</td><td>194,6</td><td><span class="pill pill-yellow">Intermediário</span></td><td>0,0%</td><td>37,5%</td><td>37,5%</td><td>25,0%</td><td>24</td></tr>
+            <tr><td>2014</td><td>178,1</td><td><span class="pill pill-yellow">Intermediário</span></td><td>3,6%</td><td>50,0%</td><td>28,6%</td><td>17,9%</td><td>28</td></tr>
+            <tr><td>2015</td><td>192,9</td><td><span class="pill pill-yellow">Intermediário</span></td><td>2,6%</td><td>26,3%</td><td>57,9%</td><td>13,2%</td><td>38</td></tr>
+            <tr><td>2016</td><td>193,7</td><td><span class="pill pill-yellow">Intermediário</span></td><td>5,1%</td><td>28,2%</td><td>41,0%</td><td>25,6%</td><td>39</td></tr>
+            <tr><td>2017</td><td>203,3</td><td><span class="pill pill-yellow">Intermediário</span></td><td>0,0%</td><td>21,1%</td><td>52,6%</td><td>26,3%</td><td>38</td></tr>
+            <tr><td>2018</td><td>249,3</td><td><span class="pill pill-green">Adequado ⭐</span></td><td>2,2%</td><td>2,2%</td><td>23,9%</td><td>71,7%</td><td>46</td></tr>
+            <tr><td>2019</td><td>216,7</td><td><span class="pill pill-yellow">Intermediário</span></td><td>0,0%</td><td>20,0%</td><td>42,2%</td><td>37,8%</td><td>45</td></tr>
+            <tr><td>2022 Diag.</td><td>193,0</td><td><span class="pill pill-yellow">Intermediário</span></td><td>5,0%</td><td>36,0%</td><td>35,0%</td><td>24,0%</td><td>97</td></tr>
+            <tr><td>2022</td><td>220,0</td><td><span class="pill pill-yellow">Intermediário</span></td><td>5,4%</td><td>13,0%</td><td>31,5%</td><td>50,0%</td><td>92</td></tr>
+            <tr><td>2023</td><td>204,6</td><td><span class="pill pill-yellow">Intermediário</span></td><td>2,2%</td><td>28,3%</td><td>34,8%</td><td>34,8%</td><td>46</td></tr>
+            <tr style="background:#f0fdf4;font-weight:700"><td>2024</td><td>225,4</td><td><span class="pill pill-av">✅ Adequado</span></td><td>0,0%</td><td>17,5%</td><td>29,8%</td><td>52,6%</td><td>57</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="data-table-wrap">
+      <div class="table-header">
+        <h3>2º Ano — LP e Matemática · Histórico 2023–2024 (dados disponíveis)</h3>
+        <p>12 de Outubro EEIEF · INEP 23249595 · Fonte: SPAECE/SEDUC-CE · Nova escala MT 2024</p>
+      </div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr><th>Edição</th><th>Componente</th><th>Proficiência</th><th>Padrão</th><th>Ab. Básico %</th><th>Básico %</th><th>Proficiente %</th><th>Avançado %</th><th>IDE Alfa</th><th>Alunos</th></tr>
+          </thead>
+          <tbody>
+            <tr style="background:#f0fdf4">
+              <td>2023</td><td><strong>LP</strong></td><td>679,2</td>
+              <td><span class="pill pill-yellow">Proficiente</span></td>
+              <td>0,0%</td><td>22,8%</td><td>33,3%</td><td>43,9%</td><td style="color:var(--green);font-weight:700">9,58</td><td>57</td>
+            </tr>
+            <tr style="background:#fef9ec;font-weight:700">
+              <td>2024</td><td><strong>LP</strong></td><td>633,5</td>
+              <td><span class="pill pill-yellow">Proficiente</span></td>
+              <td style="color:var(--red);font-weight:700">11,5%</td><td>25,0%</td><td>32,7%</td><td>30,8%</td><td style="color:var(--yellow);font-weight:700">5,84</td><td>52</td>
+            </tr>
+            <tr>
+              <td>2024</td><td><strong>MT</strong></td><td>532,1</td>
+              <td><span class="pill pill-yellow">Proficiente</span></td>
+              <td>5,9%</td><td>27,4%</td><td>43,1%</td><td>23,5%</td><td style="color:var(--yellow);font-weight:700">4,04</td><td>51</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="alert-banner success">
+      <span class="ab-icon">🏆</span>
+      <div>
+        <div class="alert-title">5º Ano MT 2024: resultado histórico — primeiro Adequado e maior proficiência desde 2012</div>
+        <div class="alert-body">A trajetória do 5º Ano MT mostra uma evolução notável: de Crítico em 2012–2016, passou para Intermediário em 2017–2023 e atingiu <strong>Adequado pela primeira vez em 2024</strong> — com 250,67 pts e 56,14% no padrão Adequado. Esse resultado é consistente com o SAEB 2023 (244,74 pts, muito acima das similares) e confirma que a escola construiu uma <strong>competência sólida e sustentável em Matemática no 5º Ano</strong>.</div>
+      </div>
+    </div>
+
+    <div class="alert-banner warning">
+      <span class="ab-icon">⚠️</span>
+      <div>
+        <div class="alert-title">Atenção ao padrão histórico de LP: escola já atingiu Adequado em 2018 (249,3 pts) e recuou em 2019</div>
+        <div class="alert-body">Em 2018, o 5º Ano LP atingiu Adequado com 249,32 pts — e 71,74% no padrão Adequado, o melhor resultado absoluto já registrado. No ano seguinte (2019), recuou para Intermediário (216,66 pts). Esse histórico <strong>alerta para o risco de regressão após um pico</strong>. A escola deve investigar o que causou a queda em 2019 (mudança de professor? de estratégia?) para garantir que o resultado de 2024 seja consolidado e não episódico.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PLANO DE AÇÃO -->
+  <div id="acoes">
+    <div class="section-title">⚡ Plano de Ação — SPAECE 2025 · Metas e Estratégias</div>
+
+    <div class="data-table-wrap">
+      <div class="table-header">
+        <h3>Ações Prioritárias para Consolidar e Superar os Resultados de 2024</h3>
+        <p>12 de Outubro EEIEF · Baseadas nos dados históricos 2012–2024 · SPAECE + SAEB 2023 + CNCA 2025</p>
+      </div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr><th>#</th><th>Ação</th><th>Turma/Foco</th><th>Responsável</th><th>Prazo</th><th>Prioridade</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1</strong></td>
+              <td>Documentar as práticas pedagógicas de MT do 5º Ano que geraram o resultado histórico (SPAECE: Adequado 250,67 / SAEB: 244,74 pts) — registrar no PPP como referência permanente da escola</td>
+              <td>5º Ano · MT</td>
+              <td>Diretor + Coord.</td>
+              <td>Imediato</td>
+              <td><span class="pill pill-green">⭐ Estratégico</span></td>
+            </tr>
+            <tr>
+              <td><strong>2</strong></td>
+              <td>Garantir continuidade do 5º Ano LP no padrão Adequado — investigar o que causou a regressão em 2019 após o Adequado de 2018 e evitar repetir o erro (mudança de professor, metodologia ou rotina)</td>
+              <td>5º Ano · LP</td>
+              <td>Coord. Pedagógico</td>
+              <td>Imediato</td>
+              <td><span class="pill pill-red">🔴 Urgente</span></td>
+            </tr>
+            <tr>
+              <td><strong>3</strong></td>
+              <td>Intervir nos 11,54% Abaixo do Básico no 2º Ano LP — em 2023 era 0%. Cruzar com pré-leitores do CNCA 2025 (45 no 2º Ano) para identificação e intervenção integrada</td>
+              <td>2º Ano · LP</td>
+              <td>Coord. + Prof. 2º Ano</td>
+              <td>15 dias</td>
+              <td><span class="pill pill-red">🔴 Urgente</span></td>
+            </tr>
+            <tr>
+              <td><strong>4</strong></td>
+              <td>Transferir boas práticas de MT do 5º Ano para o 3º Ano — onde MT está em colapso no CNCA (0% adequado no 3ºA). HTPC com professores do 5º Ano compartilhando estratégias com o 3º Ano</td>
+              <td>3º Ano ← 5º Ano · MT</td>
+              <td>Coordenador</td>
+              <td>Próximo HTPC</td>
+              <td><span class="pill pill-red">🔴 Urgente</span></td>
+            </tr>
+            <tr>
+              <td><strong>5</strong></td>
+              <td>Mover os 14 alunos Intermediários do 5º Ano MT para Adequado — focar nos descritores de transição: frações equivalentes, conversão de medidas, proporcionalidade e resolução de problemas com múltiplas etapas</td>
+              <td>5º Ano · MT</td>
+              <td>Prof. MT 5º Ano</td>
+              <td>1 mês</td>
+              <td><span class="pill pill-yellow">⚠ Atenção</span></td>
+            </tr>
+            <tr>
+              <td><strong>6</strong></td>
+              <td>Intervir nos 17,54% Críticos do 5º Ano LP (10 alunos) — reforço em leitura inferencial, identificação de causa/consequência e compreensão de textos narrativos. Cruzar com dados SAEB 2023 (N1: 15,08%)</td>
+              <td>5º Ano · LP</td>
+              <td>Prof. LP 5º Ano</td>
+              <td>1 mês</td>
+              <td><span class="pill pill-yellow">⚠ Atenção</span></td>
+            </tr>
+            <tr>
+              <td><strong>7</strong></td>
+              <td>Comunicar os resultados do SPAECE 2024 às famílias e à comunidade escolar — o resultado histórico do 5º Ano (Adequado em LP e MT) merece ser celebrado e divulgado amplamente</td>
+              <td>Toda a escola</td>
+              <td>Diretor</td>
+              <td>15 dias</td>
+              <td><span class="pill pill-green">✅ Consolidar</span></td>
+            </tr>
+            <tr>
+              <td><strong>8</strong></td>
+              <td>Aplicar simulados no formato SPAECE para o 5º Ano ao longo de 2025 — familiarizar alunos com a escala e descritores, identificar lacunas e monitorar a trajetória em direção à meta de 2025</td>
+              <td>5º Ano · LP e MT</td>
+              <td>Prof. LP e MT</td>
+              <td>1 mês</td>
+              <td><span class="pill pill-yellow">⚠ Atenção</span></td>
+            </tr>
+            <tr>
+              <td><strong>9</strong></td>
+              <td>Pactar novas metas 2025 para o 5º Ano com a SME/SEDUC: as metas atuais (LP 238,43 e MT 263,67) já foram superadas pelos resultados de 2024. Definir metas mais ambiciosas: LP ≥ 235 e MT ≥ 265</td>
+              <td>5º Ano · LP e MT</td>
+              <td>Diretor + SME</td>
+              <td>1 mês</td>
+              <td><span class="pill pill-yellow">⚠ Atenção</span></td>
+            </tr>
+            <tr>
+              <td><strong>10</strong></td>
+              <td>Usar os resultados de SPAECE 2024 e SAEB 2023 como argumento junto à SEDUC-CE e CREDE para pleito de recursos, formação continuada e apoio pedagógico — a escola comprova com dados seu patamar de excelência</td>
+              <td>Escola toda</td>
+              <td>Diretor</td>
+              <td>Contínuo</td>
+              <td><span class="pill pill-green">✅ Consolidar</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center; font-size:0.75rem; color:var(--muted2); margin-top:10px; padding-top:18px; border-top:1px solid var(--border);">
+    12 de Outubro EEIEF · INEP: 23249595 · Caucaia-CE · Região JUREMA · Fonte: SPAECE / SEDUC-CE · Edições 2012–2024 · 2º e 5º Ano · LP e MT · Pactuação de Metas 2025 · Prêmio Destaque Gestão Escolar
+  </div>
+
+</main>
+
+<script>
+function toggle(card) { card.classList.toggle('open'); }
+
+const sections = document.querySelectorAll('[id]');
+const navItems = document.querySelectorAll('.nav-item[href^="#"]');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
+  navItems.forEach(n => {
+    n.classList.remove('active');
+    if (n.getAttribute('href') === '#' + cur) n.classList.add('active');
+  });
+}, { passive: true });
+
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.querySelectorAll('.bs, .progress-fill').forEach(el => {
+      const w = el.style.width;
+      el.style.width = '0';
+      requestAnimationFrame(() => { requestAnimationFrame(() => { el.style.width = w; }); });
+    });
+  }, 300);
+});
+</script>
 </body>
 </html>

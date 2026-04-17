@@ -3,22 +3,1460 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Avalie.CE · EEF 12 de Outubro</title>
+<title>Avalie.CE 2025.1 · 12 de Outubro EEIEF</title>
 <style>
-body { font-family: 'Tahoma','Verdana','Arial',sans-serif; background:#f0f4f8; color:#0f1e2e; display:flex; align-items:center; justify-content:center; min-height:100vh; margin:0; }
-.box { background:#fff; border-radius:12px; border:1px solid #d8e2ec; padding:40px 36px; max-width:480px; width:100%; text-align:center; box-shadow:0 4px 20px rgba(0,0,0,0.09); }
-.icon { font-size:2.8rem; margin-bottom:16px; display:block; }
-h2 { font-size:1.2rem; font-weight:700; color:#1a3a5c; margin-bottom:8px; }
-p { font-size:0.85rem; color:#4a5e75; line-height:1.6; margin-bottom:20px; }
-a { display:inline-block; padding:10px 22px; background:linear-gradient(135deg,#1a3a5c,#1e5799); color:#fff; border-radius:7px; text-decoration:none; font-size:0.82rem; font-weight:700; letter-spacing:0.05em; }
+:root {
+  --bg: #f0f4f8;
+  --surface: #ffffff;
+  --border: #d8e2ec;
+  --sidebar-bg: #1a2535;
+  --sidebar-hover: #243145;
+  --sidebar-active: rgba(14,116,144,.18);
+  --blue-dark: #1a3a5c;
+  --blue-mid: #1e5799;
+  --teal: #0e7490;
+  --teal-bg: #ecfeff;
+  --teal-bdr: #67e8f9;
+  --text: #0f1e2e;
+  --muted: #4a5e75;
+  --muted2: #8097b0;
+  --red: #c0392b;
+  --red-bg: #fdf0ef;
+  --red-bdr: #f5b7b1;
+  --red-dark: #a93226;
+  --orange: #ca6f1e;
+  --orange-bg: #fef5e7;
+  --orange-bdr: #f8c471;
+  --yellow: #d68910;
+  --yellow-bg: #fef9ec;
+  --yellow-bdr: #f9d98a;
+  --green: #1a7a4a;
+  --green-bg: #edfaf3;
+  --green-bdr: #82e0aa;
+  --blue: #1a56a0;
+  --blue-bg: #eaf2fc;
+  --blue-bdr: #90bce8;
+  --purple: #6d28d9;
+  --purple-bg: #f5f3ff;
+  --purple-bdr: #c4b5fd;
+  --font: 'Tahoma', 'Verdana', 'Arial', sans-serif;
+  --radius: 10px;
+  --shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; display: flex; font-size: 0.94rem; line-height: 1.6; }
+
+/* SIDEBAR */
+.sidebar { width: 264px; min-width: 264px; background: var(--sidebar-bg); height: 100vh; position: sticky; top: 0; display: flex; flex-direction: column; overflow-y: auto; z-index: 100; }
+.sidebar::-webkit-scrollbar { width: 4px; }
+.sidebar::-webkit-scrollbar-thumb { background: #2e3d52; border-radius: 3px; }
+.sidebar-logo { padding: 20px 20px 18px; border-bottom: 1px solid #2e3d52; background: #111c2a; }
+.school-badge { display: inline-block; background: var(--teal); color: #fff; font-size: 0.70rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 10px; border-radius: 4px; margin-bottom: 9px; }
+.school-name { font-size: 1.08rem; font-weight: 700; color: #fff; line-height: 1.25; margin-bottom: 3px; }
+.school-name span { color: #f0b429; }
+.school-sub { font-size: 0.70rem; color: #7a90a8; margin-top: 3px; letter-spacing: 0.05em; }
+.nav-section { padding: 12px 20px 5px; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.13em; color: #5a7090; font-weight: 700; }
+.nav-item { display: flex; align-items: center; gap: 11px; padding: 11px 20px; cursor: pointer; border-left: 4px solid transparent; transition: all 0.2s; text-decoration: none; color: inherit; }
+.nav-item:hover { background: var(--sidebar-hover); }
+.nav-item.active { background: var(--sidebar-active); border-left-color: #22d3ee; }
+.nav-icon { width: 32px; height: 32px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+.nav-label { font-size: 0.85rem; font-weight: 600; color: #b8cce0; line-height: 1.25; }
+.nav-item.active .nav-label { color: #fff; }
+.nav-badge { margin-left: auto; min-width: 22px; height: 22px; border-radius: 11px; font-size: 0.70rem; font-weight: 700; display: flex; align-items: center; justify-content: center; padding: 0 5px; flex-shrink: 0; }
+.nb-red    { background: var(--red);    color: #fff; }
+.nb-yellow { background: var(--yellow); color: #fff; }
+.nb-green  { background: var(--green);  color: #fff; }
+.nb-orange { background: var(--orange); color: #fff; }
+.nb-teal   { background: var(--teal);   color: #fff; }
+.nb-purple { background: var(--purple); color: #fff; }
+.nav-item.recomp { border-top: 1px solid #243145; margin-top: 4px; padding-top: 13px; }
+.legend-block { padding: 8px 20px 6px; }
+.leg-row { display: flex; align-items: center; gap: 8px; padding: 5px 0; font-size: 0.74rem; color: #8daabf; border-bottom: 1px solid #243145; }
+.leg-row:last-child { border-bottom: none; }
+.leg-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.sidebar-footer { margin-top: auto; padding: 14px 20px; border-top: 1px solid #2e3d52; font-size: 0.70rem; color: #5a7090; line-height: 1.7; }
+
+/* MAIN */
+.main { flex: 1; min-width: 0; padding: 28px 32px 52px; }
+
+/* TOPBAR */
+.topbar { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 26px; flex-wrap: wrap; gap: 14px; }
+.topbar-title h2 { font-size: 1.35rem; font-weight: 700; color: var(--text); }
+.topbar-title p { font-size: 0.80rem; color: var(--muted); margin-top: 3px; }
+.topbar-stats { display: flex; gap: 10px; flex-wrap: wrap; }
+.topbar-stat { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 9px 16px; text-align: center; box-shadow: var(--shadow); }
+.topbar-stat .ts-val { font-size: 1.1rem; font-weight: 700; display: block; }
+.topbar-stat .ts-lab { font-size: 0.68rem; color: var(--muted2); text-transform: uppercase; letter-spacing: 0.07em; }
+.ts-red { color: var(--red); } .ts-yellow { color: var(--yellow); } .ts-orange { color: var(--orange); }
+.ts-green { color: var(--green); } .ts-teal { color: var(--teal); } .ts-blue { color: var(--blue); }
+
+/* SECTION TITLE */
+.section-title { font-size: 1.05rem; font-weight: 700; color: var(--blue-dark); padding-bottom: 8px; border-bottom: 2px solid var(--border); margin-bottom: 18px; margin-top: 32px; display: flex; align-items: center; gap: 10px; }
+.section-title:first-of-type { margin-top: 0; }
+
+/* ALERT BANNER */
+.alert-banner { border-radius: var(--radius); padding: 13px 17px; margin-bottom: 11px; border-left: 5px solid; font-size: 0.86rem; display: flex; align-items: flex-start; gap: 11px; }
+.alert-banner.danger  { background: var(--red-bg);    border-color: var(--red);    color: #7a1a0e; }
+.alert-banner.warning { background: var(--yellow-bg); border-color: var(--yellow); color: #7a3e05; }
+.alert-banner.success { background: var(--green-bg);  border-color: var(--green);  color: #155234; }
+.alert-banner.info    { background: var(--teal-bg);   border-color: var(--teal);   color: #0e4f5e; }
+.alert-banner .ab-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 1px; }
+.alert-title { font-weight: 700; margin-bottom: 3px; }
+.alert-body  { font-size: 0.80rem; line-height: 1.6; }
+
+/* DATA TABLE */
+.data-table-wrap { background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); overflow: hidden; margin-bottom: 18px; }
+.table-header { padding: 12px 16px 10px; border-bottom: 1px solid var(--border); background: #fafcff; }
+.table-header h3 { font-size: 0.90rem; font-weight: 700; color: var(--blue-dark); }
+.table-header p  { font-size: 0.73rem; color: var(--muted2); }
+.table-scroll { overflow-x: auto; }
+.data-table { width: 100%; border-collapse: collapse; font-size: 0.80rem; }
+.data-table thead tr { background: linear-gradient(135deg, #1a3a5c, #1e5799); color: #fff; }
+.data-table th { padding: 9px 12px; text-align: left; font-size: 0.70rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; white-space: nowrap; }
+.data-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.data-table tbody tr:last-child td { border-bottom: none; }
+.data-table tbody tr:hover { background: #f8fafc; }
+.delta { font-weight: 700; font-size: 0.80rem; }
+.delta.up { color: var(--green); } .delta.down { color: var(--red); } .delta.neutral { color: var(--muted2); }
+.nivel-badge { font-size: 0.67rem; font-weight: 700; padding: 2px 8px; border-radius: 20px; display: inline-block; }
+.nivel-badge.nl  { background: #fdecea; color: var(--red-dark); border: 1px solid var(--red-bdr); }
+.nivel-badge.inter { background: var(--yellow-bg); color: #7d5a10; border: 1px solid var(--yellow-bdr); }
+.nivel-badge.adeq { background: var(--green-bg); color: #155234; border: 1px solid var(--green-bdr); }
+
+/* KPI CARDS */
+.kpi3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 20px; }
+.kpi4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 20px; }
+.kc { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 16px 18px; box-shadow: var(--shadow); text-align: center; }
+.kc .kc-v { font-size: 2rem; font-weight: 700; line-height: 1.1; display: block; }
+.kc .kc-l { font-size: 0.75rem; font-weight: 700; margin-top: 4px; }
+.kc .kc-d { font-size: 0.69rem; color: var(--muted2); margin-top: 3px; }
+.kc.cr  { border-color: var(--red-bdr);    background: var(--red-bg); }
+.kc.cy  { border-color: var(--yellow-bdr); background: var(--yellow-bg); }
+.kc.cg  { border-color: var(--green-bdr);  background: var(--green-bg); }
+.kc.ct  { border-color: var(--teal-bdr);   background: var(--teal-bg); }
+
+/* SECTION BLOCK */
+.section-block { margin-bottom: 24px; display: block; width: 100%; clear: both; }
+.section-block-header { display: flex; align-items: center; gap: 12px; padding: 14px 18px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius) var(--radius) 0 0; border-bottom: 3px solid var(--border); box-shadow: var(--shadow); }
+.section-block-header.dark { background: var(--sidebar-bg); border-color: #2e3d52; }
+.sb-icon { width: 38px; height: 38px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+.sb-info h3 { font-size: 0.98rem; font-weight: 700; color: var(--blue-dark); line-height: 1.3; }
+.sb-info p  { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+.section-block-header.dark .sb-info h3 { color: #fff; }
+.section-block-header.dark .sb-info p  { color: #7a90a8; }
+
+/* NOTIF CARDS */
+.notif-card { background: var(--surface); border: 1px solid var(--border); border-top: none; cursor: pointer; transition: background 0.15s; overflow: hidden; }
+.notif-card:last-child { border-radius: 0 0 var(--radius) var(--radius); }
+.notif-card:hover { background: #f5f8ff; }
+.notif-card.priority-red    { border-left: 5px solid var(--red); }
+.notif-card.priority-yellow { border-left: 5px solid var(--yellow); }
+.notif-card.priority-green  { border-left: 5px solid var(--green); }
+.notif-card.priority-teal   { border-left: 5px solid var(--teal); }
+.notif-card.priority-orange { border-left: 5px solid var(--orange); }
+.notif-top { display: flex; align-items: flex-start; gap: 14px; padding: 16px 18px; min-width: 0; }
+.notif-avatar { width: 38px; height: 38px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+.notif-avatar.red    { background: var(--red-bg); }
+.notif-avatar.yellow { background: var(--yellow-bg); }
+.notif-avatar.green  { background: var(--green-bg); }
+.notif-avatar.teal   { background: var(--teal-bg); }
+.notif-avatar.orange { background: var(--orange-bg); }
+.notif-body { flex: 1; min-width: 0; overflow: hidden; }
+.notif-header-row { display: flex; align-items: flex-start; gap: 10px; flex-wrap: wrap; margin-bottom: 5px; min-width: 0; width: 100%; }
+.notif-title { font-weight: 700; font-size: 0.88rem; line-height: 1.35; flex: 1; color: var(--text); min-width: 0; word-wrap: break-word; overflow-wrap: break-word; }
+.notif-source { font-size: 0.68rem; font-weight: 700; padding: 2px 9px; border-radius: 20px; background: #e8eef6; color: var(--muted); white-space: nowrap; flex-shrink: 0; }
+.notif-summary { font-size: 0.82rem; color: var(--muted); line-height: 1.6; margin-bottom: 8px; word-wrap: break-word; overflow-wrap: break-word; }
+.notif-metrics { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 8px; }
+.metric-pill { display: flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 20px; font-size: 0.76rem; font-weight: 700; }
+.metric-pill.red    { background: var(--red-bg);    color: var(--red-dark); border: 1px solid var(--red-bdr); }
+.metric-pill.yellow { background: var(--yellow-bg); color: #7d5a10; border: 1px solid var(--yellow-bdr); }
+.metric-pill.green  { background: var(--green-bg);  color: #155234; border: 1px solid var(--green-bdr); }
+.metric-pill.teal   { background: var(--teal-bg);   color: #0e4f5e; border: 1px solid var(--teal-bdr); }
+.metric-pill.orange { background: var(--orange-bg); color: #7e4a10; border: 1px solid var(--orange-bdr); }
+.dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.notif-toggle { background: none; border: none; cursor: pointer; font-size: 1.2rem; color: var(--muted2); flex-shrink: 0; padding: 3px 5px; transition: transform 0.2s; align-self: center; }
+.notif-card.open .notif-toggle { transform: rotate(180deg); }
+.notif-expand { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; background: #f4f8ff; padding: 0 18px; }
+.notif-card.open .notif-expand { max-height: 900px; border-top: 1px solid var(--border); padding: 16px 18px; }
+.action-tag { display: inline-block; background: #1a2535; color: #f0b429; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border-radius: 4px; margin-bottom: 7px; }
+.action-text { font-size: 0.82rem; color: #2c3e50; line-height: 1.85; }
+.expand-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 9px; }
+.expand-tag { background: #dde4ef; color: #3d5270; font-size: 0.68rem; font-weight: 700; padding: 2px 9px; border-radius: 20px; }
+
+/* ETAPAS GRID */
+.etapas-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 20px; }
+.etapa-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 13px 10px; box-shadow: var(--shadow); text-align: center; }
+.etapa-card .ec-ano  { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing:.07em; margin-bottom: 6px; }
+.etapa-card .ec-mat  { font-size: 1.05rem; font-weight: 700; color: var(--blue-dark); }
+.etapa-card .ec-pct  { font-size: 0.82rem; font-weight: 700; color: var(--teal); }
+.etapa-card .ec-sub  { font-size: 0.70rem; color: var(--muted2); margin-top: 2px; }
+.etapa-card.ok   { border-color: var(--teal-bdr); background: var(--teal-bg); }
+.etapa-card.warn { border-color: var(--yellow-bdr); background: var(--yellow-bg); }
+.etapa-card.crit { border-color: var(--red-bdr); background: var(--red-bg); }
+
+/* PROGRESS BARS */
+.prog-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 18px 20px; margin-bottom: 16px; }
+.prog-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.prog-row:last-child { margin-bottom: 0; }
+.prog-label { font-size: 0.78rem; color: var(--muted); width: 160px; flex-shrink: 0; font-weight: 600; }
+.prog-bar-wrap { flex: 1; background: #e8eef6; border-radius: 5px; height: 12px; overflow: hidden; }
+.prog-fill { height: 100%; border-radius: 5px; }
+.prog-fill.def { background: linear-gradient(90deg, #e74c3c, #c0392b); }
+.prog-fill.int { background: linear-gradient(90deg, #f39c12, #d68910); }
+.prog-fill.adeq { background: linear-gradient(90deg, #27ae60, #1a7a4a); }
+.prog-fill.teal { background: linear-gradient(90deg, #0e7490, #0c5f78); }
+.prog-pct { font-size: 0.72rem; font-weight: 700; color: var(--muted); width: 46px; flex-shrink: 0; text-align: right; }
+.prog-num { font-size: 0.70rem; color: var(--muted2); width: 38px; flex-shrink: 0; text-align: right; }
+
+/* HABILIDADE CHART */
+.hab-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 18px; }
+.hab-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 16px 18px; }
+.hab-card h4 { font-size: 0.88rem; font-weight: 700; color: var(--blue-dark); margin-bottom: 12px; }
+.hab-row { display: flex; align-items: center; gap: 8px; margin-bottom: 7px; font-size: 0.76rem; }
+.hab-code { width: 44px; color: var(--muted); font-weight: 700; flex-shrink: 0; font-size: 0.69rem; }
+.hab-bar-wrap { flex: 1; background: #e8eef6; border-radius: 4px; height: 10px; overflow: hidden; }
+.hab-bar { height: 100%; border-radius: 4px; }
+.hab-pct { width: 36px; text-align: right; font-weight: 700; flex-shrink: 0; }
+.hab-bar.high { background: #27ae60; }
+.hab-bar.mid  { background: #d68910; }
+.hab-bar.low  { background: #c0392b; }
+.pct-green { color: var(--green); }
+.pct-yellow { color: var(--yellow); }
+.pct-red { color: var(--red); }
+
+/* TABS */
+.tabs { display: flex; gap: 0; border-bottom: 2px solid var(--border); margin-bottom: 18px; overflow-x: auto; }
+.tab-btn { padding: 9px 18px; font-size: 0.82rem; font-weight: 700; color: var(--muted); border: none; background: none; cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; white-space: nowrap; transition: all 0.2s; }
+.tab-btn.active { color: var(--teal); border-bottom-color: var(--teal); }
+.tab-btn:hover { color: var(--blue-dark); }
+.tab-pane { display: none; }
+.tab-pane.active { display: block; }
+
+/* NIVEIS LEGEND INLINE */
+.nivel-legend { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; font-size: 0.73rem; }
+.nl-item { display: flex; align-items: center; gap: 5px; color: var(--muted); font-weight: 600; }
+.nl-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+
+@media (max-width: 860px) {
+  .sidebar { display: none; }
+  .main { padding: 18px 16px 40px; }
+  .etapas-grid, .kpi3, .kpi4 { grid-template-columns: 1fr 1fr; }
+  .hab-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .etapas-grid, .kpi3, .kpi4 { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
-<div class="box">
-  <span class="icon">📊</span>
-  <h2>Avalie.CE · EEF 12 de Outubro</h2>
-  <p>Este painel ainda não possui dados inseridos.<br>Em breve a Coordenação Pedagógica irá disponibilizar as informações desta escola.</p>
-  <a href="painel.html">← Voltar ao Painel</a>
-</div>
+
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="school-badge">Painel do Diretor</div>
+    <div class="school-name">12 de <span>Outubro</span></div>
+    <div class="school-sub">EEIEF · Caucaia · CE · Regional Maracanau</div>
+  </div>
+
+  <div class="nav-section">Indicadores</div>
+
+  <a class="nav-item" href="painel.html">
+    <div class="nav-icon" style="background:#ecfeff">🏠</div>
+    <span class="nav-label">Visão Geral</span>
+  </a>
+
+  <a class="nav-item" href="resumo_executivo.html">
+    <div class="nav-icon" style="background:#fdf0ef">🚨</div>
+    <span class="nav-label">Resumo Executivo</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+
+  <a class="nav-item" href="busca_ativa.html">
+    <div class="nav-icon" style="background:#fef5e7">🔍</div>
+    <span class="nav-label">Busca Ativa</span>
+    <span class="nav-badge nb-orange">!</span>
+  </a>
+
+  <a class="nav-item" href="adsec.html">
+    <div class="nav-icon" style="background:#edfaf3">📖</div>
+    <span class="nav-label">ADSEC 2025</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+
+  <a class="nav-item active" href="avalie_ce.html">
+    <div class="nav-icon" style="background:#fef9ec">📊</div>
+    <span class="nav-label">Avalie.CE</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+
+  <a class="nav-item" href="bimestrais.html">
+    <div class="nav-icon" style="background:#eaf2fc">📝</div>
+    <span class="nav-label">Bimestrais 2025</span>
+    <span class="nav-badge nb-yellow">!</span>
+  </a>
+
+  <a class="nav-item" href="cnca.html">
+    <div class="nav-icon" style="background:#fef5e7">📚</div>
+    <span class="nav-label">CNCA</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+
+  <a class="nav-item" href="qedu.html">
+    <div class="nav-icon" style="background:#eaf2fc">🎓</div>
+    <span class="nav-label">QEdu / Censo</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+
+  <a class="nav-item recomp" href="recomposicao.html">
+    <div class="nav-icon" style="background:var(--purple-bg)">🎒</div>
+    <span class="nav-label" style="color:#c4b5fd">Recomposição</span>
+    <span class="nav-badge nb-purple">!</span>
+  </a>
+
+  <a class="nav-item" href="saeb.html">
+    <div class="nav-icon" style="background:#fdf0ef">📋</div>
+    <span class="nav-label">SAEB 2023</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+
+  <a class="nav-item" href="spaece.html">
+    <div class="nav-icon" style="background:#fef9ec">📈</div>
+    <span class="nav-label">SPAECE 2024</span>
+    <span class="nav-badge nb-red">!!</span>
+  </a>
+
+  <div class="nav-section" style="margin-top:10px">Navegação Interna</div>
+  <a class="nav-item" href="#visao">
+    <div class="nav-icon" style="background:rgba(14,116,144,.15)">📊</div>
+    <span class="nav-label">Visão Geral</span>
+  </a>
+  <a class="nav-item" href="#etapas">
+    <div class="nav-icon" style="background:rgba(26,85,160,.12)">🏫</div>
+    <span class="nav-label">Etapas & Cobertura</span>
+  </a>
+  <a class="nav-item" href="#niveis">
+    <div class="nav-icon" style="background:rgba(202,111,30,.12)">📋</div>
+    <span class="nav-label">Níveis por Etapa</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+  <a class="nav-item" href="#habilidades">
+    <div class="nav-icon" style="background:rgba(14,116,144,.12)">🎯</div>
+    <span class="nav-label">Habilidades Críticas</span>
+    <span class="nav-badge nb-red">!</span>
+  </a>
+  <a class="nav-item" href="#alertas">
+    <div class="nav-icon" style="background:rgba(192,57,43,.12)">🔔</div>
+    <span class="nav-label">Alertas & Prioridades</span>
+    <span class="nav-badge nb-red">5</span>
+  </a>
+  <a class="nav-item" href="#acoes">
+    <div class="nav-icon" style="background:rgba(26,122,74,.12)">⚡</div>
+    <span class="nav-label">Plano de Ação</span>
+  </a>
+
+  <div class="nav-section" style="margin-top:10px">Níveis de Aprendizagem</div>
+  <div class="legend-block">
+    <div class="leg-row"><div class="leg-dot" style="background:#1a7a4a"></div>Aprendizado Adequado</div>
+    <div class="leg-row"><div class="leg-dot" style="background:#d68910"></div>Aprendizado Intermediário</div>
+    <div class="leg-row"><div class="leg-dot" style="background:#c0392b"></div>Defasagem</div>
+  </div>
+
+  <div class="nav-section" style="margin-top:10px">Sistema</div>
+  <a class="nav-item" href="../index.html">
+    <div class="nav-icon" style="background:#fdf0ef">🏫</div>
+    <span class="nav-label">Trocar Escola</span>
+  </a>
+
+  <div class="sidebar-footer">
+    <div>12 de Outubro EEIEF<br>Caucaia · CE · Regional Maracanau</div>
+    <div style="margin-top:6px;color:#8097b0">Fonte: AVALIE.CE 2025.1 / SEDUC-CE<br>MT e LP · 2º, 4º e 5º Ano</div>
+    <div style="margin-top:4px;color:#8097b0">Clique nos cartões para ver ações</div>
+  </div>
+</aside>
+
+<main class="main">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-title">
+      <h2>📊 Avalie.CE 2025.1 · 12 de Outubro EEIEF</h2>
+      <p>Avaliação Diagnóstica · Matemática e Língua Portuguesa · 2º, 4º e 5º Ano · Caucaia-CE · Regional Maracanau</p>
+    </div>
+    <div class="topbar-stats">
+      <div class="topbar-stat"><span class="ts-val ts-red">54%</span><span class="ts-lab">Defasagem 4º MT</span></div>
+      <div class="topbar-stat"><span class="ts-val ts-orange">35%</span><span class="ts-lab">Defasagem 5º MT</span></div>
+      <div class="topbar-stat"><span class="ts-val ts-green">53%</span><span class="ts-lab">Adequado 4º LP</span></div>
+      <div class="topbar-stat"><span class="ts-val ts-red">65%</span><span class="ts-lab">Baixa cobertura 2º</span></div>
+    </div>
+  </div>
+
+  <!-- VISÃO GERAL -->
+  <div id="visao">
+    <div class="section-title">📊 Visão Geral — Resumo Executivo Avalie.CE 2025.1</div>
+
+    <div class="alert-banner danger">
+      <span class="ab-icon">🚨</span>
+      <div>
+        <div class="alert-title">4º Ano Matemática: 54% de Defasagem — Situação Crítica nos Anos Iniciais</div>
+        <div class="alert-body">O 4º Ano apresenta <strong>54% de Defasagem em Matemática</strong> com proficiência média de apenas 40. A Turma B é a mais crítica com 63% de defasagem (proficiência 35) e apenas 25% de adequado. As habilidades H01 (localização espacial — 36%) e H10 (medidas de tempo — 37%) são as mais críticas. Este resultado contrasta com o bom desempenho do mesmo ano em LP (53% de adequado).</div>
+      </div>
+    </div>
+
+    <div class="alert-banner danger">
+      <span class="ab-icon">⚠️</span>
+      <div>
+        <div class="alert-title">5º Ano MT — Turma B: 55% de Defasagem com Proficiência de 36 Pontos</div>
+        <div class="alert-body">O 5º Ano apresenta 35% de defasagem geral em MT, mas com grande disparidade entre turmas. A Turma B registra <strong>55% de defasagem</strong> (proficiência 36) contra 20% da Turma C (proficiência 60) — uma diferença de 24 pontos. As habilidades mais críticas da escola são H13 (conversão de medidas — 13%), H15 (racionais — 13%), H11 (reta numérica — 17%) e H01 (localização espacial — 25%).</div>
+      </div>
+    </div>
+
+    <div class="alert-banner warning">
+      <span class="ab-icon">📉</span>
+      <div>
+        <div class="alert-title">2º Ano — Cobertura Muito Baixa: Turma C com 0% de Avaliados em MT</div>
+        <div class="alert-body">O 2º Ano apresenta cobertura apenas de 65% em MT (32 de 49 previstos) e 59% em LP (29 de 49). A <strong>Turma C teve 0% de avaliados em MT</strong> e apenas 1 aluno em LP, o que inviabiliza a análise e indica problema grave de participação. As Turmas A e B têm resultados intermediários em MT (Turma A: 44% adequado; Turma B: 19% adequado).</div>
+      </div>
+    </div>
+
+    <div class="alert-banner success">
+      <span class="ab-icon">✅</span>
+      <div>
+        <div class="alert-title">4º Ano LP: 53% de Adequado — Melhor Resultado da Escola</div>
+        <div class="alert-body">O 4º Ano LP apresenta <strong>53% de Aprendizado Adequado</strong> com proficiência média de 60 pontos. A Turma B se destaca com 78% de adequado (proficiência 77). H01 (leitura canônica — 90%) e H02 (leitura não canônica — 94%) são os maiores destaques. Este grupo pode servir como referência de boas práticas para os demais anos.</div>
+      </div>
+    </div>
+
+    <!-- KPI RESUMO ESCOLA -->
+    <div class="kpi4" style="margin-top:20px">
+      <div class="kc cr">
+        <span class="kc-v" style="color:var(--red)">6</span>
+        <div class="kc-l" style="color:var(--red-dark)">Avaliações Realizadas</div>
+        <div class="kc-d">3 anos × MT + LP</div>
+      </div>
+      <div class="kc cr">
+        <span class="kc-v" style="color:var(--red)">274</span>
+        <div class="kc-l" style="color:var(--red-dark)">Alunos Avaliados</div>
+        <div class="kc-d">2º, 4º e 5º Ano · MT + LP</div>
+      </div>
+      <div class="kc cy">
+        <span class="kc-v" style="color:var(--yellow)">36%</span>
+        <div class="kc-l" style="color:#7d5a10">Média Geral Defasagem</div>
+        <div class="kc-d">Ponderada por avaliações</div>
+      </div>
+      <div class="kc cg">
+        <span class="kc-v" style="color:var(--green)">36%</span>
+        <div class="kc-l" style="color:#155234">Média Geral Adequado</div>
+        <div class="kc-d">Todos os anos · MT+LP</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ETAPAS & COBERTURA -->
+  <div id="etapas">
+    <div class="section-title">🏫 Etapas Avaliadas — Cobertura e Participação</div>
+
+    <div class="alert-banner info">
+      <span class="ab-icon">ℹ️</span>
+      <div>
+        <div class="alert-title">O Avalie.CE 2025.1 avaliou 2º, 4º e 5º Anos em Matemática e Língua Portuguesa</div>
+        <div class="alert-body">A avaliação diagnóstica cobre anos específicos do ciclo fundamental. Os dados abaixo apresentam cobertura (% avaliados/matriculados) e os indicadores de aprendizagem por etapa e componente. A escola 12 de Outubro apresentou baixa cobertura no 2º Ano — especialmente a Turma C que não participou em MT. O 5º Ano atingiu a maior cobertura (90% em MT e 93% em LP).</div>
+      </div>
+    </div>
+
+    <p style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:8px">Anos Iniciais — Matemática</p>
+    <div class="etapas-grid" style="grid-template-columns: repeat(3,1fr)">
+      <div class="etapa-card warn">
+        <div class="ec-ano">2º Ano · MT</div>
+        <div class="ec-mat">32 aval.</div>
+        <div class="ec-pct" style="color:var(--orange)">65%</div>
+        <div class="ec-sub">de 49 previstos · Prof. 45 ⚠️</div>
+      </div>
+      <div class="etapa-card crit">
+        <div class="ec-ano">4º Ano · MT</div>
+        <div class="ec-mat">50 aval.</div>
+        <div class="ec-pct" style="color:var(--orange)">82%</div>
+        <div class="ec-sub">de 61 previstos · Prof. 40 🚨</div>
+      </div>
+      <div class="etapa-card warn">
+        <div class="ec-ano">5º Ano · MT</div>
+        <div class="ec-mat">55 aval.</div>
+        <div class="ec-pct" style="color:var(--green)">90%</div>
+        <div class="ec-sub">de 61 previstos · Prof. 48 ⚠️</div>
+      </div>
+    </div>
+
+    <p style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:8px;margin-top:16px">Anos Iniciais — Língua Portuguesa</p>
+    <div class="etapas-grid" style="grid-template-columns: repeat(3,1fr)">
+      <div class="etapa-card warn">
+        <div class="ec-ano">2º Ano · LP</div>
+        <div class="ec-mat">29 aval.</div>
+        <div class="ec-pct" style="color:var(--orange)">59%</div>
+        <div class="ec-sub">de 49 previstos · Prof. 49</div>
+      </div>
+      <div class="etapa-card ok">
+        <div class="ec-ano">4º Ano · LP</div>
+        <div class="ec-mat">51 aval.</div>
+        <div class="ec-pct" style="color:var(--orange)">84%</div>
+        <div class="ec-sub">de 61 previstos · Prof. 60 ⭐</div>
+      </div>
+      <div class="etapa-card ok">
+        <div class="ec-ano">5º Ano · LP</div>
+        <div class="ec-mat">57 aval.</div>
+        <div class="ec-pct" style="color:var(--green)">93%</div>
+        <div class="ec-sub">de 61 previstos · Prof. 62 ⭐</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NÍVEIS POR ETAPA -->
+  <div id="niveis">
+    <div class="section-title">📋 Distribuição dos Níveis de Aprendizagem por Etapa</div>
+
+    <!-- TABS -->
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('mt')">📐 Matemática</button>
+      <button class="tab-btn" onclick="switchTab('lp')">📖 Língua Portuguesa</button>
+    </div>
+
+    <div id="tab-mt" class="tab-pane active">
+      <div class="nivel-legend">
+        <div class="nl-item"><div class="nl-dot" style="background:#c0392b"></div>Defasagem</div>
+        <div class="nl-item"><div class="nl-dot" style="background:#d68910"></div>Intermediário</div>
+        <div class="nl-item"><div class="nl-dot" style="background:#1a7a4a"></div>Adequado</div>
+      </div>
+
+      <div class="data-table-wrap">
+        <div class="table-header">
+          <h3>Matemática — Distribuição dos Níveis por Ano · AVALIE.CE 2025.1</h3>
+          <p>Fonte: Planilhas AVALIE.CE 2025.1 · Escola 12 de Outubro EEIEF · Caucaia-CE</p>
+        </div>
+        <div class="table-scroll">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Ano / Turma</th>
+                <th>Avaliados</th>
+                <th>Profic. Média</th>
+                <th>Defasagem</th>
+                <th>Intermediário</th>
+                <th>Adequado</th>
+                <th>Alerta</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="background:#fff8f8">
+                <td><strong>2º Ano (Escola)</strong></td>
+                <td>32</td>
+                <td>45</td>
+                <td><span class="nivel-badge nl">38%</span></td>
+                <td><span class="nivel-badge inter">31%</span></td>
+                <td><span class="nivel-badge adeq">31%</span></td>
+                <td><span class="delta down">⚠ Atenção</span></td>
+              </tr>
+              <tr>
+                <td>&nbsp;&nbsp;↳ Turma A</td>
+                <td>16</td>
+                <td>47</td>
+                <td>38%</td>
+                <td>19%</td>
+                <td>44%</td>
+                <td><span class="delta neutral">Monitorar</span></td>
+              </tr>
+              <tr>
+                <td>&nbsp;&nbsp;↳ Turma B</td>
+                <td>16</td>
+                <td>43</td>
+                <td>38%</td>
+                <td>44%</td>
+                <td>19%</td>
+                <td><span class="delta down">⚠ Atenção</span></td>
+              </tr>
+              <tr>
+                <td>&nbsp;&nbsp;↳ Turma C</td>
+                <td>0</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td><span class="delta down">🚨 Não participou</span></td>
+              </tr>
+              <tr style="background:#fff8f8">
+                <td><strong>4º Ano (Escola)</strong></td>
+                <td>50</td>
+                <td style="color:var(--red);font-weight:700">40 🚨</td>
+                <td><span class="nivel-badge nl">54%</span></td>
+                <td><span class="nivel-badge inter">22%</span></td>
+                <td><span class="nivel-badge adeq">24%</span></td>
+                <td><span class="delta down">🚨 URGENTE</span></td>
+              </tr>
+              <tr>
+                <td>&nbsp;&nbsp;↳ Turma A</td>
+                <td>20</td>
+                <td>45</td>
+                <td>45%</td>
+                <td>25%</td>
+                <td>30%</td>
+                <td><span class="delta down">⚠ Crítico</span></td>
+              </tr>
+              <tr>
+                <td>&nbsp;&nbsp;↳ Turma B</td>
+                <td>8</td>
+                <td style="color:var(--red);font-weight:700">35 🚨</td>
+                <td>63%</td>
+                <td>13%</td>
+                <td>25%</td>
+                <td><span class="delta down">🚨 Urgente</span></td>
+              </tr>
+              <tr>
+                <td>&nbsp;&nbsp;↳ Turma C</td>
+                <td>22</td>
+                <td style="color:var(--red);font-weight:700">37</td>
+                <td>59%</td>
+                <td>23%</td>
+                <td>18%</td>
+                <td><span class="delta down">🚨 Urgente</span></td>
+              </tr>
+              <tr style="background:#fff8f8">
+                <td><strong>5º Ano (Escola)</strong></td>
+                <td>55</td>
+                <td>48</td>
+                <td><span class="nivel-badge nl">35%</span></td>
+                <td><span class="nivel-badge inter">40%</span></td>
+                <td><span class="nivel-badge adeq">25%</span></td>
+                <td><span class="delta down">⚠ Atenção</span></td>
+              </tr>
+              <tr>
+                <td>&nbsp;&nbsp;↳ Turma A</td>
+                <td>25</td>
+                <td>53</td>
+                <td>24%</td>
+                <td>52%</td>
+                <td>24%</td>
+                <td><span class="delta neutral">Monitorar</span></td>
+              </tr>
+              <tr>
+                <td>&nbsp;&nbsp;↳ Turma B</td>
+                <td>20</td>
+                <td style="color:var(--red);font-weight:700">36</td>
+                <td>55%</td>
+                <td>25%</td>
+                <td>20%</td>
+                <td><span class="delta down">🚨 Urgente</span></td>
+              </tr>
+              <tr>
+                <td>&nbsp;&nbsp;↳ Turma C</td>
+                <td>10</td>
+                <td style="color:var(--green);font-weight:700">60 ⭐</td>
+                <td>20%</td>
+                <td>40%</td>
+                <td>40%</td>
+                <td><span class="delta up">✅ Melhor</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="prog-wrap">
+        <h4 style="font-size:0.88rem;font-weight:700;color:var(--blue-dark);margin-bottom:14px">Distribuição Visual — Defasagem em Matemática por Etapa</h4>
+        <div class="prog-row">
+          <div class="prog-label">2º Ano</div>
+          <div class="prog-bar-wrap"><div class="prog-fill def" style="width:38%"></div></div>
+          <div class="prog-pct pct-red">38%</div>
+          <div class="prog-num">12 al.</div>
+        </div>
+        <div class="prog-row">
+          <div class="prog-label">4º Ano</div>
+          <div class="prog-bar-wrap"><div class="prog-fill def" style="width:54%"></div></div>
+          <div class="prog-pct pct-red">54%</div>
+          <div class="prog-num">27 al.</div>
+        </div>
+        <div class="prog-row">
+          <div class="prog-label">5º Ano</div>
+          <div class="prog-bar-wrap"><div class="prog-fill def" style="width:35%"></div></div>
+          <div class="prog-pct pct-red">35%</div>
+          <div class="prog-num">19 al.</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-lp" class="tab-pane">
+      <div class="nivel-legend">
+        <div class="nl-item"><div class="nl-dot" style="background:#c0392b"></div>Defasagem</div>
+        <div class="nl-item"><div class="nl-dot" style="background:#d68910"></div>Intermediário</div>
+        <div class="nl-item"><div class="nl-dot" style="background:#1a7a4a"></div>Adequado</div>
+      </div>
+
+      <div class="data-table-wrap">
+        <div class="table-header">
+          <h3>Língua Portuguesa — Distribuição dos Níveis por Ano · AVALIE.CE 2025.1</h3>
+          <p>Fonte: Planilhas AVALIE.CE 2025.1 · Escola 12 de Outubro EEIEF · Caucaia-CE</p>
+        </div>
+        <div class="table-scroll">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Ano / Turma</th>
+                <th>Avaliados</th>
+                <th>Profic. Média</th>
+                <th>Defasagem</th>
+                <th>Intermediário</th>
+                <th>Adequado</th>
+                <th>Alerta</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>2º Ano (Escola)</strong></td>
+                <td>29</td>
+                <td>49</td>
+                <td><span class="nivel-badge nl">34%</span></td>
+                <td><span class="nivel-badge inter">34%</span></td>
+                <td><span class="nivel-badge adeq">31%</span></td>
+                <td><span class="delta down">⚠ Atenção</span></td>
+              </tr>
+              <tr>
+                <td>&nbsp;&nbsp;↳ Turma A</td>
+                <td>15</td>
+                <td style="color:var(--green);font-weight:700">64 ⭐</td>
+                <td>20%</td>
+                <td>27%</td>
+                <td>53%</td>
+                <td><span class="delta up">✅ Bom</span></td>
+              </tr>
+              <tr>
+                <td>&nbsp;&nbsp;↳ Turma B</td>
+                <td>13</td>
+                <td style="color:var(--red);font-weight:700">31</td>
+                <td>54%</td>
+                <td>38%</td>
+                <td>8%</td>
+                <td><span class="delta down">🚨 Urgente</span></td>
+              </tr>
+              <tr>
+                <td>&nbsp;&nbsp;↳ Turma C</td>
+                <td>1</td>
+                <td>35</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td><span class="delta down">🚨 Sem dados</span></td>
+              </tr>
+              <tr style="background:#f0fff8">
+                <td><strong>4º Ano (Escola)</strong></td>
+                <td>51</td>
+                <td style="color:var(--green);font-weight:700">60 ⭐</td>
+                <td><span class="nivel-badge nl">31%</span></td>
+                <td><span class="nivel-badge inter">16%</span></td>
+                <td><span class="nivel-badge adeq">53%</span></td>
+                <td><span class="delta up">✅ Melhor Resultado</span></td>
+              </tr>
+              <tr>
+                <td>&nbsp;&nbsp;↳ Turma A</td>
+                <td>20</td>
+                <td>52</td>
+                <td>40%</td>
+                <td>20%</td>
+                <td>40%</td>
+                <td><span class="delta neutral">Monitorar</span></td>
+              </tr>
+              <tr>
+                <td>&nbsp;&nbsp;↳ Turma B</td>
+                <td>9</td>
+                <td style="color:var(--green);font-weight:700">77 ⭐</td>
+                <td>22%</td>
+                <td>0%</td>
+                <td>78%</td>
+                <td><span class="delta up">✅ Excelente</span></td>
+              </tr>
+              <tr>
+                <td>&nbsp;&nbsp;↳ Turma C</td>
+                <td>22</td>
+                <td>61</td>
+                <td>27%</td>
+                <td>18%</td>
+                <td>55%</td>
+                <td><span class="delta up">✅ Bom</span></td>
+              </tr>
+              <tr>
+                <td><strong>5º Ano (Escola)</strong></td>
+                <td>57</td>
+                <td>62</td>
+                <td><span class="nivel-badge nl">26%</span></td>
+                <td><span class="nivel-badge inter">25%</span></td>
+                <td><span class="nivel-badge adeq">49%</span></td>
+                <td><span class="delta up">✅ Bom resultado</span></td>
+              </tr>
+              <tr>
+                <td>&nbsp;&nbsp;↳ Turma A</td>
+                <td>25</td>
+                <td style="color:var(--green);font-weight:700">78 ⭐</td>
+                <td>12%</td>
+                <td>20%</td>
+                <td>68%</td>
+                <td><span class="delta up">✅ Melhor</span></td>
+              </tr>
+              <tr>
+                <td>&nbsp;&nbsp;↳ Turma B</td>
+                <td>22</td>
+                <td>50</td>
+                <td>41%</td>
+                <td>23%</td>
+                <td>36%</td>
+                <td><span class="delta down">⚠ Atenção</span></td>
+              </tr>
+              <tr>
+                <td>&nbsp;&nbsp;↳ Turma C</td>
+                <td>10</td>
+                <td>47</td>
+                <td>30%</td>
+                <td>40%</td>
+                <td>30%</td>
+                <td><span class="delta neutral">Monitorar</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="prog-wrap">
+        <h4 style="font-size:0.88rem;font-weight:700;color:var(--blue-dark);margin-bottom:14px">Distribuição Visual — Aprendizado Adequado em LP por Etapa</h4>
+        <div class="prog-row">
+          <div class="prog-label">2º Ano</div>
+          <div class="prog-bar-wrap"><div class="prog-fill adeq" style="width:31%"></div></div>
+          <div class="prog-pct pct-yellow">31%</div>
+          <div class="prog-num">9 al.</div>
+        </div>
+        <div class="prog-row">
+          <div class="prog-label">4º Ano</div>
+          <div class="prog-bar-wrap"><div class="prog-fill adeq" style="width:53%"></div></div>
+          <div class="prog-pct pct-green">53%</div>
+          <div class="prog-num">27 al.</div>
+        </div>
+        <div class="prog-row">
+          <div class="prog-label">5º Ano</div>
+          <div class="prog-bar-wrap"><div class="prog-fill adeq" style="width:49%"></div></div>
+          <div class="prog-pct pct-green">49%</div>
+          <div class="prog-num">28 al.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HABILIDADES CRÍTICAS -->
+  <div id="habilidades">
+    <div class="section-title">🎯 Habilidades Críticas — Abaixo de 40% de Acerto</div>
+
+    <div class="alert-banner warning">
+      <span class="ab-icon">📌</span>
+      <div>
+        <div class="alert-title">Habilidades com menor taxa de acerto por ano — foco para reforço pedagógico</div>
+        <div class="alert-body">As habilidades abaixo de 40% indicam conteúdos que precisam ser retrabalhados com metodologias diversificadas. O núcleo gestor deve orientar os professores a priorizarem esses descritores nos planejamentos bimestrais.</div>
+      </div>
+    </div>
+
+    <div class="hab-grid">
+      <!-- 5º ANO MT -->
+      <div class="hab-card">
+        <h4>5º Ano · Matemática — Habilidades Críticas</h4>
+        <div class="hab-row">
+          <div class="hab-code">H13</div>
+          <div class="hab-bar-wrap"><div class="hab-bar low" style="width:13%"></div></div>
+          <div class="hab-pct pct-red">13%</div>
+        </div>
+        <div class="hab-row">
+          <div class="hab-code">H15</div>
+          <div class="hab-bar-wrap"><div class="hab-bar low" style="width:13%"></div></div>
+          <div class="hab-pct pct-red">13%</div>
+        </div>
+        <div class="hab-row">
+          <div class="hab-code">H11</div>
+          <div class="hab-bar-wrap"><div class="hab-bar low" style="width:17%"></div></div>
+          <div class="hab-pct pct-red">17%</div>
+        </div>
+        <div class="hab-row">
+          <div class="hab-code">H08</div>
+          <div class="hab-bar-wrap"><div class="hab-bar low" style="width:22%"></div></div>
+          <div class="hab-pct pct-red">22%</div>
+        </div>
+        <div class="hab-row">
+          <div class="hab-code">H12</div>
+          <div class="hab-bar-wrap"><div class="hab-bar low" style="width:22%"></div></div>
+          <div class="hab-pct pct-red">22%</div>
+        </div>
+        <div class="hab-row">
+          <div class="hab-code">H01</div>
+          <div class="hab-bar-wrap"><div class="hab-bar low" style="width:25%"></div></div>
+          <div class="hab-pct pct-red">25%</div>
+        </div>
+      </div>
+
+      <!-- 4º ANO MT -->
+      <div class="hab-card">
+        <h4>4º Ano · Matemática — Habilidades Críticas</h4>
+        <div class="hab-row">
+          <div class="hab-code">H01</div>
+          <div class="hab-bar-wrap"><div class="hab-bar low" style="width:36%"></div></div>
+          <div class="hab-pct pct-red">36%</div>
+        </div>
+        <div class="hab-row">
+          <div class="hab-code">H10</div>
+          <div class="hab-bar-wrap"><div class="hab-bar low" style="width:37%"></div></div>
+          <div class="hab-pct pct-red">37%</div>
+        </div>
+        <div class="hab-row">
+          <div class="hab-code">H13</div>
+          <div class="hab-bar-wrap"><div class="hab-bar low" style="width:42%"></div></div>
+          <div class="hab-pct pct-red">42%</div>
+        </div>
+        <div class="hab-row">
+          <div class="hab-code">H02</div>
+          <div class="hab-bar-wrap"><div class="hab-bar mid" style="width:45%"></div></div>
+          <div class="hab-pct pct-yellow">45%</div>
+        </div>
+        <div class="hab-row">
+          <div class="hab-code">H07</div>
+          <div class="hab-bar-wrap"><div class="hab-bar mid" style="width:48%"></div></div>
+          <div class="hab-pct pct-yellow">48%</div>
+        </div>
+        <div class="hab-row" style="color:var(--muted);font-style:italic;font-size:0.74rem;">
+          <div style="padding-top:6px">H06 (82%) e H09 (78%) são destaques positivos</div>
+        </div>
+      </div>
+
+      <!-- 5º ANO LP CRÍTICAS -->
+      <div class="hab-card">
+        <h4>5º Ano · Língua Portuguesa — Habilidades Críticas</h4>
+        <div class="hab-row">
+          <div class="hab-code">H07</div>
+          <div class="hab-bar-wrap"><div class="hab-bar low" style="width:28%"></div></div>
+          <div class="hab-pct pct-red">28%</div>
+        </div>
+        <div class="hab-row">
+          <div class="hab-code">H10</div>
+          <div class="hab-bar-wrap"><div class="hab-bar low" style="width:29%"></div></div>
+          <div class="hab-pct pct-red">29%</div>
+        </div>
+        <div class="hab-row">
+          <div class="hab-code">H11</div>
+          <div class="hab-bar-wrap"><div class="hab-bar low" style="width:33%"></div></div>
+          <div class="hab-pct pct-red">33%</div>
+        </div>
+        <div class="hab-row">
+          <div class="hab-code">H03</div>
+          <div class="hab-bar-wrap"><div class="hab-bar low" style="width:43%"></div></div>
+          <div class="hab-pct pct-red">43%</div>
+        </div>
+        <div class="hab-row" style="color:var(--muted);font-style:italic;font-size:0.74rem;">
+          <div style="padding-top:6px">H02 (85%) e H01 (75%) são os melhores desempenhos</div>
+        </div>
+      </div>
+
+      <!-- 4º ANO LP DESTAQUES -->
+      <div class="hab-card">
+        <h4>4º Ano · Língua Portuguesa — Destaques Positivos</h4>
+        <div class="hab-row">
+          <div class="hab-code">H02</div>
+          <div class="hab-bar-wrap"><div class="hab-bar high" style="width:94%"></div></div>
+          <div class="hab-pct pct-green">94%</div>
+        </div>
+        <div class="hab-row">
+          <div class="hab-code">H01</div>
+          <div class="hab-bar-wrap"><div class="hab-bar high" style="width:90%"></div></div>
+          <div class="hab-pct pct-green">90%</div>
+        </div>
+        <div class="hab-row">
+          <div class="hab-code">H04</div>
+          <div class="hab-bar-wrap"><div class="hab-bar high" style="width:84%"></div></div>
+          <div class="hab-pct pct-green">84%</div>
+        </div>
+        <div class="hab-row">
+          <div class="hab-code">H03</div>
+          <div class="hab-bar-wrap"><div class="hab-bar high" style="width:81%"></div></div>
+          <div class="hab-pct pct-green">81%</div>
+        </div>
+        <div class="hab-row" style="color:var(--muted);font-style:italic;font-size:0.74rem;">
+          <div style="padding-top:6px">⚠️ H08 (42%) e H11 (43%) ainda precisam de reforço</div>
+        </div>
+      </div>
+
+      <!-- 2º ANO MT CRÍTICAS -->
+      <div class="hab-card">
+        <h4>2º Ano · Matemática — Habilidades em Atenção</h4>
+        <div class="hab-row">
+          <div class="hab-code">H10</div>
+          <div class="hab-bar-wrap"><div class="hab-bar low" style="width:34%"></div></div>
+          <div class="hab-pct pct-red">34%</div>
+        </div>
+        <div class="hab-row">
+          <div class="hab-code">H11</div>
+          <div class="hab-bar-wrap"><div class="hab-bar mid" style="width:58%"></div></div>
+          <div class="hab-pct pct-yellow">58%</div>
+        </div>
+        <div class="hab-row">
+          <div class="hab-code">H02</div>
+          <div class="hab-bar-wrap"><div class="hab-bar mid" style="width:63%"></div></div>
+          <div class="hab-pct pct-yellow">63%</div>
+        </div>
+        <div class="hab-row" style="color:var(--muted);font-style:italic;font-size:0.74rem;">
+          <div style="padding-top:6px">H05 (97%) e H07 (91%) são destaques positivos<br>⚠️ Cobertura de 65% limita a análise</div>
+        </div>
+      </div>
+
+      <!-- 2º ANO LP -->
+      <div class="hab-card">
+        <h4>2º Ano · Língua Portuguesa — Habilidades em Atenção</h4>
+        <div class="hab-row">
+          <div class="hab-code">H09</div>
+          <div class="hab-bar-wrap"><div class="hab-bar low" style="width:38%"></div></div>
+          <div class="hab-pct pct-red">38%</div>
+        </div>
+        <div class="hab-row">
+          <div class="hab-code">H01</div>
+          <div class="hab-bar-wrap"><div class="hab-bar low" style="width:45%"></div></div>
+          <div class="hab-pct pct-red">45%</div>
+        </div>
+        <div class="hab-row">
+          <div class="hab-code">H10</div>
+          <div class="hab-bar-wrap"><div class="hab-bar low" style="width:45%"></div></div>
+          <div class="hab-pct pct-red">45%</div>
+        </div>
+        <div class="hab-row">
+          <div class="hab-code">H05</div>
+          <div class="hab-bar-wrap"><div class="hab-bar low" style="width:43%"></div></div>
+          <div class="hab-pct pct-red">43%</div>
+        </div>
+        <div class="hab-row" style="color:var(--muted);font-style:italic;font-size:0.74rem;">
+          <div style="padding-top:6px">H11 (82%) e H15 (86%) são destaques positivos<br>⚠️ Cobertura de 59% limita a análise</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ALERTAS & PRIORIDADES -->
+  <div id="alertas">
+    <div class="section-title">🔔 Alertas e Prioridades para o Núcleo Gestor</div>
+
+    <div class="section-block">
+      <div class="section-block-header dark">
+        <div class="sb-icon" style="background:rgba(192,57,43,.3)">🚨</div>
+        <div class="sb-info">
+          <h3>Alertas Críticos — Intervenção Imediata Necessária</h3>
+          <p>Situações que exigem ação antes do próximo bimestre</p>
+        </div>
+      </div>
+
+      <div class="notif-card priority-red" onclick="toggleCard(this)">
+        <div class="notif-top">
+          <div class="notif-avatar red">🚨</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">4º Ano MT: 54% de Defasagem — Situação Crítica com Todas as Turmas em Alerta</div>
+              <div class="notif-source">4º ANO · MT</div>
+            </div>
+            <div class="notif-summary">O 4º Ano em Matemática apresenta 54% de defasagem com proficiência média de 40. A Turma B é a mais crítica com proficiência 35 e 63% de defasagem. A Turma C tem 59% de defasagem com proficiência 37. As habilidades H01 (localização espacial — 36%) e H10 (medidas de tempo — 37%) estão em situação muito crítica.</div>
+            <div class="notif-metrics">
+              <div class="metric-pill red"><div class="dot" style="background:var(--red)"></div>54% Defasagem</div>
+              <div class="metric-pill red"><div class="dot" style="background:var(--red)"></div>Prof. Média: 40</div>
+              <div class="metric-pill yellow"><div class="dot" style="background:var(--yellow)"></div>Turma B: Prof. 35</div>
+              <div class="metric-pill yellow"><div class="dot" style="background:var(--yellow)"></div>50 avaliados</div>
+            </div>
+          </div>
+          <button class="notif-toggle">▼</button>
+        </div>
+        <div class="notif-expand">
+          <div class="action-tag">⚡ AÇÃO PRIORITÁRIA — NÚCLEO GESTOR</div>
+          <div class="action-text">
+            <strong>1. Diagnóstico por turma:</strong> Aplicar avaliação diagnóstica interna em todas as turmas do 4º Ano para identificar lacunas específicas. A Turma B (Prof. 35) e Turma C (Prof. 37) precisam de atenção imediata.<br><br>
+            <strong>2. Foco nas habilidades H01 e H10:</strong> Localização espacial (36%) e medidas de tempo (37%) são os pontos mais críticos — usar material concreto, calendários, mapas e réguas para tornar os conceitos mais palpáveis.<br><br>
+            <strong>3. Aproveitar o contraste com LP:</strong> O mesmo 4º Ano tem 53% de adequado em LP — investigar as estratégias pedagógicas bem-sucedidas e tentar transferi-las para Matemática.<br><br>
+            <strong>4. Monitoramento mensal:</strong> Estabelecer momento de análise com os professores de MT do 4º Ano para avaliar evolução e ajustar estratégias.
+          </div>
+          <div class="expand-tags">
+            <div class="expand-tag">Localização Espacial</div>
+            <div class="expand-tag">Medidas de Tempo</div>
+            <div class="expand-tag">Material Concreto</div>
+            <div class="expand-tag">Interdisciplinaridade</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="notif-card priority-red" onclick="toggleCard(this)">
+        <div class="notif-top">
+          <div class="notif-avatar red">🚨</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">2º Ano — Turma C sem Participação: Risco de Invisibilidade Pedagógica</div>
+              <div class="notif-source">2º ANO · MT + LP</div>
+            </div>
+            <div class="notif-summary">A Turma C do 2º Ano não teve nenhum aluno avaliado em MT e apenas 1 aluno em LP. Isso pode indicar ausência coletiva no dia da avaliação, problema de cadastro ou outra ocorrência. Esta turma está invisível nos dados e pode estar em situação crítica que não está sendo monitorada.</div>
+            <div class="notif-metrics">
+              <div class="metric-pill red"><div class="dot" style="background:var(--red)"></div>0% cobertura MT</div>
+              <div class="metric-pill red"><div class="dot" style="background:var(--red)"></div>1 aluno em LP</div>
+              <div class="metric-pill yellow"><div class="dot" style="background:var(--yellow)"></div>16 alunos previstos</div>
+            </div>
+          </div>
+          <button class="notif-toggle">▼</button>
+        </div>
+        <div class="notif-expand">
+          <div class="action-tag">⚡ AÇÃO URGENTE — DIREÇÃO</div>
+          <div class="action-text">
+            <strong>1. Investigar a causa imediatamente:</strong> Contatar a SEDUC/CREDE para verificar se houve problema no sistema ou se a turma realmente não participou da avaliação. Checar atas de frequência do dia da aplicação.<br><br>
+            <strong>2. Aplicar avaliação diagnóstica interna:</strong> Para cobrir a lacuna dos dados do Avalie.CE, aplicar instrumento diagnóstico próprio com os alunos da Turma C o quanto antes.<br><br>
+            <strong>3. Solicitar replicação se possível:</strong> Verificar com a SEDUC se há possibilidade de reagendamento ou aplicação complementar para a turma.
+          </div>
+          <div class="expand-tags">
+            <div class="expand-tag">Busca Ativa</div>
+            <div class="expand-tag">SEDUC/CREDE</div>
+            <div class="expand-tag">Diagnóstico Interno</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="notif-card priority-red" onclick="toggleCard(this)">
+        <div class="notif-top">
+          <div class="notif-avatar red">🚨</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">5º Ano MT — Turma B: 55% de Defasagem com Proficiência de 36 Pontos</div>
+              <div class="notif-source">5º ANO · MT · Turma B</div>
+            </div>
+            <div class="notif-summary">A Turma B do 5º Ano apresenta 55% de defasagem e proficiência 36 em MT, contra 20% de defasagem e proficiência 60 na Turma C — diferença de 24 pontos entre turmas do mesmo ano. As habilidades de frações (H11=17%, H12=22%) e medidas (H13=13%) são críticas na escola. Estes alunos passarão ao 6º Ano com déficits severos.</div>
+            <div class="notif-metrics">
+              <div class="metric-pill red"><div class="dot" style="background:var(--red)"></div>Turma B: 55% Defasagem</div>
+              <div class="metric-pill red"><div class="dot" style="background:var(--red)"></div>Prof. B: 36</div>
+              <div class="metric-pill green"><div class="dot" style="background:var(--green)"></div>Turma C: Prof. 60</div>
+              <div class="metric-pill yellow"><div class="dot" style="background:var(--yellow)"></div">Δ 24pp entre turmas</div>
+            </div>
+          </div>
+          <button class="notif-toggle">▼</button>
+        </div>
+        <div class="notif-expand">
+          <div class="action-tag">⚡ AÇÃO — COORDENAÇÃO PEDAGÓGICA</div>
+          <div class="action-text">
+            <strong>1. Investigar a disparidade entre turmas:</strong> A diferença de 24 pontos entre Turmas B e C merece investigação. Analisar perfil dos alunos, metodologia do professor e composição de turma.<br><br>
+            <strong>2. Habilidades prioritárias 5º Ano MT:</strong> H13 (conversão de medidas — 13%), H15 (racionais — 13%), H11 (reta numérica — 17%), H08 (planificações — 22%) e H12 (frações — 22%) exigem atenção imediata.<br><br>
+            <strong>3. Planejamento de transição 5º→6º:</strong> Com a turma chegando ao 6º Ano no próximo ciclo, elaborar relatório individual de lacunas para os futuros professores.<br><br>
+            <strong>4. Socializar boas práticas da Turma C:</strong> Entender o que está funcionando na Turma C (Prof. 60) e replicar para a Turma B.
+          </div>
+          <div class="expand-tags">
+            <div class="expand-tag">Frações</div>
+            <div class="expand-tag">Medidas</div>
+            <div class="expand-tag">Transição 5º→6º</div>
+            <div class="expand-tag">Disparidade de Turmas</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /section-block critical -->
+
+    <div class="section-block">
+      <div class="section-block-header">
+        <div class="sb-icon" style="background:var(--yellow-bg)">⚠️</div>
+        <div class="sb-info">
+          <h3>Alertas de Atenção — Monitoramento Próximo Bimestre</h3>
+          <p>Situações que exigem acompanhamento e ação planejada</p>
+        </div>
+      </div>
+
+      <div class="notif-card priority-yellow" onclick="toggleCard(this)">
+        <div class="notif-top">
+          <div class="notif-avatar yellow">📉</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">2º Ano LP — Turma B: 54% de Defasagem — Disparidade Grave com Turma A</div>
+              <div class="notif-source">2º ANO · LP</div>
+            </div>
+            <div class="notif-summary">A Turma A do 2º Ano tem 53% de adequado (proficiência 64), enquanto a Turma B registra 54% de defasagem (proficiência 31) — uma diferença enorme de 33 pontos. H09 (efeitos de sentido — 38%) e H01 (identificar letras — 45%) são as habilidades mais críticas da escola no 2º Ano em LP.</div>
+            <div class="notif-metrics">
+              <div class="metric-pill red"><div class="dot" style="background:var(--red)"></div>Turma B: 54% Defasagem</div>
+              <div class="metric-pill green"><div class="dot" style="background:var(--green)"></div>Turma A: 53% Adequado</div>
+              <div class="metric-pill yellow"><div class="dot" style="background:var(--yellow)"></div>Δ 33pp entre turmas</div>
+            </div>
+          </div>
+          <button class="notif-toggle">▼</button>
+        </div>
+        <div class="notif-expand">
+          <div class="action-tag">📋 AÇÃO — COORDENAÇÃO PEDAGÓGICA</div>
+          <div class="action-text">
+            <strong>1. Investigar a disparidade:</strong> Com 33 pontos de diferença entre as turmas A e B do 2º Ano em LP, é necessário entender se há diferença de metodologia, composição de turma ou experiência docente.<br><br>
+            <strong>2. Reforçar habilidades de alfabetização:</strong> H09 (38%) — efeitos de sentido e recursos gráficos — e H01 (45%) — identificar letras — são habilidades básicas para esta etapa que precisam de trabalho intensificado na Turma B.<br><br>
+            <strong>3. Socializar práticas da Turma A:</strong> A Turma A com proficiência 64 demonstra que é possível atingir bons resultados — identificar e compartilhar as estratégias adotadas.
+          </div>
+          <div class="expand-tags">
+            <div class="expand-tag">Alfabetização</div>
+            <div class="expand-tag">Consciência Fonológica</div>
+            <div class="expand-tag">Disparidade de Turmas</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="notif-card priority-yellow" onclick="toggleCard(this)">
+        <div class="notif-top">
+          <div class="notif-avatar orange">📊</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">5º Ano LP: Habilidades H07 (28%) e H10 (29%) Abaixo de 30% — Risco de Defasagem Crescente</div>
+              <div class="notif-source">5º ANO · LP</div>
+            </div>
+            <div class="notif-summary">Apesar do bom resultado geral do 5º Ano em LP (49% adequado), as habilidades H07 (efeitos de pontuação — 28%), H10 (recursos coesivos — 29%) e H11 (fato/opinião — 33%) estão muito baixas. Essas são competências avançadas de leitura crítica esperadas para os anos finais.</div>
+            <div class="notif-metrics">
+              <div class="metric-pill red"><div class="dot" style="background:var(--red)"></div>H07=28% · H10=29%</div>
+              <div class="metric-pill yellow"><div class="dot" style="background:var(--yellow)"></div>H11=33%</div>
+              <div class="metric-pill green"><div class="dot" style="background:var(--green)"></div>49% Adequado Geral</div>
+            </div>
+          </div>
+          <button class="notif-toggle">▼</button>
+        </div>
+        <div class="notif-expand">
+          <div class="action-tag">📋 AÇÃO — TRANSIÇÃO PARA ANOS FINAIS</div>
+          <div class="action-text">
+            <strong>1. Focar em leitura crítica e textual:</strong> H07 (pontuação e efeitos de sentido) e H10 (coesão textual) são fundamentais para a transição para os Anos Finais. Trabalhar com análise de textos mais complexos, distinção fato/opinião.<br><br>
+            <strong>2. Turma B precisa de atenção:</strong> Com 41% de defasagem (proficiência 50), a Turma B do 5º Ano em LP está em situação de atenção — priorizar estratégias de leitura inferencial e argumentativa.<br><br>
+            <strong>3. Preservar o que funciona:</strong> A Turma A com 68% de adequado (proficiência 78) é referência de excelência — documentar e socializar suas práticas.
+          </div>
+          <div class="expand-tags">
+            <div class="expand-tag">Leitura Crítica</div>
+            <div class="expand-tag">Coesão Textual</div>
+            <div class="expand-tag">Fato vs Opinião</div>
+            <div class="expand-tag">Transição para Anos Finais</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /section-block warning -->
+
+    <div class="section-block">
+      <div class="section-block-header">
+        <div class="sb-icon" style="background:var(--green-bg)">✅</div>
+        <div class="sb-info">
+          <h3>Pontos Positivos — Replicar e Fortalecer</h3>
+          <p>Práticas e resultados que merecem destaque e disseminação</p>
+        </div>
+      </div>
+
+      <div class="notif-card priority-green" onclick="toggleCard(this)">
+        <div class="notif-top">
+          <div class="notif-avatar green">⭐</div>
+          <div class="notif-body">
+            <div class="notif-header-row">
+              <div class="notif-title">4º Ano LP Turma B: 78% de Adequado — Referência de Excelência na Escola</div>
+              <div class="notif-source">4º ANO · LP</div>
+            </div>
+            <div class="notif-summary">A Turma B do 4º Ano em LP apresenta 78% de adequado com proficiência 77 — o melhor resultado de toda a escola. H01 e H02 (leitura de palavras) registraram 90% e 94% de acerto respectivamente. Este resultado extraordinário deve ser investigado e compartilhado com toda a equipe pedagógica.</div>
+            <div class="notif-metrics">
+              <div class="metric-pill green"><div class="dot" style="background:var(--green)"></div>78% Adequado Turma B</div>
+              <div class="metric-pill green"><div class="dot" style="background:var(--green)"></div>Prof. 77</div>
+              <div class="metric-pill teal"><div class="dot" style="background:var(--teal)"></div>H02=94% · H01=90%</div>
+            </div>
+          </div>
+          <button class="notif-toggle">▼</button>
+        </div>
+        <div class="notif-expand">
+          <div class="action-tag">🌟 AÇÃO — DISSEMINAÇÃO DE PRÁTICAS EXITOSAS</div>
+          <div class="action-text">
+            <strong>1. Valorizar e compartilhar:</strong> Reconhecer formalmente o trabalho dos professores do 4º Ano LP — especialmente da Turma B — em reunião de equipe. Promover momento de socialização das práticas pedagógicas adotadas.<br><br>
+            <strong>2. Analisar por que Turma A tem 40% de defasagem:</strong> Enquanto a Turma B tem 78% de adequado, a Turma A tem 40% de defasagem (mesmo ano, mesma série) — identificar o que está diferenciando as turmas e equalizar.<br><br>
+            <strong>3. Replicar para o 5º Ano e 2º Ano:</strong> As estratégias de leitura usadas no 4º Ano podem ser adaptadas para outros anos, especialmente para os grupos em dificuldade.<br><br>
+            <strong>4. Documentar no PPP:</strong> Registrar as práticas exitosas no Projeto Político-Pedagógico como metodologia recomendada para o ciclo.
+          </div>
+          <div class="expand-tags">
+            <div class="expand-tag">Boas Práticas</div>
+            <div class="expand-tag">Leitura</div>
+            <div class="expand-tag">PPP</div>
+            <div class="expand-tag">Socialização</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /section-block success -->
+  </div><!-- /alertas -->
+
+  <!-- PLANO DE AÇÃO -->
+  <div id="acoes">
+    <div class="section-title">⚡ Plano de Ação — Núcleo Gestor · Avalie.CE 2025.1</div>
+
+    <div class="alert-banner info">
+      <span class="ab-icon">📌</span>
+      <div>
+        <div class="alert-title">Sugestões de ações estruturadas para diretores e coordenadores pedagógicos</div>
+        <div class="alert-body">As ações abaixo foram formuladas a partir da análise dos dados das planilhas do AVALIE.CE 2025.1. Devem ser adaptadas ao contexto da escola e pactuadas com a equipe docente em HTPC.</div>
+      </div>
+    </div>
+
+    <div class="data-table-wrap">
+      <div class="table-header">
+        <h3>Matriz de Ações Prioritárias — Avalie.CE 2025.1</h3>
+        <p>Núcleo Gestor 12 de Outubro EEIEF · Ordenado por urgência</p>
+      </div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Ação</th>
+              <th>Foco</th>
+              <th>Responsável</th>
+              <th>Prazo</th>
+              <th>Urgência</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1</strong></td>
+              <td>Investigar ausência da Turma C do 2º Ano nas avaliações</td>
+              <td>2º Ano · Turma C</td>
+              <td>Diretor + CREDE</td>
+              <td>Imediato</td>
+              <td><span class="nivel-badge nl">🚨 Urgente</span></td>
+            </tr>
+            <tr>
+              <td><strong>2</strong></td>
+              <td>Reunião de análise dos dados com professores de MT e LP</td>
+              <td>Todos os anos</td>
+              <td>Diretor + Coordenador</td>
+              <td>Imediato</td>
+              <td><span class="nivel-badge nl">🚨 Urgente</span></td>
+            </tr>
+            <tr>
+              <td><strong>3</strong></td>
+              <td>Diagnóstico interno urgente para Turma B e C do 4º Ano MT</td>
+              <td>4º Ano B e C · MT</td>
+              <td>Coordenador + Prof. MT</td>
+              <td>1 semana</td>
+              <td><span class="nivel-badge nl">🚨 Urgente</span></td>
+            </tr>
+            <tr>
+              <td><strong>4</strong></td>
+              <td>Implementar reforço para 4º Ano em MT (H01 e H10 prioritários)</td>
+              <td>4º Ano · MT</td>
+              <td>Coordenador + Professores</td>
+              <td>15 dias</td>
+              <td><span class="nivel-badge nl">🚨 Urgente</span></td>
+            </tr>
+            <tr>
+              <td><strong>5</strong></td>
+              <td>Investigar disparidade de 24pp entre Turmas B e C do 5º Ano MT</td>
+              <td>5º Ano · MT</td>
+              <td>Coordenador Pedagógico</td>
+              <td>15 dias</td>
+              <td><span class="nivel-badge nl">🚨 Urgente</span></td>
+            </tr>
+            <tr>
+              <td><strong>6</strong></td>
+              <td>Investigar e intervir na disparidade de 33pp do 2º Ano LP (Turmas A vs B)</td>
+              <td>2º Ano · LP</td>
+              <td>Coordenador + Prof. LP</td>
+              <td>15 dias</td>
+              <td><span class="nivel-badge nl">🚨 Urgente</span></td>
+            </tr>
+            <tr>
+              <td><strong>7</strong></td>
+              <td>Socialização das práticas do 4º Ano LP Turma B (78% adequado) para equipe</td>
+              <td>4º Ano · LP</td>
+              <td>Coordenador Pedagógico</td>
+              <td>1 mês</td>
+              <td><span class="nivel-badge inter">⚠ Atenção</span></td>
+            </tr>
+            <tr>
+              <td><strong>8</strong></td>
+              <td>Trabalhar habilidades H13/H15 (13%) e H11 (17%) do 5º Ano MT</td>
+              <td>5º Ano · MT</td>
+              <td>Coord. + Prof. MT</td>
+              <td>1 mês</td>
+              <td><span class="nivel-badge inter">⚠ Atenção</span></td>
+            </tr>
+            <tr>
+              <td><strong>9</strong></td>
+              <td>Planejar transição 5º→6º com alinhamento de pré-requisitos de MT e LP</td>
+              <td>5º Ano</td>
+              <td>Coordenador + Professores</td>
+              <td>1 mês</td>
+              <td><span class="nivel-badge inter">⚠ Atenção</span></td>
+            </tr>
+            <tr>
+              <td><strong>10</strong></td>
+              <td>Incluir resultados do Avalie.CE na pauta do próximo HTPC</td>
+              <td>Toda a equipe</td>
+              <td>Diretor</td>
+              <td>Próximo HTPC</td>
+              <td><span class="nivel-badge inter">⚠ Atenção</span></td>
+            </tr>
+            <tr>
+              <td><strong>11</strong></td>
+              <td>Comunicar resultados às famílias dos alunos em maior defasagem</td>
+              <td>4º e 5º Ano MT</td>
+              <td>Diretor</td>
+              <td>1 mês</td>
+              <td><span class="nivel-badge inter">⚠ Atenção</span></td>
+            </tr>
+            <tr>
+              <td><strong>12</strong></td>
+              <td>Elaborar relatório individual dos alunos do 5º Ano para transição de ciclo</td>
+              <td>5º Ano</td>
+              <td>Coordenador + Prof.</td>
+              <td>Final do ano</td>
+              <td><span class="nivel-badge adeq">✅ Planejamento</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- CALENDÁRIO DE MONITORAMENTO -->
+    <div class="prog-wrap" style="margin-top:20px">
+      <h4 style="font-size:0.90rem;font-weight:700;color:var(--blue-dark);margin-bottom:14px">📅 Sugestão de Calendário de Monitoramento — 2º Semestre 2025</h4>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+        <div style="background:var(--red-bg);border:1px solid var(--red-bdr);border-radius:8px;padding:12px">
+          <div style="font-size:0.68rem;font-weight:700;text-transform:uppercase;color:var(--red-dark);letter-spacing:.08em;margin-bottom:5px">Julho — Urgente</div>
+          <div style="font-size:0.78rem;color:#7a1a0e;line-height:1.6">• Investigar ausência Turma C 2º Ano<br>• Diagnóstico 4º Ano MT (todas as turmas)<br>• Reunião geral de análise<br>• Intervenção imediata Turma B 4º MT</div>
+        </div>
+        <div style="background:var(--yellow-bg);border:1px solid var(--yellow-bdr);border-radius:8px;padding:12px">
+          <div style="font-size:0.68rem;font-weight:700;text-transform:uppercase;color:#7d5a10;letter-spacing:.08em;margin-bottom:5px">Agosto — Implementação</div>
+          <div style="font-size:0.78rem;color:#7a3e05;line-height:1.6">• Grupos de reforço 4º MT<br>• HTPC: dados Avalie.CE<br>• Investigar disparidade 5º Ano MT<br>• Socialização boas práticas 4º LP Turma B</div>
+        </div>
+        <div style="background:var(--teal-bg);border:1px solid var(--teal-bdr);border-radius:8px;padding:12px">
+          <div style="font-size:0.68rem;font-weight:700;text-transform:uppercase;color:var(--teal);letter-spacing:.08em;margin-bottom:5px">Set–Out — Monitoramento</div>
+          <div style="font-size:0.78rem;color:#0e4f5e;line-height:1.6">• Avaliação bimestral focada<br>• Ajuste das intervenções<br>• Planejamento transição 5º→6º<br>• Comunicação com famílias</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /acoes -->
+
+  <!-- RODAPÉ DA PÁGINA -->
+  <div style="margin-top:40px;padding:16px 0;border-top:1px solid var(--border);font-size:0.72rem;color:var(--muted2);line-height:1.8">
+    <strong style="color:var(--muted)">Fonte dos dados:</strong> AVALIE.CE 2025.1 / SEDUC-CE · Planilhas de Desempenho por Habilidade<br>
+    <strong style="color:var(--muted)">Escola:</strong> 12 de Outubro EEIEF · Caucaia-CE · Regional Maracanau<br>
+    <strong style="color:var(--muted)">Anos avaliados:</strong> 2º, 4º e 5º Anos · Matemática e Língua Portuguesa<br>
+    <strong style="color:var(--muted)">Total de avaliados:</strong> ~274 alunos | <strong style="color:var(--muted)">Gerado em:</strong> Abril/2025
+  </div>
+
+</main>
+
+<script>
+function toggleCard(card) {
+  card.classList.toggle('open');
+}
+
+function switchTab(tab) {
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  event.target.classList.add('active');
+}
+
+/* scroll-spy — highlights internal nav items on scroll */
+const sections = document.querySelectorAll('[id]');
+const internalNavItems = document.querySelectorAll('.nav-item[href^="#"]');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 110) cur = s.id; });
+  internalNavItems.forEach(i => {
+    i.classList.remove('active');
+    if (i.getAttribute('href') === '#' + cur) i.classList.add('active');
+  });
+}, { passive: true });
+</script>
 </body>
 </html>
